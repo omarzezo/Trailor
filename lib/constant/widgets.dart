@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Widget CustomContainer({
-  required IconData icon,
   required Color color,
   required String title ,
+  required String titleImage ,
 }){
   return Container(
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(icon , color: color,),
+        Image.asset(titleImage,width: 28,height: 28,),
         const SizedBox(height: 5,),
         Text(title , style: GoogleFonts.notoKufiArabic(
             color: color,
-            fontSize: 10,
+            fontSize: 9.5,
             fontWeight: FontWeight.w500
         ),)
       ],
@@ -57,15 +57,15 @@ Widget RowName(){
 
 Widget RowNameDetail({
   required String title ,
-  required IconData iconData,
+  required String titleImage ,
 }){
   return Container(
     height: 35,
-    padding: const EdgeInsets.only(right: 10),
+    padding: const EdgeInsets.only(right: 20),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children:  [
-        Icon(iconData , color: Colors.teal),
+        Image.asset(titleImage , width: 30, height: 30,),
         const SizedBox(width: 20,),
         Text(title,
             style: GoogleFonts.notoKufiArabic(

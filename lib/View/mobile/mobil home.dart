@@ -1,0 +1,257 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:omar/View/Data%20Table/custom%20table.dart';
+import 'package:omar/constant/constant.dart';
+
+import '../../constant/widgets.dart';
+
+class MobileHome extends StatelessWidget {
+  const MobileHome({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    return Scaffold(
+      key: _scaffoldKey,
+      drawerScrimColor: Colors.transparent,
+      backgroundColor: Colors.white,
+      drawer:  Padding(
+        padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height/9.4, left: MediaQuery.of(context).size.width/2.2),
+        child: Drawer(
+          elevation: 0.0,
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: Stack(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width / 1,
+                  height: MediaQuery.of(context).size.height / 1,
+                  // margin: const EdgeInsets.only(top: 0, bottom: 0,left: 0),
+                  decoration:   BoxDecoration(
+                    color:  const Color(0xffe4e4e4),
+                    // borderRadius: const BorderRadius.only(
+                    //     topLeft: Radius.circular(20),
+                    //     bottomLeft: Radius.circular(20)),
+                    border: Border.all(color: MyConstant().greenColor, width: 0.9),
+                  ),
+                  child: Column(
+                    children: [
+                      Container(height: 70,padding: const EdgeInsets.symmetric(horizontal: 5),child: RowName(),),
+                      const Divider(color: Colors.green,endIndent: 10,indent: 30,thickness: 3,height: 10),
+                      RowNameDetail(title: 'مبيعات التفصيل' , titleImage: 'image/tshirt.png'),
+                      RowNameDetail(title: 'اقمسة-اكسسوارات' , titleImage: 'image/towels.png'),
+                      RowNameDetail(title: 'الحجوزات' , titleImage: 'image/booking.png'),
+                      RowNameDetail(title: 'الرسائل والاشعارات' , titleImage: 'image/email.png'),
+                      RowNameDetail(title: 'الضرائب والحسابات' , titleImage: 'image/profit (1).png'),
+                      RowNameDetail(title: 'ادارة المخزون' ,titleImage: 'image/warehouse (1).png'),
+                      RowNameDetail(title: 'التقارير' , titleImage: 'image/report.png'),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+      body: SafeArea(
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.only(left: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 7),
+                height: 60,
+                decoration: const BoxDecoration(
+                  border: Border(bottom: BorderSide(color: Colors.green )),
+                  color: Colors.white
+                ),
+                child: Row(children: [
+                  IconButton(
+                      onPressed: (){
+                        _scaffoldKey.currentState?.openDrawer();
+                      },
+                      icon: const Icon(Icons.menu , color: Colors.purple,),padding: EdgeInsets.zero, iconSize: 33,),
+                   Text('الرئسية',
+                      style: GoogleFonts.notoKufiArabic(
+                        color: Colors.black,
+                        fontSize: 14
+                      )
+                   ),
+                  const SizedBox(width: 20,),
+                 Container(height: 55,width:MediaQuery.of(context).size.width/4,
+                     child:Image.asset('image/logo app.png',)),
+                  const Spacer(),
+                  Container(width: 1,color: Colors.grey,height: 18,),
+                  const SizedBox(width: 10,),
+                   Text('مركز الابتكار للخياطة',
+                      style: GoogleFonts.notoKufiArabic(
+                          color: Colors.purple,
+                          fontSize: 12,
+                        fontWeight: FontWeight.bold
+                      )),
+                ],),
+              ),
+              Container(
+                height: 60,
+                width: MediaQuery.of(context).size.width/1,
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                margin: const EdgeInsets.symmetric(vertical: 10,horizontal: 7),
+                decoration: const BoxDecoration(
+                    border: Border(bottom: BorderSide(color: Colors.green)),
+                  color: Colors.white
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    CustomContainer(
+                        color: Colors.purple,
+                        title: 'فاتورة خياطة',
+                        titleImage: 'image/invoices.png'),
+                    CustomContainer(
+                        color: Colors.purple,
+                        title: 'طباعة المقاسات',
+                        titleImage: 'image/measurement.png',
+                    ),
+                    CustomContainer(
+                        titleImage: 'image/cutting.png',
+                        color: Colors.purple,
+                        title: 'تاكيد القص'),
+
+                    CustomContainer(
+                        titleImage: 'image/task.png',
+                        color: Colors.purple,
+                        title: 'استلام المعمل'),
+
+                    CustomContainer(
+                        titleImage: 'image/clothes (1).png',
+                        color: Colors.purple,
+                        title: 'تسليم الثياب'),
+                  ],
+                ),
+              ),
+              // const Spacer(),
+              Expanded(
+                  child: Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                          child: Column(
+                            children: [
+                              Directionality(
+                                textDirection: TextDirection.rtl,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
+                                  child: Row(
+                                    children: [
+                                      Container(width: 3,height: 30,color: MyConstant().purpleColor,),
+                                      const SizedBox(width: 20,),
+                                      Text('الثياب المتاخرة علي القص',
+                                          style: GoogleFonts.notoKufiArabic(
+                                            color: MyConstant().greenColor,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 16,
+                                          )),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                                  height: MediaQuery.of(context).size.height/3,
+                                  // color: Colors.amber,
+                                  child: const CustomTable()),
+                              Directionality(
+                                textDirection: TextDirection.rtl,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                  child: Row(
+                                    children: [
+                                      Container(width: 3,height: 30,color: MyConstant().purpleColor,),
+                                      const SizedBox(width: 20,),
+                                      Text('الثياب المتاخرة علي التسليم',
+                                          style: GoogleFonts.notoKufiArabic(
+                                            color: MyConstant().greenColor,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 16,
+                                          )),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                                  height: MediaQuery.of(context).size.height/3,
+                                  // color: Colors.amber,
+                                  child: const CustomTable()),
+                              Directionality(
+                                textDirection: TextDirection.rtl,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                  child: Row(
+                                    children: [
+                                      Container(width: 3,height: 30,color: MyConstant().purpleColor,),
+                                      const SizedBox(width: 20,),
+                                      Text('ثياب سوف تسلم خلال اسبوع',
+                                          style: GoogleFonts.notoKufiArabic(
+                                            color: MyConstant().greenColor,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 16,
+                                          )),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                                  height: MediaQuery.of(context).size.height/3,
+                                  // color: Colors.amber,
+                                  child: const CustomTable()),
+                            ],
+                          )
+                      ))),
+              Container(
+                height: 50,
+                // color: Colors.amber,
+                width: MediaQuery.of(context).size.width/1,
+                child: Stack(
+                 alignment: Alignment.center,
+                 children: [
+                   Container(
+                     height: 50,
+                     width: MediaQuery.of(context).size.width/1.6,
+                     decoration: const BoxDecoration(
+                       color: Colors.purple,
+                       borderRadius: BorderRadius.only(topLeft: Radius.circular(8) , topRight: Radius.circular(8)),
+                     ),
+                   ),
+                   Container(
+                     height: 48,
+                     width: MediaQuery.of(context).size.width/1.61,
+                     // margin: const EdgeInsets.only(top: 10 , right: 10 , left: 10),
+                     decoration:  const BoxDecoration(
+                       color: Colors.white,
+                       borderRadius: BorderRadius.only(topLeft: Radius.circular(8) , topRight: Radius.circular(8)),
+                     ),
+                     child: Row(
+                       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                       children:  [
+                         Image.asset('image/wallet (1).png' , width: 40, height: 40,),
+                         Image.asset('image/bill.png' , width: 40, height: 40,),
+                         Image.asset('image/admin (1).png' , width: 40, height: 40,),
+                         Image.asset('image/paint.png' , width: 40, height: 40,),
+
+                       ],
+                     ),
+                   ),
+                 ],
+             ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

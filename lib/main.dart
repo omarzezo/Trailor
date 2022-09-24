@@ -1,9 +1,24 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'home/home.dart';
-import 'login/login screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:omar/Controller/Cubit/Cubit.dart';
+import 'package:omar/Controller/Network/Remote%20Data/Dio%20Helper.dart';
+import 'Controller/BlocObserver.dart';
+import 'View/Data Table/custom table.dart';
+import 'View/Data Table/data-table screen.dart';
+import 'View/home/home.dart';
+import 'View/login/login screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  DioHelper.init();
+  BlocOverrides.runZoned(
+        () {
+      runApp(const MyApp());
+    },
+    blocObserver: MyBlocObserver(),
+  );
+  // runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -12,26 +27,31 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const Directionality(
-        textDirection: TextDirection.rtl,
-        child: LoginScreen(),
-      ),
-    );
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => LoginCubit()),
+        ],
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          debugShowCheckedModeBanner: false,
+
+          theme: ThemeData.light().copyWith(
+            unselectedWidgetColor: Colors.white,
+            colorScheme: ThemeData.light().colorScheme.copyWith(
+              onPrimary: Colors.white, // Color for checkmark in datatable
+              primary: Colors.purple, // Color used for checkbox fill in datatable
+            ),
+            checkboxTheme: CheckboxThemeData(
+              overlayColor: MaterialStateProperty.all(Colors.purple),
+              side: MaterialStateBorderSide.resolveWith(
+                      (_) => const BorderSide(width: 2, color: Colors.white)),
+              fillColor: MaterialStateProperty.all(Colors.purple),
+              checkColor: MaterialStateProperty.all(Colors.purple),
+            ),
+          ),
+
+          home: const LoginScreen(),
+        ));
   }
 }
 

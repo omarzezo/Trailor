@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:omar/mobile/mobil%20home.dart';
-import 'package:omar/responsive.dart';
-import 'package:omar/tablet-home.dart';
-import 'package:omar/tablet.dart';
+import 'package:omar/View/mobile/mobil%20home.dart';
+import 'package:omar/View/responsive.dart';
+import 'package:omar/View/Tablet/tablet-home.dart';
+import 'package:omar/View/Tablet/tablet.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
