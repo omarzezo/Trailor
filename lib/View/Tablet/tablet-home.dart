@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/View/Data%20Table/custom%20table.dart';
@@ -210,6 +211,8 @@ class _TebletHomeState extends State<TebletHome> {
                             child: Directionality(
                             textDirection: TextDirection.ltr,
                             child: SingleChildScrollView(
+                              // dragStartBehavior: DragStartBehavior.start ,
+                                physics: const BouncingScrollPhysics(),
                               child: Column(
                                 children: [
                                   Directionality(
@@ -232,9 +235,33 @@ class _TebletHomeState extends State<TebletHome> {
                                   ),
                                   Container(
                                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                                      height: MediaQuery.of(context).size.height/3,
+                                      height: MediaQuery.of(context).size.height/2,
                                       // color: Colors.amber,
-                                      child: const CustomTable()),
+                                      child:  const Scrollbar(
+                                        // controller: ScrollController(
+                                        //   initialScrollOffset: 0,
+                                        //   keepScrollOffset: true
+                                        // ),
+                                        thickness: 16,
+                                        radius:  Radius.circular(0),
+                                        trackVisibility: true,
+                                        interactive: true,
+                                        isAlwaysShown: true,
+                                        showTrackOnHover: true,
+                                        // hoverThickness: 12,
+                                        child:  CustomTable(),
+                                      ),),
+                                  // Scrollbar(
+                                  //     thickness: 16,
+                                  //     controller: ScrollController(),
+                                  //     radius: const Radius.circular(0),
+                                  //     trackVisibility: true,
+                                  //     interactive: true,
+                                  //     isAlwaysShown: true,
+                                  //     // showTrackOnHover: true,
+                                  //     hoverThickness: 12,
+                                  //     child:  CustomTable(),
+                                  // ),
                                   Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: Padding(
@@ -255,7 +282,7 @@ class _TebletHomeState extends State<TebletHome> {
                                   ),
                                   Container(
                                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                                      height: MediaQuery.of(context).size.height/3,
+                                      height: MediaQuery.of(context).size.height/2,
                                       // color: Colors.amber,
                                       child: const CustomTable()),
                                   Directionality(
@@ -278,7 +305,7 @@ class _TebletHomeState extends State<TebletHome> {
                                   ),
                                   Container(
                                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                                      height: MediaQuery.of(context).size.height/3,
+                                      height: MediaQuery.of(context).size.height/2,
                                       // color: Colors.amber,
                                       child: const CustomTable()),
                                 ],
