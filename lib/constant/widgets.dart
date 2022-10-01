@@ -10,7 +10,7 @@ Widget CustomContainer({
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(titleImage,width: 28,height: 28,),
+        Image.asset(titleImage,width: 25,height: 25,),
         const SizedBox(height: 5,),
         Text(title , style: GoogleFonts.notoKufiArabic(
             color: color,
@@ -39,7 +39,8 @@ Widget CustomRow({
   );
 }
 
-Widget RowName(){
+Widget RowName()
+{
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     children:  [
@@ -50,7 +51,7 @@ Widget RowName(){
               fontWeight: FontWeight.bold
           )),
       CircleAvatar(backgroundColor: Colors.purple.withOpacity(0.7),),
-      Icon(Icons.arrow_forward_ios , color: Colors.purple),
+      const Icon(Icons.arrow_forward_ios , color: Colors.purple),
     ],
   );
 }
@@ -73,10 +74,6 @@ Widget RowNameDetail({
                 fontSize: 12,
                 fontWeight: FontWeight.bold
             )),
-
-
-
-
       ],
     ),
   );

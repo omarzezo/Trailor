@@ -3,14 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Network/Remote%20Data/Dio%20Helper.dart';
+import 'package:omar/View/mobile/mobil%20home.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/tast.dart';
 import 'Controller/BlocObserver.dart';
 import 'View/Data Table/custom table.dart';
 import 'View/Data Table/data-table screen.dart';
+import 'View/Tablet/tablet-home.dart';
 import 'View/home/home.dart';
 import 'View/login/login screen.dart';
+import 'View/sewing invoice screen/Create.dart';
+import 'View/sewing invoice screen/Size Screen.dart';
+import 'View/sewing invoice screen/TabBar Screen.dart';
+import 'View/sewing invoice screen/custom_table_sweing.dart';
 import 'View/sewing invoice screen/sweing_screen.dart';
+import 'View/sewing invoice screen/table_scroll.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,7 +49,7 @@ class MyApp extends StatelessWidget {
             scrollbarTheme: ScrollbarThemeData(
               thumbColor: MaterialStateProperty.all(MyConstant().purpleColor),
               crossAxisMargin: -9,
-              // mainAxisMargin: 50,
+              // mainAxisMargin: 10,
               // minThumbLength: 200,
               trackColor: MaterialStateProperty.all(MyConstant().purpleColor ,),
             ),
@@ -60,7 +67,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
 
-          home: const SewingScreen(),
+          home: const LoginScreen(),
         ));
   }
 }
