@@ -211,8 +211,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     child: TextButton(
                       onPressed: (){
-                        // Navigator.push(context,MaterialPageRoute(builder: (context) => const HomeScreen()));
-                        LoginCubit.get(context).login(email: userNameController.text, password: passwordController.text);
+                        Navigator.push(context,MaterialPageRoute(builder: (context) => const HomeScreen()));
+                        // LoginCubit.get(context).login(email: userNameController.text, password: passwordController.text);
                       },
                       child: Text('Login',
                           style: GoogleFonts.roboto(
