@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/View/Data%20Table/custom%20table.dart';
+import 'package:omar/View/sewing%20invoice%20screen/Size%20Screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/TabBar%20Screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/sweing_screen.dart';
 import 'package:omar/constant/constant.dart';
 
 import '../../constant/widgets.dart';
@@ -17,7 +20,7 @@ class MobileHome extends StatelessWidget {
       drawerScrimColor: Colors.transparent,
       backgroundColor: Colors.white,
       drawer:  Padding(
-        padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height/9.4, left: MediaQuery.of(context).size.width/2.2),
+        padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height/10.4, left: MediaQuery.of(context).size.width/2.2),
         child: Drawer(
           elevation: 0.0,
           child: Directionality(
@@ -29,7 +32,7 @@ class MobileHome extends StatelessWidget {
                   height: MediaQuery.of(context).size.height / 1,
                   // margin: const EdgeInsets.only(top: 0, bottom: 0,left: 0),
                   decoration:   BoxDecoration(
-                    color:  const Color(0xffe4e4e4),
+                    color:  const Color(0xffe4e4e4).withOpacity(0.5),
                     // borderRadius: const BorderRadius.only(
                     //     topLeft: Radius.circular(20),
                     //     bottomLeft: Radius.circular(20)),
@@ -62,7 +65,7 @@ class MobileHome extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.only(left: 10),
                 margin: const EdgeInsets.symmetric(horizontal: 7),
-                height: 60,
+                height: 50,
                 decoration: const BoxDecoration(
                   border: Border(bottom: BorderSide(color: Colors.green )),
                   color: Colors.white
@@ -94,10 +97,10 @@ class MobileHome extends StatelessWidget {
                 ],),
               ),
               Container(
-                height: 60,
+                height: 50,
                 width: MediaQuery.of(context).size.width/1,
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                margin: const EdgeInsets.symmetric(vertical: 10,horizontal: 7),
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                margin: const EdgeInsets.symmetric(vertical: 7,horizontal: 10),
                 decoration: const BoxDecoration(
                     border: Border(bottom: BorderSide(color: Colors.green)),
                   color: Colors.white
@@ -132,94 +135,95 @@ class MobileHome extends StatelessWidget {
                 ),
               ),
               // const Spacer(),
-              Expanded(
-                  child: Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: SingleChildScrollView(
-                        physics: const BouncingScrollPhysics(),
-                          child: Column(
-                            children: [
-                              Directionality(
-                                textDirection: TextDirection.rtl,
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
-                                  child: Row(
-                                    children: [
-                                      Container(width: 3,height: 30,color: MyConstant().purpleColor,),
-                                      const SizedBox(width: 20,),
-                                      Text('الثياب المتاخرة علي القص',
-                                          style: GoogleFonts.notoKufiArabic(
-                                            color: MyConstant().greenColor,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 16,
-                                          )),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 0),
-                                  height: MediaQuery.of(context).size.height/3,
-                                  // color: Colors.amber,
-                                  child: const CustomTable()),
-                              Directionality(
-                                textDirection: TextDirection.rtl,
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: Row(
-                                    children: [
-                                      Container(width: 3,height: 30,color: MyConstant().purpleColor,),
-                                      const SizedBox(width: 20,),
-                                      Text('الثياب المتاخرة علي التسليم',
-                                          style: GoogleFonts.notoKufiArabic(
-                                            color: MyConstant().greenColor,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 16,
-                                          )),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 0),
-                                  height: MediaQuery.of(context).size.height/3,
-                                  // color: Colors.amber,
-                                  child: const CustomTable()),
-                              Directionality(
-                                textDirection: TextDirection.rtl,
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: Row(
-                                    children: [
-                                      Container(width: 3,height: 30,color: MyConstant().purpleColor,),
-                                      const SizedBox(width: 20,),
-                                      Text('ثياب سوف تسلم خلال اسبوع',
-                                          style: GoogleFonts.notoKufiArabic(
-                                            color: MyConstant().greenColor,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 16,
-                                          )),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 0),
-                                  height: MediaQuery.of(context).size.height/3,
-                                  // color: Colors.amber,
-                                  child: const CustomTable()),
-                            ],
-                          )
-                      ))),
+              // Expanded(
+              //     child: Directionality(
+              //         textDirection: TextDirection.ltr,
+              //         child: SingleChildScrollView(
+              //           physics: const BouncingScrollPhysics(),
+              //             child: Column(
+              //               children: [
+              //                 Directionality(
+              //                   textDirection: TextDirection.rtl,
+              //                   child: Padding(
+              //                     padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 5.0),
+              //                     child: Row(
+              //                       children: [
+              //                         Container(width: 3,height: 30,color: MyConstant().purpleColor,),
+              //                         const SizedBox(width: 20,),
+              //                         Text('الثياب المتاخرة علي القص',
+              //                             style: GoogleFonts.notoKufiArabic(
+              //                               color: MyConstant().greenColor,
+              //                               fontWeight: FontWeight.w600,
+              //                               fontSize: 16,
+              //                             )),
+              //                       ],
+              //                     ),
+              //                   ),
+              //                 ),
+              //                 Container(
+              //                     padding: const EdgeInsets.symmetric(horizontal: 0),
+              //                     height: MediaQuery.of(context).size.height/3,
+              //                     // color: Colors.amber,
+              //                     child: const CustomTable()),
+              //                 Directionality(
+              //                   textDirection: TextDirection.rtl,
+              //                   child: Padding(
+              //                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              //                     child: Row(
+              //                       children: [
+              //                         Container(width: 3,height: 30,color: MyConstant().purpleColor,),
+              //                         const SizedBox(width: 20,),
+              //                         Text('الثياب المتاخرة علي التسليم',
+              //                             style: GoogleFonts.notoKufiArabic(
+              //                               color: MyConstant().greenColor,
+              //                               fontWeight: FontWeight.w600,
+              //                               fontSize: 16,
+              //                             )),
+              //                       ],
+              //                     ),
+              //                   ),
+              //                 ),
+              //                 Container(
+              //                     padding: const EdgeInsets.symmetric(horizontal: 0),
+              //                     height: MediaQuery.of(context).size.height/3,
+              //                     // color: Colors.amber,
+              //                     child: const CustomTable()),
+              //                 Directionality(
+              //                   textDirection: TextDirection.rtl,
+              //                   child: Padding(
+              //                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              //                     child: Row(
+              //                       children: [
+              //                         Container(width: 3,height: 30,color: MyConstant().purpleColor,),
+              //                         const SizedBox(width: 20,),
+              //                         Text('ثياب سوف تسلم خلال اسبوع',
+              //                             style: GoogleFonts.notoKufiArabic(
+              //                               color: MyConstant().greenColor,
+              //                               fontWeight: FontWeight.w600,
+              //                               fontSize: 16,
+              //                             )),
+              //                       ],
+              //                     ),
+              //                   ),
+              //                 ),
+              //                 Container(
+              //                     padding: const EdgeInsets.symmetric(horizontal: 0),
+              //                     height: MediaQuery.of(context).size.height/3,
+              //                     // color: Colors.amber,
+              //                     child: const CustomTable()),
+              //               ],
+              //             )
+              //         ))),
+              const Expanded(child: TabBarScreen()),
               Container(
-                height: 50,
+                height: 40,
                 // color: Colors.amber,
                 width: MediaQuery.of(context).size.width/1,
                 child: Stack(
                  alignment: Alignment.center,
                  children: [
                    Container(
-                     height: 50,
+                     height: 40,
                      width: MediaQuery.of(context).size.width/1.6,
                      decoration: const BoxDecoration(
                        color: Colors.purple,
@@ -227,7 +231,7 @@ class MobileHome extends StatelessWidget {
                      ),
                    ),
                    Container(
-                     height: 48,
+                     height: 38,
                      width: MediaQuery.of(context).size.width/1.61,
                      // margin: const EdgeInsets.only(top: 10 , right: 10 , left: 10),
                      decoration:  const BoxDecoration(
@@ -237,10 +241,10 @@ class MobileHome extends StatelessWidget {
                      child: Row(
                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                        children:  [
-                         Image.asset('image/wallet (1).png' , width: 40, height: 40,),
-                         Image.asset('image/bill.png' , width: 40, height: 40,),
-                         Image.asset('image/admin (1).png' , width: 40, height: 40,),
-                         Image.asset('image/paint.png' , width: 40, height: 40,),
+                         Image.asset('image/wallet (1).png' , width: 30, height: 30,),
+                         Image.asset('image/bill.png' , width: 30, height: 30,),
+                         Image.asset('image/admin (1).png' , width: 30, height: 30,),
+                         Image.asset('image/paint.png' , width: 30, height: 30,),
 
                        ],
                      ),

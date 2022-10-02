@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
       body: Responsive(
         mobilWidget: const MobileHome(),
-        tabletWidget: const TebletHome(),
+        tabletWidget: const TabletHome(),
       ),
     );
   }

@@ -26,193 +26,55 @@ class _CustomTableState extends State<CustomTable> {
     //   details=listOfDetail;
     // });
   }
+  // final scrollControl = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width /1,
-              // margin: const EdgeInsets.all(20),
-              height: 40,
-              decoration:
-              BoxDecoration(border: Border.all(color: Colors.purple)),
-              child: Expanded(
-                  child: Row(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        // color: Colors.purple,
-                        decoration: BoxDecoration(
-                            color: MyConstant().purpleColor,
-                            border: Border.all(color: MyConstant().purpleColor)),
-                        height: 40,
-                        width: 30,
-                        child: Text('م',
-                            style: GoogleFonts.notoKufiArabic(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 12,
-                            )),
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: MyConstant().greenColor ,
-                            border: Border.all( color: MyConstant().greenColor)),
-                        height: 40,
-                        width: 30,
-                        child: Text('ع',
-                            style: GoogleFonts.notoKufiArabic(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 12,
-                            )),
-                      ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: MyConstant().greenColor.withOpacity(0.1),
-                            border: Border(
-                              left: BorderSide(color: Colors.green.withOpacity(0.3)),
-                              right: BorderSide(color: Colors.green.withOpacity(0.3)),
-                            ),
-                          ),
-                          height: 80,
-                          width: 100,
-                          child: Text('الحالة',
-                              style: GoogleFonts.notoKufiArabic(
-                                color: MyConstant().greenColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 8,
-                              )),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: MyConstant().greenColor.withOpacity(0.1),
-                            border: Border(
-                              left: BorderSide(color: Colors.green.withOpacity(0.3)),
-                              right: BorderSide(color: Colors.green.withOpacity(0.3)),
-                            ),
-                          ),
-                          height: 80,
-                          width: 100,
-                          child: Text('تاريخ التسليم',
-                              style: GoogleFonts.notoKufiArabic(
-                                color: MyConstant().greenColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 8,
-                              )),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: MyConstant().greenColor.withOpacity(0.1),
-                            border: Border(
-                              left: BorderSide(color: Colors.green.withOpacity(0.3)),
-                              right: BorderSide(color: Colors.green.withOpacity(0.3)),
-                            ),
-                          ),
-                          height: 80,
-                          width: 100,
-                          child: Text('تاريح الفاتورة',
-                              style: GoogleFonts.notoKufiArabic(
-                                color: MyConstant().greenColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 8,
-                              )),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: MyConstant().greenColor.withOpacity(0.1),
-                            border: Border(
-                              left: BorderSide(color: Colors.green.withOpacity(0.3)),
-                              right: BorderSide(color: Colors.green.withOpacity(0.3)),
-                            ),
-                          ),
-                          height: 80,
-                          width: 100,
-                          child: Text('العميل',
-                              style: GoogleFonts.notoKufiArabic(
-                                color: MyConstant().greenColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 8,
-                              )),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: MyConstant().greenColor.withOpacity(0.1),
-                            border: Border(
-                              left: BorderSide(color: Colors.green.withOpacity(0.3)),
-                              right: BorderSide(color: Colors.green.withOpacity(0.3)),
-                            ),
-                          ),
-                          height: 80,
-                          width: 100,
-                          child: Text('الجوال',
-                              style: GoogleFonts.notoKufiArabic(
-                                color: MyConstant().greenColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 8,
-                              )),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: MyConstant().greenColor.withOpacity(0.1),
-                            border: Border(
-                              left: BorderSide(color: Colors.green.withOpacity(0.3)),
-                              right: BorderSide(color: Colors.green.withOpacity(0.3)),
-                            ),
-                          ),
-                          height: 80,
-                          width: 100,
-                          child: Text('كود العميل',
-                              style: GoogleFonts.notoKufiArabic(
-                                color: MyConstant().greenColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 8,
-                              )),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: MyConstant().greenColor.withOpacity(0.1),
-                            border: Border(
-                              left: BorderSide(color: Colors.green.withOpacity(0.3)),
-                              right: BorderSide(color: Colors.green.withOpacity(0.3)),
-                            ),
-                          ),
-                          height: 80,
-                          width: 100,
-                          child: Text('المرجع',
-                              style: GoogleFonts.notoKufiArabic(
-                                color: MyConstant().greenColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 8,
-                              )),
-                        ),
-                      ),
-                      Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width /1,
+            // margin: const EdgeInsets.all(20),
+            height: 40,
+            decoration:
+            BoxDecoration(border: Border.all(color: Colors.purple)),
+            child: Expanded(
+                child: Row(
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      // color: Colors.purple,
+                      decoration: BoxDecoration(
+                          color: MyConstant().purpleColor,
+                          border: Border.all(color: MyConstant().purpleColor)),
+                      height: 40,
+                      width: 30,
+                      child: Text('م',
+                          style: GoogleFonts.notoKufiArabic(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12,
+                          )),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: MyConstant().greenColor ,
+                          border: Border.all( color: MyConstant().greenColor)),
+                      height: 40,
+                      width: 30,
+                      child: Text('ع',
+                          style: GoogleFonts.notoKufiArabic(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12,
+                          )),
+                    ),
+                    Expanded(
+                      child: Container(
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           color: MyConstant().greenColor.withOpacity(0.1),
@@ -222,22 +84,171 @@ class _CustomTableState extends State<CustomTable> {
                           ),
                         ),
                         height: 80,
-                        width: 40,
-                        child: Text('N',
+                        width: 100,
+                        child: Text('الحالة',
                             style: GoogleFonts.notoKufiArabic(
                               color: MyConstant().greenColor,
                               fontWeight: FontWeight.w600,
-                              fontSize: 8,
+                              fontSize: 9,
                             )),
                       ),
-                    ],
-                  )),
-            ),
-            //todo list view
-            SizedBox(
+                    ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: MyConstant().greenColor.withOpacity(0.1),
+                          border: Border(
+                            left: BorderSide(color: Colors.green.withOpacity(0.3)),
+                            right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                          ),
+                        ),
+                        height: 80,
+                        width: 100,
+                        child: Text('تاريخ التسليم',
+                            style: GoogleFonts.notoKufiArabic(
+                              color: MyConstant().greenColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 9,
+                            )),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: MyConstant().greenColor.withOpacity(0.1),
+                          border: Border(
+                            left: BorderSide(color: Colors.green.withOpacity(0.3)),
+                            right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                          ),
+                        ),
+                        height: 80,
+                        width: 100,
+                        child: Text('تاريح الفاتورة',
+                            style: GoogleFonts.notoKufiArabic(
+                              color: MyConstant().greenColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 9,
+                            )),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: MyConstant().greenColor.withOpacity(0.1),
+                          border: Border(
+                            left: BorderSide(color: Colors.green.withOpacity(0.3)),
+                            right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                          ),
+                        ),
+                        height: 80,
+                        width: 100,
+                        child: Text('العميل',
+                            style: GoogleFonts.notoKufiArabic(
+                              color: MyConstant().greenColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 9,
+                            )),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: MyConstant().greenColor.withOpacity(0.1),
+                          border: Border(
+                            left: BorderSide(color: Colors.green.withOpacity(0.3)),
+                            right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                          ),
+                        ),
+                        height: 80,
+                        width: 100,
+                        child: Text('الجوال',
+                            style: GoogleFonts.notoKufiArabic(
+                              color: MyConstant().greenColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 9,
+                            )),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: MyConstant().greenColor.withOpacity(0.1),
+                          border: Border(
+                            left: BorderSide(color: Colors.green.withOpacity(0.3)),
+                            right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                          ),
+                        ),
+                        height: 80,
+                        width: 100,
+                        child: Text('كود العميل',
+                            style: GoogleFonts.notoKufiArabic(
+                              color: MyConstant().greenColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 9,
+                            )),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: MyConstant().greenColor.withOpacity(0.1),
+                          border: Border(
+                            left: BorderSide(color: Colors.green.withOpacity(0.3)),
+                            right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                          ),
+                        ),
+                        height: 80,
+                        width: 100,
+                        child: Text('المرجع',
+                            style: GoogleFonts.notoKufiArabic(
+                              color: MyConstant().greenColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 9,
+                            )),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: MyConstant().greenColor.withOpacity(0.1),
+                        border: Border(
+                          left: BorderSide(color: Colors.green.withOpacity(0.3)),
+                          right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                        ),
+                      ),
+                      height: 80,
+                      width: 40,
+                      child: Text('N',
+                          style: GoogleFonts.notoKufiArabic(
+                            color: MyConstant().greenColor,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 9,
+                          )),
+                    ),
+                  ],
+                )),
+          ),
+          //todo list view
+          Expanded(
+              // child: Scrollbar(
+              //   thickness: 15,
+              //   controller: scrollControl,
+              //   radius: const Radius.circular(0),
+              //   trackVisibility: true,
+              //   interactive: true,
+              //   isAlwaysShown: true,
+              //   showTrackOnHover: true,
+              //   hoverThickness: 12,
                 child: ListView.builder(
                   shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
+                  // controller: scrollControl,
+                  // physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) => Container(
                     width: MediaQuery.of(context).size.width * 0.8,
                     // margin: const EdgeInsets.all(20),
@@ -313,7 +324,7 @@ class _CustomTableState extends State<CustomTable> {
                                     style: GoogleFonts.notoKufiArabic(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 8,
+                                      fontSize: 8.5,
                                     )),
                               ),
                             ),
@@ -331,7 +342,7 @@ class _CustomTableState extends State<CustomTable> {
                                     style: GoogleFonts.notoKufiArabic(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 8,
+                                      fontSize: 8.5,
                                     )),
                               ),
                             ),
@@ -349,7 +360,7 @@ class _CustomTableState extends State<CustomTable> {
                                     style: GoogleFonts.notoKufiArabic(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 8,
+                                      fontSize: 8.5,
                                     )),
                               ),
                             ),
@@ -367,7 +378,7 @@ class _CustomTableState extends State<CustomTable> {
                                     style: GoogleFonts.notoKufiArabic(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 8,
+                                      fontSize: 8.5,
                                     )),
                               ),
                             ),
@@ -385,7 +396,7 @@ class _CustomTableState extends State<CustomTable> {
                                     style: GoogleFonts.notoKufiArabic(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 8,
+                                      fontSize: 8.5,
                                     )),
                               ),
                             ),
@@ -403,7 +414,7 @@ class _CustomTableState extends State<CustomTable> {
                                     style: GoogleFonts.notoKufiArabic(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 8,
+                                      fontSize: 8.5,
                                     )),
                               ),
                             ),
@@ -421,7 +432,7 @@ class _CustomTableState extends State<CustomTable> {
                                     style: GoogleFonts.notoKufiArabic(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 8,
+                                      fontSize: 8.5,
                                     )),
                               ),
                             ),
@@ -438,16 +449,17 @@ class _CustomTableState extends State<CustomTable> {
                                   style: GoogleFonts.notoKufiArabic(
                                     color: Colors.green,
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 8,
+                                    fontSize: 8.5,
                                   )),
                             ),
                           ],
                         )),
                   ),
                   itemCount: details.length,
-                ))
-          ],
-        ),
+                ),
+              // ),
+          ),
+        ],
       ),
     );
   }
