@@ -1,11 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
+import 'package:omar/constant/LoadingPage.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/View/home/home.dart';
 import 'package:omar/View/responsive.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../models/TrailorListsResponse.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -22,12 +28,20 @@ class _LoginScreenState extends State<LoginScreen> {
   bool obscureText = true;
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    userNameController.text="k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko";
+    passwordController.text="w_1";
+  }
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit , LoginState>(
       listener: (context , state){
 
         if(state is LoginSuccess){
-           Navigator.push(context,MaterialPageRoute(builder: (context) => const HomeScreen()));
+
+           // Navigator.push(context,MaterialPageRoute(builder: (context) => const HomeScreen()));
         }
       },
        builder : (context , state) =>  Scaffold(
@@ -60,44 +74,44 @@ class _LoginScreenState extends State<LoginScreen> {
                               fontWeight: FontWeight.normal)),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(color: Colors.grey.withOpacity(0.2),offset: const Offset(1,4),blurRadius: 5),
-                          BoxShadow(color: Colors.grey.withOpacity(0.2),offset: const Offset(-1,2),blurRadius: 5),
-                        ]
-                      ),
-                      child: TextFormField(
-                        controller: companyController,
-                        validator: (val){
-                          if(val!.isEmpty){
-                            'اسم الشركة غير صحيح';
-                          }
-                        },
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderSide:  BorderSide.none,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.transparent),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          // prefixIcon:
-                          //     const Icon(Icons.email, color: Colors.purple),
-                          hintText: "الشركة",
-                          hintStyle:   GoogleFonts.almarai(
-                            color: Colors.grey,
-                          fontSize: 20,
-                          fontWeight: FontWeight.normal),
-                          filled: true,
-                          fillColor: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  //   child: Container(
+                  //     decoration: BoxDecoration(
+                  //       boxShadow: [
+                  //         BoxShadow(color: Colors.grey.withOpacity(0.2),offset: const Offset(1,4),blurRadius: 5),
+                  //         BoxShadow(color: Colors.grey.withOpacity(0.2),offset: const Offset(-1,2),blurRadius: 5),
+                  //       ]
+                  //     ),
+                  //     child: TextFormField(
+                  //       controller: companyController,
+                  //       validator: (val){
+                  //         if(val!.isEmpty){
+                  //           'اسم الشركة غير صحيح';
+                  //         }
+                  //       },
+                  //       decoration: InputDecoration(
+                  //         enabledBorder: OutlineInputBorder(
+                  //           borderSide:  BorderSide.none,
+                  //           borderRadius: BorderRadius.circular(5),
+                  //         ),
+                  //         focusedBorder: OutlineInputBorder(
+                  //           borderSide: const BorderSide(color: Colors.transparent),
+                  //           borderRadius: BorderRadius.circular(5),
+                  //         ),
+                  //         // prefixIcon:
+                  //         //     const Icon(Icons.email, color: Colors.purple),
+                  //         hintText: "الشركة",
+                  //         hintStyle:   GoogleFonts.almarai(
+                  //           color: Colors.grey,
+                  //         fontSize: 20,
+                  //         fontWeight: FontWeight.normal),
+                  //         filled: true,
+                  //         fillColor: Colors.white,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
                     child: Container(
@@ -210,9 +224,20 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(2),
                     ),
                     child: TextButton(
-                      onPressed: (){
-                        Navigator.push(context,MaterialPageRoute(builder: (context) => const HomeScreen()));
-                        // LoginCubit.get(context).login(email: userNameController.text, password: passwordController.text);
+                      onPressed: () async {
+                        LoadingPage(context).show();
+                        // Navigator.push(context,MaterialPageRoute(builder: (context) => const HomeScreen()));
+                        TrailorListsResponse model = await LoginCubit.get(context).login(email: userNameController.text, password: passwordController.text);
+                        print("model>>"+model.toString());
+                        // var json = jsonEncode(model.toJson());
+                        String jsonUser = jsonEncode(model);
+                        final prefs = await SharedPreferences.getInstance();
+                        await prefs.setString('json', jsonUser).then((value) {
+                          if(value){
+                            LoadingPage(context).close();
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => const HomeScreen()));
+                          }
+                        });
                       },
                       child: Text('Login',
                           style: GoogleFonts.roboto(

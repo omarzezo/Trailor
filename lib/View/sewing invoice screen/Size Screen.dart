@@ -350,71 +350,71 @@ class _SizeScreenState extends State<SizeScreen> {
                               Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'تخاليص')),
                               // const SizedBox(width: 1,),
                               Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'القماش المتوقع بالمتر')),
-                              // const SizedBox(width: 125,),
-                              Container(
-                                width: MediaQuery.of(context).size.width/6,
-                                // color: Colors.amber,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text('عينة',style: GoogleFonts.notoKufiArabic(
-                                        color: MyConstant().purpleColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 8
-                                    )),
-                                    const SizedBox(width: 5,),
-                                    Container(
-                                      width: 10,
-                                      child: Checkbox(
-                                        value: isSelect2,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(3),
-                                          side: const BorderSide(color: Colors.grey),
-                                        ),
-                                        onChanged: (val) {
-                                          setState(() {
-                                            isSelect2 = val !;
-                                          });
-                                        },
-                                        checkColor: Colors.green,
-                                        activeColor: Colors.white,
-                                        splashRadius: 0,
-                                        side: const BorderSide(color: Colors.grey),
-                                      ),
-                                    ),
-                                    const SizedBox(width: 10,),
-                                    Text('مستعجل',style: GoogleFonts.notoKufiArabic(
-                                        color: MyConstant().purpleColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 8
-                                    )),
-                                    const SizedBox(width: 5,),
-                                    Container(
-                                      width: 10,
-                                      child: Checkbox(
-                                        value: isSelect1,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(3),
-                                          side: const BorderSide(color: Colors.grey),
-                                        ),
-                                        onChanged: (val) {
-                                          setState(() {
-                                            isSelect1 = val !;
-                                          });
-                                        },
-                                        checkColor: Colors.green,
-                                        activeColor: Colors.white,
-                                        splashRadius: 0,
-                                        side: const BorderSide(color: Colors.grey),
-                                      ),
-                                    ),
-                                    // const SizedBox(width: 160,),
-                                  ],
-                                ),
-                              ),
+                              // const SizedBox(width: 125,)
                             ],
                           ),
+                          Container(
+                            // width: MediaQuery.of(context).size.width/6,
+                            // color: Colors.amber,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('عينة',style: GoogleFonts.notoKufiArabic(
+                                    color: MyConstant().purpleColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 8
+                                )),
+                                const SizedBox(width: 5,),
+                                Container(
+                                  width: 10,
+                                  child: Checkbox(
+                                    value: isSelect2,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(3),
+                                      side: const BorderSide(color: Colors.grey),
+                                    ),
+                                    onChanged: (val) {
+                                      setState(() {
+                                        isSelect2 = val !;
+                                      });
+                                    },
+                                    checkColor: Colors.green,
+                                    activeColor: Colors.white,
+                                    splashRadius: 0,
+                                    side: const BorderSide(color: Colors.grey),
+                                  ),
+                                ),
+                                const SizedBox(width: 10,),
+                                Text('مستعجل',style: GoogleFonts.notoKufiArabic(
+                                    color: MyConstant().purpleColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 8
+                                )),
+                                const SizedBox(width: 5,),
+                                Container(
+                                  width: 10,
+                                  child: Checkbox(
+                                    value: isSelect1,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(3),
+                                      side: const BorderSide(color: Colors.grey),
+                                    ),
+                                    onChanged: (val) {
+                                      setState(() {
+                                        isSelect1 = val !;
+                                      });
+                                    },
+                                    checkColor: Colors.green,
+                                    activeColor: Colors.white,
+                                    splashRadius: 0,
+                                    side: const BorderSide(color: Colors.grey),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [

@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/constant/constant.dart';
+import 'package:omar/models/TrailorListsResponse.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Widgets.dart';
 
 class SewingScreen extends StatefulWidget {
@@ -16,6 +20,18 @@ class _SewingScreenState extends State<SewingScreen> {
   List<String> items2 = ['item1' , 'item2' ,'item3' ,'item4' ,];
   String ? valueItem;
   String ? valueItem2;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    SharedPreferences.getInstance().then((value) {
+      final products = json.decode(value.getString("json")!);
+      TrailorListsResponse trailorListsResponse = TrailorListsResponse.fromJson(products);
+      print("Trillll>>"+trailorListsResponse.companies!.length.toString());
+    });
+
+  }
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -47,7 +63,7 @@ class _SewingScreenState extends State<SewingScreen> {
                 // ),
                 Container(
                   width: MediaQuery.of(context).size.width/1,
-                  height: MediaQuery.of(context).size.height/1.5,
+                  // height: MediaQuery.of(context).size.height/1.5,
                   margin: const EdgeInsets.symmetric(horizontal: 10 , vertical: 10),
                   decoration: BoxDecoration(
                     border: Border.all(color: MyConstant().purpleColor,width: 3),
@@ -361,52 +377,59 @@ class _SewingScreenState extends State<SewingScreen> {
                             textField(context: context , text:  'الاجمالي',borderSide: const BorderSide(color: Colors.green,width: 1) ,
                               radius: const BorderRadius.only(topLeft: Radius.circular(5) , bottomLeft: Radius.circular(5)),),
                             const SizedBox(width: 18,),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 30.0),
-                              child: Container(
-                                height: 30,
-                                width: 70,
-                                child: ElevatedButton(
-                                  onPressed: (){},
-                                  child: Text('المقاسات',style: GoogleFonts.notoKufiArabic(
+
+
+                          ],
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 0.0),
+                            child: Container(
+                              height: 30,
+                              width: 70,
+                              child: ElevatedButton(
+                                onPressed: (){},
+                                child: Text('المقاسات',style: GoogleFonts.notoKufiArabic(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 8
                                 )),),
-                              ),
                             ),
-                            const SizedBox(width: 5,),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 30.0),
-                              child: Container(
-                                height: 25,
-                                alignment: Alignment.center,
-                                width: 25,
-                                decoration: BoxDecoration(
-                                  color: Colors.green,
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: IconButton(onPressed: (){}, icon: const Icon(Icons.add,color: Colors.white,size: 11,),alignment: Alignment.center,),
+                          ),
+                          const SizedBox(width: 5,),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 0.0),
+                            child: Container(
+                              height: 25,
+                              alignment: Alignment.center,
+                              width: 25,
+                              decoration: BoxDecoration(
+                                color: Colors.green,
+                                borderRadius: BorderRadius.circular(5),
                               ),
+                              child: IconButton(onPressed: (){}, icon: const Icon(Icons.add,color: Colors.white,size: 11,),alignment: Alignment.center,),
                             ),
-                            const SizedBox(width: 5,),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 30.0),
-                              child: Container(
-                                height: 25,
-                                width: 25,
-                                padding: const EdgeInsets.only(top: 3.0 ),
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  color: Colors.red,
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: IconButton(onPressed: (){}, icon: const Icon(Icons.maximize_outlined , color: Colors.white,size: 10,),alignment: Alignment.center,),
+                          ),
+                          const SizedBox(width: 5,),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 0.0),
+                            child: Container(
+                              height: 25,
+                              width: 25,
+                              padding: const EdgeInsets.only(top: 3.0 ),
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(5),
                               ),
+                              child: IconButton(onPressed: (){}, icon: const Icon(Icons.maximize_outlined , color: Colors.white,size: 10,),alignment: Alignment.center,),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
+                      const SizedBox(height: 20,),
                       Container(
                         height: 25,
                         width: double.infinity,
@@ -419,8 +442,9 @@ class _SewingScreenState extends State<SewingScreen> {
                             fontSize: 12
                         )),
                       ),
+
                       Container(
-                        // height: 250,
+                        // height: 450,
                         //   height: MediaQuery.of(context).size.height/8,
                         width: double.infinity,
                         padding: const EdgeInsets.only(top: 0 ),

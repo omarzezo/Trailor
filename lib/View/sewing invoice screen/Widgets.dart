@@ -39,7 +39,8 @@ Widget textField({
   required BorderSide borderSide,
 }) {
   return Container(
-      width: MediaQuery.of(context).size.width * 0.07,
+      // width: MediaQuery.of(context).size.width * 0.07,
+      width: MediaQuery.of(context).size.width * 0.1,
       // height: 20,
       padding: const EdgeInsets.only(top: 8),
       decoration: const BoxDecoration(
