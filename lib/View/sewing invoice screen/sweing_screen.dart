@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/constant/constant.dart';
+import 'package:omar/models/Companies.dart';
 import 'package:omar/models/TrailorListsResponse.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Widgets.dart';
@@ -29,9 +30,10 @@ class _SewingScreenState extends State<SewingScreen> {
       final products = json.decode(value.getString("json")!);
       TrailorListsResponse trailorListsResponse = TrailorListsResponse.fromJson(products);
       print("Trillll>>"+trailorListsResponse.companies!.length.toString());
+      // Companies item= trailorListsResponse.companies![0];
     });
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Directionality(

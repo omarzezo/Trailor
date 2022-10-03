@@ -7,7 +7,6 @@ class LoadingPage {
 
   LoadingPage(this._context);
 
-  /// Abrir carga
   void show() {
     showDialog(
       context: _context,

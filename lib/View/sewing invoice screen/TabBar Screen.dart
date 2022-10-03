@@ -103,6 +103,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
                   ]),
                   const Expanded(
                     child: TabBarView(
+                      physics: NeverScrollableScrollPhysics(),
                         children: [
                       SewingScreen(),
                       SizeScreen(),

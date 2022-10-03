@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:omar/models/TypesModel.dart';
 import '../../constant/List Of Image.dart';
 import '../../constant/constant.dart';
 import 'Widgets.dart';
@@ -20,161 +21,27 @@ class _SizeScreenState extends State<SizeScreen> {
   String ? valueItem;
   String ? valueItem1;
 
-  List<List<String>> changeImageList = [
-    ListOfImage.robe,
-    ListOfImage.cabak,
-    ListOfImage.coller,
-    ListOfImage.gabzor,
-    ListOfImage.pocket,
-    ListOfImage.robe_species,
-  ];
-
-  List<String> robe = [
-    'image/Robe/Emrati-back.png',
-    'image/Robe/Emrati-front.png',
-    'image/Robe/kwity-back.png',
-    'image/Robe/kwity-front.png',
-    'image/Robe/omani-back.png',
-    'image/Robe/omani-front.png',
-    'image/Robe/Qatari-back.png',
-    'image/Robe/Qatari-front.png',
-    'image/Robe/Saudi-back.png',
-    'image/Robe/Saudi- front.png',
-    'image/Robe/sleep-back.png',
-    'image/Robe/sleep-front.png',
-  ];
-
-
-  void changeItem(int index){
-    currentImage = index;
-    if(currentImage==0){
-      setState(() {
-        robe[0];
-      });
-    }else if(currentImage == 1){
-      setState(() {
-        robe[1];
-      });
-    }else if(currentImage == 2){
-      setState(() {
-        robe[2];
-      });
-    }else if(currentImage == 3){
-      setState(() {
-        robe[3];
-      });
-    }else if(currentImage == 4){
-      setState(() {
-        robe[4];
-      });
-    }else if(currentImage == 5){
-      setState(() {
-        robe[5];
-      });
-    }else if(currentImage == 6){
-      setState(() {
-        robe[6];
-      });
-    }else if(currentImage == 7){
-      setState(() {
-        robe[7];
-      });
-    }
-    return setState(() {
-      robe[8];
-    });
-  }
-  void changeItem2(int index){
-    currentImage1 = index;
-    if(currentImage==0){
-      setState(() {
-        robe[0];
-      });
-    }else if(currentImage == 1){
-      setState(() {
-        ListOfImage.pocket[1];
-      });
-    }else if(currentImage == 2){
-      setState(() {
-        ListOfImage.pocket[2];
-      });
-    }else if(currentImage == 3){
-      setState(() {
-        ListOfImage.pocket[3];
-      });
-    }else if(currentImage == 4){
-      setState(() {
-        ListOfImage.pocket[4];
-      });
-    }else if(currentImage == 5){
-      setState(() {
-        ListOfImage.pocket[5];
-      });
-    }else if(currentImage == 6){
-      setState(() {
-        ListOfImage.pocket[6];
-      });
-    }else if(currentImage == 7){
-      setState(() {
-        ListOfImage.pocket[7];
-      });
-    }else if(currentImage == 8){
-      setState(() {
-        ListOfImage.pocket[8];
-      });
-    }else if(currentImage == 9){
-      setState(() {
-        ListOfImage.pocket[9];
-      });
-    }else if(currentImage == 10){
-      setState(() {
-        ListOfImage.pocket[10];
-      });
-    }else if(currentImage == 11){
-      setState(() {
-        ListOfImage.pocket[11];
-      });
-    }
-    return setState(() {
-      ListOfImage.pocket[12];
-    });
-  }
-  void changeList(int index) async {
-    currentIndex = index;
-    if (currentIndex == 0) {
-       setState(() {
-         ListOfImage.robe;
-       });
-    }
-    if (currentIndex == 1) {
-      setState(() {
-        ListOfImage.cabak;
-      });
-    }
-    if (currentIndex == 2) {
-      setState(() {
-        ListOfImage.coller;
-      });
-    }
-    if (currentIndex == 3) {
-      setState(() {
-        ListOfImage.gabzor;
-      });
-    }
-    if (currentIndex == 4) {
-      setState(() {
-        ListOfImage.pocket;
-      });
-    }
-    if (currentIndex == 5) {
-      setState(() {
-        ListOfImage.robe_species;
-      });
-    }
-  }
    int currentIndex = 0;
    int currentImage = 0;
    int currentImage1 = 0;
+
+   int? selectedType=0,relatedSelectedType;
+  List<TypesModel> getRelatedList=[];
+  List<TypesModel> selectedLists=[];
+
+  TypesModel selectedCollar =TypesModel();
+  TypesModel selectedKabak =TypesModel();
+  TypesModel selectedPocket =TypesModel();
+  TypesModel selectedGabzor =TypesModel();
+  String? frontImage,backImage;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getRelatedList=getRelatedListAnyType(0);
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -728,94 +595,195 @@ class _SizeScreenState extends State<SizeScreen> {
                                           child: Row(
                                             children: [
                                               Container(
-                                                // width: 200,
-                                                width: 60,
-                                              // color: Colors.amber,
-                                              child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                children:
-                                                  List.generate(6, (index){
-                                                    return InkWell(
-                                                      onTap: (){
-                                                        print('hello');
-                                                          setState(() {
-                                                            changeList(index) ;
-                                                          });
-
-                                                          setState(() {
-                                                            // robe.add(robe[currentImage][index]);
-                                                            ListOfImage.robe.add(robe[currentImage]);
-                                                          });
-                                                        setState(() {
-                                                          ListOfImage.cabak.add(ListOfImage.cabak[currentImage]);
-                                                        });
-                                                      },
+                                                margin: const EdgeInsets.symmetric(vertical: 4,horizontal: 4),
+                                                // height: 60,
+                                                width: 70,
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                      color: Colors.grey,
+                                                    ),
+                                                    borderRadius: const BorderRadius.all(Radius.circular(10))
+                                                ),
+                                              child: ListView.builder(
+                                                padding: EdgeInsets.zero,
+                                                shrinkWrap: true,
+                                                itemCount: getTypesList().length,
+                                                itemBuilder: (context, index) {
+                                                  TypesModel item =getTypesList()[index];
+                                                  return InkWell(
+                                                    onTap: () {
+                                                      selectedType=index;
+                                                      getRelatedList=getRelatedListAnyType(index);
+                                                      setState(() {});
+                                                    },
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.all(8.0),
                                                       child: Container(
-                                                        width: 30,
-                                                        height: 30,
-                                                        alignment: Alignment.center,
-                                                        // margin: const EdgeInsets.only(left: 80,top: 5,right: 80),
+                                                        padding: const EdgeInsets.all(2),
                                                         decoration: BoxDecoration(
-                                                          borderRadius: BorderRadius.circular(5),
-                                                          border: Border.all(color: MyConstant().greenColor),
+                                                            border: Border.all(
+                                                              color: selectedType==index?MyConstant().purpleColor:Colors.grey,
+                                                              width: 2
+                                                            ),
+                                                            borderRadius: const BorderRadius.all(Radius.circular(10)),
                                                         ),
-                                                        child: Image.asset('${ListOfImage.varity[index]}',) ,
-                                                      ),
-                                                    );
-                                                  })
-                                                ,
+                                                        // height: 70,
+                                                         // width: 50,
+                                                         child: Center(
+                                                           child: Column(
+                                                             // mainAxisAlignment: MainAxisAlignment.start,
+                                                             crossAxisAlignment: CrossAxisAlignment.center,
+                                                             children: [
+                                                               Text(item.name! , style: TextStyle(
+                                                                   color: MyConstant().purpleColor,
+                                                                   fontWeight: FontWeight.bold,
+                                                                   fontSize: 10,
+                                                               ),),
+                                                               const SizedBox(height: 0,),
+                                                               Image.asset(item.image!,width: 40,height: 40,fit: BoxFit.fill,)
+                                                             ],
+                                                           ),
+                                                         ),
+                                                       ),
+                                                    ),
+                                                  );
+                                                },
                                               ),
                                               ),
                                               Expanded(
                                                 child: Container(
-                                                  margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-                                                  child: Scrollbar(
-                                                    controller: controllerList,
-                                                    thickness: 15,
-                                                    radius: const Radius.circular(0),
-                                                    trackVisibility: true,
-                                                    interactive: true,
-                                                    isAlwaysShown: true,
-                                                    // showTrackOnHover: true,
-                                                    // hoverThickness: 12,
-                                                    child: ListView.builder(
-                                                      // shrinkWrap: true,
-                                                      controller: controllerList,
-                                                      itemBuilder: (context , index)=>  InkWell(
-                                                        onTap: (){
-                                                          setState(() {
-                                                            changeItem(index);
-                                                          });
-
-                                                          setState(() {
-                                                            changeItem2(index);
-                                                          });
+                                                  margin: const EdgeInsets.symmetric(horizontal: 4,vertical: 4),
+                                                  // height: 60,
+                                                  width: 80,
+                                                  decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                        color: Colors.grey,
+                                                      ),
+                                                      borderRadius: const BorderRadius.all(Radius.circular(10))
+                                                  ),
+                                                  child: ListView.builder(
+                                                    padding: EdgeInsets.zero,
+                                                    shrinkWrap: true,
+                                                    itemCount: getRelatedList.length,
+                                                    itemBuilder: (context, index) {
+                                                      TypesModel item =getRelatedList[index];
+                                                      return InkWell(
+                                                        onTap: () {
+                                                          relatedSelectedType=index;
+                                                          if(selectedType==1){
+                                                            selectedCollar=item;
+                                                          }else if(selectedType==2){
+                                                            selectedKabak=item;
+                                                          }else if(selectedType==3){
+                                                            selectedPocket=item;
+                                                          }else if(selectedType==4){
+                                                            selectedGabzor=item;
+                                                          }
+                                                          setState(() {});
                                                         },
-                                                        child: Container(
-                                                          width: 40,
-                                                          height: 80,
-                                                          alignment: Alignment.center,
-                                                          margin: const EdgeInsets.only(left: 20,top: 5,right: 0),
-                                                          decoration: BoxDecoration(
-                                                            borderRadius: BorderRadius.circular(5),
-                                                            border: Border.all(color: MyConstant().purpleColor),
-                                                          ),
-                                                          child: Column (
-                                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                            children: [
-                                                              Image.asset(changeImageList[currentIndex][index],height: 60,),
-                                                               Text('hello' , style: GoogleFonts.notoKufiArabic(
-                                                                fontSize: 10,
-                                                                fontWeight: FontWeight.normal,
-                                                                color: Colors.black
-                                                              ),),
-                                                            ],
+                                                        child: Padding(
+                                                          padding: const EdgeInsets.all(8.0),
+                                                          child: Container(
+                                                            padding: const EdgeInsets.all(2),
+                                                            decoration: BoxDecoration(
+                                                              border: Border.all(
+                                                                  color: relatedSelectedType==index?MyConstant().purpleColor:Colors.grey,
+                                                                  width: 2
+                                                              ),
+                                                              borderRadius: const BorderRadius.all(Radius.circular(10)),
+                                                            ),
+                                                            // height: 70,
+                                                            // width: 50,
+                                                            child: Center(
+                                                              child: Column(
+                                                                // mainAxisAlignment: MainAxisAlignment.start,
+                                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                                children: [
+                                                                  Text(item.name! , style: TextStyle(
+                                                                    color: MyConstant().purpleColor,
+                                                                    fontWeight: FontWeight.bold,
+                                                                    fontSize: 10,
+                                                                  ),),
+                                                                  const SizedBox(height: 0,),
+                                                                  Image.asset(item.image!,width: 40,height: 40,fit: BoxFit.fill,)
+                                                                ],
+                                                              ),
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                      itemCount: changeImageList[currentIndex].length,
-                                                    ),),
-                                                ),
+                                                      );
+                                                    },
+                                                  ),
+                                                )
+
+
+                                                // Container(
+                                                //   margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                                                //   child: Scrollbar(
+                                                //     controller: controllerList,
+                                                //     thickness: 15,
+                                                //     radius: const Radius.circular(0),
+                                                //     trackVisibility: true,
+                                                //     interactive: true,
+                                                //     isAlwaysShown: true,
+                                                //     // showTrackOnHover: true,
+                                                //     // hoverThickness: 12,
+                                                //     child: Container(
+                                                //       margin: const EdgeInsets.symmetric(horizontal: 4,vertical: 4),
+                                                //       // height: 60,
+                                                //       width: 80,
+                                                //       decoration: BoxDecoration(
+                                                //           border: Border.all(
+                                                //             color: Colors.grey,
+                                                //           ),
+                                                //           borderRadius: const BorderRadius.all(Radius.circular(10))
+                                                //       ),
+                                                //       child: ListView.builder(
+                                                //         padding: EdgeInsets.zero,
+                                                //         shrinkWrap: true,
+                                                //         itemCount: getRelatedList.length,
+                                                //         itemBuilder: (context, index) {
+                                                //           TypesModel item =getRelatedList[index];
+                                                //           return InkWell(
+                                                //             onTap: () {
+                                                //               relatedSelectedType=index;
+                                                //               setState(() {});
+                                                //             },
+                                                //             child: Padding(
+                                                //               padding: const EdgeInsets.all(8.0),
+                                                //               child: Container(
+                                                //                 padding: const EdgeInsets.all(2),
+                                                //                 decoration: BoxDecoration(
+                                                //                   border: Border.all(
+                                                //                       color: relatedSelectedType==index?MyConstant().purpleColor:Colors.grey,
+                                                //                       width: 2
+                                                //                   ),
+                                                //                   borderRadius: const BorderRadius.all(Radius.circular(10)),
+                                                //                 ),
+                                                //                 // height: 70,
+                                                //                 // width: 50,
+                                                //                 child: Center(
+                                                //                   child: Column(
+                                                //                     // mainAxisAlignment: MainAxisAlignment.start,
+                                                //                     crossAxisAlignment: CrossAxisAlignment.center,
+                                                //                     children: [
+                                                //                       Text(item.name! , style: TextStyle(
+                                                //                         color: MyConstant().purpleColor,
+                                                //                         fontWeight: FontWeight.bold,
+                                                //                         fontSize: 10,
+                                                //                       ),),
+                                                //                       const SizedBox(height: 0,),
+                                                //                       Image.asset(item.image!,width: 40,height: 40,fit: BoxFit.fill,)
+                                                //                     ],
+                                                //                   ),
+                                                //                 ),
+                                                //               ),
+                                                //             ),
+                                                //           );
+                                                //         },
+                                                //       ),
+                                                //     ),),
+                                                // ),
                                               ),
 
                                             ],
@@ -842,136 +810,110 @@ class _SizeScreenState extends State<SizeScreen> {
                                         ),),
                                       ),
                                       const SizedBox(height: 5,),
-                                      Container(
-                                        width: MediaQuery.of(context).size.width/1,
-                                        height: MediaQuery.of(context).size.height/4.5,
-                                        decoration: BoxDecoration(
-                                          // color: Colors.amber,
-                                            border: Border(
-                                              left: BorderSide(color: MyConstant().greenColor),
-                                              right: BorderSide(color: MyConstant().greenColor),
-                                            )
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Stack(
-                                              children: [
-                                                Image.asset(ListOfImage.robe[currentImage],),
-                                                Image.asset(ListOfImage.cabak[currentImage1],),
-                                              ],
-                                            ),
-                                            // const SizedBox(width: 80,),
-                                            Image.asset('image/download2.png',)
-                                          ],
+                                      Expanded(
+                                        flex: 4,
+                                        child: Container(
+                                          width: MediaQuery.of(context).size.width/1,
+                                          // height: MediaQuery.of(context).size.height/4.5,
+                                          decoration: BoxDecoration(
+                                            // color: Colors.amber,
+                                              border: Border(
+                                                left: BorderSide(color: MyConstant().greenColor),
+                                                right: BorderSide(color: MyConstant().greenColor),
+                                              )
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Stack(
+                                                children: [
+                                                  // nknk
+                                                  Image.asset(ListOfImage.robe[currentImage],),
+                                                  Image.asset(ListOfImage.cabak[currentImage1],),
+                                                ],
+                                              ),
+                                              // const SizedBox(width: 80,),
+                                              Image.asset('image/download2.png',)
+                                            ],
+                                          ),
                                         ),
                                       ),
                                       Expanded(
-                                          child:  Container(
-                                        width: MediaQuery.of(context).size.width/1,
-                                        // height: 150,
-                                        alignment: Alignment.center,
-                                        padding: const EdgeInsets.symmetric(vertical: 3,horizontal: 10),
-                                        decoration: BoxDecoration(
-                                          // color: Colors.amber,
-                                          border: Border(
-                                            left: BorderSide(color: MyConstant().greenColor),
-                                            right: BorderSide(color: MyConstant().greenColor),
-                                            bottom: BorderSide(color: MyConstant().greenColor),
-                                          ),
-                                        ),
-                                        child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                              children: [
-                                                Container(
-                                                  width:  80,
-                                                  height:  80 ,
-                                                  alignment: Alignment.center,
-                                                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(5),
-                                                    border: Border(
-                                                      left: BorderSide(color: MyConstant().greenColor),
-                                                      right: BorderSide(color: MyConstant().greenColor),
-                                                      bottom: BorderSide(color: MyConstant().greenColor),
-                                                      top: BorderSide(color: MyConstant().greenColor),
-                                                    ),
+                                        flex: 1,
+                                        child: ListView(
+                                          padding: EdgeInsets.zero,
+                                          scrollDirection: Axis.horizontal,
+                                          shrinkWrap: true,
+                                          children: [
+                                            if(selectedCollar.image!=null) Padding(
+                                              padding: const EdgeInsets.all(2.0),
+                                              child: Container(
+                                                padding: const EdgeInsets.all(2),
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: MyConstant().greenColor,
+                                                      width: 2
                                                   ),
-                                                  child: Image.asset(ListOfImage.robe[currentImage],),
+                                                  borderRadius: const BorderRadius.all(Radius.circular(10)),
                                                 ),
-                                                Container(
-                                                  width:  80,
-                                                  height:  80 ,
-                                                  alignment: Alignment.center,
-                                                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(5),
-                                                    border: Border(
-                                                      left: BorderSide(color: MyConstant().greenColor),
-                                                      right: BorderSide(color: MyConstant().greenColor),
-                                                      bottom: BorderSide(color: MyConstant().greenColor),
-                                                      top: BorderSide(color: MyConstant().greenColor),
-                                                    ),
-                                                  ),
-                                                  child: Image.asset(ListOfImage.cabak[currentImage1],),
+                                                child: Center(
+                                                    child: Image.asset(selectedCollar.image!,width: 40,height: 40,fit: BoxFit.fill,)
                                                 ),
-                                                Container(
-                                                  width:  80,
-                                                  height:  80 ,
-                                                  alignment: Alignment.center,
-                                                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(5),
-                                                    border: Border(
-                                                      left: BorderSide(color: MyConstant().greenColor),
-                                                      right: BorderSide(color: MyConstant().greenColor),
-                                                      bottom: BorderSide(color: MyConstant().greenColor),
-                                                      top: BorderSide(color: MyConstant().greenColor),
-                                                    ),
-                                                  ),
-                                                  child: Image.asset('image/download1.png',),
-                                                ),
-                                                Container(
-                                                  width:  80,
-                                                  height:  80 ,
-                                                  alignment: Alignment.center,
-                                                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(5),
-                                                    border: Border(
-                                                      left: BorderSide(color: MyConstant().greenColor),
-                                                      right: BorderSide(color: MyConstant().greenColor),
-                                                      bottom: BorderSide(color: MyConstant().greenColor),
-                                                      top: BorderSide(color: MyConstant().greenColor),
-                                                    ),
-                                                  ),
-                                                  child: Image.asset('image/download1.png',),
-                                                ),
-                                              ],
+                                              ),
                                             ),
-                                        // ListView.builder(
-                                        //   scrollDirection: Axis.horizontal,
-                                        //   shrinkWrap: true,
-                                        //   // padding: const EdgeInsets.symmetric(horizontal: 10),
-                                        //   itemBuilder: (context , index)=>  Container(
-                                        //     width:  60,
-                                        //     height:  30 ,
-                                        //     alignment: Alignment.center,
-                                        //     margin: const EdgeInsets.symmetric(horizontal: 10),
-                                        //     decoration: BoxDecoration(
-                                        //       borderRadius: BorderRadius.circular(5),
-                                        //       border: Border(
-                                        //         left: BorderSide(color: MyConstant().greenColor),
-                                        //         right: BorderSide(color: MyConstant().greenColor),
-                                        //         bottom: BorderSide(color: MyConstant().greenColor),
-                                        //         top: BorderSide(color: MyConstant().greenColor),
-                                        //       ),
-                                        //     ),
-                                        //     child: Image.asset('image/download1.png',) ,
-                                        //   ),
-                                        //   itemCount: 4,
-                                        // ),
-                                      ))
+                                            if(selectedKabak.image!=null) Padding(
+                                              padding: const EdgeInsets.all(2.0),
+                                              child: Container(
+                                                padding: const EdgeInsets.all(2),
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: MyConstant().greenColor,
+                                                      width: 2
+                                                  ),
+                                                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+                                                ),
+                                                child: Center(
+                                                    child: Image.asset(selectedKabak.image!,width: 40,height: 40,fit: BoxFit.fill,)
+                                                ),
+                                              ),
+                                            ),
+
+                                            if(selectedPocket.image!=null)  Padding(
+                                              padding: const EdgeInsets.all(2.0),
+                                              child: Container(
+                                                padding: const EdgeInsets.all(2),
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: MyConstant().greenColor,
+                                                      width: 2
+                                                  ),
+                                                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+                                                ),
+                                                child: Center(
+                                                    child: Image.asset(selectedPocket.image!,width: 40,height: 40,fit: BoxFit.fill,)
+                                                ),
+                                              ),
+                                            ),
+
+                                          if(selectedGabzor.image!=null)  Padding(
+                                              padding: const EdgeInsets.all(2.0),
+                                              child: Container(
+                                                padding: const EdgeInsets.all(2),
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: MyConstant().greenColor,
+                                                      width: 2
+                                                  ),
+                                                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+                                                ),
+                                                child: Center(
+                                                    child: Image.asset(selectedGabzor.image!,width: 40,height: 40,fit: BoxFit.fill,)
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      )
                                     ],
                                   ),)),
                           ],

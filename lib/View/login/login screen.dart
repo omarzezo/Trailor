@@ -226,10 +226,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: TextButton(
                       onPressed: () async {
                         LoadingPage(context).show();
-                        // Navigator.push(context,MaterialPageRoute(builder: (context) => const HomeScreen()));
                         TrailorListsResponse model = await LoginCubit.get(context).login(email: userNameController.text, password: passwordController.text);
                         print("model>>"+model.toString());
-                        // var json = jsonEncode(model.toJson());
                         String jsonUser = jsonEncode(model);
                         final prefs = await SharedPreferences.getInstance();
                         await prefs.setString('json', jsonUser).then((value) {
