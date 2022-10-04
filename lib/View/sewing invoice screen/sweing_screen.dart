@@ -7,6 +7,7 @@ import 'package:omar/constant/constant.dart';
 import 'package:omar/models/Companies.dart';
 import 'package:omar/models/TrailorListsResponse.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'Size Screen.dart';
 import 'Widgets.dart';
 
 class SewingScreen extends StatefulWidget {
@@ -392,7 +393,9 @@ class _SewingScreenState extends State<SewingScreen> {
                               height: 30,
                               width: 70,
                               child: ElevatedButton(
-                                onPressed: (){},
+                                onPressed: (){
+                                  Navigator.push(context,MaterialPageRoute(builder: (context) => const SizeScreen()));
+                                },
                                 child: Text('المقاسات',style: GoogleFonts.notoKufiArabic(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,

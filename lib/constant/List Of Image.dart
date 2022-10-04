@@ -3,22 +3,22 @@ import 'package:omar/models/TypesModel.dart';
 
   List<TypesModel> getTypesList(){
     List<TypesModel>typesList=[];
-    typesList.add(TypesModel(id: 1,name: "نوع الثوب",image: "image/Robe/Emrati-front.png",   ));
-    typesList.add(TypesModel(id: 2,name: "نوع الياقة",image: "image/collar/collar-1.png" ,   ) );
-    typesList.add(TypesModel(id: 3,name: "نوع الكبك",image: "image/Cabak/cabak-1.png"    ,   )    );
-    typesList.add(TypesModel(id: 4,name: "نوع الجيب",image: "image/pocket/Pocket-1.png"  ,   )  );
-    typesList.add(TypesModel(id: 5,name: "نوع الجبزور",image: "image/Gabzor/Gabzor-1.png",   ));
+    typesList.add(TypesModel(id: 1,name: "نوع الثوب",image: "image/Robe/Emrati-front.png" ));
+    typesList.add(TypesModel(id: 2,name: "نوع الياقة",image: "image/collar/collar-1.png" ));
+    typesList.add(TypesModel(id: 3,name: "نوع الكبك",image: "image/Cabak/cabak-1.png"    )    );
+    typesList.add(TypesModel(id: 4,name: "نوع الجيب",image: "image/pocket/Pocket-1.png"  )  );
+    typesList.add(TypesModel(id: 5,name: "نوع الجبزور",image: "image/Gabzor/Gabzor-1.png"));
     return typesList;
   }
 
   List<TypesModel> relatedTypes(){
     List<TypesModel>typesList=[];
-    typesList.add(TypesModel(id: 1,name: "سعودي",image: "image/Robe/Saudi- front.png"));
-    typesList.add(TypesModel(id: 2,name: "قطري",image: "image/Robe/Qatari-front.png"));
-    typesList.add(TypesModel(id: 3,name: "كويتي",image: "image/Robe/kwity-front.png"));
-    typesList.add(TypesModel(id: 4,name: "عماني",image: "image/Robe/omani-front.png"));
-    typesList.add(TypesModel(id: 5,name: "اماراتي",image: "image/Robe/Emrati-front.png"));
-    typesList.add(TypesModel(id: 6,name: "نوم",image: "image/Robe/sleep-front.png"));
+    typesList.add(TypesModel(id: 1,name: "سعودي",image: "image/Robe/Saudi- front.png",frontImage: "image/Robe/Saudi- front.png" ,backImage: "image/Robe/Saudi-back.png" ));
+    typesList.add(TypesModel(id: 2,name: "قطري",image: "image/Robe/Qatari-front.png",frontImage: "image/Robe/Qatari-front.png" ,backImage: "image/Robe/Qatari-back.png" ));
+    typesList.add(TypesModel(id: 3,name: "كويتي",image: "image/Robe/kwity-front.png",frontImage: "image/Robe/kwity-front.png" ,backImage: "image/Robe/kwity-back.png" ));
+    typesList.add(TypesModel(id: 4,name: "عماني",image: "image/Robe/omani-front.png",frontImage: "image/Robe/omani-front.png" ,backImage: "image/Robe/omani-back.png" ));
+    typesList.add(TypesModel(id: 5,name: "اماراتي",image: "image/Robe/Emrati-front.png",frontImage: "image/Robe/Emrati-front.png" ,backImage: "image/Robe/Emrati-back.png" ));
+    typesList.add(TypesModel(id: 6,name: "نوم",image: "image/Robe/sleep-front.png",frontImage: "image/Robe/sleep-front.png" ,backImage: "image/Robe/sleep-back.png" ));
     return typesList;
   }
 
@@ -122,9 +122,9 @@ import 'package:omar/models/TypesModel.dart';
       return [];
     }
   }
+
+
 class ListOfImage {
-
-
 
 
 
