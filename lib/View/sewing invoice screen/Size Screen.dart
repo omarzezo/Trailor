@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:omar/Controller/Cubit/Cubit.dart';
+import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/models/TypesModel.dart';
 import '../../constant/List Of Image.dart';
 import '../../constant/constant.dart';
@@ -45,9 +48,14 @@ class _SizeScreenState extends State<SizeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var cubit=LoginCubit.get(context);
     return  Directionality(
       textDirection: TextDirection.rtl,
-      child: Scaffold(
+      child: BlocConsumer<LoginCubit, LoginState>(
+  listener: (context, state) {
+  },
+  builder: (context, state) {
+    return Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
             child: SingleChildScrollView(
@@ -100,6 +108,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                   onChanged: (value){
                                     setState(() {
                                       valueItem1 = value as String  ;
+                                      cubit.tailor.text = value   ;
                                     });
                                   },
                                   iconEnabledColor: Colors.white,
@@ -139,72 +148,72 @@ class _SizeScreenState extends State<SizeScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Container( width: MediaQuery.of(context).size.width/2.52, height: 40,child: customTextField(text: 'القماش')),
-                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'طول امام')),
-                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'طول خلف')),
+                              Container( width: MediaQuery.of(context).size.width/2.52, height: 40,child: customTextField(text: 'القماش',controller: cubit.type)),
+                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'طول امام',controller: cubit.frontHeight)),
+                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'طول خلف',controller: cubit.backHeight)),
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'عرض الكتف')),
-                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ميل الكتف')),
-                              Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'طول الكم سادة')),
-                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'طول الكم اعلي')),
+                              Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'عرض الكتف',controller: cubit.shoulderWidth)),
+                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ميل الكتف',controller: cubit.shoulderSlope)),
+                              Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'طول الكم سادة',controller: cubit.sleeveLengthPlain)),
+                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'طول الكم اعلي',controller: cubit.sleeveLengthIsHigher)),
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع المعصم')),
-                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'كفة المصم سادة')),
-                              Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'طول الكبك')),
-                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'عرض الكبك')),
+                              Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع المعصم',controller: cubit.wideWrist)),
+                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'كفة المصم سادة',controller: cubit.plainCuff)),
+                              Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'طول الكبك',controller: cubit.cuffLength)),
+                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'عرض الكبك',controller: cubit.cuffShow)),
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع الوسط')),
-                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'وسع الصدر امام')),
-                              Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'وسع الصدر خلف')),
-                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'كفتة اسفل')),
+                              Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع الوسط',controller: cubit.wideMiddle)),
+                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'وسع الصدر امام',controller: cubit.expandTheChestInFront)),
+                              Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'وسع الصدر خلف',controller: cubit.expandTheChestBehind)),
+                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'كفتة اسفل',controller: cubit.koftaBottom)),
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع اسفل')),
-                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'وسع الرقبة سادة')),
-                              Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'ارتفاع الرقبة')),
-                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ارتفاع الجبزور')),
+                              Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع اسفل',controller: cubit.expandDown)),
+                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'وسع الرقبة سادة',controller: cubit.wideNeckPillow)),
+                              Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'ارتفاع الرقبة',controller: cubit.neckHeight)),
+                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ارتفاع الجبزور',controller: cubit.gypsumHeight)),
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'عرض الجبزور')),
-                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ط-جيب الصدر')),
-                              Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'ع-جيب الصدر')),
-                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ع-جيب الجوال')),
+                              Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'عرض الجبزور',controller: cubit.viewGypsum)),
+                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ط-جيب الصدر',controller: cubit.lengthChestPocket)),
+                              Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'ع-جيب الصدر',controller: cubit.wideChestPocket)),
+                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ع-جيب الجوال',controller: cubit.wideMobilePocket)),
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'ع-جيب الجوال')),
-                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ط-جيب المحفظة')),
-                              Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'ع-جيب المحفظة')),
-                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'وسع الورك')),
+                              Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'ع-جيب الجوال',controller: cubit.wideMobilePocket2)),
+                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ط-جيب المحفظة',controller: cubit.lengthPocketWallet)),
+                              Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'ع-جيب المحفظة',controller: cubit.widePocketWallet)),
+                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'وسع الورك',controller: cubit.hipWidth)),
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'رقم الزرار')),
-                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'رقم التطريز')),
-                              Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'بين جيب الصدر والكتف')),
-                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'جيب الجنب')),
+                              Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'رقم الزرار',controller: cubit.buttonNumber)),
+                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'رقم التطريز',controller: cubit.embroideryNumber)),
+                              Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'بين جيب الصدر والكتف',controller: cubit.betweenTheChestPocketAndTheShoulder)),
+                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'جيب الجنب',controller: cubit.sidePocket)),
                             ],
                           ),
                           Row(
@@ -212,11 +221,11 @@ class _SizeScreenState extends State<SizeScreen> {
                             // crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               // const SizedBox(width: 0.7,),
-                              Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع الكم وسط')),
+                              Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع الكم وسط',controller: cubit.quantumCapacityMedium)),
                               // const SizedBox(width: 1,),
-                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'تخاليص')),
+                              Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'تخاليص',controller: cubit.Takhalis)),
                               // const SizedBox(width: 1,),
-                              Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'القماش المتوقع بالمتر')),
+                              Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'القماش المتوقع بالمتر',controller: cubit.expectedFabricInMeter)),
                               // const SizedBox(width: 125,)
                             ],
                           ),
@@ -925,7 +934,9 @@ class _SizeScreenState extends State<SizeScreen> {
               ),
             )
         ),
-      ),
+      );
+  },
+),
     );
   }
   DropdownMenuItem<String> itemBuild(String item) =>

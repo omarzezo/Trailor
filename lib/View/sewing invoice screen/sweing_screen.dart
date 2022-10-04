@@ -2,10 +2,16 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:omar/Controller/Cubit/Cubit.dart';
+import 'package:omar/Controller/Cubit/Cubit.dart';
+import 'package:omar/Controller/Cubit/State.dart';
+import 'package:omar/View/sewing%20invoice%20screen/print_screen.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/models/Companies.dart';
 import 'package:omar/models/TrailorListsResponse.dart';
+import 'package:omar/models/Users.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Widgets.dart';
 
@@ -20,6 +26,7 @@ class _SewingScreenState extends State<SewingScreen> {
   List<String> items = ['item1' , 'item2' ,'item3' ,'item4' ,];
   List<String> items2 = ['item1' , 'item2' ,'item3' ,'item4' ,];
   String ? valueItem;
+  Users ? userItem;
   String ? valueItem2;
 
   @override
@@ -36,10 +43,16 @@ class _SewingScreenState extends State<SewingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var cubit=LoginCubit.get(context);
     return Directionality(
       textDirection: TextDirection.rtl,
       child: SafeArea(
-        child: Scaffold(
+        child: BlocConsumer<LoginCubit, LoginState>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
+    return Scaffold(
           backgroundColor: Colors.white,
           body: SingleChildScrollView(
             child: Column(
@@ -186,12 +199,16 @@ class _SewingScreenState extends State<SewingScreen> {
                                     ),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton(
-                                        items: items.map(itemBuild).toList(),
-                                        value: valueItem,
+
+                                        // items: items.map(itemBuild).toList(),
+                                        items: cubit.users.map(UsersBuild).toList(),
+                                        value: userItem,
+
                                         isExpanded: true,
-                                        onChanged: (value){
+                                        onChanged: ( val){
                                           setState(() {
-                                            valueItem = value as String?  ;
+                                            userItem = val as Users   ;
+                                            // cubit.customerName=value!;
                                           });
                                         },
                                         iconEnabledColor: Colors.white,
@@ -202,6 +219,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                         ),
 
                                       ),
+
                                     ),
                                   )
                                 ],
@@ -238,6 +256,8 @@ class _SewingScreenState extends State<SewingScreen> {
                                         onChanged: (value){
                                           setState(() {
                                             valueItem = value as String?  ;
+                                            cubit.employeeName=value!;
+
                                           });
                                         },
                                         iconEnabledColor: Colors.white,
@@ -307,6 +327,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                         onChanged: (value){
                                           setState(() {
                                             valueItem = value as String?  ;
+                                            cubit.typeOfClothes = value!   ;
                                           });
                                         },
                                         iconEnabledColor: Colors.white,
@@ -354,6 +375,8 @@ class _SewingScreenState extends State<SewingScreen> {
                                         onChanged: (value){
                                           setState(() {
                                             valueItem = value as String?  ;
+                                            cubit.size = value!   ;
+
                                           });
                                         },
                                         iconEnabledColor: Colors.white,
@@ -370,13 +393,21 @@ class _SewingScreenState extends State<SewingScreen> {
                               ),
                             ),
                             const SizedBox(width: 10,),
-                            textField(context: context ,text: 'الكمية' , borderSide: const BorderSide(color: Colors.green,width: 1) ,
+                            textField(
+                              controller: cubit.quantities,
+                              context: context ,text: 'الكمية' , borderSide: const BorderSide(color: Colors.green,width: 1) ,
                               radius: const BorderRadius.only(topRight: Radius.circular(5) , bottomRight: Radius.circular(5)),),
                             // const SizedBox(width: 5,),
-                            textField(context:  context , text: 'سعر الوحدة',borderSide: const BorderSide(color: Colors.green,width: 1) ,
+                            textField(
+                                controller: cubit.itemPrice,
+
+                                context:  context , text: 'سعر الوحدة',borderSide: const BorderSide(color: Colors.green,width: 1) ,
                                 radius: BorderRadius.zero),
                             // const SizedBox(width: 5,),
-                            textField(context: context , text:  'الاجمالي',borderSide: const BorderSide(color: Colors.green,width: 1) ,
+                            textField(
+                              controller: cubit.totalPrice,
+
+                              context: context , text:  'الاجمالي',borderSide: const BorderSide(color: Colors.green,width: 1) ,
                               radius: const BorderRadius.only(topLeft: Radius.circular(5) , bottomLeft: Radius.circular(5)),),
                             const SizedBox(width: 18,),
 
@@ -459,10 +490,10 @@ class _SewingScreenState extends State<SewingScreen> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Container(width: MediaQuery.of(context).size.width/6,child: customTextField(text: 'الاجمالي')),
-                                  Container(width: MediaQuery.of(context).size.width/6,child: customTextField(text: 'الخصم')),
-                                  Container(width: MediaQuery.of(context).size.width/6,child: customTextField(text: 'الضريبة')),
-                                  Container(width: MediaQuery.of(context).size.width/6,child: customTextField(text: 'الصافي')),
+                                  Container(width: MediaQuery.of(context).size.width/6,child: customTextField(text: 'الاجمالي',controller:cubit.totalPriceDetails )),
+                                  Container(width: MediaQuery.of(context).size.width/6,child: customTextField(text: 'الخصم',controller:cubit.discount)),
+                                  Container(width: MediaQuery.of(context).size.width/6,child: customTextField(text: 'الضريبة',controller:cubit.tax)),
+                                  Container(width: MediaQuery.of(context).size.width/6,child: customTextField(text: 'الصافي',controller:cubit.whatYouPay)),
                                 ],
                               ),
                             ),
@@ -473,8 +504,8 @@ class _SewingScreenState extends State<SewingScreen> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 // crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Container(width: MediaQuery.of(context).size.width/6,child: customTextField(text: 'المدفوع النقدي')),
-                                  Container(width: MediaQuery.of(context).size.width/6,child: customTextField(text: 'المدفوع الشبكي')),
+                                  Container(width: MediaQuery.of(context).size.width/6,child: customTextField(text: 'المدفوع النقدي',controller:cubit.cash)),
+                                  Container(width: MediaQuery.of(context).size.width/6,child: customTextField(text: 'المدفوع الشبكي',controller:cubit.onlinePayment)),
                                   Container(
                                     width: MediaQuery.of(context).size.width/6,
                                     margin: const EdgeInsets.only(top: 10),
@@ -497,6 +528,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                             onChanged: (value){
                                               setState(() {
                                                 valueItem2   = value as String;
+                                                cubit.paymentType=value;
                                               });
                                             },
                                             iconEnabledColor: Colors.green,
@@ -513,7 +545,7 @@ class _SewingScreenState extends State<SewingScreen> {
                             Container(width: MediaQuery.of(context).size.width/6,
                                 margin: const EdgeInsets.only(right: 20,top: 15),
 
-                                child: customTextField(text: 'المبلغ المتبقي')),
+                                child: customTextField(text: 'المبلغ المتبقي',controller: cubit.delayMoney)),
                           ],
                         )
                       ),
@@ -528,7 +560,10 @@ class _SewingScreenState extends State<SewingScreen> {
                     style: ButtonStyle(
                       backgroundColor:MaterialStateProperty.all(MyConstant().purpleColor),
                     ),
-                    onPressed: (){}, child: Text('حفظ',style: GoogleFonts.notoKufiArabic(
+                    onPressed: (){
+                      Navigator.pushNamed(context, PrintScreen.routeName);
+
+                    }, child: Text('حفظ',style: GoogleFonts.notoKufiArabic(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 12
@@ -537,12 +572,20 @@ class _SewingScreenState extends State<SewingScreen> {
               ],
             ),
           ),
-        ),
+        );
+  },
+),
       ),
     );
   }
   DropdownMenuItem<String> itemBuild(String item) =>
     DropdownMenuItem(value: item, child: Text(item,style: GoogleFonts.notoKufiArabic(
+        color: MyConstant().purpleColor,
+        fontWeight: FontWeight.bold,
+        fontSize: 12
+    )),);
+  DropdownMenuItem<Users> UsersBuild(Users item) =>
+    DropdownMenuItem(value: item, child: Text(item.company!,style: GoogleFonts.notoKufiArabic(
         color: MyConstant().purpleColor,
         fontWeight: FontWeight.bold,
         fontSize: 12
