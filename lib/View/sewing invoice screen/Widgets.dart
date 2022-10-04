@@ -37,6 +37,8 @@ Widget textField({
   required String text,
   required BorderRadius radius,
   required BorderSide borderSide,
+   TextEditingController? controller,
+   bool? readOnly=false,
 }) {
   return Container(
       // width: MediaQuery.of(context).size.width * 0.07,
@@ -63,6 +65,8 @@ Widget textField({
           Container(
             height: 30,
             child: TextFormField(
+              controller: controller,
+              readOnly: readOnly!,
               textAlign: TextAlign.center,
               validator: (val) {},
               decoration: InputDecoration(
@@ -87,8 +91,11 @@ Widget customTextField({
   // required BorderRadius  radius,
   // required BorderSide borderSide,
   TextEditingController? controller,
+  bool? readOnly=false,
 }) {
   return TextFormField(
+
+    readOnly: readOnly!,
     textAlign: TextAlign.center,
     controller: controller,
     validator: (val) {
@@ -172,4 +179,12 @@ Widget dropButton({
       child: const Icon(Icons.keyboard_arrow_down_sharp),
     ),
   );
+}
+Widget MyText ({required String text}){
+  return Text(text,
+      style: GoogleFonts.notoKufiArabic(
+          color: MyConstant().purpleColor,
+          fontWeight: FontWeight.bold,
+          fontSize: 10));
+
 }

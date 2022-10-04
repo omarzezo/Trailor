@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Network/Remote%20Data/Dio%20Helper.dart';
 import 'package:omar/View/mobile/mobil%20home.dart';
+import 'package:omar/View/sewing%20invoice%20screen/print_screen.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/tast.dart';
 import 'Controller/BlocObserver.dart';
@@ -68,6 +69,9 @@ class MyApp extends StatelessWidget {
           ),
 
           home: const LoginScreen(),
+          routes: {
+            PrintScreen.routeName:(context) => const PrintScreen(),
+          },
         ));
   }
 }
