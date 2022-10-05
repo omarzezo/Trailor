@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/local/shared_pref.dart';
 import 'package:omar/View/home/home.dart';
+import 'package:omar/View/login/login%20screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = 'SplashWidget';
@@ -19,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Timer? _timer;
 
   _startDelay() {
-    _timer = Timer(Duration(seconds: 3), goNext);
+    _timer = Timer(const Duration(seconds: 2), goNext);
   }
 
     goNext()async{
@@ -29,6 +30,8 @@ class _SplashScreenState extends State<SplashScreen> {
       if(isLogged){
         await LoginCubit.get(context).login(email: email, password: password);
         Navigator.push(context,MaterialPageRoute(builder: (context) => const HomeScreen()));
+      }else{
+        Navigator.push(context,MaterialPageRoute(builder: (context) => const LoginScreen()));
       }
 
     }

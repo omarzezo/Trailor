@@ -29,6 +29,43 @@ class PrintScreen extends StatelessWidget {
               body: SingleChildScrollView(
                 child: Column(
                   children: [
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          height: MediaQuery.of(context).size.height / 10,
+                          width: double.infinity,
+                          padding: const EdgeInsets.only(left: 30,top: 20),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            border:  Border(
+                                bottom: BorderSide(color: MyConstant().greenColor.withOpacity(0.3),width: 0.2)),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: MyConstant().greenColor.withOpacity(0.3),
+                                  spreadRadius: 0,
+                                  blurRadius: 0,
+                                  offset: const Offset(1, 1),
+                                  blurStyle: BlurStyle.outer),
+                            ],
+                            color: Colors.white,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            textDirection: TextDirection.rtl,
+                            children: [
+                              Container(height: 40,width:MediaQuery.of(context).size.width/5,
+                                  child:Image.asset('image/logo app.png',width: 40,height: 40,)),
+
+                              IconButton(onPressed: () {
+                                Navigator.pop(context);
+                              }, icon: Icon(Icons.arrow_forward_ios_rounded,color: MyConstant().purpleColor,size: 30,))
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                     MediaQuery.of(context).orientation==Orientation.portrait?
                     Container(
                       height: 400,
@@ -1156,25 +1193,25 @@ class PrintScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              Container(
-                                  width: 100,
-                                  height: 30,
-                                  margin:
-                                      const EdgeInsets.only(left: 10, bottom: 5),
-                                  child: OutlinedButton(
-                                    style: ButtonStyle(
-                                      backgroundColor: MaterialStateProperty.all(
-                                          MyConstant().purpleColor),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text('طباعه',
-                                        style: GoogleFonts.notoKufiArabic(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 12)),
-                                  )),
+                              // Container(
+                              //     width: 100,
+                              //     height: 30,
+                              //     margin:
+                              //         const EdgeInsets.only(left: 10, bottom: 5),
+                              //     child: OutlinedButton(
+                              //       style: ButtonStyle(
+                              //         backgroundColor: MaterialStateProperty.all(
+                              //             MyConstant().purpleColor),
+                              //       ),
+                              //       onPressed: () {
+                              //         Navigator.pop(context);
+                              //       },
+                              //       child: Text('طباعه',
+                              //           style: GoogleFonts.notoKufiArabic(
+                              //               color: Colors.white,
+                              //               fontWeight: FontWeight.bold,
+                              //               fontSize: 12)),
+                              //     )),
                             ],
                           ),
                         ),

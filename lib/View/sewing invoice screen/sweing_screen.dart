@@ -596,23 +596,29 @@ class _SewingScreenState extends State<SewingScreen> {
 
 
   DropdownMenuItem<Users> UsersBuild(Users item) =>
-    DropdownMenuItem(value: item, child: Text(item.company!,style: GoogleFonts.notoKufiArabic(
-        color: MyConstant().purpleColor,
-        fontWeight: FontWeight.bold,
-        fontSize: 12
-    )),);
+    DropdownMenuItem(value: item, child: Center(
+      child: Text(item.company!,style: GoogleFonts.notoKufiArabic(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+          fontSize: 12
+      )),
+    ),);
   DropdownMenuItem<Users>EmployeeBuild(Users item) =>
-    DropdownMenuItem(value: item, child: Text(item.company!,style: GoogleFonts.notoKufiArabic(
-        color: MyConstant().purpleColor,
-        fontWeight: FontWeight.bold,
-        fontSize: 12
-    )),);
+    DropdownMenuItem(value: item, child: Center(
+      child: Text(item.company!,style: GoogleFonts.notoKufiArabic(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+          fontSize: 12
+      )),
+    ),);
   DropdownMenuItem<PaymentType> PaymentTypeBuild(PaymentType item) =>
-    DropdownMenuItem(value: item, child: Text(item.code!,style: GoogleFonts.notoKufiArabic(
-        color: MyConstant().purpleColor,
-        fontWeight: FontWeight.bold,
-        fontSize: 12
-    )),);
+    DropdownMenuItem(value: item, child: Center(
+      child: Text(item.code!,style: GoogleFonts.notoKufiArabic(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+          fontSize: 12
+      )),
+    ),);
   // DropdownMenuItem<Users> UsersBuild(Users item) =>
   //   DropdownMenuItem(value: item, child: Text(item.company!,style: GoogleFonts.notoKufiArabic(
   //       color: MyConstant().purpleColor,
@@ -620,16 +626,20 @@ class _SewingScreenState extends State<SewingScreen> {
   //       fontSize: 12
   //   )),);
   DropdownMenuItem<String> itemBuild2(String item) =>
-      DropdownMenuItem(value: item, child: Text(item,style: GoogleFonts.notoKufiArabic(
-          color: MyConstant().purpleColor,
-          fontWeight: FontWeight.bold,
-          fontSize: 12
-      )),); DropdownMenuItem<String> itemBuild(String item) =>
-      DropdownMenuItem(value: item, child: Text(item,style: GoogleFonts.notoKufiArabic(
-          color: MyConstant().purpleColor,
-          fontWeight: FontWeight.bold,
-          fontSize: 12
-      )),);
+      DropdownMenuItem(value: item, child: Center(
+        child: Text(item,style: GoogleFonts.notoKufiArabic(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 12
+        )),
+      ),); DropdownMenuItem<String> itemBuild(String item) =>
+      DropdownMenuItem(value: item, child: Center(
+        child: Text(item,style: GoogleFonts.notoKufiArabic(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 12
+        )),
+      ),);
 //   Widget wrapWidget ({
 //   required String string,
 // })=> Wrap(

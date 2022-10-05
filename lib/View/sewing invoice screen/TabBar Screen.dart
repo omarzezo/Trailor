@@ -106,11 +106,11 @@ class _TabBarScreenState extends State<TabBarScreen> {
                       physics: NeverScrollableScrollPhysics(),
                         children: [
                       SewingScreen(),
-                      SizeScreen(),
-                      SewingScreen(),
-                      SewingScreen(),
-                      CustomTableSweing(),
-                      SewingScreen(),
+                          SizedBox(),
+                          SizedBox(),
+                          SizedBox(),
+                       SizedBox(),
+                       SizedBox(),
                     ]),
                   )
                 ],
