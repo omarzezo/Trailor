@@ -9,6 +9,7 @@ import 'dart:ui' as ui;
 import 'constant/List Of Image.dart';
 import 'constant/constant.dart';
 import 'models/TypesModel.dart';
+GlobalKey _containerKey = GlobalKey();
 
 class TestingScreen extends StatefulWidget {
   const TestingScreen({Key? key}) : super(key: key);
@@ -67,11 +68,11 @@ class _TestingScreenState extends State<TestingScreen> {
       return Stack(
         children: [
           selectedPocket.image != null ? Container(
-            margin: const EdgeInsets.only(right: 35, top: 20, left: 0),
+            margin: const EdgeInsets.only(right: 120, top: 70, left: 0),
             child: Align(
                 alignment: Alignment.topRight,
                 child: Image.asset(selectedPocket.image!, fit: BoxFit.fill,
-                  width: 10, height: 10,)),
+                  width: 26, height: 26,)),
           ) : const SizedBox(),
           selectedKabak.image != null ? Container(
             margin: const EdgeInsets.only(right: 10, top: 94, left: 55),
@@ -88,11 +89,11 @@ class _TestingScreenState extends State<TestingScreen> {
                   width: 50, height: 50,)),
           ) : const SizedBox(),
           selectedGabzor.image != null ? Container(
-            margin: const EdgeInsets.only(right: 10, top: 9),
+            margin: const EdgeInsets.only(right: 40, top: 33),
             child: Align(
                 alignment: Alignment.topCenter,
                 child: Image.asset(selectedGabzor.image!, fit: BoxFit.fill,
-                  width: 24, height: 30,)),
+                  width: 44, height: 60,)),
           ) : const SizedBox(),
         ],
       );
@@ -132,6 +133,8 @@ class _TestingScreenState extends State<TestingScreen> {
       );
     }
   }
+
+
 
   @override
   Widget build(BuildContext context) {
