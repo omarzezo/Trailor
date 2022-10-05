@@ -12,6 +12,9 @@ import 'package:omar/constant/constant.dart';
 import 'package:omar/models/Companies.dart';
 import 'package:omar/models/TrailorListsResponse.dart';
 import 'package:omar/models/Users.dart';
+import 'package:omar/models/tRCollar.dart';
+import 'package:omar/models/tRCuff.dart';
+import 'package:omar/models/tRModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Size Screen.dart';
 import 'Widgets.dart';
@@ -209,7 +212,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                         onChanged: ( val){
                                           setState(() {
                                             userItem = val as Users   ;
-                                            // cubit.customerName=value!;
+                                            cubit.customerName=val.company!;
                                           });
                                         },
                                         iconEnabledColor: Colors.white,
@@ -251,13 +254,13 @@ class _SewingScreenState extends State<SewingScreen> {
                                     ),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton(
-                                        items: items.map(itemBuild).toList(),
-                                        value: valueItem,
+                                        items: cubit.users.map(UsersBuild).toList(),
+                                        value: userItem,
                                         isExpanded: true,
-                                        onChanged: (value){
+                                        onChanged: (val){
                                           setState(() {
-                                            valueItem = value as String?  ;
-                                            cubit.employeeName=value!;
+                                            userItem = val as Users   ;
+                                            cubit.employeeName=val.company!;
 
                                           });
                                         },
@@ -563,7 +566,8 @@ class _SewingScreenState extends State<SewingScreen> {
                     style: ButtonStyle(
                       backgroundColor:MaterialStateProperty.all(MyConstant().purpleColor),
                     ),
-                    onPressed: (){
+                    onPressed: ()async{
+
                       Navigator.pushNamed(context, PrintScreen.routeName);
 
                     }, child: Text('حفظ',style: GoogleFonts.notoKufiArabic(
@@ -581,19 +585,26 @@ class _SewingScreenState extends State<SewingScreen> {
       ),
     );
   }
-  DropdownMenuItem<String> itemBuild(String item) =>
-    DropdownMenuItem(value: item, child: Text(item,style: GoogleFonts.notoKufiArabic(
-        color: MyConstant().purpleColor,
-        fontWeight: FontWeight.bold,
-        fontSize: 12
-    )),);
+
+
   DropdownMenuItem<Users> UsersBuild(Users item) =>
     DropdownMenuItem(value: item, child: Text(item.company!,style: GoogleFonts.notoKufiArabic(
         color: MyConstant().purpleColor,
         fontWeight: FontWeight.bold,
         fontSize: 12
     )),);
+  // DropdownMenuItem<Users> UsersBuild(Users item) =>
+  //   DropdownMenuItem(value: item, child: Text(item.company!,style: GoogleFonts.notoKufiArabic(
+  //       color: MyConstant().purpleColor,
+  //       fontWeight: FontWeight.bold,
+  //       fontSize: 12
+  //   )),);
   DropdownMenuItem<String> itemBuild2(String item) =>
+      DropdownMenuItem(value: item, child: Text(item,style: GoogleFonts.notoKufiArabic(
+          color: MyConstant().purpleColor,
+          fontWeight: FontWeight.bold,
+          fontSize: 12
+      )),); DropdownMenuItem<String> itemBuild(String item) =>
       DropdownMenuItem(value: item, child: Text(item,style: GoogleFonts.notoKufiArabic(
           color: MyConstant().purpleColor,
           fontWeight: FontWeight.bold,

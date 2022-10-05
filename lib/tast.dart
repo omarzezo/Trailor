@@ -1,6 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'dart:typed_data';
 
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:omar/Controller/Cubit/Cubit.dart';
+import 'package:omar/Controller/Cubit/State.dart';
+import 'dart:ui' as ui;
 import 'constant/List Of Image.dart';
 import 'constant/constant.dart';
 import 'models/TypesModel.dart';
@@ -8,29 +13,30 @@ GlobalKey _containerKey = GlobalKey();
 
 class TestingScreen extends StatefulWidget {
   const TestingScreen({Key? key}) : super(key: key);
-
   @override
   _TestingScreenState createState() => _TestingScreenState();
 }
 
 class _TestingScreenState extends State<TestingScreen> {
-  int? selectedType=0,relatedSelectedType;
-  List<TypesModel> getRelatedList=[];
-  List<TypesModel> selectedLists=[];
+  int? selectedType = 0,
+      relatedSelectedType;
+  List<TypesModel> getRelatedList = [];
+  List<TypesModel> selectedLists = [];
 
-  TypesModel selectedCollar =TypesModel();
-  TypesModel selectedKabak =TypesModel();
-  TypesModel selectedPocket =TypesModel();
-  TypesModel selectedGabzor =TypesModel();
-  String? frontImage,backImage;
+  TypesModel selectedCollar = TypesModel();
+  TypesModel selectedKabak = TypesModel();
+  TypesModel selectedPocket = TypesModel();
+  TypesModel selectedGabzor = TypesModel();
+  String? frontImage, backImage;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getRelatedList=getRelatedListAnyType(0);
+    getRelatedList = getRelatedListAnyType(0);
     setState(() {});
   }
+
   // Container(
   // height: 20,
   // color: MyConstant().purpleColor,
@@ -54,71 +60,75 @@ class _TestingScreenState extends State<TestingScreen> {
   // ),),
   // ),
 
-  Widget widgetStack(){
-    if(MediaQuery.of(context).size.width > 700){
+  Widget widgetStack() {
+    if (MediaQuery
+        .of(context)
+        .size
+        .width > 700) {
       return Stack(
         children: [
-          selectedPocket.image!=null?  Container(
-            margin: const EdgeInsets.only(right: 35,top: 20,left: 0),
+          selectedPocket.image != null ? Container(
+            margin: const EdgeInsets.only(right: 35, top: 20, left: 0),
             child: Align(
                 alignment: Alignment.topRight,
-                child: Image.asset(selectedPocket.image!,fit: BoxFit.fill,
-                  width: 10,height: 10,)),
-          ):const SizedBox(),
-          selectedKabak.image!=null?  Container(
-            margin: const EdgeInsets.only(right: 10,top: 94,left: 55),
+                child: Image.asset(selectedPocket.image!, fit: BoxFit.fill,
+                  width: 10, height: 10,)),
+          ) : const SizedBox(),
+          selectedKabak.image != null ? Container(
+            margin: const EdgeInsets.only(right: 10, top: 94, left: 55),
             child: Align(
                 alignment: Alignment.topLeft,
-                child: Image.asset(selectedKabak.image!,fit: BoxFit.fill,
-                  width: 40,height: 40,)),
-          ):const SizedBox(),
-          selectedCollar.image!=null? Container(
-            margin:const EdgeInsets.only(right: 38,top: 0),
+                child: Image.asset(selectedKabak.image!, fit: BoxFit.fill,
+                  width: 40, height: 40,)),
+          ) : const SizedBox(),
+          selectedCollar.image != null ? Container(
+            margin: const EdgeInsets.only(right: 38, top: 0),
             child: Align(
                 alignment: Alignment.topCenter,
-                child: Image.asset(selectedCollar.image!,fit: BoxFit.fill,
-                  width: 50,height: 50,)),
-          ):const SizedBox(),
-          selectedGabzor.image!=null? Container(
-            margin:const EdgeInsets.only(right: 10,top: 9),
+                child: Image.asset(selectedCollar.image!, fit: BoxFit.fill,
+                  width: 50, height: 50,)),
+          ) : const SizedBox(),
+          selectedGabzor.image != null ? Container(
+            margin: const EdgeInsets.only(right: 10, top: 9),
             child: Align(
                 alignment: Alignment.topCenter,
-                child: Image.asset(selectedGabzor.image!,fit: BoxFit.fill,
-                  width: 24,height: 30,)),
-          ):const SizedBox(),
+                child: Image.asset(selectedGabzor.image!, fit: BoxFit.fill,
+                  width: 24, height: 30,)),
+          ) : const SizedBox(),
         ],
       );
-    }else{
+    } else {
       return Stack(
         children: [
-          selectedPocket.image!=null?  Container(
-            margin: EdgeInsets.only(right: 35,top: 20,left: 0),
+
+          selectedPocket.image != null ? Container(
+            margin: EdgeInsets.only(right: 35, top: 20, left: 0),
             child: Align(
                 alignment: Alignment.topRight,
-                child: Image.asset(selectedPocket.image!,fit: BoxFit.fill,
-                  width: 10,height: 10,)),
-          ):const SizedBox(),
-          selectedKabak.image!=null?  Container(
-            margin: EdgeInsets.only(right: 10,top: 28,left: 18),
+                child: Image.asset(selectedPocket.image!, fit: BoxFit.fill,
+                  width: 10, height: 10,)),
+          ) : const SizedBox(),
+          selectedKabak.image != null ? Container(
+            margin: EdgeInsets.only(right: 10, top: 28, left: 18),
             child: Align(
                 alignment: Alignment.topLeft,
-                child: Image.asset(selectedKabak.image!,fit: BoxFit.fill,
-                  width: 15,height: 15,)),
-          ):const SizedBox(),
-          selectedCollar.image!=null? Container(
-            margin: EdgeInsets.only(right: 10,top: 0),
+                child: Image.asset(selectedKabak.image!, fit: BoxFit.fill,
+                  width: 15, height: 15,)),
+          ) : const SizedBox(),
+          selectedCollar.image != null ? Container(
+            margin: EdgeInsets.only(right: 10, top: 0),
             child: Align(
                 alignment: Alignment.topCenter,
-                child: Image.asset(selectedCollar.image!,fit: BoxFit.fill,
-                  width: 20,height: 20,)),
-          ):const SizedBox(),
-          selectedGabzor.image!=null? Container(
-            margin: EdgeInsets.only(right: 10,top: 9),
+                child: Image.asset(selectedCollar.image!, fit: BoxFit.fill,
+                  width: 20, height: 20,)),
+          ) : const SizedBox(),
+          selectedGabzor.image != null ? Container(
+            margin: EdgeInsets.only(right: 10, top: 9),
             child: Align(
                 alignment: Alignment.topCenter,
-                child: Image.asset(selectedGabzor.image!,fit: BoxFit.fill,
-                  width: 24,height: 30,)),
-          ):const SizedBox(),
+                child: Image.asset(selectedGabzor.image!, fit: BoxFit.fill,
+                  width: 24, height: 30,)),
+          ) : const SizedBox(),
         ],
       );
     }
@@ -128,21 +138,30 @@ class _TestingScreenState extends State<TestingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
-      margin: const EdgeInsets.only(left: 10,right: 10,top: 20),
+    var cubit=LoginCubit.get(context);
+    return BlocConsumer<LoginCubit, LoginState>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
+    return Container(
+      margin: const EdgeInsets.only(left: 10, right: 10, top: 20),
       decoration: BoxDecoration(
           border: Border.all(color: MyConstant().greenColor)
       ),
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width,
       height: 300,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
-              flex:4,
+              flex: 4,
               child: Container(
-                padding: const EdgeInsets.only(top: 20,bottom: 20),
+                padding: const EdgeInsets.only(top: 20, bottom: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,7 +173,8 @@ class _TestingScreenState extends State<TestingScreen> {
                             border: Border.all(
                               color: Colors.grey,
                             ),
-                            borderRadius: const BorderRadius.all(Radius.circular(10))
+                            borderRadius: const BorderRadius.all(
+                                Radius.circular(10))
                         ),
                         child: SizedBox(
                           // height: MediaQuery.of(context).size.height*.40,
@@ -164,12 +184,12 @@ class _TestingScreenState extends State<TestingScreen> {
                             // physics: const NeverScrollableScrollPhysics(),
                             itemCount: getTypesList().length,
                             itemBuilder: (context, index) {
-                              TypesModel item =getTypesList()[index];
+                              TypesModel item = getTypesList()[index];
                               return InkWell(
                                 onTap: () {
-                                  relatedSelectedType=null;
-                                  selectedType=index;
-                                  getRelatedList=getRelatedListAnyType(index);
+                                  relatedSelectedType = null;
+                                  selectedType = index;
+                                  getRelatedList = getRelatedListAnyType(index);
                                   setState(() {});
                                 },
                                 child: Padding(
@@ -178,24 +198,30 @@ class _TestingScreenState extends State<TestingScreen> {
                                     padding: const EdgeInsets.all(2),
                                     decoration: BoxDecoration(
                                       border: Border.all(
-                                          color: selectedType==index?MyConstant().purpleColor:Colors.grey,
+                                          color: selectedType == index
+                                              ? MyConstant().purpleColor
+                                              : Colors.grey,
                                           width: 2
                                       ),
-                                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
                                     ),
                                     // height: 70,
                                     // width: 50,
                                     child: Column(
                                       // mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment
+                                          .center,
                                       children: [
-                                        Text(item.name! , style: TextStyle(
+                                        Text(item.name!, style: TextStyle(
                                           color: MyConstant().purpleColor,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 10,
                                         ),),
                                         const SizedBox(height: 0,),
-                                        Image.asset(item.image!,width: 40,height: 40,fit: BoxFit.fill,)
+                                        Image.asset(item.image!, width: 40,
+                                          height: 40,
+                                          fit: BoxFit.fill,)
                                       ],
                                     ),
                                   ),
@@ -216,7 +242,8 @@ class _TestingScreenState extends State<TestingScreen> {
                             border: Border.all(
                               color: Colors.grey,
                             ),
-                            borderRadius: const BorderRadius.all(Radius.circular(10))
+                            borderRadius: const BorderRadius.all(
+                                Radius.circular(10))
                         ),
                         child: SizedBox(
                           child: ListView.builder(
@@ -224,21 +251,21 @@ class _TestingScreenState extends State<TestingScreen> {
                             shrinkWrap: true,
                             itemCount: getRelatedList.length,
                             itemBuilder: (context, index) {
-                              TypesModel item =getRelatedList[index];
+                              TypesModel item = getRelatedList[index];
                               return InkWell(
                                 onTap: () {
-                                  relatedSelectedType=index;
-                                  if(selectedType==0){
-                                    frontImage=item.frontImage;
-                                    backImage=item.backImage;
-                                  }else if(selectedType==1){
-                                    selectedCollar=item;
-                                  }else if(selectedType==2){
-                                    selectedKabak=item;
-                                  }else if(selectedType==3){
-                                    selectedPocket=item;
-                                  }else if(selectedType==4){
-                                    selectedGabzor=item;
+                                  relatedSelectedType = index;
+                                  if (selectedType == 0) {
+                                    frontImage = item.frontImage;
+                                    backImage = item.backImage;
+                                  } else if (selectedType == 1) {
+                                    selectedCollar = item;
+                                  } else if (selectedType == 2) {
+                                    selectedKabak = item;
+                                  } else if (selectedType == 3) {
+                                    selectedPocket = item;
+                                  } else if (selectedType == 4) {
+                                    selectedGabzor = item;
                                   }
                                   setState(() {});
                                 },
@@ -248,25 +275,31 @@ class _TestingScreenState extends State<TestingScreen> {
                                     padding: const EdgeInsets.all(2),
                                     decoration: BoxDecoration(
                                       border: Border.all(
-                                          color: relatedSelectedType==index?MyConstant().purpleColor:Colors.grey,
+                                          color: relatedSelectedType == index
+                                              ? MyConstant().purpleColor
+                                              : Colors.grey,
                                           width: 2
                                       ),
-                                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
                                     ),
                                     // height: 70,
                                     // width: 50,
                                     child: Center(
                                       child: Column(
                                         // mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment
+                                            .center,
                                         children: [
-                                          Text(item.name! , style: TextStyle(
+                                          Text(item.name!, style: TextStyle(
                                             color: MyConstant().purpleColor,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 10,
                                           ),),
                                           const SizedBox(height: 0,),
-                                          Image.asset(item.image!,width: 40,height: 40,fit: BoxFit.fill,)
+                                          Image.asset(item.image!, width: 40,
+                                            height: 40,
+                                            fit: BoxFit.fill,)
                                         ],
                                       ),
                                     ),
@@ -284,134 +317,191 @@ class _TestingScreenState extends State<TestingScreen> {
           ),
 
           Expanded(
-              flex:6,
+              flex: 6,
               child: Container(
-                padding: const EdgeInsets.only(top: 20,bottom: 20),
-                margin: const EdgeInsets.all(2.5),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                  padding: const EdgeInsets.only(top: 20, bottom: 20),
+                  margin: const EdgeInsets.all(2.5),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
 
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          frontImage !=null?
-                          Container(
-                              width: (MediaQuery.of(context).size.width*0.45)/2,
-                              height:(MediaQuery.of(context).size.width*0.60)/2 ,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(frontImage!),
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                              child:selectedGabzor.image!=null?
-                              widgetStack():
-                              null
-                          )
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            frontImage != null ?
+                           RepaintBoundary(
 
-                              :const SizedBox(),
+                              child:  Container(
 
-                          backImage !=null?  Image.asset(backImage!,
-                            width: (MediaQuery.of(context).size.width*0.45)/2,
-                            height:(MediaQuery.of(context).size.width*0.60)/2 ,fit: BoxFit.fill, ):const SizedBox(),
-                          // Stack(
-                          //   children: [
-                          //
-                          //
-                          //   ],
-                          // ),
-                        ],
-                      ),
-                      Center(
-                        child: SizedBox(
-                          height: 50,
-                          child: ListView(
-                            padding: EdgeInsets.zero,
-                            scrollDirection: Axis.horizontal,
-                            shrinkWrap: true,
-                            children: [
-                              if(selectedCollar.image!=null) Padding(
-                                padding: const EdgeInsets.all(2.0),
-                                child: Container(
-                                  padding: const EdgeInsets.all(2),
+                                  width: (MediaQuery
+                                      .of(context)
+                                      .size
+                                      .width * 0.45) / 2,
+                                  height: (MediaQuery
+                                      .of(context)
+                                      .size
+                                      .width * 0.60) / 2,
                                   decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: MyConstant().greenColor,
-                                        width: 2
-                                    ),
-                                    borderRadius: const BorderRadius.all(Radius.circular(10)),
-                                  ),
-                                  child: Center(
-                                      child: Image.asset(selectedCollar.image!,width: 40,height: 40,fit: BoxFit.fill,)
-                                  ),
-                                ),
-                              ),
-                              if(selectedKabak.image!=null) Padding(
-                                padding: const EdgeInsets.all(2.0),
-                                child: Container(
-                                  padding: const EdgeInsets.all(2),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: MyConstant().greenColor,
-                                        width: 2
-                                    ),
-                                    borderRadius: const BorderRadius.all(Radius.circular(10)),
-                                  ),
-                                  child: Center(
-                                      child: Image.asset(selectedKabak.image!,width: 40,height: 40,fit: BoxFit.fill,)
-                                  ),
-                                ),
-                              ),
 
-                              if(selectedPocket.image!=null)  Padding(
-                                padding: const EdgeInsets.all(2.0),
-                                child: Container(
-                                  padding: const EdgeInsets.all(2),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: MyConstant().greenColor,
-                                        width: 2
+                                    image: DecorationImage(
+                                      image: AssetImage(frontImage!),
+                                      fit: BoxFit.fill,
                                     ),
-                                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                                   ),
-                                  child: Center(
-                                      child: Image.asset(selectedPocket.image!,width: 40,height: 40,fit: BoxFit.fill,)
-                                  ),
-                                ),
-                              ),
 
-                              if(selectedGabzor.image!=null)  Padding(
-                                padding: const EdgeInsets.all(2.0),
-                                child: Container(
-                                  padding: const EdgeInsets.all(2),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: MyConstant().greenColor,
-                                        width: 2
-                                    ),
-                                    borderRadius: const BorderRadius.all(Radius.circular(10)),
-                                  ),
-                                  child: Center(
-                                      child: Image.asset(selectedGabzor.image!,width: 40,height: 40,fit: BoxFit.fill,)
-                                  ),
-                                ),
+                                  child: selectedGabzor.image != null ?
+                                  widgetStack() :
+                                  null
                               ),
-                            ],
-                          ),
+                             key: cubit.repaintKey,
+                            )
+
+                                : const SizedBox(),
+
+                            backImage != null
+                                ? Image.asset(backImage!,
+                              width: (MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width * 0.45) / 2,
+                              height: (MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width * 0.60) / 2, fit: BoxFit.fill,)
+                                : const SizedBox(),
+                            // Stack(
+                            //   children: [
+                            //
+                            //
+                            //   ],
+                            // ),
+                          ],
                         ),
-                      )
-                    ],
-                  ),
-                )
+                        Center(
+                          child: SizedBox(
+                            height: 50,
+                            child: ListView(
+                              padding: EdgeInsets.zero,
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              children: [
+                                if(selectedCollar.image != null) Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(2),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: MyConstant().greenColor,
+                                          width: 2
+                                      ),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
+                                    ),
+                                    child: Center(
+                                        child: Image.asset(
+                                          selectedCollar.image!, width: 40,
+                                          height: 40,
+                                          fit: BoxFit.fill,)
+                                    ),
+                                  ),
+                                ),
+                                if(selectedKabak.image != null) Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(2),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: MyConstant().greenColor,
+                                          width: 2
+                                      ),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
+                                    ),
+                                    child: Center(
+                                        child: Image.asset(
+                                          selectedKabak.image!, width: 40,
+                                          height: 40,
+                                          fit: BoxFit.fill,)
+                                    ),
+                                  ),
+                                ),
+
+                                if(selectedPocket.image != null) Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(2),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: MyConstant().greenColor,
+                                          width: 2
+                                      ),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
+                                    ),
+                                    child: Center(
+                                        child: Image.asset(
+                                          selectedPocket.image!, width: 40,
+                                          height: 40,
+                                          fit: BoxFit.fill,)
+                                    ),
+                                  ),
+                                ),
+
+                                if(selectedGabzor.image != null) Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(2),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: MyConstant().greenColor,
+                                          width: 2
+                                      ),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
+                                    ),
+                                    child: Center(
+                                        child: Image.asset(
+                                          selectedGabzor.image!, width: 40,
+                                          height: 40,
+                                          fit: BoxFit.fill,)
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
               )
           ),
 
         ],
       ),
     );
+  },
+);
   }
 
+//   Future<Uint8List> captureBoundary() async {
+//     Uint8List? pngBytes;
+//     try {
+//       final RenderRepaintBoundary repaintBoundary = RenderRepaintBoundary();
+//
+//       // RenderRepaintBoundary boundary =
+//       _repaintKey.currentContext!.findRenderObject();
+//       ui.Image savedImage = await repaintBoundary.toImage(pixelRatio: 3.0);
+//       ByteData? byteData =
+//       await savedImage.toByteData(format: ui.ImageByteFormat.png);
+//       pngBytes = byteData!.buffer.asUint8List();
+//       // saveFile(widget.pickedImage.uri.path, pngBytes);
+//       return pngBytes;
+//     } catch (e) {
+//       print(e);
+//     }
+//     return pngBytes!;
+// }
 }

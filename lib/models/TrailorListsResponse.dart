@@ -1,3 +1,7 @@
+import 'package:omar/models/tRCollar.dart';
+import 'package:omar/models/tRCuff.dart';
+import 'package:omar/models/tRModel.dart';
+
 import 'Taxrates.dart';
 import 'Users.dart';
 import 'Companies.dart';
@@ -34,9 +38,9 @@ class TrailorListsResponse {
       this.tRTailor, 
       this.tRFilling, 
       this.tRZipper, 
-      this.tRCollar, 
-      this.tRCuff, 
-      this.tRModel, 
+      this.tRCollarList,
+      this.tRCuffList,
+      this.tRModelList,
       this.tRPocket, 
       this.expenseCategories, 
       this.warehouses, 
@@ -113,9 +117,24 @@ class TrailorListsResponse {
     tRTailor = json['TR_tailor'];
     tRFilling = json['TR_Filling'];
     tRZipper = json['TR_Zipper'];
-    tRCollar = json['TR_Collar'];
-    tRCuff = json['TR_Cuff'];
-    tRModel = json['TR_Model'];
+    if (json['TR_Collar'] != null) {
+      tRCollarList = [];
+      json['TR_Collar'].forEach((v) {
+        tRCollarList?.add(tRCollarModel.fromJson(v));
+      });
+    }
+    if (json['TR_Cuff'] != null) {
+      tRCuffList = [];
+      json['TR_Cuff'].forEach((v) {
+        tRCuffList?.add(tRCuffModel.fromJson(v));
+      });
+    }
+    if (json['TR_Model'] != null) {
+      tRModelList = [];
+      json['TR_Model'].forEach((v) {
+        tRModelList?.add(tRModelModel.fromJson(v));
+      });
+    }
     tRPocket = json['TR_Pocket'];
     if (json['expense_categories'] != null) {
       expenseCategories = [];
@@ -156,6 +175,7 @@ class TrailorListsResponse {
     limit = json['limit'];
     start = json['start'];
     total = json['total'];
+
   }
   List<Taxrates>? taxrates;
   List<Users>? users;
@@ -171,9 +191,9 @@ class TrailorListsResponse {
   dynamic tRTailor;
   dynamic tRFilling;
   dynamic tRZipper;
-  dynamic tRCollar;
-  dynamic tRCuff;
-  dynamic tRModel;
+  List<tRCollarModel>? tRCollarList;
+  List<tRCuffModel>? tRCuffList;
+  List<tRModelModel>? tRModelList;
   dynamic tRPocket;
   List<ExpenseCategories>? expenseCategories;
   List<Warehouses>? warehouses;
@@ -221,9 +241,13 @@ class TrailorListsResponse {
     map['TR_tailor'] = tRTailor;
     map['TR_Filling'] = tRFilling;
     map['TR_Zipper'] = tRZipper;
-    map['TR_Collar'] = tRCollar;
-    map['TR_Cuff'] = tRCuff;
-    map['TR_Model'] = tRModel;
+    if (tRCollarList != null) {
+      map['TR_Collar'] = tRCollarList?.map((v) => v.toJson()).toList();
+    } if (tRCuffList != null) {
+      map['TR_Cuff'] = tRCuffList?.map((v) => v.toJson()).toList();
+    } if (tRModelList != null) {
+      map['TR_Model'] = tRModelList?.map((v) => v.toJson()).toList();
+    }
     map['TR_Pocket'] = tRPocket;
     if (expenseCategories != null) {
       map['expense_categories'] = expenseCategories?.map((v) => v.toJson()).toList();

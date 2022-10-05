@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:omar/Controller/Cubit/Cubit.dart';
+import 'package:omar/Controller/Cubit/Cubit.dart';
+import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/models/TypesModel.dart';
+import 'package:omar/models/tRCollar.dart';
+import 'package:omar/models/tRCuff.dart';
+import 'package:omar/models/tRModel.dart';
 import 'package:omar/tast.dart';
 import '../../constant/List Of Image.dart';
 import '../../constant/constant.dart';
@@ -21,7 +28,9 @@ class _SizeScreenState extends State<SizeScreen> {
   bool isSelect1 = false;
   String ? valueItem;
   String ? valueItem1;
-
+tRModelModel? trModelValue;
+tRCollarModel? tRCollarValue;
+tRCuffModel? tRCuffValue;
   int currentIndex = 0;
   int currentImage = 0;
   int currentImage1 = 0;
@@ -46,9 +55,15 @@ class _SizeScreenState extends State<SizeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var cuibt=LoginCubit.get(context);
     return  Directionality(
       textDirection: TextDirection.rtl,
-      child: Scaffold(
+      child: BlocConsumer<LoginCubit, LoginState>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
+    return Scaffold(
           backgroundColor: Colors.white,
           body: Container(
             margin: const EdgeInsets.all(10),
@@ -120,7 +135,10 @@ class _SizeScreenState extends State<SizeScreen> {
                               style: ButtonStyle(
                                 backgroundColor:MaterialStateProperty.all(MyConstant().greenColor),
                               ),
-                              onPressed: (){}, child: Text('حفظ',style: GoogleFonts.notoKufiArabic(
+                              onPressed: ()async{
+                               cuibt.getWidgetImage();
+
+                              }, child: Text('حفظ',style: GoogleFonts.notoKufiArabic(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 8
@@ -138,72 +156,72 @@ class _SizeScreenState extends State<SizeScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container( width: MediaQuery.of(context).size.width/2.52, height: 40,child: customTextField(text: 'القماش')),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'طول امام')),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'طول خلف')),
+                            Container( width: MediaQuery.of(context).size.width/2.52, height: 40,child: customTextField(text: 'القماش',controller: cuibt.type)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'طول امام',controller: cuibt.frontHeight)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'طول خلف',controller: cuibt.backHeight)),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'عرض الكتف')),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ميل الكتف')),
-                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'طول الكم سادة')),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'طول الكم اعلي')),
+                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'عرض الكتف',controller: cuibt.shoulderWidth)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ميل الكتف',controller: cuibt.shoulderSlope)),
+                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'طول الكم سادة',controller: cuibt.sleeveLengthPlain)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'طول الكم اعلي',controller: cuibt.sleeveLengthIsHigher)),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع المعصم')),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'كفة المصم سادة')),
-                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'طول الكبك')),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'عرض الكبك')),
+                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع المعصم',controller: cuibt.wideWrist)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'كفة المصم سادة',controller: cuibt.plainCuff)),
+                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'طول الكبك',controller: cuibt.cuffLength)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'عرض الكبك',controller: cuibt.cuffShow)),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع الوسط')),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'وسع الصدر امام')),
-                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'وسع الصدر خلف')),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'كفتة اسفل')),
+                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع الوسط',controller: cuibt.wideMiddle)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'وسع الصدر امام',controller: cuibt.expandTheChestInFront)),
+                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'وسع الصدر خلف',controller: cuibt.expandTheChestBehind)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'كفتة اسفل',controller: cuibt.koftaBottom)),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع اسفل')),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'وسع الرقبة سادة')),
-                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'ارتفاع الرقبة')),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ارتفاع الجبزور')),
+                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع اسفل',controller: cuibt.expandDown)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'وسع الرقبة سادة',controller: cuibt.wideNeckPillow)),
+                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'ارتفاع الرقبة',controller: cuibt.neckHeight)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ارتفاع الجبزور',controller: cuibt.gypsumHeight)),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'عرض الجبزور')),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ط-جيب الصدر')),
-                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'ع-جيب الصدر')),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ع-جيب الجوال')),
+                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'عرض الجبزور',controller: cuibt.viewGypsum)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ط-جيب الصدر',controller: cuibt.lengthChestPocket)),
+                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'ع-جيب الصدر',controller: cuibt.wideChestPocket)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ع-جيب الجوال',controller: cuibt.wideMobilePocket)),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'ع-جيب الجوال')),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ط-جيب المحفظة')),
-                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'ع-جيب المحفظة')),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'وسع الورك')),
+                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'ع-جيب الجوال',controller: cuibt.wideMobilePocket2)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ط-جيب المحفظة',controller: cuibt.lengthPocketWallet)),
+                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'ع-جيب المحفظة',controller: cuibt.widePocketWallet)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'وسع الورك',controller: cuibt.hipWidth)),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'رقم الزرار')),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'رقم التطريز')),
-                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'بين جيب الصدر والكتف')),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'جيب الجنب')),
+                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'رقم الزرار',controller: cuibt.buttonNumber)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'رقم التطريز',controller: cuibt.embroideryNumber)),
+                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'بين جيب الصدر والكتف',controller: cuibt.betweenTheChestPocketAndTheShoulder)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'جيب الجنب',controller: cuibt.sidePocket)),
                           ],
                         ),
                         Row(
@@ -211,11 +229,11 @@ class _SizeScreenState extends State<SizeScreen> {
                           // crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             // const SizedBox(width: 0.7,),
-                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع الكم وسط')),
+                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع الكم وسط',controller: cuibt.quantumCapacityMedium)),
                             // const SizedBox(width: 1,),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'تخاليص')),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'تخاليص',controller: cuibt.Takhalis)),
                             // const SizedBox(width: 1,),
-                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'القماش المتوقع بالمتر')),
+                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'القماش المتوقع بالمتر',controller: cuibt.expectedFabricInMeter)),
                             // const SizedBox(width: 125,)
                           ],
                         ),
@@ -308,12 +326,13 @@ class _SizeScreenState extends State<SizeScreen> {
                                     ),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton(
-                                        items: items.map(itemBuild).toList(),
-                                        value: valueItem,
+                                        items: cuibt.tRModelList.map(trModelItemBuild).toList(),
+                                        value: trModelValue,
                                         isExpanded: true,
                                         onChanged: (value){
                                           setState(() {
-                                            valueItem = value as String?  ;
+                                            trModelValue = value as tRModelModel  ;
+                                            cuibt.ModelName=value.modelName!;
                                           });
                                         },
                                         iconEnabledColor: Colors.white,
@@ -353,12 +372,13 @@ class _SizeScreenState extends State<SizeScreen> {
                                     ),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton(
-                                        items: items.map(itemBuild).toList(),
-                                        value: valueItem,
+                                        items: cuibt.tRCollarList.map(trCollerItemBuild).toList(),
+                                        value: tRCollarValue,
                                         isExpanded: true,
                                         onChanged: (value){
                                           setState(() {
-                                            valueItem = value as String?  ;
+                                            tRCollarValue = value as tRCollarModel  ;
+                                            cuibt.CollerName=value.CollarName!;
                                           });
                                         },
                                         iconEnabledColor: Colors.white,
@@ -398,12 +418,13 @@ class _SizeScreenState extends State<SizeScreen> {
                                     ),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton(
-                                        items: items.map(itemBuild).toList(),
-                                        value: valueItem,
+                                        items: cuibt.tRCuffList.map(trCuffItemBuild).toList(),
+                                        value: tRCuffValue,
                                         isExpanded: true,
                                         onChanged: (value){
                                           setState(() {
-                                            valueItem = value as String?  ;
+                                            tRCuffValue = value as tRCuffModel  ;
+                                            cuibt.CuffName=value.CuffName!;
                                           });
                                         },
                                         iconEnabledColor: Colors.white,
@@ -454,6 +475,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         onChanged: (value){
                                           setState(() {
                                             valueItem = value as String?  ;
+                                            cuibt.TailOfGebName = value!  ;
                                           });
                                         },
                                         iconEnabledColor: Colors.white,
@@ -499,6 +521,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         onChanged: (value){
                                           setState(() {
                                             valueItem = value as String?  ;
+                                            cuibt.hashoaName = value!  ;
                                           });
                                         },
                                         iconEnabledColor: Colors.white,
@@ -544,6 +567,8 @@ class _SizeScreenState extends State<SizeScreen> {
                                         onChanged: (value){
                                           setState(() {
                                             valueItem = value as String?  ;
+                                            cuibt.GabzourName = value!  ;
+
                                           });
                                         },
                                         iconEnabledColor: Colors.white,
@@ -567,341 +592,6 @@ class _SizeScreenState extends State<SizeScreen> {
 
 
                   TestingScreen(),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: SizedBox(
-                      // height: MediaQuery.of(context).size.height*.40,
-                      width: MediaQuery.of(context).size.width,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                              width: MediaQuery.of(context).size.width*0.34,
-                              margin: const EdgeInsets.all(2.5),
-                              child:Column(
-                                children: [
-                                  Container(
-                                    // width: MediaQuery.of(context).size.width*0.34,
-                                    height: 20,
-                                    color: MyConstant().purpleColor,
-                                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                                    child: Text('الانواع' , style: GoogleFonts.notoKufiArabic(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12
-                                    ),),
-                                  ),
-
-
-                                  Container(
-                                    padding: const EdgeInsets.only(top: 20),
-                                    decoration: BoxDecoration(
-                                        border: Border.all(color: MyConstant().greenColor)
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          width: (MediaQuery.of(context).size.width*0.17)/2,
-                                          decoration: BoxDecoration(
-                                              border: Border.all(
-                                                color: Colors.grey,
-                                              ),
-                                              borderRadius: const BorderRadius.all(Radius.circular(10))
-                                          ),
-                                          child: SizedBox(
-                                            // height: MediaQuery.of(context).size.height*.40,
-                                            child: ListView.builder(
-                                              padding: EdgeInsets.zero,
-                                              shrinkWrap: true,
-                                              // physics: const NeverScrollableScrollPhysics(),
-                                              itemCount: getTypesList().length,
-                                              itemBuilder: (context, index) {
-                                                TypesModel item =getTypesList()[index];
-                                                return InkWell(
-                                                  onTap: () {
-                                                    selectedType=index;
-                                                    getRelatedList=getRelatedListAnyType(index);
-                                                    setState(() {});
-                                                  },
-                                                  child: Padding(
-                                                    padding: const EdgeInsets.all(8.0),
-                                                    child: Container(
-                                                      padding: const EdgeInsets.all(2),
-                                                      decoration: BoxDecoration(
-                                                        border: Border.all(
-                                                            color: selectedType==index?MyConstant().purpleColor:Colors.grey,
-                                                            width: 2
-                                                        ),
-                                                        borderRadius: const BorderRadius.all(Radius.circular(10)),
-                                                      ),
-                                                      // height: 70,
-                                                      // width: 50,
-                                                      child: Column(
-                                                        // mainAxisAlignment: MainAxisAlignment.start,
-                                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                                        children: [
-                                                          Text(item.name! , style: TextStyle(
-                                                            color: MyConstant().purpleColor,
-                                                            fontWeight: FontWeight.bold,
-                                                            fontSize: 10,
-                                                          ),),
-                                                          const SizedBox(height: 0,),
-                                                          Image.asset(item.image!,width: 40,height: 40,fit: BoxFit.fill,)
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(width: 20,),
-
-
-                                        Container(
-                                          width: (MediaQuery.of(context).size.width*0.17)/2,
-                                          decoration: BoxDecoration(
-                                              border: Border.all(
-                                                color: Colors.grey,
-                                              ),
-                                              borderRadius: const BorderRadius.all(Radius.circular(10))
-                                          ),
-                                          child: SizedBox(
-                                            child: ListView.builder(
-                                              padding: EdgeInsets.zero,
-                                              physics: const NeverScrollableScrollPhysics(),
-                                              shrinkWrap: true,
-                                              itemCount: getRelatedList.length,
-                                              itemBuilder: (context, index) {
-                                                TypesModel item =getRelatedList[index];
-                                                return InkWell(
-                                                  onTap: () {
-                                                    relatedSelectedType=index;
-                                                    if(selectedType==0){
-                                                      frontImage=item.frontImage;
-                                                      backImage=item.backImage;
-                                                    }else if(selectedType==1){
-                                                      selectedCollar=item;
-                                                    }else if(selectedType==2){
-                                                      selectedKabak=item;
-                                                    }else if(selectedType==3){
-                                                      selectedPocket=item;
-                                                    }else if(selectedType==4){
-                                                      selectedGabzor=item;
-                                                    }
-                                                    setState(() {});
-                                                  },
-                                                  child: Padding(
-                                                    padding: const EdgeInsets.all(8.0),
-                                                    child: Container(
-                                                      padding: const EdgeInsets.all(2),
-                                                      decoration: BoxDecoration(
-                                                        border: Border.all(
-                                                            color: relatedSelectedType==index?MyConstant().purpleColor:Colors.grey,
-                                                            width: 2
-                                                        ),
-                                                        borderRadius: const BorderRadius.all(Radius.circular(10)),
-                                                      ),
-                                                      // height: 70,
-                                                      // width: 50,
-                                                      child: Center(
-                                                        child: Column(
-                                                          // mainAxisAlignment: MainAxisAlignment.start,
-                                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                                          children: [
-                                                            Text(item.name! , style: TextStyle(
-                                                              color: MyConstant().purpleColor,
-                                                              fontWeight: FontWeight.bold,
-                                                              fontSize: 10,
-                                                            ),),
-                                                            const SizedBox(height: 0,),
-                                                            Image.asset(item.image!,width: 40,height: 40,fit: BoxFit.fill,)
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              )
-                          ),
-
-                          Container(
-                            width: MediaQuery.of(context).size.width*0.50,
-                            margin: const EdgeInsets.all(2.5),
-                            child: SingleChildScrollView(
-                              physics: const NeverScrollableScrollPhysics(),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: MediaQuery.of(context).size.width*0.50,
-                                    height: 20,
-                                    color: MyConstant().purpleColor,
-                                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                                    child: Text('الثوب' , style: GoogleFonts.notoKufiArabic(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12
-                                    ),),
-                                  ),
-                                  const SizedBox(height: 5,),
-                                  Container(
-                                    width: MediaQuery.of(context).size.width*0.50,
-                                    // height: MediaQuery.of(context).size.height/4.5,
-                                    decoration: BoxDecoration(
-                                      // color: Colors.amber,
-                                        border: Border(
-                                          left: BorderSide(color: MyConstant().greenColor),
-                                          right: BorderSide(color: MyConstant().greenColor),
-                                        )
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      children: [
-                                        frontImage !=null?
-                                        Container(
-                                            width: (MediaQuery.of(context).size.width*0.45)/2,
-                                            height:(MediaQuery.of(context).size.width*0.60)/2 ,
-                                            decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                image: AssetImage(frontImage!),
-                                                fit: BoxFit.fill,
-                                              ),
-                                            ),
-                                            child:selectedGabzor.image!=null?
-                                            Align(
-                                                alignment: Alignment.topCenter,
-                                                child: Image.asset(selectedGabzor.image!)):null
-                                        )
-
-
-                                        //   Container(
-                                        //     width: (MediaQuery.of(context).size.width*0.45)/2,
-                                        //     height:(MediaQuery.of(context).size.width*0.60)/2 ,
-                                        //     child: Stack(
-                                        //       children: [
-                                        //         Icon(Icons.add_a_photo, size: 30,),
-                                        // Image.asset(frontImage!,
-                                        // width: (MediaQuery.of(context).size.width*0.45)/2,
-                                        // height:(MediaQuery.of(context).size.width*0.60)/2 ,fit: BoxFit.fill, ),
-                                        //
-                                        //       ],
-                                        //     ),
-                                        //   )
-
-                                            :const SizedBox(),
-
-                                        backImage !=null?  Image.asset(backImage!,
-                                          width: (MediaQuery.of(context).size.width*0.45)/2,
-                                          height:(MediaQuery.of(context).size.width*0.60)/2 ,fit: BoxFit.fill, ):const SizedBox(),
-                                        // Stack(
-                                        //   children: [
-                                        //
-                                        //
-                                        //   ],
-                                        // ),
-                                      ],
-                                    ),
-                                  ),
-                                  Center(
-                                    child: SizedBox(
-                                      height: 60,
-                                      child: ListView(
-                                        padding: EdgeInsets.zero,
-                                        scrollDirection: Axis.horizontal,
-                                        shrinkWrap: true,
-                                        children: [
-                                          if(selectedCollar.image!=null) Padding(
-                                            padding: const EdgeInsets.all(2.0),
-                                            child: Container(
-                                              padding: const EdgeInsets.all(2),
-                                              decoration: BoxDecoration(
-                                                border: Border.all(
-                                                    color: MyConstant().greenColor,
-                                                    width: 2
-                                                ),
-                                                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                                              ),
-                                              child: Center(
-                                                  child: Image.asset(selectedCollar.image!,width: 40,height: 40,fit: BoxFit.fill,)
-                                              ),
-                                            ),
-                                          ),
-                                          if(selectedKabak.image!=null) Padding(
-                                            padding: const EdgeInsets.all(2.0),
-                                            child: Container(
-                                              padding: const EdgeInsets.all(2),
-                                              decoration: BoxDecoration(
-                                                border: Border.all(
-                                                    color: MyConstant().greenColor,
-                                                    width: 2
-                                                ),
-                                                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                                              ),
-                                              child: Center(
-                                                  child: Image.asset(selectedKabak.image!,width: 40,height: 40,fit: BoxFit.fill,)
-                                              ),
-                                            ),
-                                          ),
-
-                                          if(selectedPocket.image!=null)  Padding(
-                                            padding: const EdgeInsets.all(2.0),
-                                            child: Container(
-                                              padding: const EdgeInsets.all(2),
-                                              decoration: BoxDecoration(
-                                                border: Border.all(
-                                                    color: MyConstant().greenColor,
-                                                    width: 2
-                                                ),
-                                                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                                              ),
-                                              child: Center(
-                                                  child: Image.asset(selectedPocket.image!,width: 40,height: 40,fit: BoxFit.fill,)
-                                              ),
-                                            ),
-                                          ),
-
-                                          if(selectedGabzor.image!=null)  Padding(
-                                            padding: const EdgeInsets.all(2.0),
-                                            child: Container(
-                                              padding: const EdgeInsets.all(2),
-                                              decoration: BoxDecoration(
-                                                border: Border.all(
-                                                    color: MyConstant().greenColor,
-                                                    width: 2
-                                                ),
-                                                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                                              ),
-                                              child: Center(
-                                                  child: Image.asset(selectedGabzor.image!,width: 40,height: 40,fit: BoxFit.fill,)
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
 
 
                   const SizedBox(height: 20,),
@@ -909,11 +599,31 @@ class _SizeScreenState extends State<SizeScreen> {
               ),
             ),
           )
-      ),
+      );
+  },
+),
     );
   }
   DropdownMenuItem<String> itemBuild(String item) =>
       DropdownMenuItem(value: item, child: Text(item,style: GoogleFonts.notoKufiArabic(
+          color: MyConstant().purpleColor,
+          fontWeight: FontWeight.bold,
+          fontSize: 12
+      )),);
+  DropdownMenuItem<tRCollarModel> trCollerItemBuild(tRCollarModel item) =>
+      DropdownMenuItem(value: item, child: Text(item.CollarName!,style: GoogleFonts.notoKufiArabic(
+          color: MyConstant().purpleColor,
+          fontWeight: FontWeight.bold,
+          fontSize: 12
+      )),);
+  DropdownMenuItem<tRModelModel> trModelItemBuild(tRModelModel item) =>
+      DropdownMenuItem(value: item, child: Text(item.modelName!,style: GoogleFonts.notoKufiArabic(
+          color: MyConstant().purpleColor,
+          fontWeight: FontWeight.bold,
+          fontSize: 12
+      )),);
+  DropdownMenuItem<tRCuffModel> trCuffItemBuild(tRCuffModel item) =>
+      DropdownMenuItem(value: item, child: Text(item.CuffName!,style: GoogleFonts.notoKufiArabic(
           color: MyConstant().purpleColor,
           fontWeight: FontWeight.bold,
           fontSize: 12
