@@ -77,6 +77,8 @@ String CuffName="";
 String GabzourName="";
 String TailOfGebName="";
 String hashoaName="";
+bool sample=false;
+bool harryUp=false;
   GlobalKey repaintKey =  GlobalKey();
 
   // captureBoundary() async {

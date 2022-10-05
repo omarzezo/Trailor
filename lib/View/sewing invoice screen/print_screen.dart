@@ -168,6 +168,21 @@ Row(children: [
                 // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // const SizedBox(width: 0.7,),
+                  Expanded(child: Container( width: MediaQuery.of(context).size.width/6, height: 40,child: MyText(text: 'عينه : ${cubit.quantumCapacityMedium.text}'),)),
+                  Expanded(child: Container( width: MediaQuery.of(context).size.width/6, height: 40,child: MyText(text: ' نوع الياقة : ${cubit.Takhalis.text}'),)),
+                  Expanded(child: Container( width: MediaQuery.of(context).size.width/6, height: 40,child: MyText(text: ''),)),
+                  Expanded(child: Container( width: MediaQuery.of(context).size.width/6, height: 40,child: MyText(text: ' '),)),
+
+
+
+                  // const SizedBox(width: 125,)
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // const SizedBox(width: 0.7,),
                   Expanded(child: Container( width: MediaQuery.of(context).size.width/6, height: 40,child: MyText(text: ' نوع الموديل : ${cubit.quantumCapacityMedium.text}'),)),
                   Expanded(child: Container( width: MediaQuery.of(context).size.width/6, height: 40,child: MyText(text: ' نوع الياقة : ${cubit.Takhalis.text}'),)),
                   Expanded(child: Container( width: MediaQuery.of(context).size.width/6, height: 40,child: MyText(text: 'نوع الكيك : ${cubit.expectedFabricInMeter.text}'),)),
@@ -294,7 +309,7 @@ Row(children: [
                 height: MediaQuery.of(context).size.height/9,
                 // color: Colors.amber,
                 alignment: Alignment.center,
-                padding: const EdgeInsets.only(left: 30 , right: 30),
+                padding: const EdgeInsets.only(left: 30 , right: 10),
                 child: Row(
                   // mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
