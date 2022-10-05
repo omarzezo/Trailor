@@ -1,18 +1,30 @@
-class tRCollar {
-  String? CollarName;
-  String? CollarTypeId;
 
-  tRCollar({
-    this.CollarName,
-    this.CollarTypeId,
+import 'dart:convert';
+
+tRCuffModel tRCuffModelFromJson(String str) => tRCuffModel.fromJson(json.decode(str));
+String tRCuffModelToJson(tRCuffModel data) => json.encode(data.toJson());
+class tRCuffModel {
+  String? CuffName;
+  String? CuffTypeId;
+
+
+  tRCuffModel({
+    this.CuffName,
+    this.CuffTypeId,
   });
 
-  factory tRCollar.fromJson(Map<String, dynamic> json) {
-    return tRCollar(
-      CollarName: json["Collar_Name"],
-      CollarTypeId: json["Collar_Type_ID"],
-    );
+   tRCuffModel.fromJson(dynamic json) {
+
+      CuffName= json["Cuff_Name"];
+      CuffTypeId= json["Cuff_Type_ID"];
+
   }
-//
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['Cuff_Name'] = CuffName;
+    map['Cuff_Type_ID'] = CuffTypeId;
+    return map;
+  }
+
 
 }
