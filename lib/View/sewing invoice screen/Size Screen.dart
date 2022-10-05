@@ -136,7 +136,7 @@ tRCuffModel? tRCuffValue;
                                 backgroundColor:MaterialStateProperty.all(MyConstant().greenColor),
                               ),
                               onPressed: ()async{
-                               cuibt.getWidgetImage();
+                               await cuibt.getWidgetImage();
 
                               }, child: Text('حفظ',style: GoogleFonts.notoKufiArabic(
                                 color: Colors.white,

@@ -20,7 +20,7 @@ import 'dart:ui' as ui;
 class LoginCubit extends Cubit<LoginState>{
   LoginCubit() : super(InitialLogin());
   static LoginCubit get(context) => BlocProvider.of(context);
-
+  Uint8List?  pngBytes;
   TextEditingController tailor=TextEditingController();
 TextEditingController type=TextEditingController();
 TextEditingController frontHeight=TextEditingController();
@@ -98,9 +98,7 @@ String hashoaName="";
   //   }
   // }
 
-  Future<Uint8List> getWidgetImage() async {
-    Uint8List?  pngBytes;
-
+  Future<Uint8List?> getWidgetImage() async {
     try {
       // RenderRepaintBoundary boundary = _renderObjectKey.currentContext.findRenderObject();
       RenderRepaintBoundary boundary = repaintKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
@@ -110,7 +108,7 @@ String hashoaName="";
       // bs64 = base64Encode(pngBytes);
       // debugPrint(bs64.length.toString());
       print("NewImage>> " + pngBytes.toString());
-      return pngBytes;
+      // return pngBytes;
     } catch (exception) {}
     return  pngBytes!;
   }
