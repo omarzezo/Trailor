@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:omar/Controller/End%20Point.dart';
 import 'package:omar/Controller/Network/Remote%20Data/Dio%20Helper.dart';
 import 'package:omar/View/Data%20Table/model.dart';
+import 'package:omar/models/PaymentType.dart';
 import 'package:omar/models/Users.dart';
 import 'package:omar/models/sizeModel.dart';
 import 'package:omar/models/tRCollar.dart';
@@ -77,6 +78,7 @@ String CuffName="";
 String GabzourName="";
 String TailOfGebName="";
 String hashoaName="";
+// String paymentCodeName="";
 bool sample=false;
 bool harryUp=false;
   GlobalKey repaintKey =  GlobalKey();
@@ -138,6 +140,7 @@ bool harryUp=false;
       // print(tRModelList);
       tRCuffList=lenderResponseModel.tRCuffList!;
       tRModelList=lenderResponseModel.tRModelList!;
+      paymentCodeList=lenderResponseModel.paymentType!;
       // users.forEach((element) {usersName.add(element.company!);});
 
     } catch (e) {
@@ -152,6 +155,7 @@ List<tRCollarModel> tRCollarList=[];
 List<tRCuffModel> tRCuffList=[];
 List<tRModelModel> tRModelList=[];
   List<Users> users=[];
+  List<PaymentType> paymentCodeList=[];
 
   // Future<TrailorListsResponse> login ({required String email, required String password,}) async {
   //   TrailorListsResponse  lenderResponseModel=TrailorListsResponse();

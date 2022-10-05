@@ -74,6 +74,7 @@ flutter:
     - image/pocket/
     - image/Robe/
     - image/Robe-Species/
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

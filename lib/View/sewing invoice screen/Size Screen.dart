@@ -21,12 +21,16 @@ class SizeScreen extends StatefulWidget {
 
 class _SizeScreenState extends State<SizeScreen> {
 
-  List<String> items = ['item1' , 'item2' ,'item3' ,'item4' ,];
+  List<String> gebType = ['جيب باين' , 'جيب باين 2 خيط' ,'جيب باين واحد خيط' ,'جيب مخفى' ,];
+  List<String> hashoaType = ['حشوا دبل' , 'حشوا وسط' ,'حشو جبزور' ,'بدون حشوا' ,];
+  List<String> gabzourType = ['مخفى ' , 'باين' ,'مخفى باين ' ,'دبل خيط باين' ,];
   List<String> items1 = ['موسسة وعد الوان' , 'Tailor' ,'Softy Tex' ,'Sweing Borke' ,];
   var controllerList = ScrollController();
   bool isSelect2 = false;
   bool isSelect1 = false;
-  String ? valueItem;
+  String ? gebValueItem;
+  String ? hashoaValueItem;
+  String ? gabzourValueItem;
   String ? valueItem1;
 tRModelModel? trModelValue;
 tRCollarModel? tRCollarValue;
@@ -44,18 +48,23 @@ tRCuffModel? tRCuffValue;
   TypesModel selectedPocket =TypesModel();
   TypesModel selectedGabzor =TypesModel();
   String? frontImage,backImage;
+  double Size=10;
 
   @override
   void initState() {
     // TODO: implement initState
+
     super.initState();
     getRelatedList=getRelatedListAnyType(0);
-    setState(() {});
+setState(() {
+
+});
+
   }
 
   @override
   Widget build(BuildContext context) {
-    var cuibt=LoginCubit.get(context);
+    var cubit=LoginCubit.get(context);
     return  Directionality(
       textDirection: TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
@@ -85,13 +94,13 @@ tRCuffModel? tRCuffValue;
                         Text('المقاسات',style: GoogleFonts.notoKufiArabic(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 8
+                            fontSize: Size
                         )),
                         const SizedBox(width: 10,),
                         Text('الخياط',style: GoogleFonts.notoKufiArabic(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 8
+                            fontSize: Size
                         )),
                         Container(
                             width: MediaQuery.of(context).size.width/3,
@@ -136,12 +145,12 @@ tRCuffModel? tRCuffValue;
                                 backgroundColor:MaterialStateProperty.all(MyConstant().greenColor),
                               ),
                               onPressed: ()async{
-                               await cuibt.getWidgetImage();
+                               await cubit.getWidgetImage();
 
                               }, child: Text('حفظ',style: GoogleFonts.notoKufiArabic(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 8
+                                fontSize: Size
                             )),
                             )),
                       ],
@@ -156,72 +165,72 @@ tRCuffModel? tRCuffValue;
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container( width: MediaQuery.of(context).size.width/2.52, height: 40,child: customTextField(text: 'القماش',controller: cuibt.type)),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'طول امام',controller: cuibt.frontHeight)),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'طول خلف',controller: cuibt.backHeight)),
+                            Container( width: MediaQuery.of(context).size.width/2.52, height: 40,child: customTextField(text: 'القماش',controller: cubit.type)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'طول امام',controller: cubit.frontHeight)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'طول خلف',controller: cubit.backHeight)),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'عرض الكتف',controller: cuibt.shoulderWidth)),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ميل الكتف',controller: cuibt.shoulderSlope)),
-                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'طول الكم سادة',controller: cuibt.sleeveLengthPlain)),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'طول الكم اعلي',controller: cuibt.sleeveLengthIsHigher)),
+                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'عرض الكتف',controller: cubit.shoulderWidth)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ميل الكتف',controller: cubit.shoulderSlope)),
+                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'طول الكم سادة',controller: cubit.sleeveLengthPlain)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'طول الكم اعلي',controller: cubit.sleeveLengthIsHigher)),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع المعصم',controller: cuibt.wideWrist)),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'كفة المصم سادة',controller: cuibt.plainCuff)),
-                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'طول الكبك',controller: cuibt.cuffLength)),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'عرض الكبك',controller: cuibt.cuffShow)),
+                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع المعصم',controller: cubit.wideWrist)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'كفة المصم سادة',controller: cubit.plainCuff)),
+                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'طول الكبك',controller: cubit.cuffLength)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'عرض الكبك',controller: cubit.cuffShow)),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع الوسط',controller: cuibt.wideMiddle)),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'وسع الصدر امام',controller: cuibt.expandTheChestInFront)),
-                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'وسع الصدر خلف',controller: cuibt.expandTheChestBehind)),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'كفتة اسفل',controller: cuibt.koftaBottom)),
+                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع الوسط',controller: cubit.wideMiddle)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'وسع الصدر امام',controller: cubit.expandTheChestInFront)),
+                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'وسع الصدر خلف',controller: cubit.expandTheChestBehind)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'كفتة اسفل',controller: cubit.koftaBottom)),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع اسفل',controller: cuibt.expandDown)),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'وسع الرقبة سادة',controller: cuibt.wideNeckPillow)),
-                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'ارتفاع الرقبة',controller: cuibt.neckHeight)),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ارتفاع الجبزور',controller: cuibt.gypsumHeight)),
+                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع اسفل',controller: cubit.expandDown)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'وسع الرقبة سادة',controller: cubit.wideNeckPillow)),
+                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'ارتفاع الرقبة',controller: cubit.neckHeight)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ارتفاع الجبزور',controller: cubit.gypsumHeight)),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'عرض الجبزور',controller: cuibt.viewGypsum)),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ط-جيب الصدر',controller: cuibt.lengthChestPocket)),
-                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'ع-جيب الصدر',controller: cuibt.wideChestPocket)),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ع-جيب الجوال',controller: cuibt.wideMobilePocket)),
+                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'عرض الجبزور',controller: cubit.viewGypsum)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ط-جيب الصدر',controller: cubit.lengthChestPocket)),
+                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'ع-جيب الصدر',controller: cubit.wideChestPocket)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ع-جيب الجوال',controller: cubit.wideMobilePocket)),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'ع-جيب الجوال',controller: cuibt.wideMobilePocket2)),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ط-جيب المحفظة',controller: cuibt.lengthPocketWallet)),
-                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'ع-جيب المحفظة',controller: cuibt.widePocketWallet)),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'وسع الورك',controller: cuibt.hipWidth)),
+                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'ع-جيب الجوال',controller: cubit.wideMobilePocket2)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'ط-جيب المحفظة',controller: cubit.lengthPocketWallet)),
+                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'ع-جيب المحفظة',controller: cubit.widePocketWallet)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'وسع الورك',controller: cubit.hipWidth)),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'رقم الزرار',controller: cuibt.buttonNumber)),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'رقم التطريز',controller: cuibt.embroideryNumber)),
-                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'بين جيب الصدر والكتف',controller: cuibt.betweenTheChestPocketAndTheShoulder)),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'جيب الجنب',controller: cuibt.sidePocket)),
+                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'رقم الزرار',controller: cubit.buttonNumber)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'رقم التطريز',controller: cubit.embroideryNumber)),
+                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'بين جيب الصدر والكتف',controller: cubit.betweenTheChestPocketAndTheShoulder)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'جيب الجنب',controller: cubit.sidePocket)),
                           ],
                         ),
                         Row(
@@ -229,11 +238,11 @@ tRCuffModel? tRCuffValue;
                           // crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             // const SizedBox(width: 0.7,),
-                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع الكم وسط',controller: cuibt.quantumCapacityMedium)),
+                            Container( width: MediaQuery.of(context).size.width/6,  height: 40,child: customTextField(text: 'وسع الكم وسط',controller: cubit.quantumCapacityMedium)),
                             // const SizedBox(width: 1,),
-                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'تخاليص',controller: cuibt.Takhalis)),
+                            Container(width: MediaQuery.of(context).size.width/6, height: 40,child: customTextField(text: 'تخاليص',controller: cubit.Takhalis)),
                             // const SizedBox(width: 1,),
-                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'القماش المتوقع بالمتر',controller: cuibt.expectedFabricInMeter)),
+                            Container(width: MediaQuery.of(context).size.width/6 , height: 40,child: customTextField(text: 'القماش المتوقع بالمتر',controller: cubit.expectedFabricInMeter)),
                             // const SizedBox(width: 125,)
                           ],
                         ),
@@ -247,7 +256,7 @@ tRCuffModel? tRCuffValue;
                               Text('عينة',style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().purpleColor,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 8
+                                  fontSize:Size
                               )),
                               const SizedBox(width: 5,),
                               Container(
@@ -261,6 +270,7 @@ tRCuffModel? tRCuffValue;
                                   onChanged: (val) {
                                     setState(() {
                                       isSelect2 = val !;
+                                      cubit.sample=val;
                                     });
                                   },
                                   checkColor: Colors.green,
@@ -273,7 +283,7 @@ tRCuffModel? tRCuffValue;
                               Text('مستعجل',style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().purpleColor,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 8
+                                  fontSize: Size
                               )),
                               const SizedBox(width: 5,),
                               Container(
@@ -287,6 +297,7 @@ tRCuffModel? tRCuffValue;
                                   onChanged: (val) {
                                     setState(() {
                                       isSelect1 = val !;
+                                      cubit.harryUp=val;
                                     });
                                   },
                                   checkColor: Colors.green,
@@ -312,13 +323,13 @@ tRCuffModel? tRCuffValue;
                                   Text('نوع الموديل',style: GoogleFonts.notoKufiArabic(
                                       color: MyConstant().purpleColor,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 8
+                                      fontSize: Size
                                   )),
                                   const SizedBox(height: 10,),
                                   Container(
                                     width: MediaQuery.of(context).size.width/4,
                                     padding: const EdgeInsets.only(right: 5),
-                                    height: 20,
+                                    height: 25,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
 
@@ -326,13 +337,13 @@ tRCuffModel? tRCuffValue;
                                     ),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton(
-                                        items: cuibt.tRModelList.map(trModelItemBuild).toList(),
+                                        items: cubit.tRModelList.map(trModelItemBuild).toList(),
                                         value: trModelValue,
                                         isExpanded: true,
                                         onChanged: (value){
                                           setState(() {
                                             trModelValue = value as tRModelModel  ;
-                                            cuibt.ModelName=value.modelName!;
+                                            cubit.ModelName=value.modelName!;
                                           });
                                         },
                                         iconEnabledColor: Colors.white,
@@ -358,13 +369,13 @@ tRCuffModel? tRCuffValue;
                                   Text('نوع الياقة',style: GoogleFonts.notoKufiArabic(
                                       color: MyConstant().purpleColor,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 8
+                                      fontSize: Size
                                   )),
                                   const SizedBox(height: 10,),
                                   Container(
                                     width: MediaQuery.of(context).size.width/4,
                                     padding: const EdgeInsets.only(right: 5),
-                                    height: 20,
+                                    height: 25,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
 
@@ -372,13 +383,13 @@ tRCuffModel? tRCuffValue;
                                     ),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton(
-                                        items: cuibt.tRCollarList.map(trCollerItemBuild).toList(),
+                                        items: cubit.tRCollarList.map(trCollerItemBuild).toList(),
                                         value: tRCollarValue,
                                         isExpanded: true,
                                         onChanged: (value){
                                           setState(() {
                                             tRCollarValue = value as tRCollarModel  ;
-                                            cuibt.CollerName=value.CollarName!;
+                                            cubit.CollerName=value.CollarName!;
                                           });
                                         },
                                         iconEnabledColor: Colors.white,
@@ -404,13 +415,13 @@ tRCuffModel? tRCuffValue;
                                   Text('نوع الكبك',style: GoogleFonts.notoKufiArabic(
                                       color: MyConstant().purpleColor,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 8
+                                      fontSize: Size
                                   )),
                                   const SizedBox(height: 10,),
                                   Container(
                                     width: MediaQuery.of(context).size.width/4,
                                     padding: const EdgeInsets.only(right: 5),
-                                    height: 20,
+                                    height: 25,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
 
@@ -418,13 +429,13 @@ tRCuffModel? tRCuffValue;
                                     ),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton(
-                                        items: cuibt.tRCuffList.map(trCuffItemBuild).toList(),
+                                        items: cubit.tRCuffList.map(trCuffItemBuild).toList(),
                                         value: tRCuffValue,
                                         isExpanded: true,
                                         onChanged: (value){
                                           setState(() {
                                             tRCuffValue = value as tRCuffModel  ;
-                                            cuibt.CuffName=value.CuffName!;
+                                            cubit.CuffName=value.CuffName!;
                                           });
                                         },
                                         iconEnabledColor: Colors.white,
@@ -455,13 +466,13 @@ tRCuffModel? tRCuffValue;
                                   Text('نوع خياط الجيب',style: GoogleFonts.notoKufiArabic(
                                       color: MyConstant().purpleColor,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 8
+                                      fontSize: Size
                                   )),
                                   const SizedBox(height: 10,),
                                   Container(
                                     width: MediaQuery.of(context).size.width/4,
                                     padding: const EdgeInsets.only(right: 5),
-                                    height: 20,
+                                    height: 25,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
 
@@ -469,13 +480,13 @@ tRCuffModel? tRCuffValue;
                                     ),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton(
-                                        items: items.map(itemBuild).toList(),
-                                        value: valueItem,
+                                        items: gebType.map(itemBuild).toList(),
+                                        value: gebValueItem,
                                         isExpanded: true,
                                         onChanged: (value){
                                           setState(() {
-                                            valueItem = value as String?  ;
-                                            cuibt.TailOfGebName = value!  ;
+                                            gebValueItem = value as String?  ;
+                                            cubit.TailOfGebName = value!  ;
                                           });
                                         },
                                         iconEnabledColor: Colors.white,
@@ -501,13 +512,13 @@ tRCuffModel? tRCuffValue;
                                   Text('نوع الحشوة',style: GoogleFonts.notoKufiArabic(
                                       color: MyConstant().purpleColor,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 8
+                                      fontSize: Size
                                   )),
                                   const SizedBox(height: 10,),
                                   Container(
                                     width: MediaQuery.of(context).size.width/4,
                                     padding: const EdgeInsets.only(right: 5),
-                                    height: 20,
+                                    height: 25,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
 
@@ -515,13 +526,13 @@ tRCuffModel? tRCuffValue;
                                     ),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton(
-                                        items: items.map(itemBuild).toList(),
-                                        value: valueItem,
+                                        items: hashoaType.map(itemBuild).toList(),
+                                        value: hashoaValueItem,
                                         isExpanded: true,
                                         onChanged: (value){
                                           setState(() {
-                                            valueItem = value as String?  ;
-                                            cuibt.hashoaName = value!  ;
+                                            hashoaValueItem = value as String?  ;
+                                            cubit.hashoaName = value!  ;
                                           });
                                         },
                                         iconEnabledColor: Colors.white,
@@ -547,13 +558,13 @@ tRCuffModel? tRCuffValue;
                                   Text('نوع الجبزور',style: GoogleFonts.notoKufiArabic(
                                       color: MyConstant().purpleColor,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 8
+                                      fontSize: Size
                                   )),
                                   const SizedBox(height: 10,),
                                   Container(
                                     width: MediaQuery.of(context).size.width/4,
                                     padding: const EdgeInsets.only(right: 5),
-                                    height: 20,
+                                    height: 25,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
 
@@ -561,13 +572,13 @@ tRCuffModel? tRCuffValue;
                                     ),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton(
-                                        items: items.map(itemBuild).toList(),
-                                        value: valueItem,
+                                        items: gabzourType.map(itemBuild).toList(),
+                                        value: gabzourValueItem,
                                         isExpanded: true,
                                         onChanged: (value){
                                           setState(() {
-                                            valueItem = value as String?  ;
-                                            cuibt.GabzourName = value!  ;
+                                            gabzourValueItem = value as String?  ;
+                                            cubit.GabzourName = value!  ;
 
                                           });
                                         },
@@ -608,24 +619,24 @@ tRCuffModel? tRCuffValue;
       DropdownMenuItem(value: item, child: Text(item,style: GoogleFonts.notoKufiArabic(
           color: MyConstant().purpleColor,
           fontWeight: FontWeight.bold,
-          fontSize: 12
+          fontSize: Size
       )),);
   DropdownMenuItem<tRCollarModel> trCollerItemBuild(tRCollarModel item) =>
       DropdownMenuItem(value: item, child: Text(item.CollarName!,style: GoogleFonts.notoKufiArabic(
           color: MyConstant().purpleColor,
           fontWeight: FontWeight.bold,
-          fontSize: 12
+          fontSize: Size
       )),);
   DropdownMenuItem<tRModelModel> trModelItemBuild(tRModelModel item) =>
       DropdownMenuItem(value: item, child: Text(item.modelName!,style: GoogleFonts.notoKufiArabic(
           color: MyConstant().purpleColor,
           fontWeight: FontWeight.bold,
-          fontSize: 12
+          fontSize: Size
       )),);
   DropdownMenuItem<tRCuffModel> trCuffItemBuild(tRCuffModel item) =>
       DropdownMenuItem(value: item, child: Text(item.CuffName!,style: GoogleFonts.notoKufiArabic(
           color: MyConstant().purpleColor,
           fontWeight: FontWeight.bold,
-          fontSize: 12
+          fontSize: Size
       )),);
 }

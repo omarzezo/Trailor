@@ -10,14 +10,20 @@ import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/View/sewing%20invoice%20screen/print_screen.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/models/Companies.dart';
+import 'package:omar/models/PaymentType.dart';
+import 'package:omar/models/PaymentType.dart';
+import 'package:omar/models/PaymentType.dart';
+import 'package:omar/models/PaymentType.dart';
 import 'package:omar/models/TrailorListsResponse.dart';
 import 'package:omar/models/Users.dart';
 import 'package:omar/models/tRCollar.dart';
 import 'package:omar/models/tRCuff.dart';
 import 'package:omar/models/tRModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../models/PaymentType.dart';
 import 'Size Screen.dart';
 import 'Widgets.dart';
+import 'package:omar/models/PaymentType.dart';
 
 class SewingScreen extends StatefulWidget {
   const SewingScreen({Key? key}) : super(key: key);
@@ -27,10 +33,13 @@ class SewingScreen extends StatefulWidget {
 }
 
 class _SewingScreenState extends State<SewingScreen> {
-  List<String> items = ['item1' , 'item2' ,'item3' ,'item4' ,];
-  List<String> items2 = ['item1' , 'item2' ,'item3' ,'item4' ,];
+  List<String> items = [' براتيتكس (عرضين)' , 'بدر' ,'تفصيل بدون قماش' ,'بنتلى (عرضين)' ,];
+  List<String> items2 = ['20' , '40' ,'45' ,'50' ,];
   String ? valueItem;
+  String ? valueItemSize;
   Users ? userItem;
+  Users ? employeeItem;
+  PaymentType ? paymentTypeItem;
   String ? valueItem2;
 
   @override
@@ -254,12 +263,12 @@ class _SewingScreenState extends State<SewingScreen> {
                                     ),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton(
-                                        items: cubit.users.map(UsersBuild).toList(),
-                                        value: userItem,
+                                        items: cubit.users.map(EmployeeBuild).toList(),
+                                        value: employeeItem,
                                         isExpanded: true,
                                         onChanged: (val){
                                           setState(() {
-                                            userItem = val as Users   ;
+                                            employeeItem = val as Users   ;
                                             cubit.employeeName=val.company!;
 
                                           });
@@ -373,12 +382,12 @@ class _SewingScreenState extends State<SewingScreen> {
                                     ),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton(
-                                        items: items.map(itemBuild).toList(),
-                                        value: valueItem,
+                                        items: items2.map(itemBuild).toList(),
+                                        value: valueItemSize,
                                         isExpanded: true,
                                         onChanged: (value){
                                           setState(() {
-                                            valueItem = value as String?  ;
+                                            valueItemSize = value as String?  ;
                                             cubit.size = value!   ;
 
                                           });
@@ -528,13 +537,13 @@ class _SewingScreenState extends State<SewingScreen> {
                                         DropdownButton(
                                           focusColor: Colors.green,
                                             underline: Container( height: 1.5, color: Colors.green,),
-                                            items: items2.map(itemBuild2).toList(),
-                                            value: valueItem2,
+                                            items: cubit.paymentCodeList.map(PaymentTypeBuild).toList(),
+                                            value: paymentTypeItem,
                                             isExpanded: true,
                                             onChanged: (value){
                                               setState(() {
-                                                valueItem2   = value as String;
-                                                cubit.paymentType=value;
+                                                paymentTypeItem   = value as PaymentType ;
+                                                cubit.paymentType=value.code!;
                                               });
                                             },
                                             iconEnabledColor: Colors.green,
@@ -566,8 +575,7 @@ class _SewingScreenState extends State<SewingScreen> {
                     style: ButtonStyle(
                       backgroundColor:MaterialStateProperty.all(MyConstant().purpleColor),
                     ),
-                    onPressed: ()async{
-
+                    onPressed: (){
                       Navigator.pushNamed(context, PrintScreen.routeName);
 
                     }, child: Text('حفظ',style: GoogleFonts.notoKufiArabic(
@@ -589,6 +597,18 @@ class _SewingScreenState extends State<SewingScreen> {
 
   DropdownMenuItem<Users> UsersBuild(Users item) =>
     DropdownMenuItem(value: item, child: Text(item.company!,style: GoogleFonts.notoKufiArabic(
+        color: MyConstant().purpleColor,
+        fontWeight: FontWeight.bold,
+        fontSize: 12
+    )),);
+  DropdownMenuItem<Users>EmployeeBuild(Users item) =>
+    DropdownMenuItem(value: item, child: Text(item.company!,style: GoogleFonts.notoKufiArabic(
+        color: MyConstant().purpleColor,
+        fontWeight: FontWeight.bold,
+        fontSize: 12
+    )),);
+  DropdownMenuItem<PaymentType> PaymentTypeBuild(PaymentType item) =>
+    DropdownMenuItem(value: item, child: Text(item.code!,style: GoogleFonts.notoKufiArabic(
         color: MyConstant().purpleColor,
         fontWeight: FontWeight.bold,
         fontSize: 12

@@ -102,11 +102,17 @@ Widget customTextField({
       return null;
     },
     decoration: InputDecoration(
-      label: Text(text,
-          style: GoogleFonts.notoKufiArabic(
-              color: MyConstant().purpleColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 10)),
+      // prefix: Text(text),
+
+      // contentPadding: EdgeInsets.zero,
+      label: Container(
+        margin: EdgeInsets.only(top: 10,bottom: 10),
+        child: Text(text,
+            style: GoogleFonts.notoKufiArabic(
+                color: MyConstant().purpleColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 12)),
+      ),
       enabledBorder: const UnderlineInputBorder(
         borderSide: BorderSide(
           color: Colors.green,
@@ -185,6 +191,6 @@ Widget MyText ({required String text}){
       style: GoogleFonts.notoKufiArabic(
           color: MyConstant().purpleColor,
           fontWeight: FontWeight.bold,
-          fontSize: 10));
+          fontSize: 12));
 
 }

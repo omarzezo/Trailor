@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Network/Remote%20Data/Dio%20Helper.dart';
+import 'package:omar/Controller/local/shared_pref.dart';
+import 'package:omar/View/home/splash_screen.dart';
 import 'package:omar/View/mobile/mobil%20home.dart';
 import 'package:omar/View/sewing%20invoice%20screen/print_screen.dart';
 import 'package:omar/constant/constant.dart';
@@ -20,9 +22,11 @@ import 'View/sewing invoice screen/custom_table_sweing.dart';
 import 'View/sewing invoice screen/sweing_screen.dart';
 import 'View/sewing invoice screen/table_scroll.dart';
 
-void main() {
+void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   DioHelper.init();
+  await CacheHelper.init();
+
   BlocOverrides.runZoned(
         () {
       runApp(const MyApp());
@@ -68,7 +72,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
 
-          home: const LoginScreen(),
+          home: const SplashScreen(),
           routes: {
             PrintScreen.routeName:(context) => const PrintScreen(),
           },

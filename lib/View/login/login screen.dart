@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
+import 'package:omar/Controller/local/shared_pref.dart';
 import 'package:omar/constant/LoadingPage.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/View/home/home.dart';
@@ -26,11 +27,11 @@ class _LoginScreenState extends State<LoginScreen> {
   var userNameController = TextEditingController();
   var passwordController = TextEditingController();
   bool obscureText = true;
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    // goNext();
     userNameController.text="k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko";
     passwordController.text="w_1";
   }
@@ -227,6 +228,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () async {
                         LoadingPage(context).show();
                         TrailorListsResponse model = await LoginCubit.get(context).login(email: userNameController.text, password: passwordController.text);
+                        CacheHelper.saveData(
+                            key: 'email',
+                            value: userNameController.text);
+                        CacheHelper.saveData(
+                            key: 'password',
+                            value: passwordController.text);
+                        CacheHelper.setIsUserLoggedIn();
                         print("model>>"+model.toString());
                         String jsonUser = jsonEncode(model);
                         final prefs = await SharedPreferences.getInstance();

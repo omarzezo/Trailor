@@ -141,7 +141,6 @@ class _TestingScreenState extends State<TestingScreen> {
     var cubit=LoginCubit.get(context);
     return BlocConsumer<LoginCubit, LoginState>(
   listener: (context, state) {
-    // TODO: implement listener
   },
   builder: (context, state) {
     return Container(
@@ -351,9 +350,9 @@ class _TestingScreenState extends State<TestingScreen> {
                                     ),
                                   ),
 
-                                  child: selectedGabzor.image != null ?
-                                  widgetStack() :
-                                  null
+                                  child:
+                                  widgetStack()
+
                               ),
                              key: cubit.repaintKey,
                             )
