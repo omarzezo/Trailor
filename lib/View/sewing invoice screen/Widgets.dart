@@ -38,6 +38,7 @@ Widget textField({
   required BorderRadius radius,
   required BorderSide borderSide,
    TextEditingController? controller,
+   Function(String)? onChanged,
    bool? readOnly=false,
 }) {
   return Container(
@@ -66,6 +67,7 @@ Widget textField({
             height: 30,
             child: TextFormField(
               controller: controller,
+              onChanged: onChanged,
               readOnly: readOnly!,
               textAlign: TextAlign.center,
               validator: (val) {},
@@ -91,10 +93,16 @@ Widget customTextField({
   // required BorderRadius  radius,
   // required BorderSide borderSide,
   TextEditingController? controller,
+  Function(String)? onChange,
+  Function(String?)? onSaved,
   bool? readOnly=false,
 }) {
   return TextFormField(
-
+    onEditingComplete: (){
+      controller!.clear();
+    },
+onChanged: onChange,
+    onSaved: onSaved,
     readOnly: readOnly!,
     textAlign: TextAlign.center,
     controller: controller,

@@ -7,7 +7,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:omar/Controller/End%20Point.dart';
 import 'package:omar/Controller/Network/Remote%20Data/Dio%20Helper.dart';
 import 'package:omar/View/Data%20Table/model.dart';
+import 'package:omar/models/Companies.dart';
 import 'package:omar/models/PaymentType.dart';
+import 'package:omar/models/Products.dart';
+import 'package:omar/models/Taxrates.dart';
+import 'package:omar/models/Units.dart';
 import 'package:omar/models/Users.dart';
 import 'package:omar/models/sizeModel.dart';
 import 'package:omar/models/tRCollar.dart';
@@ -141,6 +145,17 @@ bool harryUp=false;
       tRCuffList=lenderResponseModel.tRCuffList!;
       tRModelList=lenderResponseModel.tRModelList!;
       paymentCodeList=lenderResponseModel.paymentType!;
+      productsNameList=lenderResponseModel.products!;
+      unitsNameList=lenderResponseModel.units!;
+      taxRatesNameList=lenderResponseModel.taxrates!;
+
+   lenderResponseModel.companies!.forEach((element) {
+     if(element.groupName=="customer"){
+       companiesCustomerName.add(element);
+     }else if(element.groupName=="biller"){
+       companiesEmployeeName.add(element);
+     }
+   });
       // users.forEach((element) {usersName.add(element.company!);});
 
     } catch (e) {
@@ -155,7 +170,90 @@ List<tRCollarModel> tRCollarList=[];
 List<tRCuffModel> tRCuffList=[];
 List<tRModelModel> tRModelList=[];
   List<Users> users=[];
+  List<Companies> companiesCustomerName=[];
+  List<Products> productsNameList=[];
+  List<Taxrates> taxRatesNameList=[];
+  List<Units> unitsNameList=[];
+  List<Companies> companiesEmployeeName=[];
   List<PaymentType> paymentCodeList=[];
+
+
+  void clearControllers(){
+     tailor.clear();
+     type.clear();
+     frontHeight.clear();
+     backHeight.clear();
+     shoulderWidth.clear();
+     shoulderSlope.clear();
+     sleeveLengthPlain.clear();
+     sleeveLengthIsHigher.clear();
+     wideWrist.clear();
+     plainCuff.clear();
+     cuffLength.clear();
+     cuffShow.clear();
+     wideMiddle.clear();
+     expandTheChestInFront.clear();
+     expandTheChestBehind.clear();
+     koftaBottom.clear();
+     expandDown.clear();
+     wideNeckPillow.clear();
+     neckHeight.clear();
+     gypsumHeight.clear();
+     viewGypsum.clear();
+     lengthChestPocket.clear();
+     wideChestPocket.clear();
+     wideMobilePocket.clear();
+     wideMobilePocket2.clear();
+     lengthPocketWallet.clear();
+     widePocketWallet.clear();
+     hipWidth.clear();
+     buttonNumber.clear();
+     embroideryNumber.clear();
+     betweenTheChestPocketAndTheShoulder.clear();
+     sidePocket.clear();
+     quantumCapacityMedium.clear();
+     Takhalis.clear();
+     expectedFabricInMeter.clear();
+     quantities.clear();
+     itemPrice.clear();
+     totalPrice.clear();
+     totalPriceDetails.clear();
+     discount.clear();
+     tax.clear();
+     whatYouPay.clear();
+     cash.clear();
+     onlinePayment.clear();
+     delayMoney.clear();
+  }
+calculateWhatYouPay(){
+  whatYouPay.text=((double.parse(  totalPrice.text)*double.parse(tax.text)/100)+double.parse( totalPrice.text)).toStringAsFixed(2);
+
+}
+  calculateDiscount(String value){
+    calculateWhatYouPay();
+    try{
+      if(value.isNotEmpty) {
+        whatYouPay.text = (double.parse(whatYouPay.text) -
+            (double.parse(whatYouPay.text) * double.parse(value) / 100))
+            .toStringAsFixed(2);
+      }
+      }catch(e){
+      print(e.toString());
+    }
+
+  }
+  calculateRecentMoney(String value){
+    calculateWhatYouPay();
+    try{
+      if(value.isNotEmpty) {
+        delayMoney.text=(double.parse(value)-double.parse(whatYouPay.text)).toStringAsFixed(2);
+
+      }
+      }catch(e){
+      print(e.toString());
+    }
+
+  }
 
   // Future<TrailorListsResponse> login ({required String email, required String password,}) async {
   //   TrailorListsResponse  lenderResponseModel=TrailorListsResponse();

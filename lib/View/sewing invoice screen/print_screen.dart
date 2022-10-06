@@ -912,7 +912,7 @@ class PrintScreen extends StatelessWidget {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text('الصنف',
+                                                Text('الصنف : ${cubit.typeOfClothes}',
                                                     style: GoogleFonts
                                                         .notoKufiArabic(
                                                             color: MyConstant()
@@ -942,7 +942,7 @@ class PrintScreen extends StatelessWidget {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text('المقاس ',
+                                                Text('المقاس : ${cubit.size}',
                                                     style: GoogleFonts
                                                         .notoKufiArabic(
                                                             color: MyConstant()
@@ -1095,7 +1095,7 @@ class PrintScreen extends StatelessWidget {
                                                         6,
                                                     child: MyText(
                                                         text:
-                                                            'الاجمالي  : ${cubit.totalPriceDetails.text}'),
+                                                            'الاجمالي  : ${cubit.totalPrice.text}'),
                                                   )),
                                                   Expanded(
                                                       child: Container(
