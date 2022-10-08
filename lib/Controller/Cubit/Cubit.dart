@@ -70,6 +70,7 @@ TextEditingController tax=TextEditingController();
 TextEditingController whatYouPay=TextEditingController();
 TextEditingController cash=TextEditingController();
 TextEditingController onlinePayment=TextEditingController();
+TextEditingController cheeckPayment=TextEditingController();
 TextEditingController delayMoney=TextEditingController();
 String customerName="";
 String employeeName="";
@@ -81,11 +82,15 @@ String CollerName="";
 String CuffName="";
 String GabzourName="";
 String TailOfGebName="";
+String TaillorName="";
 String hashoaName="";
 // String paymentCodeName="";
 bool sample=false;
 bool harryUp=false;
   GlobalKey repaintKey =  GlobalKey();
+  List<String> fixedPayment = [ "نقدى" , "بطاقة إئتمان" ,"شيك بنكى" ,];
+  String ? fixedPaymentType;
+
 
   // captureBoundary() async {
   //   Uint8List? pngBytes;
@@ -144,12 +149,18 @@ bool harryUp=false;
       // print(tRModelList);
       tRCuffList=lenderResponseModel.tRCuffList!;
       tRModelList=lenderResponseModel.tRModelList!;
-      paymentCodeList=lenderResponseModel.paymentType!;
       productsNameList=lenderResponseModel.products!;
       unitsNameList=lenderResponseModel.units!;
       taxRatesNameList=lenderResponseModel.taxrates!;
 
-   lenderResponseModel.companies!.forEach((element) {
+      lenderResponseModel.paymentType!.forEach((element) {
+        if(element.isActive=="1"){
+          paymentCodeList.add(element);
+        }
+      });
+
+
+      lenderResponseModel.companies!.forEach((element) {
      if(element.groupName=="customer"){
        companiesCustomerName.add(element);
      }else if(element.groupName=="biller"){

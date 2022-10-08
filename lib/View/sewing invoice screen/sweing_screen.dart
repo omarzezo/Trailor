@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -256,6 +255,7 @@ String? itemPrice;
                                     ),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton(
+
                                         items: cubit.companiesEmployeeName.map(EmployeeBuild).toList(),
                                         value: employeeItem,
                                         isExpanded: true,
@@ -534,11 +534,46 @@ String? itemPrice;
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 // crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Container(width: MediaQuery.of(context).size.width/6,child: customTextField(text: 'المدفوع النقدي',controller:cubit.cash,onChange: (value){
-                                            cubit.calculateRecentMoney(value);
-                                  })),
-                                  Container(width: MediaQuery.of(context).size.width/6,child: customTextField(text: 'المدفوع الشبكي',controller:cubit.onlinePayment)),
                                   Container(
+                                      width: MediaQuery.of(context).size.width/6,
+                                      margin: const EdgeInsets.only(top: 10),
+                                      alignment: Alignment.center,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text('الدفع بواسطة',style: GoogleFonts.notoKufiArabic(
+                                              color: MyConstant().purpleColor,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10
+                                          )),
+                                          // const SizedBox(height: 5,),
+                                          DropdownButton(
+                                              focusColor: Colors.green,
+                                              underline: Container( height: 1.5, color: Colors.green,),
+                                              items: cubit.fixedPayment.map(itemBuild).toList(),
+                                              value: cubit.fixedPaymentType,
+                                              isExpanded: true,
+                                              onChanged: (value){
+                                                setState(() {
+                                                  cubit.fixedPaymentType   = value as String ;
+                                                  // cubit.paymentType=value.code!;
+                                                });
+                                              },
+                                              iconEnabledColor: Colors.green,
+                                              iconSize: 25,
+                                              icon: const Icon(Icons.keyboard_arrow_down_sharp)
+                                          ),
+                                        ],
+                                      )
+                                  ),
+
+                                  (cubit.fixedPaymentType=="نقدى")?  Container(width: MediaQuery.of(context).size.width/6,child: customTextField(text: 'المدفوع النقدي',controller:cubit.cash,onChange: (value){
+                                            cubit.calculateRecentMoney(value);
+                                  })):Container(),
+                                  (cubit.fixedPaymentType=="شيك بنكى")? Container(width: MediaQuery.of(context).size.width/6,child: customTextField(text: 'رقم الشيك',controller:cubit.cheeckPayment)):Container(height: 0,width: 0,),
+
+                                  (cubit.fixedPaymentType=="بطاقة إئتمان")? Container(width: MediaQuery.of(context).size.width/6,child: customTextField(text: 'المدفوع الشبكي',controller:cubit.onlinePayment)):Container(height: 0,width: 0,),
+                                (cubit.fixedPaymentType=="بطاقة إئتمان")? Container(
                                     width: MediaQuery.of(context).size.width/6,
                                     margin: const EdgeInsets.only(top: 10),
                                     alignment: Alignment.center,
@@ -569,7 +604,8 @@ String? itemPrice;
                                         ),
                                       ],
                                     )
-                                  ),
+                                  ):Container(height: 0,width: 0,),
+
                                   Container(width: MediaQuery.of(context).size.width/6),
                                 ],
                               ),

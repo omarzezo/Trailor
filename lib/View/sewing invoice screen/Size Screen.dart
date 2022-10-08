@@ -160,6 +160,7 @@ setState(() {
                                   onChanged: (value){
                                     setState(() {
                                       valueItem1 = value as String  ;
+                                      cubit.TaillorName=value;
                                     });
                                   },
                                   iconEnabledColor: Colors.white,
@@ -183,6 +184,7 @@ setState(() {
                               ),
                               onPressed: ()async{
                                await cubit.getWidgetImage();
+                               Navigator.pop(context);
 
                               }, child: Text('حفظ',style: GoogleFonts.notoKufiArabic(
                                 color: Colors.white,

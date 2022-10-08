@@ -99,7 +99,7 @@ Widget customTextField({
 }) {
   return TextFormField(
     onEditingComplete: (){
-      controller!.clear();
+      // controller!.clear();
     },
 onChanged: onChange,
     onSaved: onSaved,

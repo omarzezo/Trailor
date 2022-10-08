@@ -1,12 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:omar/models/TypesModel.dart';
-import '../../constant/List Of Image.dart';
 import 'Widgets.dart';
 
 class PrintScreen extends StatelessWidget {
@@ -55,7 +52,7 @@ class PrintScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             textDirection: TextDirection.rtl,
                             children: [
-                              Container(height: 40,width:MediaQuery.of(context).size.width/5,
+                              SizedBox(height: 40,width:MediaQuery.of(context).size.width/5,
                                   child:Image.asset('image/logo app.png',width: 40,height: 40,)),
 
                               IconButton(onPressed: () {
@@ -67,7 +64,7 @@ class PrintScreen extends StatelessWidget {
                       ],
                     ),
                     MediaQuery.of(context).orientation==Orientation.portrait?
-                    Container(
+                    SizedBox(
                       height: 400,
                       width: 400,
                       child:  (cubit.pngBytes != null)?
@@ -80,7 +77,7 @@ class PrintScreen extends StatelessWidget {
                           child: Column(
                             children: [
                               Container(
-                                padding: EdgeInsets.symmetric(horizontal: 15),
+                                padding: const EdgeInsets.symmetric(horizontal: 15),
 // height: MediaQuery.of(context).size.height/16,
                                 height: 40,
                                 width: MediaQuery.of(context).size.width / 1,
@@ -96,7 +93,7 @@ class PrintScreen extends StatelessWidget {
                                               fontSize: 12)),
                                     ),
                                     Expanded(
-                                      child: Text('${cubit.tailor.text}الخياط',
+                                      child: Text(' الخياط : ${cubit.TaillorName} ',
                                           style: GoogleFonts.notoKufiArabic(
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold,
@@ -107,7 +104,7 @@ class PrintScreen extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.symmetric(horizontal: 15),
+                                padding: const EdgeInsets.symmetric(horizontal: 15),
 //1.56
 //                                 height: MediaQuery.of(context).size.height / 1.46,
                                 width: MediaQuery.of(context).size.width / 1,
@@ -120,7 +117,7 @@ class PrintScreen extends StatelessWidget {
                                       children: [
 // Container( width: MediaQuery.of(context).size.width/2.52, height: 40,child: Text( '${cubit.tailor.text} القماش')),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -130,7 +127,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' القماش : ${cubit.type.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -140,7 +137,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' طول امام : ${cubit.frontHeight.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -150,7 +147,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' :طول خلف : ${cubit.backHeight.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -164,7 +161,7 @@ class PrintScreen extends StatelessWidget {
                                           MainAxisAlignment.spaceAround,
                                       children: [
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -174,7 +171,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' عرض الكتف : ${cubit.shoulderWidth.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -184,7 +181,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' ميل الكتف : ${cubit.shoulderSlope.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -194,7 +191,7 @@ class PrintScreen extends StatelessWidget {
                                                   '  طول الكم سادة : ${cubit.sleeveLengthPlain.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -210,7 +207,7 @@ class PrintScreen extends StatelessWidget {
                                           MainAxisAlignment.spaceAround,
                                       children: [
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -220,7 +217,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' وسع المعصم : ${cubit.wideWrist.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -230,7 +227,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' كفة المصم سادة : ${cubit.plainCuff.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -240,7 +237,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' طول الكبك : ${cubit.cuffLength.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -256,7 +253,7 @@ class PrintScreen extends StatelessWidget {
                                           MainAxisAlignment.spaceAround,
                                       children: [
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -266,7 +263,7 @@ class PrintScreen extends StatelessWidget {
                                                   'وسع الوسط : ${cubit.wideMiddle.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -276,7 +273,7 @@ class PrintScreen extends StatelessWidget {
                                                   'وسع الصدر امام : ${cubit.expandTheChestInFront.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -286,7 +283,7 @@ class PrintScreen extends StatelessWidget {
                                                   'وسع الصدر خلف : ${cubit.expandTheChestBehind.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -302,7 +299,7 @@ class PrintScreen extends StatelessWidget {
                                           MainAxisAlignment.spaceAround,
                                       children: [
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -312,7 +309,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' وسع اسفل : ${cubit.expandDown.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -322,7 +319,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' وسع الرقبة سادة : ${cubit.wideNeckPillow.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -332,7 +329,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' ارتفاع الرقبة : ${cubit.neckHeight.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -348,7 +345,7 @@ class PrintScreen extends StatelessWidget {
                                           MainAxisAlignment.spaceAround,
                                       children: [
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -358,7 +355,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' عرض الجبزور : ${cubit.viewGypsum.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -368,7 +365,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' ط-جيب الصدر : ${cubit.lengthChestPocket.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -378,7 +375,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' ع-جيب الصدر : ${cubit.wideChestPocket.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -394,7 +391,7 @@ class PrintScreen extends StatelessWidget {
                                           MainAxisAlignment.spaceAround,
                                       children: [
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -404,7 +401,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' ع-جيب الجوال : ${cubit.wideMobilePocket2.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -414,7 +411,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' ط-جيب المحفظة : ${cubit.lengthPocketWallet.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -424,7 +421,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' ع-جيب المحفظة : ${cubit.widePocketWallet.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -440,7 +437,7 @@ class PrintScreen extends StatelessWidget {
                                           MainAxisAlignment.spaceAround,
                                       children: [
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -450,7 +447,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' رقم الزرار : ${cubit.buttonNumber.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -460,7 +457,7 @@ class PrintScreen extends StatelessWidget {
                                                   'رقم التطريز : ${cubit.embroideryNumber.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -470,7 +467,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' بين جيب الصدر والكتف : ${cubit.betweenTheChestPocketAndTheShoulder.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -488,7 +485,7 @@ class PrintScreen extends StatelessWidget {
                                       children: [
 // const SizedBox(width: 0.7,),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -498,7 +495,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' وسع الكم وسط : ${cubit.quantumCapacityMedium.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -508,7 +505,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' تخاليص : ${cubit.Takhalis.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -518,7 +515,7 @@ class PrintScreen extends StatelessWidget {
                                                   'القماش المتوقع بالمتر : ${cubit.expectedFabricInMeter.text}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -537,7 +534,7 @@ class PrintScreen extends StatelessWidget {
 // const SizedBox(width: 0.7,),
                                         if (cubit.sample == true)
                                           Expanded(
-                                              child: Container(
+                                              child: SizedBox(
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width /
@@ -547,7 +544,7 @@ class PrintScreen extends StatelessWidget {
                                           )),
                                         if (cubit.harryUp == true)
                                           Expanded(
-                                              child: Container(
+                                              child: SizedBox(
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width /
@@ -558,7 +555,7 @@ class PrintScreen extends StatelessWidget {
                                         if (cubit.sample == true &&
                                             cubit.harryUp == true)
                                           Expanded(
-                                              child: Container(
+                                              child: SizedBox(
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width /
@@ -567,7 +564,7 @@ class PrintScreen extends StatelessWidget {
                                             child: MyText(text: ''),
                                           )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -585,7 +582,7 @@ class PrintScreen extends StatelessWidget {
                                       children: [
 // const SizedBox(width: 0.7,),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -595,7 +592,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' نوع الموديل : ${cubit.ModelName}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -605,7 +602,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' نوع الياقة : ${cubit.CollerName}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -615,7 +612,7 @@ class PrintScreen extends StatelessWidget {
                                                   'نوع الكيك : ${cubit.CuffName}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -633,7 +630,7 @@ class PrintScreen extends StatelessWidget {
                                       children: [
 // const SizedBox(width: 0.7,),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -643,7 +640,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' نوع خيط الجيب : ${cubit.TailOfGebName}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -653,7 +650,7 @@ class PrintScreen extends StatelessWidget {
                                                   ' نوع الحشوة : ${cubit.hashoaName}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -663,7 +660,7 @@ class PrintScreen extends StatelessWidget {
                                                   'نوع الجبذور : ${cubit.GabzourName}'),
                                         )),
                                         Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                           width:
                                               MediaQuery.of(context).size.width /
                                                   6,
@@ -821,7 +818,7 @@ class PrintScreen extends StatelessWidget {
                                       child: Row(
 // mainAxisAlignment: MainAxisAlignment.spaceAround,
                                         children: [
-                                          Container(
+                                          SizedBox(
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width /
@@ -891,7 +888,7 @@ class PrintScreen extends StatelessWidget {
                                       height:
                                           MediaQuery.of(context).size.height / 8,
                                       padding:
-                                          EdgeInsets.symmetric(horizontal: 10),
+                                          const EdgeInsets.symmetric(horizontal: 10),
 // color: Colors.amber,
                                       child: Row(
 // mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -929,7 +926,7 @@ class PrintScreen extends StatelessWidget {
                                           const SizedBox(
                                             width: 5,
                                           ),
-                                          Container(
+                                          SizedBox(
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width /
@@ -960,65 +957,55 @@ class PrintScreen extends StatelessWidget {
                                             width: 5,
                                           ),
 
-                                          Container(
-// width: MediaQuery.of(context).size.width/6.8,
-// width: 100,
-// padding: const EdgeInsets.only(right: 30),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                    'الكمية :${cubit.quantities.text}',
-                                                    style: GoogleFonts
-                                                        .notoKufiArabic(
-                                                            color: MyConstant()
-                                                                .purpleColor,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 12)),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                              ],
-                                            ),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                  'الكمية :${cubit.quantities.text}',
+                                                  style: GoogleFonts
+                                                      .notoKufiArabic(
+                                                          color: MyConstant()
+                                                              .purpleColor,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 12)),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                            ],
                                           ),
                                           const SizedBox(
                                             width: 5,
                                           ),
 
-                                          Container(
-// width: MediaQuery.of(context).size.width/6.8,
-// width: 100,
-// padding: const EdgeInsets.only(right: 30),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                    'سعر الوحدة :${cubit.itemPrice.text}',
-                                                    style: GoogleFonts
-                                                        .notoKufiArabic(
-                                                            color: MyConstant()
-                                                                .purpleColor,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 12)),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                              ],
-                                            ),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                  'سعر الوحدة :${cubit.itemPrice.text}',
+                                                  style: GoogleFonts
+                                                      .notoKufiArabic(
+                                                          color: MyConstant()
+                                                              .purpleColor,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 12)),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                            ],
                                           ),
                                           const SizedBox(
                                             width: 5,
                                           ),
 
-                                          Container(
+                                          SizedBox(
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width /
@@ -1076,7 +1063,7 @@ class PrintScreen extends StatelessWidget {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 20,
                                             ),
                                             Padding(
@@ -1088,7 +1075,7 @@ class PrintScreen extends StatelessWidget {
                                                         .spaceBetween,
                                                 children: [
                                                   Expanded(
-                                                      child: Container(
+                                                      child: SizedBox(
                                                     width: MediaQuery.of(context)
                                                             .size
                                                             .width /
@@ -1098,7 +1085,7 @@ class PrintScreen extends StatelessWidget {
                                                             'الاجمالي  : ${cubit.totalPrice.text}'),
                                                   )),
                                                   Expanded(
-                                                      child: Container(
+                                                      child: SizedBox(
                                                     width: MediaQuery.of(context)
                                                             .size
                                                             .width /
@@ -1108,7 +1095,7 @@ class PrintScreen extends StatelessWidget {
                                                             ' الخصم : ${cubit.discount.text}'),
                                                   )),
                                                   Expanded(
-                                                      child: Container(
+                                                      child: SizedBox(
                                                     width: MediaQuery.of(context)
                                                             .size
                                                             .width /
@@ -1118,7 +1105,7 @@ class PrintScreen extends StatelessWidget {
                                                             ' الضريبة : ${cubit.tax.text}'),
                                                   )),
                                                   Expanded(
-                                                      child: Container(
+                                                      child: SizedBox(
                                                     width: MediaQuery.of(context)
                                                             .size
                                                             .width /
@@ -1130,7 +1117,7 @@ class PrintScreen extends StatelessWidget {
                                                 ],
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 20,
                                             ),
                                             Padding(
@@ -1142,8 +1129,8 @@ class PrintScreen extends StatelessWidget {
                                                         .spaceBetween,
 // crossAxisAlignment: CrossAxisAlignment.center,
                                                 children: [
-                                                  Expanded(
-                                                      child: Container(
+                                                  (cubit.fixedPaymentType=="نقدى")?  Expanded(
+                                                      child: SizedBox(
                                                     width: MediaQuery.of(context)
                                                             .size
                                                             .width /
@@ -1151,9 +1138,19 @@ class PrintScreen extends StatelessWidget {
                                                     child: MyText(
                                                         text:
                                                             ' المدفوع النقدي : ${cubit.cash.text}'),
-                                                  )),
-                                                  Expanded(
-                                                      child: Container(
+                                                  )): Container(),
+                                                  (cubit.fixedPaymentType=="شيك بنكى")?  Expanded(
+                                                      child: SizedBox(
+                                                    width: MediaQuery.of(context)
+                                                            .size
+                                                            .width /
+                                                        6,
+                                                    child: MyText(
+                                                        text:
+                                                            '  رقم الشيك : ${cubit.cheeckPayment.text}'),
+                                                  )):  Container(),
+                                                  (cubit.fixedPaymentType=="بطاقة إئتمان")?  Expanded(
+                                                      child: SizedBox(
                                                     width: MediaQuery.of(context)
                                                             .size
                                                             .width /
@@ -1161,9 +1158,9 @@ class PrintScreen extends StatelessWidget {
                                                     child: MyText(
                                                         text:
                                                             ' المدفوع الشبكي : ${cubit.onlinePayment.text}'),
-                                                  )),
-                                                  Expanded(
-                                                      child: Container(
+                                                  )): Container(),
+                                                  (cubit.fixedPaymentType=="بطاقة إئتمان")?     Expanded(
+                                                      child: SizedBox(
                                                     width: MediaQuery.of(context)
                                                             .size
                                                             .width /
@@ -1171,9 +1168,9 @@ class PrintScreen extends StatelessWidget {
                                                     child: MyText(
                                                         text:
                                                             ' نوع الشبكة : ${cubit.paymentType}'),
-                                                  )),
+                                                  )): Container(),
                                                   Expanded(
-                                                      child: Container(
+                                                      child: SizedBox(
                                                     width: MediaQuery.of(context)
                                                             .size
                                                             .width /
@@ -1185,7 +1182,7 @@ class PrintScreen extends StatelessWidget {
                                                 ],
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 20,
                                             )
                                           ],
