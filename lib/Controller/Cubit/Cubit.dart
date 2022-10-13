@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:math';
 import 'dart:typed_data';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
@@ -13,84 +15,111 @@ import 'package:omar/models/Products.dart';
 import 'package:omar/models/Taxrates.dart';
 import 'package:omar/models/Units.dart';
 import 'package:omar/models/Users.dart';
+import 'package:omar/models/customer.dart';
+import 'package:omar/models/pillResponse.dart';
+import 'package:omar/models/pillsResponsemodel.dart';
 import 'package:omar/models/sizeModel.dart';
 import 'package:omar/models/tRCollar.dart';
 import 'package:omar/models/tRCuff.dart';
 import 'package:omar/models/tRModel.dart';
+import 'package:omar/models/tRPocket.dart';
+import 'package:omar/models/tRTailor.dart';
+import 'package:omar/models/tRZipper.dart';
+import 'package:omar/models/trFilling.dart';
 import '../../models/TrailorListsResponse.dart';
+import '../../models/pillRequest.dart';
 import 'State.dart';
 import 'dart:ui' as ui;
 
-
-class LoginCubit extends Cubit<LoginState>{
+class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(InitialLogin());
-  static LoginCubit get(context) => BlocProvider.of(context);
-  Uint8List?  pngBytes;
-  TextEditingController tailor=TextEditingController();
-TextEditingController type=TextEditingController();
-TextEditingController frontHeight=TextEditingController();
-TextEditingController backHeight=TextEditingController();
-TextEditingController shoulderWidth=TextEditingController();
-TextEditingController shoulderSlope=TextEditingController();
-TextEditingController sleeveLengthPlain=TextEditingController();
-TextEditingController sleeveLengthIsHigher=TextEditingController();
-TextEditingController wideWrist=TextEditingController();
-TextEditingController plainCuff=TextEditingController();
-TextEditingController cuffLength=TextEditingController();
-TextEditingController cuffShow=TextEditingController();
-TextEditingController wideMiddle=TextEditingController();
-TextEditingController expandTheChestInFront=TextEditingController();
-TextEditingController expandTheChestBehind=TextEditingController();
-TextEditingController koftaBottom=TextEditingController();
-TextEditingController expandDown=TextEditingController();
-TextEditingController wideNeckPillow=TextEditingController();
-TextEditingController neckHeight=TextEditingController();
-TextEditingController gypsumHeight=TextEditingController();
-TextEditingController viewGypsum=TextEditingController();
-TextEditingController lengthChestPocket=TextEditingController();
-TextEditingController wideChestPocket=TextEditingController();
-TextEditingController wideMobilePocket=TextEditingController();
-TextEditingController wideMobilePocket2=TextEditingController();
-TextEditingController lengthPocketWallet=TextEditingController();
-TextEditingController widePocketWallet=TextEditingController();
-TextEditingController hipWidth=TextEditingController();
-TextEditingController buttonNumber=TextEditingController();
-TextEditingController embroideryNumber=TextEditingController();
-TextEditingController betweenTheChestPocketAndTheShoulder=TextEditingController();
-TextEditingController sidePocket=TextEditingController();
-TextEditingController quantumCapacityMedium=TextEditingController();
-TextEditingController Takhalis=TextEditingController();
-TextEditingController expectedFabricInMeter=TextEditingController();
-TextEditingController quantities=TextEditingController();
-TextEditingController itemPrice=TextEditingController();
-TextEditingController totalPrice=TextEditingController();
-TextEditingController totalPriceDetails=TextEditingController();
-TextEditingController discount=TextEditingController();
-TextEditingController tax=TextEditingController();
-TextEditingController whatYouPay=TextEditingController();
-TextEditingController cash=TextEditingController();
-TextEditingController onlinePayment=TextEditingController();
-TextEditingController cheeckPayment=TextEditingController();
-TextEditingController delayMoney=TextEditingController();
-String customerName="";
-String employeeName="";
-String typeOfClothes="";
-String size="";
-String paymentType="";
-String ModelName="";
-String CollerName="";
-String CuffName="";
-String GabzourName="";
-String TailOfGebName="";
-String TaillorName="";
-String hashoaName="";
-// String paymentCodeName="";
-bool sample=false;
-bool harryUp=false;
-  GlobalKey repaintKey =  GlobalKey();
-  List<String> fixedPayment = [ "نقدى" , "بطاقة إئتمان" ,"شيك بنكى" ,];
-  String ? fixedPaymentType;
 
+  static LoginCubit get(context) => BlocProvider.of(context);
+  Uint8List? pngBytes;
+  TextEditingController tailor = TextEditingController();
+  TextEditingController type = TextEditingController();
+  TextEditingController frontHeight = TextEditingController();
+  TextEditingController backHeight = TextEditingController();
+  TextEditingController shoulderWidth = TextEditingController();
+  TextEditingController shoulderSlope = TextEditingController();
+  TextEditingController sleeveLengthPlain = TextEditingController();
+  TextEditingController sleeveLengthIsHigher = TextEditingController();
+  TextEditingController wideWrist = TextEditingController();
+  TextEditingController plainCuff = TextEditingController();
+  TextEditingController cuffLength = TextEditingController();
+  TextEditingController cuffShow = TextEditingController();
+  TextEditingController wideMiddle = TextEditingController();
+  TextEditingController expandTheChestInFront = TextEditingController();
+  TextEditingController expandTheChestBehind = TextEditingController();
+  TextEditingController koftaBottom = TextEditingController();
+  TextEditingController expandDown = TextEditingController();
+  TextEditingController wideNeckPillow = TextEditingController();
+  TextEditingController neckHeight = TextEditingController();
+  TextEditingController gypsumHeight = TextEditingController();
+  TextEditingController viewGypsum = TextEditingController();
+  TextEditingController lengthChestPocket = TextEditingController();
+  TextEditingController wideChestPocket = TextEditingController();
+  TextEditingController wideMobilePocket = TextEditingController();
+  TextEditingController wideMobilePocket2 = TextEditingController();
+  TextEditingController lengthPocketWallet = TextEditingController();
+  TextEditingController widePocketWallet = TextEditingController();
+  TextEditingController hipWidth = TextEditingController();
+  TextEditingController buttonNumber = TextEditingController();
+  TextEditingController embroideryNumber = TextEditingController();
+  TextEditingController betweenTheChestPocketAndTheShoulder =
+      TextEditingController();
+  TextEditingController sidePocket = TextEditingController();
+  TextEditingController quantumCapacityMedium = TextEditingController();
+  TextEditingController Takhalis = TextEditingController();
+  TextEditingController expectedFabricInMeter = TextEditingController();
+  TextEditingController quantities = TextEditingController();
+  TextEditingController itemPrice = TextEditingController();
+  TextEditingController totalPrice = TextEditingController();
+  TextEditingController totalPriceDetails = TextEditingController();
+  TextEditingController discount = TextEditingController();
+  TextEditingController tax = TextEditingController();
+  TextEditingController whatYouPay = TextEditingController();
+  TextEditingController cash = TextEditingController();
+  TextEditingController onlinePayment = TextEditingController();
+  TextEditingController cheeckPayment = TextEditingController();
+  TextEditingController delayMoney = TextEditingController();
+  String customerName = "";
+  String employeeName = "";
+  String typeOfClothes = "";
+  String size = "";
+  String paymentType = "";
+  String ModelName = "";
+  String CollerName = "";
+  String CuffName = "";
+  String ZipperName = "";
+  String PocketName = "";
+  String TaillorName = "";
+  String FillingName = "";
+  int ModelTypeID = 0;
+  int CollerTypeID = 0;
+  int CuffTypeID = 0;
+  int ZipperTypeID = 0;
+  int PocketTypeID = 0;
+  int TaillorTypeID = 0;
+  int FillingTypeID = 0;
+  String itemCode = "";
+  Products? productItem;
+  Units? valueItemSize;
+  Companies? userItem;
+  Companies? employeeItem;
+  PaymentType? paymentTypeItem;
+
+// String paymentCodeName="";
+  bool sample = false;
+
+  bool harryUp = false;
+  GlobalKey repaintKey = GlobalKey();
+  List<String> fixedPayment = [
+    "نقدى",
+    "بطاقة إئتمان",
+    "شيك بنكى",
+  ];
+  String? fixedPaymentType;
 
   // captureBoundary() async {
   //   Uint8List? pngBytes;
@@ -114,59 +143,71 @@ bool harryUp=false;
   Future<Uint8List?> getWidgetImage() async {
     try {
       // RenderRepaintBoundary boundary = _renderObjectKey.currentContext.findRenderObject();
-      RenderRepaintBoundary boundary = repaintKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+      RenderRepaintBoundary boundary = repaintKey.currentContext!
+          .findRenderObject() as RenderRepaintBoundary;
       ui.Image image = await boundary.toImage(pixelRatio: 3.0);
-      ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+      ByteData? byteData =
+          await image.toByteData(format: ui.ImageByteFormat.png);
       pngBytes = byteData!.buffer.asUint8List();
       // bs64 = base64Encode(pngBytes);
       // debugPrint(bs64.length.toString());
       print("NewImage>> " + pngBytes.toString());
       // return pngBytes;
     } catch (exception) {}
-    return  pngBytes!;
+    return pngBytes!;
   }
 
-
-
-
-
-
-
-  Future<TrailorListsResponse> login({required String email, required String password,}) async {
-    var response = await http.get(Uri.parse(BASEURL+"v1/data?api-key="+email+"&warehouse_code="+password),headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      });
-    TrailorListsResponse  lenderResponseModel=TrailorListsResponse();
+  List<Companies> customerModel=[];
+  Future<TrailorListsResponse> login({
+    required String email,
+    required String password,
+  }) async {
+    var response = await http.get(
+        Uri.parse(BASEURL +
+            "v1/data?api-key=" +
+            email +
+            "&warehouse_code=" +
+            password),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        });
+    TrailorListsResponse lenderResponseModel = TrailorListsResponse();
 
     try {
       print(jsonDecode(const Utf8Decoder().convert(response.bodyBytes)));
-      lenderResponseModel = TrailorListsResponse.fromJson(jsonDecode(const Utf8Decoder().convert(response.bodyBytes)));
-      users=lenderResponseModel.users!;
-      tRCollarList=lenderResponseModel.tRCollarList!;
+      lenderResponseModel = TrailorListsResponse.fromJson(
+          jsonDecode(const Utf8Decoder().convert(response.bodyBytes)));
+      users = lenderResponseModel.users!;
+      tRCollarList = lenderResponseModel.tRCollarList!;
       // print(tRCollarList);
       // print(tRCuffList);
       // print(tRModelList);
-      tRCuffList=lenderResponseModel.tRCuffList!;
-      tRModelList=lenderResponseModel.tRModelList!;
-      productsNameList=lenderResponseModel.products!;
-      unitsNameList=lenderResponseModel.units!;
-      taxRatesNameList=lenderResponseModel.taxrates!;
+      tRCuffList = lenderResponseModel.tRCuffList!;
+      tRFillingList = lenderResponseModel.tRFillingList!;
+      tRModelList = lenderResponseModel.tRModelList!;
+      tRZipperList = lenderResponseModel.tRZipperList!;
+      tRPocketList = lenderResponseModel.tRPocketList!;
+      tRTailorList = lenderResponseModel.tRTailorList!;
+      productsNameList = lenderResponseModel.products!;
+      unitsNameList = lenderResponseModel.units!;
+      taxRatesNameList = lenderResponseModel.taxrates!;
+      customerModel = lenderResponseModel.companies!;
+
 
       lenderResponseModel.paymentType!.forEach((element) {
-        if(element.isActive=="1"){
+        if (element.isActive == "1" && element.isCC == "1") {
           paymentCodeList.add(element);
         }
       });
 
-
       lenderResponseModel.companies!.forEach((element) {
-     if(element.groupName=="customer"){
-       companiesCustomerName.add(element);
-     }else if(element.groupName=="biller"){
-       companiesEmployeeName.add(element);
-     }
-   });
+        if (element.groupName == "customer") {
+          companiesCustomerName.add(element);
+        } else if (element.groupName == "biller") {
+          companiesEmployeeName.add(element);
+        }
+      });
       // users.forEach((element) {usersName.add(element.company!);});
 
     } catch (e) {
@@ -175,95 +216,225 @@ bool harryUp=false;
     }
 
     return lenderResponseModel;
+  }
+
+  Future<PillResponseModel> pillResponse(
+      {required PillRequestModel pillRequestModel}) async {
+    Dio dio = Dio();
+    PillResponseModel? pillResponseModel;
+
+    dio.options.headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Accept-Version': 'V1',
+      'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko'
+    };
+    final response = await dio.post(
+        'https://cpe-soft.com/admin/api/v1/SalesSet3',
+        data: jsonEncode(pillRequestModel));
+    if (response.statusCode == 200) {
+      debugPrint(jsonEncode(pillRequestModel));
+      // log(jsonEncode(pillRequestModel));
+      print(response.data);
+      pillResponseModel = PillResponseModel.fromJson(response.data);
+
+      return pillResponseModel;
+    } else {
+      print(response.statusMessage);
+    }
+    return pillResponseModel!;
+  }
+  Future<List<Companies>> getCustomers(
+      ) async {
+    emit(GetCustomerLoadingState());
+    companiesCustomerName=[];
+    Dio dio = Dio();
+
+    // dio.options.headers = {
+    //   'Content-Type': 'application/json',
+    //   'Accept': 'application/json',
+    //   'Accept-Version': 'V1',
+    //   'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko'
+    // };
+
+
+    final response = await dio.get(
+        'https://cpe-soft.com/admin/api/v1/data?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1',
+        );
+    if (response.statusCode == 200) {
+      // log(jsonEncode(pillRequestModel));
+      response.data["companies"].forEach((element) {
+        companiesCustomerName.add(Companies.fromJson(element)) ;
+        emit(GetCustomerSuccessState());
+
+      });
+      print(response.data);
+return companiesCustomerName;
+    } else {
+      print(response.statusMessage);
+      emit(GetCustomerErrorState());
+
+    }
+    return companiesCustomerName;
 
   }
-List<tRCollarModel> tRCollarList=[];
-List<tRCuffModel> tRCuffList=[];
-List<tRModelModel> tRModelList=[];
-  List<Users> users=[];
-  List<Companies> companiesCustomerName=[];
-  List<Products> productsNameList=[];
-  List<Taxrates> taxRatesNameList=[];
-  List<Units> unitsNameList=[];
-  List<Companies> companiesEmployeeName=[];
-  List<PaymentType> paymentCodeList=[];
+
+  getProductDetails(int id){
 
 
-  void clearControllers(){
-     tailor.clear();
-     type.clear();
-     frontHeight.clear();
-     backHeight.clear();
-     shoulderWidth.clear();
-     shoulderSlope.clear();
-     sleeveLengthPlain.clear();
-     sleeveLengthIsHigher.clear();
-     wideWrist.clear();
-     plainCuff.clear();
-     cuffLength.clear();
-     cuffShow.clear();
-     wideMiddle.clear();
-     expandTheChestInFront.clear();
-     expandTheChestBehind.clear();
-     koftaBottom.clear();
-     expandDown.clear();
-     wideNeckPillow.clear();
-     neckHeight.clear();
-     gypsumHeight.clear();
-     viewGypsum.clear();
-     lengthChestPocket.clear();
-     wideChestPocket.clear();
-     wideMobilePocket.clear();
-     wideMobilePocket2.clear();
-     lengthPocketWallet.clear();
-     widePocketWallet.clear();
-     hipWidth.clear();
-     buttonNumber.clear();
-     embroideryNumber.clear();
-     betweenTheChestPocketAndTheShoulder.clear();
-     sidePocket.clear();
-     quantumCapacityMedium.clear();
-     Takhalis.clear();
-     expectedFabricInMeter.clear();
-     quantities.clear();
-     itemPrice.clear();
-     totalPrice.clear();
-     totalPriceDetails.clear();
-     discount.clear();
-     tax.clear();
-     whatYouPay.clear();
-     cash.clear();
-     onlinePayment.clear();
-     delayMoney.clear();
   }
-calculateWhatYouPay(){
-  whatYouPay.text=((double.parse(  totalPrice.text)*double.parse(tax.text)/100)+double.parse( totalPrice.text)).toStringAsFixed(2);
+  Future<PillResponseModel> addCustomerResponse(
+      {required CustomerModel customerModel}) async {
+    Dio dio = Dio();
+    PillResponseModel? pillResponseModel;
 
-}
-  calculateDiscount(String value){
+    dio.options.headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Accept-Version': 'V1',
+      'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko'
+    };
+    final response = await dio.post(
+        'https://cpe-soft.com/admin/api/v1/SalesSet3',
+        data: jsonEncode(customerModel));
+    if (response.statusCode == 200) {
+      debugPrint(jsonEncode(customerModel));
+      // log(jsonEncode(pillRequestModel));
+      print(response.data);
+      pillResponseModel = PillResponseModel.fromJson(response.data);
+
+      return pillResponseModel;
+    } else {
+      print(response.statusMessage);
+    }
+    return pillResponseModel!;
+  }
+  PillsDetails? pillsDetails;
+  Future<PillsDetails> getPillsDetails ()async{
+    Dio dio = Dio();
+    final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
+    if(response.statusCode==200){
+      print(response.data);
+      pillsDetails=PillsDetails.fromJson(response.data);
+      return pillsDetails!;
+    }else{
+      print(response.statusMessage);
+    }
+  return pillsDetails!;
+  }
+  // PillsResponseModel? pillsResponseModel;
+
+//   Future<PillsResponseModel> pillsResponse()async{
+//     Dio dio = Dio();
+// final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
+// if(response.statusCode==200){
+//   print(response.data);
+//   List<Details> details=[];
+//
+//   pillsResponseModel=PillsResponseModel.fromJson(response.data);
+// 
+//   return pillsResponseModel!;
+//
+//
+//   }else{
+//   print(response.statusMessage);
+// }
+// return pillsResponseModel!;
+//   }
+
+  List<tRCollarModel> tRCollarList = [];
+  List<tRCuffModel> tRCuffList = [];
+  List<tRModelModel> tRModelList = [];
+  List<tRFillingModel> tRFillingList = [];
+  List<tRPocketModel> tRPocketList = [];
+  List<tRZipperModel> tRZipperList = [];
+  List<tRTailorModel> tRTailorList = [];
+  List<Users> users = [];
+  List<Companies> companiesCustomerName = [];
+  List<Products> productsNameList = [];
+  List<Taxrates> taxRatesNameList = [];
+  List<Units> unitsNameList = [];
+  List<Companies> companiesEmployeeName = [];
+  List<PaymentType> paymentCodeList = [];
+
+  void clearControllers() {
+    tailor.clear();
+    type.clear();
+    frontHeight.clear();
+    backHeight.clear();
+    shoulderWidth.clear();
+    shoulderSlope.clear();
+    sleeveLengthPlain.clear();
+    sleeveLengthIsHigher.clear();
+    wideWrist.clear();
+    plainCuff.clear();
+    cuffLength.clear();
+    cuffShow.clear();
+    wideMiddle.clear();
+    expandTheChestInFront.clear();
+    expandTheChestBehind.clear();
+    koftaBottom.clear();
+    expandDown.clear();
+    wideNeckPillow.clear();
+    neckHeight.clear();
+    gypsumHeight.clear();
+    viewGypsum.clear();
+    lengthChestPocket.clear();
+    wideChestPocket.clear();
+    wideMobilePocket.clear();
+    wideMobilePocket2.clear();
+    lengthPocketWallet.clear();
+    widePocketWallet.clear();
+    hipWidth.clear();
+    buttonNumber.clear();
+    embroideryNumber.clear();
+    betweenTheChestPocketAndTheShoulder.clear();
+    sidePocket.clear();
+    quantumCapacityMedium.clear();
+    Takhalis.clear();
+    expectedFabricInMeter.clear();
+    quantities.clear();
+    itemPrice.clear();
+    totalPrice.clear();
+    totalPriceDetails.clear();
+    discount.clear();
+    tax.clear();
+    whatYouPay.clear();
+    cash.clear();
+    onlinePayment.clear();
+    delayMoney.clear();
+  }
+
+  calculateWhatYouPay() {
+    whatYouPay.text =
+        ((double.parse(totalPrice.text) * double.parse(tax.text) / 100) +
+                double.parse(totalPrice.text))
+            .toStringAsFixed(2);
+  }
+
+  calculateDiscount(String value) {
     calculateWhatYouPay();
-    try{
-      if(value.isNotEmpty) {
+    try {
+      if (value.isNotEmpty) {
         whatYouPay.text = (double.parse(whatYouPay.text) -
-            (double.parse(whatYouPay.text) * double.parse(value) / 100))
+                (double.parse(whatYouPay.text) * double.parse(value) / 100))
             .toStringAsFixed(2);
       }
-      }catch(e){
+    } catch (e) {
       print(e.toString());
     }
-
   }
-  calculateRecentMoney(String value){
-    calculateWhatYouPay();
-    try{
-      if(value.isNotEmpty) {
-        delayMoney.text=(double.parse(value)-double.parse(whatYouPay.text)).toStringAsFixed(2);
 
+  calculateRecentMoney(String value) {
+    calculateWhatYouPay();
+    try {
+      if (value.isNotEmpty) {
+        delayMoney.text = (double.parse(value) - double.parse(whatYouPay.text))
+            .toStringAsFixed(2);
       }
-      }catch(e){
+    } catch (e) {
       print(e.toString());
     }
-
   }
 
   // Future<TrailorListsResponse> login ({required String email, required String password,}) async {
@@ -283,5 +454,5 @@ calculateWhatYouPay(){
   //   return lenderResponseModel;
   // }
 
-  void getList (List<Details> details)=> details.map((e) {});
+  // void getList(List<Details> details) => details.map((e) {});
 }

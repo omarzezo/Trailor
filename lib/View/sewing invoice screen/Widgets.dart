@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../constant/constant.dart';
 
@@ -94,10 +95,22 @@ Widget customTextField({
   // required BorderSide borderSide,
   TextEditingController? controller,
   Function(String)? onChange,
+  Function(String)? onFieldSubmitted,
   Function(String?)? onSaved,
+  String? Function(String?)? validator,
+  TextInputAction? textInputAction,
   bool? readOnly=false,
+  TextInputType? textInputType,
 }) {
   return TextFormField(
+    keyboardType: textInputType,
+// inputFormatters: <TextInputFormatter>[
+//   FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+//   FilteringTextInputFormatter.digitsOnly
+//
+// ],
+    textInputAction: textInputAction,
+    onFieldSubmitted:onFieldSubmitted,
     onEditingComplete: (){
       // controller!.clear();
     },
@@ -106,9 +119,7 @@ onChanged: onChange,
     readOnly: readOnly!,
     textAlign: TextAlign.center,
     controller: controller,
-    validator: (val) {
-      return null;
-    },
+    validator: validator,
     decoration: InputDecoration(
       // prefix: Text(text),
 
@@ -202,3 +213,4 @@ Widget MyText ({required String text}){
           fontSize: 12));
 
 }
+

@@ -1,6 +1,10 @@
 import 'package:omar/models/tRCollar.dart';
 import 'package:omar/models/tRCuff.dart';
 import 'package:omar/models/tRModel.dart';
+import 'package:omar/models/tRPocket.dart';
+import 'package:omar/models/tRTailor.dart';
+import 'package:omar/models/tRZipper.dart';
+import 'package:omar/models/trFilling.dart';
 
 import 'Taxrates.dart';
 import 'Users.dart';
@@ -34,14 +38,14 @@ class TrailorListsResponse {
       this.permissions, 
       this.customerGroups, 
       this.paymentType, 
-      this.tRMeasurement, 
-      this.tRTailor, 
-      this.tRFilling, 
-      this.tRZipper, 
+      // this.tRMeasurement,
+      this.tRTailorList,
+      this.tRFillingList,
+      this.tRZipperList,
       this.tRCollarList,
       this.tRCuffList,
       this.tRModelList,
-      this.tRPocket, 
+      this.tRPocketList,
       this.expenseCategories, 
       this.warehouses, 
       this.products, 
@@ -113,10 +117,24 @@ class TrailorListsResponse {
         paymentType?.add(PaymentType.fromJson(v));
       });
     }
-    tRMeasurement = json['TR_Measurement'];
-    tRTailor = json['TR_tailor'];
-    tRFilling = json['TR_Filling'];
-    tRZipper = json['TR_Zipper'];
+    // tRMeasurement = json['TR_Measurement'];
+    if (json['TR_tailor'] != null) {
+      tRTailorList = [];
+      json['TR_tailor'].forEach((v) {
+        tRTailorList?.add(tRTailorModel.fromJson(v));
+      });
+    }
+    if (json['TR_Filling'] != null) {
+      tRFillingList = [];
+      json['TR_Filling'].forEach((v) {
+        tRFillingList?.add(tRFillingModel.fromJson(v));
+      });
+    } if (json['TR_Zipper'] != null) {
+      tRZipperList = [];
+      json['TR_Zipper'].forEach((v) {
+        tRZipperList?.add(tRZipperModel.fromJson(v));
+      });
+    }
     if (json['TR_Collar'] != null) {
       tRCollarList = [];
       json['TR_Collar'].forEach((v) {
@@ -135,7 +153,12 @@ class TrailorListsResponse {
         tRModelList?.add(tRModelModel.fromJson(v));
       });
     }
-    tRPocket = json['TR_Pocket'];
+    if (json['TR_Pocket'] != null) {
+      tRPocketList = [];
+      json['TR_Pocket'].forEach((v) {
+        tRPocketList?.add(tRPocketModel.fromJson(v));
+      });
+    }
     if (json['expense_categories'] != null) {
       expenseCategories = [];
       json['expense_categories'].forEach((v) {
@@ -187,14 +210,14 @@ class TrailorListsResponse {
   List<Permissions>? permissions;
   List<CustomerGroups>? customerGroups;
   List<PaymentType>? paymentType;
-  dynamic tRMeasurement;
-  dynamic tRTailor;
-  dynamic tRFilling;
-  dynamic tRZipper;
+  // dynamic tRMeasurement;
+  List<tRTailorModel>? tRTailorList;
+  List<tRFillingModel>? tRFillingList;
+  List<tRZipperModel>? tRZipperList;
   List<tRCollarModel>? tRCollarList;
   List<tRCuffModel>? tRCuffList;
   List<tRModelModel>? tRModelList;
-  dynamic tRPocket;
+  List<tRPocketModel>? tRPocketList;
   List<ExpenseCategories>? expenseCategories;
   List<Warehouses>? warehouses;
   List<Products>? products;
@@ -237,18 +260,24 @@ class TrailorListsResponse {
     if (paymentType != null) {
       map['payment_type'] = paymentType?.map((v) => v.toJson()).toList();
     }
-    map['TR_Measurement'] = tRMeasurement;
-    map['TR_tailor'] = tRTailor;
-    map['TR_Filling'] = tRFilling;
-    map['TR_Zipper'] = tRZipper;
+    // map['TR_Measurement'] = tRMeasurement;
+    if (tRTailorList != null) {
+      map['TR_tailor'] = tRFillingList?.map((v) => v.toJson()).toList();
+    }if (tRFillingList != null) {
+      map['TR_Filling'] = tRFillingList?.map((v) => v.toJson()).toList();
+    }if (tRZipperList != null) {
+      map['TR_Zipper'] = tRZipperList?.map((v) => v.toJson()).toList();
+    }
+
     if (tRCollarList != null) {
       map['TR_Collar'] = tRCollarList?.map((v) => v.toJson()).toList();
     } if (tRCuffList != null) {
       map['TR_Cuff'] = tRCuffList?.map((v) => v.toJson()).toList();
     } if (tRModelList != null) {
       map['TR_Model'] = tRModelList?.map((v) => v.toJson()).toList();
+    }if (tRPocketList != null) {
+      map['TR_Pocket'] = tRPocketList?.map((v) => v.toJson()).toList();
     }
-    map['TR_Pocket'] = tRPocket;
     if (expenseCategories != null) {
       map['expense_categories'] = expenseCategories?.map((v) => v.toJson()).toList();
     }

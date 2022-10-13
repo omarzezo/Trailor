@@ -637,7 +637,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  ' نوع خيط الجيب : ${cubit.TailOfGebName}'),
+                                                  ' نوع خيط الجيب : ${cubit.PocketName}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -647,7 +647,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  ' نوع الحشوة : ${cubit.hashoaName}'),
+                                                  ' نوع الحشوة : ${cubit.FillingName}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -657,7 +657,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  'نوع الجبذور : ${cubit.GabzourName}'),
+                                                  'نوع الجبذور : ${cubit.ZipperName}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(

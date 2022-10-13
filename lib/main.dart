@@ -6,6 +6,8 @@ import 'package:omar/Controller/Network/Remote%20Data/Dio%20Helper.dart';
 import 'package:omar/Controller/local/shared_pref.dart';
 import 'package:omar/View/home/splash_screen.dart';
 import 'package:omar/View/mobile/mobil%20home.dart';
+import 'package:omar/View/sewing%20invoice%20screen/add_new_customer_screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/customers_details_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/print_screen.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/tast.dart';
@@ -44,7 +46,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => LoginCubit()),
+          BlocProvider(create: (context) => LoginCubit()..getPillsDetails()),
         ],
         child: MaterialApp(
           title: 'Flutter Demo',
@@ -75,6 +77,8 @@ class MyApp extends StatelessWidget {
           home: const SplashScreen(),
           routes: {
             PrintScreen.routeName:(context) => const PrintScreen(),
+            NewUserScreen.routeName:(context) =>  NewUserScreen(),
+            CustomerDetailsScreen.routeName:(context) =>  CustomerDetailsScreen(),
           },
         ));
   }
