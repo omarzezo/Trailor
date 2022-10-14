@@ -232,8 +232,7 @@ class NewUserScreen extends StatelessWidget {
                             Customer customer = Customer(
                               company: companyNameEditingController.text,
                               email: companyEmailAddressEditingController.text,
-                              customerGroupId: int.parse(
-                                  companyGroupIdrEditingController.text),
+                              customerGroupId: int.parse(companyGroupIdrEditingController.text),
                               customerGroupName:
                                   companyGroupNameEditingController.text,
                               vatNo: companyVatNoEditingController.text,
@@ -251,8 +250,7 @@ class NewUserScreen extends StatelessWidget {
 
 
       await cubit.addCustomerResponse(
-          customerModel:
-          CustomerModel(customer: [customer]));
+          customerModel: CustomerModel(customer: [customer]));
       await cubit.getCustomers();
       Navigator.pop(context);
     }

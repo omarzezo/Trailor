@@ -158,6 +158,7 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   List<Companies> customerModel=[];
+
   Future<TrailorListsResponse> login({
     required String email,
     required String password,
@@ -244,6 +245,7 @@ class LoginCubit extends Cubit<LoginState> {
     }
     return pillResponseModel!;
   }
+
   Future<List<Companies>> getCustomers(
       ) async {
     emit(GetCustomerLoadingState());

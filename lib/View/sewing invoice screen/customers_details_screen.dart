@@ -24,7 +24,10 @@ class CustomerDetailsScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: Text("قائمة العملاء"),
+              title: Text("قائمة العملاء",style: GoogleFonts.notoKufiArabic(
+                  color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 16)),
               centerTitle: true,
             ),
             body:SingleChildScrollView(
