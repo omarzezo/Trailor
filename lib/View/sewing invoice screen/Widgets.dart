@@ -40,11 +40,13 @@ Widget textField({
   required BorderSide borderSide,
    TextEditingController? controller,
    Function(String)? onChanged,
+  String? Function(String?)? validator,
    bool? readOnly=false,
 }) {
   return Container(
       // width: MediaQuery.of(context).size.width * 0.07,
-      width: MediaQuery.of(context).size.width * 0.1,
+      // width: MediaQuery.of(context).size.width * 0.2,
+    width: 100,
       // height: 20,
       padding: const EdgeInsets.only(top: 8),
       decoration: const BoxDecoration(
@@ -55,12 +57,12 @@ Widget textField({
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(text,
-              overflow: TextOverflow.ellipsis,
+              // overflow: TextOverflow.visible,
               // maxLines: 1,
               style: GoogleFonts.notoKufiArabic(
                   color: MyConstant().purpleColor,
                   fontWeight: FontWeight.bold,
-                  fontSize: 8)),
+                  fontSize:14)),
           const SizedBox(
             height: 10,
           ),
@@ -71,7 +73,7 @@ Widget textField({
               onChanged: onChanged,
               readOnly: readOnly!,
               textAlign: TextAlign.center,
-              validator: (val) {},
+              validator:validator ,
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderRadius: radius,

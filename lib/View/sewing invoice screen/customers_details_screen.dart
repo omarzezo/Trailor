@@ -13,13 +13,14 @@ class CustomerDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var cubit = LoginCubit.get(context);
 
+    var cubit = LoginCubit.get(context);
+print("the length inside details page${    cubit.companiesCustomerName.length.toString()
+}");
     return Directionality(
       textDirection: TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
-          // TODO: implement listener
         },
         builder: (context, state) {
           return Scaffold(
@@ -30,84 +31,91 @@ class CustomerDetailsScreen extends StatelessWidget {
                 fontSize: 16)),
               centerTitle: true,
             ),
-            body:SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: DataTable(columns: [
+            body:Center(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: SingleChildScrollView(
+scrollDirection: Axis.horizontal,
+                  child: DataTable(
+
+                    columns: [
 
 
-                DataColumn(label:  Expanded(
-                  child: Text("اسم الشركة ",
-                      style: GoogleFonts.notoKufiArabic(
-                          color: MyConstant().purpleColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16)),
-                ),),
-                DataColumn(label:  Expanded(
-                  child: Text("البريد الالكترونى",
-                      style: GoogleFonts.notoKufiArabic(
-                          color: MyConstant().purpleColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16)),
-                ),),
-                DataColumn(label: Expanded(
-                  child: Text(
-                      "رقم تعريف ضريبة  ", style: GoogleFonts.notoKufiArabic(
-                      color: MyConstant().purpleColor,
+                    DataColumn(
+                      label:  Text("اسم الشركة ",
+                          style: GoogleFonts.notoKufiArabic(
+                              color: MyConstant().purpleColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16)),),
+                    DataColumn(label:  Text("البريد الالكترونى",
+                        style: GoogleFonts.notoKufiArabic(
+                            color: MyConstant().purpleColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16)),),
+                    DataColumn(label: Text(
+                        "رقم تعريف ضريبة  ", style: GoogleFonts.notoKufiArabic(
+                        color: MyConstant().purpleColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16)),),
+                    DataColumn(label: Text("عنوان الشركة",
+                        style: GoogleFonts.notoKufiArabic(
+                            color: MyConstant().purpleColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16)),),
+                    DataColumn(label: Text("الرقم البريدى",
+                        style: GoogleFonts.notoKufiArabic(
+                            color: MyConstant().purpleColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16)),),
+                    DataColumn(label: Text("تليفون الشركة",
+                        style: GoogleFonts.notoKufiArabic(
+                            color: MyConstant().purpleColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16)),),
+
+                  ], rows:
+                  List.generate(cubit.companiesCustomerName.length, (index) => DataRow(cells: [
+
+                    DataCell(Text(cubit.companiesCustomerName[index].company ?? "",style: GoogleFonts.notoKufiArabic(
+                      color:  Colors.black,
                       fontWeight: FontWeight.bold,
-                      fontSize: 16)),
-                ),),
-                DataColumn(label: Expanded(
-                  child: Text("عنوان الشركة",
-                      style: GoogleFonts.notoKufiArabic(
-                          color: MyConstant().purpleColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16)),
-                ),),
-                DataColumn(label: Expanded(
-                  child: Text("الرقم البريدى",
-                      style: GoogleFonts.notoKufiArabic(
-                          color: MyConstant().purpleColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16)),
-                ),),
-                DataColumn(label: Expanded(
-                  child: Text("تليفون الشركة",
-                      style: GoogleFonts.notoKufiArabic(
-                          color: MyConstant().purpleColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16)),
-                ),),
-                DataColumn(label: Expanded(
-                  child: Text("رقم قيد الشركة",
-                      style: GoogleFonts.notoKufiArabic(
-                          color: MyConstant().purpleColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16)),
-                ),),
-              ], rows:
-              List.generate(cubit.customerModel.length, (index) => DataRow(cells: [
+                      fontSize: 14))),
+                    DataCell(Text(cubit.companiesCustomerName[index].email ?? "",style: GoogleFonts.notoKufiArabic(
+                        color:  Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16))),
+                    DataCell(Text(cubit.companiesCustomerName[index].vatNo ?? "",style: GoogleFonts.notoKufiArabic(
+          color:  Colors.black,
+          fontWeight: FontWeight.bold,
+          fontSize: 16))),
+                    DataCell(Text(cubit.companiesCustomerName[index].address ?? "",style: GoogleFonts.notoKufiArabic(
+          color:  Colors.black,
+          fontWeight: FontWeight.bold,
+          fontSize: 16))),
+                    DataCell(Text(cubit.companiesCustomerName[index].postalCode ?? "",style: GoogleFonts.notoKufiArabic(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+          fontSize: 16))),
+                    DataCell(Text(cubit.companiesCustomerName[index].phone ?? "",style: GoogleFonts.notoKufiArabic(
+                        color:  Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16))),
+                  ])),
 
-                DataCell(Text(cubit.customerModel[index].company ?? "")),
-                DataCell(Text(cubit.customerModel[index].email ?? "")),
-                DataCell(Text(cubit.customerModel[index].vatNo ?? "")),
-                DataCell(Text(cubit.customerModel[index].address ?? "")),
-                DataCell(Text(cubit.customerModel[index].postalCode ?? "")),
-                DataCell(Text(cubit.customerModel[index].phone ?? "")),
-                DataCell(Text(cubit.customerModel[index].crNo ?? "")),
-              ])),
-
+                  ),
+                ),
               ),
             ),
-            bottomSheet: Row(
+            bottomNavigationBar:Row(
               children: [
                 MaterialButton(onPressed: (){
                   Navigator.pushReplacementNamed(context, NewUserScreen.routeName);
                 },child: Text("اضافة عميل",style: GoogleFonts.notoKufiArabic(
-              color: MyConstant().purpleColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 14)) ,)
+                    color: MyConstant().purpleColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14)) ,)
               ],
-            ),
+            ) ,
           );
         },
       ),

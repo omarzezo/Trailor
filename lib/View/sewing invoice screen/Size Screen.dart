@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
@@ -26,6 +27,7 @@ class SizeScreen extends StatefulWidget {
 
 class _SizeScreenState extends State<SizeScreen> {
   final _formKey = GlobalKey<FormState>();
+  var text="";
 
   List<String> gebType = [
     'جيب باين',
@@ -231,7 +233,44 @@ class _SizeScreenState extends State<SizeScreen> {
                                           MaterialStateProperty.all(
                                               MyConstant().greenColor),
                                     ),
-                                    onPressed: () async {
+                                    onPressed:( tRTailorValue==null||trModelValue==null||tRCollarValue==null||tRCuffValue==null||tRPocketValue==null||trFillingValue==null||tRZipperValue==null)?
+                                        (){
+                                      if(tRTailorValue==null){
+                                        text="يرجى اختيار الخياط ";
+                                      } if(trModelValue==null){
+                                        text="يرجى اختيار الموديل ";
+
+                                      }if(tRCollarValue==null){
+                                        text="يرجى اختيار نوع الياقة ";
+
+                                      }if(tRCuffValue==null){
+                                        text="يرجى اختيار نوع الكيك";
+
+                                      }if(tRPocketValue==null){
+                                        text="يرجى اختيار نوع الجيب";
+
+                                      }if(trFillingValue==null){
+                                        text="يرجى اختيار نوع الحشو";
+
+                                      }if(tRZipperValue==null){
+                                        text="يرجى اختيار نوع الجبزور";
+
+                                      }
+                                      Fluttertoast.showToast(
+
+                                          msg: text,
+
+
+                                          toastLength: Toast.LENGTH_LONG,
+                                          gravity: ToastGravity.CENTER,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0
+                                      );
+                                    }:
+
+                                        () async {
                                       if (_formKey.currentState!.validate()) {
                                         await cubit.getWidgetImage();
                                         Navigator.pop(context);

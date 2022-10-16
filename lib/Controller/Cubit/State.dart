@@ -8,3 +8,6 @@ class LoginError extends LoginState{}
 class GetCustomerLoadingState  extends LoginState{}
 class GetCustomerSuccessState  extends LoginState{}
 class GetCustomerErrorState  extends LoginState{}
+class AddCustomerLoadingState  extends LoginState{}
+class AddCustomerSuccessState  extends LoginState{}
+class AddCustomerErrorState  extends LoginState{}

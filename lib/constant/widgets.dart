@@ -14,7 +14,7 @@ Widget CustomContainer({
         const SizedBox(height: 5,),
         Text(title , style: GoogleFonts.notoKufiArabic(
             color: color,
-            fontSize: 9.5,
+            fontSize: 14,
             fontWeight: FontWeight.w500
         ),)
       ],

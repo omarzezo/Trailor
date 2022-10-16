@@ -48,7 +48,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
                         Text('اضافة',style: GoogleFonts.notoKufiArabic(
                             color: MyConstant().greenColor,
                             fontWeight: FontWeight.bold,
-                            fontSize: 8),)
+                            fontSize: 14),)
                       ],
                     ),
                     Column(
@@ -58,7 +58,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
                         Text('طباعة فاتورة',style: GoogleFonts.notoKufiArabic(
                             color: MyConstant().greenColor,
                             fontWeight: FontWeight.bold,
-                            fontSize: 8),)
+                            fontSize: 14),textAlign: TextAlign.center,)
                       ],
                     ),
                     Column(
@@ -68,7 +68,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
                         Text('تعديل مقاسات',style: GoogleFonts.notoKufiArabic(
                             color: MyConstant().greenColor,
                             fontWeight: FontWeight.bold,
-                            fontSize: 8),)
+                            fontSize: 14),textAlign: TextAlign.center,)
                       ],
                     ),
                     Column(
@@ -78,7 +78,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
                         Text('عرض',style: GoogleFonts.notoKufiArabic(
                             color: MyConstant().greenColor,
                             fontWeight: FontWeight.bold,
-                            fontSize: 8),)
+                            fontSize: 14),)
                       ],
                     ),
                     Column(
@@ -88,7 +88,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
                         Text('دفعة نقدية',style: GoogleFonts.notoKufiArabic(
                             color: MyConstant().greenColor,
                             fontWeight: FontWeight.bold,
-                            fontSize: 8),)
+                            fontSize: 14),)
                       ],
                     ),
                     Column(
@@ -98,7 +98,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
                             Text('مرتجع',style: GoogleFonts.notoKufiArabic(
                                 color: MyConstant().greenColor,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 8),)
+                                fontSize: 14),)
                           ],
                         ),
                   ]),

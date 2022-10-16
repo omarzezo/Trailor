@@ -158,11 +158,28 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   List<Companies> customerModel=[];
-
+// Future<List<Companies>> getCompaniesDetails()async{
+//   customerModel=[];
+//   Dio dio=Dio();
+//   final response = await dio.get(
+//     'https://cpe-soft.com/admin/api/v1/data?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1',
+//   );
+//   if(response.statusCode==200){
+//
+//     response.data["companies"].forEach((element) {
+//       customerModel.add(Companies.fromJson(element));
+//     });
+//     return customerModel;
+//   }else{
+//     print(response.statusMessage);
+//   }
+//   return customerModel;
+// }
   Future<TrailorListsResponse> login({
     required String email,
     required String password,
   }) async {
+    customerModel=[];
     var response = await http.get(
         Uri.parse(BASEURL +
             "v1/data?api-key=" +
@@ -248,6 +265,8 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<List<Companies>> getCustomers(
       ) async {
+    customerModel=[] ;
+
     emit(GetCustomerLoadingState());
     companiesCustomerName=[];
     Dio dio = Dio();
@@ -267,6 +286,11 @@ class LoginCubit extends Cubit<LoginState> {
       // log(jsonEncode(pillRequestModel));
       response.data["companies"].forEach((element) {
         companiesCustomerName.add(Companies.fromJson(element)) ;
+
+
+
+        customerModel.add(Companies.fromJson(element));
+
         emit(GetCustomerSuccessState());
 
       });
@@ -287,7 +311,9 @@ return companiesCustomerName;
   }
   Future<PillResponseModel> addCustomerResponse(
       {required CustomerModel customerModel}) async {
+emit(AddCustomerLoadingState());
     Dio dio = Dio();
+
     PillResponseModel? pillResponseModel;
 
     dio.options.headers = {
@@ -304,10 +330,13 @@ return companiesCustomerName;
       // log(jsonEncode(pillRequestModel));
       print(response.data);
       pillResponseModel = PillResponseModel.fromJson(response.data);
-
+emit(AddCustomerSuccessState());
       return pillResponseModel;
     } else {
       print(response.statusMessage);
+      emit(AddCustomerErrorState());
+
+
     }
     return pillResponseModel!;
   }

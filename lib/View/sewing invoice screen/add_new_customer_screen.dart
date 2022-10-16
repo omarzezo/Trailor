@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
+import 'package:omar/constant/LoadingPage.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/models/customer.dart';
 
@@ -40,7 +41,6 @@ class NewUserScreen extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
-          // TODO: implement listener
         },
         builder: (context, state) {
           return Scaffold(
@@ -51,218 +51,186 @@ class NewUserScreen extends StatelessWidget {
               elevation: 0,
               centerTitle: true,
               title: Text(
-                "اضافة عميل",
-                style: TextStyle(fontSize: 35, color: Colors.white),
+                "اضافة عميل",style: GoogleFonts.notoKufiArabic(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18),
               ),
             ),
             body: Form(
               key: _formKey,
               child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    TextFormFieldWidget(
-                      text: "اسم الشركة",
-                      textInputAction: TextInputAction.next,
+                child: Container(
+                  // padding: const EdgeInsets.all(20),
+                  margin: const EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      TextFormFieldWidget(
+                        text: "اسم الشركة",
+                        textInputAction: TextInputAction.next,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'ادخل قيمة صحيحة';
+                          }
+                          return null;
+                        },
+                        textEditingController: companyNameEditingController,
+                      ),
+                      TextFormFieldWidget(
+                        text: "البريد الالكترونى",
+                        textInputAction: TextInputAction.next,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'ادخل قيمة صحيحة';
+                          }
+                          return null;
+                        },
+                        textEditingController:
+                            companyEmailAddressEditingController,
+                      ),
+                      TextFormFieldWidget(
+                        text: "رقم جروب العميل",
+                        textInputAction: TextInputAction.next,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'ادخل قيمة صحيحة';
+                          }
+                          return null;
+                        },
+                        textEditingController: companyGroupIdrEditingController,
+                      ),
+                      TextFormFieldWidget(
+                        text: "رقم تعريف ضريبة القيمة المضافة",
+                        textInputAction: TextInputAction.next,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'ادخل قيمة صحيحة';
+                          }
+                          return null;
+                        },
+                        textEditingController: companyVatNoEditingController,
+                      ),
+                      TextFormFieldWidget(
+                        text: "عنوان الشركة",
+                        textInputAction: TextInputAction.next,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'ادخل قيمة صحيحة';
+                          }
+                          return null;
+                        },
+                        textEditingController: companyAddressEditingController,
+                      ),
+                      TextFormFieldWidget(
+                        text: "الرقم البريدى",
+                        textInputAction: TextInputAction.next,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'ادخل قيمة صحيحة';
+                          }
+                          return null;
+                        },
+                        textEditingController: companyPostalCodeEditingController,
+                      ),
+                      TextFormFieldWidget(
+                        text: "الدولة",
+                        textInputAction: TextInputAction.next,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'ادخل قيمة صحيحة';
+                          }
+                          return null;
+                        },
+                        textEditingController: companyCountryEditingController,
+                      ),
+                      TextFormFieldWidget(
+                        text: "رقم تليفون الشركه",
+                        textInputAction: TextInputAction.next,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'ادخل قيمة صحيحة';
+                          }
+                          return null;
+                        },
+                        textEditingController:
+                            companyPhoneNumberEditingController,
+                      ),
+                      TextFormFieldWidget(
+                        text: "رقم قيد الشركة",
+                        textInputAction: TextInputAction.next,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'ادخل قيمة صحيحة';
+                          }
+                          return null;
+                        },
+                        textEditingController: companyCrNoEditingController,
+                      ),
+                      TextFormFieldWidget(
+                        text: "كود الشركه",
+                        textInputAction: TextInputAction.done,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'ادخل قيمة صحيحة';
+                          }
+                          return null;
+                        },
+                        textEditingController: companyOfflineIdEditingController,
+                      ),
+                      Container(
+                          width: double.infinity,
+                          height: 48,
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          child: OutlinedButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  MyConstant().purpleColor),
+                            ),
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                LoadingPage(context).show();
 
-                      validator: (value) {
-                                              if (value == null ||
-                                                  value.isEmpty) {
-                                                return 'ادخل قيمة صحيحة';
-                                              }
-                                              return null;
-                                            },
-                      textEditingController: companyNameEditingController,
-                    ),
-                    TextFormFieldWidget(
-                      text: "البريد الالكترونى",
-                      textInputAction: TextInputAction.next,
+                                // Navigator.pop(context);
+                                Customer customer = Customer(
+                                  company: companyNameEditingController.text,
+                                  email:
+                                      companyEmailAddressEditingController.text,
+                                  customerGroupId: int.parse(
+                                      companyGroupIdrEditingController.text),
+                                  customerGroupName:
+                                      companyGroupNameEditingController.text,
+                                  vatNo: companyVatNoEditingController.text,
+                                  address: companyAddressEditingController.text,
+                                  state: companyStateEditingController.text,
+                                  postalCode:
+                                      companyPostalCodeEditingController.text,
+                                  country: companyCountryEditingController.text,
+                                  phone: companyPhoneNumberEditingController.text,
+                                  crNo: companyCrNoEditingController.text,
+                                  offlineId: int.parse(
+                                      companyOfflineIdEditingController.text),
+                                );
+                                // CustomerModel(customer: [customer]);
+                                //  PillRequestModel customerList=PillRequestModel(productList: [], customerList: [customer], categoryList: [], posRegisterList: [], salesList: [], payment: [], expensesList: []);
 
-                      validator: (value) {
-                                              if (value == null ||
-                                                  value.isEmpty) {
-                                                return 'ادخل قيمة صحيحة';
-                                              }
-                                              return null;
-                                            },
-                      textEditingController: companyEmailAddressEditingController,
-                    ),
-                    TextFormFieldWidget(
-                      text: "رقم جروب العميل",
-                      textInputAction: TextInputAction.next,
+                                await cubit.addCustomerResponse(
+                                    customerModel:
+                                        CustomerModel(customer: [customer]));
+                                await cubit.getCustomers();
+                                LoadingPage(context).close();
 
-                      validator: (value) {
-                                              if (value == null ||
-                                                  value.isEmpty) {
-                                                return 'ادخل قيمة صحيحة';
-                                              }
-                                              return null;
-                                            },
-                      textEditingController: companyGroupIdrEditingController,
-                    ),
-                    TextFormFieldWidget(
-                      text: "نوع جروب العميل",
-                      textInputAction: TextInputAction.next,
-
-                      validator: (value) {
-                                              if (value == null ||
-                                                  value.isEmpty) {
-                                                return 'ادخل قيمة صحيحة';
-                                              }
-                                              return null;
-                                            },
-                      textEditingController: companyGroupNameEditingController,
-                    ),
-                    TextFormFieldWidget(
-                      text: "رقم تعريف ضريبة القيمة المضافة",
-                      textInputAction: TextInputAction.next,
-
-                      validator: (value) {
-                                              if (value == null ||
-                                                  value.isEmpty) {
-                                                return 'ادخل قيمة صحيحة';
-                                              }
-                                              return null;
-                                            },
-                      textEditingController: companyVatNoEditingController,
-                    ),
-                    TextFormFieldWidget(
-                      text: "عنوان الشركة",
-                      textInputAction: TextInputAction.next,
-
-                      validator: (value) {
-                                              if (value == null ||
-                                                  value.isEmpty) {
-                                                return 'ادخل قيمة صحيحة';
-                                              }
-                                              return null;
-                                            },
-                      textEditingController: companyAddressEditingController,
-                    ),
-                    TextFormFieldWidget(
-                      text: "المحافظة",
-                      textInputAction: TextInputAction.next,
-
-                      validator: (value) {
-                                              if (value == null ||
-                                                  value.isEmpty) {
-                                                return 'ادخل قيمة صحيحة';
-                                              }
-                                              return null;
-                                            },
-                      textEditingController: companyStateEditingController,
-                    ),
-                    TextFormFieldWidget(
-                      text: "الرقم البريدى",
-                      textInputAction: TextInputAction.next,
-
-                      validator: (value) {
-                                              if (value == null ||
-                                                  value.isEmpty) {
-                                                return 'ادخل قيمة صحيحة';
-                                              }
-                                              return null;
-                                            },
-                      textEditingController: companyPostalCodeEditingController,
-                    ),
-                    TextFormFieldWidget(
-                      text: "الدولة",
-                      textInputAction: TextInputAction.next,
-
-                      validator: (value) {
-                                              if (value == null ||
-                                                  value.isEmpty) {
-                                                return 'ادخل قيمة صحيحة';
-                                              }
-                                              return null;
-                                            },
-                      textEditingController: companyCountryEditingController,
-                    ),
-                    TextFormFieldWidget(
-                      text: "رقم تليفون الشركه",
-                      textInputAction: TextInputAction.next,
-
-                      validator: (value) {
-                                              if (value == null ||
-                                                  value.isEmpty) {
-                                                return 'ادخل قيمة صحيحة';
-                                              }
-                                              return null;
-                                            },
-                      textEditingController: companyPhoneNumberEditingController,
-                    ),
-                    TextFormFieldWidget(
-                      text: "رقم قيد الشركة",
-                      textInputAction: TextInputAction.next,
-
-                      validator: (value) {
-                                              if (value == null ||
-                                                  value.isEmpty) {
-                                                return 'ادخل قيمة صحيحة';
-                                              }
-                                              return null;
-                                            },
-                      textEditingController: companyCrNoEditingController,
-                    ),
-                    TextFormFieldWidget(
-                      text: "كود الشركه",
-                      textInputAction: TextInputAction.done,
-
-                      validator: (value) {
-                                              if (value == null ||
-                                                  value.isEmpty) {
-                                                return 'ادخل قيمة صحيحة';
-                                              }
-                                              return null;
-                                            },
-                      textEditingController: companyOfflineIdEditingController,
-                    ),
-                    Container(
-                        width: double.infinity,
-                        height: 48,
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 10),
-                        child: OutlinedButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                                MyConstant().purpleColor),
-                          ),
-                          onPressed: () async {
-                            if (_formKey.currentState!.validate()) {
-                            // Navigator.pop(context);
-                            Customer customer = Customer(
-                              company: companyNameEditingController.text,
-                              email: companyEmailAddressEditingController.text,
-                              customerGroupId: int.parse(companyGroupIdrEditingController.text),
-                              customerGroupName:
-                                  companyGroupNameEditingController.text,
-                              vatNo: companyVatNoEditingController.text,
-                              address: companyAddressEditingController.text,
-                              state: companyStateEditingController.text,
-                              postalCode: companyPostalCodeEditingController.text,
-                              country: companyCountryEditingController.text,
-                              phone: companyPhoneNumberEditingController.text,
-                              crNo: companyCrNoEditingController.text,
-                              offlineId: int.parse(
-                                  companyOfflineIdEditingController.text),
-                            );
-                            // CustomerModel(customer: [customer]);
-                            //  PillRequestModel customerList=PillRequestModel(productList: [], customerList: [customer], categoryList: [], posRegisterList: [], salesList: [], payment: [], expensesList: []);
-
-
-      await cubit.addCustomerResponse(
-          customerModel: CustomerModel(customer: [customer]));
-      await cubit.getCustomers();
-      Navigator.pop(context);
-    }
-
-                          },
-                          child: Text('اضافة',
-                              style: GoogleFonts.notoKufiArabic(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18)),
-                        )),
-                  ],
+                                Navigator.pop(context);
+                              }
+                            },
+                            child: Text('اضافة',
+                                style: GoogleFonts.notoKufiArabic(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18)),
+                          )),
+                    ],
+                  ),
                 ),
               ),
             ),
