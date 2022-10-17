@@ -149,70 +149,74 @@ class _TabletHomeState extends State<TabletHome> {
                         ],
                         color: Colors.white,
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        textDirection: TextDirection.rtl,
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                _scaffoldKey.currentState!.openDrawer();
-                              },
-                              icon: const Icon(
-                                Icons.menu,
-                                color: Colors.purple,
-                                size: 30,
-                              )),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Text('الرئسية',
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          textDirection: TextDirection.rtl,
+                          children: [
+                            IconButton(
+                                onPressed: () {
+                                  _scaffoldKey.currentState!.openDrawer();
+                                },
+                                icon: const Icon(
+                                  Icons.menu,
+                                  color: Colors.purple,
+                                  size: 30,
+                                )),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: Text('الرئسية',
+                                  style: GoogleFonts.notoKufiArabic(
+                                      color: Colors.purple,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                            // const SizedBox(width: 5,),
+                            Container(height: 40,width:MediaQuery.of(context).size.width/5,
+                                child:Image.asset('image/logo app.png',width: 40,height: 40,)),
+                            // const Spacer(),
+                            Container(
+                              width: 1.2,
+                              color: Colors.purple.withOpacity(0.5),
+                              height: 50,
+                              margin: const EdgeInsets.only(left: 5, right: 5),
+                            ),
+                             Text('مركز الابتكار للخياطة',
                                 style: GoogleFonts.notoKufiArabic(
                                     color: Colors.purple,
-                                    fontSize: 18,
+                                    fontSize: 12,
                                     fontWeight: FontWeight.bold)),
-                          ),
-                          // const SizedBox(width: 5,),
-                          Container(height: 40,width:MediaQuery.of(context).size.width/5,
-                              child:Image.asset('image/logo app.png',width: 40,height: 40,)),
-                          // const Spacer(),
-                          Container(
-                            width: 1.2,
-                            color: Colors.purple.withOpacity(0.5),
-                            height: 50,
-                            margin: const EdgeInsets.only(left: 5, right: 5),
-                          ),
-                           Text('مركز الابتكار للخياطة',
-                              style: GoogleFonts.notoKufiArabic(
-                                  color: Colors.purple,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold)),
-                          const SizedBox(width: 10),
-                          CustomContainer(
+                            const SizedBox(width: 10),
+                            CustomContainer(
+                                color: Colors.purple,
+                                title: 'فاتورة خياطة',
+                                titleImage: 'image/invoices.png'),
+                            const SizedBox(width: 20,),
+                            CustomContainer(
                               color: Colors.purple,
-                              title: 'فاتورة خياطة',
-                              titleImage: 'image/invoices.png'),
-                          const SizedBox(width: 20,),
-                          CustomContainer(
-                            color: Colors.purple,
-                            title: 'طباعة المقاسات',
-                            titleImage: 'image/measurement.png',
-                          ),
-                          const SizedBox(width: 20,),
-                          CustomContainer(
-                              titleImage: 'image/cutting.png',
-                              color: Colors.purple,
-                              title: 'تاكيد القص'),
-                          const SizedBox(width: 20,),
-                          CustomContainer(
-                              titleImage: 'image/task.png',
-                              color: Colors.purple,
-                              title: 'استلام المعمل'),
-                          const SizedBox(width: 20,),
-                          CustomContainer(
-                              titleImage: 'image/clothes (1).png',
-                              color: Colors.purple,
-                              title: 'تسليم الثياب'),
-                        ],
+                              title: 'طباعة المقاسات',
+                              titleImage: 'image/measurement.png',
+                            ),
+                            const SizedBox(width: 20,),
+                            CustomContainer(
+                                titleImage: 'image/cutting.png',
+                                color: Colors.purple,
+                                title: 'تاكيد القص'),
+                            const SizedBox(width: 20,),
+                            CustomContainer(
+                                titleImage: 'image/task.png',
+                                color: Colors.purple,
+                                title: 'استلام المعمل'),
+                            const SizedBox(width: 20,),
+                            CustomContainer(
+                                titleImage: 'image/clothes (1).png',
+                                color: Colors.purple,
+                                title: 'تسليم الثياب'),
+
+                          ],
+                        ),
                       ),
                     ),
                   ],

@@ -74,6 +74,7 @@ class MobileHome extends StatelessWidget {
         child: Directionality(
           textDirection: TextDirection.rtl,
           child: Column(
+
             children: [
               Container(
                 padding: const EdgeInsets.only(left: 10),
@@ -111,40 +112,51 @@ class MobileHome extends StatelessWidget {
               ),
               Container(
                 height: 70,
-                width: MediaQuery.of(context).size.width/1,
+                // width: double.infinity,
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 margin: const EdgeInsets.symmetric(vertical: 7,horizontal: 10),
                 decoration: const BoxDecoration(
                     border: Border(bottom: BorderSide(color: Colors.green)),
                   color: Colors.white
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    CustomContainer(
-                        color: Colors.purple,
-                        title: 'فاتورة خياطة',
-                        titleImage: 'image/invoices.png'),
-                    CustomContainer(
-                        color: Colors.purple,
-                        title: 'طباعة المقاسات',
-                        titleImage: 'image/measurement.png',
-                    ),
-                    CustomContainer(
-                        titleImage: 'image/cutting.png',
-                        color: Colors.purple,
-                        title: 'تاكيد القص'),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      CustomContainer(
+                          color: Colors.purple,
+                          title: 'فاتورة خياطة',
+                          titleImage: 'image/invoices.png'),
+                      const SizedBox(width: 10),
 
-                    CustomContainer(
-                        titleImage: 'image/task.png',
-                        color: Colors.purple,
-                        title: 'استلام المعمل'),
+                      CustomContainer(
+                          color: Colors.purple,
+                          title: 'طباعة المقاسات',
+                          titleImage: 'image/measurement.png',
+                      ),
+                      const SizedBox(width: 10),
 
-                    CustomContainer(
-                        titleImage: 'image/clothes (1).png',
-                        color: Colors.purple,
-                        title: 'تسليم الثياب'),
-                  ],
+                      CustomContainer(
+                          titleImage: 'image/cutting.png',
+                          color: Colors.purple,
+                          title: 'تاكيد القص'),
+                      const SizedBox(width: 10),
+
+
+                      CustomContainer(
+                          titleImage: 'image/task.png',
+                          color: Colors.purple,
+                          title: 'استلام المعمل'),
+                      const SizedBox(width: 10),
+
+
+                      CustomContainer(
+                          titleImage: 'image/clothes (1).png',
+                          color: Colors.purple,
+                          title: 'تسليم الثياب'),
+                    ],
+                  ),
                 ),
               ),
               // const Spacer(),

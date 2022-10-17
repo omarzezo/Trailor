@@ -17,6 +17,7 @@ class _TabletTabBarScreenState extends State<TabletTabBarScreen> {
       length: 5,
       child: Scaffold(
         body: Column(
+
           children: [
             TabBar(
                 tabs: [
