@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:omar/View/Data%20Table/custom%20table.dart';
 import 'package:omar/View/Data%20Table/data-table%20screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/Size%20Screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/custom_table_sweing.dart';
@@ -108,8 +109,9 @@ class _TabBarScreenState extends State<TabBarScreen> {
                       physics: NeverScrollableScrollPhysics(),
                         children: [
                       SewingScreen(),
-
-                          DataTableScreen(),
+                          // CustomTableSweing(),
+                          CustomTable(),
+                          // DataTableScreen(),
                           SizedBox(),
                           SizedBox(),
                        SizedBox(),

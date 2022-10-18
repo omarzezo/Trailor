@@ -15,8 +15,7 @@ class CustomerDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     var cubit = LoginCubit.get(context);
-print("the length inside details page${    cubit.companiesCustomerName.length.toString()
-}");
+
     return Directionality(
       textDirection: TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(

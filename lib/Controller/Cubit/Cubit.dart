@@ -18,6 +18,7 @@ import 'package:omar/models/Users.dart';
 import 'package:omar/models/customer.dart';
 import 'package:omar/models/pillResponse.dart';
 import 'package:omar/models/pillsResponsemodel.dart';
+import 'package:omar/View/Data Table/model.dart' as data;
 import 'package:omar/models/sizeModel.dart';
 import 'package:omar/models/tRCollar.dart';
 import 'package:omar/models/tRCuff.dart';
@@ -83,6 +84,7 @@ class LoginCubit extends Cubit<LoginState> {
   TextEditingController onlinePayment = TextEditingController();
   TextEditingController cheeckPayment = TextEditingController();
   TextEditingController delayMoney = TextEditingController();
+  TextEditingController searchController = TextEditingController();
   String customerName = "";
   String employeeName = "";
   String typeOfClothes = "";
@@ -105,9 +107,11 @@ class LoginCubit extends Cubit<LoginState> {
   String itemCode = "";
   Products? productItem;
   Units? valueItemSize;
-  Companies? userItem;
+  // Companies? userItem;
+  String? userItem;
   Companies? employeeItem;
   PaymentType? paymentTypeItem;
+  int itemIndex=0;
 
 // String paymentCodeName="";
   bool sample = false;
@@ -340,7 +344,14 @@ emit(AddCustomerSuccessState());
     }
     return pillResponseModel!;
   }
+
+  getPillsDetailsForItem(int itemIndex ){
+    // return pillsDetails!.data!.where((element) => element.id==itemId);
+    pillsDetailsItem=pillsDetails!.data![itemIndex];
+    // return pillsDetails!.data![itemIndex];
+  }
   PillsDetails? pillsDetails;
+  data.Data?   pillsDetailsItem;
   Future<PillsDetails> getPillsDetails ()async{
     Dio dio = Dio();
     final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");

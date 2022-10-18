@@ -8,6 +8,7 @@ import 'package:omar/View/home/splash_screen.dart';
 import 'package:omar/View/mobile/mobil%20home.dart';
 import 'package:omar/View/sewing%20invoice%20screen/add_new_customer_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/customers_details_screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/pills_item_data.dart';
 import 'package:omar/View/sewing%20invoice%20screen/print_screen.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/tast.dart';
@@ -79,6 +80,7 @@ class MyApp extends StatelessWidget {
             PrintScreen.routeName:(context) => const PrintScreen(),
             NewUserScreen.routeName:(context) =>  NewUserScreen(),
             CustomerDetailsScreen.routeName:(context) =>  CustomerDetailsScreen(),
+            PillsItemData.routeName:(context) =>  PillsItemData(),
           },
         ));
   }

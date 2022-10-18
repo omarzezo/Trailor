@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
+import 'package:omar/View/sewing%20invoice%20screen/pills_item_data.dart';
 import 'package:omar/constant/constant.dart';
 
 class CustomTableSweing extends StatefulWidget {
@@ -278,175 +279,183 @@ class _CustomTableSweingState extends State<CustomTableSweing> {
                         )),
                     child: Expanded(
                         flex: 1,
-                        child: Row(
-                          children: [
-                            Container(
-                                alignment: Alignment.center,
-                                // color: MyConstant().purpleColor,
-                                height: 40,
-                                width: 40,
-                                decoration: BoxDecoration(
-                                    // color: MyConstant().greenColor.withOpacity(0.1),
-                                    border: Border(
-                                      right: BorderSide(color: Colors.green.withOpacity(0.3)),
-                                    )),
-                                child: const Text('25'),
+                        child: InkWell(
+                          onTap: () {
+                            LoginCubit.get(context).getPillsDetailsForItem( index);
+                            Navigator.pushNamed(context, PillsItemData.routeName);
+                            // cubit.itemIndex=index;
+                          },
+                          child: Row(
 
-                            ),
-                            // Divider(color: MyConstant().greenColor,thickness: 1,),
-                            Container(
-                                alignment: Alignment.center,
+                            children: [
+                              Container(
+                                  alignment: Alignment.center,
+                                  // color: MyConstant().purpleColor,
+                                  height: 40,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                      // color: MyConstant().greenColor.withOpacity(0.1),
+                                      border: Border(
+                                        right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                                      )),
+                                  child: const Text('25'),
 
-                                // color: MyConstant().greenColor,
-                                height: 40,
+                              ),
+                              // Divider(color: MyConstant().greenColor,thickness: 1,),
+                              Container(
+                                  alignment: Alignment.center,
+
+                                  // color: MyConstant().greenColor,
+                                  height: 40,
+                                  width: 40,
+                                  child: const Text('25'),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  decoration:  BoxDecoration(
+                                      border: Border(
+                                        left: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                        right: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                        // top: BorderSide(color: Colors.grey, width: 0.5),
+                                        // bottom: BorderSide(color: Colors.grey, width: 0.5),
+                                      )),
+                                  height: 80,
+                                  width: 100,
+                                  child: Text(cubit.pillsDetails!.data![index].saleStatus!,
+                                      style: GoogleFonts.notoKufiArabic(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 8.5,
+                                      )),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  decoration:  BoxDecoration(
+                                      border: Border(
+                                        left: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                        right: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                      )),
+                                  height: 80,
+                                  width: 100,
+                                  child: Text('${cubit.pillsDetails!.data![index].date}',
+                                      style: GoogleFonts.notoKufiArabic(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 8.5,
+                                      )),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  decoration:  BoxDecoration(
+                                      border: Border(
+                                        left: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                        right: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                      )),
+                                  height: 80,
+                                  width: 100,
+                                  child: Text('${cubit.pillsDetails!.data![index].date}',
+                                      style: GoogleFonts.notoKufiArabic(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 8.5,
+                                      )),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  decoration:  BoxDecoration(
+                                      border: Border(
+                                        left: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                        right: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                      )),
+                                  height: 80,
+                                  width: 100,
+                                  child: Text(cubit.pillsDetails!.data![index].customer!,
+                                      style: GoogleFonts.notoKufiArabic(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 8.5,
+                                      )),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  decoration:  BoxDecoration(
+                                      border: Border(
+                                        left: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                        right: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                      )),
+                                  height: 80,
+                                  width: 100,
+                                  child: Text('${cubit.pillsDetails!.data![index].customerId}',
+                                      style: GoogleFonts.notoKufiArabic(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 8.5,
+                                      )),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  decoration:  BoxDecoration(
+                                      border: Border(
+                                        left: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                        right: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                      )),
+                                  height: 80,
+                                  width: 100,
+                                  child: Text('${cubit.pillsDetails!.data![index].customerId}',
+                                      style: GoogleFonts.notoKufiArabic(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 8.5,
+                                      )),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  decoration:  BoxDecoration(
+                                      border: Border(
+                                        left: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                        right: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                      )),
+                                  height: 80,
+                                  width: 100,
+                                  child: Text('${cubit.pillsDetails!.data![index].referenceNo}',
+                                      style: GoogleFonts.notoKufiArabic(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 8.5,
+                                      )),
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.center,
+                                decoration:  BoxDecoration(
+                                    border: Border(
+                                      left: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                      right: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                    )),
+                                height: 80,
                                 width: 40,
-                                child: const Text('25'),
-                            ),
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.center,
-                                decoration:  BoxDecoration(
-                                    border: Border(
-                                      left: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                      right: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                      // top: BorderSide(color: Colors.grey, width: 0.5),
-                                      // bottom: BorderSide(color: Colors.grey, width: 0.5),
-                                    )),
-                                height: 80,
-                                width: 100,
-                                child: Text(cubit.pillsDetails!.data![index].saleStatus!,
-                                    style: GoogleFonts.notoKufiArabic(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 8.5,
-                                    )),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.center,
-                                decoration:  BoxDecoration(
-                                    border: Border(
-                                      left: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                      right: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                    )),
-                                height: 80,
-                                width: 100,
-                                child: Text('${cubit.pillsDetails!.data![index].date}',
-                                    style: GoogleFonts.notoKufiArabic(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 8.5,
-                                    )),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.center,
-                                decoration:  BoxDecoration(
-                                    border: Border(
-                                      left: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                      right: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                    )),
-                                height: 80,
-                                width: 100,
-                                child: Text('${cubit.pillsDetails!.data![index].date}',
-                                    style: GoogleFonts.notoKufiArabic(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 8.5,
-                                    )),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.center,
-                                decoration:  BoxDecoration(
-                                    border: Border(
-                                      left: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                      right: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                    )),
-                                height: 80,
-                                width: 100,
-                                child: Text(cubit.pillsDetails!.data![index].customer!,
-                                    style: GoogleFonts.notoKufiArabic(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 8.5,
-                                    )),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.center,
-                                decoration:  BoxDecoration(
-                                    border: Border(
-                                      left: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                      right: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                    )),
-                                height: 80,
-                                width: 100,
                                 child: Text('${cubit.pillsDetails!.data![index].customerId}',
                                     style: GoogleFonts.notoKufiArabic(
-                                      color: Colors.black,
+                                      color: Colors.green,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 8.5,
                                     )),
                               ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.center,
-                                decoration:  BoxDecoration(
-                                    border: Border(
-                                      left: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                      right: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                    )),
-                                height: 80,
-                                width: 100,
-                                child: Text('${cubit.pillsDetails!.data![index].customerId}',
-                                    style: GoogleFonts.notoKufiArabic(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 8.5,
-                                    )),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.center,
-                                decoration:  BoxDecoration(
-                                    border: Border(
-                                      left: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                      right: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                    )),
-                                height: 80,
-                                width: 100,
-                                child: Text('${cubit.pillsDetails!.data![index].referenceNo}',
-                                    style: GoogleFonts.notoKufiArabic(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 8.5,
-                                    )),
-                              ),
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              decoration:  BoxDecoration(
-                                  border: Border(
-                                    left: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                    right: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                  )),
-                              height: 80,
-                              width: 40,
-                              child: Text('${cubit.pillsDetails!.data![index].customerId}',
-                                  style: GoogleFonts.notoKufiArabic(
-                                    color: Colors.green,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 8.5,
-                                  )),
-                            ),
-                          ],
+                            ],
+                          ),
                         )),
                   ),
                   itemCount: cubit.pillsDetails!.data!.length,

@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/View/Data%20Table/widget%20table.dart';
+import 'package:omar/View/sewing%20invoice%20screen/pills_item_data.dart';
 
 import 'model.dart';
 
@@ -18,6 +19,7 @@ class DataTableScreen extends StatefulWidget {
 class _DataTableScreenState extends State<DataTableScreen> {
   // late List<Details> details;
   // List<Details> selectItem = [];
+  int itemIndex=0;
   final columns = [
     'الحالة',
     'تاريخ التسليم',
@@ -195,6 +197,7 @@ class _DataTableScreenState extends State<DataTableScreen> {
                       Expanded(
                         child: ListView.separated(
                             itemBuilder: (context, index) {
+                              itemIndex=index;
                               return Text('1' ,style: GoogleFonts.lato(
                                   fontSize: 18,
                                   fontWeight: FontWeight.normal,
@@ -228,6 +231,7 @@ class _DataTableScreenState extends State<DataTableScreen> {
       .toList();
 
   List<DataRow2> getRows(List<Data> detail) => detail.map((Data det) {
+
         final cells = [
           det.saleStatus,
           det.date!.split( " ").first,
@@ -240,6 +244,7 @@ class _DataTableScreenState extends State<DataTableScreen> {
           // det.num
         ];
         return DataRow2(
+
             // selected: selectItem.contains(det),
             // color: MaterialStateProperty.all(Colors.black12),
             // // specificRowHeight: 40,
@@ -253,10 +258,18 @@ class _DataTableScreenState extends State<DataTableScreen> {
       }).toList();
 
   List<DataCell> getCells(List<dynamic> cells) =>
-      cells.map((data) => DataCell(Text('$data' , style: GoogleFonts.notoKufiArabic(
+      cells.map((data) => DataCell(
+
+          InkWell(
+            onTap: (){
+              // LoginCubit.get(context).getPillsDetailsForItem( LoginCubit.get(context).itemIndex);
+              // Navigator.pushNamed(context, PillsItemData.routeName);
+            },
+            child: Text('$data' , style: GoogleFonts.notoKufiArabic(
         fontSize: 10,
         fontWeight: FontWeight.normal
-      ),))).toList();
+      ),),
+          ))).toList();
 
   void onSort(int columnIndex, bool ascending) {
     if (columnIndex == 0) {
