@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -198,12 +199,40 @@ class _SizeScreenState extends State<SizeScreen> {
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
                                         color: Colors.white,
-                                        border: Border.all(
-                                            color: MyConstant().greenColor,
-                                            width: 1.5)),
+                                        ),
                                     padding: const EdgeInsets.only(right: 10),
                                     child: DropdownButtonHideUnderline(
-                                      child: DropdownButton(
+                                      child:  DropdownButton2(
+                                        iconEnabledColor:
+                                        Colors.white,
+                                        iconDisabledColor:
+                                        Colors.grey,
+                                        buttonHeight: 100,
+                                        buttonWidth: 160,
+                                        // buttonElevation: 2,
+                                        itemHeight: 50,
+                                        itemPadding:
+                                        const EdgeInsets.only(
+                                            left: 14,
+                                            right: 14),
+                                        dropdownMaxHeight: 200,
+                                        dropdownWidth: 200,
+
+
+                                        dropdownDecoration:
+                                        BoxDecoration(
+                                          borderRadius:
+                                          BorderRadius.circular(
+                                              5),
+                                          color: Colors.purple,
+                                        ),
+
+                                        dropdownElevation: 8,
+                                        scrollbarRadius:
+                                        const Radius.circular(
+                                            20),
+                                        scrollbarThickness: 6,
+                                        scrollbarAlwaysShow: true,
                                         items: cubit.tRTailorList.map(tRTailorItemBuild).toList(),
                                         value: tRTailorValue,
                                         isExpanded: true,
@@ -213,11 +242,19 @@ class _SizeScreenState extends State<SizeScreen> {
                                             cubit.TaillorName = value.TailorName!;
                                           });
                                         },
-                                        iconEnabledColor: Colors.white,
-                                        iconSize: 20,
+                                        iconSize: 25,
                                         icon: Container(
-                                          color: Colors.green,
-                                          child: const Icon(
+                                          decoration: const BoxDecoration(
+                                            color: Colors.green,
+                                            borderRadius:
+                                            BorderRadius.only(
+                                                bottomLeft: Radius
+                                                    .circular(
+                                                    5),
+                                                topLeft: Radius
+                                                    .circular(
+                                                    5)),
+                                          ),                                          child: const Icon(
                                               Icons.keyboard_arrow_down_sharp),
                                         ),
                                       ),
@@ -1104,13 +1141,49 @@ class _SizeScreenState extends State<SizeScreen> {
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(5),
-                                              border: Border.all(
-                                                  color:
-                                                      MyConstant().greenColor,
-                                                  width: 1.5)),
+                                             ),
                                           child: DropdownButtonHideUnderline(
 
-                                            child: DropdownButton(
+                                            child:DropdownButton2(
+                                              iconEnabledColor:
+                                              Colors.white,
+                                              iconDisabledColor:
+                                              Colors.grey,
+                                              buttonHeight: 100,
+                                              buttonWidth: 160,
+                                              // buttonElevation: 2,
+                                              itemHeight: 50,
+                                              itemPadding:
+                                              const EdgeInsets.only(
+                                                  left: 14,
+                                                  right: 14),
+                                              dropdownMaxHeight: 200,
+                                              dropdownWidth: 200,
+
+                                              buttonDecoration:
+                                              BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(
+                                                    5),
+                                                // border: Border.all(
+                                                //   color: Colors.black26,
+                                                // ),
+                                                color: Colors.purple,
+                                              ),
+                                              dropdownDecoration:
+                                              BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(
+                                                    5),
+                                                color: Colors.purple,
+                                              ),
+
+                                              dropdownElevation: 8,
+                                              scrollbarRadius:
+                                              const Radius.circular(
+                                                  20),
+                                              scrollbarThickness: 6,
+                                              scrollbarAlwaysShow: true,
 
                                               items: cubit.tRModelList
                                                   .map(trModelItemBuild)
@@ -1127,11 +1200,19 @@ class _SizeScreenState extends State<SizeScreen> {
                                                       value.modelTypeID!);
                                                 });
                                               },
-                                              iconEnabledColor: Colors.white,
-                                              iconSize: 20,
+                                              iconSize: 25,
                                               icon: Container(
-                                                color: Colors.green,
-                                                child: const Icon(Icons
+                                                decoration: const BoxDecoration(
+                                                  color: Colors.green,
+                                                  borderRadius:
+                                                  BorderRadius.only(
+                                                      bottomLeft: Radius
+                                                          .circular(
+                                                          5),
+                                                      topLeft: Radius
+                                                          .circular(
+                                                          5)),
+                                                ),                                                child: const Icon(Icons
                                                     .keyboard_arrow_down_sharp),
                                               ),
                                             ),
@@ -1170,12 +1251,48 @@ class _SizeScreenState extends State<SizeScreen> {
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(5),
-                                              border: Border.all(
-                                                  color:
-                                                      MyConstant().greenColor,
-                                                  width: 1.5)),
+                                             ),
                                           child: DropdownButtonHideUnderline(
-                                            child: DropdownButton(
+                                            child:  DropdownButton2(
+                                              iconEnabledColor:
+                                              Colors.white,
+                                              iconDisabledColor:
+                                              Colors.grey,
+                                              buttonHeight: 100,
+                                              buttonWidth: 160,
+                                              // buttonElevation: 2,
+                                              itemHeight: 50,
+                                              itemPadding:
+                                              const EdgeInsets.only(
+                                                  left: 14,
+                                                  right: 14),
+                                              dropdownMaxHeight: 200,
+                                              dropdownWidth: 200,
+
+                                              buttonDecoration:
+                                              BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(
+                                                    5),
+                                                // border: Border.all(
+                                                //   color: Colors.black26,
+                                                // ),
+                                                color: Colors.purple,
+                                              ),
+                                              dropdownDecoration:
+                                              BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(
+                                                    5),
+                                                color: Colors.purple,
+                                              ),
+
+                                              dropdownElevation: 8,
+                                              scrollbarRadius:
+                                              const Radius.circular(
+                                                  20),
+                                              scrollbarThickness: 6,
+                                              scrollbarAlwaysShow: true,
                                               items: cubit.tRCollarList
                                                   .map(trCollerItemBuild)
                                                   .toList(),
@@ -1192,11 +1309,19 @@ class _SizeScreenState extends State<SizeScreen> {
                                                           value.CollarTypeId!);
                                                 });
                                               },
-                                              iconEnabledColor: Colors.white,
-                                              iconSize: 20,
+                                              iconSize: 25,
                                               icon: Container(
-                                                color: Colors.green,
-                                                child: const Icon(Icons
+                                                decoration: const BoxDecoration(
+                                                  color: Colors.green,
+                                                  borderRadius:
+                                                  BorderRadius.only(
+                                                      bottomLeft: Radius
+                                                          .circular(
+                                                          5),
+                                                      topLeft: Radius
+                                                          .circular(
+                                                          5)),
+                                                ),                                                child: const Icon(Icons
                                                     .keyboard_arrow_down_sharp),
                                               ),
                                             ),
@@ -1235,12 +1360,48 @@ class _SizeScreenState extends State<SizeScreen> {
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(5),
-                                              border: Border.all(
-                                                  color:
-                                                      MyConstant().greenColor,
-                                                  width: 1.5)),
+                                              ),
                                           child: DropdownButtonHideUnderline(
-                                            child: DropdownButton(
+                                            child:  DropdownButton2(
+                                              iconEnabledColor:
+                                              Colors.white,
+                                              iconDisabledColor:
+                                              Colors.grey,
+                                              buttonHeight: 100,
+                                              buttonWidth: 160,
+                                              // buttonElevation: 2,
+                                              itemHeight: 50,
+                                              itemPadding:
+                                              const EdgeInsets.only(
+                                                  left: 14,
+                                                  right: 14),
+                                              dropdownMaxHeight: 200,
+                                              dropdownWidth: 200,
+
+                                              buttonDecoration:
+                                              BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(
+                                                    5),
+                                                // border: Border.all(
+                                                //   color: Colors.black26,
+                                                // ),
+                                                color: Colors.purple,
+                                              ),
+                                              dropdownDecoration:
+                                              BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(
+                                                    5),
+                                                color: Colors.purple,
+                                              ),
+
+                                              dropdownElevation: 8,
+                                              scrollbarRadius:
+                                              const Radius.circular(
+                                                  20),
+                                              scrollbarThickness: 6,
+                                              scrollbarAlwaysShow: true,
                                               items: cubit.tRCuffList
                                                   .map(trCuffItemBuild)
                                                   .toList(),
@@ -1256,11 +1417,20 @@ class _SizeScreenState extends State<SizeScreen> {
                                                       value.CuffTypeId!);
                                                 });
                                               },
-                                              iconEnabledColor: Colors.white,
-                                              iconSize: 20,
+
+                                              iconSize: 25,
                                               icon: Container(
-                                                color: Colors.green,
-                                                child: const Icon(Icons
+                                                decoration: const BoxDecoration(
+                                                  color: Colors.green,
+                                                  borderRadius:
+                                                  BorderRadius.only(
+                                                      bottomLeft: Radius
+                                                          .circular(
+                                                          5),
+                                                      topLeft: Radius
+                                                          .circular(
+                                                          5)),
+                                                ),                                                child: const Icon(Icons
                                                     .keyboard_arrow_down_sharp),
                                               ),
                                             ),
@@ -1305,12 +1475,48 @@ class _SizeScreenState extends State<SizeScreen> {
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(5),
-                                              border: Border.all(
-                                                  color:
-                                                      MyConstant().greenColor,
-                                                  width: 1.5)),
+                                             ),
                                           child: DropdownButtonHideUnderline(
-                                            child: DropdownButton(
+                                            child:  DropdownButton2(
+                                              iconEnabledColor:
+                                              Colors.white,
+                                              iconDisabledColor:
+                                              Colors.grey,
+                                              buttonHeight: 100,
+                                              buttonWidth: 160,
+                                              // buttonElevation: 2,
+                                              itemHeight: 50,
+                                              itemPadding:
+                                              const EdgeInsets.only(
+                                                  left: 14,
+                                                  right: 14),
+                                              dropdownMaxHeight: 200,
+                                              dropdownWidth: 200,
+
+                                              buttonDecoration:
+                                              BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(
+                                                    5),
+                                                // border: Border.all(
+                                                //   color: Colors.black26,
+                                                // ),
+                                                color: Colors.purple,
+                                              ),
+                                              dropdownDecoration:
+                                              BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(
+                                                    5),
+                                                color: Colors.purple,
+                                              ),
+
+                                              dropdownElevation: 8,
+                                              scrollbarRadius:
+                                              const Radius.circular(
+                                                  20),
+                                              scrollbarThickness: 6,
+                                              scrollbarAlwaysShow: true,
                                               items: cubit.tRPocketList
                                                   .map(tRPocketItemBuild)
                                                   .toList(),
@@ -1327,11 +1533,20 @@ class _SizeScreenState extends State<SizeScreen> {
                                                           value.PocketTypeId!);
                                                 });
                                               },
-                                              iconEnabledColor: Colors.white,
-                                              iconSize: 20,
+
+                                              iconSize: 25,
                                               icon: Container(
-                                                color: Colors.green,
-                                                child: const Icon(Icons
+                                                decoration: const BoxDecoration(
+                                                  color: Colors.green,
+                                                  borderRadius:
+                                                  BorderRadius.only(
+                                                      bottomLeft: Radius
+                                                          .circular(
+                                                          5),
+                                                      topLeft: Radius
+                                                          .circular(
+                                                          5)),
+                                                ),                                                child: const Icon(Icons
                                                     .keyboard_arrow_down_sharp),
                                               ),
                                             ),
@@ -1370,12 +1585,48 @@ class _SizeScreenState extends State<SizeScreen> {
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(5),
-                                              border: Border.all(
-                                                  color:
-                                                      MyConstant().greenColor,
-                                                  width: 1.5)),
+                                             ),
                                           child: DropdownButtonHideUnderline(
-                                            child: DropdownButton(
+                                            child:  DropdownButton2(
+                                              iconEnabledColor:
+                                              Colors.white,
+                                              iconDisabledColor:
+                                              Colors.grey,
+                                              buttonHeight: 100,
+                                              buttonWidth: 160,
+                                              // buttonElevation: 2,
+                                              itemHeight: 50,
+                                              itemPadding:
+                                              const EdgeInsets.only(
+                                                  left: 14,
+                                                  right: 14),
+                                              dropdownMaxHeight: 200,
+                                              dropdownWidth: 200,
+
+                                              buttonDecoration:
+                                              BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(
+                                                    5),
+                                                // border: Border.all(
+                                                //   color: Colors.black26,
+                                                // ),
+                                                color: Colors.purple,
+                                              ),
+                                              dropdownDecoration:
+                                              BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(
+                                                    5),
+                                                color: Colors.purple,
+                                              ),
+
+                                              dropdownElevation: 8,
+                                              scrollbarRadius:
+                                              const Radius.circular(
+                                                  20),
+                                              scrollbarThickness: 6,
+                                              scrollbarAlwaysShow: true,
                                               items: cubit.tRFillingList
                                                   .map(tRFillingItemBuild)
                                                   .toList(),
@@ -1392,11 +1643,20 @@ class _SizeScreenState extends State<SizeScreen> {
                                                           value.FillingTypeId!);
                                                 });
                                               },
-                                              iconEnabledColor: Colors.white,
-                                              iconSize: 20,
+
+                                              iconSize: 25,
                                               icon: Container(
-                                                color: Colors.green,
-                                                child: const Icon(Icons
+                                                decoration: const BoxDecoration(
+                                                  color: Colors.green,
+                                                  borderRadius:
+                                                  BorderRadius.only(
+                                                      bottomLeft: Radius
+                                                          .circular(
+                                                          5),
+                                                      topLeft: Radius
+                                                          .circular(
+                                                          5)),
+                                                ),                                                child: const Icon(Icons
                                                     .keyboard_arrow_down_sharp),
                                               ),
                                             ),
@@ -1435,12 +1695,48 @@ class _SizeScreenState extends State<SizeScreen> {
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(5),
-                                              border: Border.all(
-                                                  color:
-                                                      MyConstant().greenColor,
-                                                  width: 1.5)),
+                                             ),
                                           child: DropdownButtonHideUnderline(
-                                            child: DropdownButton(
+                                            child:  DropdownButton2(
+                                              iconEnabledColor:
+                                              Colors.white,
+                                              iconDisabledColor:
+                                              Colors.grey,
+                                              buttonHeight: 100,
+                                              buttonWidth: 160,
+                                              // buttonElevation: 2,
+                                              itemHeight: 50,
+                                              itemPadding:
+                                              const EdgeInsets.only(
+                                                  left: 14,
+                                                  right: 14),
+                                              dropdownMaxHeight: 200,
+                                              dropdownWidth: 200,
+
+                                              buttonDecoration:
+                                              BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(
+                                                    5),
+                                                // border: Border.all(
+                                                //   color: Colors.black26,
+                                                // ),
+                                                color: Colors.purple,
+                                              ),
+                                              dropdownDecoration:
+                                              BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(
+                                                    5),
+                                                color: Colors.purple,
+                                              ),
+
+                                              dropdownElevation: 8,
+                                              scrollbarRadius:
+                                              const Radius.circular(
+                                                  20),
+                                              scrollbarThickness: 6,
+                                              scrollbarAlwaysShow: true,
                                               items: cubit.tRZipperList
                                                   .map(tRZipperItemBuild)
                                                   .toList(),
@@ -1457,11 +1753,20 @@ class _SizeScreenState extends State<SizeScreen> {
                                                           value.ZipperTypeId!);
                                                 });
                                               },
-                                              iconEnabledColor: Colors.white,
-                                              iconSize: 20,
+
+                                              iconSize: 25,
                                               icon: Container(
-                                                color: Colors.green,
-                                                child: const Icon(Icons
+                                                decoration: const BoxDecoration(
+                                                  color: Colors.green,
+                                                  borderRadius:
+                                                  BorderRadius.only(
+                                                      bottomLeft: Radius
+                                                          .circular(
+                                                          5),
+                                                      topLeft: Radius
+                                                          .circular(
+                                                          5)),
+                                                ),                                                child: const Icon(Icons
                                                     .keyboard_arrow_down_sharp),
                                               ),
                                             ),

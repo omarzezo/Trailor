@@ -18,6 +18,7 @@ class TabBarScreen extends StatefulWidget {
 class _TabBarScreenState extends State<TabBarScreen> {
   @override
   Widget build(BuildContext context) {
+   bool vlaue=MediaQuery.of(context).orientation==Orientation.portrait;
     return SafeArea(
       child: DefaultTabController(
         length: 6,
@@ -30,7 +31,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
               child: Column(
                 children:  [
                   TabBar(
-                    // isScrollable: true,
+                    isScrollable: vlaue,
                     unselectedLabelColor: Colors.grey,
                       labelColor: Colors.purple,
                       unselectedLabelStyle: const TextStyle(
@@ -107,6 +108,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
                       physics: NeverScrollableScrollPhysics(),
                         children: [
                       SewingScreen(),
+
                           DataTableScreen(),
                           SizedBox(),
                           SizedBox(),
