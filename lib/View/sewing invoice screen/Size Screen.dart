@@ -100,7 +100,7 @@ class _SizeScreenState extends State<SizeScreen> {
           return Scaffold(
               backgroundColor: Colors.white,
               body: Container(
-                margin: const EdgeInsets.all(10),
+                // margin: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   border: Border.all(color: MyConstant().purpleColor, width: 3),
                 ),
@@ -116,7 +116,7 @@ class _SizeScreenState extends State<SizeScreen> {
                             Container(
                               height: MediaQuery.of(context).size.height / 10,
                               width: double.infinity,
-                              padding: const EdgeInsets.only(left: 30),
+                              padding: const EdgeInsets.only(left: 30,top: 10),
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                 border: Border(

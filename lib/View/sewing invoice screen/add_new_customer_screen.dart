@@ -66,7 +66,7 @@ class NewUserScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       TextFormFieldWidget(
-                        text: "اسم الشركة",
+                        text: "اسم العميل / الشركة",
                         textInputAction: TextInputAction.next,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -88,17 +88,17 @@ class NewUserScreen extends StatelessWidget {
                         textEditingController:
                             companyEmailAddressEditingController,
                       ),
-                      TextFormFieldWidget(
-                        text: "رقم جروب العميل",
-                        textInputAction: TextInputAction.next,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'ادخل قيمة صحيحة';
-                          }
-                          return null;
-                        },
-                        textEditingController: companyGroupIdrEditingController,
-                      ),
+                      // TextFormFieldWidget(
+                      //   text: "رقم جروب العميل",
+                      //   textInputAction: TextInputAction.next,
+                      //   validator: (value) {
+                      //     if (value == null || value.isEmpty) {
+                      //       return 'ادخل قيمة صحيحة';
+                      //     }
+                      //     return null;
+                      //   },
+                      //   textEditingController: companyGroupIdrEditingController,
+                      // ),
                       TextFormFieldWidget(
                         text: "رقم تعريف ضريبة القيمة المضافة",
                         textInputAction: TextInputAction.next,
@@ -111,11 +111,11 @@ class NewUserScreen extends StatelessWidget {
                         textEditingController: companyVatNoEditingController,
                       ),
                       TextFormFieldWidget(
-                        text: "عنوان الشركة",
+                        text: "العنوان",
                         textInputAction: TextInputAction.next,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'ادخل قيمة صحيحة';
+                            return 'يرجي ادخال العنوان';
                           }
                           return null;
                         },
@@ -144,7 +144,7 @@ class NewUserScreen extends StatelessWidget {
                         textEditingController: companyCountryEditingController,
                       ),
                       TextFormFieldWidget(
-                        text: "رقم تليفون الشركه",
+                        text: "الجوال",
                         textInputAction: TextInputAction.next,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -196,8 +196,8 @@ class NewUserScreen extends StatelessWidget {
                                   company: companyNameEditingController.text,
                                   email:
                                       companyEmailAddressEditingController.text,
-                                  customerGroupId: int.parse(
-                                      companyGroupIdrEditingController.text),
+                                  // customerGroupId: int.parse(companyGroupIdrEditingController.text),
+                                  customerGroupId: 2,
                                   customerGroupName:
                                       companyGroupNameEditingController.text,
                                   vatNo: companyVatNoEditingController.text,

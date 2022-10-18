@@ -42,7 +42,7 @@ scrollDirection: Axis.horizontal,
 
 
                     DataColumn(
-                      label:  Text("اسم الشركة ",
+                      label:  Text("اسم العميل ",
                           style: GoogleFonts.notoKufiArabic(
                               color: MyConstant().purpleColor,
                               fontWeight: FontWeight.bold,
@@ -53,11 +53,11 @@ scrollDirection: Axis.horizontal,
                             fontWeight: FontWeight.bold,
                             fontSize: 16)),),
                     DataColumn(label: Text(
-                        "رقم تعريف ضريبة  ", style: GoogleFonts.notoKufiArabic(
+                        "الرقم الضريبي", style: GoogleFonts.notoKufiArabic(
                         color: MyConstant().purpleColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 16)),),
-                    DataColumn(label: Text("عنوان الشركة",
+                    DataColumn(label: Text("العنوان",
                         style: GoogleFonts.notoKufiArabic(
                             color: MyConstant().purpleColor,
                             fontWeight: FontWeight.bold,
@@ -67,7 +67,7 @@ scrollDirection: Axis.horizontal,
                             color: MyConstant().purpleColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 16)),),
-                    DataColumn(label: Text("تليفون الشركة",
+                    DataColumn(label: Text("الجوال",
                         style: GoogleFonts.notoKufiArabic(
                             color: MyConstant().purpleColor,
                             fontWeight: FontWeight.bold,

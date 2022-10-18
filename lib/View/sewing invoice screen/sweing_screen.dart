@@ -99,7 +99,7 @@ class _SewingScreenState extends State<SewingScreen> {
                       //   ],),
                       // ),
                       Container(
-                        width: MediaQuery.of(context).size.width / 1,
+                        width: MediaQuery.of(context).size.width ,
                         // height: MediaQuery.of(context).size.height/1.5,
                         margin: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 10),
