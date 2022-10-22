@@ -4,10 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/constant/constant.dart';
+import 'package:omar/models/updatePillsStatus.dart';
 
 class PillsItemData extends StatelessWidget {
-  static const routeName="PillsItemData";
-  const PillsItemData({Key? key}) : super(key: key);
+  static const routeName = "PillsItemData";
+  TextEditingController controller=TextEditingController();
+   PillsItemData({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -15,97 +18,300 @@ class PillsItemData extends StatelessWidget {
 
     return Directionality(
       textDirection: TextDirection.rtl,
-
       child: BlocConsumer<LoginCubit, LoginState>(
-        listener: (context, state) {
-        },
+        listener: (context, state) {},
         builder: (context, state) {
           return Scaffold(
-            appBar: AppBar(
-              title: Text("تفاصيل ",style: GoogleFonts.notoKufiArabic(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16)),
-              centerTitle: true,
-            ),
-
-            body: DataTable(
-
-              columns: [
-
-
-                DataColumn(
-                  label:  Text("الحالة  ",
-                      style: GoogleFonts.notoKufiArabic(
-                          color: MyConstant().purpleColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16)),),
-                DataColumn(label:  Text("تاريخ التسليم",
+              appBar: AppBar(
+                title: Text("تفاصيل ",
                     style: GoogleFonts.notoKufiArabic(
-                        color: MyConstant().purpleColor,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 16)),),
-                DataColumn(label: Text(
-                    "تاريخ الفاتورة", style: GoogleFonts.notoKufiArabic(
-                    color: MyConstant().purpleColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16)),),
-                DataColumn(label: Text("العميل",
-                    style: GoogleFonts.notoKufiArabic(
-                        color: MyConstant().purpleColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16)),),
-                DataColumn(label: Text("الحوال",
-                    style: GoogleFonts.notoKufiArabic(
-                        color: MyConstant().purpleColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16)),),
-                DataColumn(label: Text("كود العميل",
-                    style: GoogleFonts.notoKufiArabic(
-                        color: MyConstant().purpleColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16)),),
-                DataColumn(label: Text("المرجع",
-                    style: GoogleFonts.notoKufiArabic(
-                        color: MyConstant().purpleColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16)),),
+                        fontSize: 18)),
+                centerTitle: true,
+              ),
+              body: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 10),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text("الحالة  ",
+                              style: GoogleFonts.notoKufiArabic(
+                                  color: MyConstant().purpleColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18)),
+                          Spacer(),
+                          Container(
+                            // padding: const EdgeInsets.only(left: 10),
 
-              ], rows:
-            [ DataRow(cells: [
+                            width: 125,
+                            child: TextField(
+                              style: GoogleFonts.notoKufiArabic(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18),
+                             controller: controller,
+                              onChanged: (value) {
+                                if(value.isNotEmpty){
+                                  cubit.status=value;
+                                }
+                              },
 
-              DataCell(Text(cubit.pillsDetailsItem!.saleStatus ?? "",style: GoogleFonts.notoKufiArabic(
-                  color:  Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14))),
-              DataCell(Text(cubit.pillsDetailsItem!.date ?? "",style: GoogleFonts.notoKufiArabic(
-                  color:  Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16))),
-              DataCell(Text(cubit.pillsDetailsItem!.date ?? "",style: GoogleFonts.notoKufiArabic(
-                  color:  Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16))),
-              DataCell(Text(cubit.pillsDetailsItem!.customer ?? "",style: GoogleFonts.notoKufiArabic(
-                  color:  Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16))),
-              DataCell(Text("+96658465984",style: GoogleFonts.notoKufiArabic(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16))),
-              DataCell(Text(cubit.pillsDetailsItem!.customerId ?? "",style: GoogleFonts.notoKufiArabic(
-                  color:  Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16))),
-              DataCell(Text(cubit.pillsDetailsItem!.referenceNo ?? "",style: GoogleFonts.notoKufiArabic(
-                  color:  Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16))),
-            ])],
 
-            ),
-          );
+                              decoration: InputDecoration(
+                                hintStyle:  GoogleFonts.notoKufiArabic(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
+                                border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+                                hintText: cubit.status ,
+
+                              ),
+                            ),
+                          ),
+
+                          // Text(cubit.pillsDetailsItem!.saleStatus ?? "",
+                          //     style: GoogleFonts.notoKufiArabic(
+                          //         color: Colors.black,
+                          //         fontWeight: FontWeight.bold,
+                          //         fontSize: 18)),
+                          Spacer(),
+                        ],
+                      ),
+                      SizedBox(height: 10,),
+                      Divider(),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+
+                        children: [
+                          Text("تاريخ التسليم",
+                              style: GoogleFonts.notoKufiArabic(
+                                  color: MyConstant().purpleColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18)),
+                          Spacer(),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 50),
+                              child: Container(
+                                    // padding: const EdgeInsets.only(left: 10),
+
+                              width: 125,
+                                child: TextField(
+                                  onTap: ()async{
+                                    await cubit.getDateFromUser(context);
+
+                                    DatePickerDialog(initialDate: DateTime.now(), firstDate:  DateTime.now(), lastDate:  DateTime.now());
+                                  },
+
+                                  readOnly: true,
+                                  decoration: InputDecoration(
+                                    hintStyle:  GoogleFonts.notoKufiArabic(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18),
+                                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+                                    hintText:  cubit.selectedDate!.split(" ").first
+                                        ??
+                                        "",
+
+                                  ),
+                                ),
+                              ),
+                            ),
+                          // InkWell(
+                          //   onTap: ()async{
+                          //  await cubit.getDateFromUser(context);
+                          //
+                          //     DatePickerDialog(initialDate: DateTime.now(), firstDate:  DateTime.now(), lastDate:  DateTime.now());
+                          //   },
+                          //   child: Padding(
+                          //     padding: const EdgeInsets.only(left: 50),
+                          //     child: Text(
+                          //         cubit.pillsDetailsItem!.deliveryDate!
+                          //                 .split(" ")
+                          //                 .first ??
+                          //             "",
+                          //         style: GoogleFonts.notoKufiArabic(
+                          //             color: Colors.black,
+                          //             fontWeight: FontWeight.bold,
+                          //             fontSize: 18)),
+                          //   ),
+                          // ),
+                          Spacer(),
+
+                        ],
+                      ),
+                      SizedBox(height: 10,),
+                      Divider(),
+
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+
+                        children: [
+                          Text("تاريخ الفاتورة",
+                              style: GoogleFonts.notoKufiArabic(
+                                  color: MyConstant().purpleColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18)),
+                          Spacer(),
+
+                          Padding(
+                            padding: const EdgeInsets.only(left: 50),
+                            child: Text(cubit.pillsDetailsItem!.date!.split(" ").first ?? "",
+                                style: GoogleFonts.notoKufiArabic(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18)),
+                          ),
+
+                          Spacer(),
+
+
+                        ],
+                      ),
+                      SizedBox(height: 10,),
+                      Divider(),
+
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+
+                        children: [
+                          Text("العميل",
+                              style: GoogleFonts.notoKufiArabic(
+                                  color: MyConstant().purpleColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18)),
+                          Spacer(),
+
+                          Text(cubit.pillsDetailsItem!.customer ?? "",
+                              style: GoogleFonts.notoKufiArabic(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18)),
+                          Spacer(),
+
+                        ],
+                      ),
+                      SizedBox(height: 10,),
+                      Divider(),
+
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+
+                        children: [
+                          Text("الحوال",
+                              style: GoogleFonts.notoKufiArabic(
+                                  color: MyConstant().purpleColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18)),
+                          Spacer(),
+
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Text("+96658465984",
+                                style: GoogleFonts.notoKufiArabic(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18)),
+                          ),
+                          Spacer(),
+
+                        ],
+                      ),
+                      SizedBox(height: 10,),
+                      Divider(),
+
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+
+                        children: [
+                          Text("كود العميل",
+                              style: GoogleFonts.notoKufiArabic(
+                                  color: MyConstant().purpleColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18)),
+                          Spacer(),
+
+                          Padding(
+
+                            padding: const EdgeInsets.only(left: 50),
+                            child: Text(cubit.pillsDetailsItem!.customerId ?? "",
+                                style: GoogleFonts.notoKufiArabic(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18)),
+                          ),
+                          Spacer(),
+
+                        ],
+                      ),
+                      SizedBox(height: 10,),
+                      Divider(),
+
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+
+                        children: [
+                          Text("المرجع",
+                              style: GoogleFonts.notoKufiArabic(
+                                  color: MyConstant().purpleColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18)),
+                          Spacer(),
+
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Text(cubit.pillsDetailsItem!.referenceNo ?? "",
+                                style: GoogleFonts.notoKufiArabic(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18)),
+                          ),
+                          Spacer(),
+
+                        ],
+                      ),
+                      SizedBox(height: 50,),
+                      Container(
+                          width: double.infinity,
+                          height: 48,
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          child: OutlinedButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  MyConstant().purpleColor),
+                            ),
+                            onPressed: () async {
+                              try{
+                                UpdatedPillsStatusModel model=UpdatedPillsStatusModel(saleId: cubit.pillsDetailsItem!.id, deliveryDate: cubit.selectedDate, saleStatus: cubit.status, note: "");
+                                cubit.updatePills(model);
+                              }catch(error){
+                                print(error.toString());
+                              }
+
+                            },
+                            child: Text('تعديل',
+                                style: GoogleFonts.notoKufiArabic(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18)),
+                          )),
+
+                    ],
+                  ),
+                ),
+              ));
         },
       ),
     );

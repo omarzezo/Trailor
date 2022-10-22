@@ -76,7 +76,7 @@ class _SizeScreenState extends State<SizeScreen> {
   TypesModel selectedPocket = TypesModel();
   TypesModel selectedGabzor = TypesModel();
   String? frontImage, backImage;
-  double Size = 10;
+  double Size = 12;
 
   @override
   void initState() {
@@ -927,17 +927,17 @@ class _SizeScreenState extends State<SizeScreen> {
                                               borderRadius:
                                               BorderRadius.circular(
                                                   5),
-                                              // border: Border.all(
-                                              //   color: Colors.black26,
-                                              // ),
-                                              color: Colors.purple,
+                                              border: Border.all(
+                                                color: Colors.green,
+                                              ),
+                                              color: Colors.white,
                                             ),
                                             dropdownDecoration:
                                             BoxDecoration(
                                               borderRadius:
                                               BorderRadius.circular(
                                                   5),
-                                              color: Colors.purple,
+                                              color: Colors.white,
                                             ),
 
                                             dropdownElevation: 8,
@@ -1036,17 +1036,17 @@ class _SizeScreenState extends State<SizeScreen> {
                                               borderRadius:
                                               BorderRadius.circular(
                                                   5),
-                                              // border: Border.all(
-                                              //   color: Colors.black26,
-                                              // ),
-                                              color: Colors.purple,
+                                              border: Border.all(
+                                                color: Colors.green,
+                                              ),
+                                              color: Colors.white,
                                             ),
                                             dropdownDecoration:
                                             BoxDecoration(
                                               borderRadius:
                                               BorderRadius.circular(
                                                   5),
-                                              color: Colors.purple,
+                                              color: Colors.white,
                                             ),
 
                                             dropdownElevation: 8,
@@ -1145,17 +1145,17 @@ class _SizeScreenState extends State<SizeScreen> {
                                               borderRadius:
                                               BorderRadius.circular(
                                                   5),
-                                              // border: Border.all(
-                                              //   color: Colors.black26,
-                                              // ),
-                                              color: Colors.purple,
+                                              border: Border.all(
+                                                color: Colors.green,
+                                              ),
+                                              color: Colors.white,
                                             ),
                                             dropdownDecoration:
                                             BoxDecoration(
                                               borderRadius:
                                               BorderRadius.circular(
                                                   5),
-                                              color: Colors.purple,
+                                              color: Colors.white,
                                             ),
 
                                             dropdownElevation: 8,
@@ -1260,17 +1260,17 @@ class _SizeScreenState extends State<SizeScreen> {
                                               borderRadius:
                                               BorderRadius.circular(
                                                   5),
-                                              // border: Border.all(
-                                              //   color: Colors.black26,
-                                              // ),
-                                              color: Colors.purple,
+                                              border: Border.all(
+                                                color: Colors.green,
+                                              ),
+                                              color: Colors.white,
                                             ),
                                             dropdownDecoration:
                                             BoxDecoration(
                                               borderRadius:
                                               BorderRadius.circular(
                                                   5),
-                                              color: Colors.purple,
+                                              color: Colors.white,
                                             ),
 
                                             dropdownElevation: 8,
@@ -1370,17 +1370,17 @@ class _SizeScreenState extends State<SizeScreen> {
                                               borderRadius:
                                               BorderRadius.circular(
                                                   5),
-                                              // border: Border.all(
-                                              //   color: Colors.black26,
-                                              // ),
-                                              color: Colors.purple,
+                                              border: Border.all(
+                                                color: Colors.green,
+                                              ),
+                                              color: Colors.white,
                                             ),
                                             dropdownDecoration:
                                             BoxDecoration(
                                               borderRadius:
                                               BorderRadius.circular(
                                                   5),
-                                              color: Colors.purple,
+                                              color: Colors.white,
                                             ),
 
                                             dropdownElevation: 8,
@@ -1480,17 +1480,17 @@ class _SizeScreenState extends State<SizeScreen> {
                                               borderRadius:
                                               BorderRadius.circular(
                                                   5),
-                                              // border: Border.all(
-                                              //   color: Colors.black26,
-                                              // ),
-                                              color: Colors.purple,
+                                              border: Border.all(
+                                                color: Colors.green,
+                                              ),
+                                              color: Colors.white,
                                             ),
                                             dropdownDecoration:
                                             BoxDecoration(
                                               borderRadius:
                                               BorderRadius.circular(
                                                   5),
-                                              color: Colors.purple,
+                                              color: Colors.white,
                                             ),
 
                                             dropdownElevation: 8,

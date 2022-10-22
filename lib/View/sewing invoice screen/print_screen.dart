@@ -1129,7 +1129,7 @@ class PrintScreen extends StatelessWidget {
                                                         .spaceBetween,
 // crossAxisAlignment: CrossAxisAlignment.center,
                                                 children: [
-                                                  (cubit.fixedPaymentType=="نقدى")?  Expanded(
+                                                  (cubit.fixedPaymentType=="نقدى"||cubit.fixedPaymentType=="شيك بنكى")?  Expanded(
                                                       child: SizedBox(
                                                     width: MediaQuery.of(context)
                                                             .size
@@ -1137,7 +1137,7 @@ class PrintScreen extends StatelessWidget {
                                                         6,
                                                     child: MyText(
                                                         text:
-                                                            ' المدفوع النقدي : ${cubit.cash.text}'),
+                                                            ' المبلغ المدفوع : ${cubit.cash.text}'),
                                                   )): Container(),
                                                   (cubit.fixedPaymentType=="شيك بنكى")?  Expanded(
                                                       child: SizedBox(

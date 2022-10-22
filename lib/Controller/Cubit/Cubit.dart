@@ -3,9 +3,11 @@ import 'dart:math';
 import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:omar/Controller/End%20Point.dart';
 import 'package:omar/Controller/Network/Remote%20Data/Dio%20Helper.dart';
 import 'package:omar/View/Data%20Table/model.dart';
@@ -27,6 +29,7 @@ import 'package:omar/models/tRPocket.dart';
 import 'package:omar/models/tRTailor.dart';
 import 'package:omar/models/tRZipper.dart';
 import 'package:omar/models/trFilling.dart';
+import 'package:omar/models/updatePillsStatus.dart';
 import '../../models/TrailorListsResponse.dart';
 import '../../models/pillRequest.dart';
 import 'State.dart';
@@ -348,12 +351,19 @@ emit(AddCustomerSuccessState());
   getPillsDetailsForItem(int itemIndex ){
     // return pillsDetails!.data!.where((element) => element.id==itemId);
     pillsDetailsItem=pillsDetails!.data![itemIndex];
+    selectedDate=
+        pillsDetailsItem!.deliveryDate!
+            .split(" ")
+            .first ??
+            "";
+   status =pillsDetailsItem!.saleStatus ?? "";
     // return pillsDetails!.data![itemIndex];
   }
   PillsDetails? pillsDetails;
   data.Data?   pillsDetailsItem;
   Future<PillsDetails> getPillsDetails ()async{
     Dio dio = Dio();
+    // final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
     final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
     if(response.statusCode==200){
       print(response.data);
@@ -455,7 +465,6 @@ emit(AddCustomerSuccessState());
   }
 
   calculateDiscount(String value) {
-    calculateWhatYouPay();
     try {
       if (value.isNotEmpty) {
         whatYouPay.text = (double.parse(whatYouPay.text) -
@@ -468,7 +477,6 @@ emit(AddCustomerSuccessState());
   }
 
   calculateRecentMoney(String value) {
-    calculateWhatYouPay();
     try {
       if (value.isNotEmpty) {
         delayMoney.text = (double.parse(value) - double.parse(whatYouPay.text))
@@ -478,8 +486,58 @@ emit(AddCustomerSuccessState());
       print(e.toString());
     }
   }
+  // DateTime selectedDate=DateTime.now();
+  String? selectedDate;
 
-  // Future<TrailorListsResponse> login ({required String email, required String password,}) async {
+  getDateFromUser(BuildContext context) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2015),
+      lastDate: DateTime(2040),
+    );
+    if (pickedDate != null) {
+
+      // selectedDate =  DateFormat("yyyy-MM-dd").format(pickedDate.toUtc()).toString();
+      selectedDate =  DateFormat("yyyy-MM-dd HH:mm:ss").format(pickedDate.toUtc()).toString();
+      emit(AppGetDateFromUserState());
+    } else {
+      return;
+    }
+  }
+  String? status;
+
+  Future<UpdatedPillsResponse> updatePills(UpdatedPillsStatusModel updatedPillsStatusModel)async{
+    Dio dio = Dio();
+    dio.options.headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Accept-Version': 'V1',
+      'Accept-Language': 'en',
+      'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko'
+    };
+    emit(UpdatedPillsResponseLoadingState());
+    final response = await dio.post(
+        'https://cpe-soft.com/admin/api/v1/UpdateSales',
+        data: jsonEncode(updatedPillsStatusModel));
+    print(jsonEncode(updatedPillsStatusModel).toString());
+    if(response.statusCode==200){
+      print(response.data);
+      emit(UpdatedPillsResponseSuccessState());
+      getPillsDetails();
+      return UpdatedPillsResponse.fromJson(response.data);
+
+    }else{
+      print(response.statusMessage);
+      emit(UpdatedPillsResponseErrorState());
+
+
+    }
+    return UpdatedPillsResponse.fromJson(response.data);
+
+  }
+
+// Future<TrailorListsResponse> login ({required String email, required String password,}) async {
   //   TrailorListsResponse  lenderResponseModel=TrailorListsResponse();
   //  await DioHelper.getData(url: URL, query: {
   //     'api-key' :  email,

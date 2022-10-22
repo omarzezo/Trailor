@@ -188,39 +188,44 @@ class NewUserScreen extends StatelessWidget {
                                   MyConstant().purpleColor),
                             ),
                             onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                                LoadingPage(context).show();
+                              try{
+                                if (_formKey.currentState!.validate()) {
+                                  LoadingPage(context).show();
 
-                                // Navigator.pop(context);
-                                Customer customer = Customer(
-                                  company: companyNameEditingController.text,
-                                  email:
-                                      companyEmailAddressEditingController.text,
-                                  // customerGroupId: int.parse(companyGroupIdrEditingController.text),
-                                  customerGroupId: 2,
-                                  customerGroupName:
-                                      companyGroupNameEditingController.text,
-                                  vatNo: companyVatNoEditingController.text,
-                                  address: companyAddressEditingController.text,
-                                  state: companyStateEditingController.text,
-                                  postalCode:
-                                      companyPostalCodeEditingController.text,
-                                  country: companyCountryEditingController.text,
-                                  phone: companyPhoneNumberEditingController.text,
-                                  crNo: companyCrNoEditingController.text,
-                                  offlineId: int.parse(
-                                      companyOfflineIdEditingController.text),
-                                );
-                                // CustomerModel(customer: [customer]);
-                                //  PillRequestModel customerList=PillRequestModel(productList: [], customerList: [customer], categoryList: [], posRegisterList: [], salesList: [], payment: [], expensesList: []);
+                                  // Navigator.pop(context);
+                                  Customer customer = Customer(
+                                    company: companyNameEditingController.text,
+                                    email:
+                                    companyEmailAddressEditingController.text,
+                                    // customerGroupId: int.parse(companyGroupIdrEditingController.text),
+                                    customerGroupId: 2,
+                                    customerGroupName:
+                                    companyGroupNameEditingController.text,
+                                    vatNo: companyVatNoEditingController.text,
+                                    address: companyAddressEditingController.text,
+                                    state: companyStateEditingController.text,
+                                    postalCode:
+                                    companyPostalCodeEditingController.text,
+                                    country: companyCountryEditingController.text,
+                                    phone: companyPhoneNumberEditingController.text,
+                                    crNo: companyCrNoEditingController.text,
+                                    offlineId: int.parse(
+                                        companyOfflineIdEditingController.text),
+                                  );
+                                  // CustomerModel(customer: [customer]);
+                                  //  PillRequestModel customerList=PillRequestModel(productList: [], customerList: [customer], categoryList: [], posRegisterList: [], salesList: [], payment: [], expensesList: []);
 
-                                await cubit.addCustomerResponse(
-                                    customerModel:
-                                        CustomerModel(customer: [customer]));
-                                await cubit.getCustomers();
-                                LoadingPage(context).close();
+                                  await cubit.addCustomerResponse(
+                                      customerModel:
+                                      CustomerModel(customer: [customer]));
+                                  await cubit.getCustomers();
+                                  LoadingPage(context).close();
 
-                                Navigator.pop(context);
+                                  Navigator.pop(context);
+                                }
+
+                              }catch(error){
+print(error.toString());
                               }
                             },
                             child: Text('اضافة',

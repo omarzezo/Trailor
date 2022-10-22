@@ -11,3 +11,7 @@ class GetCustomerErrorState  extends LoginState{}
 class AddCustomerLoadingState  extends LoginState{}
 class AddCustomerSuccessState  extends LoginState{}
 class AddCustomerErrorState  extends LoginState{}
+class UpdatedPillsResponseLoadingState  extends LoginState{}
+class UpdatedPillsResponseSuccessState  extends LoginState{}
+class UpdatedPillsResponseErrorState  extends LoginState{}
+class AppGetDateFromUserState  extends LoginState{}

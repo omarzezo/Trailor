@@ -63,6 +63,8 @@ class _SewingScreenState extends State<SewingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double w=1.1;
+    MediaQuery.of(context).orientation==Orientation.landscape?w=1.1:w=.6;
     var cubit = LoginCubit.get(context);
     return Directionality(
       textDirection: TextDirection.rtl,
@@ -101,7 +103,7 @@ class _SewingScreenState extends State<SewingScreen> {
                       // ),
                       Container(
                         // width: 600,
-                        width: MediaQuery.of(context).size.width / .6,
+                        width: MediaQuery.of(context).size.width / w,
                         // height: MediaQuery.of(context).size.height/1.5,
                         margin: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 10),
@@ -286,17 +288,17 @@ class _SewingScreenState extends State<SewingScreen> {
                                                     borderRadius:
                                                     BorderRadius.circular(
                                                         5),
-                                                    // border: Border.all(
-                                                    //   color: Colors.black26,
-                                                    // ),
-                                                    color: Colors.purple,
+                                                    border: Border.all(
+                                                      color: Colors.green,
+                                                    ),
+                                                    color: Colors.white,
                                                   ),
                                                   dropdownDecoration:
                                                   BoxDecoration(
                                                     borderRadius:
                                                     BorderRadius.circular(
                                                         5),
-                                                    color: Colors.purple,
+                                                    color: Colors.white,
                                                   ),
 
                                                   dropdownElevation: 8,
@@ -317,9 +319,17 @@ class _SewingScreenState extends State<SewingScreen> {
                                                       left: 8,
                                                     ),
                                                     child: TextFormField(
+
                                                       controller: cubit.searchController,
+                                                      style:  GoogleFonts.notoKufiArabic(
+                                                        color: Colors.black,
+                                                        fontWeight: FontWeight.bold,
+                                                        fontSize: 12,
+                                                      ),
                                                       decoration: InputDecoration(
+
                                                         isDense: true,
+
                                                         contentPadding: const EdgeInsets.symmetric(
                                                           horizontal: 10,
                                                           vertical: 8,
@@ -333,7 +343,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                                     ),
                                                   ),
                                                   searchMatchFn: (item, searchValue) {
-                                                    return (item.value.toString().contains(searchValue));
+                                                    return (item.value.toString().toLowerCase().startsWith(searchValue.toLowerCase()));
 
 
                                                   },
@@ -349,7 +359,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                                     child: Center(
                                                       child: Text(item.company!,
                                                           style: GoogleFonts.notoKufiArabic(
-                                                              color: Colors.white,
+                                                              color: Colors.black,
                                                               fontWeight: FontWeight.bold,
                                                               fontSize: 12)),
                                                     ),
@@ -471,16 +481,16 @@ value:cubit.userItem ,
                                               buttonDecoration: BoxDecoration(
                                                 borderRadius:
                                                 BorderRadius.circular(5),
-                                                // border: Border.all(
-                                                //   color: Colors.black26,
-                                                // ),
-                                                color: Colors.purple,
+                                                border: Border.all(
+                                                  color: Colors.green,
+                                                ),
+                                                color: Colors.white,
                                               ),
                                               dropdownDecoration:
                                               BoxDecoration(
                                                 borderRadius:
                                                 BorderRadius.circular(5),
-                                                color: Colors.purple,
+                                                color: Colors.white,
                                               ),
 
                                               dropdownElevation: 8,
@@ -599,17 +609,17 @@ value:cubit.userItem ,
                                                 borderRadius:
                                                 BorderRadius.circular(
                                                     5),
-                                                // border: Border.all(
-                                                //   color: Colors.black26,
-                                                // ),
-                                                color: Colors.purple,
+                                                border: Border.all(
+                                                  color: Colors.green,
+                                                ),
+                                                color: Colors.white,
                                               ),
                                               dropdownDecoration:
                                               BoxDecoration(
                                                 borderRadius:
                                                 BorderRadius.circular(
                                                     5),
-                                                color: Colors.purple,
+                                                color: Colors.white,
                                               ),
 
                                               dropdownElevation: 8,
@@ -727,17 +737,17 @@ value:cubit.userItem ,
                                                 borderRadius:
                                                 BorderRadius.circular(
                                                     5),
-                                                // border: Border.all(
-                                                //   color: Colors.black26,
-                                                // ),
-                                                color: Colors.purple,
+                                                border: Border.all(
+                                                  color: Colors.green,
+                                                ),
+                                                color: Colors.white,
                                               ),
                                               dropdownDecoration:
                                               BoxDecoration(
                                                 borderRadius:
                                                 BorderRadius.circular(
                                                     5),
-                                                color: Colors.purple,
+                                                color: Colors.white,
                                               ),
 
                                               dropdownElevation: 8,
@@ -1051,17 +1061,17 @@ value:cubit.userItem ,
                                                               borderRadius:
                                                               BorderRadius.circular(
                                                                   5),
-                                                              // border: Border.all(
-                                                              //   color: Colors.black26,
-                                                              // ),
-                                                              color: Colors.purple,
+                                                              border: Border.all(
+                                                                color: Colors.green,
+                                                              ),
+                                                              color: Colors.white,
                                                             ),
                                                             dropdownDecoration:
                                                             BoxDecoration(
                                                               borderRadius:
                                                               BorderRadius.circular(
                                                                   5),
-                                                              color: Colors.purple,
+                                                              color: Colors.white,
                                                             ),
 
                                                             dropdownElevation: 8,
@@ -1105,7 +1115,8 @@ value:cubit.userItem ,
                                                     ),
                                                   ],
                                                 )),
-                                            (cubit.fixedPaymentType == "نقدى")
+                                            (cubit.fixedPaymentType == "نقدى"||cubit.fixedPaymentType ==
+                                                "شيك بنكى")
                                                 ? Container(
                                                 width:
                                                 MediaQuery.of(context)
@@ -1114,7 +1125,7 @@ value:cubit.userItem ,
                                                     6,
                                                 child: customTextField(
                                                     text:
-                                                    'المدفوع النقدي',
+                                                    'المبلغ المدفوع',
                                                     controller:
                                                     cubit.cash,
                                                     onChange: (value) {
@@ -1208,17 +1219,17 @@ value:cubit.userItem ,
                                                               borderRadius:
                                                               BorderRadius.circular(
                                                                   5),
-                                                              // border: Border.all(
-                                                              //   color: Colors.black26,
-                                                              // ),
-                                                              color: Colors.purple,
+                                                              border: Border.all(
+                                                                color: Colors.green,
+                                                              ),
+                                                              color: Colors.white,
                                                             ),
                                                             dropdownDecoration:
                                                             BoxDecoration(
                                                               borderRadius:
                                                               BorderRadius.circular(
                                                                   5),
-                                                              color: Colors.purple,
+                                                              color: Colors.white,
                                                             ),
 
                                                             dropdownElevation: 8,
@@ -1305,252 +1316,256 @@ value:cubit.userItem ,
                                   MyConstant().purpleColor),
                             ),
                             onPressed: () async {
-                                LoadingPage(context).show();
+                          try{
+                            LoadingPage(context).show();
 
-                                List<ProductModel> productList = [
-                                  ProductModel(
-                                      id: int.parse(
-                                          cubit.productItem!.id!),
-                                      code: cubit.productItem!.code,
-                                      name: cubit.productItem!.slug,
-                                      category_id: int.parse(cubit
-                                          .productItem!.categoryId!),
-                                      unit: int.parse(
-                                          cubit.productItem!.unit!),
-                                      price: double.parse(
-                                          cubit.productItem!.price!),
-                                      tax_rate: int.parse(
-                                          cubit.productItem!.taxRate!),
-                                      tax_method: cubit.productItem!
-                                          .taxMethod ==
-                                          "0"
-                                          ? false
-                                          : true,
-                                      warehouse: 1),
-                                ];
-                                List<dynamic> customerList = [];
-                                List<dynamic> categoryList = [];
-                                List<dynamic> posRegisterList = [];
-                                List<dynamic> expensesList = [];
-                                List<dynamic> payment = [];
-                                List<salesModel> salesList = [
-                                  salesModel(
-                                    // date: "2022-10-10 20:22:00",
-                                    date: p.DateFormat(
-                                        'yyyy-MM-dd HH:mm')
-                                        .parse(
-                                        DateTime.now().toString())
-                                        .toString(),
-                                    referenceNo: "SALE2022/10/0001",
-                                    customerId:
-                                    int.parse(cubit.users[0].id!),
-                                    dueDate: "2022-08-16T00:00:00",
-                                    hash:
-                                    "51280eb9564fe8aaa0abca09a2921438e7b0ae05d1714c0badb64238144eef8c",
-                                    customer: cubit
-                                        .companiesEmployeeName[0]
-                                        .company,
-                                    biller: cubit.users[0].username,
-                                    billerId: int.parse(cubit
-                                        .companiesEmployeeName[0].id!),
-                                    total: 8.6957,
-                                    discountAllowance: 0.0000,
-                                    returnSaleRef: null,
-                                    returnId: null,
-                                    saleStatus: "completed",
-                                    saleId: null,
-                                    paymentStatus: "paid",
-                                    warehouseCode: "w_1",
-                                    warehouseId: 1,
-                                    grandTotal: 10.0000,
-                                    pos: true,
-                                    surcharge: 0.0000,
-                                    returnSaleTotal: 0.0000,
-                                    paid: 10.0000,
-                                    totalTax: 1.3043,
-                                    note: null,
-                                    staffNote: null,
-                                    productDiscount: null,
-                                    orderDiscountId: null,
-                                    orderDiscount: 0.0000,
-                                    totalDiscount: 0.0000,
-                                    productTax: null,
-                                    orderTaxId: null,
-                                    orderTax: 1.3043,
-                                    shipping: 0.0000,
-                                    totalItems: 1,
-                                    paymentTerm: null,
-                                    rounding: null,
+                            List<ProductModel> productList = [
+                              ProductModel(
+                                  id: int.parse(
+                                      cubit.productItem!.id!),
+                                  code: cubit.productItem!.code,
+                                  name: cubit.productItem!.slug,
+                                  category_id: int.parse(cubit
+                                      .productItem!.categoryId!),
+                                  unit: int.parse(
+                                      cubit.productItem!.unit!),
+                                  price: double.parse(
+                                      cubit.productItem!.price!),
+                                  tax_rate: int.parse(
+                                      cubit.productItem!.taxRate!),
+                                  tax_method: cubit.productItem!
+                                      .taxMethod ==
+                                      "0"
+                                      ? false
+                                      : true,
+                                  warehouse: 1),
+                            ];
+                            List<dynamic> customerList = [];
+                            List<dynamic> categoryList = [];
+                            List<dynamic> posRegisterList = [];
+                            List<dynamic> expensesList = [];
+                            List<dynamic> payment = [];
+                            List<salesModel> salesList = [
+                              salesModel(
+                                // date: "2022-10-10 20:22:00",
+                                date: p.DateFormat(
+                                    'yyyy-MM-dd HH:mm')
+                                    .parse(
+                                    DateTime.now().toString())
+                                    .toString(),
+                                referenceNo: "SALE2022/10/0001",
+                                customerId:
+                                int.parse(cubit.users[0].id!),
+                                dueDate: "2022-08-16T00:00:00",
+                                hash:
+                                "51280eb9564fe8aaa0abca09a2921438e7b0ae05d1714c0badb64238144eef8c",
+                                customer: cubit
+                                    .companiesEmployeeName[0]
+                                    .company,
+                                biller: cubit.users[0].username,
+                                billerId: int.parse(cubit
+                                    .companiesEmployeeName[0].id!),
+                                total: 8.6957,
+                                discountAllowance: 0.0000,
+                                returnSaleRef: null,
+                                returnId: null,
+                                saleStatus: "completed",
+                                saleId: null,
+                                paymentStatus: "paid",
+                                warehouseCode: "w_1",
+                                warehouseId: 1,
+                                grandTotal: 10.0000,
+                                pos: true,
+                                surcharge: 0.0000,
+                                returnSaleTotal: 0.0000,
+                                paid: 10.0000,
+                                totalTax: 1.3043,
+                                note: null,
+                                staffNote: null,
+                                productDiscount: null,
+                                orderDiscountId: null,
+                                orderDiscount: 0.0000,
+                                totalDiscount: 0.0000,
+                                productTax: null,
+                                orderTaxId: null,
+                                orderTax: 1.3043,
+                                shipping: 0.0000,
+                                totalItems: 1,
+                                paymentTerm: null,
+                                rounding: null,
+                                createdBy: 1,
+                                orderType: 1,
+                                tableNo: 0,
+                                dept: 1,
+                                empId: null,
+                                empType: null,
+                                plateNo: null,
+                                exitDate: "0001-01-01T00:00:00",
+                                payment: [
+                                  Payment(
+                                    id: 1,
+                                    date:
+                                    "2022-08-16T00:59:44+03:00",
+                                    amount: 10.0000,
+                                    paidBy: "cash",
+                                    commercialDiscount: 0.0000,
+                                    commercialDiscountId: null,
+                                    chequeNo: null,
+                                    glPaymentMethodId: 0,
+                                    ccNo: null,
+                                    ccHolder: null,
+                                    ccMonth: null,
+                                    ccYear: null,
+                                    ccType: null,
                                     createdBy: 1,
-                                    orderType: 1,
-                                    tableNo: 0,
-                                    dept: 1,
-                                    empId: null,
-                                    empType: null,
-                                    plateNo: null,
-                                    exitDate: "0001-01-01T00:00:00",
-                                    payment: [
-                                      Payment(
-                                        id: 1,
-                                        date:
-                                        "2022-08-16T00:59:44+03:00",
-                                        amount: 10.0000,
-                                        paidBy: "cash",
-                                        commercialDiscount: 0.0000,
-                                        commercialDiscountId: null,
-                                        chequeNo: null,
-                                        glPaymentMethodId: 0,
-                                        ccNo: null,
-                                        ccHolder: null,
-                                        ccMonth: null,
-                                        ccYear: null,
-                                        ccType: null,
-                                        createdBy: 1,
-                                        type: "received",
-                                        note: null,
-                                        posPaid: 10.0000,
-                                        posBalance: 0.0000,
-                                      ),
-                                    ],
-                                    items: [
-                                      Items(
-                                        productId: 1,
-                                        productName:
-                                        cubit.typeOfClothes,
-                                        productCode: cubit.itemCode,
-                                        productType: "standard",
-                                        optionId: null,
-                                        netUnitPrice: 8.6957,
-                                        unitPrice: 8.6957,
-                                        unitQuantity: 1.0000,
-                                        realUnitPrice: 10.0000,
-                                        productUnitId: 1,
-                                        productUnitCode: "حبة",
-                                        quantity: 1.0000,
-                                        subtotal: 10.0000,
-                                        warehouseId: 1,
-                                        warehouseCode: "w_1",
-                                        itemTax: 1.3043,
-                                        taxRateId: 3,
-                                        tax:
-                                        "ضريبة النسبة الأساسية 15%",
-                                        discount: null,
-                                        serialNo: null,
-                                        itemDiscount: 0.0000,
-                                        promoFree: false,
-                                      ),
-                                    ],
-                                    measurement: [
-                                      Measurement(
-                                        itemName: cubit.typeOfClothes,
-                                        itemCode: cubit.itemCode,
-                                        frontLength: double.parse(
-                                            cubit.frontHeight.text),
-                                        backLength: double.parse(
-                                            cubit.backHeight.text),
-                                        shoulderWidth: double.parse(
-                                            cubit.shoulderWidth.text),
-                                        shoulderSlope: double.parse(
-                                            cubit.shoulderSlope.text),
-                                        sleeve: double.parse(cubit
-                                            .sleeveLengthPlain.text),
-                                        sleeveTop: double.parse(cubit
-                                            .sleeveLengthIsHigher.text),
-                                        wrist: double.parse(
-                                            cubit.wideWrist.text),
-                                        plainCuffLength: double.parse(
-                                            cubit.plainCuff.text),
-                                        cuffLength: double.parse(
-                                            cubit.cuffLength.text),
-                                        cuffWidth: double.parse(
-                                            cubit.cuffShow.text),
-                                        middleWidth: double.parse(
-                                            cubit.wideMiddle.text),
-                                        chestFront: double.parse(cubit
-                                            .expandTheChestInFront
-                                            .text),
-                                        chestBack: double.parse(cubit
-                                            .expandTheChestBehind.text),
-                                        bottomHeight: double.parse(
-                                            cubit.koftaBottom.text),
-                                        bottomWidth: double.parse(
-                                            cubit.expandDown.text),
-                                        collarWidth: double.parse(
-                                            cubit.wideNeckPillow.text),
-                                        collarHeight: double.parse(
-                                            cubit.neckHeight.text),
-                                        zipperHeight: double.parse(
-                                            cubit.gypsumHeight.text),
-                                        zipperWidth: double.parse(
-                                            cubit.viewGypsum.text),
-                                        chestPocketHeight: double.parse(
-                                            cubit.lengthChestPocket
-                                                .text),
-                                        chestPocketWidth: double.parse(
-                                            cubit.wideChestPocket.text),
-                                        mobilePocketHeight:
-                                        double.parse(cubit
-                                            .wideMobilePocket.text),
-                                        walletPocketHeight:
-                                        double.parse(cubit
-                                            .lengthPocketWallet
-                                            .text),
-                                        walletPocketWidth: double.parse(
-                                            cubit
-                                                .widePocketWallet.text),
-                                        haunchWidth: double.parse(
-                                            cubit.hipWidth.text),
-                                        buttonNo: int.parse(
-                                            cubit.buttonNumber.text),
-                                        embroideryNo: int.parse(cubit
-                                            .embroideryNumber.text),
-                                        estimatedLength: double.parse(
-                                            cubit.expectedFabricInMeter
-                                                .text),
-                                        tailorId: 1,
-                                        sample: 1,
-                                        urgent: 1,
-                                        shoulderChestLength:
-                                        double.parse(cubit
-                                            .betweenTheChestPocketAndTheShoulder
-                                            .text),
-                                        sleeveMiddle: double.parse(cubit
-                                            .quantumCapacityMedium
-                                            .text),
-                                        sidePocketLength: double.parse(
-                                            cubit.sidePocket.text),
-                                        takhalees: cubit.Takhalis.text,
-                                        collarTypeID:
-                                        cubit.CollerTypeID,
-                                        cuffTypeID: cubit.CuffTypeID,
-                                        modelTypeID: cubit.ModelTypeID,
-                                        pocketTypeID:
-                                        cubit.PocketTypeID,
-                                        fillingTypeID:
-                                        cubit.FillingTypeID,
-                                        zipperTypeID:
-                                        cubit.ZipperTypeID,
-                                        note: "",
-                                      ),
-                                    ],
+                                    type: "received",
+                                    note: null,
+                                    posPaid: 10.0000,
+                                    posBalance: 0.0000,
                                   ),
-                                ];
-                                PillRequestModel pillRequestModel =
-                                PillRequestModel(
-                                    productList: productList,
-                                    customerList: customerList,
-                                    categoryList: categoryList,
-                                    posRegisterList:
-                                    posRegisterList,
-                                    salesList: salesList,
-                                    payment: payment,
-                                    expensesList: expensesList);
-                                await cubit.pillResponse(
-                                    pillRequestModel: pillRequestModel);
-                                LoadingPage(context).close();
+                                ],
+                                items: [
+                                  Items(
+                                    productId: 1,
+                                    productName:
+                                    cubit.typeOfClothes,
+                                    productCode: cubit.itemCode,
+                                    productType: "standard",
+                                    optionId: null,
+                                    netUnitPrice: 8.6957,
+                                    unitPrice: 8.6957,
+                                    unitQuantity: 1.0000,
+                                    realUnitPrice: 10.0000,
+                                    productUnitId: 1,
+                                    productUnitCode: "حبة",
+                                    quantity: 1.0000,
+                                    subtotal: 10.0000,
+                                    warehouseId: 1,
+                                    warehouseCode: "w_1",
+                                    itemTax: 1.3043,
+                                    taxRateId: 3,
+                                    tax:
+                                    "ضريبة النسبة الأساسية 15%",
+                                    discount: null,
+                                    serialNo: null,
+                                    itemDiscount: 0.0000,
+                                    promoFree: false,
+                                  ),
+                                ],
+                                measurement: [
+                                  Measurement(
+                                    itemName: cubit.typeOfClothes,
+                                    itemCode: cubit.itemCode,
+                                    frontLength: double.parse(
+                                        cubit.frontHeight.text),
+                                    backLength: double.parse(
+                                        cubit.backHeight.text),
+                                    shoulderWidth: double.parse(
+                                        cubit.shoulderWidth.text),
+                                    shoulderSlope: double.parse(
+                                        cubit.shoulderSlope.text),
+                                    sleeve: double.parse(cubit
+                                        .sleeveLengthPlain.text),
+                                    sleeveTop: double.parse(cubit
+                                        .sleeveLengthIsHigher.text),
+                                    wrist: double.parse(
+                                        cubit.wideWrist.text),
+                                    plainCuffLength: double.parse(
+                                        cubit.plainCuff.text),
+                                    cuffLength: double.parse(
+                                        cubit.cuffLength.text),
+                                    cuffWidth: double.parse(
+                                        cubit.cuffShow.text),
+                                    middleWidth: double.parse(
+                                        cubit.wideMiddle.text),
+                                    chestFront: double.parse(cubit
+                                        .expandTheChestInFront
+                                        .text),
+                                    chestBack: double.parse(cubit
+                                        .expandTheChestBehind.text),
+                                    bottomHeight: double.parse(
+                                        cubit.koftaBottom.text),
+                                    bottomWidth: double.parse(
+                                        cubit.expandDown.text),
+                                    collarWidth: double.parse(
+                                        cubit.wideNeckPillow.text),
+                                    collarHeight: double.parse(
+                                        cubit.neckHeight.text),
+                                    zipperHeight: double.parse(
+                                        cubit.gypsumHeight.text),
+                                    zipperWidth: double.parse(
+                                        cubit.viewGypsum.text),
+                                    chestPocketHeight: double.parse(
+                                        cubit.lengthChestPocket
+                                            .text),
+                                    chestPocketWidth: double.parse(
+                                        cubit.wideChestPocket.text),
+                                    mobilePocketHeight:
+                                    double.parse(cubit
+                                        .wideMobilePocket.text),
+                                    walletPocketHeight:
+                                    double.parse(cubit
+                                        .lengthPocketWallet
+                                        .text),
+                                    walletPocketWidth: double.parse(
+                                        cubit
+                                            .widePocketWallet.text),
+                                    haunchWidth: double.parse(
+                                        cubit.hipWidth.text),
+                                    buttonNo: int.parse(
+                                        cubit.buttonNumber.text),
+                                    embroideryNo: int.parse(cubit
+                                        .embroideryNumber.text),
+                                    estimatedLength: double.parse(
+                                        cubit.expectedFabricInMeter
+                                            .text),
+                                    tailorId: 1,
+                                    sample: 1,
+                                    urgent: 1,
+                                    shoulderChestLength:
+                                    double.parse(cubit
+                                        .betweenTheChestPocketAndTheShoulder
+                                        .text),
+                                    sleeveMiddle: double.parse(cubit
+                                        .quantumCapacityMedium
+                                        .text),
+                                    sidePocketLength: double.parse(
+                                        cubit.sidePocket.text),
+                                    takhalees: cubit.Takhalis.text,
+                                    collarTypeID:
+                                    cubit.CollerTypeID,
+                                    cuffTypeID: cubit.CuffTypeID,
+                                    modelTypeID: cubit.ModelTypeID,
+                                    pocketTypeID:
+                                    cubit.PocketTypeID,
+                                    fillingTypeID:
+                                    cubit.FillingTypeID,
+                                    zipperTypeID:
+                                    cubit.ZipperTypeID,
+                                    note: "",
+                                  ),
+                                ],
+                              ),
+                            ];
+                            PillRequestModel pillRequestModel =
+                            PillRequestModel(
+                                productList: productList,
+                                customerList: customerList,
+                                categoryList: categoryList,
+                                posRegisterList:
+                                posRegisterList,
+                                salesList: salesList,
+                                payment: payment,
+                                expensesList: expensesList);
+                            await cubit.pillResponse(
+                                pillRequestModel: pillRequestModel);
+                            LoadingPage(context).close();
 
-                                Navigator.pushNamed(
-                                    context, PrintScreen.routeName);
+                            Navigator.pushNamed(
+                                context, PrintScreen.routeName);
+                          }catch(error){
+                            print(error.toString());
+                          }
                             },
                             child: Text('حفظ',
                                 style: GoogleFonts.notoKufiArabic(
@@ -1585,7 +1600,7 @@ value:cubit.userItem ,
     child: Center(
       child: Text(item.company!,
           style: GoogleFonts.notoKufiArabic(
-              color: Colors.white,
+              color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 12)),
     ),
@@ -1596,7 +1611,7 @@ value:cubit.userItem ,
     child: Center(
       child: Text(item.name!,
           style: GoogleFonts.notoKufiArabic(
-              color: Colors.white,
+              color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 12)),
     ),
@@ -1607,7 +1622,7 @@ value:cubit.userItem ,
     child: Center(
       child: Text(item.name!,
           style: GoogleFonts.notoKufiArabic(
-              color: Colors.white,
+              color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 12)),
     ),
@@ -1619,7 +1634,7 @@ value:cubit.userItem ,
         child: Center(
           child: Text(item.code!,
               style: GoogleFonts.notoKufiArabic(
-                  color: Colors.white,
+                  color: Colors.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 12)),
         ),
@@ -1636,7 +1651,7 @@ value:cubit.userItem ,
     child: Center(
       child: Text(item,
           style: GoogleFonts.notoKufiArabic(
-              color: Colors.white,
+              color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 12)),
     ),
