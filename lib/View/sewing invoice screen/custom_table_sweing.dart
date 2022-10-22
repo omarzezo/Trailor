@@ -280,9 +280,12 @@ class _CustomTableSweingState extends State<CustomTableSweing> {
                     child: Expanded(
                         flex: 1,
                         child: InkWell(
-                          onTap: () {
+                          onTap: () async {
                             LoginCubit.get(context).getPillsDetailsForItem( index);
-                            Navigator.pushNamed(context, PillsItemData.routeName);
+                            var result = await  Navigator.pushNamed(context, PillsItemData.routeName);
+                            if(result==true){
+                              setState(() {});
+                            }
                             // cubit.itemIndex=index;
                           },
                           child: Row(
@@ -340,7 +343,7 @@ class _CustomTableSweingState extends State<CustomTableSweing> {
                                       )),
                                   height: 80,
                                   width: 100,
-                                  child: Text('${cubit.pillsDetails!.data![index].date}',
+                                  child: Text('${cubit.pillsDetails!.data![index].deliveryDate}',
                                       style: GoogleFonts.notoKufiArabic(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w600,

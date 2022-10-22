@@ -6,6 +6,8 @@ import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/models/updatePillsStatus.dart';
 
+import '../../constant/LoadingPage.dart';
+
 class PillsItemData extends StatelessWidget {
   static const routeName = "PillsItemData";
   TextEditingController controller=TextEditingController();
@@ -19,7 +21,12 @@ class PillsItemData extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is UpdatedPillsResponseSuccessState) {
+            LoadingPage(context).close();
+            Navigator.pop(context, true);
+          }  
+        },
         builder: (context, state) {
           return Scaffold(
               appBar: AppBar(
@@ -104,7 +111,6 @@ class PillsItemData extends StatelessWidget {
                                 child: TextField(
                                   onTap: ()async{
                                     await cubit.getDateFromUser(context);
-
                                     DatePickerDialog(initialDate: DateTime.now(), firstDate:  DateTime.now(), lastDate:  DateTime.now());
                                   },
 
@@ -207,7 +213,7 @@ class PillsItemData extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
 
                         children: [
-                          Text("الحوال",
+                          Text("الجوال",
                               style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().purpleColor,
                                   fontWeight: FontWeight.bold,
@@ -283,10 +289,8 @@ class PillsItemData extends StatelessWidget {
                       ),
                       SizedBox(height: 50,),
                       Container(
-                          width: double.infinity,
-                          height: 48,
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
+                          width: MediaQuery.of(context).size.width/2,
+                          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                           child: OutlinedButton(
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(
@@ -294,6 +298,7 @@ class PillsItemData extends StatelessWidget {
                             ),
                             onPressed: () async {
                               try{
+                                LoadingPage(context).show();
                                 UpdatedPillsStatusModel model=UpdatedPillsStatusModel(saleId: cubit.pillsDetailsItem!.id, deliveryDate: cubit.selectedDate, saleStatus: cubit.status, note: "");
                                 cubit.updatePills(model);
                               }catch(error){
@@ -301,11 +306,14 @@ class PillsItemData extends StatelessWidget {
                               }
 
                             },
-                            child: Text('تعديل',
-                                style: GoogleFonts.notoKufiArabic(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18)),
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 10,bottom: 10),
+                              child: Text('تعديل',
+                                  style: GoogleFonts.notoKufiArabic(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18)),
+                            ),
                           )),
 
                     ],

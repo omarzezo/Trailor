@@ -490,24 +490,22 @@ emit(AddCustomerSuccessState());
   String? selectedDate;
 
   getDateFromUser(BuildContext context) async {
-    DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2015),
-      lastDate: DateTime(2040),
-    );
-    if (pickedDate != null) {
-
-      // selectedDate =  DateFormat("yyyy-MM-dd").format(pickedDate.toUtc()).toString();
-      selectedDate =  DateFormat("yyyy-MM-dd HH:mm:ss").format(pickedDate.toUtc()).toString();
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2015, 8),
+        lastDate:  DateTime(2040));
+    if (picked != null ) {
+      selectedDate =  DateFormat("yyyy-MM-dd HH:mm:ss").format(picked).toString();
       emit(AppGetDateFromUserState());
-    } else {
+    }else {
       return;
     }
   }
   String? status;
 
   Future<UpdatedPillsResponse> updatePills(UpdatedPillsStatusModel updatedPillsStatusModel)async{
+
     Dio dio = Dio();
     dio.options.headers = {
       'Content-Type': 'application/json',
@@ -520,7 +518,7 @@ emit(AddCustomerSuccessState());
     final response = await dio.post(
         'https://cpe-soft.com/admin/api/v1/UpdateSales',
         data: jsonEncode(updatedPillsStatusModel));
-    print(jsonEncode(updatedPillsStatusModel).toString());
+    // print(jsonEncode(updatedPillsStatusModel).toString());
     if(response.statusCode==200){
       print(response.data);
       emit(UpdatedPillsResponseSuccessState());

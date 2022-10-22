@@ -30,7 +30,6 @@ class SewingScreen extends StatefulWidget {
 }
 
 class _SewingScreenState extends State<SewingScreen> {
-
   var text = "";
   List<String> items = [
     ' براتيتكس (عرضين)',
@@ -55,7 +54,7 @@ class _SewingScreenState extends State<SewingScreen> {
     SharedPreferences.getInstance().then((value) {
       final products = json.decode(value.getString("json")!);
       TrailorListsResponse trailorListsResponse =
-      TrailorListsResponse.fromJson(products);
+          TrailorListsResponse.fromJson(products);
       print("Trillll>>" + trailorListsResponse.companies!.length.toString());
       // Companies item= trailorListsResponse.companies![0];
     });
@@ -63,8 +62,10 @@ class _SewingScreenState extends State<SewingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double w=1.1;
-    MediaQuery.of(context).orientation==Orientation.landscape?w=1.1:w=.6;
+    double w = 1.1;
+    MediaQuery.of(context).orientation == Orientation.landscape
+        ? w = 1.1
+        : w = .6;
     var cubit = LoginCubit.get(context);
     return Directionality(
       textDirection: TextDirection.rtl,
@@ -114,20 +115,19 @@ class _SewingScreenState extends State<SewingScreen> {
                         child: Column(
                           children: [
                             Container(
-                                height:
-                                MediaQuery.of(context).size.height / 16,
+                                height: MediaQuery.of(context).size.height / 16,
                                 // height: 40,
                                 width: double.infinity,
                                 color: MyConstant().purpleColor,
-                                padding: const EdgeInsets.only(
-                                    left: 30, right: 20),
+                                padding:
+                                    const EdgeInsets.only(left: 30, right: 20),
                                 child: Row(
                                   children: [
                                     Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text('تاريخ الفاتورة',
                                             style: GoogleFonts.notoKufiArabic(
@@ -137,36 +137,35 @@ class _SewingScreenState extends State<SewingScreen> {
                                         Row(
                                           children: [
                                             Text('18:30:05',
-                                                style: GoogleFonts
-                                                    .notoKufiArabic(
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                    FontWeight.bold,
-                                                    fontSize: 12)),
+                                                style:
+                                                    GoogleFonts.notoKufiArabic(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 12)),
                                             const SizedBox(
                                               width: 5,
                                             ),
                                             Text('25-9-2022',
-                                                style: GoogleFonts
-                                                    .notoKufiArabic(
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                    FontWeight.bold,
-                                                    fontSize: 12)),
+                                                style:
+                                                    GoogleFonts.notoKufiArabic(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 12)),
                                           ],
                                         ),
                                       ],
                                     ),
                                     SizedBox(
-                                      width:
-                                      MediaQuery.of(context).size.width /
+                                      width: MediaQuery.of(context).size.width /
                                           10,
                                     ),
                                     Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text('تاريخ التسليم',
                                             style: GoogleFonts.notoKufiArabic(
@@ -176,22 +175,22 @@ class _SewingScreenState extends State<SewingScreen> {
                                         Row(
                                           children: [
                                             Text('18:30:05',
-                                                style: GoogleFonts
-                                                    .notoKufiArabic(
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                    FontWeight.bold,
-                                                    fontSize: 12)),
+                                                style:
+                                                    GoogleFonts.notoKufiArabic(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 12)),
                                             const SizedBox(
                                               width: 5,
                                             ),
                                             Text('25-9-2022',
-                                                style: GoogleFonts
-                                                    .notoKufiArabic(
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                    FontWeight.bold,
-                                                    fontSize: 12)),
+                                                style:
+                                                    GoogleFonts.notoKufiArabic(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 12)),
                                           ],
                                         ),
                                       ],
@@ -199,9 +198,9 @@ class _SewingScreenState extends State<SewingScreen> {
                                     const Spacer(),
                                     Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text('المرجع',
                                             style: GoogleFonts.notoKufiArabic(
@@ -223,23 +222,22 @@ class _SewingScreenState extends State<SewingScreen> {
                               // color: Colors.amber,
                               alignment: Alignment.center,
                               padding:
-                              const EdgeInsets.only(left: 30, right: 30),
+                                  const EdgeInsets.only(left: 30, right: 30),
                               child: Row(
                                 // mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 2,
+                                        MediaQuery.of(context).size.width / 2,
                                     child: Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text('العميل',
                                             style: GoogleFonts.notoKufiArabic(
-                                                color:
-                                                MyConstant().purpleColor,
+                                                color: MyConstant().purpleColor,
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 12)),
                                         const SizedBox(
@@ -249,148 +247,164 @@ class _SewingScreenState extends State<SewingScreen> {
                                           children: [
                                             Container(
                                               width: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
+                                                      .size
+                                                      .width /
                                                   3,
                                               padding: const EdgeInsets.only(
                                                   right: 0),
                                               height: 30,
                                               decoration: BoxDecoration(
                                                 borderRadius:
-                                                BorderRadius.circular(5),
+                                                    BorderRadius.circular(5),
                                                 // border: Border.all(
                                                 //     color: MyConstant().greenColor,
                                                 //     width: 1.5)
                                               ),
                                               child:
-                                              DropdownButtonHideUnderline(
+                                                  DropdownButtonHideUnderline(
                                                 child: DropdownButton2(
-
-
                                                   iconEnabledColor:
-                                                  Colors.white,
+                                                      Colors.white,
                                                   iconDisabledColor:
-                                                  Colors.grey,
+                                                      Colors.grey,
                                                   buttonHeight: 100,
                                                   buttonWidth: 160,
 
                                                   // buttonElevation: 2,
                                                   itemHeight: 50,
                                                   itemPadding:
-                                                  const EdgeInsets.only(
-                                                      left: 14,
-                                                      right: 14),
+                                                      const EdgeInsets.only(
+                                                          left: 14, right: 14),
                                                   dropdownMaxHeight: 250,
                                                   dropdownWidth: 250,
                                                   dropdownPadding: null,
                                                   buttonDecoration:
-                                                  BoxDecoration(
+                                                      BoxDecoration(
                                                     borderRadius:
-                                                    BorderRadius.circular(
-                                                        5),
+                                                        BorderRadius.circular(
+                                                            5),
                                                     border: Border.all(
                                                       color: Colors.green,
                                                     ),
                                                     color: Colors.white,
                                                   ),
                                                   dropdownDecoration:
-                                                  BoxDecoration(
+                                                      BoxDecoration(
                                                     borderRadius:
-                                                    BorderRadius.circular(
-                                                        5),
+                                                        BorderRadius.circular(
+                                                            5),
                                                     color: Colors.white,
                                                   ),
 
                                                   dropdownElevation: 8,
                                                   scrollbarRadius:
-                                                  const Radius.circular(
-                                                      20),
+                                                      const Radius.circular(20),
                                                   scrollbarThickness: 6,
                                                   scrollbarAlwaysShow: true,
                                                   // offset: const Offset(0, 0),
                                                   // items: items.map(itemBuild).toList(),
-                                                  searchController: cubit.searchController,
-                                             searchInnerWidget:
-                                               Padding(
-                                                    padding: const EdgeInsets.only(
+                                                  searchController:
+                                                      cubit.searchController,
+                                                  searchInnerWidget: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
                                                       top: 8,
                                                       bottom: 4,
                                                       right: 8,
                                                       left: 8,
                                                     ),
                                                     child: TextFormField(
-
-                                                      controller: cubit.searchController,
-                                                      style:  GoogleFonts.notoKufiArabic(
+                                                      controller: cubit
+                                                          .searchController,
+                                                      style: GoogleFonts
+                                                          .notoKufiArabic(
                                                         color: Colors.black,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                         fontSize: 12,
                                                       ),
-                                                      decoration: InputDecoration(
-
+                                                      decoration:
+                                                          InputDecoration(
                                                         isDense: true,
-
-                                                        contentPadding: const EdgeInsets.symmetric(
+                                                        contentPadding:
+                                                            const EdgeInsets
+                                                                .symmetric(
                                                           horizontal: 10,
                                                           vertical: 8,
                                                         ),
-                                                        hintText: 'Search for an item...',
-                                                        hintStyle: const TextStyle(fontSize: 12),
-                                                        border: OutlineInputBorder(
-                                                          borderRadius: BorderRadius.circular(8),
+                                                        hintText:
+                                                            'Search for an item...',
+                                                        hintStyle:
+                                                            const TextStyle(
+                                                                fontSize: 12),
+                                                        border:
+                                                            OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(8),
                                                         ),
                                                       ),
                                                     ),
                                                   ),
-                                                  searchMatchFn: (item, searchValue) {
-                                                    return (item.value.toString().toLowerCase().startsWith(searchValue.toLowerCase()));
-
-
+                                                  searchMatchFn:
+                                                      (item, searchValue) {
+                                                    return (item.value
+                                                        .toString()
+                                                        .toLowerCase()
+                                                        .startsWith(searchValue
+                                                            .toLowerCase()));
                                                   },
                                                   onMenuStateChange: (isOpen) {
                                                     if (!isOpen) {
-                                                      cubit.searchController.clear();
+                                                      cubit.searchController
+                                                          .clear();
                                                     }
                                                   },
 
-                                                  items: cubit.companiesCustomerName.map((item) => DropdownMenuItem(
-                                                    value: item.company,
+                                                  items: cubit
+                                                      .companiesCustomerName
+                                                      .map((item) =>
+                                                          DropdownMenuItem(
+                                                            value: item.company,
+                                                            child: Center(
+                                                              child: Text(
+                                                                  item.company!,
+                                                                  style: GoogleFonts.notoKufiArabic(
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontSize:
+                                                                          12)),
+                                                            ),
+                                                          ))
+                                                      .toList(),
 
-                                                    child: Center(
-                                                      child: Text(item.company!,
-                                                          style: GoogleFonts.notoKufiArabic(
-                                                              color: Colors.black,
-                                                              fontWeight: FontWeight.bold,
-                                                              fontSize: 12)),
-                                                    ),
-                                                  )).toList(),
-
-value:cubit.userItem ,
+                                                  value: cubit.userItem,
 
                                                   isExpanded: true,
 
                                                   onChanged: (val) {
                                                     setState(() {
-                                                      cubit.userItem="";
+                                                      cubit.userItem = "";
                                                       cubit.userItem =
-                                                      val as String?;
-                                                      cubit.customerName =
-                                                      val!;
+                                                          val as String?;
+                                                      cubit.customerName = val!;
                                                     });
                                                   },
                                                   // iconEnabledColor: Colors.white,
                                                   iconSize: 30,
                                                   icon: Container(
-                                                    decoration: const BoxDecoration(
+                                                    decoration:
+                                                        const BoxDecoration(
                                                       color: Colors.green,
                                                       borderRadius:
-                                                      BorderRadius.only(
-                                                          bottomLeft: Radius
-                                                              .circular(
-                                                              5),
-                                                          topLeft: Radius
-                                                              .circular(
-                                                              5)),
+                                                          BorderRadius.only(
+                                                              bottomLeft: Radius
+                                                                  .circular(5),
+                                                              topLeft: Radius
+                                                                  .circular(5)),
                                                     ),
                                                     child: const Icon(Icons
                                                         .keyboard_arrow_down_sharp),
@@ -411,8 +425,8 @@ value:cubit.userItem ,
                                                   decoration: BoxDecoration(
                                                     color: Colors.green,
                                                     borderRadius:
-                                                    BorderRadius.circular(
-                                                        5),
+                                                        BorderRadius.circular(
+                                                            5),
                                                   ),
                                                   child: InkWell(
                                                     onTap: () {
@@ -438,14 +452,13 @@ value:cubit.userItem ,
                                     // color: Colors.grey,
                                     child: Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text('الموظف',
                                             style: GoogleFonts.notoKufiArabic(
-                                                color:
-                                                MyConstant().purpleColor,
+                                                color: MyConstant().purpleColor,
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 12)),
                                         const SizedBox(
@@ -453,15 +466,15 @@ value:cubit.userItem ,
                                         ),
                                         Container(
                                           width: MediaQuery.of(context)
-                                              .size
-                                              .width /
+                                                  .size
+                                                  .width /
                                               3,
                                           padding:
-                                          const EdgeInsets.only(right: 0),
+                                              const EdgeInsets.only(right: 0),
                                           height: 30,
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                            BorderRadius.circular(5),
+                                                BorderRadius.circular(5),
                                           ),
                                           child: DropdownButtonHideUnderline(
                                             child: DropdownButton2(
@@ -473,33 +486,31 @@ value:cubit.userItem ,
                                               // buttonElevation: 2,
                                               itemHeight: 50,
                                               itemPadding:
-                                              const EdgeInsets.only(
-                                                  left: 14, right: 14),
+                                                  const EdgeInsets.only(
+                                                      left: 14, right: 14),
                                               dropdownMaxHeight: 250,
                                               dropdownWidth: 250,
                                               dropdownPadding: null,
                                               buttonDecoration: BoxDecoration(
                                                 borderRadius:
-                                                BorderRadius.circular(5),
+                                                    BorderRadius.circular(5),
                                                 border: Border.all(
                                                   color: Colors.green,
                                                 ),
                                                 color: Colors.white,
                                               ),
-                                              dropdownDecoration:
-                                              BoxDecoration(
+                                              dropdownDecoration: BoxDecoration(
                                                 borderRadius:
-                                                BorderRadius.circular(5),
+                                                    BorderRadius.circular(5),
                                                 color: Colors.white,
                                               ),
 
                                               dropdownElevation: 8,
                                               scrollbarRadius:
-                                              const Radius.circular(20),
+                                                  const Radius.circular(20),
                                               scrollbarThickness: 6,
                                               scrollbarAlwaysShow: true,
-                                              items: cubit
-                                                  .companiesEmployeeName
+                                              items: cubit.companiesEmployeeName
                                                   .map(EmployeeBuild)
                                                   .toList(),
                                               value: cubit.employeeItem,
@@ -507,9 +518,9 @@ value:cubit.userItem ,
                                               onChanged: (val) {
                                                 setState(() {
                                                   cubit.employeeItem =
-                                                  val as Companies;
+                                                      val as Companies;
                                                   cubit.employeeName =
-                                                  val.company!;
+                                                      val.company!;
                                                 });
                                               },
                                               iconSize: 30,
@@ -517,12 +528,12 @@ value:cubit.userItem ,
                                                 decoration: const BoxDecoration(
                                                   color: Colors.green,
                                                   borderRadius:
-                                                  BorderRadius.only(
-                                                      bottomLeft: Radius
-                                                          .circular(5),
-                                                      topLeft:
-                                                      Radius.circular(
-                                                          5)),
+                                                      BorderRadius.only(
+                                                          bottomLeft: Radius
+                                                              .circular(5),
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  5)),
                                                 ),
                                                 child: const Icon(Icons
                                                     .keyboard_arrow_down_sharp),
@@ -557,19 +568,18 @@ value:cubit.userItem ,
                                 children: [
                                   Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 5,
+                                        MediaQuery.of(context).size.width / 5,
                                     // width: 200,
                                     padding: const EdgeInsets.only(right: 10),
                                     child: Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text('الصنف',
                                             style: GoogleFonts.notoKufiArabic(
-                                                color:
-                                                MyConstant().purpleColor,
+                                                color: MyConstant().purpleColor,
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 14)),
                                         const SizedBox(
@@ -577,55 +587,46 @@ value:cubit.userItem ,
                                         ),
                                         Container(
                                           width: MediaQuery.of(context)
-                                              .size
-                                              .width /
+                                                  .size
+                                                  .width /
                                               5,
                                           // padding: const EdgeInsets.only(right: 10),
                                           height: 30,
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                            BorderRadius.circular(5),
+                                                BorderRadius.circular(5),
                                           ),
                                           child: DropdownButtonHideUnderline(
-
-                                            child:  DropdownButton2(
-                                              iconEnabledColor:
-                                              Colors.white,
-                                              iconDisabledColor:
-                                              Colors.grey,
+                                            child: DropdownButton2(
+                                              iconEnabledColor: Colors.white,
+                                              iconDisabledColor: Colors.grey,
                                               buttonHeight: 100,
                                               buttonWidth: 160,
                                               // buttonElevation: 2,
                                               itemHeight: 50,
                                               itemPadding:
-                                              const EdgeInsets.only(
-                                                  left: 14,
-                                                  right: 14),
+                                                  const EdgeInsets.only(
+                                                      left: 14, right: 14),
                                               dropdownMaxHeight: 200,
                                               dropdownWidth: 200,
 
-                                              buttonDecoration:
-                                              BoxDecoration(
+                                              buttonDecoration: BoxDecoration(
                                                 borderRadius:
-                                                BorderRadius.circular(
-                                                    5),
+                                                    BorderRadius.circular(5),
                                                 border: Border.all(
                                                   color: Colors.green,
                                                 ),
                                                 color: Colors.white,
                                               ),
-                                              dropdownDecoration:
-                                              BoxDecoration(
+                                              dropdownDecoration: BoxDecoration(
                                                 borderRadius:
-                                                BorderRadius.circular(
-                                                    5),
+                                                    BorderRadius.circular(5),
                                                 color: Colors.white,
                                               ),
 
                                               dropdownElevation: 8,
                                               scrollbarRadius:
-                                              const Radius.circular(
-                                                  20),
+                                                  const Radius.circular(20),
                                               scrollbarThickness: 6,
                                               scrollbarAlwaysShow: true,
                                               items: cubit.productsNameList
@@ -636,20 +637,19 @@ value:cubit.userItem ,
                                               onChanged: (value) {
                                                 setState(() {
                                                   cubit.productItem =
-                                                  value as Products;
+                                                      value as Products;
                                                   cubit.typeOfClothes =
-                                                  value.name!;
-                                                  cubit.itemCode =
-                                                  value.code!;
+                                                      value.name!;
+                                                  cubit.itemCode = value.code!;
                                                   cubit.itemPrice.text =
-                                                  value.price!;
+                                                      value.price!;
                                                   // cubit.tax.text= cubit.taxRatesNameList.where((element) => element.id==value.taxRate).toString();
                                                   cubit.taxRatesNameList
                                                       .forEach((element) {
                                                     if (element.id ==
                                                         value.taxRate) {
                                                       cubit.tax.text =
-                                                      element.rate!;
+                                                          element.rate!;
                                                     }
                                                   });
                                                 });
@@ -659,13 +659,12 @@ value:cubit.userItem ,
                                                 decoration: const BoxDecoration(
                                                   color: Colors.green,
                                                   borderRadius:
-                                                  BorderRadius.only(
-                                                      bottomLeft: Radius
-                                                          .circular(
-                                                          5),
-                                                      topLeft: Radius
-                                                          .circular(
-                                                          5)),
+                                                      BorderRadius.only(
+                                                          bottomLeft: Radius
+                                                              .circular(5),
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  5)),
                                                 ),
                                                 child: const Icon(Icons
                                                     .keyboard_arrow_down_sharp),
@@ -686,14 +685,13 @@ value:cubit.userItem ,
                                     // padding: const EdgeInsets.only(right: 30),
                                     child: Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text('المقاس',
                                             style: GoogleFonts.notoKufiArabic(
-                                                color:
-                                                MyConstant().purpleColor,
+                                                color: MyConstant().purpleColor,
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 14)),
                                         const SizedBox(
@@ -704,56 +702,48 @@ value:cubit.userItem ,
                                           //     MediaQuery.of(context).size.width /
                                           //         6.2,
                                           width: MediaQuery.of(context)
-                                              .size
-                                              .width /
+                                                  .size
+                                                  .width /
                                               6.2,
                                           height: 30,
                                           padding:
-                                          const EdgeInsets.only(right: 5),
+                                              const EdgeInsets.only(right: 5),
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                            BorderRadius.circular(5),
+                                                BorderRadius.circular(5),
                                           ),
                                           child: DropdownButtonHideUnderline(
-                                            child:  DropdownButton2(
-                                              iconEnabledColor:
-                                              Colors.white,
-                                              iconDisabledColor:
-                                              Colors.grey,
+                                            child: DropdownButton2(
+                                              iconEnabledColor: Colors.white,
+                                              iconDisabledColor: Colors.grey,
                                               buttonHeight: 100,
                                               buttonWidth: 160,
 
                                               // buttonElevation: 2,
                                               itemHeight: 50,
                                               itemPadding:
-                                              const EdgeInsets.only(
-                                                  left: 14,
-                                                  right: 14),
+                                                  const EdgeInsets.only(
+                                                      left: 14, right: 14),
                                               dropdownMaxHeight: 200,
                                               dropdownWidth: 200,
                                               dropdownPadding: null,
-                                              buttonDecoration:
-                                              BoxDecoration(
+                                              buttonDecoration: BoxDecoration(
                                                 borderRadius:
-                                                BorderRadius.circular(
-                                                    5),
+                                                    BorderRadius.circular(5),
                                                 border: Border.all(
                                                   color: Colors.green,
                                                 ),
                                                 color: Colors.white,
                                               ),
-                                              dropdownDecoration:
-                                              BoxDecoration(
+                                              dropdownDecoration: BoxDecoration(
                                                 borderRadius:
-                                                BorderRadius.circular(
-                                                    5),
+                                                    BorderRadius.circular(5),
                                                 color: Colors.white,
                                               ),
 
                                               dropdownElevation: 8,
                                               scrollbarRadius:
-                                              const Radius.circular(
-                                                  20),
+                                                  const Radius.circular(20),
                                               scrollbarThickness: 6,
                                               scrollbarAlwaysShow: true,
                                               items: cubit.unitsNameList
@@ -764,7 +754,7 @@ value:cubit.userItem ,
                                               onChanged: (value) {
                                                 setState(() {
                                                   cubit.valueItemSize =
-                                                  value as Units;
+                                                      value as Units;
                                                   cubit.size = value.name!;
                                                 });
                                               },
@@ -773,15 +763,15 @@ value:cubit.userItem ,
                                                 decoration: const BoxDecoration(
                                                   color: Colors.green,
                                                   borderRadius:
-                                                  BorderRadius.only(
-                                                      bottomLeft: Radius
-                                                          .circular(
-                                                          5),
-                                                      topLeft: Radius
-                                                          .circular(
-                                                          5)),
-                                                ),                                                  child: const Icon(Icons
-                                                  .keyboard_arrow_down_sharp),
+                                                      BorderRadius.only(
+                                                          bottomLeft: Radius
+                                                              .circular(5),
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  5)),
+                                                ),
+                                                child: const Icon(Icons
+                                                    .keyboard_arrow_down_sharp),
                                               ),
                                             ),
                                           ),
@@ -794,11 +784,11 @@ value:cubit.userItem ,
                                   ),
                                   textField(
                                     onChanged: (value) {
-                                      cubit.totalPrice.text = (double.parse(
-                                          cubit.quantities.text) *
-                                          double.parse(
-                                              cubit.itemPrice.text))
-                                          .toString();
+                                      cubit.totalPrice.text =
+                                          (double.parse(cubit.quantities.text) *
+                                                  double.parse(
+                                                      cubit.itemPrice.text))
+                                              .toString();
                                       cubit.calculateWhatYouPay();
                                     },
                                     controller: cubit.quantities,
@@ -861,7 +851,7 @@ value:cubit.userItem ,
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                const SizeScreen()));
+                                                    const SizeScreen()));
                                       },
                                       child: Text('المقاسات',
                                           style: GoogleFonts.notoKufiArabic(
@@ -902,8 +892,7 @@ value:cubit.userItem ,
                                     borderRadius: BorderRadius.circular(5),
                                   ),
                                   child: Padding(
-                                    padding:
-                                    const EdgeInsets.only(bottom: 15),
+                                    padding: const EdgeInsets.only(bottom: 15),
                                     child: InkWell(
                                       onTap: () {},
                                       child: const Icon(
@@ -932,54 +921,51 @@ value:cubit.userItem ,
                                       fontSize: 14)),
                             ),
                             Container(
-                              // height: 450,
-                              //   height: MediaQuery.of(context).size.height/8,
+                                // height: 450,
+                                //   height: MediaQuery.of(context).size.height/8,
                                 width: double.infinity,
                                 padding: const EdgeInsets.only(top: 0),
                                 // color: Colors.amber,
                                 child: Column(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 20.0),
                                       child: Container(
-                                        width: MediaQuery.of(context)
-                                            .size
-                                            .width /
-                                            1.2,
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                1.2,
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Container(
                                                 width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
+                                                        .size
+                                                        .width /
                                                     6,
                                                 child: customTextField(
                                                     text: 'الاجمالي',
                                                     controller:
-                                                    cubit.totalPrice,
+                                                        cubit.totalPrice,
                                                     readOnly: true)),
                                             Container(
                                                 width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
+                                                        .size
+                                                        .width /
                                                     6,
                                                 child: customTextField(
                                                     text: 'الخصم',
-                                                    controller:
-                                                    cubit.discount,
+                                                    controller: cubit.discount,
                                                     onChange: (value) {
                                                       cubit.calculateDiscount(
                                                           value);
                                                     })),
                                             Container(
                                                 width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
+                                                        .size
+                                                        .width /
                                                     6,
                                                 child: customTextField(
                                                     text: 'الضريبة',
@@ -987,13 +973,13 @@ value:cubit.userItem ,
                                                     readOnly: true)),
                                             Container(
                                                 width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
+                                                        .size
+                                                        .width /
                                                     6,
                                                 child: customTextField(
                                                     text: 'الصافي',
                                                     controller:
-                                                    cubit.whatYouPay,
+                                                        cubit.whatYouPay,
                                                     readOnly: true)),
                                           ],
                                         ),
@@ -1004,10 +990,9 @@ value:cubit.userItem ,
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 20.0),
                                       child: Container(
-                                        width: MediaQuery.of(context)
-                                            .size
-                                            .width /
-                                            1.2,
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                1.2,
                                         child: Row(
                                           // mainAxisAlignment:
                                           //     MainAxisAlignment.spaceBetween,
@@ -1015,71 +1000,80 @@ value:cubit.userItem ,
                                           children: [
                                             Container(
                                                 width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
+                                                        .size
+                                                        .width /
                                                     6,
                                                 margin: const EdgeInsets.only(
                                                     top: 10),
                                                 // alignment: Alignment.center,
                                                 child: Column(
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment
-                                                      .start,
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text('الدفع بواسطة',
                                                         style: GoogleFonts
                                                             .notoKufiArabic(
-                                                            color: MyConstant()
-                                                                .purpleColor,
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .bold,
-                                                            fontSize:
-                                                            12)),
+                                                                color: MyConstant()
+                                                                    .purpleColor,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize: 12)),
                                                     // const SizedBox(height: 5,),
                                                     Container(
                                                       height: 25,
-                                                      child: DropdownButtonHideUnderline(
+                                                      child:
+                                                          DropdownButtonHideUnderline(
                                                         child: DropdownButton2(
-                                                            iconEnabledColor:
-                                                            Colors.white,
+                                                            iconEnabledColor: Colors
+                                                                .white,
                                                             iconDisabledColor:
-                                                            Colors.grey,
+                                                                Colors.grey,
                                                             buttonHeight: 100,
                                                             buttonWidth: 160,
                                                             // buttonElevation: 2,
                                                             itemHeight: 50,
                                                             itemPadding:
-                                                            const EdgeInsets.only(
-                                                                left: 14,
-                                                                right: 14),
-                                                            dropdownMaxHeight: 200,
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 14,
+                                                                    right: 14),
+                                                            dropdownMaxHeight:
+                                                                200,
                                                             dropdownWidth: 200,
-
                                                             buttonDecoration:
-                                                            BoxDecoration(
+                                                                BoxDecoration(
                                                               borderRadius:
-                                                              BorderRadius.circular(
-                                                                  5),
-                                                              border: Border.all(
-                                                                color: Colors.green,
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5),
+                                                              border:
+                                                                  Border.all(
+                                                                color: Colors
+                                                                    .green,
                                                               ),
-                                                              color: Colors.white,
+                                                              color:
+                                                                  Colors.white,
                                                             ),
                                                             dropdownDecoration:
-                                                            BoxDecoration(
+                                                                BoxDecoration(
                                                               borderRadius:
-                                                              BorderRadius.circular(
-                                                                  5),
-                                                              color: Colors.white,
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5),
+                                                              color:
+                                                                  Colors.white,
                                                             ),
-
-                                                            dropdownElevation: 8,
+                                                            dropdownElevation:
+                                                                8,
                                                             scrollbarRadius:
-                                                            const Radius.circular(
-                                                                20),
-                                                            scrollbarThickness: 6,
-                                                            scrollbarAlwaysShow: true,
+                                                                const Radius
+                                                                        .circular(
+                                                                    20),
+                                                            scrollbarThickness:
+                                                                6,
+                                                            scrollbarAlwaysShow:
+                                                                true,
                                                             items: cubit
                                                                 .fixedPayment
                                                                 .map(itemBuild)
@@ -1090,214 +1084,232 @@ value:cubit.userItem ,
                                                             onChanged: (value) {
                                                               setState(() {
                                                                 cubit.fixedPaymentType =
-                                                                value
-                                                                as String;
+                                                                    value
+                                                                        as String;
                                                                 // cubit.paymentType=value.code!;
                                                               });
                                                             },
-
                                                             iconSize: 25,
-                                                            icon:  Container(
-                                                              decoration: const BoxDecoration(
-                                                                color: Colors.green,
-                                                                borderRadius:
-                                                                BorderRadius.only(
-                                                                    bottomLeft: Radius
-                                                                        .circular(
-                                                                        5),
+                                                            icon: Container(
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                color: Colors
+                                                                    .green,
+                                                                borderRadius: BorderRadius.only(
+                                                                    bottomLeft:
+                                                                        Radius.circular(
+                                                                            5),
                                                                     topLeft: Radius
                                                                         .circular(
-                                                                        5)),
-                                                              ),                                                child: const Icon(Icons
-                                                                .keyboard_arrow_down_sharp),
+                                                                            5)),
+                                                              ),
+                                                              child: const Icon(
+                                                                  Icons
+                                                                      .keyboard_arrow_down_sharp),
                                                             )),
                                                       ),
                                                     ),
                                                   ],
                                                 )),
-                                            (cubit.fixedPaymentType == "نقدى"||cubit.fixedPaymentType ==
-                                                "شيك بنكى")
+                                            (cubit.fixedPaymentType == "نقدى" ||
+                                                    cubit.fixedPaymentType ==
+                                                        "شيك بنكى")
                                                 ? Container(
-                                                width:
-                                                MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                    6,
-                                                child: customTextField(
-                                                    text:
-                                                    'المبلغ المدفوع',
-                                                    controller:
-                                                    cubit.cash,
-                                                    onChange: (value) {
-                                                      cubit
-                                                          .calculateRecentMoney(
-                                                          value);
-                                                    }))
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width /
+                                                            6,
+                                                    child: customTextField(
+                                                        text: 'المبلغ المدفوع',
+                                                        controller: cubit.cash,
+                                                        onChange: (value) {
+                                                          cubit
+                                                              .calculateRecentMoney(
+                                                                  value);
+                                                        }))
                                                 : Container(),
-                                            (cubit.fixedPaymentType ==
-                                                "شيك بنكى")
-                                                ? Container(
-                                                width:
-                                                MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                    6,
-                                                child: customTextField(
-                                                    text: 'رقم الشيك',
-                                                    controller: cubit
-                                                        .cheeckPayment))
-                                                : Container(
-                                              height: 0,
-                                              width: 0,
+                                            const SizedBox(
+                                              width: 10,
                                             ),
                                             (cubit.fixedPaymentType ==
-                                                "بطاقة إئتمان")
+                                                    "شيك بنكى")
                                                 ? Container(
-                                                width:
-                                                MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                    6,
-                                                child: customTextField(
-                                                    text:
-                                                    'المدفوع الشبكي',
-                                                    controller: cubit
-                                                        .onlinePayment))
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width /
+                                                            6,
+                                                    child: customTextField(
+                                                        text: 'رقم الشيك',
+                                                        controller: cubit
+                                                            .cheeckPayment))
                                                 : Container(
-                                              height: 0,
-                                              width: 0,
-                                            ),
+                                                    height: 0,
+                                                    width: 0,
+                                                  ),
                                             (cubit.fixedPaymentType ==
-                                                "بطاقة إئتمان")
+                                                    "بطاقة إئتمان")
                                                 ? Container(
-                                                width:
-                                                MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                    6,
-                                                margin:
-                                                const EdgeInsets.only(
-                                                    top: 10),
-                                                alignment:
-                                                Alignment.center,
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment
-                                                      .start,
-                                                  children: [
-                                                    Text('نوع الشبكة',
-                                                        style: GoogleFonts.notoKufiArabic(
-                                                            color: MyConstant()
-                                                                .purpleColor,
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .bold,
-                                                            fontSize:
-                                                            10)),
-                                                    // const SizedBox(height: 5,),
-                                                    Container(
-                                                      height: 25,
-                                                      child: DropdownButtonHideUnderline(
-                                                        child: DropdownButton2(
-                                                            iconEnabledColor:
-                                                            Colors.white,
-                                                            iconDisabledColor:
-                                                            Colors.grey,
-                                                            buttonHeight: 100,
-                                                            buttonWidth: 160,
-                                                            // buttonElevation: 2,
-                                                            itemHeight: 50,
-                                                            itemPadding:
-                                                            const EdgeInsets.only(
-                                                                left: 14,
-                                                                right: 14),
-                                                            dropdownMaxHeight: 200,
-                                                            dropdownWidth: 200,
-
-                                                            buttonDecoration:
-                                                            BoxDecoration(
-                                                              borderRadius:
-                                                              BorderRadius.circular(
-                                                                  5),
-                                                              border: Border.all(
-                                                                color: Colors.green,
-                                                              ),
-                                                              color: Colors.white,
-                                                            ),
-                                                            dropdownDecoration:
-                                                            BoxDecoration(
-                                                              borderRadius:
-                                                              BorderRadius.circular(
-                                                                  5),
-                                                              color: Colors.white,
-                                                            ),
-
-                                                            dropdownElevation: 8,
-                                                            scrollbarRadius:
-                                                            const Radius.circular(
-                                                                20),
-                                                            scrollbarThickness: 6,
-                                                            scrollbarAlwaysShow: true,
-
-                                                            items: cubit
-                                                                .paymentCodeList
-                                                                .map(
-                                                                PaymentTypeBuild)
-                                                                .toList(),
-                                                            value: cubit
-                                                                .paymentTypeItem,
-                                                            isExpanded: true,
-                                                            onChanged:
-                                                                (value) {
-                                                              setState(() {
-                                                                cubit.paymentTypeItem =
-                                                                value
-                                                                as PaymentType;
-                                                                cubit.paymentType =
-                                                                value
-                                                                    .code!;
-                                                              });
-                                                            },
-
-                                                            iconSize: 25,
-                                                            icon: Container(
-                                                              decoration: const BoxDecoration(
-                                                                color: Colors.green,
-                                                                borderRadius:
-                                                                BorderRadius.only(
-                                                                    bottomLeft: Radius
-                                                                        .circular(
-                                                                        5),
-                                                                    topLeft: Radius
-                                                                        .circular(
-                                                                        5)),
-                                                              ),                                                child: const Icon(Icons
-                                                                .keyboard_arrow_down_sharp),
-                                                            )),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ))
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width /
+                                                            6,
+                                                    child: customTextField(
+                                                        text: 'المدفوع الشبكي',
+                                                        controller: cubit
+                                                            .onlinePayment))
                                                 : Container(
-                                              height: 0,
-                                              width: 0,
-                                            ),
+                                                    height: 0,
+                                                    width: 0,
+                                                  ),
+                                            (cubit.fixedPaymentType ==
+                                                    "بطاقة إئتمان")
+                                                ? Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width /
+                                                            6,
+                                                    margin:
+                                                        const EdgeInsets.only(
+                                                            top: 10),
+                                                    alignment: Alignment.center,
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text('نوع الشبكة',
+                                                            style: GoogleFonts
+                                                                .notoKufiArabic(
+                                                                    color: MyConstant()
+                                                                        .purpleColor,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontSize:
+                                                                        10)),
+                                                        // const SizedBox(height: 5,),
+                                                        Container(
+                                                          height: 25,
+                                                          child:
+                                                              DropdownButtonHideUnderline(
+                                                            child:
+                                                                DropdownButton2(
+                                                                    iconEnabledColor: Colors
+                                                                        .white,
+                                                                    iconDisabledColor:
+                                                                        Colors
+                                                                            .grey,
+                                                                    buttonHeight:
+                                                                        100,
+                                                                    buttonWidth:
+                                                                        160,
+                                                                    // buttonElevation: 2,
+                                                                    itemHeight:
+                                                                        50,
+                                                                    itemPadding: const EdgeInsets.only(
+                                                                        left:
+                                                                            14,
+                                                                        right:
+                                                                            14),
+                                                                    dropdownMaxHeight:
+                                                                        200,
+                                                                    dropdownWidth:
+                                                                        200,
+                                                                    buttonDecoration:
+                                                                        BoxDecoration(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5),
+                                                                      border:
+                                                                          Border
+                                                                              .all(
+                                                                        color: Colors
+                                                                            .green,
+                                                                      ),
+                                                                      color: Colors
+                                                                          .white,
+                                                                    ),
+                                                                    dropdownDecoration:
+                                                                        BoxDecoration(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5),
+                                                                      color: Colors
+                                                                          .white,
+                                                                    ),
+                                                                    dropdownElevation:
+                                                                        8,
+                                                                    scrollbarRadius:
+                                                                        const Radius.circular(
+                                                                            20),
+                                                                    scrollbarThickness:
+                                                                        6,
+                                                                    scrollbarAlwaysShow:
+                                                                        true,
+                                                                    items: cubit
+                                                                        .paymentCodeList
+                                                                        .map(
+                                                                            PaymentTypeBuild)
+                                                                        .toList(),
+                                                                    value: cubit
+                                                                        .paymentTypeItem,
+                                                                    isExpanded:
+                                                                        true,
+                                                                    onChanged:
+                                                                        (value) {
+                                                                      setState(
+                                                                          () {
+                                                                        cubit.paymentTypeItem =
+                                                                            value
+                                                                                as PaymentType;
+                                                                        cubit.paymentType =
+                                                                            value.code!;
+                                                                      });
+                                                                    },
+                                                                    iconSize:
+                                                                        25,
+                                                                    icon:
+                                                                        Container(
+                                                                      decoration:
+                                                                          const BoxDecoration(
+                                                                        color: Colors
+                                                                            .green,
+                                                                        borderRadius: BorderRadius.only(
+                                                                            bottomLeft:
+                                                                                Radius.circular(5),
+                                                                            topLeft: Radius.circular(5)),
+                                                                      ),
+                                                                      child: const Icon(
+                                                                          Icons
+                                                                              .keyboard_arrow_down_sharp),
+                                                                    )),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ))
+                                                : Container(
+                                                    height: 0,
+                                                    width: 0,
+                                                  ),
                                             Container(
                                                 width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
+                                                        .size
+                                                        .width /
                                                     6),
                                           ],
                                         ),
                                       ),
                                     ),
                                     Container(
-                                        width: MediaQuery.of(context)
-                                            .size
-                                            .width /
-                                            6,
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                6,
                                         margin: const EdgeInsets.only(
-                                            right: 20, top: 15),
+                                            right: 20, top: 15, bottom: 12),
                                         child: customTextField(
                                             text: 'المبلغ المتبقي',
                                             controller: cubit.delayMoney)),
@@ -1316,256 +1328,232 @@ value:cubit.userItem ,
                                   MyConstant().purpleColor),
                             ),
                             onPressed: () async {
-                          try{
-                            LoadingPage(context).show();
+                              try {
+                                LoadingPage(context).show();
 
-                            List<ProductModel> productList = [
-                              ProductModel(
-                                  id: int.parse(
-                                      cubit.productItem!.id!),
-                                  code: cubit.productItem!.code,
-                                  name: cubit.productItem!.slug,
-                                  category_id: int.parse(cubit
-                                      .productItem!.categoryId!),
-                                  unit: int.parse(
-                                      cubit.productItem!.unit!),
-                                  price: double.parse(
-                                      cubit.productItem!.price!),
-                                  tax_rate: int.parse(
-                                      cubit.productItem!.taxRate!),
-                                  tax_method: cubit.productItem!
-                                      .taxMethod ==
-                                      "0"
-                                      ? false
-                                      : true,
-                                  warehouse: 1),
-                            ];
-                            List<dynamic> customerList = [];
-                            List<dynamic> categoryList = [];
-                            List<dynamic> posRegisterList = [];
-                            List<dynamic> expensesList = [];
-                            List<dynamic> payment = [];
-                            List<salesModel> salesList = [
-                              salesModel(
-                                // date: "2022-10-10 20:22:00",
-                                date: p.DateFormat(
-                                    'yyyy-MM-dd HH:mm')
-                                    .parse(
-                                    DateTime.now().toString())
-                                    .toString(),
-                                referenceNo: "SALE2022/10/0001",
-                                customerId:
-                                int.parse(cubit.users[0].id!),
-                                dueDate: "2022-08-16T00:00:00",
-                                hash:
-                                "51280eb9564fe8aaa0abca09a2921438e7b0ae05d1714c0badb64238144eef8c",
-                                customer: cubit
-                                    .companiesEmployeeName[0]
-                                    .company,
-                                biller: cubit.users[0].username,
-                                billerId: int.parse(cubit
-                                    .companiesEmployeeName[0].id!),
-                                total: 8.6957,
-                                discountAllowance: 0.0000,
-                                returnSaleRef: null,
-                                returnId: null,
-                                saleStatus: "completed",
-                                saleId: null,
-                                paymentStatus: "paid",
-                                warehouseCode: "w_1",
-                                warehouseId: 1,
-                                grandTotal: 10.0000,
-                                pos: true,
-                                surcharge: 0.0000,
-                                returnSaleTotal: 0.0000,
-                                paid: 10.0000,
-                                totalTax: 1.3043,
-                                note: null,
-                                staffNote: null,
-                                productDiscount: null,
-                                orderDiscountId: null,
-                                orderDiscount: 0.0000,
-                                totalDiscount: 0.0000,
-                                productTax: null,
-                                orderTaxId: null,
-                                orderTax: 1.3043,
-                                shipping: 0.0000,
-                                totalItems: 1,
-                                paymentTerm: null,
-                                rounding: null,
-                                createdBy: 1,
-                                orderType: 1,
-                                tableNo: 0,
-                                dept: 1,
-                                empId: null,
-                                empType: null,
-                                plateNo: null,
-                                exitDate: "0001-01-01T00:00:00",
-                                payment: [
-                                  Payment(
-                                    id: 1,
-                                    date:
-                                    "2022-08-16T00:59:44+03:00",
-                                    amount: 10.0000,
-                                    paidBy: "cash",
-                                    commercialDiscount: 0.0000,
-                                    commercialDiscountId: null,
-                                    chequeNo: null,
-                                    glPaymentMethodId: 0,
-                                    ccNo: null,
-                                    ccHolder: null,
-                                    ccMonth: null,
-                                    ccYear: null,
-                                    ccType: null,
-                                    createdBy: 1,
-                                    type: "received",
-                                    note: null,
-                                    posPaid: 10.0000,
-                                    posBalance: 0.0000,
-                                  ),
-                                ],
-                                items: [
-                                  Items(
-                                    productId: 1,
-                                    productName:
-                                    cubit.typeOfClothes,
-                                    productCode: cubit.itemCode,
-                                    productType: "standard",
-                                    optionId: null,
-                                    netUnitPrice: 8.6957,
-                                    unitPrice: 8.6957,
-                                    unitQuantity: 1.0000,
-                                    realUnitPrice: 10.0000,
-                                    productUnitId: 1,
-                                    productUnitCode: "حبة",
-                                    quantity: 1.0000,
-                                    subtotal: 10.0000,
-                                    warehouseId: 1,
+                                List<ProductModel> productList = [
+                                  ProductModel(
+                                      id: int.parse(cubit.productItem!.id!),
+                                      code: cubit.productItem!.code,
+                                      name: cubit.productItem!.slug,
+                                      category_id: int.parse(
+                                          cubit.productItem!.categoryId!),
+                                      unit: int.parse(cubit.productItem!.unit!),
+                                      price: double.parse(
+                                          cubit.productItem!.price!),
+                                      tax_rate: int.parse(
+                                          cubit.productItem!.taxRate!),
+                                      tax_method:
+                                          cubit.productItem!.taxMethod == "0"
+                                              ? false
+                                              : true,
+                                      warehouse: 1),
+                                ];
+                                List<dynamic> customerList = [];
+                                List<dynamic> categoryList = [];
+                                List<dynamic> posRegisterList = [];
+                                List<dynamic> expensesList = [];
+                                List<dynamic> payment = [];
+                                List<salesModel> salesList = [
+                                  salesModel(
+                                    // date: "2022-10-10 20:22:00",
+                                    date: p.DateFormat('yyyy-MM-dd HH:mm')
+                                        .parse(DateTime.now().toString())
+                                        .toString(),
+                                    referenceNo: "SALE2022/10/0001",
+                                    customerId: int.parse(cubit.users[0].id!),
+                                    dueDate: "2022-08-16T00:00:00",
+                                    hash:
+                                        "51280eb9564fe8aaa0abca09a2921438e7b0ae05d1714c0badb64238144eef8c",
+                                    customer:
+                                        cubit.companiesEmployeeName[0].company,
+                                    biller: cubit.users[0].username,
+                                    billerId: int.parse(
+                                        cubit.companiesEmployeeName[0].id!),
+                                    total: 8.6957,
+                                    discountAllowance: 0.0000,
+                                    returnSaleRef: null,
+                                    returnId: null,
+                                    saleStatus: "completed",
+                                    saleId: null,
+                                    paymentStatus: "paid",
                                     warehouseCode: "w_1",
-                                    itemTax: 1.3043,
-                                    taxRateId: 3,
-                                    tax:
-                                    "ضريبة النسبة الأساسية 15%",
-                                    discount: null,
-                                    serialNo: null,
-                                    itemDiscount: 0.0000,
-                                    promoFree: false,
-                                  ),
-                                ],
-                                measurement: [
-                                  Measurement(
-                                    itemName: cubit.typeOfClothes,
-                                    itemCode: cubit.itemCode,
-                                    frontLength: double.parse(
-                                        cubit.frontHeight.text),
-                                    backLength: double.parse(
-                                        cubit.backHeight.text),
-                                    shoulderWidth: double.parse(
-                                        cubit.shoulderWidth.text),
-                                    shoulderSlope: double.parse(
-                                        cubit.shoulderSlope.text),
-                                    sleeve: double.parse(cubit
-                                        .sleeveLengthPlain.text),
-                                    sleeveTop: double.parse(cubit
-                                        .sleeveLengthIsHigher.text),
-                                    wrist: double.parse(
-                                        cubit.wideWrist.text),
-                                    plainCuffLength: double.parse(
-                                        cubit.plainCuff.text),
-                                    cuffLength: double.parse(
-                                        cubit.cuffLength.text),
-                                    cuffWidth: double.parse(
-                                        cubit.cuffShow.text),
-                                    middleWidth: double.parse(
-                                        cubit.wideMiddle.text),
-                                    chestFront: double.parse(cubit
-                                        .expandTheChestInFront
-                                        .text),
-                                    chestBack: double.parse(cubit
-                                        .expandTheChestBehind.text),
-                                    bottomHeight: double.parse(
-                                        cubit.koftaBottom.text),
-                                    bottomWidth: double.parse(
-                                        cubit.expandDown.text),
-                                    collarWidth: double.parse(
-                                        cubit.wideNeckPillow.text),
-                                    collarHeight: double.parse(
-                                        cubit.neckHeight.text),
-                                    zipperHeight: double.parse(
-                                        cubit.gypsumHeight.text),
-                                    zipperWidth: double.parse(
-                                        cubit.viewGypsum.text),
-                                    chestPocketHeight: double.parse(
-                                        cubit.lengthChestPocket
+                                    warehouseId: 1,
+                                    grandTotal: 10.0000,
+                                    pos: true,
+                                    surcharge: 0.0000,
+                                    returnSaleTotal: 0.0000,
+                                    paid: 10.0000,
+                                    totalTax: 1.3043,
+                                    note: null,
+                                    staffNote: null,
+                                    productDiscount: null,
+                                    orderDiscountId: null,
+                                    orderDiscount: 0.0000,
+                                    totalDiscount: 0.0000,
+                                    productTax: null,
+                                    orderTaxId: null,
+                                    orderTax: 1.3043,
+                                    shipping: 0.0000,
+                                    totalItems: 1,
+                                    paymentTerm: null,
+                                    rounding: null,
+                                    createdBy: 1,
+                                    orderType: 1,
+                                    tableNo: 0,
+                                    dept: 1,
+                                    empId: null,
+                                    empType: null,
+                                    plateNo: null,
+                                    exitDate: "0001-01-01T00:00:00",
+                                    payment: [
+                                      Payment(
+                                        id: 1,
+                                        date: "2022-08-16T00:59:44+03:00",
+                                        amount: 10.0000,
+                                        paidBy: "cash",
+                                        commercialDiscount: 0.0000,
+                                        commercialDiscountId: null,
+                                        chequeNo: null,
+                                        glPaymentMethodId: 0,
+                                        ccNo: null,
+                                        ccHolder: null,
+                                        ccMonth: null,
+                                        ccYear: null,
+                                        ccType: null,
+                                        createdBy: 1,
+                                        type: "received",
+                                        note: null,
+                                        posPaid: 10.0000,
+                                        posBalance: 0.0000,
+                                      ),
+                                    ],
+                                    items: [
+                                      Items(
+                                        productId: 1,
+                                        productName: cubit.typeOfClothes,
+                                        productCode: cubit.itemCode,
+                                        productType: "standard",
+                                        optionId: null,
+                                        netUnitPrice: 8.6957,
+                                        unitPrice: 8.6957,
+                                        unitQuantity: 1.0000,
+                                        realUnitPrice: 10.0000,
+                                        productUnitId: 1,
+                                        productUnitCode: "حبة",
+                                        quantity: 1.0000,
+                                        subtotal: 10.0000,
+                                        warehouseId: 1,
+                                        warehouseCode: "w_1",
+                                        itemTax: 1.3043,
+                                        taxRateId: 3,
+                                        tax: "ضريبة النسبة الأساسية 15%",
+                                        discount: null,
+                                        serialNo: null,
+                                        itemDiscount: 0.0000,
+                                        promoFree: false,
+                                      ),
+                                    ],
+                                    measurement: [
+                                      Measurement(
+                                        itemName: cubit.typeOfClothes,
+                                        itemCode: cubit.itemCode,
+                                        frontLength: double.parse(
+                                            cubit.frontHeight.text),
+                                        backLength:
+                                            double.parse(cubit.backHeight.text),
+                                        shoulderWidth: double.parse(
+                                            cubit.shoulderWidth.text),
+                                        shoulderSlope: double.parse(
+                                            cubit.shoulderSlope.text),
+                                        sleeve: double.parse(
+                                            cubit.sleeveLengthPlain.text),
+                                        sleeveTop: double.parse(
+                                            cubit.sleeveLengthIsHigher.text),
+                                        wrist:
+                                            double.parse(cubit.wideWrist.text),
+                                        plainCuffLength:
+                                            double.parse(cubit.plainCuff.text),
+                                        cuffLength:
+                                            double.parse(cubit.cuffLength.text),
+                                        cuffWidth:
+                                            double.parse(cubit.cuffShow.text),
+                                        middleWidth:
+                                            double.parse(cubit.wideMiddle.text),
+                                        chestFront: double.parse(
+                                            cubit.expandTheChestInFront.text),
+                                        chestBack: double.parse(
+                                            cubit.expandTheChestBehind.text),
+                                        bottomHeight: double.parse(
+                                            cubit.koftaBottom.text),
+                                        bottomWidth:
+                                            double.parse(cubit.expandDown.text),
+                                        collarWidth: double.parse(
+                                            cubit.wideNeckPillow.text),
+                                        collarHeight:
+                                            double.parse(cubit.neckHeight.text),
+                                        zipperHeight: double.parse(
+                                            cubit.gypsumHeight.text),
+                                        zipperWidth:
+                                            double.parse(cubit.viewGypsum.text),
+                                        chestPocketHeight: double.parse(
+                                            cubit.lengthChestPocket.text),
+                                        chestPocketWidth: double.parse(
+                                            cubit.wideChestPocket.text),
+                                        mobilePocketHeight: double.parse(
+                                            cubit.wideMobilePocket.text),
+                                        walletPocketHeight: double.parse(
+                                            cubit.lengthPocketWallet.text),
+                                        walletPocketWidth: double.parse(
+                                            cubit.widePocketWallet.text),
+                                        haunchWidth:
+                                            double.parse(cubit.hipWidth.text),
+                                        buttonNo:
+                                            int.parse(cubit.buttonNumber.text),
+                                        embroideryNo: int.parse(
+                                            cubit.embroideryNumber.text),
+                                        estimatedLength: double.parse(
+                                            cubit.expectedFabricInMeter.text),
+                                        tailorId: 1,
+                                        sample: 1,
+                                        urgent: 1,
+                                        shoulderChestLength: double.parse(cubit
+                                            .betweenTheChestPocketAndTheShoulder
                                             .text),
-                                    chestPocketWidth: double.parse(
-                                        cubit.wideChestPocket.text),
-                                    mobilePocketHeight:
-                                    double.parse(cubit
-                                        .wideMobilePocket.text),
-                                    walletPocketHeight:
-                                    double.parse(cubit
-                                        .lengthPocketWallet
-                                        .text),
-                                    walletPocketWidth: double.parse(
-                                        cubit
-                                            .widePocketWallet.text),
-                                    haunchWidth: double.parse(
-                                        cubit.hipWidth.text),
-                                    buttonNo: int.parse(
-                                        cubit.buttonNumber.text),
-                                    embroideryNo: int.parse(cubit
-                                        .embroideryNumber.text),
-                                    estimatedLength: double.parse(
-                                        cubit.expectedFabricInMeter
-                                            .text),
-                                    tailorId: 1,
-                                    sample: 1,
-                                    urgent: 1,
-                                    shoulderChestLength:
-                                    double.parse(cubit
-                                        .betweenTheChestPocketAndTheShoulder
-                                        .text),
-                                    sleeveMiddle: double.parse(cubit
-                                        .quantumCapacityMedium
-                                        .text),
-                                    sidePocketLength: double.parse(
-                                        cubit.sidePocket.text),
-                                    takhalees: cubit.Takhalis.text,
-                                    collarTypeID:
-                                    cubit.CollerTypeID,
-                                    cuffTypeID: cubit.CuffTypeID,
-                                    modelTypeID: cubit.ModelTypeID,
-                                    pocketTypeID:
-                                    cubit.PocketTypeID,
-                                    fillingTypeID:
-                                    cubit.FillingTypeID,
-                                    zipperTypeID:
-                                    cubit.ZipperTypeID,
-                                    note: "",
+                                        sleeveMiddle: double.parse(
+                                            cubit.quantumCapacityMedium.text),
+                                        sidePocketLength:
+                                            double.parse(cubit.sidePocket.text),
+                                        takhalees: cubit.Takhalis.text,
+                                        collarTypeID: cubit.CollerTypeID,
+                                        cuffTypeID: cubit.CuffTypeID,
+                                        modelTypeID: cubit.ModelTypeID,
+                                        pocketTypeID: cubit.PocketTypeID,
+                                        fillingTypeID: cubit.FillingTypeID,
+                                        zipperTypeID: cubit.ZipperTypeID,
+                                        note: "",
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                            ];
-                            PillRequestModel pillRequestModel =
-                            PillRequestModel(
-                                productList: productList,
-                                customerList: customerList,
-                                categoryList: categoryList,
-                                posRegisterList:
-                                posRegisterList,
-                                salesList: salesList,
-                                payment: payment,
-                                expensesList: expensesList);
-                            await cubit.pillResponse(
-                                pillRequestModel: pillRequestModel);
-                            LoadingPage(context).close();
+                                ];
+                                PillRequestModel pillRequestModel =
+                                    PillRequestModel(
+                                        productList: productList,
+                                        customerList: customerList,
+                                        categoryList: categoryList,
+                                        posRegisterList: posRegisterList,
+                                        salesList: salesList,
+                                        payment: payment,
+                                        expensesList: expensesList);
+                                await cubit.pillResponse(
+                                    pillRequestModel: pillRequestModel);
+                                LoadingPage(context).close();
 
-                            Navigator.pushNamed(
-                                context, PrintScreen.routeName);
-                          }catch(error){
-                            print(error.toString());
-                          }
+                                Navigator.pushNamed(
+                                    context, PrintScreen.routeName);
+                              } catch (error) {
+                                print(error.toString());
+                              }
                             },
                             child: Text('حفظ',
                                 style: GoogleFonts.notoKufiArabic(
@@ -1585,48 +1573,48 @@ value:cubit.userItem ,
   }
 
   DropdownMenuItem<Companies> UsersBuild(Companies item) => DropdownMenuItem(
-    value: item,
-    child: Center(
-      child: Text(item.company!,
-          style: GoogleFonts.notoKufiArabic(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 12)),
-    ),
-  );
+        value: item,
+        child: Center(
+          child: Text(item.company!,
+              style: GoogleFonts.notoKufiArabic(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12)),
+        ),
+      );
 
   DropdownMenuItem<Companies> EmployeeBuild(Companies item) => DropdownMenuItem(
-    value: item,
-    child: Center(
-      child: Text(item.company!,
-          style: GoogleFonts.notoKufiArabic(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 12)),
-    ),
-  );
+        value: item,
+        child: Center(
+          child: Text(item.company!,
+              style: GoogleFonts.notoKufiArabic(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12)),
+        ),
+      );
 
   DropdownMenuItem<Products> ProductsBuild(Products item) => DropdownMenuItem(
-    value: item,
-    child: Center(
-      child: Text(item.name!,
-          style: GoogleFonts.notoKufiArabic(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 12)),
-    ),
-  );
+        value: item,
+        child: Center(
+          child: Text(item.name!,
+              style: GoogleFonts.notoKufiArabic(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12)),
+        ),
+      );
 
   DropdownMenuItem<Units> UnitsBuild(Units item) => DropdownMenuItem(
-    value: item,
-    child: Center(
-      child: Text(item.name!,
-          style: GoogleFonts.notoKufiArabic(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 12)),
-    ),
-  );
+        value: item,
+        child: Center(
+          child: Text(item.name!,
+              style: GoogleFonts.notoKufiArabic(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12)),
+        ),
+      );
 
   DropdownMenuItem<PaymentType> PaymentTypeBuild(PaymentType item) =>
       DropdownMenuItem(
@@ -1647,15 +1635,15 @@ value:cubit.userItem ,
   //       fontSize: 12
   //   )),);
   DropdownMenuItem<String> itemBuild(String item) => DropdownMenuItem(
-    value: item,
-    child: Center(
-      child: Text(item,
-          style: GoogleFonts.notoKufiArabic(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 12)),
-    ),
-  );
+        value: item,
+        child: Center(
+          child: Text(item,
+              style: GoogleFonts.notoKufiArabic(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12)),
+        ),
+      );
 //   Widget wrapWidget ({
 //   required String string,
 // })=> Wrap(
