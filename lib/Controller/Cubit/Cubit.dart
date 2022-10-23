@@ -126,7 +126,7 @@ class LoginCubit extends Cubit<LoginState> {
     "بطاقة إئتمان",
     "شيك بنكى",
   ];
-  String? fixedPaymentType;
+  String? fixedPaymentType="نقدى";
 
   // captureBoundary() async {
   //   Uint8List? pngBytes;
