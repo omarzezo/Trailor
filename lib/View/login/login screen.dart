@@ -207,8 +207,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600)),
                         const Spacer(),
+
                         TextButton(onPressed: (){}, child:  Text('نسيت الباسورد ؟',
-                            style: GoogleFonts.roboto(
+                            style: GoogleFonts.notoKufiArabic(
                                 color: MyConstant().purpleColor,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500)),)

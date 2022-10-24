@@ -106,14 +106,12 @@ class PillsItemData extends StatelessWidget {
                               padding: const EdgeInsets.only(left: 50),
                               child: Container(
                                     // padding: const EdgeInsets.only(left: 10),
-
                               width: 125,
                                 child: TextField(
                                   onTap: ()async{
                                     await cubit.getDateFromUser(context);
                                     DatePickerDialog(initialDate: DateTime.now(), firstDate:  DateTime.now(), lastDate:  DateTime.now());
                                   },
-
                                   readOnly: true,
                                   decoration: InputDecoration(
                                     hintStyle:  GoogleFonts.notoKufiArabic(
@@ -121,9 +119,7 @@ class PillsItemData extends StatelessWidget {
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 18),
                                     border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-                                    hintText:  cubit.selectedDate!.split(" ").first
-                                        ??
-                                        "",
+                                    hintText:  cubit.selectedDate!.split(" ").first ?? "",
 
                                   ),
                                 ),
