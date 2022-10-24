@@ -1025,6 +1025,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                                       child:
                                                           DropdownButtonHideUnderline(
                                                         child: DropdownButton2(
+
                                                             iconEnabledColor: Colors
                                                                 .white,
                                                             iconDisabledColor:
@@ -1081,6 +1082,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                                             value: cubit
                                                                 .fixedPaymentType,
                                                             isExpanded: true,
+
                                                             onChanged: (value) {
                                                               setState(() {
                                                                 cubit.fixedPaymentType =
