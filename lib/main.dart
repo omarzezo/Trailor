@@ -4,7 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Network/Remote%20Data/Dio%20Helper.dart';
 import 'package:omar/Controller/local/shared_pref.dart';
+import 'package:omar/View/BlutothPrinter.dart';
+import 'package:omar/View/choose_printer_screen.dart';
 import 'package:omar/View/home/splash_screen.dart';
+import 'package:omar/View/invoice_Screen.dart';
 import 'package:omar/View/mobile/mobil%20home.dart';
 import 'package:omar/View/sewing%20invoice%20screen/add_new_customer_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/customers_details_screen.dart';
@@ -81,6 +84,9 @@ class MyApp extends StatelessWidget {
             NewUserScreen.routeName:(context) =>  NewUserScreen(),
             CustomerDetailsScreen.routeName:(context) =>  CustomerDetailsScreen(),
             PillsItemData.routeName:(context) =>  PillsItemData(),
+            PrintPillScreen.routeName:(context) =>  PrintPillScreen(),
+            BluePrinter.routeName:(context) =>  BluePrinter(),
+            ChoosePrinterScreen.routeName:(context) =>  ChoosePrinterScreen(),
           },
         ));
   }

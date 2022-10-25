@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/View/Data%20Table/custom%20table.dart';
 import 'package:omar/View/Data%20Table/data-table%20screen.dart';
 import 'package:omar/View/EditPrinterScreen.dart';
+import 'package:omar/View/invoice_Screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/Size%20Screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/custom_table_sweing.dart';
 import 'package:omar/View/sewing%20invoice%20screen/sweing_screen.dart';
@@ -115,8 +116,9 @@ class _TabBarScreenState extends State<TabBarScreen> {
                           CustomTable(),
                           EditPrinterScreen(),
                           WifiThroughrIpPrinter(),
-                          SizedBox(),
-                       SizedBox(),
+                          PrintPillScreen(),
+                          // SizedBox(),
+                       // SizedBox(),
                        SizedBox(),
                     ]),
                   )

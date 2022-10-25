@@ -33,7 +33,7 @@ class WifiThroughrIpPrinterState extends State<WifiThroughrIpPrinter> {
     //   });
     // });
   }
-  void testPrint(String printerIp, Uint8List theimageThatComesfr) async {
+   void  testPrint(String printerIp, Uint8List theimageThatComesfr) async {
     print("im inside the test print 2");
     const PaperSize paper = PaperSize.mm80;
     final profile = await CapabilityProfile.load();

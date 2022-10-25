@@ -26,6 +26,7 @@ import 'package:omar/models/tRTailor.dart';
 import 'package:omar/models/tRZipper.dart';
 import 'package:omar/models/trFilling.dart';
 import 'package:omar/models/updatePillsStatus.dart';
+import 'package:sunmi_printer_plus/sunmi_printer_plus.dart';
 import '../../models/TrailorListsResponse.dart';
 import '../../models/pillRequest.dart';
 import 'State.dart';
@@ -142,6 +143,15 @@ class LoginCubit extends Cubit<LoginState> {
   //     print(e);
   //   }
   // }
+
+  printsonomi(Uint8List? theimageThatC)async{
+
+    await SunmiPrinter.initPrinter();
+    await SunmiPrinter.startTransactionPrint(true);
+    await SunmiPrinter.printImage(theimageThatC!);
+    await SunmiPrinter.lineWrap(2);
+    await SunmiPrinter.exitTransactionPrint(true);
+  }
 
   Future<Uint8List?> getWidgetImage() async {
     try {

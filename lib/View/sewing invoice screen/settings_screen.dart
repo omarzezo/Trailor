@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:esc_pos_bluetooth/esc_pos_bluetooth.dart 'as blue;
+// import 'package:esc_pos_bluetooth/esc_pos_bluetooth.dart 'as blue;
 import 'package:esc_pos_printer/esc_pos_printer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -141,20 +141,20 @@ class SettingScreen extends StatelessWidget {
   //   printer.feed(2);
   //   printer.cut();
   // }
-  void bluetoothPrinter()async{
-    blue.PrinterBluetoothManager printerManager = blue.PrinterBluetoothManager();
-    List<blue.PrinterBluetooth> _devices = [];
-
-    printerManager.scanResults.listen((printers) async {
-      _devices=printers;
-
-    });
-    printerManager.startScan(Duration(seconds: 4));
-
-
-    // printerManager.selectPrinter();
-
-  }
+  // void bluetoothPrinter()async{
+  //   blue.PrinterBluetoothManager printerManager = blue.PrinterBluetoothManager();
+  //   List<blue.PrinterBluetooth> _devices = [];
+  //
+  //   printerManager.scanResults.listen((printers) async {
+  //     _devices=printers;
+  //
+  //   });
+  //   printerManager.startScan(Duration(seconds: 4));
+  //
+  //
+  //   // printerManager.selectPrinter();
+  //
+  // }
   void networkprinter()async{
     // const PaperSize paper = PaperSize.mm80;
     // final profile = await CapabilityProfile.load();
