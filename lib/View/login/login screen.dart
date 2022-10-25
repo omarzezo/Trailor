@@ -199,19 +199,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Forget Password ?',
                             style: GoogleFonts.poppins(
                                 color: MyConstant().purpleColor,
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w600)),
                         const Spacer(),
 
                         TextButton(onPressed: (){}, child:  Text('نسيت الباسورد ؟',
                             style: GoogleFonts.notoKufiArabic(
                                 color: MyConstant().purpleColor,
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w500)),)
                       ],
                     ),

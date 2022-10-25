@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/View/Data%20Table/custom%20table.dart';
 import 'package:omar/View/Data%20Table/data-table%20screen.dart';
+import 'package:omar/View/EditPrinterScreen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/Size%20Screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/custom_table_sweing.dart';
 import 'package:omar/View/sewing%20invoice%20screen/sweing_screen.dart';
 
 import '../../constant/constant.dart';
+import '../WifiThroughIpPrinter.dart';
 import 'Widgets.dart';
 
 class TabBarScreen extends StatefulWidget {
@@ -104,15 +106,15 @@ class _TabBarScreenState extends State<TabBarScreen> {
                           ],
                         ),
                   ]),
-                  const Expanded(
+                   Expanded(
                     child: TabBarView(
                       physics: NeverScrollableScrollPhysics(),
                         children: [
                       SewingScreen(),
                           // CustomTableSweing(),
                           CustomTable(),
-                          // DataTableScreen(),
-                          SizedBox(),
+                          EditPrinterScreen(),
+                          WifiThroughrIpPrinter(),
                           SizedBox(),
                        SizedBox(),
                        SizedBox(),

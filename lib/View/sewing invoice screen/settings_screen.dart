@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:esc_pos_bluetooth/esc_pos_bluetooth.dart 'as blue;
 import 'package:esc_pos_printer/esc_pos_printer.dart';
 import 'package:flutter/material.dart';
