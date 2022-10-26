@@ -85,7 +85,7 @@ class MyApp extends StatelessWidget {
             CustomerDetailsScreen.routeName:(context) =>  CustomerDetailsScreen(),
             PillsItemData.routeName:(context) =>  PillsItemData(),
             PrintPillScreen.routeName:(context) =>  PrintPillScreen(),
-            BluePrinter.routeName:(context) =>  BluePrinter(),
+            // BluePrinter.routeName:(context) =>  BluePrinter(),
             ChoosePrinterScreen.routeName:(context) =>  ChoosePrinterScreen(),
           },
         ));

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:esc_pos_printer/esc_pos_printer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image/image.dart' as img;
 
 import 'package:flutter/material.dart';
@@ -15,6 +16,8 @@ import 'package:omar/View/sonomiPrinter.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:sunmi_printer_plus/sunmi_printer_plus.dart';
+
+import '../constant/constant.dart';
 
 class PrintPillScreen extends StatefulWidget {
   static const routeName="PrintPillScreen";
@@ -30,7 +33,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
   ScreenshotController screenshotController = ScreenshotController();
   String dir = Directory.current.path;
   WifiThroughrIpPrinter wifiThroughrIpPrinter=WifiThroughrIpPrinter();
-  BluePrinter bluePrinter=BluePrinter();
+  // BluePrinter bluePrinter=BluePrinter();
   SonomiPrinter sonomiPrinter=SonomiPrinter();
 
   @override
@@ -38,22 +41,25 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.purple,
+          title: Text("الطابعة", style: GoogleFonts.notoKufiArabic(
+          color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 18)),
+          centerTitle: true,
+        ),
         body: SingleChildScrollView(
             child: Screenshot(
               controller: screenshotController,
 
               child: Padding(
                 padding:
-                const EdgeInsets.only(top: 70, left: 20, right: 20, bottom: 10),
+                 EdgeInsets.only(top: 20, left: MediaQuery.of(context).size.width/3, right: MediaQuery.of(context).size.width/3,
+                     bottom: 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Divider(
-                      height: 2,
-                      thickness: 4,
-                      color: Colors.black54,
-                    ),
-                    SizedBox(height: 10,),
                     Container(
                       height: 80,
                       width: 200,
@@ -486,15 +492,16 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                       ),
                     ),
                     ElevatedButton(
-                      child: const Text(
-                        'print Here',
-                        style: TextStyle(fontSize: 40),
+                      child: Text("طباعة",
+                          style: publicStryle
                       ),
                       onPressed: () {
                         screenshotController.capture(delay: const Duration(milliseconds: 10)).then((capturedImage) async {
                           Uint8List  theimageThatComesfromThePrinter = capturedImage!;
                           if(widget.printerType==0){
-                            BluePrinter.printScreenShot(theimageThatC: theimageThatComesfromThePrinter);
+                            Navigator.of(context).push(createRoute(BluePrinter(theimageThatC: theimageThatComesfromThePrinter)));
+
+                            // BluePrinter(theimageThatC: theimageThatComesfromThePrinter);
                           }else if(widget.printerType==1){
                             //  PaperSize papers;
                             // if(widget.pageSize==1) {
@@ -502,20 +509,18 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                             // } else if(widget.pageSize==2) {
                             //   papers = PaperSize.mm58;
                             // }
-
                           }else if(widget.printerType==2){
-
                             await SunmiPrinter.initPrinter();
                             await SunmiPrinter.startTransactionPrint(true);
                             await SunmiPrinter.printImage(theimageThatComesfromThePrinter);
                             await SunmiPrinter.lineWrap(2);
                             await SunmiPrinter.exitTransactionPrint(true);
                           }
-                          Navigator.of(context).pushNamed(ChoosePrinterScreen.routeName,arguments: ChoosePrinterScreen(screenshotController: theimageThatComesfromThePrinter,));
+                          // Navigator.of(context).pushNamed(ChoosePrinterScreen.routeName,arguments: ChoosePrinterScreen(screenshotController: theimageThatComesfromThePrinter,));
 
-                          setState(() {
-                            theimageThatComesfromThePrinter = capturedImage;
-                          });
+                          // setState(() {
+                          //   theimageThatComesfromThePrinter = capturedImage;
+                          // });
                         }).catchError((onError) {
                           print(onError);
                         });
