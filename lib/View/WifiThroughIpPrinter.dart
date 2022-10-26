@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:network_info_plus/network_info_plus.dart';
+import 'package:omar/SharedPreferencesHelper.dart';
 import 'package:ping_discover_network_forked/ping_discover_network_forked.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:screenshot/screenshot.dart';
@@ -13,6 +14,9 @@ import 'package:image/image.dart' as img;
 
 
 class WifiThroughrIpPrinter extends StatefulWidget {
+  static const routeName="WifiThroughrIpPrinter";
+  Uint8List? theimageThatC;
+  WifiThroughrIpPrinter({this.theimageThatC});
 
 
   @override
@@ -37,9 +41,18 @@ class WifiThroughrIpPrinterState extends State<WifiThroughrIpPrinter> {
   }
    void  testPrint(String printerIp, Uint8List theimageThatComesfr) async {
     print("im inside the test print 2");
-    const PaperSize paper = PaperSize.mm80;
+     PaperSize? paper ;
+
+    if(await SharedPreferencesHelper.getPageSize()==1){
+      paper = PaperSize.mm80;
+
+    } if(await SharedPreferencesHelper.getPageSize()==2){
+       paper = PaperSize.mm58;
+
+    }
+
     final profile = await CapabilityProfile.load();
-    final printer = NetworkPrinter(paper, profile);
+    final printer = NetworkPrinter(paper!, profile);
     final PosPrintResult res = await printer.connect(printerIp, port: 9100);
     if (res == PosPrintResult.success) {
       await testReceipt(printer, theimageThatComesfr);
@@ -145,7 +158,7 @@ class WifiThroughrIpPrinterState extends State<WifiThroughrIpPrinter> {
                         Uint8List  theimageThatComesfromThePrinter = capturedImage!;
                         setState(() {
                           theimageThatComesfromThePrinter = capturedImage;
-                          testPrint(passedPrinterIp!, theimageThatComesfromThePrinter);
+                          testPrint(passedPrinterIp!, widget.theimageThatC!);
                         });
                       }).catchError((onError) {
                         print(onError);

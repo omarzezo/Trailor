@@ -46,7 +46,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
           title: Text("الطابعة", style: GoogleFonts.notoKufiArabic(
           color: Colors.white,
               fontWeight: FontWeight.bold,
-              fontSize: 18)),
+              fontSize: 16)),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -55,7 +55,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
 
               child: Padding(
                 padding:
-                 EdgeInsets.only(top: 20, left: MediaQuery.of(context).size.width/3, right: MediaQuery.of(context).size.width/3,
+                 EdgeInsets.only(top: 20, left: MediaQuery.of(context).size.width/3.5, right: MediaQuery.of(context).size.width/3.5,
                      bottom: 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -70,19 +70,20 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [Text("فاتورة ضريبة مبسطة ")],
+                      children: [Text("فاتورة ضريبة مبسطة ", style: getStyle(color: Colors.black, fontSize: 16)
+              )],
                     ),
                     Container(
                       color: Colors.grey[350],
-                      height: 20,
+                      height: 30,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Text("offline2 ")],
+                        children: [Text("offline2 ", style: getStyle(color: Colors.black, fontSize: 16))],
                       ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [Text("مؤسسة وعد الوان")],
+                      children: [Text("مؤسسة وعد الوان", style: getStyle(color: Colors.black, fontSize: 16))],
                     ),
                     SizedBox(
                       height: 10,
@@ -100,106 +101,106 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("الهاتف"),
+                            Text("الهاتف", style: getStyle(color: Colors.black, fontSize: 16),),
 //
                             Padding(
                               padding: const EdgeInsets.only(left: 0,right: 5),
-                              child: Text("0567218888"),
+                              child: Text("0567218888", style: getStyle(color: Colors.black, fontSize: 16),),
                             ),
 //
-                            Text("phone"),
+                            Text("phone", style: getStyle(color: Colors.black, fontSize: 16)),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("الرقم الضريبى"),
+                            Text("الرقم الضريبى", style: getStyle(color: Colors.black, fontSize: 16),),
                             Padding(
                               padding: const EdgeInsets.only(left: 30,right: 0),
-                              child: Text("0567218888"),
+                              child: Text("0567218888", style: getStyle(color: Colors.black, fontSize: 16),),
                             ),
-                            Text("Vat No"),
+                            Text("Vat No", style: getStyle(color: Colors.black, fontSize: 16),),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("السجل التجارى"),
+                            Text("السجل التجارى", style: getStyle(color: Colors.black, fontSize: 16),),
 //
                             Padding(
                               padding: const EdgeInsets.only(left: 30,right: 0),
-                              child: Text("057673637"),
+                              child: Text("057673637", style: getStyle(color: Colors.black, fontSize: 16),),
                             ),
 
-                            Text("CR No"),
+                            Text("CR No", style: getStyle(color: Colors.black, fontSize: 16),),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("التاريخ"),
+                            Text("التاريخ", style: getStyle(color: Colors.black, fontSize: 16),),
 //
 
                             Padding(
                               padding: const EdgeInsets.only(left: 5,right: 5),
-                              child: Text("20-5-2022"),
+                              child: Text("20-5-2022", style: getStyle(color: Colors.black, fontSize: 16),),
                             ),
 //
-                            Text("Date"),
+                            Text("Date", style: getStyle(color: Colors.black, fontSize: 16),),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("المرجع"),
+                            Text("المرجع", style: getStyle(color: Colors.black, fontSize: 16),),
 //
                             Padding(
                               padding: const EdgeInsets.only(left: 0,right: 30),
-                              child: Text("SALE_73_7320221015"),
+                              child: Text("SALE_73_7320221015", style: getStyle(color: Colors.black, fontSize: 16),),
                             ),
 //
-                            Text("Refernce"),
+                            Text("Refernce", style: getStyle(color: Colors.black, fontSize: 16),),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("البائع"),
+                            Text("البائع", style: getStyle(color: Colors.black, fontSize: 16),),
 //
                             Padding(
                               padding: const EdgeInsets.only(left: 0,right: 20),
-                              child: Text("cashier1"),
+                              child: Text("cashier1", style: getStyle(color: Colors.black, fontSize: 16),),
                             ),
 //
-                            Text("Seller"),
+                            Text("Seller", style: getStyle(color: Colors.black, fontSize: 16),),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("العميل"),
+                            Text("العميل", style: getStyle(color: Colors.black, fontSize: 16),),
 //
                             Padding(
                               padding: const EdgeInsets.only(left: 0,right: 40),
-                              child: Text("default"),
+                              child: Text("default", style: getStyle(color: Colors.black, fontSize: 16),),
                             ),
 
 //
-                            Text("Customer"),
+                            Text("Customer", style: getStyle(color: Colors.black, fontSize: 16),),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("الرقم الضريبى"),
+                            Text("الرقم الضريبى", style: getStyle(color: Colors.black, fontSize: 16),),
 //
 
                             Padding(
                               padding: const EdgeInsets.only(left: 15,right: 0),
-                              child: Text("654564532132"),
+                              child: Text("654564532132", style: getStyle(color: Colors.black, fontSize: 16),),
                             ),
 //
-                            Text("Vat No"),
+                            Text("Vat No", style: getStyle(color: Colors.black, fontSize: 16),),
                           ],
                         ),
                       ],
@@ -218,139 +219,144 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("رقم الفاتورة"),
+                        Text("رقم الفاتورة", style: getStyle(color: Colors.black, fontSize: 16),),
 //
-                        Text("73"),
+                        Text("73", style: getStyle(color: Colors.black, fontSize: 16),),
 //
-                        Text("Invoice No"),
+                        Text("Invoice No", style: getStyle(color: Colors.black, fontSize: 16),),
                       ],
                     ),
                     SizedBox(
                       height: 10,
                     ),
 
-                    DataTable(
-                        border: TableBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          horizontalInside: BorderSide(color: Colors.black),
-                          verticalInside: BorderSide(color: Colors.black),
-                          bottom: BorderSide(color: Colors.black),
-                          top: BorderSide(color: Colors.black),
-                          left: BorderSide(color: Colors.black),
-                          right: BorderSide(color: Colors.black),
-                        ),
-                        columns: [
-                          DataColumn(
-                              label: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text("Total"),
+                    Container(
+                      width: double.infinity,
 
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text("price"),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text("Qty"),
+                      child: DataTable(
 
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text("الاجمالى"),
+                          border: TableBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            horizontalInside: BorderSide(color: Colors.black),
+                            verticalInside: BorderSide(color: Colors.black),
+                            bottom: BorderSide(color: Colors.black),
+                            top: BorderSide(color: Colors.black),
+                            left: BorderSide(color: Colors.black),
+                            right: BorderSide(color: Colors.black),
+                          ),
+                          columns: [
+                            DataColumn(
+                                label: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text("Total", style: getStyle(color: Colors.black, fontSize: 16),),
 
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text("السعر"),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text("الكمية"),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text("price", style: getStyle(color: Colors.black, fontSize: 16),),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text("Qty", style: getStyle(color: Colors.black, fontSize: 16),),
 
-                                    ],
-                                  ),
-                                ],
-                              )),
-                          DataColumn(
-                              label: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text("Description"),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text("وصف الفاتورة"),
-                                    ],
-                                  ),
-                                ],
-                              )),
-                        ],
-                        rows: [
-                          DataRow(cells: [
-                            DataCell(
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("500.0"),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text("الاجمالى", style: getStyle(color: Colors.black, fontSize: 16),),
 
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text("500.0"),
-                                  SizedBox(
-                                    width: 10,
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text("السعر", style: getStyle(color: Colors.black, fontSize: 16),),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text("الكمية", style: getStyle(color: Colors.black, fontSize: 16),),
 
-                                  ),
-                                  Text("1.00"),
+                                      ],
+                                    ),
+                                  ],
+                                )),
+                            DataColumn(
+                                label: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text("Description", style: getStyle(color: Colors.black, fontSize: 16),),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text("وصف الفاتورة", style: getStyle(color: Colors.black, fontSize: 16),),
+                                      ],
+                                    ),
+                                  ],
+                                )),
+                          ],
+                          rows: [
+                            DataRow(cells: [
+                              DataCell(
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("500.0", style: getStyle(color: Colors.black, fontSize: 16),),
 
-                                ],
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text("500.0", style: getStyle(color: Colors.black, fontSize: 16),),
+                                    SizedBox(
+                                      width: 20,
+
+                                    ),
+                                    Text("1.00", style: getStyle(color: Colors.black, fontSize: 16),),
+
+                                  ],
+                                ),
                               ),
-                            ),
-                            DataCell(
-                              Row(
-                                children: [
-                                  Text("ثوب بقماش ابيض"),
-                                ],
+                              DataCell(
+                                Row(
+                                  children: [
+                                    Text("ثوب بقماش ابيض", style: getStyle(color: Colors.black, fontSize: 16),),
+                                  ],
+                                ),
                               ),
-                            ),
+                            ]),
+                            DataRow(cells: [
+                              DataCell(
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("1000.0", style: getStyle(color: Colors.black, fontSize: 16),),
+
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text("500.0", style: getStyle(color: Colors.black, fontSize: 16),),
+                                    SizedBox(
+                                      width: 20,
+
+                                    ),
+                                    Text("2.00", style: getStyle(color: Colors.black, fontSize: 16),),
+
+                                  ],
+                                ),
+                              ),
+                              DataCell(
+                                Row(
+                                  children: [
+                                    Text("ثوب بقماش شتوى", style: getStyle(color: Colors.black, fontSize: 16),),
+                                  ],
+                                ),
+                              ),
+                            ]),
                           ]),
-                          DataRow(cells: [
-                            DataCell(
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("1000.0"),
-
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text("500.0"),
-                                  SizedBox(
-                                    width: 10,
-
-                                  ),
-                                  Text("2.00"),
-
-                                ],
-                              ),
-                            ),
-                            DataCell(
-                              Row(
-                                children: [
-                                  Text("ثوب بقماش شتوى"),
-                                ],
-                              ),
-                            ),
-                          ]),
-                        ]),
+                    ),
                     SizedBox(
                       height: 10,
                     ),
@@ -363,119 +369,119 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("الاجمالى"),
+                        Text("الاجمالى", style: getStyle(color: Colors.black, fontSize: 16),),
                         Padding(
                           padding: const EdgeInsets.only(left: 0,right: 20),
-                          child: Text("1500.0"),
+                          child: Text("1500.0", style: getStyle(color: Colors.black, fontSize: 16),),
                         ),
 
-                        Text("Total"),
+                        Text("Total", style: getStyle(color: Colors.black, fontSize: 16),),
                       ],
                     ),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("الضريبة"),
+                        Text("الضريبة", style: getStyle(color: Colors.black, fontSize: 16),),
                         Padding(
                           padding: const EdgeInsets.only(left: 0,right: 10),
-                          child: Text("0.0"),
+                          child: Text("0.0", style: getStyle(color: Colors.black, fontSize: 16),),
                         ),
 
-                        Text("Vat"),
+                        Text("Vat", style: getStyle(color: Colors.black, fontSize: 16),),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("الخصم"),
+                        Text("الخصم", style: getStyle(color: Colors.black, fontSize: 16),),
                         Padding(
                           padding: const EdgeInsets.only(left: 0,right: 50),
-                          child: Text("0.0"),
+                          child: Text("0.0", style: getStyle(color: Colors.black, fontSize: 16),),
                         ),
-                        Text("Discount"),
+                        Text("Discount", style: getStyle(color: Colors.black, fontSize: 16),),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("شحن"),
+                        Text("شحن", style: getStyle(color: Colors.black, fontSize: 16),),
                         Padding(
                           padding: const EdgeInsets.only(left: 0,right: 55),
-                          child: Text("0.0"),
+                          child: Text("0.0", style: getStyle(color: Colors.black, fontSize: 16),),
                         ),
 
-                        Text("Shipping"),
+                        Text("Shipping", style: getStyle(color: Colors.black, fontSize: 16),),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("المبلغ المطلوب"),
+                        Text("المبلغ المطلوب", style: getStyle(color: Colors.black, fontSize: 16),),
                         Padding(
                           padding: const EdgeInsets.only(left: 0,right: 30),
-                          child: Text("1500.0"),
+                          child: Text("1500.0", style: getStyle(color: Colors.black, fontSize: 16),),
                         ),
 
-                        Text("Grand Total"),
+                        Text("Grand Total", style: getStyle(color: Colors.black, fontSize: 16),),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("المبلغ المدفوع"),
+                        Text("المبلغ المدفوع", style: getStyle(color: Colors.black, fontSize: 16),),
                         Padding(
                           padding: const EdgeInsets.only(left: 10,right: 0),
-                          child: Text("1500.0"),
+                          child: Text("1500.0", style: getStyle(color: Colors.black, fontSize: 16),),
                         ),
 
-                        Text("Paid"),
+                        Text("Paid", style: getStyle(color: Colors.black, fontSize: 16),),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("حالة الدفع"),
+                        Text("حالة الدفع", style: getStyle(color: Colors.black, fontSize: 16),),
                         Padding(
                           padding: const EdgeInsets.only(left: 0,right:80),
-                          child: Text("paid"),
+                          child: Text("paid", style: getStyle(color: Colors.black, fontSize: 16),),
                         ),
 
-                        Text("Payment Status"),
+                        Text("Payment Status", style: getStyle(color: Colors.black, fontSize: 16),),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("نقدى"),
+                        Text("نقدى", style: getStyle(color: Colors.black, fontSize: 16),),
                         Padding(
                           padding: const EdgeInsets.only(left: 0,right:40),
-                          child: Text("1500.0"),
+                          child: Text("1500.0", style: getStyle(color: Colors.black, fontSize: 16),),
                         ),
-                        Text("Cash"),
+                        Text("Cash", style: getStyle(color: Colors.black, fontSize: 16),),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("اجل"),
+                        Text("اجل", style: getStyle(color: Colors.black, fontSize: 16),),
                         Padding(
                           padding: const EdgeInsets.only(left: 0,right:50),
-                          child: Text("0.0"),
+                          child: Text("0.0", style: getStyle(color: Colors.black, fontSize: 16),),
                         ),
 
-                        Text("Credit"),
+                        Text("Credit", style: getStyle(color: Colors.black, fontSize: 16),),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("المتبقى"),
+                        Text("المتبقى", style: getStyle(color: Colors.black, fontSize: 16),),
                         Padding(
                           padding: const EdgeInsets.only(left: 0,right:35),
-                          child: Text("0.0"),
+                          child: Text("0.0", style: getStyle(color: Colors.black, fontSize: 16),),
                         ),
-                        Text("Chang"),
+                        Text("Chang", style: getStyle(color: Colors.black, fontSize: 16),),
                       ],
                     ),
                     Divider(
@@ -493,28 +499,28 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                     ),
                     ElevatedButton(
                       child: Text("طباعة",
-                          style: publicStryle
+                          style: getStyle(color: Colors.white, fontSize: 16)
                       ),
-                      onPressed: () {
-                        screenshotController.capture(delay: const Duration(milliseconds: 10)).then((capturedImage) async {
+                      onPressed: () async{
+                        await screenshotController.capture(delay: const Duration(milliseconds: 10)).then((capturedImage) async {
                           Uint8List  theimageThatComesfromThePrinter = capturedImage!;
-                          if(widget.printerType==0){
-                            Navigator.of(context).push(createRoute(BluePrinter(theimageThatC: theimageThatComesfromThePrinter)));
+                          if( widget.printerType==0){
 
-                            // BluePrinter(theimageThatC: theimageThatComesfromThePrinter);
-                          }else if(widget.printerType==1){
-                            //  PaperSize papers;
-                            // if(widget.pageSize==1) {
-                            //   papers= PaperSize.mm80;
-                            // } else if(widget.pageSize==2) {
-                            //   papers = PaperSize.mm58;
-                            // }
-                          }else if(widget.printerType==2){
+                            Navigator.of(context).pushNamed(BluePrinter.routeName);
+
+                            // Navigator.of(context).push(createRoute(BluePrinter(theimageThatC: theimageThatComesfromThePrinter)));
+
+                            BluePrinter(theimageThatC: theimageThatComesfromThePrinter);
+                          }else if(await SharedPreferencesHelper.getPrinterType()==1){
+                            Navigator.of(context).pushNamed(WifiThroughrIpPrinter.routeName);
+
+
+                          }else if(await SharedPreferencesHelper.getPrinterType()==2){
                             await SunmiPrinter.initPrinter();
                             await SunmiPrinter.startTransactionPrint(true);
                             await SunmiPrinter.printImage(theimageThatComesfromThePrinter);
-                            await SunmiPrinter.lineWrap(2);
-                            await SunmiPrinter.exitTransactionPrint(true);
+                            // await SunmiPrinter.lineWrap(2);
+                            // await SunmiPrinter.exitTransactionPrint(true);
                           }
                           // Navigator.of(context).pushNamed(ChoosePrinterScreen.routeName,arguments: ChoosePrinterScreen(screenshotController: theimageThatComesfromThePrinter,));
 

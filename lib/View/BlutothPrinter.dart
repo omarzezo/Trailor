@@ -8,13 +8,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:omar/SharedPreferencesHelper.dart';
 
 
 class BluePrinter extends StatefulWidget {
-  Uint8List theimageThatC;
+  Uint8List? theimageThatC;
 
   static const routeName="BluePrinter";
-   BluePrinter({Key? key,required this.theimageThatC}) : super(key: key);
+   BluePrinter({Key? key, this.theimageThatC}) : super(key: key);
 
 
 
@@ -46,13 +47,15 @@ class _BluePrinterState extends State<BluePrinter> {
   @override
   void initState() {
     super.initState();
+
+
     initPrinter().then((value) {
       print("heeeeeeeeee");
-      printScreenShot(theimageThatC: widget.theimageThatC);
+      printScreenShot(theimageThatC: widget.theimageThatC!);
     });
   }
   Future<void> initPrinter()async{
-    bluetoothPrint.startScan(timeout: Duration(seconds: 2));
+  await  bluetoothPrint.startScan(timeout: Duration(seconds: 10));
     if(!mounted) return;
     bluetoothPrint.scanResults.listen((value) {
       if(!mounted) return;
@@ -152,7 +155,7 @@ class _BluePrinterState extends State<BluePrinter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Select printer"),),
+        appBar: AppBar(title: Text("طابعة بلوتوث",style:getStyle(color: Colors.white,fontSize: 18)),),
         body:  devices.isEmpty?Center(child: Text(deviceMsg??""),):ListView.builder(
           itemCount:  devices.length,
           itemBuilder:(context, index) {

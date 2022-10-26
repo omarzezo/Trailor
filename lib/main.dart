@@ -5,6 +5,7 @@ import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Network/Remote%20Data/Dio%20Helper.dart';
 import 'package:omar/Controller/local/shared_pref.dart';
 import 'package:omar/View/BlutothPrinter.dart';
+import 'package:omar/View/WifiThroughIpPrinter.dart';
 import 'package:omar/View/choose_printer_screen.dart';
 import 'package:omar/View/home/splash_screen.dart';
 import 'package:omar/View/invoice_Screen.dart';
@@ -85,8 +86,9 @@ class MyApp extends StatelessWidget {
             CustomerDetailsScreen.routeName:(context) =>  CustomerDetailsScreen(),
             PillsItemData.routeName:(context) =>  PillsItemData(),
             PrintPillScreen.routeName:(context) =>  PrintPillScreen(),
-            // BluePrinter.routeName:(context) =>  BluePrinter(),
+            BluePrinter.routeName:(context) =>  BluePrinter(),
             ChoosePrinterScreen.routeName:(context) =>  ChoosePrinterScreen(),
+            WifiThroughrIpPrinter.routeName:(context) =>  WifiThroughrIpPrinter(),
           },
         ));
   }

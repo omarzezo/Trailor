@@ -23,8 +23,14 @@ class SharedPreferencesHelper {
   }
 
 }
+TextStyle getStyle({required Color color,required double fontSize}){
+  return GoogleFonts.notoKufiArabic(
+      color: color,
+      fontWeight: FontWeight.bold,
+      fontSize: fontSize);
+}
 
-TextStyle publicStryle=GoogleFonts.notoKufiArabic(
+TextStyle publicStyle=GoogleFonts.notoKufiArabic(
     color: Colors.white,
     fontWeight: FontWeight.bold,
     fontSize: 18);
