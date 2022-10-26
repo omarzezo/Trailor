@@ -4,9 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/View/BlutothPrinter.dart';
-import 'package:omar/View/sonomiPrinter.dart';
 import 'package:ping_discover_network_forked/ping_discover_network_forked.dart';
-import 'package:screenshot/screenshot.dart';
 
 class ChoosePrinterScreen extends StatefulWidget {
   static const routeName="ChoosePrinterScreen";

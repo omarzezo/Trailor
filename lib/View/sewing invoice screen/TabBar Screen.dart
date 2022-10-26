@@ -6,6 +6,7 @@ import 'package:omar/View/EditPrinterScreen.dart';
 import 'package:omar/View/invoice_Screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/Size%20Screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/custom_table_sweing.dart';
+import 'package:omar/View/sewing%20invoice%20screen/settings_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/sweing_screen.dart';
 
 import '../../constant/constant.dart';
@@ -118,8 +119,8 @@ class _TabBarScreenState extends State<TabBarScreen> {
                           WifiThroughrIpPrinter(),
                           PrintPillScreen(),
                           // SizedBox(),
-                       // SizedBox(),
                        SizedBox(),
+
                     ]),
                   )
                 ],

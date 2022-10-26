@@ -1,136 +1,343 @@
-import 'dart:typed_data';
-
-// import 'package:esc_pos_bluetooth/esc_pos_bluetooth.dart 'as blue;
-import 'package:esc_pos_printer/esc_pos_printer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
-
 import 'package:google_fonts/google_fonts.dart';
+import 'package:omar/constant/constant.dart';
+import '../../SharedPreferencesHelper.dart';
 
 
 
-class SettingScreen extends StatelessWidget {
-  const SettingScreen({Key? key}) : super(key: key);
+class SettingScreen extends StatefulWidget {
+
+  @override
+  State<SettingScreen> createState() => SettingScreenState();
+}
+
+class SettingScreenState extends State<SettingScreen> {
+
+
+  int printerType=0;
+
+  Widget buildTile(String endColor,String startColor , String icon, String title, String subtitle, BuildContext context,) {
+    double width = MediaQuery.of(context).size.width;
+    return
+      Column(
+        children: [
+          Container(
+              padding: const EdgeInsets.only(left: 25,right: 25,top: 30,bottom: 30),
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.rectangle,
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(
+                      color: MyConstant().purpleColor,
+                      blurRadius: 1.0,
+                      offset: new Offset(10.0, 8.0))
+                ],
+                borderRadius:BorderRadius.only(
+                  bottomRight: Radius.circular(12),
+                  bottomLeft: Radius.circular(12),
+                  topRight: Radius.circular(80),
+                  topLeft: Radius.circular(12),
+                ),
+                border: Border.all(width: 1, color: MyConstant().purpleColor),
+              ),
+              child: Center(
+                child: Container(
+                  width: 80,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFFAFAFA).withOpacity(0.2),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Align(
+                    child: SizedBox(
+                      width: 80,
+                      height: 80,
+                      child: Image.asset(icon,fit: BoxFit.fill,),
+                    ),
+                  ),
+                ),
+              )
+          ),
+          const SizedBox(height: 16,),
+          Text(
+            title,
+            style: new TextStyle(
+              fontSize: 16.0,
+              color: MyConstant().purpleColor,
+              fontFamily: 'regular',
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      );
+
+//      ],
+//    );
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final printerContainer =InkWell(
+        onTap:() {
+        },
+        child: Container(
+            child: new Material(
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(4,4,4,4),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Color(0xffCABBBBBB)),
+                    color: Color(0xffffffff),
+                    borderRadius: BorderRadius.all(
+                        Radius.circular(10.0) //                 <--- border radius here
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                          color: MyConstant().purpleColor,
+                          blurRadius: 1.0,
+                          offset: new Offset(5.0, 4.0)),
+                    ],
+                  ),
+                  child:  Theme(
+                    data: Theme.of(context).copyWith(accentColor: Colors.black),
+                    child: ExpansionTile(
+                        initiallyExpanded:true,
+                      leading: Icon(Icons.print),
+                      title: Text(
+                        "نوع الطابعة",
+                          style: GoogleFonts.notoKufiArabic(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18)
+                      ),
+                      children: <Widget>[
+                        InkWell(
+                          onTap:() {
+                            setState(() {
+                              SharedPreferencesHelper.setPrinterType(0);
+                              printerType=0;
+                            });
+                          },
+                          child: Container(
+                            padding:const EdgeInsets.fromLTRB(22,2,22,2),
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: printerType==0?Colors.white:MyConstant().purpleColor,
+                                ),
+                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                color: printerType==0?MyConstant().purpleColor:Colors.white
+                            ),
+                            child: Text(
+                              "طابعة bluetooth",
+                              style: GoogleFonts.notoKufiArabic(
+                                color:  printerType==0?Colors.white:Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18)
+                            ),
+                          ),
+                        ),
+                        // const Divider(height: 30,color: Colors.red,),
+                        // const Divider(height: 30,color: appColor,),
+                        const SizedBox(height: 10,),
+                        InkWell(
+                          onTap:() {
+                            setState(() {
+                              SharedPreferencesHelper.setPrinterType(1);
+                              printerType=1;
+                            });
+                          },
+                          child: Container(
+                            padding:const EdgeInsets.fromLTRB(10,8,10,6),
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: printerType==1?Colors.white:MyConstant().purpleColor,
+                                ),
+                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                color: printerType==1?MyConstant().purpleColor:Colors.white
+                            ),
+                            child: Text(
+                                "طابعة Wifi",
+                                style: GoogleFonts.notoKufiArabic(
+                                    color: printerType==1?Colors.white:Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18)
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10,),
+                        InkWell(
+                          onTap:() {
+                            setState(() {
+                              SharedPreferencesHelper.setPrinterType(2);
+                              printerType=2;
+                            });
+                          },
+                          child: Container(
+                            padding:const EdgeInsets.fromLTRB(10,8,10,6),
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: printerType==2?Colors.white:MyConstant().purpleColor,
+                                ),
+                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                color: printerType==2?MyConstant().purpleColor:Colors.white
+                            ),
+                            child: Text(
+                                "طابعة Sunmi",
+                                style: GoogleFonts.notoKufiArabic(
+                                    color: printerType==2?Colors.white:Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18)
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10,),
+                      ],
+                    ),
+                  ),
+                )))
+    );
+
     return Directionality(
         textDirection: TextDirection.rtl,
         child: Scaffold(
           appBar: AppBar(
-            toolbarHeight: 100,
+            // toolbarHeight: 100,
             backgroundColor: Colors.purple,
-            title: Text("الطابعة"),
+            title: Text("اعدادات الطابعة ",style: GoogleFonts.notoKufiArabic(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 18)),
             centerTitle: true,
           ),
           body: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("ادخال ip الطابعة ",style: GoogleFonts.notoKufiArabic(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18)),
-                    Container(
-                      // padding: const EdgeInsets.only(left: 10),
-                      height: 30,
-                      width: 125,
-                      child: TextField(
-                        style: GoogleFonts.notoKufiArabic(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18),
-                        onChanged: (value) {
-
-                        },
-
-
-                        decoration: InputDecoration(
-                          hintStyle:  GoogleFonts.notoKufiArabic(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-
-                        ),
-                      ),
-                    ),
-
-                  ],
-                ),
-                Divider(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("ادخال ip طابعة المطبخ",style: GoogleFonts.notoKufiArabic(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18)),
-                    Container(
-                      // padding: const EdgeInsets.only(left: 10),
-                      height: 30,
-                      width: 125,
-                      child: TextField(
-                        style: GoogleFonts.notoKufiArabic(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18),
-                        onChanged: (value) {
-
-                        },
-
-
-                        decoration: InputDecoration(
-                          hintStyle:  GoogleFonts.notoKufiArabic(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-
-                        ),
-                      ),
-                    ),
-
-                  ],
-                ),
-                Divider(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("البحث عن طابعة بلوتوث",style: GoogleFonts.notoKufiArabic(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18)),
-
-                  ],
-                ),
-                Divider(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                  ],
-                ),
-                Divider(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                  ],
-                ),
-                Divider(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                  ],
-                ),
+                // Card(
+                //   elevation: 4,
+                //   color: MyConstant().purpleColor,
+                //   child: Padding(
+                //     padding: const EdgeInsets.all(20),
+                //     child: Text("اعدادات الطابعة ",style: GoogleFonts.notoKufiArabic(
+                //         color: Colors.white,
+                //         fontWeight: FontWeight.bold,
+                //         fontSize: 18)),
+                //   ),
+                // ),
+                printerContainer,
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Text("ادخال ip الطابعة ",style: GoogleFonts.notoKufiArabic(
+                //         color: Colors.black,
+                //         fontWeight: FontWeight.bold,
+                //         fontSize: 18)),
+                //
+                //     Container(
+                //       // padding: const EdgeInsets.only(left: 10),
+                //       height: 30,
+                //       width: 125,
+                //       child: TextField(
+                //         style: GoogleFonts.notoKufiArabic(
+                //             color: Colors.black,
+                //             fontWeight: FontWeight.bold,
+                //             fontSize: 18),
+                //         onChanged: (value) {
+                //
+                //         },
+                //
+                //
+                //         decoration: InputDecoration(
+                //           hintStyle:  GoogleFonts.notoKufiArabic(
+                //               color: Colors.black,
+                //               fontWeight: FontWeight.bold,
+                //               fontSize: 18),
+                //           border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+                //
+                //         ),
+                //       ),
+                //     ),
+                //
+                //   ],
+                // ),
+                // Divider(),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Text("ادخال ip طابعة المطبخ",style: GoogleFonts.notoKufiArabic(
+                //         color: Colors.black,
+                //         fontWeight: FontWeight.bold,
+                //         fontSize: 18)),
+                //     Container(
+                //       // padding: const EdgeInsets.only(left: 10),
+                //       height: 30,
+                //       width: 125,
+                //       child: TextField(
+                //         style: GoogleFonts.notoKufiArabic(
+                //             color: Colors.black,
+                //             fontWeight: FontWeight.bold,
+                //             fontSize: 18),
+                //         onChanged: (value) {
+                //
+                //         },
+                //
+                //
+                //         decoration: InputDecoration(
+                //           hintStyle:  GoogleFonts.notoKufiArabic(
+                //               color: Colors.black,
+                //               fontWeight: FontWeight.bold,
+                //               fontSize: 18),
+                //           border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+                //
+                //         ),
+                //       ),
+                //     ),
+                //
+                //   ],
+                // ),
+                // Divider(),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Text("البحث عن طابعة بلوتوث",style: GoogleFonts.notoKufiArabic(
+                //         color: Colors.black,
+                //         fontWeight: FontWeight.bold,
+                //         fontSize: 18)),
+                //
+                //   ],
+                // ),
+                // Divider(),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //   ],
+                // ),
+                // Divider(),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //   ],
+                // ),
+                // Divider(),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //   ],
+                // ),
               ],
             ),
           ),
         ));
   }
+
+
   SanmiPrint(Uint8List byte)async{
     await MaxxSunmiPrinter.initializePrinter();
     String base64String = base64Encode(byte);

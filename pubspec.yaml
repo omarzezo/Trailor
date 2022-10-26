@@ -53,7 +53,7 @@ dependencies:
   esc_pos_printer: ^4.1.0
   bluetooth_print: ^3.0.1
   ping_discover_network_forked: ^0.0.1
-  network_info_plus: ^3.0.1
+  network_info_plus:
 
 #  esc_pos_bluetooth: ^0.4.1
 #  flutter_bluetooth_basic: ^0.1.7

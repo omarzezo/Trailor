@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:omar/constant/constant.dart';
 
 Widget CustomContainer({
   required Color color,
@@ -58,7 +59,8 @@ Widget RowName()
 
 Widget RowNameDetail({
   required String title ,
-  required String titleImage ,
+   String? titleImage ,
+  IconData? iconData,
 }){
   return Container(
     height: 35,
@@ -66,7 +68,8 @@ Widget RowNameDetail({
     child: Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children:  [
-        Image.asset(titleImage , width: 30, height: 30,),
+        if(titleImage!=null) Image.asset(titleImage , width: 30, height: 30,),
+        if(iconData!=null)Icon(iconData,color: MyConstant().greenColor,size: 30,),
         const SizedBox(width: 20,),
         Text(title,
             style: GoogleFonts.notoKufiArabic(

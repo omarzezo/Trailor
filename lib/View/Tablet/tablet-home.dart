@@ -10,6 +10,8 @@ import 'package:omar/constant/LoadingPage.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/constant/widgets.dart';
 
+import '../sewing invoice screen/settings_screen.dart';
+
 class TabletHome extends StatefulWidget {
   const TabletHome({Key? key}) : super(key: key);
 
@@ -94,6 +96,13 @@ class _TabletHomeState extends State<TabletHome> {
 
                         },
                           child: RowNameDetail(title: 'العملاء' , titleImage: 'image/report.png')),
+
+                      InkWell(
+                          onTap: () async{
+                            Navigator.of(context).push(createRoute(SettingScreen()));
+                          },
+                          child: RowNameDetail(title: 'الاعدادات' , iconData: Icons.settings,)),
+
                     ],
                   ),
                 ),

@@ -65,9 +65,9 @@ class _BluePrinterState extends State<BluePrinter> {
     String base64Image = base64Encode(imageBytes);
     list.add(LineText(type: LineText.TYPE_IMAGE, content: base64Image, align: LineText.ALIGN_CENTER, linefeed: 1));
     await printer.printReceipt(config, list);
-
     // await bluetoothPrint.printReceipt(config, list);
   }
+
   QrCodeTVL(context){
     BytesBuilder bytesBuilder =BytesBuilder();
     bytesBuilder.addByte(1);
@@ -109,15 +109,16 @@ class _BluePrinterState extends State<BluePrinter> {
           itemCount: devices.length,
           itemBuilder:(context, index) {
             return ListTile(
-              leading: Icon(Icons.print),
+              leading: const Icon(Icons.print),
               title: Text(devices[index].name!),
               subtitle: Text(devices[index].address!),
               onTap: (){},
             );
           }, )
     );
-
   }
+
+
   Future<void> startPrint(BluetoothDevice? device)async{
     if(device!=null&&device.address!=null){
       await bluetoothPrint.connect(device);
