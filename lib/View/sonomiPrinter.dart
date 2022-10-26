@@ -3,14 +3,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sunmi_printer_plus/sunmi_printer_plus.dart';
 
-class sonomiPrinter extends StatefulWidget {
-  const sonomiPrinter({Key? key}) : super(key: key);
+class SonomiPrinter extends StatefulWidget {
+  const SonomiPrinter({Key? key}) : super(key: key);
 
   @override
-  sonomiPrinterState createState() => sonomiPrinterState();
+  SonomiPrinterState createState() => SonomiPrinterState();
 }
 
-class sonomiPrinterState extends State<sonomiPrinter> {
+class SonomiPrinterState extends State<SonomiPrinter> {
   bool printBinded = false;
   int paperSize = 0;
   String serialNumber = "";
@@ -54,7 +54,7 @@ class sonomiPrinterState extends State<sonomiPrinter> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Sunmi printer Example'),
+          title: const Text('Sunmi printer '),
         ),
         body: SingleChildScrollView(
           child: Column(

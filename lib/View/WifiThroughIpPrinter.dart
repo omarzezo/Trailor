@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:network_info_plus/network_info_plus.dart';
+import 'package:ping_discover_network_forked/ping_discover_network_forked.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:esc_pos_printer/esc_pos_printer.dart';
@@ -86,6 +88,7 @@ class WifiThroughrIpPrinterState extends State<WifiThroughrIpPrinter> {
   }
 
   TextEditingController Printer = TextEditingController();
+  String? passedPrinterIp;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,12 +125,27 @@ class WifiThroughrIpPrinterState extends State<WifiThroughrIpPrinter> {
                       'print Here',
                       style: TextStyle(fontSize: 40),
                     ),
-                    onPressed: () {
+                    onPressed: () async{
+                      final info = NetworkInfo();
+                      String? ip = await info.getWifiIP();
+                      Printer.text=ip!;
+                      final String subnet = ip!.substring(0, ip.lastIndexOf('.'));
+                      final int port = 9100;
+
+                      final stream = NetworkAnalyzer.discover2(subnet, port);
+                      stream.listen((NetworkAddress addr) {
+                        if (addr.exists) {
+                          print('Found device: ${addr.ip}');
+                          // Printer.text=addr.ip;
+                           passedPrinterIp=addr.ip;
+
+                        }
+                      });
                       screenshotController.capture(delay: const Duration(milliseconds: 10)).then((capturedImage) async {
                         Uint8List  theimageThatComesfromThePrinter = capturedImage!;
                         setState(() {
                           theimageThatComesfromThePrinter = capturedImage;
-                          testPrint(Printer.text, theimageThatComesfromThePrinter);
+                          testPrint(passedPrinterIp!, theimageThatComesfromThePrinter);
                         });
                       }).catchError((onError) {
                         print(onError);

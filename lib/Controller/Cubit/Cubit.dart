@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:dio/dio.dart';
+import 'package:esc_pos_printer/esc_pos_printer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -152,6 +153,7 @@ class LoginCubit extends Cubit<LoginState> {
     await SunmiPrinter.lineWrap(2);
     await SunmiPrinter.exitTransactionPrint(true);
   }
+
 
   Future<Uint8List?> getWidgetImage() async {
     try {

@@ -12,15 +12,29 @@ import 'package:intl/intl.dart';
 
 class BluePrinter extends StatefulWidget {
   static const routeName="BluePrinter";
-  const BluePrinter({Key? key}) : super(key: key);
+   BluePrinter({Key? key}) : super(key: key);
+  static Future<void >printScreenShot(
+      { required Uint8List theimageThatC})async{
+    BluetoothPrint bluetoothPrint=BluetoothPrint.instance;
+
+    Map<String,dynamic> config=Map();
+    List<LineText> list=[];
+    List<int> imageBytes = theimageThatC.buffer.asUint8List(theimageThatC.offsetInBytes, theimageThatC.lengthInBytes);
+    String base64Image = base64Encode(imageBytes);
+    list.add(LineText(type: LineText.TYPE_IMAGE, content: base64Image, align: LineText.ALIGN_CENTER, linefeed: 1));
+    await bluetoothPrint.printReceipt(config, list);
+
+  }
+
 
   @override
   State<BluePrinter> createState() => _BluePrinterState();
 }
 
 class _BluePrinterState extends State<BluePrinter> {
-  BluetoothPrint bluetoothPrint=BluetoothPrint.instance;
   List<BluetoothDevice> devices=[];
+
+  BluetoothPrint bluetoothPrint=BluetoothPrint.instance;
   String deviceMsg="";
   final f=NumberFormat("\$###,###.00","en_us");
   @override
@@ -37,17 +51,41 @@ class _BluePrinterState extends State<BluePrinter> {
       setState(() {
         devices=value;
       });
-      if(devices.isEmpty)
+      if( devices.isEmpty)
         setState(() {
           deviceMsg="No devices";
         });
     });
 
   }
+   Future<void >printScreenShot( Uint8List theimageThatC)async{
+    await bluetoothPrint.startScan(timeout: Duration(seconds: 2));
+      if(!mounted) return;
+      bluetoothPrint.scanResults.listen((value) {
+        if(!mounted) return;
+        setState(() {
+          devices=value;
+        });
+        if( devices.isEmpty)
+          setState(() {
+            deviceMsg="No devices";
+          });
+      });
+
+
+
+    Map<String,dynamic> config=Map();
+    List<LineText> list=[];
+    List<int> imageBytes = theimageThatC.buffer.asUint8List(theimageThatC.offsetInBytes, theimageThatC.lengthInBytes);
+    String base64Image = base64Encode(imageBytes);
+    list.add(LineText(type: LineText.TYPE_IMAGE, content: base64Image, align: LineText.ALIGN_CENTER, linefeed: 1));
+    await bluetoothPrint.printReceipt(config, list);
+  }
   Future<void> testReceipt(BluetoothPrint printer,  Uint8List theimageThatC) async {
     Map<String,dynamic> config=Map();
     List<LineText> list=[];
-    list.add(LineText(
+    list.add(
+        LineText(
         type: LineText.TYPE_TEXT,
         content: "el tarzy",
         width: 2,
@@ -105,13 +143,13 @@ class _BluePrinterState extends State<BluePrinter> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text("Select printer"),),
-        body: devices.isEmpty?Center(child: Text(deviceMsg??""),):ListView.builder(
-          itemCount: devices.length,
+        body:  devices.isEmpty?Center(child: Text(deviceMsg??""),):ListView.builder(
+          itemCount:  devices.length,
           itemBuilder:(context, index) {
             return ListTile(
               leading: const Icon(Icons.print),
-              title: Text(devices[index].name!),
-              subtitle: Text(devices[index].address!),
+              title: Text( devices[index].name!),
+              subtitle: Text( devices[index].address!),
               onTap: (){},
             );
           }, )

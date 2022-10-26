@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
+import 'package:omar/SharedPreferencesHelper.dart';
+import 'package:omar/View/invoice_Screen.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/models/updatePillsStatus.dart';
 
@@ -35,6 +38,28 @@ class PillsItemData extends StatelessWidget {
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 18)),
+                actions: [
+                  IconButton(onPressed: ()async{
+                    int? pageSize=await  SharedPreferencesHelper.getPageSize();
+                    int? printerType=await  SharedPreferencesHelper.getPrinterType();
+                    print(pageSize);
+                    print(printerType);
+                    if(pageSize==null||printerType==null){
+                      Fluttertoast.showToast(
+                          msg: "من فضلك اختر نوع الطابعة وحجم الصفحة",
+                          toastLength: Toast.LENGTH_LONG,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          fontSize: 16.0
+                      );
+                    }else{
+                      Navigator.pushNamed(context, PrintPillScreen.routeName,arguments: PrintPillScreen(pageSize: pageSize,printerType: printerType,));
+                    }
+
+                  }, icon: Icon(Icons.print),)
+                ],
                 centerTitle: true,
               ),
               body: Padding(
