@@ -368,7 +368,7 @@ emit(AddCustomerSuccessState());
     // return pillsDetails!.data![itemIndex];
   }
   PillsDetails? pillsDetails;
-  data.Data?   pillsDetailsItem;
+  data.PillsDetailsData?   pillsDetailsItem;
   Future<PillsDetails> getPillsDetails ()async{
     Dio dio = Dio();
     // final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");

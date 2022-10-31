@@ -16,8 +16,22 @@ class SettingScreen extends StatefulWidget {
 class SettingScreenState extends State<SettingScreen> {
 
 
-  int printerType=0;
+  int printerType=-1;
   int pageSize=0;
+
+  @override
+  void initState() {
+
+      getPrinterType();
+
+    super.initState();
+  }
+
+  Future getPrinterType() async {
+    printerType =(await SharedPreferencesHelper.getPrinterType())!;
+    print("printerType>>"+printerType.toString());
+    setState(() {});
+  }
 
   Widget buildTile(String endColor,String startColor , String icon, String title, String subtitle, BuildContext context,) {
     double width = MediaQuery.of(context).size.width;
@@ -79,10 +93,7 @@ class SettingScreenState extends State<SettingScreen> {
   }
 
 
-  @override
-  void initState() {
-    super.initState();
-  }
+
 
   @override
   Widget build(BuildContext context) {

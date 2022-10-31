@@ -230,7 +230,7 @@ class _DataTableScreenState extends State<DataTableScreen> {
           ),), onSort: onSort, size: ColumnSize.S))
       .toList();
 
-  List<DataRow2> getRows(List<Data> detail) => detail.map((Data det) {
+  List<DataRow2> getRows(List<PillsDetailsData> detail) => detail.map((PillsDetailsData det) {
 
         final cells = [
           det.saleStatus,

@@ -63,10 +63,11 @@ class _SewingScreenState extends State<SewingScreen> {
   @override
   Widget build(BuildContext context) {
     double w = 1.1;
-    MediaQuery.of(context).orientation == Orientation.landscape
-        ? w = 1.1
-        : w = .6;
+    MediaQuery.of(context).orientation == Orientation.landscape ? w = 1.1 : w = .6;
     var cubit = LoginCubit.get(context);
+    final ids = <dynamic>{};
+    cubit.companiesCustomerName.retainWhere((x) => ids.add(x.name));
+
     return Directionality(
       textDirection: TextDirection.rtl,
       child: SafeArea(
@@ -263,31 +264,20 @@ class _SewingScreenState extends State<SewingScreen> {
                                               child:
                                                   DropdownButtonHideUnderline(
                                                 child: DropdownButton2(
-                                                  iconEnabledColor:
-                                                      Colors.white,
-                                                  iconDisabledColor:
-                                                      Colors.grey,
+                                                  iconEnabledColor: Colors.white,
+                                                  iconDisabledColor: Colors.grey,
                                                   buttonHeight: 100,
                                                   buttonWidth: 160,
-
                                                   // buttonElevation: 2,
                                                   itemHeight: 50,
-                                                  itemPadding:
-                                                      const EdgeInsets.only(
-                                                          left: 14, right: 14),
+                                                  itemPadding: const EdgeInsets.only(left: 14, right: 14),
                                                   dropdownMaxHeight: 250,
                                                   dropdownWidth: 250,
                                                   dropdownPadding: null,
-                                                  buttonDecoration:
-                                                      BoxDecoration(
+                                                  buttonDecoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            5),
-                                                    border: Border.all(
-                                                      color: Colors.green,
-                                                    ),
-                                                    color: Colors.white,
-                                                  ),
+                                                            5), border: Border.all(color: Colors.green,), color: Colors.white,),
                                                   dropdownDecoration:
                                                       BoxDecoration(
                                                     borderRadius:
@@ -303,8 +293,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                                   scrollbarAlwaysShow: true,
                                                   // offset: const Offset(0, 0),
                                                   // items: items.map(itemBuild).toList(),
-                                                  searchController:
-                                                      cubit.searchController,
+                                                  searchController: cubit.searchController,
                                                   searchInnerWidget: Padding(
                                                     padding:
                                                         const EdgeInsets.only(
@@ -332,11 +321,9 @@ class _SewingScreenState extends State<SewingScreen> {
                                                           horizontal: 10,
                                                           vertical: 8,
                                                         ),
-                                                        hintText:
-                                                            'Search for an item...',
-                                                        hintStyle:
-                                                            const TextStyle(
-                                                                fontSize: 12),
+                                                        hintText: 'اسم العميل',
+                                                        hintStyle: const TextStyle(fontSize: 12),
+                                                        alignLabelWithHint: true,
                                                         border:
                                                             OutlineInputBorder(
                                                           borderRadius:
@@ -346,8 +333,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                                       ),
                                                     ),
                                                   ),
-                                                  searchMatchFn:
-                                                      (item, searchValue) {
+                                                  searchMatchFn: (item, searchValue) {
                                                     return (item.value
                                                         .toString()
                                                         .toLowerCase()
@@ -361,8 +347,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                                     }
                                                   },
 
-                                                  items: cubit
-                                                      .companiesCustomerName
+                                                  items: cubit.companiesCustomerName
                                                       .map((item) =>
                                                           DropdownMenuItem(
                                                             value: item.company,
@@ -386,12 +371,14 @@ class _SewingScreenState extends State<SewingScreen> {
                                                   isExpanded: true,
 
                                                   onChanged: (val) {
-                                                    setState(() {
-                                                      cubit.userItem = "";
-                                                      cubit.userItem =
-                                                          val as String?;
-                                                      cubit.customerName = val!;
-                                                    });
+                                                    try {
+                                                      // cubit.userItem = "";
+                                                      cubit.userItem = val.toString();
+                                                      cubit.customerName = val!.toString();
+                                                      setState(() {});
+                                                    }catch(e){
+
+                                                    }
                                                   },
                                                   // iconEnabledColor: Colors.white,
                                                   iconSize: 30,
@@ -1025,7 +1012,6 @@ class _SewingScreenState extends State<SewingScreen> {
                                                       child:
                                                           DropdownButtonHideUnderline(
                                                         child: DropdownButton2(
-
                                                             iconEnabledColor: Colors
                                                                 .white,
                                                             iconDisabledColor:
@@ -1082,7 +1068,6 @@ class _SewingScreenState extends State<SewingScreen> {
                                                             value: cubit
                                                                 .fixedPaymentType,
                                                             isExpanded: true,
-
                                                             onChanged: (value) {
                                                               setState(() {
                                                                 cubit.fixedPaymentType =

@@ -44,6 +44,9 @@ class PillsItemData extends StatelessWidget {
                     int? printerType=await  SharedPreferencesHelper.getPrinterType();
                     print(pageSize);
                     print(printerType);
+                    if(pageSize==null){
+                      pageSize=0;
+                    }
                     if(pageSize==null||printerType==null){
                       Fluttertoast.showToast(
                           msg: "من فضلك اختر نوع الطابعة وحجم الصفحة",

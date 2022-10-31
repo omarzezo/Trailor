@@ -139,7 +139,7 @@
 //   }
 // }
 class PillsDetails {
-  List<Data>? data;
+  List<PillsDetailsData>? data;
   int? limit;
   int? start;
   int? total;
@@ -148,9 +148,9 @@ class PillsDetails {
 
   PillsDetails.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <PillsDetailsData>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(new PillsDetailsData.fromJson(v));
       });
     }
     limit = json['limit'];
@@ -170,7 +170,7 @@ class PillsDetails {
   }
 }
 
-class Data {
+class PillsDetailsData {
   String? id;
   String? referenceNo;
   String? customerId;
@@ -180,7 +180,7 @@ class Data {
   String? saleStatus;
   String? balance;
 
-  Data(
+  PillsDetailsData(
       {this.id,
         this.referenceNo,
         this.customerId,
@@ -190,7 +190,7 @@ class Data {
         this.saleStatus,
         this.balance});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  PillsDetailsData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     referenceNo = json['reference_no'];
     customerId = json['customer_id'];

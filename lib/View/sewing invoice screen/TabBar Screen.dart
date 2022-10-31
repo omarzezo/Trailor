@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/View/Data%20Table/custom%20table.dart';
 import 'package:omar/View/Data%20Table/data-table%20screen.dart';
 import 'package:omar/View/EditPrinterScreen.dart';
 import 'package:omar/View/invoice_Screen.dart';
+import 'package:omar/View/present_all_tables_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/Size%20Screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/custom_table_sweing.dart';
 import 'package:omar/View/sewing%20invoice%20screen/settings_screen.dart';
@@ -21,6 +23,7 @@ class TabBarScreen extends StatefulWidget {
 }
 
 class _TabBarScreenState extends State<TabBarScreen> {
+
   @override
   Widget build(BuildContext context) {
    bool vlaue=MediaQuery.of(context).orientation==Orientation.portrait;
@@ -116,7 +119,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
                           // CustomTableSweing(),
                           CustomTable(),
                           EditPrinterScreen(),
-                          WifiThroughrIpPrinter(),
+                          PresentAllTablesScreen(),
                           PrintPillScreen(),
                           // SizedBox(),
                        SizedBox(),
@@ -131,4 +134,6 @@ class _TabBarScreenState extends State<TabBarScreen> {
       ),
     );
   }
+
+
 }
