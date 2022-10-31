@@ -58,7 +58,7 @@ class NewUserScreen extends StatelessWidget {
               ),
             ),
             body: Padding(
-              padding: const EdgeInsets.only(left: 60,right: 60),
+              padding:  EdgeInsets.only(left:(MediaQuery.of(context).size.width>500)? 60:10,right: (MediaQuery.of(context).size.width>500)? 60:10),
               child: Form(
                 key: _formKey,
                 child: SingleChildScrollView(

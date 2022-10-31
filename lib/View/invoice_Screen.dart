@@ -58,12 +58,14 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
           centerTitle: true,
         ),
         body: SingleChildScrollView(
+
             child: Screenshot(
               controller: screenshotController,
 
               child: Padding(
+
                 padding:
-                 EdgeInsets.only(top: 20, left: MediaQuery.of(context).size.width/3.5, right: MediaQuery.of(context).size.width/3.5,
+                 EdgeInsets.only(top: 20, left: (MediaQuery.of(context).size.width>500)?MediaQuery.of(context).size.width/3.5:20, right: (MediaQuery.of(context).size.width>500)?MediaQuery.of(context).size.width/3.5:20,
                      bottom: 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -243,10 +245,14 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
 
                     Container(
                       width: double.infinity,
-
+                      margin: EdgeInsets.all(5),
                       child: DataTable(
-
+                        horizontalMargin: 0,
+                          columnSpacing: (MediaQuery.of(context).size.width>500)?56:10,
+                          dividerThickness: 1,
+                         
                           border: TableBorder(
+
                             borderRadius: BorderRadius.circular(10),
                             horizontalInside: BorderSide(color: Colors.black),
                             verticalInside: BorderSide(color: Colors.black),
@@ -257,108 +263,134 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                           ),
                           columns: [
                             DataColumn(
-                                label: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text("Total", style: getStyle(color: Colors.black, fontSize: 16),),
+                                label: Expanded(
+                                  flex: 3,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
 
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(right: 10),
-                                          child: Text("price", style: getStyle(color: Colors.black, fontSize: 16),),
-                                        ),
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(right: 15),
-                                          child: Text("Qty", style: getStyle(color: Colors.black, fontSize: 16),),
-                                        ),
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(right: 10),
+                                            child: Text("Total", style: getStyle(color: Colors.black, fontSize: 16),),
+                                          ),
 
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                          SizedBox(
+                                            width: 20,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(right: 10),
+                                            child: Text("price", style: getStyle(color: Colors.black, fontSize: 16),),
+                                          ),
+                                          SizedBox(
+                                            width: 20,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(right: 15),
+                                            child: Text("Qty", style: getStyle(color: Colors.black, fontSize: 16),),
+                                          ),
 
-                                      children: [
-                                        Text("الاجمالى", style: getStyle(color: Colors.black, fontSize: 16),),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
 
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(right: 10),
-                                          child: Text("السعر", style: getStyle(color: Colors.black, fontSize: 16),),
-                                        ),
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(right: 10),
-                                          child: Text("الكمية", style: getStyle(color: Colors.black, fontSize: 16),),
-                                        ),
+                                        children: [
+                                          Text("الاجمالى", style: getStyle(color: Colors.black, fontSize: 16),),
 
-                                      ],
-                                    ),
-                                  ],
+                                          SizedBox(
+                                            width: 20,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(right: 10),
+                                            child: Text("السعر", style: getStyle(color: Colors.black, fontSize: 16),),
+                                          ),
+                                          SizedBox(
+                                            width: 20,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(right: 10),
+                                            child: Text("الكمية", style: getStyle(color: Colors.black, fontSize: 16),),
+                                          ),
+
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 )),
                             DataColumn(
-                                label: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text("Description", style: getStyle(color: Colors.black, fontSize: 16),),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text("وصف الفاتورة", style: getStyle(color: Colors.black, fontSize: 16),),
-                                      ],
-                                    ),
-                                  ],
+
+                                label: Expanded(
+                                  flex: 3,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    // mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.all(0),
+                                        child: Row(
+                                          children: [
+                                            Text("Description", style: getStyle(color: Colors.black, fontSize: 16),),
+                                          ],
+                                        ),
+                                      ),
+                                      Row(
+                                        children: [
+
+                                          Padding(
+                                            padding: EdgeInsets.all(0),
+                                            child: Text("وصف الفاتورة", style: getStyle(color: Colors.black, fontSize: 16),),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 )),
                           ],
                           rows:
                             List.generate(cubit.invoiceModel!.invoiceData![0].items!.length, (index) => DataRow(cells: [
 
                               DataCell(
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 10,right: 20),
-                                      child: Text(double.parse(cubit.invoiceModel!.invoiceData![0].items![index].subtotal!).toStringAsFixed(2), style: getStyle(color: Colors.black, fontSize: 16),),
-                                    ),
+                                Expanded(
+                                  flex: 3,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 10,right: 20),
+                                        child: Text(double.parse(cubit.invoiceModel!.invoiceData![0].items![index].subtotal!).toStringAsFixed(2), style: getStyle(color: Colors.black, fontSize: 16),),
+                                      ),
 
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: Text(double.parse(cubit.invoiceModel!.invoiceData![0].items![index].realUnitPrice!).toStringAsFixed(2), style: getStyle(color: Colors.black, fontSize: 16),),
-                                    ),
-                                    SizedBox(
-                                      width: 20,
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(right: 10),
+                                        child: Text(double.parse(cubit.invoiceModel!.invoiceData![0].items![index].realUnitPrice!).toStringAsFixed(2), style: getStyle(color: Colors.black, fontSize: 16),),
+                                      ),
+                                      SizedBox(
+                                        width: 20,
 
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: Text(double.parse(cubit.invoiceModel!.invoiceData![0].items![index].quantity!).toStringAsFixed(2), style: getStyle(color: Colors.black, fontSize: 16),),
-                                    ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(right: 10),
+                                        child: Text(double.parse(cubit.invoiceModel!.invoiceData![0].items![index].quantity!).toStringAsFixed(2), style: getStyle(color: Colors.black, fontSize: 16),),
+                                      ),
 
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                               DataCell(
-                                Row(
-                                  children: [
-                                    Text(cubit.invoiceModel!.invoiceData![0].items![index].productName!, style: getStyle(color: Colors.black, fontSize: 16),),
-                                  ],
+                                Expanded(
+                                  flex: 1,
+                                  child: Row(
+                                    children: [
+                                      Text(cubit.invoiceModel!.invoiceData![0].items![index].productName!, style: getStyle(color: Colors.black, fontSize: 16),),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ]))
