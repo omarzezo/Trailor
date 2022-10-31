@@ -40,6 +40,8 @@ class PillsItemData extends StatelessWidget {
                         fontSize: 18)),
                 actions: [
                   IconButton(onPressed: ()async{
+                    await LoginCubit.get(context).getInvoiceInformation(cubit.pillsDetailsItem!.id!);
+
                     int? pageSize=await  SharedPreferencesHelper.getPageSize();
                     int? printerType=await  SharedPreferencesHelper.getPrinterType();
                     print(pageSize);

@@ -4,10 +4,13 @@ import 'dart:io';
 import 'package:esc_pos_printer/esc_pos_printer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image/image.dart' as img;
 
 import 'package:flutter/material.dart';
+import 'package:omar/Controller/Cubit/Cubit.dart';
+import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/SharedPreferencesHelper.dart';
 import 'package:omar/View/BlutothPrinter.dart';
 import 'package:omar/View/WifiThroughIpPrinter.dart';
@@ -38,9 +41,14 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var cubit=LoginCubit.get(context);
     return Directionality(
       textDirection: TextDirection.rtl,
-      child: Scaffold(
+      child: BlocConsumer<LoginCubit, LoginState>(
+  listener: (context, state) {
+  },
+  builder: (context, state) {
+    return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.purple,
           title: Text("الطابعة", style: GoogleFonts.notoKufiArabic(
@@ -143,7 +151,10 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
 
                             Padding(
                               padding: const EdgeInsets.only(left: 5,right: 5),
-                              child: Text("20-5-2022", style: getStyle(color: Colors.black, fontSize: 16),),
+                              // child: Text(cubit.invoiceModel!.invoiceData![0].date??"".split(" ")
+
+                              child: Text(cubit.invoiceModel!.invoiceData![0].date!.split(" ")
+                                  .first , style: getStyle(color: Colors.black, fontSize: 16),),
                             ),
 //
                             Text("Date", style: getStyle(color: Colors.black, fontSize: 16),),
@@ -156,7 +167,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
 //
                             Padding(
                               padding: const EdgeInsets.only(left: 0,right: 30),
-                              child: Text("SALE_73_7320221015", style: getStyle(color: Colors.black, fontSize: 16),),
+                              child: Text(cubit.invoiceModel!.invoiceData![0].referenceNo!??"", style: getStyle(color: Colors.black, fontSize: 16),),
                             ),
 //
                             Text("Refernce", style: getStyle(color: Colors.black, fontSize: 16),),
@@ -182,7 +193,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
 //
                             Padding(
                               padding: const EdgeInsets.only(left: 0,right: 40),
-                              child: Text("default", style: getStyle(color: Colors.black, fontSize: 16),),
+                              child: Text(cubit.invoiceModel!.invoiceData![0].customer!??"", style: getStyle(color: Colors.black, fontSize: 16),),
                             ),
 
 //
@@ -221,7 +232,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                       children: [
                         Text("رقم الفاتورة", style: getStyle(color: Colors.black, fontSize: 16),),
 //
-                        Text("73", style: getStyle(color: Colors.black, fontSize: 16),),
+                        Text(cubit.invoiceModel!.invoiceData![0].items![0].saleId!??"", style: getStyle(color: Colors.black, fontSize: 16),),
 //
                         Text("Invoice No", style: getStyle(color: Colors.black, fontSize: 16),),
                       ],
@@ -254,28 +265,42 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                         Text("Total", style: getStyle(color: Colors.black, fontSize: 16),),
 
                                         SizedBox(
-                                          width: 10,
+                                          width: 20,
                                         ),
-                                        Text("price", style: getStyle(color: Colors.black, fontSize: 16),),
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: Text("price", style: getStyle(color: Colors.black, fontSize: 16),),
+                                        ),
                                         SizedBox(
-                                          width: 10,
+                                          width: 20,
                                         ),
-                                        Text("Qty", style: getStyle(color: Colors.black, fontSize: 16),),
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 15),
+                                          child: Text("Qty", style: getStyle(color: Colors.black, fontSize: 16),),
+                                        ),
 
                                       ],
                                     ),
                                     Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+
                                       children: [
                                         Text("الاجمالى", style: getStyle(color: Colors.black, fontSize: 16),),
 
                                         SizedBox(
-                                          width: 10,
+                                          width: 20,
                                         ),
-                                        Text("السعر", style: getStyle(color: Colors.black, fontSize: 16),),
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: Text("السعر", style: getStyle(color: Colors.black, fontSize: 16),),
+                                        ),
                                         SizedBox(
-                                          width: 10,
+                                          width: 20,
                                         ),
-                                        Text("الكمية", style: getStyle(color: Colors.black, fontSize: 16),),
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 10),
+                                          child: Text("الكمية", style: getStyle(color: Colors.black, fontSize: 16),),
+                                        ),
 
                                       ],
                                     ),
@@ -298,23 +323,33 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                   ],
                                 )),
                           ],
-                          rows: [
-                            DataRow(cells: [
+                          rows:
+                            List.generate(cubit.invoiceModel!.invoiceData![0].items!.length, (index) => DataRow(cells: [
+
                               DataCell(
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text("500.0", style: getStyle(color: Colors.black, fontSize: 16),),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10,right: 20),
+                                      child: Text(double.parse(cubit.invoiceModel!.invoiceData![0].items![index].subtotal!).toStringAsFixed(2), style: getStyle(color: Colors.black, fontSize: 16),),
+                                    ),
 
                                     SizedBox(
                                       width: 20,
                                     ),
-                                    Text("500.0", style: getStyle(color: Colors.black, fontSize: 16),),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 10),
+                                      child: Text(double.parse(cubit.invoiceModel!.invoiceData![0].items![index].realUnitPrice!).toStringAsFixed(2), style: getStyle(color: Colors.black, fontSize: 16),),
+                                    ),
                                     SizedBox(
                                       width: 20,
 
                                     ),
-                                    Text("1.00", style: getStyle(color: Colors.black, fontSize: 16),),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 10),
+                                      child: Text(double.parse(cubit.invoiceModel!.invoiceData![0].items![index].quantity!).toStringAsFixed(2), style: getStyle(color: Colors.black, fontSize: 16),),
+                                    ),
 
                                   ],
                                 ),
@@ -322,40 +357,13 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                               DataCell(
                                 Row(
                                   children: [
-                                    Text("ثوب بقماش ابيض", style: getStyle(color: Colors.black, fontSize: 16),),
+                                    Text(cubit.invoiceModel!.invoiceData![0].items![index].productName!, style: getStyle(color: Colors.black, fontSize: 16),),
                                   ],
                                 ),
                               ),
-                            ]),
-                            DataRow(cells: [
-                              DataCell(
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text("1000.0", style: getStyle(color: Colors.black, fontSize: 16),),
-
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Text("500.0", style: getStyle(color: Colors.black, fontSize: 16),),
-                                    SizedBox(
-                                      width: 20,
-
-                                    ),
-                                    Text("2.00", style: getStyle(color: Colors.black, fontSize: 16),),
-
-                                  ],
-                                ),
-                              ),
-                              DataCell(
-                                Row(
-                                  children: [
-                                    Text("ثوب بقماش شتوى", style: getStyle(color: Colors.black, fontSize: 16),),
-                                  ],
-                                ),
-                              ),
-                            ]),
-                          ]),
+                            ]))
+                            ,
+                          ),
                     ),
                     SizedBox(
                       height: 10,
@@ -385,7 +393,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                         Text("الضريبة", style: getStyle(color: Colors.black, fontSize: 16),),
                         Padding(
                           padding: const EdgeInsets.only(left: 0,right: 10),
-                          child: Text("0.0", style: getStyle(color: Colors.black, fontSize: 16),),
+                          child: Text(cubit.invoiceModel!.invoiceData![0].items![0].tax!, style: getStyle(color: Colors.black, fontSize: 16),),
                         ),
 
                         Text("Vat", style: getStyle(color: Colors.black, fontSize: 16),),
@@ -397,7 +405,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                         Text("الخصم", style: getStyle(color: Colors.black, fontSize: 16),),
                         Padding(
                           padding: const EdgeInsets.only(left: 0,right: 50),
-                          child: Text("0.0", style: getStyle(color: Colors.black, fontSize: 16),),
+                          child: Text(cubit.invoiceModel!.invoiceData![0].items![0].discount??"0.0", style: getStyle(color: Colors.black, fontSize: 16),),
                         ),
                         Text("Discount", style: getStyle(color: Colors.black, fontSize: 16),),
                       ],
@@ -444,7 +452,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                         Text("حالة الدفع", style: getStyle(color: Colors.black, fontSize: 16),),
                         Padding(
                           padding: const EdgeInsets.only(left: 0,right:80),
-                          child: Text("paid", style: getStyle(color: Colors.black, fontSize: 16),),
+                          child: Text(cubit.invoiceModel!.invoiceData![0].saleStatus!, style: getStyle(color: Colors.black, fontSize: 16),),
                         ),
 
                         Text("Payment Status", style: getStyle(color: Colors.black, fontSize: 16),),
@@ -537,7 +545,9 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                 ),
               ),
             )),
-      ),
+      );
+  },
+),
     );
   }
   QrCodeTVL(context){

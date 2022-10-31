@@ -281,7 +281,7 @@ class _CustomTableSweingState extends State<CustomTableSweing> {
                         flex: 1,
                         child: InkWell(
                           onTap: () async {
-                            LoginCubit.get(context).getPillsDetailsForItem( index);
+                            await     LoginCubit.get(context).getPillsDetailsForItem( index);
                             var result = await  Navigator.pushNamed(context, PillsItemData.routeName);
                             if(result==true){
                               setState(() {});

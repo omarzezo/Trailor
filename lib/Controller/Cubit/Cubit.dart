@@ -17,6 +17,7 @@ import 'package:omar/models/Taxrates.dart';
 import 'package:omar/models/Units.dart';
 import 'package:omar/models/Users.dart';
 import 'package:omar/models/customer.dart';
+import 'package:omar/models/invoiceModel.dart';
 import 'package:omar/models/pillResponse.dart';
 import 'package:omar/View/Data Table/model.dart' as data;
 import 'package:omar/models/tRCollar.dart';
@@ -144,6 +145,22 @@ class LoginCubit extends Cubit<LoginState> {
   //     print(e);
   //   }
   // }
+  InvoiceModel? invoiceModel;
+  Future<InvoiceModel>  getInvoiceInformation(String id )async{
+    Dio dio = Dio();
+
+
+    final response = await dio.get(
+      'https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_id=w_1&id=$id',
+    );
+    if(response.statusCode==200){
+      invoiceModel=InvoiceModel.fromJson(response.data);
+
+    }else{
+      print (response.statusMessage);
+    }
+    return invoiceModel!;
+  }
 
   printsonomi(Uint8List? theimageThatC)async{
 
@@ -284,7 +301,6 @@ class LoginCubit extends Cubit<LoginState> {
 
     emit(GetCustomerLoadingState());
     companiesCustomerName=[];
-    Dio dio = Dio();
 
     // dio.options.headers = {
     //   'Content-Type': 'application/json',
@@ -292,6 +308,7 @@ class LoginCubit extends Cubit<LoginState> {
     //   'Accept-Version': 'V1',
     //   'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko'
     // };
+    Dio dio = Dio();
 
 
     final response = await dio.get(
