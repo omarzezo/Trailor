@@ -7,6 +7,7 @@ import 'package:omar/View/EditPrinterScreen.dart';
 import 'package:omar/View/invoice_Screen.dart';
 import 'package:omar/View/present_all_tables_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/Size%20Screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/change_size_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/custom_table_sweing.dart';
 import 'package:omar/View/sewing%20invoice%20screen/settings_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/sweing_screen.dart';
@@ -37,6 +38,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
             body: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: Column(
+
                 children:  [
                   TabBar(
                     isScrollable: vlaue,
@@ -118,7 +120,8 @@ class _TabBarScreenState extends State<TabBarScreen> {
                       SewingScreen(),
                           // CustomTableSweing(),
                           CustomTable(),
-                          EditPrinterScreen(),
+                          ChangeSizeScreen(),
+                          // EditPrinterScreen(),
                           PresentAllTablesScreen(),
                           PrintPillScreen(),
                           // SizedBox(),

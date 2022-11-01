@@ -103,6 +103,7 @@ Widget customTextField({
   TextInputAction? textInputAction,
   bool? readOnly=false,
   TextInputType? textInputType,
+  String? hintText,
 }) {
   return TextFormField(
     keyboardType: textInputType,
@@ -113,18 +114,19 @@ Widget customTextField({
 // ],
     textInputAction: textInputAction,
     onFieldSubmitted:onFieldSubmitted,
-    onEditingComplete: (){
-      // controller!.clear();
-    },
-onChanged: onChange,
-    onSaved: onSaved,
-    readOnly: readOnly!,
+    // onEditingComplete: (){
+    //   // controller!.clear();
+    // },
+// onChanged: onChange,
+    // onSaved: onSaved,
+    // readOnly: readOnly!,
     textAlign: TextAlign.center,
     controller: controller,
     validator: validator,
-    decoration: InputDecoration(
-      // prefix: Text(text),
 
+    decoration: InputDecoration(
+      hintText: hintText,
+      // prefix: Text(text),
       // contentPadding: EdgeInsets.zero,
       label: Container(
         margin: EdgeInsets.only(top: 10,bottom: 10),
@@ -134,8 +136,11 @@ onChanged: onChange,
                 fontWeight: FontWeight.bold,
                 fontSize: 12)),
       ),
+
       enabledBorder: const UnderlineInputBorder(
+
         borderSide: BorderSide(
+
           color: Colors.green,
         ),
       ),

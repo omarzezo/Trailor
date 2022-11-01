@@ -12,6 +12,7 @@ import 'package:omar/View/invoice_Screen.dart';
 import 'package:omar/View/mobile/mobil%20home.dart';
 import 'package:omar/View/sewing%20invoice%20screen/add_new_customer_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/customers_details_screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/edit_size_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/pills_item_data.dart';
 import 'package:omar/View/sewing%20invoice%20screen/print_screen.dart';
 import 'package:omar/constant/constant.dart';
@@ -89,6 +90,7 @@ class MyApp extends StatelessWidget {
             BluePrinter.routeName:(context) =>  BluePrinter(),
             ChoosePrinterScreen.routeName:(context) =>  ChoosePrinterScreen(),
             WifiThroughrIpPrinter.routeName:(context) =>  WifiThroughrIpPrinter(),
+            EditSizeScreen.routeName:(context) =>  EditSizeScreen(),
           },
         ));
   }
