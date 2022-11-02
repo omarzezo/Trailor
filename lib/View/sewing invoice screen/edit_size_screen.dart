@@ -13,6 +13,7 @@ import 'package:omar/models/tRModel.dart';
 import 'package:omar/models/tRPocket.dart';
 import 'package:omar/models/tRTailor.dart';
 import 'package:omar/models/tRZipper.dart';
+import 'package:omar/models/updatedSizes.dart';
 import 'package:omar/tast.dart';
 import '../../constant/List Of Image.dart';
 import '../../constant/constant.dart';
@@ -20,12 +21,10 @@ import '../../models/trFilling.dart';
 import 'Widgets.dart';
 
 class EditSizeScreen extends StatefulWidget {
-  const EditSizeScreen(
+  const EditSizeScreen({
+    this.salesId});
 
-      {
-        this.salesId}
-       );
-  static const routeName="EditSizeScreen";
+  static const routeName = "EditSizeScreen";
   final String? salesId;
 
   @override
@@ -34,7 +33,7 @@ class EditSizeScreen extends StatefulWidget {
 
 class _EditSizeScreenState extends State<EditSizeScreen> {
 
-  var text="";
+  var text = "";
 
   List<String> gebType = [
     'جيب باين',
@@ -61,12 +60,11 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
     'Sweing Borke',
   ];
   var controllerList = ScrollController();
-  bool isSelect2 = false;
-  bool isSelect1 = false;
+
   tRPocketModel? tRPocketValue;
   tRFillingModel? trFillingValue;
   tRZipperModel? tRZipperValue;
-  tRTailorModel?  tRTailorValue;
+  tRTailorModel? tRTailorValue;
   tRModelModel? trModelValue;
 
   tRCollarModel? tRCollarValue;
@@ -75,7 +73,8 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
   int currentImage = 0;
   int currentImage1 = 0;
 
-  int? selectedType = 0, relatedSelectedType;
+  int? selectedType = 0,
+      relatedSelectedType;
   List<TypesModel> getRelatedList = [];
   List<TypesModel> selectedLists = [];
 
@@ -99,11 +98,11 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
   @override
   Widget build(BuildContext context) {
     var cubit = LoginCubit.get(context);
+
     return Directionality(
       textDirection: TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
-        listener: (context, state) {
-        },
+        listener: (context, state) {},
         builder: (context, state) {
           return Scaffold(
               backgroundColor: Colors.white,
@@ -120,9 +119,12 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                         alignment: Alignment.center,
                         children: [
                           Container(
-                            height: MediaQuery.of(context).size.height / 10,
+                            height: MediaQuery
+                                .of(context)
+                                .size
+                                .height / 10,
                             width: double.infinity,
-                            padding: const EdgeInsets.only(left: 30,top: 10),
+                            padding: const EdgeInsets.only(left: 30, top: 10),
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                               border: Border(
@@ -152,7 +154,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                 Container(
                                     height: 40,
                                     width:
-                                    MediaQuery.of(context).size.width / 5,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 5,
                                     child: Image.asset(
                                       'image/logo app.png',
                                       width: 40,
@@ -175,7 +180,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                       Container(
                         // height: MediaQuery.of(context).size.height/16,
                         height: 40,
-                        width: MediaQuery.of(context).size.width / 1,
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width / 1,
                         color: MyConstant().purpleColor,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -194,7 +202,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                     fontWeight: FontWeight.bold,
                                     fontSize: Size)),
                             Container(
-                                width: MediaQuery.of(context).size.width / 3,
+                                width: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .width / 3,
                                 // height: MediaQuery.of(context).size.height/1,
                                 // color: Colors.amber,
                                 margin: const EdgeInsets.only(
@@ -207,7 +218,8 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                   ),
                                   padding: const EdgeInsets.only(right: 10),
                                   child: DropdownButtonHideUnderline(
-                                    child:  DropdownButton2(
+                                    child: DropdownButton2(
+
                                       iconEnabledColor:
                                       Colors.white,
                                       iconDisabledColor:
@@ -239,14 +251,19 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           20),
                                       scrollbarThickness: 6,
                                       scrollbarAlwaysShow: true,
-                                      hint: Text(cubit.TailorName1??""),
-                                      items: cubit.tRTailorList.map(tRTailorItemBuild).toList(),
+                                      hint: Text(cubit.tRTailorValue!.TailorName??""),
+                                      items: cubit.tRTailorList.map(
+                                          tRTailorItemBuild).toList(),
                                       value: tRTailorValue,
                                       isExpanded: true,
                                       onChanged: (value) {
                                         setState(() {
-                                          tRTailorValue = value as tRTailorModel;
+                                          tRTailorValue =
+                                          value as tRTailorModel;
+                                          cubit.tRTailorValue =value;
+
                                           cubit.TaillorName = value.TailorName!;
+                                          cubit.tailorId = value.TailorId!;
                                         });
                                       },
                                       iconSize: 25,
@@ -261,7 +278,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                               topLeft: Radius
                                                   .circular(
                                                   5)),
-                                        ),                                          child: const Icon(
+                                        ), child: const Icon(
                                           Icons.keyboard_arrow_down_sharp),
                                       ),
                                     ),
@@ -280,7 +297,56 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                   onPressed:
 
                                       () async {
-                                    await cubit.getWidgetImage();
+                                    // await cubit.getWidgetImage();
+                                    Measurement measurement = Measurement(
+                                      itemName: cubit.type.text,
+                                      itemCode: cubit.tailCode,
+                                      frontLength: double.parse(cubit.frontHeight.text),
+                                      backLength: double.parse(cubit.backHeight.text),
+                                      shoulderWidth: double.parse(cubit.shoulderWidth.text),
+                                      shoulderSlope: double.parse(cubit.shoulderSlope.text),
+                                      sleeve: double.parse(cubit.sleeveLengthPlain.text),
+                                      sleeveTop: double.parse(cubit.sleeveLengthIsHigher.text),
+                                      wrist: double.parse(cubit.wideWrist.text),
+                                      plainCuffLength: double.parse(cubit.plainCuff.text),
+                                      cuffLength: double.parse(cubit.cuffLength.text),
+                                      cuffWidth: double.parse(cubit.cuffShow.text),
+                                      middleWidth: double.parse(cubit.wideMiddle.text),
+                                      chestFront: double.parse(cubit.expandTheChestInFront.text),
+                                      chestBack:double.parse(cubit.expandTheChestBehind.text),
+                                      bottomHeight: double.parse(cubit.koftaBottom.text),
+                                      bottomWidth: double.parse(cubit.expandDown.text),
+                                      collarWidth: double.parse(cubit.wideNeckPillow.text),
+                                      collarHeight: double.parse(cubit.neckHeight.text),
+                                      zipperHeight: double.parse(cubit.gypsumHeight.text),
+                                      zipperWidth: double.parse(cubit.viewGypsum.text),
+                                      chestPocketHeight: double.parse(cubit.lengthChestPocket.text),
+                                      chestPocketWidth: double.parse(cubit.wideChestPocket.text),
+                                      mobilePocketHeight: double.parse(cubit.wideMobilePocket.text),
+                                      walletPocketHeight: double.parse(cubit.lengthPocketWallet.text),
+                                      walletPocketWidth: double.parse(cubit.widePocketWallet.text),
+                                      haunchWidth: double.parse(cubit.hipWidth.text),
+                                      buttonNo: int.parse(cubit.buttonNumber.text),
+                                      embroideryNo: int.parse(cubit.embroideryNumber.text),
+                                      estimatedLength: double.parse(cubit.cuffLength.text),
+                                      tailorId: int.parse(cubit.tRTailorValue!.TailorId!),
+                                      sample: cubit.sample?1:0,
+                                      urgent: cubit.harryUp?1:0,
+                                      shoulderChestLength: double.parse(cubit.betweenTheChestPocketAndTheShoulder.text),
+                                      sleeveMiddle: double.parse(cubit.quantumCapacityMedium.text),
+                                      sidePocketLength: double.parse(cubit.sidePocket.text),
+                                      takhalees: cubit.Takhalis.text,
+                                      collarTypeID: int.parse(cubit.tRCollarValue!.CollarTypeId!),
+                                      cuffTypeID:int.parse(cubit.tRCuffValue!.CuffTypeId!),
+                                      modelTypeID: int.parse(cubit.trModelValue!.modelTypeID!),
+                                      pocketTypeID: int.parse(cubit.tRPocketValue!.PocketTypeId!),
+                                      fillingTypeID: int.parse(cubit.trFillingValue!.FillingTypeId!),
+                                      zipperTypeID:int.parse(cubit.tRZipperValue!.ZipperTypeId!),
+                                      note: "",);
+                                    Sales sales = Sales(id:int.parse(cubit.salesId!), measurement:[measurement]);
+                                    InvoiceNewSizesModel invoiceNewSizesModel = InvoiceNewSizesModel(
+                                        sales:[sales]);
+                                    cubit.updateSize(invoiceNewSizesModel);
                                     Navigator.pop(context);
                                   },
                                   child: Text('حفظ',
@@ -294,7 +360,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                       ),
                       Container(
                         // height: MediaQuery.of(context).size.height/1.56,
-                        width: MediaQuery.of(context).size.width / 1,
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width / 1,
                         // color: MyConstant().greenColor,
                         child: Column(
                           children: [
@@ -303,11 +372,14 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                               MainAxisAlignment.spaceAround,
                               children: [
                                 Container(
-                                    width: MediaQuery.of(context).size.width /
+                                    width: MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width /
                                         2.52,
                                     height: 40,
                                     child: customTextField(
-                                      hintText: cubit.sizes[0].itemName,
+                                        hintText: cubit.sizes[0].itemName,
                                         text: 'القماش',
                                         controller: cubit.type,
                                         textInputAction: TextInputAction.next,
@@ -318,10 +390,13 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
-                                      hintText: cubit.sizes[0].frontLength,
+                                        hintText: cubit.sizes[0].frontLength,
                                         text: 'طول امام',
                                         controller: cubit.frontHeight,
                                         textInputAction: TextInputAction.next,
@@ -332,10 +407,13 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
-                                      hintText: cubit.sizes[0].backLength,
+                                        hintText: cubit.sizes[0].backLength,
                                         text: 'طول خلف',
                                         controller: cubit.backHeight,
                                         textInputAction: TextInputAction.next,
@@ -352,10 +430,13 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                               children: [
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
-                                      hintText: cubit.sizes[0].shoulderWidth,
+                                        hintText: cubit.sizes[0].shoulderWidth,
                                         text: 'عرض الكتف',
                                         controller: cubit.shoulderWidth,
                                         textInputAction: TextInputAction.next,
@@ -366,7 +447,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         hintText: cubit.sizes[0].shoulderSlope,
@@ -381,7 +465,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         text: 'طول الكم سادة',
@@ -396,7 +483,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         text: 'طول الكم اعلي',
@@ -418,7 +508,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                               children: [
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         hintText: cubit.sizes[0].wrist,
@@ -433,11 +526,15 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         text: 'كفة الكم سادة',
-                                        hintText: cubit.sizes[0].plainCuffLength,
+                                        hintText: cubit.sizes[0]
+                                            .plainCuffLength,
 
                                         controller: cubit.plainCuff,
                                         textInputAction: TextInputAction.next,
@@ -448,7 +545,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         hintText: cubit.sizes[0].cuffLength,
@@ -463,7 +563,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         text: 'عرض الكبك',
@@ -484,7 +587,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                               children: [
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         text: 'وسع الوسط',
@@ -499,7 +605,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         text: 'وسع الصدر امام',
@@ -515,7 +624,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         text: 'وسع الصدر خلف',
@@ -531,7 +643,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         hintText: cubit.sizes[0].bottomHeight,
@@ -552,7 +667,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                               children: [
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         hintText: cubit.sizes[0].bottomWidth,
@@ -567,7 +685,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         text: 'وسع الرقبة سادة',
@@ -582,7 +703,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         hintText: cubit.sizes[0].collarHeight,
@@ -597,7 +721,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         hintText: cubit.sizes[0].zipperHeight,
@@ -618,7 +745,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                               children: [
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         hintText: cubit.sizes[0].zipperWidth,
@@ -633,10 +763,14 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
-                                        hintText: cubit.sizes[0].chestPocketHeight,
+                                        hintText: cubit.sizes[0]
+                                            .chestPocketHeight,
 
                                         text: 'ط-جيب الصدر',
                                         controller: cubit.lengthChestPocket,
@@ -648,10 +782,14 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
-                                        hintText: cubit.sizes[0].chestPocketWidth,
+                                        hintText: cubit.sizes[0]
+                                            .chestPocketWidth,
                                         text: 'ع-جيب الصدر',
                                         controller: cubit.wideChestPocket,
                                         textInputAction: TextInputAction.next,
@@ -662,10 +800,14 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
-                                        hintText: cubit.sizes[0].mobilePocketHeight,
+                                        hintText: cubit.sizes[0]
+                                            .mobilePocketHeight,
                                         text: 'ط-جيب الجوال',
                                         controller: cubit.wideMobilePocket,
                                         textInputAction: TextInputAction.next,
@@ -682,7 +824,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                               children: [
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         text: 'ع-جيب الجوال',
@@ -695,10 +840,14 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
-                                        hintText: cubit.sizes[0].walletPocketHeight,
+                                        hintText: cubit.sizes[0]
+                                            .walletPocketHeight,
                                         text: 'ط-جيب المحفظة',
                                         controller: cubit.lengthPocketWallet,
                                         textInputAction: TextInputAction.next,
@@ -710,10 +859,14 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                 //delete down container
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
-                                        hintText: cubit.sizes[0].walletPocketWidth,
+                                        hintText: cubit.sizes[0]
+                                            .walletPocketWidth,
                                         text: 'ع-جيب المحفظة',
                                         controller: cubit.widePocketWallet,
                                         textInputAction: TextInputAction.next,
@@ -724,7 +877,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         hintText: cubit.sizes[0].haunchWidth,
@@ -744,7 +900,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                               children: [
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         hintText: cubit.sizes[0].buttonNo,
@@ -758,7 +917,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         hintText: cubit.sizes[0].embroideryNo,
@@ -772,10 +934,14 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
-                                        hintText: cubit.sizes[0].shoulderChestLength,
+                                        hintText: cubit.sizes[0]
+                                            .shoulderChestLength,
                                         text: 'بين جيب الصدر والكتف',
                                         controller: cubit
                                             .betweenTheChestPocketAndTheShoulder,
@@ -787,11 +953,15 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         })),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         text: 'جيب الجنب',
-                                        hintText: cubit.sizes[0].sidePocketLength,
+                                        hintText: cubit.sizes[0]
+                                            .sidePocketLength,
                                         controller: cubit.sidePocket,
                                         textInputAction: TextInputAction.next,
                                         textInputType: TextInputType.number,
@@ -809,7 +979,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                 // const SizedBox(width: 0.7,),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         text: 'وسع الكم وسط',
@@ -825,7 +998,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                 // const SizedBox(width: 1,),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
                                         hintText: cubit.sizes[0].takhalees,
@@ -840,10 +1016,14 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                 // const SizedBox(width: 1,),
                                 Container(
                                     width:
-                                    MediaQuery.of(context).size.width / 6,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width / 6,
                                     height: 40,
                                     child: customTextField(
-                                        hintText: cubit.sizes[0].estimatedLength,
+                                        hintText: cubit.sizes[0]
+                                            .estimatedLength,
                                         text: 'القماش المتوقع بالمتر',
                                         controller:
                                         cubit.expectedFabricInMeter,
@@ -873,7 +1053,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                     width: 10,
                                     child: Checkbox(
 
-                                      value: (LoginCubit.get(context).sizes[0].sample=="1")?true:false,
+                                      value: cubit.isSelect2,
                                       shape: RoundedRectangleBorder(
                                         borderRadius:
                                         BorderRadius.circular(3),
@@ -882,7 +1062,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       ),
                                       onChanged: (val) {
                                         setState(() {
-                                          isSelect2 = val!;
+                                          cubit.isSelect2 = val!;
                                           cubit.sample = val;
                                         });
                                       },
@@ -907,7 +1087,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                   Container(
                                     width: 10,
                                     child: Checkbox(
-                                      value: (LoginCubit.get(context).sizes[0].urgent=="1")?true:false,
+                                      value: cubit.isSelect1,
                                       shape: RoundedRectangleBorder(
                                         borderRadius:
                                         BorderRadius.circular(3),
@@ -916,7 +1096,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       ),
                                       onChanged: (val) {
                                         setState(() {
-                                          isSelect1 = val!;
+                                          cubit.isSelect1 = val!;
                                           cubit.harryUp = val;
                                         });
                                       },
@@ -936,7 +1116,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                               children: [
                                 Container(
                                   width:
-                                  MediaQuery.of(context).size.width / 4,
+                                  MediaQuery
+                                      .of(context)
+                                      .size
+                                      .width / 4,
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 5, vertical: 3),
                                   child: Column(
@@ -954,7 +1137,8 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         height: 10,
                                       ),
                                       Container(
-                                        width: MediaQuery.of(context)
+                                        width: MediaQuery
+                                            .of(context)
                                             .size
                                             .width /
                                             4,
@@ -967,8 +1151,8 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         ),
                                         child: DropdownButtonHideUnderline(
 
-                                          child:DropdownButton2(
-                                            hint: Text(cubit.modelName1??""),
+                                          child: DropdownButton2(
+                                            hint: Text(cubit.trModelValue!.modelName??""),
                                             iconEnabledColor:
                                             Colors.white,
                                             iconDisabledColor:
@@ -1018,6 +1202,8 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                               setState(() {
                                                 trModelValue =
                                                 value as tRModelModel;
+
+                                                cubit.trModelValue =value;
                                                 cubit.ModelName =
                                                 value.modelName!;
                                                 cubit.ModelTypeID = int.parse(
@@ -1036,7 +1222,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                                     topLeft: Radius
                                                         .circular(
                                                         5)),
-                                              ),                                                child: const Icon(Icons
+                                              ), child: const Icon(Icons
                                                 .keyboard_arrow_down_sharp),
                                             ),
                                           ),
@@ -1047,7 +1233,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                 ),
                                 Container(
                                   width:
-                                  MediaQuery.of(context).size.width / 4,
+                                  MediaQuery
+                                      .of(context)
+                                      .size
+                                      .width / 4,
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 5),
                                   child: Column(
@@ -1065,7 +1254,8 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         height: 10,
                                       ),
                                       Container(
-                                        width: MediaQuery.of(context)
+                                        width: MediaQuery
+                                            .of(context)
                                             .size
                                             .width /
                                             4,
@@ -1077,8 +1267,8 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           BorderRadius.circular(5),
                                         ),
                                         child: DropdownButtonHideUnderline(
-                                          child:  DropdownButton2(
-                                            hint: Text(cubit.CollarName1??""),
+                                          child: DropdownButton2(
+                                            hint: Text(cubit.tRCollarValue!.CollarName??""),
                                             iconEnabledColor:
                                             Colors.white,
                                             iconDisabledColor:
@@ -1125,8 +1315,11 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                             isExpanded: true,
                                             onChanged: (value) {
                                               setState(() {
+
                                                 tRCollarValue =
                                                 value as tRCollarModel;
+                                                cubit.tRCollarValue =value;
+
                                                 cubit.CollerName =
                                                 value.CollarName!;
                                                 cubit.CollerTypeID =
@@ -1146,7 +1339,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                                     topLeft: Radius
                                                         .circular(
                                                         5)),
-                                              ),                                                child: const Icon(Icons
+                                              ), child: const Icon(Icons
                                                 .keyboard_arrow_down_sharp),
                                             ),
                                           ),
@@ -1157,7 +1350,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                 ),
                                 Container(
                                   width:
-                                  MediaQuery.of(context).size.width / 4,
+                                  MediaQuery
+                                      .of(context)
+                                      .size
+                                      .width / 4,
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 5),
                                   child: Column(
@@ -1175,7 +1371,8 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         height: 10,
                                       ),
                                       Container(
-                                        width: MediaQuery.of(context)
+                                        width: MediaQuery
+                                            .of(context)
                                             .size
                                             .width /
                                             4,
@@ -1187,8 +1384,8 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           BorderRadius.circular(5),
                                         ),
                                         child: DropdownButtonHideUnderline(
-                                          child:  DropdownButton2(
-                                            hint: Text(cubit.CuffName1??""),
+                                          child: DropdownButton2(
+                                            hint: Text(cubit.tRCuffValue!.CuffName??""),
                                             iconEnabledColor:
                                             Colors.white,
                                             iconDisabledColor:
@@ -1237,6 +1434,8 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                               setState(() {
                                                 tRCuffValue =
                                                 value as tRCuffModel;
+                                                cubit.tRCuffValue =value;
+
                                                 cubit.CuffName =
                                                 value.CuffName!;
                                                 cubit.CuffTypeID = int.parse(
@@ -1256,7 +1455,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                                     topLeft: Radius
                                                         .circular(
                                                         5)),
-                                              ),                                                child: const Icon(Icons
+                                              ), child: const Icon(Icons
                                                 .keyboard_arrow_down_sharp),
                                             ),
                                           ),
@@ -1273,7 +1472,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                               children: [
                                 Container(
                                   width:
-                                  MediaQuery.of(context).size.width / 4,
+                                  MediaQuery
+                                      .of(context)
+                                      .size
+                                      .width / 4,
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 5, vertical: 3),
                                   child: Column(
@@ -1291,7 +1493,8 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         height: 10,
                                       ),
                                       Container(
-                                        width: MediaQuery.of(context)
+                                        width: MediaQuery
+                                            .of(context)
                                             .size
                                             .width /
                                             4,
@@ -1303,8 +1506,8 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           BorderRadius.circular(5),
                                         ),
                                         child: DropdownButtonHideUnderline(
-                                          child:  DropdownButton2(
-                                            hint: Text(cubit.PocketName1??""),
+                                          child: DropdownButton2(
+                                            hint: Text(cubit.tRPocketValue!.PocketName??""),
                                             iconEnabledColor:
                                             Colors.white,
                                             iconDisabledColor:
@@ -1353,6 +1556,8 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                               setState(() {
                                                 tRPocketValue =
                                                 value as tRPocketModel?;
+                                                cubit.tRPocketValue =value;
+
                                                 cubit.PocketName =
                                                 value!.PocketName!;
                                                 cubit.PocketTypeID =
@@ -1373,7 +1578,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                                     topLeft: Radius
                                                         .circular(
                                                         5)),
-                                              ),                                                child: const Icon(Icons
+                                              ), child: const Icon(Icons
                                                 .keyboard_arrow_down_sharp),
                                             ),
                                           ),
@@ -1384,7 +1589,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                 ),
                                 Container(
                                   width:
-                                  MediaQuery.of(context).size.width / 4,
+                                  MediaQuery
+                                      .of(context)
+                                      .size
+                                      .width / 4,
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 5),
                                   child: Column(
@@ -1402,7 +1610,8 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         height: 10,
                                       ),
                                       Container(
-                                        width: MediaQuery.of(context)
+                                        width: MediaQuery
+                                            .of(context)
                                             .size
                                             .width /
                                             4,
@@ -1414,8 +1623,9 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           BorderRadius.circular(5),
                                         ),
                                         child: DropdownButtonHideUnderline(
-                                          child:  DropdownButton2(
-                                            hint: Text(cubit.FillingName1??""),
+                                          child: DropdownButton2(
+                                            hint: Text(
+                                                cubit.trFillingValue!.FillingName ?? ""),
                                             iconEnabledColor:
                                             Colors.white,
                                             iconDisabledColor:
@@ -1458,12 +1668,14 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                             items: cubit.tRFillingList
                                                 .map(tRFillingItemBuild)
                                                 .toList(),
-                                            value: trFillingValue,
+                                            value: trFillingValue=cubit.trFillingValue,
                                             isExpanded: true,
                                             onChanged: (value) {
                                               setState(() {
                                                 trFillingValue =
                                                 value as tRFillingModel;
+                                                cubit.trFillingValue =value;
+
                                                 cubit.FillingName =
                                                 value.FillingName!;
                                                 cubit.FillingTypeID =
@@ -1484,7 +1696,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                                     topLeft: Radius
                                                         .circular(
                                                         5)),
-                                              ),                                                child: const Icon(Icons
+                                              ), child: const Icon(Icons
                                                 .keyboard_arrow_down_sharp),
                                             ),
                                           ),
@@ -1495,7 +1707,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                 ),
                                 Container(
                                   width:
-                                  MediaQuery.of(context).size.width / 4,
+                                  MediaQuery
+                                      .of(context)
+                                      .size
+                                      .width / 4,
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 5),
                                   child: Column(
@@ -1513,7 +1728,8 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         height: 10,
                                       ),
                                       Container(
-                                        width: MediaQuery.of(context)
+                                        width: MediaQuery
+                                            .of(context)
                                             .size
                                             .width /
                                             4,
@@ -1525,8 +1741,8 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           BorderRadius.circular(5),
                                         ),
                                         child: DropdownButtonHideUnderline(
-                                          child:  DropdownButton2(
-                                            hint: Text(cubit.ZipperName1??""),
+                                          child: DropdownButton2(
+                                            hint: Text(cubit.tRZipperValue!.ZipperName??""),
                                             iconEnabledColor:
                                             Colors.white,
                                             iconDisabledColor:
@@ -1575,6 +1791,8 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                               setState(() {
                                                 tRZipperValue =
                                                 value as tRZipperModel;
+
+                                                cubit.tRZipperValue =value;
                                                 cubit.ZipperName =
                                                 value.ZipperName!;
                                                 cubit.ZipperTypeID =
@@ -1595,7 +1813,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                                     topLeft: Radius
                                                         .circular(
                                                         5)),
-                                              ),                                                child: const Icon(Icons
+                                              ), child: const Icon(Icons
                                                 .keyboard_arrow_down_sharp),
                                             ),
                                           ),
@@ -1622,16 +1840,17 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
     );
   }
 
-  DropdownMenuItem<String> itemBuild(String item) => DropdownMenuItem(
-    value: item,
-    child: Center(
-      child: Text(item,
-          style: GoogleFonts.notoKufiArabic(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: Size)),
-    ),
-  );
+  DropdownMenuItem<String> itemBuild(String item) =>
+      DropdownMenuItem(
+        value: item,
+        child: Center(
+          child: Text(item,
+              style: GoogleFonts.notoKufiArabic(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: Size)),
+        ),
+      );
 
   DropdownMenuItem<tRCollarModel> trCollerItemBuild(tRCollarModel item) =>
       DropdownMenuItem(
@@ -1704,6 +1923,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                   fontSize: Size)),
         ),
       );
+
   DropdownMenuItem<tRTailorModel> tRTailorItemBuild(tRTailorModel item) =>
       DropdownMenuItem(
         value: item,

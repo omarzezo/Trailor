@@ -300,7 +300,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         text: 'القماش',
                                         controller: cubit.type,
                                         textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                        textInputType: TextInputType.text,
 
                                         onFieldSubmitted: (value) {
                                           FocusScope.of(context).nextFocus();

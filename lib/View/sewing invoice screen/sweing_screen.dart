@@ -1502,8 +1502,8 @@ class _SewingScreenState extends State<SewingScreen> {
                                         estimatedLength: double.parse(
                                             cubit.expectedFabricInMeter.text),
                                         tailorId: 1,
-                                        sample: 1,
-                                        urgent: 1,
+                                        sample: cubit.sample?1:0,
+                                        urgent: cubit.harryUp?1:0,
                                         shoulderChestLength: double.parse(cubit
                                             .betweenTheChestPocketAndTheShoulder
                                             .text),

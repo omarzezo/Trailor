@@ -18,6 +18,7 @@ import 'package:omar/models/Units.dart';
 import 'package:omar/models/Users.dart';
 import 'package:omar/models/customer.dart';
 import 'package:omar/models/invoiceModel.dart';
+import 'package:omar/models/invoiceUpdateResponse.dart';
 import 'package:omar/models/pillRequest.dart';
 import 'package:omar/models/pillResponse.dart';
 import 'package:omar/View/Data Table/model.dart' as data;
@@ -30,6 +31,7 @@ import 'package:omar/models/tRTailor.dart';
 import 'package:omar/models/tRZipper.dart';
 import 'package:omar/models/trFilling.dart';
 import 'package:omar/models/updatePillsStatus.dart';
+import 'package:omar/models/updatedSizes.dart';
 import 'package:sunmi_printer_plus/sunmi_printer_plus.dart';
 import '../../models/TrailorListsResponse.dart';
 import 'State.dart';
@@ -571,6 +573,7 @@ String? salesId;
   String? PocketTypeId1;
   String? CollarTypeId1;
   String? CuffTypeId1;
+  String? tailCode;
   Future<SizeInformationModel>getSizeInformation(String salesId)async{
 
     try{
@@ -619,6 +622,14 @@ String? salesId;
         PocketTypeId1=sizes[0].pocketTypeID;
         CollarTypeId1=sizes[0].collarTypeID;
         CuffTypeId1=sizes[0].cuffTypeID;
+        tailCode=sizes[0].itemCode;
+
+         isSelect2 =(sizes[0].sample == "1")
+            ? true
+            : false;
+         isSelect1 = (sizes[0].urgent == "1")
+            ? true
+            : false;
         await setDropDownValues();
       }else{
         print(response.statusMessage);
@@ -638,56 +649,82 @@ String? salesId;
   String? PocketName1;
   String? CollarName1;
   String? CuffName1;
+  tRPocketModel? tRPocketValue;
+  tRFillingModel? trFillingValue;
+  tRZipperModel? tRZipperValue;
+  tRTailorModel? tRTailorValue;
+  tRModelModel? trModelValue;
+  tRCollarModel? tRCollarValue;
+  tRCuffModel? tRCuffValue;
+  bool isSelect2 =false;
+  bool isSelect1 = false;
   Future<void> setDropDownValues()async{
+     tRPocketValue=tRPocketList[0];
+     trFillingValue=tRFillingList[0];
+     tRZipperValue=tRZipperList[0];
+     tRTailorValue=tRTailorList[0];
+     trModelValue=tRModelList[0];
+     tRCollarValue=tRCollarList[0];
+     tRCuffValue=tRCuffList[0];
     try{
      tRModelList.map((selectElement) {
-        (selectElement.modelTypeID==modelTypeID1)?modelName1=selectElement.modelName!:modelName1="";
+        // (selectElement.modelTypeID==modelTypeID1)?modelName1=selectElement.modelName!:modelName1="";
+        (selectElement.modelTypeID==modelTypeID1&&modelTypeID1!=null)?trModelValue=selectElement:trModelValue;
+
       });
 
 
 
         tRTailorList.map((element) {
-        if( element.TailorId==TailorId1){
-          TailorName1=element.TailorName!;
+        if( element.TailorId==TailorId1&&TailorId1!=null){
+          // TailorName1=element.TailorName!;
+          tRTailorValue=element;
 
         }else{
-          TailorName1="";
+          tRTailorValue=tRTailorValue;
         }
       } ); tRZipperList.map((element) {
-        if( element.ZipperTypeId==ZipperTypeId1){
-          ZipperName1=element.ZipperName!;
-
+        if( element.ZipperTypeId==ZipperTypeId1&&ZipperTypeId1!=null){
+          // ZipperName1=element.ZipperName!;
+          tRZipperValue=element;
         }else{
-          ZipperName1="";
+          tRZipperValue=tRZipperValue;
         }
       } ); tRFillingList.map((element) {
-        if( element.FillingTypeId==FillingTypeId1){
-          FillingName1=element.FillingName!;
+        if( element.FillingTypeId==FillingTypeId1&&FillingTypeId1!=null){
+          // FillingName1=element.FillingName!;
+          trFillingValue=element;
 
         }else{
-          FillingName1="";
+          trFillingValue=trFillingValue;
         }
       } ); tRPocketList.map((element) {
-        if( element.PocketTypeId==PocketTypeId1){
-          PocketName1=element.PocketName!;
+        if( element.PocketTypeId==PocketTypeId1&&PocketTypeId1!=null){
+          // PocketName1=element.PocketName!;
+          tRPocketValue=element;
+
 
         }else{
-          PocketName1="";
+          tRPocketValue=tRPocketValue;
         }
       } ); tRCollarList.map((element) {
-        if( element.CollarTypeId==CollarTypeId1){
-          CollarName1=element.CollarName!;
+        if( element.CollarTypeId==CollarTypeId1&&CollarTypeId1!=null){
+          // CollarName1=element.CollarName!;
+          tRCollarValue=element;
+
 
         }else{
-          CollarName1="";
+          tRCollarValue=tRCollarValue;
         }
       } );
       tRCuffList.map((element) {
-        if( element.CuffTypeId==CuffTypeId1){
-          CuffName1=element.CuffName!;
+        if( element.CuffTypeId==CuffTypeId1&&CuffTypeId1!=null){
+          // CuffName1=element.CuffName!;
+          tRCuffValue=element;
+
 
         }else{
-          CuffName1="";
+          tRCuffValue=tRCuffValue;
         }
 
       });
@@ -695,6 +732,42 @@ String? salesId;
       print(error.toString());
     }
 
+  }
+  String? tailorId;
+  String? modelId;
+  String? cuffId;
+  String? collerId;
+  String? zipperId;
+  String? fillId;
+  String? pockettailId;
+  InvoiceUpdateResponseModel? invoiceUpdateResponseModel;
+  Future<InvoiceUpdateResponseModel> updateSize(InvoiceNewSizesModel invoiceNewSizesModel)async{
+    try{
+      emit(UpdatedInvoiceResponseLoadingState());
+      Dio dio = Dio();
+
+      dio.options.headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Accept-Version': 'V1',
+        'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko'
+      };
+      final response = await dio.post(
+          'https://cpe-soft.com/admin/api/v1/UpdateSalesMeasurement',
+          data: jsonEncode(invoiceNewSizesModel));
+      if(response.statusCode==200){
+        invoiceUpdateResponseModel=InvoiceUpdateResponseModel.fromJson(response.data);
+        emit(UpdatedInvoiceResponseSuccessState());
+clearControllers();
+      }else{
+        print(response.statusMessage);
+      }
+    }catch(error){
+      print(error.toString());
+      emit(UpdatedInvoiceResponseErrorState());
+
+    }
+  return invoiceUpdateResponseModel!;
   }
 
 
