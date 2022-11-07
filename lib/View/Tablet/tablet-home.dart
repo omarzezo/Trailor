@@ -87,7 +87,8 @@ class _TabletHomeState extends State<TabletHome> {
                       RowNameDetail(title: 'الضرائب والحسابات' , titleImage: 'image/profit (1).png'),
                       RowNameDetail(title: 'ادارة المخزون' ,titleImage: 'image/warehouse (1).png'),
                       InkWell(
-                          onTap: () {
+                          onTap: ()async {
+                            await LoginCubit.get(context).getPillsDetails();
                             Navigator.pushNamed(context, DailyReportScreen.routeName);
                           },
                           child: RowNameDetail(title: 'التقارير' , titleImage: 'image/report.png')),
