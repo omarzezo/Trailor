@@ -6,6 +6,7 @@ import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/View/Data%20Table/custom%20table.dart';
 import 'package:omar/View/sewing%20invoice%20screen/TabBar%20Screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/customers_details_screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/daily_report_screen.dart';
 import 'package:omar/constant/LoadingPage.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/constant/widgets.dart';
@@ -85,7 +86,11 @@ class _TabletHomeState extends State<TabletHome> {
                       RowNameDetail(title: 'الرسائل والاشعارات' , titleImage: 'image/email.png'),
                       RowNameDetail(title: 'الضرائب والحسابات' , titleImage: 'image/profit (1).png'),
                       RowNameDetail(title: 'ادارة المخزون' ,titleImage: 'image/warehouse (1).png'),
-                      RowNameDetail(title: 'التقارير' , titleImage: 'image/report.png'),
+                      InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, DailyReportScreen.routeName);
+                          },
+                          child: RowNameDetail(title: 'التقارير' , titleImage: 'image/report.png')),
                       InkWell(
                         onTap: () async{
                           LoadingPage(context).show();

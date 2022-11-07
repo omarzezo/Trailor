@@ -1,0 +1,132 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart' as p;
+import 'package:omar/Controller/Cubit/Cubit.dart';
+import 'package:omar/Controller/Cubit/State.dart';
+import 'package:omar/View/Data%20Table/model.dart';
+
+class DailyReportScreen extends StatelessWidget {
+  static const routeName = "DailyReportScreen";
+
+  const DailyReportScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var cubit = LoginCubit.get(context);
+    PillsDetails? pillsDetails = PillsDetails();
+    pillsDetails.data = [];
+    // p.DateFormat('yyyy-MM-dd HH:mm')
+    //     .parse(DateTime.now().toString())
+    //     .toString().split(" ").first
+    // pillsDetails.data = cubit.pillsDetails!.data!
+    //     .where((i) => i.date!.contains("10") ? false : true)
+    //     .toList();
+        pillsDetails.data = cubit.pillsDetails!.data!
+        .where((i) {
+          return (i.date!.split(" ").first.contains( p.DateFormat('yyyy-MM-dd HH:mm')
+              .parse(DateTime.now().toString())
+              .toString().split(" ").first))?true:false;
+
+        })
+        .toList();
+    return Directionality(
+        textDirection: TextDirection.rtl,
+        child: BlocConsumer<LoginCubit, LoginState>(
+          listener: (context, state) {},
+          builder: (context, state) {
+            return Scaffold(
+              appBar: AppBar(
+                // toolbarHeight: 100,
+                backgroundColor: Colors.purple,
+                title: Text("التقارير اليومية ",
+                    style: GoogleFonts.notoKufiArabic(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18)),
+                centerTitle: true,
+              ),
+              body: SafeArea(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+                    child: Column(
+                      children: [
+                        if(pillsDetails.data!.isNotEmpty)
+                          ListView.separated(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) => ReportItem( dateNow:p.DateFormat('yyyy-MM-dd HH:mm')
+                                .parse(DateTime.now().toString())
+                                .toString().split(" ").first ,date: pillsDetails.data![index].date??"", deleverDate: pillsDetails.data![index].deliveryDate??"", customerName: pillsDetails.data![index].customer??"", refrenceiD: pillsDetails.data![index].referenceNo??""),
+                            separatorBuilder: (context, index) => SizedBox(
+                                  height: 20,
+                                ),
+                            itemCount: pillsDetails.data!.length),
+                        if(pillsDetails.data==null||pillsDetails.data!.isEmpty)
+                        Center(child: Text("لا يوجد طلبات جديدة اليوم ",style: GoogleFonts.notoKufiArabic(
+                        color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 40)))
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
+        ));
+  }
+}
+
+class ReportItem extends StatelessWidget {
+  String dateNow;
+  String date;
+  String deleverDate;
+  String customerName;
+  String refrenceiD;
+
+  ReportItem({
+    required this.date,
+    required this.dateNow,
+    required this.deleverDate,
+    required this.customerName,
+    required this.refrenceiD,
+
+    });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text("تم انشاء طلب بتاريخ : ${dateNow} ",
+            style: GoogleFonts.notoKufiArabic(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 16)),
+        Text("تاريخ الفاتورة : ${date.split(" ").first}",
+            style: GoogleFonts.notoKufiArabic(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 16)),
+        Text("تاريخ التسليم : ${deleverDate.split(" ").first}",
+            style: GoogleFonts.notoKufiArabic(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 16)),
+        Text("اسم العميل : ${customerName}",
+            style: GoogleFonts.notoKufiArabic(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 16)),
+        Text("المرجع : ${refrenceiD}",
+            style: GoogleFonts.notoKufiArabic(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 16)),
+      ],
+    );
+  }
+}
