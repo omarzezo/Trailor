@@ -16,6 +16,7 @@ import 'package:omar/SharedPreferencesHelper.dart';
 import 'package:omar/View/BlutothPrinter.dart';
 import 'package:omar/View/WifiThroughIpPrinter.dart';
 import 'package:omar/View/choose_printer_screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/settings_screen.dart';
 import 'package:omar/View/sonomiPrinter.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:screenshot/screenshot.dart';
@@ -531,9 +532,11 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                           }else if(widget.printerType==2){
                             Navigator.of(context).pushNamed(WifiThroughrIpPrinter.routeName);
                           }else if(widget.printerType==3){
-                            await SunmiPrinter.initPrinter();
-                            await SunmiPrinter.startTransactionPrint(true);
-                            await SunmiPrinter.printImage(theimageThatComesfromThePrinter);
+                            await SanmiPrint(capturedImage);
+                            print("sonomi");
+                            // await SunmiPrinter.initPrinter();
+                            // await SunmiPrinter.startTransactionPrint(true);
+                            // await SunmiPrinter.printImage(theimageThatComesfromThePrinter);
                           }
 
                         }).catchError((onError) {
@@ -552,7 +555,11 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
     );
   }
 
-
+  SanmiPrint(Uint8List byte)async{
+    await MaxxSunmiPrinter.initializePrinter();
+    String base64String = base64Encode(byte);
+    await MaxxSunmiPrinter.printImage(base64String);
+  }
   QrCodeTVL(context){
     BytesBuilder bytesBuilder =BytesBuilder();
     bytesBuilder.addByte(1);

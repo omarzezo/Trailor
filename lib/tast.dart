@@ -102,14 +102,14 @@ class _TestingScreenState extends State<TestingScreen> {
         children: [
 
           selectedPocket.image != null ? Container(
-            margin: EdgeInsets.only(right: 35, top: 20, left: 0),
+            margin: EdgeInsets.only(right: MediaQuery.of(context).size.width/11, top: MediaQuery.of(context).size.height/38, left: 0),
             child: Align(
                 alignment: Alignment.topRight,
                 child: Image.asset(selectedPocket.image!, fit: BoxFit.fill,
                   width: 10, height: 10,)),
           ) : const SizedBox(),
           selectedKabak.image != null ? Container(
-            margin: EdgeInsets.only(right: 10, top: 28, left: 18),
+            margin: EdgeInsets.only(right: 10, top: MediaQuery.of(context).size.height/28, left: MediaQuery.of(context).size.width/22),
             child: Align(
                 alignment: Alignment.topLeft,
                 child: Image.asset(selectedKabak.image!, fit: BoxFit.fill,

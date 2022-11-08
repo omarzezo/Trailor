@@ -478,7 +478,8 @@ class SettingScreenState extends State<SettingScreen> {
                                       )),
                                 ),
                               ],
-                            ),),
+                            ),
+                          ),
 
 
 
@@ -610,7 +611,9 @@ class MaxxSunmiPrinter {
 
   static Future<String> initializePrinter() async {
     try {
+      print("intisonomi");
       return await channel.invokeMethod(INIT_PRINTER);
+
     } catch (ex) {
       return "[initializePrinter] ${ex.toString()}";
     }
@@ -690,6 +693,8 @@ class MaxxSunmiPrinter {
 
   static Future<void> printImage(String base64, {SunmiAlign align = SunmiAlign.center}) async {
     final arguments = {"base64": base64, "alignment": align.value};
+    print("print image sonomi");
+
     await channel.invokeMethod(PRINT_IMAGE, arguments);
   }
 
