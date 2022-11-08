@@ -18,6 +18,7 @@ import 'package:omar/View/sewing%20invoice%20screen/pills_item_data.dart';
 import 'package:omar/View/sewing%20invoice%20screen/print_screen.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/tast.dart';
+import 'package:responsive_framework/responsive_wrapper.dart';
 import 'Controller/BlocObserver.dart';
 import 'View/Data Table/custom table.dart';
 import 'View/Data Table/data-table screen.dart';
@@ -56,6 +57,18 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => LoginCubit()..getPillsDetails()),
         ],
         child: MaterialApp(
+          builder: (context, child) => ResponsiveWrapper.builder(
+              child,
+              maxWidth: 1200,
+              minWidth: 480,
+              defaultScale: true,
+              breakpoints: [
+                ResponsiveBreakpoint.resize(480, name: MOBILE),
+                ResponsiveBreakpoint.autoScale(800, name: TABLET),
+                ResponsiveBreakpoint.resize(1000, name: DESKTOP),
+              ],
+              background: Container(color: Color(0xFFF5F5F5))),
+          initialRoute: "/",
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
 

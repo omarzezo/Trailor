@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/constant/constant.dart';
+import 'package:responsive_framework/responsive_value.dart';
+import 'package:responsive_framework/responsive_wrapper.dart';
 import '../../SharedPreferencesHelper.dart';
 
 
@@ -160,12 +162,102 @@ class SettingScreenState extends State<SettingScreen> {
                                   fontSize: 18)
                           ),
                           const SizedBox(height: 10,),
-                          Row(
+
+                      ResponsiveVisibility( replacement:
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                              width: MediaQuery.of(context).size.width*0.2,
+                              padding: const EdgeInsets.all(4),
+                              height: 40,
+                              decoration:  BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.all(Radius.circular(0)),
+                                border: Border.all(width: 1, color: MyConstant().greenColor),
+                              ),
+                              child: Text(printerText,style: GoogleFonts.notoKufiArabic(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                              )),
+                          const SizedBox(width: 10,),
+                          InkWell(
+                            onTap: () async{
+
+                                await SharedPreferencesHelper.setPrinterType(1);
+                                printerType=1;
+                                printerText="طابعة bluetooth";
+                               setState(() {});
+                            },
+                            child: Container(
+                                width: MediaQuery.of(context).size.width*0.2,
+                                padding: const EdgeInsets.all(4),
+                                height: 40,
+                                decoration:  BoxDecoration(
+                                  color: printerType==1?MyConstant().purpleColor:Colors.white,
+                                  border: Border.all(width: 1, color: MyConstant().purpleColor),
+                                ),
+                                child: Text("طابعة bluetooth",style: GoogleFonts.notoKufiArabic(
+                                    color: printerType==1?Colors.white:Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
+                                )),
+                          ),
+                          const SizedBox(width: 10,),
+                          InkWell(
+                            onTap: () async{
+                                await SharedPreferencesHelper.setPrinterType(2);
+                                printerType=2;
+                                printerText="طابعة Wifi";
+                              setState(() { });
+                            },
+                            child: Container(
+                                width: MediaQuery.of(context).size.width*0.2,
+                                padding: const EdgeInsets.all(4),
+                                height: 40,
+                                decoration:  BoxDecoration(
+                                  color: printerType==2?MyConstant().purpleColor:Colors.white,
+                                  border: Border.all(width: 1, color: MyConstant().purpleColor),
+                                ),
+                                child: Text("طابعة Wifi",style: GoogleFonts.notoKufiArabic(
+                                    color:printerType==2?Colors.white: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
+                                )),
+                          ),
+                          const SizedBox(width: 10,),
+                          InkWell(
+                            onTap: () async{
+                                await SharedPreferencesHelper.setPrinterType(3);
+                                printerType=3;
+                                printerText="طابعة Sunmi";
+                                setState(() {});
+                            },
+                            child: Container(
+                                width: MediaQuery.of(context).size.width*0.2,
+                                padding: const EdgeInsets.all(4),
+                                height: 40,
+                                decoration:  BoxDecoration(
+                                  color:printerType==3?MyConstant().purpleColor: Colors.white,
+                                  border: Border.all(width: 1, color: MyConstant().purpleColor),
+                                ),
+                                child: Text("طابعة Sunmi",style: GoogleFonts.notoKufiArabic(
+                                    color:printerType==3?Colors.white: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
+                                )),
+                          )
+                        ],
+                      ),
+                        hiddenWhen: const [Condition.largerThan(name: MOBILE)],
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Container(
-                                  width: MediaQuery.of(context).size.width*0.2,
+                                  width: MediaQuery.of(context).size.width*0.60,
                                   padding: const EdgeInsets.all(4),
                                   height: 40,
                                   decoration:  BoxDecoration(
@@ -180,15 +272,14 @@ class SettingScreenState extends State<SettingScreen> {
                                   )),
                               const SizedBox(width: 10,),
                               InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    SharedPreferencesHelper.setPrinterType(2);
+                                onTap: () async{
+                                    await SharedPreferencesHelper.setPrinterType(1);
                                     printerType=1;
                                     printerText="طابعة bluetooth";
-                                  });
+                                    setState(() {});
                                 },
                                 child: Container(
-                                    width: MediaQuery.of(context).size.width*0.2,
+                                    width: MediaQuery.of(context).size.width*0.60,
                                     padding: const EdgeInsets.all(4),
                                     height: 40,
                                     decoration:  BoxDecoration(
@@ -203,15 +294,15 @@ class SettingScreenState extends State<SettingScreen> {
                               ),
                               const SizedBox(width: 10,),
                               InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    SharedPreferencesHelper.setPrinterType(2);
+                                onTap: () async {
+
+                                   await SharedPreferencesHelper.setPrinterType(2);
                                     printerType=2;
                                     printerText="طابعة Wifi";
-                                  });
+                                    setState(() { });
                                 },
                                 child: Container(
-                                    width: MediaQuery.of(context).size.width*0.2,
+                                    width: MediaQuery.of(context).size.width*0.60,
                                     padding: const EdgeInsets.all(4),
                                     height: 40,
                                     decoration:  BoxDecoration(
@@ -226,15 +317,15 @@ class SettingScreenState extends State<SettingScreen> {
                               ),
                               const SizedBox(width: 10,),
                               InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    SharedPreferencesHelper.setPrinterType(2);
+                                onTap: () async{
+
+                                    await SharedPreferencesHelper.setPrinterType(3);
                                     printerType=3;
                                     printerText="طابعة Sunmi";
-                                  });
+                                    setState(() {});
                                 },
                                 child: Container(
-                                    width: MediaQuery.of(context).size.width*0.2,
+                                    width: MediaQuery.of(context).size.width*0.60,
                                     padding: const EdgeInsets.all(4),
                                     height: 40,
                                     decoration:  BoxDecoration(
@@ -248,7 +339,9 @@ class SettingScreenState extends State<SettingScreen> {
                                     )),
                               )
                             ],
-                          ),
+                          ),),
+
+
                           const SizedBox(height: 40,),
                           Text(
                               "حجم الصفحة",
@@ -258,6 +351,7 @@ class SettingScreenState extends State<SettingScreen> {
                                   fontSize: 18)
                           ),
                           const SizedBox(height: 10,),
+                          ResponsiveVisibility( replacement:
                           Row(
                             children: [
                               Container(
@@ -320,6 +414,71 @@ class SettingScreenState extends State<SettingScreen> {
                               ),
                             ],
                           ),
+                            hiddenWhen: const [Condition.largerThan(name: MOBILE)],
+                            child: Column(
+                              children: [
+                                Container(
+                                    width: MediaQuery.of(context).size.width*0.40,
+                                    padding: const EdgeInsets.all(4),
+                                    height: 40,
+                                    decoration:  BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.all(Radius.circular(0)),
+                                      border: Border.all(width: 1, color: MyConstant().greenColor),
+                                    ),
+                                    child: Text(sizeText,style: GoogleFonts.notoKufiArabic(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                    )),
+                                const SizedBox(width: 20,),
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      SharedPreferencesHelper.setPageSize(1);
+                                      pageSize=1;
+                                      sizeText="80";
+                                    });
+                                  },
+                                  child: Container(
+                                      padding: const EdgeInsets.only(left: 10,right: 10,top: 4,bottom: 4),
+                                      height: 40,
+                                      width: MediaQuery.of(context).size.width*0.40,
+                                      decoration:  BoxDecoration(
+                                        color: pageSize==1?MyConstant().purpleColor:Colors.white,
+                                        border: Border.all(width: 1, color: MyConstant().purpleColor),
+                                      ),
+                                      child: Text("80",style: GoogleFonts.notoKufiArabic(
+                                          color: pageSize==1?Colors.white:Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
+                                      )),
+                                ),
+                                const SizedBox(width: 20,),
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      SharedPreferencesHelper.setPageSize(1);
+                                      pageSize=2;
+                                      sizeText="58";
+                                    });
+                                  },
+                                  child: Container(
+                                      padding: const EdgeInsets.only(left: 10,right: 10,top: 4,bottom: 4),
+                                      height: 40,
+                                      width: MediaQuery.of(context).size.width*0.40,
+                                      decoration:  BoxDecoration(
+                                        color: pageSize==2?MyConstant().purpleColor:Colors.white,
+                                        border: Border.all(width: 1, color: MyConstant().purpleColor),
+                                      ),
+                                      child: Text("58",style: GoogleFonts.notoKufiArabic(
+                                          color: pageSize==2?Colors.white:Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
+                                      )),
+                                ),
+                              ],
+                            ),),
 
 
 

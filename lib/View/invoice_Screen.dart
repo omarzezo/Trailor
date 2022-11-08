@@ -523,29 +523,19 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                       onPressed: () async{
                         await screenshotController.capture(delay: const Duration(milliseconds: 10)).then((capturedImage) async {
                           Uint8List  theimageThatComesfromThePrinter = capturedImage!;
+                          widget.printerType=await SharedPreferencesHelper.getPrinterType();
+                          print("widget.printerType>>"+widget.printerType.toString());
                           if( widget.printerType==1){
-
                             Navigator.of(context).pushNamed(BluePrinter.routeName);
-
-                            // Navigator.of(context).push(createRoute(BluePrinter(theimageThatC: theimageThatComesfromThePrinter)));
-
                             BluePrinter(theimageThatC: theimageThatComesfromThePrinter);
-                          }else if(await SharedPreferencesHelper.getPrinterType()==2){
+                          }else if(widget.printerType==2){
                             Navigator.of(context).pushNamed(WifiThroughrIpPrinter.routeName);
-
-
-                          }else if(await SharedPreferencesHelper.getPrinterType()==3){
+                          }else if(widget.printerType==3){
                             await SunmiPrinter.initPrinter();
                             await SunmiPrinter.startTransactionPrint(true);
                             await SunmiPrinter.printImage(theimageThatComesfromThePrinter);
-                            // await SunmiPrinter.lineWrap(2);
-                            // await SunmiPrinter.exitTransactionPrint(true);
                           }
-                          // Navigator.of(context).pushNamed(ChoosePrinterScreen.routeName,arguments: ChoosePrinterScreen(screenshotController: theimageThatComesfromThePrinter,));
 
-                          // setState(() {
-                          //   theimageThatComesfromThePrinter = capturedImage;
-                          // });
                         }).catchError((onError) {
                           print(onError);
                         });
