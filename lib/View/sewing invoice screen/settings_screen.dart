@@ -1,10 +1,10 @@
 import 'dart:typed_data';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:omar/View/BluetoothPrinterSearch.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:responsive_framework/responsive_value.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
@@ -23,9 +23,9 @@ class SettingScreenState extends State<SettingScreen> {
 
   int printerType=-1;
   String printerText="";
-  String sizeText="";
+  String sizeText="",ipPrinter="";
   int pageSize=0;
-
+  TextEditingController ipPntroller=TextEditingController();
   @override
   void initState() {
 
@@ -36,6 +36,8 @@ class SettingScreenState extends State<SettingScreen> {
 
   Future getPrinterType() async {
     printerType =(await SharedPreferencesHelper.getPrinterType())!;
+    ipPrinter =(await SharedPreferencesHelper.getIpPrinter())!;
+    ipPntroller.text=ipPrinter!=null?ipPrinter:"";
     if(printerType==1){
       printerText="طابعة bluetooth";
     }if(printerType==2){
@@ -44,9 +46,10 @@ class SettingScreenState extends State<SettingScreen> {
       printerText="طابعة sunmi";
     }
     pageSize =(await SharedPreferencesHelper.getPageSize())!;
-    if(pageSize==1){
+    print("pageSize>>"+pageSize.toString());
+    if(pageSize==80){
       sizeText="80";
-    }if(pageSize==2){
+    }if(pageSize==58){
       sizeText="58";
     }
     setState(() {});
@@ -270,7 +273,7 @@ class SettingScreenState extends State<SettingScreen> {
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18),
                                   )),
-                              const SizedBox(width: 10,),
+                              const SizedBox(width: 10,height: 20,),
                               InkWell(
                                 onTap: () async{
                                     await SharedPreferencesHelper.setPrinterType(1);
@@ -292,7 +295,29 @@ class SettingScreenState extends State<SettingScreen> {
                                         fontSize: 18),
                                     )),
                               ),
-                              const SizedBox(width: 10,),
+                              printerType==1?InkWell(
+                                onTap: () async{
+                                  Navigator.of(context).push(createRoute(BluetoothPrinterSearch()));
+                                },
+                                child: Container(
+                                    width: MediaQuery.of(context).size.width*0.60,
+                                    padding: const EdgeInsets.all(4),
+                                    // height: 40,
+                                    child: Column(
+                                      children: [
+                                        Text("يرجي عمل بحث عن  Bluetooth ",style: GoogleFonts.notoKufiArabic(
+                                            color: Colors.red,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18)),
+                                        Text("من فضلك اضغط هنا",style: GoogleFonts.notoKufiArabic(
+                                            color: Colors.red,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18)
+                                        ),
+                                      ],
+                                    ),),
+                              ):SizedBox.shrink(),
+                              const SizedBox(width: 10,height: 20,),
                               InkWell(
                                 onTap: () async {
 
@@ -315,7 +340,34 @@ class SettingScreenState extends State<SettingScreen> {
                                         fontSize: 18),
                                     )),
                               ),
-                              const SizedBox(width: 10,),
+
+                              const SizedBox(width: 10,height: 10,),
+
+                            if(printerType==2)  Container(
+                              height: 50,
+                                  width: MediaQuery.of(context).size.width*0.60,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                      border: Border.all(color: MyConstant().purpleColor),
+                                    borderRadius: new BorderRadius.circular(10.0),
+                                  ),
+                                  child: Padding(
+                                      padding:
+                                      EdgeInsets.only(left: 15, right: 15, top: 0),
+                                      child: TextFormField(
+                                        controller: ipPntroller,
+                                          style: GoogleFonts.notoKufiArabic(
+                                          color:printerType==3?Colors.white: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
+                                          onChanged: (value) {
+                                            SharedPreferencesHelper.setIpPrinter(value);
+                                          },
+                                          decoration: const InputDecoration(
+                                            border: InputBorder.none,
+                                            hintText: 'الرجاء ادخال IP الطابعة',
+                                          )))),
+                              const SizedBox(width: 10,height: 20,),
                               InkWell(
                                 onTap: () async{
 
@@ -368,11 +420,11 @@ class SettingScreenState extends State<SettingScreen> {
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18),
                                   )),
-                              const SizedBox(width: 20,),
+                              const SizedBox(width: 20,height: 20,),
                               InkWell(
                                 onTap: () {
                                   setState(() {
-                                    SharedPreferencesHelper.setPageSize(1);
+                                    SharedPreferencesHelper.setPageSize(80);
                                     pageSize=1;
                                     sizeText="80";
                                   });
@@ -390,11 +442,11 @@ class SettingScreenState extends State<SettingScreen> {
                                         fontSize: 18),
                                     )),
                               ),
-                              const SizedBox(width: 20,),
+                              const SizedBox(width: 20,height: 20,),
                               InkWell(
                                 onTap: () {
                                   setState(() {
-                                    SharedPreferencesHelper.setPageSize(1);
+                                    SharedPreferencesHelper.setPageSize(58);
                                     pageSize=2;
                                     sizeText="58";
                                   });
@@ -431,11 +483,11 @@ class SettingScreenState extends State<SettingScreen> {
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18),
                                     )),
-                                const SizedBox(width: 20,),
+                                const SizedBox(width: 20,height: 20,),
                                 InkWell(
                                   onTap: () {
                                     setState(() {
-                                      SharedPreferencesHelper.setPageSize(1);
+                                      SharedPreferencesHelper.setPageSize(80);
                                       pageSize=1;
                                       sizeText="80";
                                     });
@@ -454,11 +506,11 @@ class SettingScreenState extends State<SettingScreen> {
                                           fontSize: 18),
                                       )),
                                 ),
-                                const SizedBox(width: 20,),
+                                const SizedBox(width: 20,height: 20,),
                                 InkWell(
                                   onTap: () {
                                     setState(() {
-                                      SharedPreferencesHelper.setPageSize(1);
+                                      SharedPreferencesHelper.setPageSize(58);
                                       pageSize=2;
                                       sizeText="58";
                                     });
@@ -510,44 +562,46 @@ class SettingScreenState extends State<SettingScreen> {
           ),
           body: Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                printerContainer,
-                const SizedBox(height: 20,),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Container(
-                      child: OutlinedButton(
-                        style: ButtonStyle(
-                          backgroundColor:
-                          MaterialStateProperty.all(
-                              MyConstant().purpleColor),
-                        ),
-                        onPressed: () async {
-                          Navigator.pop(context);
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 14,right: 14),
-                          child: Text('حفظ',
-                              style: GoogleFonts.notoKufiArabic(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18)),
-                        ),
-                      )),
-                )
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  printerContainer,
+                  const SizedBox(height: 20,),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                        child: OutlinedButton(
+                          style: ButtonStyle(
+                            backgroundColor:
+                            MaterialStateProperty.all(
+                                MyConstant().purpleColor),
+                          ),
+                          onPressed: () async {
+                            Navigator.pop(context);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 14,right: 14),
+                            child: Text('حفظ',
+                                style: GoogleFonts.notoKufiArabic(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18)),
+                          ),
+                        )),
+                  )
+                ],
+              ),
             ),
           ),
         ));
   }
 
 
-  SanmiPrint(Uint8List byte)async{
-    await MaxxSunmiPrinter.initializePrinter();
-    String base64String = base64Encode(byte);
-    await MaxxSunmiPrinter.printImage(base64String);
-  }
+  // SanmiPrint(Uint8List byte)async{
+  //   await MaxxSunmiPrinter.initializePrinter();
+  //   String base64String = base64Encode(byte);
+  //   await MaxxSunmiPrinter.printImage(base64String);
+  // }
   // void testReceipt(NetworkPrinter printer) {
   //
   //   printer.feed(2);
@@ -590,205 +644,204 @@ class SettingScreenState extends State<SettingScreen> {
 
 }
 
-class MaxxSunmiPrinter {
-  static const channel = MethodChannel('maxx_sunmi_printer');
-
-  static const String INIT_PRINTER = "initPrinter";
-  static const String PRINT_TEXT = "printText";
-  static const String PAPER_FEED = "paperFeed";
-  static const String PRINT_TABLE = "printTable";
-  static const String PRINT_IMAGE = "printImage";
-  static const String PRINT_BARCODE = "printBarcode";
-  static const String PRINT_QR_CODE = "printQrCode";
-  static const IS_LABEL_MODE = "isLabelMode";
-  static const String PRINT_LABEL = "printLabel";
-  static const String PRINT_STICKER = "printSticker";
-
-  static const String BOLD_ON = "boldOn";
-  static const String BOLD_OFF = "boldOff";
-  static const String UNDERLINE_ON = "underlineOn";
-  static const String UNDERLINE_OFF = "underlineOff";
-
-  static Future<String> initializePrinter() async {
-    try {
-      print("intisonomi");
-      return await channel.invokeMethod(INIT_PRINTER);
-
-    } catch (ex) {
-      return "[initializePrinter] ${ex.toString()}";
-    }
-  }
-
-  static Future<String> printText(String text, {SunmiStyles styles = const SunmiStyles(), int linesAfter = 0}) async {
-    try {
-      final arguments = {
-        "text": text,
-        "size": styles.size.value,
-        "isBold": styles.isBold,
-        "isUnderLine": styles.isUnderLine,
-        "alignment": styles.alignment.value,
-        "typeface": styles.font.value,
-        "linesAfter": linesAfter,
-      };
-
-      return await channel.invokeMethod(PRINT_TEXT, arguments);
-    } catch (ex) {
-      return "[printText]\n${ex.toString()}";
-    }
-  }
-
-  static Future<void> paperFeed({int number = 1}) async {
-    final arguments = {"number": number};
-    await channel.invokeMethod(PAPER_FEED, arguments);
-  }
-
-  static Future<void> cutPaper() async {
-    await channel.invokeMethod("cutPaper");
-  }
-
-  static Future<void> printTextLine({String ch = '-', int len = 31}) async {
-    await printText(List.filled(len, ch[0]).join());
-  }
-
-  static Future<void> boldOn() async {
-    await channel.invokeMethod(BOLD_ON);
-  }
-
-  static Future<void> boldOff() async {
-    await channel.invokeMethod(BOLD_OFF);
-  }
-
-  static Future<void> underlineOn() async {
-    await channel.invokeMethod(UNDERLINE_ON);
-  }
-
-  static Future<void> underlineOff() async {
-    await channel.invokeMethod(UNDERLINE_OFF);
-  }
-
-  static Future<void> printTable({
-    required List<SunmiCol> cols,
-    bool isBold = false,
-    bool isUnderLine = false,
-    SunmiSize size = SunmiSize.md,
-    int linesAfter = 0,
-  }) async {
-    final isSumValid = cols.fold(0, (int sum, col) => sum + col.width) == 12;
-    if (!isSumValid) {
-      throw Exception('Total columns width must be equal to 12');
-    }
-
-    final colsJson = List<Map<String, String>>.from(cols.map<Map<String, String>>((SunmiCol col) => col.toJson()));
-
-    final arguments = {
-      "cols": json.encode(colsJson),
-      "isBold": isBold,
-      "isUnderLine": isUnderLine,
-      "size": size.value,
-      "linesAfter": linesAfter,
-    };
-
-    await channel.invokeMethod(PRINT_TABLE, arguments);
-  }
-
-  static Future<void> printImage(String base64, {SunmiAlign align = SunmiAlign.center}) async {
-    final arguments = {"base64": base64, "alignment": align.value};
-    print("print image sonomi");
-
-    await channel.invokeMethod(PRINT_IMAGE, arguments);
-  }
-
-  static Future<void> printBarcode(
-      String text, {
-        SunmiTypeBarCode encode = SunmiTypeBarCode.CODE128A,
-        SunmiTypePositionBarcode position = SunmiTypePositionBarcode.uponBarcode,
-        int height = 162,
-        int width = 2,
-      }) async {
-    final arguments = {
-      "text": text,
-      "encode": encode.value,
-      "position": position.value,
-      "height": height,
-      "width": width,
-    };
-    await channel.invokeMethod(PRINT_BARCODE, arguments);
-  }
-
-  static Future<void> printQrCode(
-      String text, {
-        SunmiQrCodePrintSize printSize = SunmiQrCodePrintSize.size8,
-        SunmiQrCodeErrorLevel errorLevel = SunmiQrCodeErrorLevel.errorLevel3,
-      }) async {
-    final arguments = {"text": text, "printSize": printSize.value, "errorLevel": errorLevel.value};
-    await channel.invokeMethod(PRINT_QR_CODE, arguments);
-  }
-
-  static Future<String> isLabelMode() async {
-    final arguments = {"text": ""};
-    String result = await channel.invokeMethod(IS_LABEL_MODE, arguments);
-    return result;
-  }
-
-  static Future<String> printLabel({
-    required String barcode,
-    required String price,
-    String description = '',
-    int copy = 1,
-    SunmiTypeBarCode encodeBarcode = SunmiTypeBarCode.CODE128A,
-    SunmiTypePositionBarcode positionBarcode = SunmiTypePositionBarcode.beneathBarcode,
-    int heightBarcode = 90,
-    int widthBarcode = 2,
-  }) async {
-    String result = await isLabelMode();
-
-    if (result != "success") {
-      return result;
-    }
-
-    final arguments = {
-      "barcode": barcode,
-      "price": price,
-      "description": description,
-      "copy": copy,
-      "encodeBarcode": encodeBarcode.value,
-      "positionBarcode": positionBarcode.value,
-      "heightBarcode": heightBarcode,
-      "widthBarcode": widthBarcode,
-    };
-    await channel.invokeMethod(PRINT_LABEL, arguments);
-
-    return "success";
-  }
-
-  static Future<String> printSticker({
-    required List<String> lineContents,
-    SunmiStyles styles = const SunmiStyles(),
-    int copy = 1,
-    int lineWrapTop = 1,
-    int lineWrapBottom = 1,
-  }) async {
-    String result = await isLabelMode();
-
-    if (result != "success") {
-      return result;
-    }
-
-    final arguments = {
-      "lineContents": lineContents,
-      "copy": copy,
-      "size": styles.size.value,
-      "isBold": styles.isBold,
-      "isUnderLine": styles.isUnderLine,
-      "alignment": styles.alignment.value,
-      "lineWrapTop": lineWrapTop,
-      "lineWrapBottom": lineWrapBottom,
-    };
-    await channel.invokeMethod(PRINT_STICKER, arguments);
-
-    return "success";
-  }
-}
+// class MaxxSunmiPrinter {
+//   static const channel = MethodChannel('maxx_sunmi_printer');
+//
+//   static const String INIT_PRINTER = "initPrinter";
+//   static const String PRINT_TEXT = "printText";
+//   static const String PAPER_FEED = "paperFeed";
+//   static const String PRINT_TABLE = "printTable";
+//   static const String PRINT_IMAGE = "printImage";
+//   static const String PRINT_BARCODE = "printBarcode";
+//   static const String PRINT_QR_CODE = "printQrCode";
+//   static const IS_LABEL_MODE = "isLabelMode";
+//   static const String PRINT_LABEL = "printLabel";
+//   static const String PRINT_STICKER = "printSticker";
+//   static const String BOLD_ON = "boldOn";
+//   static const String BOLD_OFF = "boldOff";
+//   static const String UNDERLINE_ON = "underlineOn";
+//   static const String UNDERLINE_OFF = "underlineOff";
+//
+//   static Future<String> initializePrinter() async {
+//     try {
+//       print("intisonomi");
+//       return await channel.invokeMethod(INIT_PRINTER);
+//
+//     } catch (ex) {
+//       return "[initializePrinter] ${ex.toString()}";
+//     }
+//   }
+//
+//   static Future<String> printText(String text, {SunmiStyles styles = const SunmiStyles(), int linesAfter = 0}) async {
+//     try {
+//       final arguments = {
+//         "text": text,
+//         "size": styles.size.value,
+//         "isBold": styles.isBold,
+//         "isUnderLine": styles.isUnderLine,
+//         "alignment": styles.alignment.value,
+//         "typeface": styles.font.value,
+//         "linesAfter": linesAfter,
+//       };
+//
+//       return await channel.invokeMethod(PRINT_TEXT, arguments);
+//     } catch (ex) {
+//       return "[printText]\n${ex.toString()}";
+//     }
+//   }
+//
+//   static Future<void> paperFeed({int number = 1}) async {
+//     final arguments = {"number": number};
+//     await channel.invokeMethod(PAPER_FEED, arguments);
+//   }
+//
+//   static Future<void> cutPaper() async {
+//     await channel.invokeMethod("cutPaper");
+//   }
+//
+//   static Future<void> printTextLine({String ch = '-', int len = 31}) async {
+//     await printText(List.filled(len, ch[0]).join());
+//   }
+//
+//   static Future<void> boldOn() async {
+//     await channel.invokeMethod(BOLD_ON);
+//   }
+//
+//   static Future<void> boldOff() async {
+//     await channel.invokeMethod(BOLD_OFF);
+//   }
+//
+//   static Future<void> underlineOn() async {
+//     await channel.invokeMethod(UNDERLINE_ON);
+//   }
+//
+//   static Future<void> underlineOff() async {
+//     await channel.invokeMethod(UNDERLINE_OFF);
+//   }
+//
+//   static Future<void> printTable({
+//     required List<SunmiCol> cols,
+//     bool isBold = false,
+//     bool isUnderLine = false,
+//     SunmiSize size = SunmiSize.md,
+//     int linesAfter = 0,
+//   }) async {
+//     final isSumValid = cols.fold(0, (int sum, col) => sum + col.width) == 12;
+//     if (!isSumValid) {
+//       throw Exception('Total columns width must be equal to 12');
+//     }
+//
+//     final colsJson = List<Map<String, String>>.from(cols.map<Map<String, String>>((SunmiCol col) => col.toJson()));
+//
+//     final arguments = {
+//       "cols": json.encode(colsJson),
+//       "isBold": isBold,
+//       "isUnderLine": isUnderLine,
+//       "size": size.value,
+//       "linesAfter": linesAfter,
+//     };
+//
+//     await channel.invokeMethod(PRINT_TABLE, arguments);
+//   }
+//
+//   static Future<void> printImage(String base64, {SunmiAlign align = SunmiAlign.center}) async {
+//     final arguments = {"base64": base64, "alignment": align.value};
+//     print("print image sonomi");
+//
+//     await channel.invokeMethod(PRINT_IMAGE, arguments);
+//   }
+//
+//   static Future<void> printBarcode(
+//       String text, {
+//         SunmiTypeBarCode encode = SunmiTypeBarCode.CODE128A,
+//         SunmiTypePositionBarcode position = SunmiTypePositionBarcode.uponBarcode,
+//         int height = 162,
+//         int width = 2,
+//       }) async {
+//     final arguments = {
+//       "text": text,
+//       "encode": encode.value,
+//       "position": position.value,
+//       "height": height,
+//       "width": width,
+//     };
+//     await channel.invokeMethod(PRINT_BARCODE, arguments);
+//   }
+//
+//   static Future<void> printQrCode(
+//       String text, {
+//         SunmiQrCodePrintSize printSize = SunmiQrCodePrintSize.size8,
+//         SunmiQrCodeErrorLevel errorLevel = SunmiQrCodeErrorLevel.errorLevel3,
+//       }) async {
+//     final arguments = {"text": text, "printSize": printSize.value, "errorLevel": errorLevel.value};
+//     await channel.invokeMethod(PRINT_QR_CODE, arguments);
+//   }
+//
+//   static Future<String> isLabelMode() async {
+//     final arguments = {"text": ""};
+//     String result = await channel.invokeMethod(IS_LABEL_MODE, arguments);
+//     return result;
+//   }
+//
+//   static Future<String> printLabel({
+//     required String barcode,
+//     required String price,
+//     String description = '',
+//     int copy = 1,
+//     SunmiTypeBarCode encodeBarcode = SunmiTypeBarCode.CODE128A,
+//     SunmiTypePositionBarcode positionBarcode = SunmiTypePositionBarcode.beneathBarcode,
+//     int heightBarcode = 90,
+//     int widthBarcode = 2,
+//   }) async {
+//     String result = await isLabelMode();
+//
+//     if (result != "success") {
+//       return result;
+//     }
+//
+//     final arguments = {
+//       "barcode": barcode,
+//       "price": price,
+//       "description": description,
+//       "copy": copy,
+//       "encodeBarcode": encodeBarcode.value,
+//       "positionBarcode": positionBarcode.value,
+//       "heightBarcode": heightBarcode,
+//       "widthBarcode": widthBarcode,
+//     };
+//     await channel.invokeMethod(PRINT_LABEL, arguments);
+//
+//     return "success";
+//   }
+//
+//   static Future<String> printSticker({
+//     required List<String> lineContents,
+//     SunmiStyles styles = const SunmiStyles(),
+//     int copy = 1,
+//     int lineWrapTop = 1,
+//     int lineWrapBottom = 1,
+//   }) async {
+//     String result = await isLabelMode();
+//
+//     if (result != "success") {
+//       return result;
+//     }
+//
+//     final arguments = {
+//       "lineContents": lineContents,
+//       "copy": copy,
+//       "size": styles.size.value,
+//       "isBold": styles.isBold,
+//       "isUnderLine": styles.isUnderLine,
+//       "alignment": styles.alignment.value,
+//       "lineWrapTop": lineWrapTop,
+//       "lineWrapBottom": lineWrapBottom,
+//     };
+//     await channel.invokeMethod(PRINT_STICKER, arguments);
+//
+//     return "success";
+//   }
+// }
 
 class SunmiFont {
   const SunmiFont._internal(this.value);
@@ -797,13 +850,13 @@ class SunmiFont {
   static const khmerOs = SunmiFont._internal("test.ttf");
 }
 
-class SunmiAlign {
-  const SunmiAlign._internal(this.value);
-  final int value;
-  static const left = SunmiAlign._internal(0);
-  static const center = SunmiAlign._internal(1);
-  static const right = SunmiAlign._internal(2);
-}
+// class SunmiAlign {
+//   const SunmiAlign._internal(this.value);
+//   final int value;
+//   static const left = SunmiAlign._internal(0);
+//   static const center = SunmiAlign._internal(1);
+//   static const right = SunmiAlign._internal(2);
+// }
 
 class SunmiSize {
   const SunmiSize._internal(this.value);
@@ -877,41 +930,41 @@ class SunmiQrCodeErrorLevel {
   static const errorLevel2 = SunmiQrCodeErrorLevel._internal(2);
   static const errorLevel3 = SunmiQrCodeErrorLevel._internal(3);
 }
-class SunmiCol {
-  SunmiCol({
-    this.text = '',
-    this.width = 2,
-    this.alignment = SunmiAlign.left,
-  }) {
-    if (width < 1 || width > 12) {
-      throw Exception('Column width must be between 1..12');
-    }
-  }
-
-  String text;
-  int width;
-  SunmiAlign alignment;
-
-  Map<String, String> toJson() {
-    return {
-      "text": text,
-      "width": width.toString(),
-      "align": alignment.value.toString(),
-    };
-  }
-}
-class SunmiStyles {
-  const SunmiStyles({
-    this.isBold = false,
-    this.isUnderLine = false,
-    this.alignment = SunmiAlign.left,
-    this.size = SunmiSize.md,
-    this.font = SunmiFont.defaultFont,
-  });
-
-  final bool isBold;
-  final bool isUnderLine;
-  final SunmiAlign alignment;
-  final SunmiSize size;
-  final SunmiFont font;
-}
+// class SunmiCol {
+//   SunmiCol({
+//     this.text = '',
+//     this.width = 2,
+//     this.alignment = SunmiAlign.left,
+//   }) {
+//     if (width < 1 || width > 12) {
+//       throw Exception('Column width must be between 1..12');
+//     }
+//   }
+//
+//   String text;
+//   int width;
+//   SunmiAlign alignment;
+//
+//   Map<String, String> toJson() {
+//     return {
+//       "text": text,
+//       "width": width.toString(),
+//       "align": alignment.value.toString(),
+//     };
+//   }
+// }
+// class SunmiStyles {
+//   const SunmiStyles({
+//     this.isBold = false,
+//     this.isUnderLine = false,
+//     this.alignment = SunmiAlign.left,
+//     this.size = SunmiSize.md,
+//     this.font = SunmiFont.defaultFont,
+//   });
+//
+//   final bool isBold;
+//   final bool isUnderLine;
+//   final SunmiAlign alignment;
+//   final SunmiSize size;
+//   final SunmiFont font;
+// }

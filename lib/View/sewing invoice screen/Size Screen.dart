@@ -140,7 +140,7 @@ class _SizeScreenState extends State<SizeScreen> {
                               child: Row(
                                 mainAxisAlignment:
                                 MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 textDirection: TextDirection.rtl,
                                 children: [
                                   Container(
@@ -1561,61 +1561,33 @@ class _SizeScreenState extends State<SizeScreen> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Container(
-                              height: MediaQuery.of(context).size.height / 10,
-                              width: double.infinity,
-                              padding: const EdgeInsets.only(left: 30,top: 10),
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                border: Border(
-                                    bottom: BorderSide(
-                                        color: MyConstant()
-                                            .greenColor
-                                            .withOpacity(0.3),
-                                        width: 0.2)),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: MyConstant()
-                                          .greenColor
-                                          .withOpacity(0.3),
-                                      spreadRadius: 0,
-                                      blurRadius: 0,
-                                      offset: const Offset(1, 1),
-                                      blurStyle: BlurStyle.outer),
-                                ],
-                                color: Colors.white,
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                textDirection: TextDirection.rtl,
-                                children: [
-                                  Container(
-                                      height: 40,
-                                      width:
-                                          MediaQuery.of(context).size.width / 5,
-                                      child: Image.asset(
-                                        'image/logo app.png',
-                                        width: 40,
-                                        height: 40,
-                                      )),
-                                  IconButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      icon: Icon(
-                                        Icons.arrow_forward_ios_rounded,
-                                        color: MyConstant().purpleColor,
-                                        size: 30,
-                                      ))
-                                ],
-                              ),
-                            ),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 50,bottom: 20,left: 10,right: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            textDirection: TextDirection.rtl,
+                            children: [
+                              Container(
+                                  height: 40,
+                                  width:
+                                  MediaQuery.of(context).size.width / 5,
+                                  child: Image.asset(
+                                    'image/logo app.png',
+                                    width: 40,
+                                    height: 40,
+                                  )),
+                              IconButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  icon: Icon(
+                                    Icons.arrow_forward_ios_rounded,
+                                    color: MyConstant().purpleColor,
+                                    size: 30,
+                                  ))
+                            ],
+                          ),
                         ),
                         Container(
                           // height: MediaQuery.of(context).size.height/16,

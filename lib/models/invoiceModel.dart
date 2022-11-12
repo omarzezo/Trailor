@@ -101,7 +101,7 @@ class Items {
   String? itemTax;
   String? taxRateId;
   String? tax;
-  Null? discount;
+  String? discount;
   String? itemDiscount;
   String? subtotal;
   String? serialNo;

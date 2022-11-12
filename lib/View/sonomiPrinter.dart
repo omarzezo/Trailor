@@ -3,7 +3,6 @@ import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:sunmi_printer_plus/sunmi_printer_plus.dart';
 
 class SonomiPrinter extends StatefulWidget {
   const SonomiPrinter({Key? key}) : super(key: key);
@@ -21,36 +20,36 @@ class SonomiPrinterState extends State<SonomiPrinter> {
   void initState() {
     super.initState();
 
-    _bindingPrinter().then((bool? isBind) async {
-      SunmiPrinter.paperSize().then((int size) {
-        setState(() {
-          paperSize = size;
-        });
-      });
+    // _bindingPrinter().then((bool? isBind) async {
+      // SunmiPrinter.paperSize().then((int size) {
+      //   setState(() {
+      //     paperSize = size;
+      //   });
+      // });
+      //
+      // SunmiPrinter.printerVersion().then((String version) {
+      //   setState(() {
+      //     printerVersion = version;
+      //   });
+      // });
+      //
+      // SunmiPrinter.serialNumber().then((String serial) {
+      //   setState(() {
+      //     serialNumber = serial;
+      //   });
+      // });
 
-      SunmiPrinter.printerVersion().then((String version) {
-        setState(() {
-          printerVersion = version;
-        });
-      });
-
-      SunmiPrinter.serialNumber().then((String serial) {
-        setState(() {
-          serialNumber = serial;
-        });
-      });
-
-      setState(() {
-        printBinded = isBind!;
-      });
-    });
+    //   setState(() {
+    //     printBinded = isBind!;
+    //   });
+    // });
   }
 
   /// must binding ur printer at first init in app
-  Future<bool?> _bindingPrinter() async {
-    final bool? result = await SunmiPrinter.bindingPrinter();
-    return result;
-  }
+  // Future<bool?> _bindingPrinter() async {
+  //   final bool? result = await SunmiPrinter.bindingPrinter();
+  //   return result;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -100,12 +99,12 @@ class SonomiPrinterState extends State<SonomiPrinter> {
           ),
         ));
   }
-  printsonomi(Uint8List? theimageThatC)async{
-
-    await SunmiPrinter.initPrinter();
-    await SunmiPrinter.startTransactionPrint(true);
-    await SunmiPrinter.printImage(theimageThatC!);
-    await SunmiPrinter.lineWrap(2);
-    await SunmiPrinter.exitTransactionPrint(true);
-  }
+  // printsonomi(Uint8List? theimageThatC)async{
+  //
+  //   await SunmiPrinter.initPrinter();
+  //   await SunmiPrinter.startTransactionPrint(true);
+  //   await SunmiPrinter.printImage(theimageThatC!);
+  //   await SunmiPrinter.lineWrap(2);
+  //   await SunmiPrinter.exitTransactionPrint(true);
+  // }
 }

@@ -13,6 +13,33 @@ class SharedPreferencesHelper {
     return prefs.getInt("PageSize");
   }
 
+  static Future<String?> getMacAddress() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString("MacJeson");
+  }
+  static Future<bool> setMacAddress(String? value) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString("MacJeson", value!);
+  }
+
+  static Future<String?> getMacPrinter() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString("MacPinter");
+  }
+  static Future<bool> setMacPrinter(String? value) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString("MacPinter", value!);
+  }
+
+  static Future<String?> getIpPrinter() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString("IpPrinter");
+  }
+  static Future<bool> setIpPrinter(String? value) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString("IpPrinter", value!);
+  }
+
   static Future<bool> setPrinterType(int? value) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.setInt("PrinterType", value!);
