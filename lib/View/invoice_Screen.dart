@@ -84,10 +84,10 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
           backgroundColor: Colors.purple,
           title: Text("الطابعة", style: GoogleFonts.notoKufiArabic(
           color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)), centerTitle: true,),
-        body: Center(
+        body: cubit.invoiceModel!=null?   Center(
           child: SingleChildScrollView(
 
-              child: Column(
+               child:Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -546,7 +546,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                   ),
                 ],
               )),
-        ),
+        ):Container(),
       );
 
   },
