@@ -189,7 +189,7 @@ class LoginCubit extends Cubit<LoginState> {
       print("NewImage>> " + pngBytes.toString());
       // return pngBytes;
     } catch (exception) {}
-    return pngBytes!;
+    return pngBytes;
   }
 
   List<Companies> customerModel=[];
@@ -487,18 +487,30 @@ String? salesId;
   }
 
   calculateWhatYouPay() {
-    whatYouPay.text =
-        ((double.parse(totalPrice.text) * double.parse(tax.text) / 100) +
-                double.parse(totalPrice.text))
-            .toStringAsFixed(2);
+    if(itemPrice.text.isNotEmpty&&quantities.text.isNotEmpty){
+      totalPrice.text=(double.parse(itemPrice.text)*double.parse(quantities.text)) .toStringAsFixed(2);
+      totalPriceDetails.text=(double.parse(totalPrice.text)+(double.parse(totalPrice.text)* double.parse(tax.text) / 100)) .toStringAsFixed(2);
+      whatYouPay.text=totalPriceDetails.text;
+
+    }
+    // whatYouPay.text =
+    //     ((double.parse(totalPrice.text) * double.parse(tax.text) / 100) +
+    //             double.parse(totalPrice.text))
+    //         .toStringAsFixed(2);
   }
 
   calculateDiscount(String value) {
+    print(value);
     try {
       if (value.isNotEmpty) {
-        whatYouPay.text = (double.parse(whatYouPay.text) -
-                (double.parse(whatYouPay.text) * double.parse(value) / 100))
-            .toStringAsFixed(2);
+        whatYouPay.text=(double.parse(totalPrice.text)-(double.parse(totalPrice.text)* double.parse(value) / 100)) .toStringAsFixed(2);
+        // totalPriceDetails.text=(double.parse(totalPrice.text)-(double.parse(totalPrice.text)* double.parse(value) / 100)) .toStringAsFixed(2);
+
+        // whatYouPay.text = (double.parse(whatYouPay.text) -
+        //         (double.parse(whatYouPay.text) * double.parse(value) / 100))
+        //     .toStringAsFixed(2);
+      }else{
+        whatYouPay.text=totalPriceDetails.text;
       }
     } catch (e) {
       print(e.toString());

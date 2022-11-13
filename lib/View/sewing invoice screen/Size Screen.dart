@@ -1695,8 +1695,11 @@ class _SizeScreenState extends State<SizeScreen> {
                                     onPressed:
 
                                         () async {
+                                      try{
                                         await cubit.getWidgetImage();
                                         Navigator.pop(context);
+                                      }catch(e){}
+
                                     },
                                     child: Text('حفظ',
                                         style: GoogleFonts.notoKufiArabic(

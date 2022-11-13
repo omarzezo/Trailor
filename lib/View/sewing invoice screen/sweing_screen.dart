@@ -628,15 +628,17 @@ class _SewingScreenState extends State<SewingScreen> {
                                                   cubit.typeOfClothes =
                                                       value.name!;
                                                   cubit.itemCode = value.code!;
-                                                  cubit.itemPrice.text =
-                                                      value.price!;
+                                                  // cubit.itemPrice.text =
+                                                  //     value.price!;
                                                   // cubit.tax.text= cubit.taxRatesNameList.where((element) => element.id==value.taxRate).toString();
                                                   cubit.taxRatesNameList
                                                       .forEach((element) {
                                                     if (element.id ==
                                                         value.taxRate) {
                                                       cubit.tax.text =
-                                                          element.rate!;
+                                                          double.parse( element.rate!)
+                                                          .toStringAsFixed(2);
+                                                      // element.rate!
                                                     }
                                                   });
                                                 });
@@ -770,12 +772,14 @@ class _SewingScreenState extends State<SewingScreen> {
                                     width: 20,
                                   ),
                                   textField(
+
                                     onChanged: (value) {
-                                      cubit.totalPrice.text =
-                                          (double.parse(cubit.quantities.text) *
-                                                  double.parse(
-                                                      cubit.itemPrice.text))
-                                              .toString();
+                                      cubit.quantities.text=value;
+                                      // cubit.totalPrice.text =
+                                      //     (double.parse(cubit.quantities.text) *
+                                      //             double.parse(
+                                      //                 cubit.itemPrice.text))
+                                      //         .toString();
                                       cubit.calculateWhatYouPay();
                                     },
                                     controller: cubit.quantities,
@@ -795,19 +799,30 @@ class _SewingScreenState extends State<SewingScreen> {
                                   ),
                                   // const SizedBox(width: 10,),
                                   textField(
+context: context,
                                       controller: cubit.itemPrice,
-                                      context: context,
+                                      onChanged: (value) {
+                                        cubit.itemPrice.text=value;
+                                        // cubit.totalPrice.text =
+                                        //     (double.parse(cubit.quantities.text) *
+                                        //         double.parse(
+                                        //             cubit.itemPrice.text))
+                                        //         .toString();
+                                        cubit.calculateWhatYouPay();
+                                      },
+                                      // context: context,
                                       text: 'سعر الوحدة',
                                       borderSide: const BorderSide(
                                           color: Colors.green, width: 1),
                                       radius: BorderRadius.zero),
                                   // const SizedBox(width: 10,),
                                   textField(
+
                                     controller: cubit.totalPrice,
                                     onChanged: (value) {
-                                      setState(() {
-                                        cubit.totalPriceDetails.text = value;
-                                      });
+                                      // setState(() {
+                                      //   cubit.totalPriceDetails.text = value;
+                                      // });
                                     },
                                     readOnly: true,
                                     context: context,
@@ -935,7 +950,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                                 child: customTextField(
                                                     text: 'الاجمالي',
                                                     controller:
-                                                        cubit.totalPrice,
+                                                        cubit.totalPriceDetails,
                                                     readOnly: true)),
                                             Container(
                                                 width: MediaQuery.of(context)
@@ -945,10 +960,16 @@ class _SewingScreenState extends State<SewingScreen> {
                                                 child: customTextField(
                                                     text: 'الخصم',
                                                     controller: cubit.discount,
-                                                    onChange: (value) {
+                                                    onFieldSubmitted: (value) {
                                                       cubit.calculateDiscount(
                                                           value);
-                                                    })),
+                                                    },
+                                                    // onChange: (value) {
+                                                    //    cubit.calculateDiscount(
+                                                    //       value);
+                                                    // }
+
+                                                    )),
                                             Container(
                                                 width: MediaQuery.of(context)
                                                         .size
@@ -1110,11 +1131,17 @@ class _SewingScreenState extends State<SewingScreen> {
                                                     child: customTextField(
                                                         text: 'المبلغ المدفوع',
                                                         controller: cubit.cash,
-                                                        onChange: (value) {
+                                                        onFieldSubmitted: (value) {
                                                           cubit
                                                               .calculateRecentMoney(
-                                                                  value);
-                                                        }))
+                                                              value);
+                                                        },
+                                                        // onChange: (value) {
+                                                        //   cubit
+                                                        //       .calculateRecentMoney(
+                                                        //           value);
+                                                        // }
+                                                        ))
                                                 : Container(),
                                             const SizedBox(
                                               width: 10,
@@ -1299,6 +1326,8 @@ class _SewingScreenState extends State<SewingScreen> {
                                             right: 20, top: 15, bottom: 12),
                                         child: customTextField(
                                             text: 'المبلغ المتبقي',
+                                            readOnly: true,
+
                                             controller: cubit.delayMoney)),
                                   ],
                                 )),
@@ -1399,7 +1428,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                         date: "2022-08-16T00:59:44+03:00",
                                         amount: 10.0000,
                                         paidBy: "cash",
-                                        commercialDiscount: 0.0000,
+                                        commercialDiscount: 10.0000,
                                         commercialDiscountId: null,
                                         chequeNo: null,
                                         glPaymentMethodId: 0,
@@ -1443,74 +1472,74 @@ class _SewingScreenState extends State<SewingScreen> {
                                     ],
                                     measurement: [
                                       Measurement(
-                                        itemName: cubit.typeOfClothes,
-                                        itemCode: cubit.itemCode,
+                                        itemName: cubit.typeOfClothes??"",
+                                        itemCode: cubit.itemCode??"0",
                                         frontLength: double.parse(
-                                            cubit.frontHeight.text),
+                                            cubit.frontHeight.text.isEmpty?"0":cubit.frontHeight.text),
                                         backLength:
-                                            double.parse(cubit.backHeight.text),
+                                            double.parse(cubit.backHeight.text.isEmpty?"0":cubit.backHeight.text),
                                         shoulderWidth: double.parse(
-                                            cubit.shoulderWidth.text),
+                                            cubit.shoulderWidth.text.isEmpty?"0":cubit.shoulderWidth.text),
                                         shoulderSlope: double.parse(
-                                            cubit.shoulderSlope.text),
+                                            cubit.shoulderSlope.text.isEmpty?"0":cubit.shoulderSlope.text),
                                         sleeve: double.parse(
-                                            cubit.sleeveLengthPlain.text),
+                                            cubit.sleeveLengthPlain.text.isEmpty?"0":cubit.sleeveLengthPlain.text),
                                         sleeveTop: double.parse(
-                                            cubit.sleeveLengthIsHigher.text),
+                                            cubit.sleeveLengthIsHigher.text.isEmpty?"0":cubit.sleeveLengthIsHigher.text),
                                         wrist:
-                                            double.parse(cubit.wideWrist.text),
+                                            double.parse(cubit.wideWrist.text.isEmpty?"0":cubit.wideWrist.text),
                                         plainCuffLength:
-                                            double.parse(cubit.plainCuff.text),
+                                            double.parse(cubit.plainCuff.text.isEmpty?"0":cubit.plainCuff.text),
                                         cuffLength:
-                                            double.parse(cubit.cuffLength.text),
+                                            double.parse(cubit.cuffLength.text.isEmpty?"0":cubit.cuffLength.text),
                                         cuffWidth:
-                                            double.parse(cubit.cuffShow.text),
+                                            double.parse(cubit.cuffShow.text.isEmpty?"0":cubit.cuffShow.text),
                                         middleWidth:
-                                            double.parse(cubit.wideMiddle.text),
+                                            double.parse(cubit.wideMiddle.text.isEmpty?"0":cubit.wideMiddle.text),
                                         chestFront: double.parse(
-                                            cubit.expandTheChestInFront.text),
+                                            cubit.expandTheChestInFront.text.isEmpty?"0":cubit.expandTheChestInFront.text),
                                         chestBack: double.parse(
-                                            cubit.expandTheChestBehind.text),
+                                            cubit.expandTheChestBehind.text.isEmpty?"0":cubit.expandTheChestBehind.text),
                                         bottomHeight: double.parse(
-                                            cubit.koftaBottom.text),
+                                            cubit.koftaBottom.text.isEmpty?"0":cubit.koftaBottom.text),
                                         bottomWidth:
-                                            double.parse(cubit.expandDown.text),
+                                            double.parse(cubit.expandDown.text.isEmpty?"0":cubit.expandDown.text),
                                         collarWidth: double.parse(
-                                            cubit.wideNeckPillow.text),
+                                            cubit.wideNeckPillow.text.isEmpty?"0":cubit.wideNeckPillow.text),
                                         collarHeight:
-                                            double.parse(cubit.neckHeight.text),
+                                            double.parse(cubit.neckHeight.text.isEmpty?"0":cubit.neckHeight.text),
                                         zipperHeight: double.parse(
-                                            cubit.gypsumHeight.text),
+                                            cubit.gypsumHeight.text.isEmpty?"0":cubit.gypsumHeight.text),
                                         zipperWidth:
-                                            double.parse(cubit.viewGypsum.text),
+                                            double.parse(cubit.viewGypsum.text.isEmpty?"0":cubit.viewGypsum.text),
                                         chestPocketHeight: double.parse(
-                                            cubit.lengthChestPocket.text),
+                                            cubit.lengthChestPocket.text.isEmpty?"0":cubit.lengthChestPocket.text),
                                         chestPocketWidth: double.parse(
-                                            cubit.wideChestPocket.text),
+                                            cubit.wideChestPocket.text.isEmpty?"0":cubit.wideChestPocket.text),
                                         mobilePocketHeight: double.parse(
-                                            cubit.wideMobilePocket.text),
+                                            cubit.wideMobilePocket.text.isEmpty?"0":cubit.wideMobilePocket.text),
                                         walletPocketHeight: double.parse(
-                                            cubit.lengthPocketWallet.text),
+                                            cubit.lengthPocketWallet.text.isEmpty?"0":cubit.lengthPocketWallet.text),
                                         walletPocketWidth: double.parse(
-                                            cubit.widePocketWallet.text),
+                                            cubit.widePocketWallet.text.isEmpty?"0":cubit.widePocketWallet.text),
                                         haunchWidth:
-                                            double.parse(cubit.hipWidth.text),
+                                            double.parse(cubit.hipWidth.text.isEmpty?"0":cubit.hipWidth.text),
                                         buttonNo:
-                                            int.parse(cubit.buttonNumber.text),
+                                            int.parse(cubit.buttonNumber.text.isEmpty?"0":cubit.buttonNumber.text),
                                         embroideryNo: int.parse(
-                                            cubit.embroideryNumber.text),
+                                            cubit.embroideryNumber.text.isEmpty?"0":cubit.embroideryNumber.text),
                                         estimatedLength: double.parse(
-                                            cubit.expectedFabricInMeter.text),
+                                            cubit.expectedFabricInMeter.text.isEmpty?"0":cubit.expectedFabricInMeter.text),
                                         tailorId: 1,
                                         sample: cubit.sample?1:0,
                                         urgent: cubit.harryUp?1:0,
                                         shoulderChestLength: double.parse(cubit
                                             .betweenTheChestPocketAndTheShoulder
-                                            .text),
+                                            .text.isEmpty?"0":cubit.betweenTheChestPocketAndTheShoulder.text),
                                         sleeveMiddle: double.parse(
-                                            cubit.quantumCapacityMedium.text),
+                                            cubit.quantumCapacityMedium.text.isEmpty?"0":cubit.quantumCapacityMedium.text),
                                         sidePocketLength:
-                                            double.parse(cubit.sidePocket.text),
+                                            double.parse(cubit.sidePocket.text.isEmpty?"0":cubit.sidePocket.text),
                                         takhalees: cubit.Takhalis.text,
                                         collarTypeID: cubit.CollerTypeID,
                                         cuffTypeID: cubit.CuffTypeID,
