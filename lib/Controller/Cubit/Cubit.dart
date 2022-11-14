@@ -164,6 +164,25 @@ class LoginCubit extends Cubit<LoginState> {
     }
     return invoiceModel!;
   }
+  // List<InvoiceModel> allInvoices=[];
+  List<InvoiceData> allInvoices=[];
+  Future<List<InvoiceData>>  getAllInvoiceInformation()async{
+    Dio dio = Dio();
+
+
+    final response = await dio.get(
+      'https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_id=w_1',
+    );
+    if(response.statusCode==200){
+      InvoiceModel.fromJson(response.data).invoiceData!.forEach((invoice){
+
+        allInvoices.add(invoice);
+      });
+    }else{
+      print (response.statusMessage);
+    }
+    return allInvoices;
+  }
 
   printsonomi(Uint8List? theimageThatC)async{
 
@@ -290,6 +309,7 @@ class LoginCubit extends Cubit<LoginState> {
       // log(jsonEncode(pillRequestModel));
       print(response.data);
       pillResponseModel = PillResponseModel.fromJson(response.data);
+      await getAllInvoiceInformation();
 
       return pillResponseModel;
     } else {
@@ -485,10 +505,12 @@ String? salesId;
     onlinePayment.clear();
     delayMoney.clear();
   }
-
+String? itemPrice1;
+String? quantities1;
   calculateWhatYouPay() {
-    if(itemPrice.text.isNotEmpty&&quantities.text.isNotEmpty){
-      totalPrice.text=(double.parse(itemPrice.text)*double.parse(quantities.text)) .toStringAsFixed(2);
+    itemPrice1=itemPrice.text;
+    if(itemPrice1!=null&&quantities1!=null){
+      totalPrice.text=(double.parse(itemPrice1!)*double.parse(quantities1!)) .toStringAsFixed(2);
       totalPriceDetails.text=(double.parse(totalPrice.text)+(double.parse(totalPrice.text)* double.parse(tax.text) / 100)) .toStringAsFixed(2);
       whatYouPay.text=totalPriceDetails.text;
 
@@ -502,14 +524,15 @@ String? salesId;
   calculateDiscount(String value) {
     print(value);
     try {
-      if (value.isNotEmpty) {
-        whatYouPay.text=(double.parse(totalPrice.text)-(double.parse(totalPrice.text)* double.parse(value) / 100)) .toStringAsFixed(2);
+
+      if (value.isNotEmpty&&value!=" ") {
+        whatYouPay.text=(double.parse(totalPriceDetails.text)-(double.parse(totalPriceDetails.text)* double.parse(value) / 100)) .toStringAsFixed(2);
         // totalPriceDetails.text=(double.parse(totalPrice.text)-(double.parse(totalPrice.text)* double.parse(value) / 100)) .toStringAsFixed(2);
 
         // whatYouPay.text = (double.parse(whatYouPay.text) -
         //         (double.parse(whatYouPay.text) * double.parse(value) / 100))
         //     .toStringAsFixed(2);
-      }else{
+     }else{
         whatYouPay.text=totalPriceDetails.text;
       }
     } catch (e) {
@@ -522,6 +545,7 @@ String? salesId;
       if (value.isNotEmpty) {
         delayMoney.text = (double.parse(value) - double.parse(whatYouPay.text))
             .toStringAsFixed(2);
+        emit(GetWhatYouPayAfterDiscount());
       }
     } catch (e) {
       print(e.toString());

@@ -628,6 +628,8 @@ class _SewingScreenState extends State<SewingScreen> {
                                                   cubit.typeOfClothes =
                                                       value.name!;
                                                   cubit.itemCode = value.code!;
+                                                  cubit.itemPrice.text=double.parse(value.price!).toStringAsFixed(2);
+                                                  cubit.calculateWhatYouPay();
                                                   // cubit.itemPrice.text =
                                                   //     value.price!;
                                                   // cubit.tax.text= cubit.taxRatesNameList.where((element) => element.id==value.taxRate).toString();
@@ -774,7 +776,8 @@ class _SewingScreenState extends State<SewingScreen> {
                                   textField(
 
                                     onChanged: (value) {
-                                      cubit.quantities.text=value;
+                                      // cubit.quantities.text=value;
+                                      cubit.quantities1=value;
                                       // cubit.totalPrice.text =
                                       //     (double.parse(cubit.quantities.text) *
                                       //             double.parse(
@@ -783,7 +786,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                       cubit.calculateWhatYouPay();
                                     },
                                     controller: cubit.quantities,
-                                    context: context,
+                                    // context: context,
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
                                         return 'ادخل قيمة الكمية';
@@ -799,10 +802,11 @@ class _SewingScreenState extends State<SewingScreen> {
                                   ),
                                   // const SizedBox(width: 10,),
                                   textField(
-context: context,
+// context: context,
                                       controller: cubit.itemPrice,
                                       onChanged: (value) {
-                                        cubit.itemPrice.text=value;
+                                        // cubit.itemPrice.text=value;
+                                        cubit.itemPrice1=value;
                                         // cubit.totalPrice.text =
                                         //     (double.parse(cubit.quantities.text) *
                                         //         double.parse(
@@ -825,7 +829,7 @@ context: context,
                                       // });
                                     },
                                     readOnly: true,
-                                    context: context,
+                                    // context: context,
                                     text: 'الاجمالي',
                                     borderSide: const BorderSide(
                                         color: Colors.green, width: 1),
@@ -960,9 +964,12 @@ context: context,
                                                 child: customTextField(
                                                     text: 'الخصم',
                                                     controller: cubit.discount,
-                                                    onFieldSubmitted: (value) {
+                                                    textInputType: TextInputType.numberWithOptions(),
+
+                                                    onChange: (value) {
+                                                     if(value.isNotEmpty&&cubit.discount.text.isNotEmpty){
                                                       cubit.calculateDiscount(
-                                                          value);
+                                                         value );}
                                                     },
                                                     // onChange: (value) {
                                                     //    cubit.calculateDiscount(
@@ -1131,7 +1138,7 @@ context: context,
                                                     child: customTextField(
                                                         text: 'المبلغ المدفوع',
                                                         controller: cubit.cash,
-                                                        onFieldSubmitted: (value) {
+                                                        onChange: (value) {
                                                           cubit
                                                               .calculateRecentMoney(
                                                               value);
@@ -1472,8 +1479,8 @@ context: context,
                                     ],
                                     measurement: [
                                       Measurement(
-                                        itemName: cubit.typeOfClothes??"",
-                                        itemCode: cubit.itemCode??"0",
+                                        itemName: cubit.typeOfClothes,
+                                        itemCode: cubit.itemCode,
                                         frontLength: double.parse(
                                             cubit.frontHeight.text.isEmpty?"0":cubit.frontHeight.text),
                                         backLength:
@@ -1563,6 +1570,7 @@ context: context,
                                         expensesList: expensesList);
                                 await cubit.pillResponse(
                                     pillRequestModel: pillRequestModel);
+                                // await cubit.getAllInvoiceInformation();
                                 LoadingPage(context).close();
 
                                 Navigator.pushNamed(

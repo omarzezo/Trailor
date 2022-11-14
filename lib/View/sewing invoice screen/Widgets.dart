@@ -34,12 +34,13 @@ Widget iconAndText({
 }
 
 Widget textField({
-  context,
+  // context,
   required String text,
   required BorderRadius radius,
   required BorderSide borderSide,
    TextEditingController? controller,
    Function(String)? onChanged,
+   Function(String)? onFieldSubmitted,
   String? Function(String?)? validator,
    bool? readOnly=false,
 }) {
@@ -71,6 +72,7 @@ Widget textField({
             child: TextFormField(
               controller: controller,
               onChanged: onChanged,
+              onFieldSubmitted:onFieldSubmitted ,
               readOnly: readOnly!,
               textAlign: TextAlign.center,
               validator:validator ,
@@ -114,10 +116,11 @@ Widget customTextField({
 // ],
     textInputAction: textInputAction,
     onFieldSubmitted:onFieldSubmitted,
+
     // onEditingComplete: (){
     //   // controller!.clear();
     // },
-// onChanged: onChange,
+onChanged: onChange,
     // onSaved: onSaved,
     // readOnly: readOnly!,
     textAlign: TextAlign.center,
@@ -221,3 +224,4 @@ Widget MyText ({required String text}){
 
 }
 
+// DateFormat("yyyy-MM-dd HH:mm:ss").format(DateTime.now()).split( " ").first
