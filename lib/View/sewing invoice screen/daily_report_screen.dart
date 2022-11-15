@@ -5,6 +5,7 @@ import 'package:intl/intl.dart' as p;
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/View/Data%20Table/model.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class DailyReportScreen extends StatelessWidget {
   static const routeName = "DailyReportScreen";
@@ -47,31 +48,73 @@ class DailyReportScreen extends StatelessWidget {
                 centerTitle: true,
               ),
               body: SafeArea(
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
-                    child: Column(
-                      children: [
-                        if(pillsDetails.data!.isNotEmpty)
-                          ListView.separated(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, index) => ReportItem( dateNow:p.DateFormat('yyyy-MM-dd HH:mm')
-                                .parse(DateTime.now().toString())
-                                .toString().split(" ").first ,date: pillsDetails.data![index].date??"", deleverDate: pillsDetails.data![index].deliveryDate??"", customerName: pillsDetails.data![index].customer??"", refrenceiD: pillsDetails.data![index].referenceNo??""),
-                            separatorBuilder: (context, index) => SizedBox(
-                                  height: 20,
-                                ),
-                            itemCount: pillsDetails.data!.length),
-                        if(pillsDetails.data==null||pillsDetails.data!.isEmpty)
-                        Center(child: Text("لا يوجد طلبات جديدة اليوم ",style: GoogleFonts.notoKufiArabic(
-                        color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 40)))
-                      ],
+                child: ResponsiveVisibility(
+
+                  replacement: SingleChildScrollView(
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+
+                      child: Column(
+                        children: [
+                          if(pillsDetails.data!.isNotEmpty)
+                            ListView.separated(
+                              shrinkWrap: true,
+                              // scrollDirection: Axis.horizontal,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemBuilder: (context, index) => ReportItem( dateNow:p.DateFormat('yyyy-MM-dd HH:mm')
+                                  .parse(DateTime.now().toString())
+                                  .toString().split(" ").first ,date: pillsDetails.data![index].date??"", deleverDate: pillsDetails.data![index].deliveryDate??"", customerName: pillsDetails.data![index].customer??"", refrenceiD: pillsDetails.data![index].referenceNo??""),
+                              separatorBuilder: (context, index) => SizedBox(
+                                    height: 20,
+                                  ),
+                              itemCount: pillsDetails.data!.length),
+                          if(pillsDetails.data==null||pillsDetails.data!.isEmpty)
+                          Center(child: Text("لا يوجد طلبات جديدة اليوم ",style: GoogleFonts.notoKufiArabic(
+                          color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 40)))
+                        ],
+                      ),
                     ),
                   ),
+                  hiddenWhen: [Condition.largerThan(name: MOBILE)],
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: SingleChildScrollView(
+                    child: Padding(
+                      padding:
+                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+
+                      child: Container(
+                        height: MediaQuery.of(context).size.height,
+                        width: 1500,
+                        child: Column(
+                          children: [
+                            if(pillsDetails.data!.isNotEmpty)
+                              ListView.separated(
+                                  shrinkWrap: true,
+                                  // scrollDirection: Axis.horizontal,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemBuilder: (context, index) => ReportItem( dateNow:p.DateFormat('yyyy-MM-dd HH:mm')
+                                      .parse(DateTime.now().toString())
+                                      .toString().split(" ").first ,date: pillsDetails.data![index].date??"", deleverDate: pillsDetails.data![index].deliveryDate??"", customerName: pillsDetails.data![index].customer??"", refrenceiD: pillsDetails.data![index].referenceNo??""),
+                                  separatorBuilder: (context, index) => SizedBox(
+                                    height: 20,
+                                  ),
+                                  itemCount: pillsDetails.data!.length),
+                            if(pillsDetails.data==null||pillsDetails.data!.isEmpty)
+                              Center(child: Text("لا يوجد طلبات جديدة اليوم ",style: GoogleFonts.notoKufiArabic(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 40)))
+                          ],
+                        ),
+                      ),
+                    ),
+                ),
+                  ),
+
                 ),
               ),
             );

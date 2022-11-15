@@ -719,7 +719,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery.of(context).size.width / 6,
+                                      MediaQuery.of(context).size.width / 5,
                                       height: 40,
                                       child: customTextField(
                                           text: 'بين جيب الصدر والكتف',
@@ -783,7 +783,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                   // const SizedBox(width: 1,),
                                   Container(
                                       width:
-                                      MediaQuery.of(context).size.width / 6,
+                                      MediaQuery.of(context).size.width / 5,
                                       height: 40,
                                       child: customTextField(
                                           text: 'القماش المتوقع بالمتر',
@@ -2228,6 +2228,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         height: 50,
                                         child: customTextField(
                                             text: 'بين جيب الصدر والكتف',
+
                                             controller: cubit
                                                 .betweenTheChestPocketAndTheShoulder,
                                             textInputAction: TextInputAction.next,

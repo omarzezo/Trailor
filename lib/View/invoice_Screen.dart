@@ -546,7 +546,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                   ),
                 ],
               )),
-        ):Center(
+        ):(cubit.whatYouPay.text.isNotEmpty)?Center(
           child: SingleChildScrollView(
 
               child:Column(
@@ -1168,7 +1168,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                   ),
                 ],
               )),
-        ),
+        ):Container(),
       );
 
   },

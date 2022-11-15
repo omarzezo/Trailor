@@ -937,7 +937,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                     MediaQuery
                                         .of(context)
                                         .size
-                                        .width / 6,
+                                        .width / 5,
                                     height: 40,
                                     child: customTextField(
                                         hintText: cubit.sizes[0]
@@ -1019,7 +1019,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                     MediaQuery
                                         .of(context)
                                         .size
-                                        .width / 6,
+                                        .width / 5,
                                     height: 40,
                                     child: customTextField(
                                         hintText: cubit.sizes[0]
