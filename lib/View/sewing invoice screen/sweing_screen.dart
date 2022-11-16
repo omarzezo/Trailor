@@ -689,20 +689,10 @@ class _SewingScreenState extends State<SewingScreen> {
                                           height: 10,
                                         ),
                                         Container(
-                                          // width:
-                                          //     MediaQuery.of(context).size.width /
-                                          //         6.2,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              6.2,
+                                          width: MediaQuery.of(context).size.width / 6.2,
                                           height: 30,
-                                          padding:
-                                              const EdgeInsets.only(right: 5),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ),
+                                          padding: const EdgeInsets.only(right: 5),
+                                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),),
                                           child: DropdownButtonHideUnderline(
                                             child: DropdownButton2(
                                               iconEnabledColor: Colors.white,
@@ -870,45 +860,45 @@ class _SewingScreenState extends State<SewingScreen> {
                                 const SizedBox(
                                   width: 5,
                                 ),
-                                Container(
-                                    height: 35,
-                                    alignment: Alignment.center,
-                                    width: 35,
-                                    decoration: BoxDecoration(
-                                      color: Colors.green,
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child: InkWell(
-                                      onTap: () {},
-                                      child: const Icon(
-                                        Icons.add,
-                                        color: Colors.white,
-                                        size: 20,
-                                      ),
-                                    )),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
-                                  height: 35,
-                                  alignment: Alignment.center,
-                                  width: 35,
-                                  decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(bottom: 15),
-                                    child: InkWell(
-                                      onTap: () {},
-                                      child: const Icon(
-                                        Icons.minimize_sharp,
-                                        color: Colors.white,
-                                        size: 25,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                                // Container(
+                                //     height: 35,
+                                //     alignment: Alignment.center,
+                                //     width: 35,
+                                //     decoration: BoxDecoration(
+                                //       color: Colors.green,
+                                //       borderRadius: BorderRadius.circular(5),
+                                //     ),
+                                //     child: InkWell(
+                                //       onTap: () {},
+                                //       child: const Icon(
+                                //         Icons.add,
+                                //         color: Colors.white,
+                                //         size: 20,
+                                //       ),
+                                //     )),
+                                // const SizedBox(
+                                //   width: 5,
+                                // ),
+                                // Container(
+                                //   height: 35,
+                                //   alignment: Alignment.center,
+                                //   width: 35,
+                                //   decoration: BoxDecoration(
+                                //     color: Colors.red,
+                                //     borderRadius: BorderRadius.circular(5),
+                                //   ),
+                                //   child: Padding(
+                                //     padding: const EdgeInsets.only(bottom: 15),
+                                //     child: InkWell(
+                                //       onTap: () {},
+                                //       child: const Icon(
+                                //         Icons.minimize_sharp,
+                                //         color: Colors.white,
+                                //         size: 25,
+                                //       ),
+                                //     ),
+                                //   ),
+                                // ),
                               ],
                             ),
                             const SizedBox(

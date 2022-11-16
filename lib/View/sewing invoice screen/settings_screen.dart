@@ -26,6 +26,8 @@ class SettingScreenState extends State<SettingScreen> {
   String sizeText="",ipPrinter="";
   int pageSize=0;
   TextEditingController ipPntroller=TextEditingController();
+  TextEditingController ipPntroller2=TextEditingController();
+
   @override
   void initState() {
 
@@ -167,12 +169,12 @@ class SettingScreenState extends State<SettingScreen> {
                           const SizedBox(height: 10,),
 
                       ResponsiveVisibility( replacement:
-                      Row(
+                      Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                              width: MediaQuery.of(context).size.width*0.2,
+                              width: MediaQuery.of(context).size.width*0.60,
                               padding: const EdgeInsets.all(4),
                               height: 40,
                               decoration:  BoxDecoration(
@@ -185,17 +187,16 @@ class SettingScreenState extends State<SettingScreen> {
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18),
                               )),
-                          const SizedBox(width: 10,),
+                          const SizedBox(width: 10,height: 20,),
                           InkWell(
                             onTap: () async{
-
-                                await SharedPreferencesHelper.setPrinterType(1);
-                                printerType=1;
-                                printerText="طابعة bluetooth";
-                               setState(() {});
+                              await SharedPreferencesHelper.setPrinterType(1);
+                              printerType=1;
+                              printerText="طابعة bluetooth";
+                              setState(() {});
                             },
                             child: Container(
-                                width: MediaQuery.of(context).size.width*0.2,
+                                width: MediaQuery.of(context).size.width*0.60,
                                 padding: const EdgeInsets.all(4),
                                 height: 40,
                                 decoration:  BoxDecoration(
@@ -208,16 +209,39 @@ class SettingScreenState extends State<SettingScreen> {
                                     fontSize: 18),
                                 )),
                           ),
-                          const SizedBox(width: 10,),
-                          InkWell(
+                          printerType==1?InkWell(
                             onTap: () async{
-                                await SharedPreferencesHelper.setPrinterType(2);
-                                printerType=2;
-                                printerText="طابعة Wifi";
+                              Navigator.of(context).push(createRoute(BluetoothPrinterSearch()));
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width*0.60,
+                              padding: const EdgeInsets.all(4),
+                              // height: 40,
+                              child: Column(
+                                children: [
+                                  Text("يرجي عمل بحث عن  Bluetooth ",style: GoogleFonts.notoKufiArabic(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18)),
+                                  Text("من فضلك اضغط هنا",style: GoogleFonts.notoKufiArabic(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18)
+                                  ),
+                                ],
+                              ),),
+                          ):SizedBox.shrink(),
+                          const SizedBox(width: 10,height: 20,),
+                          InkWell(
+                            onTap: () async {
+
+                              await SharedPreferencesHelper.setPrinterType(2);
+                              printerType=2;
+                              printerText="طابعة Wifi";
                               setState(() { });
                             },
                             child: Container(
-                                width: MediaQuery.of(context).size.width*0.2,
+                                width: MediaQuery.of(context).size.width*0.60,
                                 padding: const EdgeInsets.all(4),
                                 height: 40,
                                 decoration:  BoxDecoration(
@@ -230,16 +254,44 @@ class SettingScreenState extends State<SettingScreen> {
                                     fontSize: 18),
                                 )),
                           ),
-                          const SizedBox(width: 10,),
+
+                          const SizedBox(width: 10,height: 10,),
+
+                          if(printerType==2)  Container(
+                              height: 50,
+                              width: MediaQuery.of(context).size.width*0.60,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(color: MyConstant().purpleColor),
+                                borderRadius: new BorderRadius.circular(10.0),
+                              ),
+                              child: Padding(
+                                  padding:
+                                  EdgeInsets.only(left: 15, right: 15, top: 0),
+                                  child: TextFormField(
+                                      controller: ipPntroller,
+                                      style: GoogleFonts.notoKufiArabic(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
+                                      onChanged: (value) {
+                                        SharedPreferencesHelper.setIpPrinter(value);
+                                      },
+                                      decoration: const InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: 'الرجاء ادخال IP الطابعة',
+                                      )))),
+                          const SizedBox(width: 10,height: 20,),
                           InkWell(
                             onTap: () async{
-                                await SharedPreferencesHelper.setPrinterType(3);
-                                printerType=3;
-                                printerText="طابعة Sunmi";
-                                setState(() {});
+
+                              await SharedPreferencesHelper.setPrinterType(3);
+                              printerType=3;
+                              printerText="طابعة Sunmi";
+                              setState(() {});
                             },
                             child: Container(
-                                width: MediaQuery.of(context).size.width*0.2,
+                                width: MediaQuery.of(context).size.width*0.60,
                                 padding: const EdgeInsets.all(4),
                                 height: 40,
                                 decoration:  BoxDecoration(
@@ -251,7 +303,58 @@ class SettingScreenState extends State<SettingScreen> {
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18),
                                 )),
-                          )
+                          ),
+
+
+                          const SizedBox(height: 40,),
+
+                          InkWell(
+                            onTap: () async {
+                              await SharedPreferencesHelper.setPrinterType(4);
+                              printerType=4;
+                              printerText="طابعة Wifi اخري";
+                              setState(() { });
+                            },
+                            child: Container(
+                                width: MediaQuery.of(context).size.width*0.60,
+                                padding: const EdgeInsets.all(4),
+                                height: 40,
+                                decoration:  BoxDecoration(
+                                  color: printerType==4?MyConstant().purpleColor:Colors.white,
+                                  border: Border.all(width: 1, color: MyConstant().purpleColor),
+                                ),
+                                child: Text("طابعة Wifi اخري",style: GoogleFonts.notoKufiArabic(
+                                    color:printerType==4?Colors.white: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
+                                )),
+                          ),
+                          const SizedBox(height: 10,),
+                          if(printerType==4)  Container(
+                              height: 50,
+                              width: MediaQuery.of(context).size.width*0.60,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(color: MyConstant().purpleColor),
+                                borderRadius: new BorderRadius.circular(10.0),
+                              ),
+                              child: Padding(
+                                  padding:
+                                  EdgeInsets.only(left: 15, right: 15, top: 0),
+                                  child: TextFormField(
+                                      controller: ipPntroller2,
+                                      style: GoogleFonts.notoKufiArabic(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
+                                      onChanged: (value) {
+                                        SharedPreferencesHelper.setIpPrinter(value);
+                                      },
+                                      decoration: const InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: 'الرجاء ادخال IP الطابعة',
+                                      )))),
+
                         ],
                       ),
                         hiddenWhen: const [Condition.largerThan(name: MOBILE)],

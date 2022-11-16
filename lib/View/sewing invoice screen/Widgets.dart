@@ -109,28 +109,14 @@ Widget customTextField({
 }) {
   return TextFormField(
     keyboardType: textInputType,
-// inputFormatters: <TextInputFormatter>[
-//   FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-//   FilteringTextInputFormatter.digitsOnly
-//
-// ],
     textInputAction: textInputAction,
     onFieldSubmitted:onFieldSubmitted,
-
-    // onEditingComplete: (){
-    //   // controller!.clear();
-    // },
 onChanged: onChange,
-    // onSaved: onSaved,
-    // readOnly: readOnly!,
     textAlign: TextAlign.center,
     controller: controller,
     validator: validator,
-
     decoration: InputDecoration(
       hintText: hintText,
-      // prefix: Text(text),
-      // contentPadding: EdgeInsets.zero,
       label: Container(
         margin: EdgeInsets.only(top: 10,bottom: 10),
         child: Text(text,

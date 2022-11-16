@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:esc_pos_printer/esc_pos_printer.dart' as eco;
 import 'package:esc_pos_utils/esc_pos_utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -10,18 +10,14 @@ import 'package:flutter_bluetooth_basic/flutter_bluetooth_basic.dart';
 import 'package:flutter_esc_pos_network/flutter_esc_pos_network.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image/image.dart' as img;
+import 'package:image/image.dart';
 import 'package:maxx_sunmi_printer/maxx_sunmi_printer.dart';
-// import 'package:maxx_sunmi_printer/maxx_sunmi_printer.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/SharedPreferencesHelper.dart';
-import 'package:omar/View/BlutothPrinter.dart';
-import 'package:omar/View/WifiThroughIpPrinter.dart';
-import 'package:omar/View/sewing%20invoice%20screen/settings_screen.dart';
 import 'package:omar/View/sonomiPrinter.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../constant/LoadingPage.dart';
 import '../constant/constant.dart';
 import '../models/invoiceModel.dart';
@@ -537,6 +533,14 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                           LoadingPage(context).close();
                           await SanmiPrint(capturedImage!);
                           print("sonomi");
+                        }else if(widget.printerType==4){
+                          print("hhhhhhhhhhhhhhhhhhhh");
+                          LoadingPage(context).close();
+                          if(printerSize==80){
+                            testPrint(80,ipPrinter,capturedImage!);
+                          }else{
+                            testPrint(58,ipPrinter,capturedImage!);
+                          }
                         }
 
                       }).catchError((onError) {
@@ -1844,5 +1848,28 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
     await bluetoothManager.connect(decodedMap);
     List<int> bytes = await getGraphicsTicket80(byte);
     await bluetoothManager.writeData(bytes);
+  }
+
+  void testPrint(int size,String printerIp, Uint8List theimageThatComesfr) async {
+    PaperSize paper = size==80?PaperSize.mm80:PaperSize.mm58;
+    final profile = await CapabilityProfile.load();
+    final printer = eco.NetworkPrinter(paper, profile);
+    final eco.PosPrintResult res = await printer.connect(printerIp, port: 9100);
+
+    if (res == eco.PosPrintResult.success) {
+      // DEMO RECEIPT
+      await testReceipt(printer, theimageThatComesfr);
+      print(res.msg);
+      await Future.delayed(const Duration(seconds: 3), () {
+        print("prinnter desconect");
+        printer.disconnect();
+      });
+    }
+  }
+  Future<void> testReceipt(
+      eco.NetworkPrinter printer,  Uint8List theimageThatC) async {
+    final img.Image? image = decodeImage(theimageThatC);
+    printer.image(image! , align: PosAlign.center);
+    printer.cut();
   }
 }
