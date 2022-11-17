@@ -123,7 +123,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
                           ChangeSizeScreen(),
                           // EditPrinterScreen(),
                           PresentAllTablesScreen(),
-                          PrintPillScreen(),
+                          SizedBox(),
                           // SizedBox(),
                        SizedBox(),
 

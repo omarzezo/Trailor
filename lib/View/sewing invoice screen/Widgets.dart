@@ -109,6 +109,52 @@ Widget customTextField({
 }) {
   return TextFormField(
     keyboardType: textInputType,
+    onFieldSubmitted:onFieldSubmitted,
+    onChanged: onChange,
+    textAlign: TextAlign.right,
+    decoration:
+    InputDecoration(
+      contentPadding: EdgeInsets.only(left: 10,right: 10),
+      fillColor: Colors.white,
+      hintStyle:GoogleFonts.notoKufiArabic(
+          color: Colors.black45,
+          fontSize: 14,
+          fontWeight: FontWeight.w500
+      ),
+      label: Text(text,style:GoogleFonts.notoKufiArabic(
+          color: Colors.black45,
+          fontSize: 16,
+          fontWeight: FontWeight.w500
+      ) ,),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14.0),
+        borderSide: BorderSide(
+          color: MyConstant().purpleColor,
+        ),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14.0),
+        borderSide: BorderSide(
+          color: MyConstant().greenColor,
+          width: 1.5,
+        ),
+      ),
+    ),
+    // InputDecoration(
+    //     border: OutlineInputBorder(),
+    //     label: Text(text,style:GoogleFonts.notoKufiArabic(
+    //         color: Colors.black45,
+    //         fontSize: 14,
+    //         fontWeight: FontWeight.w500
+    //     ) ,),
+    // ),
+
+    controller: controller,
+  );
+
+
+    TextFormField(
+    keyboardType: textInputType,
     textInputAction: textInputAction,
     onFieldSubmitted:onFieldSubmitted,
 onChanged: onChange,
