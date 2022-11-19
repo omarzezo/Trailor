@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -39,7 +42,7 @@ class _CustomTableState extends State<CustomTable> {
     PillsDetails? pillsDetails=PillsDetails();
     pillsDetails.data=[];
     pillsDetails.data = cubit.pillsDetails!.data!.where((i) => i.saleStatus!.contains('completed')?false:true).toList();
-
+    log("datais>>"+jsonEncode(pillsDetails.data));
     return Directionality(
       textDirection: TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
@@ -106,6 +109,46 @@ class _CustomTableState extends State<CustomTable> {
                   //         fontSize: 12,
                   //       )),
                   // ),
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: MyConstant().greenColor.withOpacity(0.1),
+                        border: Border(
+                          left: BorderSide(color: Colors.green.withOpacity(0.3)),
+                          right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                        ),
+                      ),
+                      height: 80,
+                      width: 100,
+                      child: Text('العميل',
+                          style: GoogleFonts.notoKufiArabic(
+                            color: MyConstant().greenColor,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12,
+                          )),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: MyConstant().greenColor.withOpacity(0.1),
+                        border: Border(
+                          left: BorderSide(color: Colors.green.withOpacity(0.3)),
+                          right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                        ),
+                      ),
+                      height: 80,
+                      width: 100,
+                      child: Text('الجوال',
+                          style: GoogleFonts.notoKufiArabic(
+                            color: MyConstant().greenColor,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12,
+                          )),
+                    ),
+                  ),
                   Expanded(
                     child: Container(
                       alignment: Alignment.center,
@@ -186,26 +229,7 @@ class _CustomTableState extends State<CustomTable> {
                           )),
                     ),
                   ),
-                  Expanded(
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: MyConstant().greenColor.withOpacity(0.1),
-                        border: Border(
-                          left: BorderSide(color: Colors.green.withOpacity(0.3)),
-                          right: BorderSide(color: Colors.green.withOpacity(0.3)),
-                        ),
-                      ),
-                      height: 80,
-                      width: 100,
-                      child: Text('العميل',
-                          style: GoogleFonts.notoKufiArabic(
-                            color: MyConstant().greenColor,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 12,
-                          )),
-                    ),
-                  ),
+
                   Expanded(
                     child: Container(
                       alignment: Alignment.center,
@@ -370,6 +394,42 @@ class _CustomTableState extends State<CustomTable> {
                                 border: Border(
                                   left: BorderSide(color: Colors.green.withOpacity(0.3), ),
                                   right: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                )),
+                            height: 80,
+                            width: 100,
+                            child: Text(pillsDetails!.data![index].customer!,
+                                style: GoogleFonts.notoKufiArabic(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
+                                )),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration:  BoxDecoration(
+                                border: Border(
+                                  left: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                  right: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                )),
+                            height: 80,
+                            width: 100,
+                            child: Text(pillsDetails!.data![index].phone!,
+                                style: GoogleFonts.notoKufiArabic(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
+                                )),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration:  BoxDecoration(
+                                border: Border(
+                                  left: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                  right: BorderSide(color: Colors.green.withOpacity(0.3), ),
                                   // top: BorderSide(color: Colors.grey, width: 0.5),
                                   // bottom: BorderSide(color: Colors.grey, width: 0.5),
                                 )),
@@ -449,24 +509,6 @@ class _CustomTableState extends State<CustomTable> {
                                 )),
                             height: 80,
                             width: 100,
-                            child: Text(pillsDetails!.data![index].customer!,
-                                style: GoogleFonts.notoKufiArabic(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 12,
-                                )),
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            alignment: Alignment.center,
-                            decoration:  BoxDecoration(
-                                border: Border(
-                                  left: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                  right: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                )),
-                            height: 80,
-                            width: 100,
                             child: Text('+966 011 256 7846',
                                 style: GoogleFonts.notoKufiArabic(
                                   color: Colors.black,
@@ -485,7 +527,7 @@ class _CustomTableState extends State<CustomTable> {
                                 )),
                             height: 80,
                             width: 100,
-                            child: Text('${pillsDetails!.data![index].customerId}',
+                            child: Text('${pillsDetails.data![index].customerId}',
                                 style: GoogleFonts.notoKufiArabic(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w600,
@@ -600,6 +642,46 @@ class _CustomTableState extends State<CustomTable> {
                             ),
                             height: 80,
                             width: 100,
+                            child: Text('العميل',
+                                style: GoogleFonts.notoKufiArabic(
+                                  color: MyConstant().greenColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
+                                )),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: MyConstant().greenColor.withOpacity(0.1),
+                              border: Border(
+                                left: BorderSide(color: Colors.green.withOpacity(0.3)),
+                                right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                              ),
+                            ),
+                            height: 80,
+                            width: 100,
+                            child: Text('الجوال',
+                                style: GoogleFonts.notoKufiArabic(
+                                  color: MyConstant().greenColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
+                                )),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: MyConstant().greenColor.withOpacity(0.1),
+                              border: Border(
+                                left: BorderSide(color: Colors.green.withOpacity(0.3)),
+                                right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                              ),
+                            ),
+                            height: 80,
+                            width: 100,
                             child: Text('الحالة',
                                 style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().greenColor,
@@ -668,26 +750,7 @@ class _CustomTableState extends State<CustomTable> {
                                 )),
                           ),
                         ),
-                        Expanded(
-                          child: Container(
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: MyConstant().greenColor.withOpacity(0.1),
-                              border: Border(
-                                left: BorderSide(color: Colors.green.withOpacity(0.3)),
-                                right: BorderSide(color: Colors.green.withOpacity(0.3)),
-                              ),
-                            ),
-                            height: 80,
-                            width: 100,
-                            child: Text('العميل',
-                                style: GoogleFonts.notoKufiArabic(
-                                  color: MyConstant().greenColor,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 12,
-                                )),
-                          ),
-                        ),
+
                         Expanded(
                           child: Container(
                             alignment: Alignment.center,
@@ -801,50 +864,42 @@ class _CustomTableState extends State<CustomTable> {
                                           fontSize: 12,
                                         )),
                                   ),
-                                  // Container(
-                                  //     alignment: Alignment.center,
-                                  //     color: MyConstant().purpleColor,
-                                  //     height: 40,
-                                  //     width: 30,
-                                  //     child: Checkbox(
-                                  //       value: isSelect1,
-                                  //       onChanged: (val) {
-                                  //         setState(() {
-                                  //           isSelect1 = val !;
-                                  //         });
-                                  //       },
-                                  //       shape: RoundedRectangleBorder(
-                                  //         borderRadius: BorderRadius.circular(3),
-                                  //
-                                  //       ),
-                                  //       checkColor: Colors.purple,
-                                  //       activeColor: Colors.white,
-                                  //       // fillColor: MaterialStateProperty.all(Colors.white),
-                                  //       materialTapTargetSize:
-                                  //       MaterialTapTargetSize.shrinkWrap,
-                                  //       splashRadius: 0,
-                                  //       side: const BorderSide(color: Colors.white),
-                                  //     )),
-                                  // Container(
-                                  //     alignment: Alignment.center,
-                                  //     color: MyConstant().greenColor,
-                                  //     height: 40,
-                                  //     width: 30,
-                                  //     child: Checkbox(
-                                  //       value: isSelect2,
-                                  //       shape: RoundedRectangleBorder(
-                                  //         borderRadius: BorderRadius.circular(3),
-                                  //       ),
-                                  //       onChanged: (val) {
-                                  //         setState(() {
-                                  //           isSelect2 = val !;
-                                  //         });
-                                  //       },
-                                  //       checkColor: Colors.green,
-                                  //       activeColor: Colors.white,
-                                  //       splashRadius: 0,
-                                  //       side: const BorderSide(color: Colors.white),
-                                  //     )),
+                                  Expanded(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      decoration:  BoxDecoration(
+                                          border: Border(
+                                            left: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                            right: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                          )),
+                                      height: 80,
+                                      width: 100,
+                                      child: Text(pillsDetails!.data![index].customer!,
+                                          style: GoogleFonts.notoKufiArabic(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 12,
+                                          )),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      decoration:  BoxDecoration(
+                                          border: Border(
+                                            left: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                            right: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                          )),
+                                      height: 80,
+                                      width: 100,
+                                      child: Text(pillsDetails!.data![index].phone!,
+                                          style: GoogleFonts.notoKufiArabic(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 12,
+                                          )),
+                                    ),
+                                  ),
                                   Expanded(
                                     child: Container(
                                       alignment: Alignment.center,
@@ -921,24 +976,7 @@ class _CustomTableState extends State<CustomTable> {
                                           )),
                                     ),
                                   ),
-                                  Expanded(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      decoration:  BoxDecoration(
-                                          border: Border(
-                                            left: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                            right: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                          )),
-                                      height: 80,
-                                      width: 100,
-                                      child: Text(pillsDetails!.data![index].customer!,
-                                          style: GoogleFonts.notoKufiArabic(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 12,
-                                          )),
-                                    ),
-                                  ),
+
                                   Expanded(
                                     child: Container(
                                       alignment: Alignment.center,

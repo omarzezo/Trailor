@@ -173,6 +173,7 @@ class PillsDetails {
 class PillsDetailsData {
   String? id;
   String? referenceNo;
+  String? phone;
   String? customerId;
   String? customer;
   String? date;
@@ -184,6 +185,7 @@ class PillsDetailsData {
       {this.id,
         this.referenceNo,
         this.customerId,
+        this.phone,
         this.customer,
         this.date,
         this.deliveryDate,
@@ -195,6 +197,7 @@ class PillsDetailsData {
     referenceNo = json['reference_no'];
     customerId = json['customer_id'];
     customer = json['customer'];
+    phone = json['phone'];
     date = json['date'];
     deliveryDate = json['delivery_date'];
     saleStatus = json['sale_status'];
@@ -207,6 +210,7 @@ class PillsDetailsData {
     data['reference_no'] = this.referenceNo;
     data['customer_id'] = this.customerId;
     data['customer'] = this.customer;
+    data['phone'] = this.phone;
     data['date'] = this.date;
     data['delivery_date'] = this.deliveryDate;
     data['sale_status'] = this.saleStatus;

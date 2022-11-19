@@ -377,9 +377,7 @@ emit(AddCustomerLoadingState());
       'Accept-Version': 'V1',
       'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko'
     };
-    final response = await dio.post(
-        'https://cpe-soft.com/admin/api/v1/SalesSet3',
-        data: jsonEncode(customerModel));
+    final response = await dio.post('https://cpe-soft.com/admin/api/v1/SalesSet3', data: jsonEncode(customerModel));
     if (response.statusCode == 200) {
       debugPrint(jsonEncode(customerModel));
       // log(jsonEncode(pillRequestModel));

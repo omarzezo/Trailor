@@ -49,7 +49,7 @@ Widget textField({
       // width: MediaQuery.of(context).size.width * 0.2,
     width: 100,
       // height: 20,
-      padding: const EdgeInsets.only(top: 8),
+      padding: const EdgeInsets.only(top: 4),
       decoration: const BoxDecoration(
           // borderRadius: BorderRadius.only(topRight: Radius.circular(8) , bottomRight:  Radius.circular(8) , ),
           // border: Border(top: BorderSide(color: Colors.green), right: BorderSide(color: Colors.green) , bottom: BorderSide(color: Colors.green)),
@@ -68,7 +68,7 @@ Widget textField({
             height: 10,
           ),
           Container(
-            height: 30,
+            height: 40,
             child: TextFormField(
               controller: controller,
               onChanged: onChanged,
@@ -114,7 +114,7 @@ Widget customTextField({
     textAlign: TextAlign.right,
     decoration:
     InputDecoration(
-      contentPadding: EdgeInsets.only(left: 10,right: 10),
+      contentPadding: const EdgeInsets.only(left: 10,right: 10),
       fillColor: Colors.white,
       hintStyle:GoogleFonts.notoKufiArabic(
           color: Colors.black45,
@@ -127,16 +127,16 @@ Widget customTextField({
           fontWeight: FontWeight.w500
       ) ,),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14.0),
+        borderRadius: BorderRadius.circular(0.0),
         borderSide: BorderSide(
           color: MyConstant().purpleColor,
         ),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14.0),
+        borderRadius: BorderRadius.circular(0.0),
         borderSide: BorderSide(
           color: MyConstant().greenColor,
-          width: 1.5,
+          width: 1.2,
         ),
       ),
     ),

@@ -34,7 +34,7 @@ class CustomerDetailsScreen extends StatelessWidget {
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: SingleChildScrollView(
-scrollDirection: Axis.horizontal,
+                  scrollDirection: Axis.horizontal,
                   child: DataTable(
 
                     columns: [

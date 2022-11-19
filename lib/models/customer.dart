@@ -67,18 +67,18 @@ class Customer {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data =  <String, dynamic>{};
-    data['company'] = company;
-    data['email'] = email;
-    data['customer_group_id'] = customerGroupId;
-    data['customer_group_name'] = customerGroupName;
-    data['vat_no'] = vatNo;
-    data['address'] = address;
-    data['state'] = state;
-    data['postal_code'] = postalCode;
-    data['country'] = country;
-    data['phone'] = phone;
-    data['cr_no'] = crNo;
-    data['Offline_id'] = offlineId;
+    data['company'] = company ?? "";
+    data['email'] = email ?? "";
+    data['customer_group_id'] = customerGroupId ?? 0;
+    data['customer_group_name'] = customerGroupName ?? "";
+    data['vat_no'] = vatNo ?? "";
+    data['address'] = address ?? "";
+    data['state'] = state ?? "";
+    data['postal_code'] = postalCode ?? "";
+    data['country'] = country ?? "";
+    data['phone'] = phone ?? "";
+    data['cr_no'] = crNo ?? "";
+    data['Offline_id'] = offlineId ?? 0;
     return data;
   }
 }

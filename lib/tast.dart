@@ -219,7 +219,7 @@ class _TestingScreenState extends State<TestingScreen> {
                                         ),),
                                         const SizedBox(height: 0,),
                                         Image.asset(item.image!, width: 40,
-                                          height: 40,
+                                          height: 60,
                                           fit: BoxFit.fill,)
                                       ],
                                     ),
@@ -297,7 +297,7 @@ class _TestingScreenState extends State<TestingScreen> {
                                           ),),
                                           const SizedBox(height: 0,),
                                           Image.asset(item.image!, width: 40,
-                                            height: 40,
+                                            height: 60,
                                             fit: BoxFit.fill,)
                                         ],
                                       ),

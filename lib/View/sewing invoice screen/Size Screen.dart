@@ -109,7 +109,7 @@ class _SizeScreenState extends State<SizeScreen> {
                   child: Column(
                     children: [
                       Container(
-                        height: 130,
+                        height: 150,
                         child: Column(
                           children: [
                             Align(
@@ -168,7 +168,7 @@ class _SizeScreenState extends State<SizeScreen> {
                             ),
                             Container(
                               // height: MediaQuery.of(context).size.height/16,
-                              height: 40,
+                              height:60,
                               width: MediaQuery.of(context).size.width / 1,
                               color: MyConstant().purpleColor,
                               child: Row(
@@ -223,7 +223,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                               borderRadius:
                                               BorderRadius.circular(
                                                   5),
-                                              color: Colors.purple,
+                                              color: Colors.white,
                                             ),
 
                                             dropdownElevation: 8,
@@ -241,7 +241,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                 cubit.TaillorName = value.TailorName!;
                                               });
                                             },
-                                            iconSize: 25,
+                                            iconSize: 40,
                                             icon: Container(
                                               decoration: const BoxDecoration(
                                                 color: Colors.green,
@@ -261,7 +261,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                       )),
                                   Container(
                                       width: 70,
-                                      height: 20,
+                                      height: 40,
                                       // margin: const EdgeInsets.only(left: 40),
                                       child: OutlinedButton(
                                         style: ButtonStyle(
@@ -849,9 +849,9 @@ class _SizeScreenState extends State<SizeScreen> {
                                               style: GoogleFonts.notoKufiArabic(
                                                   color: MyConstant().purpleColor,
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: Size)),
+                                                  fontSize: 16)),
                                           const SizedBox(
-                                            width: 5,
+                                            width: 10,
                                           ),
                                           Container(
                                             width: 10,
@@ -877,15 +877,15 @@ class _SizeScreenState extends State<SizeScreen> {
                                             ),
                                           ),
                                           const SizedBox(
-                                            width: 10,
+                                            width: 20,
                                           ),
                                           Text('مستعجل',
                                               style: GoogleFonts.notoKufiArabic(
                                                   color: MyConstant().purpleColor,
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: Size)),
+                                                  fontSize: 16)),
                                           const SizedBox(
-                                            width: 5,
+                                            width: 10,
                                           ),
                                           Container(
                                             width: 10,
@@ -943,7 +943,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     4,
                                                 padding:
                                                 const EdgeInsets.only(right: 5),
-                                                height: 25,
+                                                height: 40,
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                   BorderRadius.circular(5),
@@ -1006,7 +1006,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                             value.modelTypeID!);
                                                       });
                                                     },
-                                                    iconSize: 25,
+                                                    iconSize: 40,
                                                     icon: Container(
                                                       decoration: const BoxDecoration(
                                                         color: Colors.green,
@@ -1053,7 +1053,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     4,
                                                 padding:
                                                 const EdgeInsets.only(right: 5),
-                                                height: 25,
+                                                height: 40,
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                   BorderRadius.circular(5),
@@ -1115,7 +1115,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                                 value.CollarTypeId!);
                                                       });
                                                     },
-                                                    iconSize: 25,
+                                                    iconSize: 40,
                                                     icon: Container(
                                                       decoration: const BoxDecoration(
                                                         color: Colors.green,
@@ -1162,7 +1162,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     4,
                                                 padding:
                                                 const EdgeInsets.only(right: 5),
-                                                height: 25,
+                                                height: 40,
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                   BorderRadius.circular(5),
@@ -1224,7 +1224,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                       });
                                                     },
 
-                                                    iconSize: 25,
+                                                    iconSize: 40,
                                                     icon: Container(
                                                       decoration: const BoxDecoration(
                                                         color: Colors.green,
@@ -1277,7 +1277,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     4,
                                                 padding:
                                                 const EdgeInsets.only(right: 5),
-                                                height: 25,
+                                                height: 40,
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                   BorderRadius.circular(5),
@@ -1340,7 +1340,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                       });
                                                     },
 
-                                                    iconSize: 25,
+                                                    iconSize: 40,
                                                     icon: Container(
                                                       decoration: const BoxDecoration(
                                                         color: Colors.green,
@@ -1387,7 +1387,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     4,
                                                 padding:
                                                 const EdgeInsets.only(right: 5),
-                                                height: 25,
+                                                height: 40,
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                   BorderRadius.circular(5),
@@ -1450,7 +1450,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                       });
                                                     },
 
-                                                    iconSize: 25,
+                                                    iconSize: 40,
                                                     icon: Container(
                                                       decoration: const BoxDecoration(
                                                         color: Colors.green,
@@ -1497,7 +1497,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     4,
                                                 padding:
                                                 const EdgeInsets.only(right: 5),
-                                                height: 25,
+                                                height: 40,
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                   BorderRadius.circular(5),
@@ -1560,7 +1560,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                       });
                                                     },
 
-                                                    iconSize: 25,
+                                                    iconSize: 40,
                                                     icon: Container(
                                                       decoration: const BoxDecoration(
                                                         color: Colors.green,
@@ -1710,7 +1710,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             cubit.TaillorName = value.TailorName!;
                                           });
                                         },
-                                        iconSize: 25,
+                                        iconSize: 40,
                                         icon: Container(
                                           decoration: const BoxDecoration(
                                             color: Colors.green,
@@ -2445,7 +2445,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                 4,
                                             padding:
                                                 const EdgeInsets.only(right: 5),
-                                            height: 25,
+                                            height: 40,
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(5),
@@ -2508,7 +2508,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                         value.modelTypeID!);
                                                   });
                                                 },
-                                                iconSize: 25,
+                                                iconSize: 40,
                                                 icon: Container(
                                                   decoration: const BoxDecoration(
                                                     color: Colors.green,
@@ -2555,7 +2555,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                 4,
                                             padding:
                                                 const EdgeInsets.only(right: 5),
-                                            height: 25,
+                                            height: 40,
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(5),
@@ -2617,7 +2617,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                             value.CollarTypeId!);
                                                   });
                                                 },
-                                                iconSize: 25,
+                                                iconSize: 40,
                                                 icon: Container(
                                                   decoration: const BoxDecoration(
                                                     color: Colors.green,
@@ -2664,7 +2664,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                 4,
                                             padding:
                                                 const EdgeInsets.only(right: 5),
-                                            height: 25,
+                                            height: 40,
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(5),
@@ -2726,7 +2726,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                   });
                                                 },
 
-                                                iconSize: 25,
+                                                iconSize: 40,
                                                 icon: Container(
                                                   decoration: const BoxDecoration(
                                                     color: Colors.green,
@@ -2779,7 +2779,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                 4,
                                             padding:
                                                 const EdgeInsets.only(right: 5),
-                                            height: 25,
+                                            height: 40,
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(5),
@@ -2842,7 +2842,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                   });
                                                 },
 
-                                                iconSize: 25,
+                                                iconSize: 40,
                                                 icon: Container(
                                                   decoration: const BoxDecoration(
                                                     color: Colors.green,
@@ -2889,7 +2889,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                 4,
                                             padding:
                                                 const EdgeInsets.only(right: 5),
-                                            height: 25,
+                                            height: 40,
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(5),
@@ -2952,7 +2952,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                   });
                                                 },
 
-                                                iconSize: 25,
+                                                iconSize: 40,
                                                 icon: Container(
                                                   decoration: const BoxDecoration(
                                                     color: Colors.green,
@@ -2999,7 +2999,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                 4,
                                             padding:
                                                 const EdgeInsets.only(right: 5),
-                                            height: 25,
+                                            height: 40,
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(5),
@@ -3062,7 +3062,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                   });
                                                 },
 
-                                                iconSize: 25,
+                                                iconSize: 40,
                                                 icon: Container(
                                                   decoration: const BoxDecoration(
                                                     color: Colors.green,

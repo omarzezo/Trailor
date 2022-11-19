@@ -242,7 +242,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         borderRadius:
                                         BorderRadius.circular(
                                             5),
-                                        color: Colors.purple,
+                                        color: Colors.white,
                                       ),
 
                                       dropdownElevation: 8,
@@ -371,668 +371,697 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                               mainAxisAlignment:
                               MainAxisAlignment.spaceAround,
                               children: [
-                                Container(
-                                    width: MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width /
-                                        2.52,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0].itemName,
-                                        text: 'القماش',
-                                        controller: cubit.type,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.text,
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 14,bottom: 14),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width / 2.52,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0].itemName,
+                                          text: 'القماش',
+                                          controller: cubit.type,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.text,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0].frontLength,
-                                        text: 'طول امام',
-                                        controller: cubit.frontHeight,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 14,bottom: 14),
+                                  child: Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0].frontLength,
+                                          text: 'طول امام',
+                                          controller: cubit.frontHeight,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0].backLength,
-                                        text: 'طول خلف',
-                                        controller: cubit.backHeight,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 14,bottom: 14),
+                                  child: Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0].backLength,
+                                          text: 'طول خلف',
+                                          controller: cubit.backHeight,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                ),
                               ],
                             ),
-                            Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
-                              children: [
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0].shoulderWidth,
-                                        text: 'عرض الكتف',
-                                        controller: cubit.shoulderWidth,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                            Padding(
+                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0].shoulderWidth,
+                                          text: 'عرض الكتف',
+                                          controller: cubit.shoulderWidth,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0].shoulderSlope,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0].shoulderSlope,
 
-                                        text: 'ميل الكتف',
-                                        controller: cubit.shoulderSlope,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          text: 'ميل الكتف',
+                                          controller: cubit.shoulderSlope,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        text: 'طول الكم سادة',
-                                        hintText: cubit.sizes[0].sleeve,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          text: 'طول الكم سادة',
+                                          hintText: cubit.sizes[0].sleeve,
 
-                                        controller: cubit.sleeveLengthPlain,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          controller: cubit.sleeveLengthPlain,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        text: 'طول الكم اعلي',
-                                        hintText: cubit.sizes[0].sleeveTop,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          text: 'طول الكم اعلي',
+                                          hintText: cubit.sizes[0].sleeveTop,
 
-                                        controller:
-                                        cubit.sleeveLengthIsHigher,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          controller:
+                                          cubit.sleeveLengthIsHigher,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                              ],
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                ],
+                              ),
                             ),
-                            Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
-                              children: [
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0].wrist,
+                            Padding(
+                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0].wrist,
 
-                                        text: 'وسع المعصم',
-                                        controller: cubit.wideWrist,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          text: 'وسع المعصم',
+                                          controller: cubit.wideWrist,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        text: 'كفة الكم سادة',
-                                        hintText: cubit.sizes[0]
-                                            .plainCuffLength,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          text: 'كفة الكم سادة',
+                                          hintText: cubit.sizes[0]
+                                              .plainCuffLength,
 
-                                        controller: cubit.plainCuff,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          controller: cubit.plainCuff,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0].cuffLength,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0].cuffLength,
 
-                                        text: 'طول الكبك',
-                                        controller: cubit.cuffLength,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          text: 'طول الكبك',
+                                          controller: cubit.cuffLength,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        text: 'عرض الكبك',
-                                        hintText: cubit.sizes[0].cuffWidth,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          text: 'عرض الكبك',
+                                          hintText: cubit.sizes[0].cuffWidth,
 
-                                        controller: cubit.cuffShow,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          controller: cubit.cuffShow,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                              ],
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                ],
+                              ),
                             ),
-                            Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
-                              children: [
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        text: 'وسع الوسط',
-                                        hintText: cubit.sizes[0].middleWidth,
+                            Padding(
+                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          text: 'وسع الوسط',
+                                          hintText: cubit.sizes[0].middleWidth,
 
-                                        controller: cubit.wideMiddle,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          controller: cubit.wideMiddle,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        text: 'وسع الصدر امام',
-                                        hintText: cubit.sizes[0].chestFront,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          text: 'وسع الصدر امام',
+                                          hintText: cubit.sizes[0].chestFront,
 
-                                        controller:
-                                        cubit.expandTheChestInFront,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          controller:
+                                          cubit.expandTheChestInFront,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        text: 'وسع الصدر خلف',
-                                        hintText: cubit.sizes[0].chestBack,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          text: 'وسع الصدر خلف',
+                                          hintText: cubit.sizes[0].chestBack,
 
-                                        controller:
-                                        cubit.expandTheChestBehind,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          controller:
+                                          cubit.expandTheChestBehind,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0].bottomHeight,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0].bottomHeight,
 
-                                        text: 'كفة اسفل',
-                                        controller: cubit.koftaBottom,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          text: 'كفة اسفل',
+                                          controller: cubit.koftaBottom,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                              ],
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                ],
+                              ),
                             ),
-                            Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
-                              children: [
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0].bottomWidth,
+                            Padding(
+                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0].bottomWidth,
 
-                                        text: 'وسع اسفل',
-                                        controller: cubit.expandDown,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          text: 'وسع اسفل',
+                                          controller: cubit.expandDown,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        text: 'وسع الرقبة سادة',
-                                        hintText: cubit.sizes[0].collarWidth,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          text: 'وسع الرقبة سادة',
+                                          hintText: cubit.sizes[0].collarWidth,
 
-                                        controller: cubit.wideNeckPillow,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          controller: cubit.wideNeckPillow,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0].collarHeight,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0].collarHeight,
 
-                                        text: 'ارتفاع الرقبة',
-                                        controller: cubit.neckHeight,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          text: 'ارتفاع الرقبة',
+                                          controller: cubit.neckHeight,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0].zipperHeight,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0].zipperHeight,
 
-                                        text: 'ارتفاع الجبزور',
-                                        controller: cubit.gypsumHeight,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          text: 'ارتفاع الجبزور',
+                                          controller: cubit.gypsumHeight,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                              ],
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                ],
+                              ),
                             ),
-                            Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
-                              children: [
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0].zipperWidth,
+                            Padding(
+                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0].zipperWidth,
 
-                                        text: 'عرض الجبزور',
-                                        controller: cubit.viewGypsum,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          text: 'عرض الجبزور',
+                                          controller: cubit.viewGypsum,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0]
-                                            .chestPocketHeight,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0]
+                                              .chestPocketHeight,
 
-                                        text: 'ط-جيب الصدر',
-                                        controller: cubit.lengthChestPocket,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          text: 'ط-جيب الصدر',
+                                          controller: cubit.lengthChestPocket,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0]
-                                            .chestPocketWidth,
-                                        text: 'ع-جيب الصدر',
-                                        controller: cubit.wideChestPocket,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0]
+                                              .chestPocketWidth,
+                                          text: 'ع-جيب الصدر',
+                                          controller: cubit.wideChestPocket,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0]
-                                            .mobilePocketHeight,
-                                        text: 'ط-جيب الجوال',
-                                        controller: cubit.wideMobilePocket,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0]
+                                              .mobilePocketHeight,
+                                          text: 'ط-جيب الجوال',
+                                          controller: cubit.wideMobilePocket,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                              ],
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                ],
+                              ),
                             ),
-                            Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
-                              children: [
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        text: 'ع-جيب الجوال',
-                                        controller: cubit.wideMobilePocket2,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                            Padding(
+                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          text: 'ع-جيب الجوال',
+                                          controller: cubit.wideMobilePocket2,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0]
-                                            .walletPocketHeight,
-                                        text: 'ط-جيب المحفظة',
-                                        controller: cubit.lengthPocketWallet,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0]
+                                              .walletPocketHeight,
+                                          text: 'ط-جيب المحفظة',
+                                          controller: cubit.lengthPocketWallet,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                //delete down container
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0]
-                                            .walletPocketWidth,
-                                        text: 'ع-جيب المحفظة',
-                                        controller: cubit.widePocketWallet,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  //delete down container
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0]
+                                              .walletPocketWidth,
+                                          text: 'ع-جيب المحفظة',
+                                          controller: cubit.widePocketWallet,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0].haunchWidth,
-                                        text: 'وسع الورك',
-                                        controller: cubit.hipWidth,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0].haunchWidth,
+                                          text: 'وسع الورك',
+                                          controller: cubit.hipWidth,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                              ],
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                ],
+                              ),
                             ),
-                            Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
-                              children: [
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0].buttonNo,
-                                        text: 'رقم الزرار',
-                                        controller: cubit.buttonNumber,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                            Padding(
+                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0].buttonNo,
+                                          text: 'رقم الزرار',
+                                          controller: cubit.buttonNumber,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0].embroideryNo,
-                                        text: 'رقم التطريز',
-                                        controller: cubit.embroideryNumber,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0].embroideryNo,
+                                          text: 'رقم التطريز',
+                                          controller: cubit.embroideryNumber,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 5,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0]
-                                            .shoulderChestLength,
-                                        text: 'بين جيب الصدر والكتف',
-                                        controller: cubit
-                                            .betweenTheChestPocketAndTheShoulder,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 5,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0]
+                                              .shoulderChestLength,
+                                          text: 'بين جيب الصدر والكتف',
+                                          controller: cubit
+                                              .betweenTheChestPocketAndTheShoulder,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        text: 'جيب الجنب',
-                                        hintText: cubit.sizes[0]
-                                            .sidePocketLength,
-                                        controller: cubit.sidePocket,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          text: 'جيب الجنب',
+                                          hintText: cubit.sizes[0]
+                                              .sidePocketLength,
+                                          controller: cubit.sidePocket,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                              ],
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                ],
+                              ),
                             ),
-                            Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
-                              // crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // const SizedBox(width: 0.7,),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        text: 'وسع الكم وسط',
-                                        hintText: cubit.sizes[0].sleeveMiddle,
-                                        controller:
-                                        cubit.quantumCapacityMedium,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.number,
+                            Padding(
+                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceAround,
+                                // crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // const SizedBox(width: 0.7,),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          text: 'وسع الكم وسط',
+                                          hintText: cubit.sizes[0].sleeveMiddle,
+                                          controller:
+                                          cubit.quantumCapacityMedium,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.number,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                // const SizedBox(width: 1,),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 6,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0].takhalees,
-                                        text: 'تخاليص',
-                                        controller: cubit.Takhalis,
-                                        textInputAction: TextInputAction.next,
-                                        textInputType: TextInputType.text,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  // const SizedBox(width: 1,),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 6,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0].takhalees,
+                                          text: 'تخاليص',
+                                          controller: cubit.Takhalis,
+                                          textInputAction: TextInputAction.next,
+                                          textInputType: TextInputType.text,
 
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                // const SizedBox(width: 1,),
-                                Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 5,
-                                    height: 40,
-                                    child: customTextField(
-                                        hintText: cubit.sizes[0]
-                                            .estimatedLength,
-                                        text: 'القماش المتوقع بالمتر',
-                                        controller:
-                                        cubit.expectedFabricInMeter,
-                                        textInputAction: TextInputAction.done,
-                                        onFieldSubmitted: (value) {
-                                          FocusScope.of(context).nextFocus();
-                                        })),
-                                // const SizedBox(width: 125,)
-                              ],
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  // const SizedBox(width: 1,),
+                                  Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 5,
+                                      height: 40,
+                                      child: customTextField(
+                                          hintText: cubit.sizes[0]
+                                              .estimatedLength,
+                                          text: 'القماش المتوقع بالمتر',
+                                          controller:
+                                          cubit.expectedFabricInMeter,
+                                          textInputAction: TextInputAction.done,
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context).nextFocus();
+                                          })),
+                                  // const SizedBox(width: 125,)
+                                ],
+                              ),
                             ),
                             Container(
                               // width: MediaQuery.of(context).size.width/6,
@@ -1115,13 +1144,8 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                               MainAxisAlignment.spaceAround,
                               children: [
                                 Container(
-                                  width:
-                                  MediaQuery
-                                      .of(context)
-                                      .size
-                                      .width / 4,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 5, vertical: 3),
+                                  width: MediaQuery.of(context).size.width / 4,
+                                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
                                   child: Column(
                                     mainAxisAlignment:
                                     MainAxisAlignment.center,
@@ -1144,7 +1168,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                             4,
                                         padding:
                                         const EdgeInsets.only(right: 5),
-                                        height: 25,
+                                        height: 40,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                           BorderRadius.circular(5),
@@ -1210,7 +1234,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                                     value.modelTypeID!);
                                               });
                                             },
-                                            iconSize: 25,
+                                            iconSize: 40,
                                             icon: Container(
                                               decoration: const BoxDecoration(
                                                 color: Colors.green,
@@ -1261,7 +1285,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                             4,
                                         padding:
                                         const EdgeInsets.only(right: 5),
-                                        height: 25,
+                                        height: 40,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                           BorderRadius.circular(5),
@@ -1327,7 +1351,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                                         value.CollarTypeId!);
                                               });
                                             },
-                                            iconSize: 25,
+                                            iconSize: 40,
                                             icon: Container(
                                               decoration: const BoxDecoration(
                                                 color: Colors.green,
@@ -1378,7 +1402,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                             4,
                                         padding:
                                         const EdgeInsets.only(right: 5),
-                                        height: 25,
+                                        height: 40,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                           BorderRadius.circular(5),
@@ -1443,7 +1467,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                               });
                                             },
 
-                                            iconSize: 25,
+                                            iconSize: 40,
                                             icon: Container(
                                               decoration: const BoxDecoration(
                                                 color: Colors.green,
@@ -1500,7 +1524,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                             4,
                                         padding:
                                         const EdgeInsets.only(right: 5),
-                                        height: 25,
+                                        height: 40,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                           BorderRadius.circular(5),
@@ -1566,7 +1590,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                               });
                                             },
 
-                                            iconSize: 25,
+                                            iconSize: 40,
                                             icon: Container(
                                               decoration: const BoxDecoration(
                                                 color: Colors.green,
@@ -1617,7 +1641,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                             4,
                                         padding:
                                         const EdgeInsets.only(right: 5),
-                                        height: 25,
+                                        height: 40,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                           BorderRadius.circular(5),
@@ -1684,7 +1708,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                               });
                                             },
 
-                                            iconSize: 25,
+                                            iconSize: 40,
                                             icon: Container(
                                               decoration: const BoxDecoration(
                                                 color: Colors.green,
@@ -1735,7 +1759,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                             4,
                                         padding:
                                         const EdgeInsets.only(right: 5),
-                                        height: 25,
+                                        height: 40,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                           BorderRadius.circular(5),
@@ -1801,7 +1825,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                               });
                                             },
 
-                                            iconSize: 25,
+                                            iconSize: 40,
                                             icon: Container(
                                               decoration: const BoxDecoration(
                                                 color: Colors.green,
