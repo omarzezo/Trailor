@@ -37,12 +37,15 @@ void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   DioHelper.init();
   await CacheHelper.init();
+  await EasyLocalization.ensureInitialized();
+
 
   BlocOverrides.runZoned(
         () {
       runApp(EasyLocalization(
           supportedLocales: const [Locale('en', 'US'), Locale('ar', "EG")],
           path: "assets/translations",
+          fallbackLocale: Locale("ar","EG"),
           child: const MyApp()));
     },
     blocObserver: MyBlocObserver(),
