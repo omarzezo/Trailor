@@ -1,4 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' as localize;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
@@ -7,7 +7,8 @@ import 'package:omar/constant/appstrings.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'Widgets.dart';
-import 'package:flutter/services.dart' as p;
+import 'package:intl/intl.dart' as intl;
+// import 'package:flutter/services.dart' as p;
 
 
 class PrintScreen extends StatelessWidget {
@@ -19,7 +20,7 @@ class PrintScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var cubit = LoginCubit.get(context);
     return Directionality(
-      textDirection: p.TextDirection.rtl,
+      textDirection: TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           // TODO: implement listener
@@ -54,7 +55,7 @@ class PrintScreen extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            textDirection: p.TextDirection.rtl,
+                            textDirection: TextDirection.rtl,
                             children: [
                               SizedBox(height: 40,width:MediaQuery.of(context).size.width/5,
                                   child:Image.asset('image/logo app.png',width: 40,height: 40,)),

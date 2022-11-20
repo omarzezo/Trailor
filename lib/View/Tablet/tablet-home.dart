@@ -1,4 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' as localize;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
@@ -35,7 +35,7 @@ class _TabletHomeState extends State<TabletHome> {
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           child: Directionality(
-            textDirection: p.TextDirection.rtl,
+            textDirection: TextDirection.rtl,
             child: Stack(
               children: [
                 Container(
@@ -118,7 +118,7 @@ class _TabletHomeState extends State<TabletHome> {
       ),
       body: SafeArea(
         child: Directionality(
-          textDirection: p.TextDirection.rtl,
+          textDirection: TextDirection.rtl,
           child: Container(
             width: MediaQuery.of(context).size.width / 1,
             height: MediaQuery.of(context).size.height / 1,
@@ -168,7 +168,7 @@ class _TabletHomeState extends State<TabletHome> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          textDirection:p.TextDirection.rtl,
+                          textDirection:TextDirection.rtl,
                           children: [
                             IconButton(
                                 onPressed: () {
@@ -242,12 +242,12 @@ class _TabletHomeState extends State<TabletHome> {
                     width: MediaQuery.of(context).size.width / 1,
                     alignment: Alignment.center,
                     child: Row(
-                      textDirection:p.TextDirection.rtl,
+                      textDirection:TextDirection.rtl,
                       // mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                           Expanded(
                             child: Directionality(
-                            textDirection: p.TextDirection.rtl,
+                            textDirection: TextDirection.rtl,
                             child: TabBarScreen())),
                         // const SizedBox(width: 20,),
                         Container(

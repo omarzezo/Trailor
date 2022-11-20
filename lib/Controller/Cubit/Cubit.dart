@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' as intl;
 import 'package:omar/Controller/End%20Point.dart';
 import 'package:omar/View/Data%20Table/model.dart';
 import 'package:omar/models/Companies.dart';
@@ -647,7 +647,7 @@ String? quantities1;
         firstDate: DateTime(2015, 8),
         lastDate:  DateTime(2040));
     if (picked != null ) {
-      selectedDate =  DateFormat("yyyy-MM-dd HH:mm:ss").format(picked).toString();
+      selectedDate =  intl.DateFormat("yyyy-MM-dd HH:mm:ss").format(picked).toString();
       emit(AppGetDateFromUserState());
     }else {
       return;

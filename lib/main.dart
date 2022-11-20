@@ -35,6 +35,7 @@ import 'View/sewing invoice screen/table_scroll.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   DioHelper.init();
   await CacheHelper.init();
 

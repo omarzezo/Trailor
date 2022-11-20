@@ -1,5 +1,4 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -22,7 +21,7 @@ import '../../constant/constant.dart';
 import '../../models/trFilling.dart';
 import 'Widgets.dart';
 import 'package:flutter/services.dart' as p;
-
+import 'package:easy_localization/easy_localization.dart' as localize;
 
 class SizeScreen extends StatefulWidget {
   const SizeScreen({Key? key}) : super(key: key);
@@ -96,7 +95,7 @@ class _SizeScreenState extends State<SizeScreen> {
   Widget build(BuildContext context) {
     var cubit = LoginCubit.get(context);
     return Directionality(
-      textDirection: p.TextDirection.rtl,
+      textDirection: TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           // TODO: implement listener
@@ -146,7 +145,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                   mainAxisAlignment:
                                   MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  textDirection: p.TextDirection.rtl,
+                                  textDirection: TextDirection.rtl,
                                   children: [
                                     Container(
                                         height: 40,
@@ -1640,7 +1639,7 @@ class _SizeScreenState extends State<SizeScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            textDirection: p.TextDirection.rtl,
+                            textDirection: TextDirection.rtl,
                             children: [
                               Container(
                                   height: 40,

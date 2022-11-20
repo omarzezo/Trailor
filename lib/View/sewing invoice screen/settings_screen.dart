@@ -306,54 +306,8 @@ class SettingScreenState extends State<SettingScreen> {
                           ),
 
 
-                          const SizedBox(height: 40,),
+                          const SizedBox(height: 20,),
 
-                          InkWell(
-                            onTap: () async {
-                              await SharedPreferencesHelper.setPrinterType(4);
-                              printerType=4;
-                              printerText="طابعة Wifi اخري";
-                              setState(() { });
-                            },
-                            child: Container(
-                                width: MediaQuery.of(context).size.width*0.60,
-                                padding: const EdgeInsets.all(4),
-                                height: 40,
-                                decoration:  BoxDecoration(
-                                  color: printerType==4?MyConstant().purpleColor:Colors.white,
-                                  border: Border.all(width: 1, color: MyConstant().purpleColor),
-                                ),
-                                child: Text("طابعة Wifi اخري",style: GoogleFonts.notoKufiArabic(
-                                    color:printerType==4?Colors.white: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18),
-                                )),
-                          ),
-                          const SizedBox(height: 10,),
-                          if(printerType==4)  Container(
-                              height: 50,
-                              width: MediaQuery.of(context).size.width*0.60,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(color: MyConstant().purpleColor),
-                                borderRadius: new BorderRadius.circular(10.0),
-                              ),
-                              child: Padding(
-                                  padding:
-                                  EdgeInsets.only(left: 15, right: 15, top: 0),
-                                  child: TextFormField(
-                                      controller: ipPntroller2,
-                                      style: GoogleFonts.notoKufiArabic(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18),
-                                      onChanged: (value) {
-                                        SharedPreferencesHelper.setIpPrinter(value);
-                                      },
-                                      decoration: const InputDecoration(
-                                        border: InputBorder.none,
-                                        hintText: 'الرجاء ادخال IP الطابعة',
-                                      )))),
 
                         ],
                       ),

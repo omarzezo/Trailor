@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' as localize;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -53,7 +53,7 @@ class _SewingScreenState extends State<SewingScreen> {
   //
   // String? valueItem2;
   String? itemPrice;
-
+ int? customerId;
   @override
   void initState() {
     super.initState();
@@ -79,7 +79,7 @@ class _SewingScreenState extends State<SewingScreen> {
     cubit.companiesCustomerName.retainWhere((x) => ids.add(x.name));
 
     return Directionality(
-      textDirection: p1.TextDirection.rtl,
+      textDirection: TextDirection.rtl,
       child: SafeArea(
         child: BlocConsumer<LoginCubit, LoginState>(
           listener: (context, state) {
@@ -360,23 +360,23 @@ class _SewingScreenState extends State<SewingScreen> {
                                                                 .black,
                                                             fontWeight:
                                                             FontWeight
-                                                                .bold,
-                                                            fontSize:
-                                                            12)),
+                                                                .bold, fontSize: 12)),
                                                   ),
-                                                ))
-                                                .toList(),
-
+                                                )).toList(),
                                             value: cubit.userItem,
-
                                             isExpanded: true,
-
                                             onChanged: (val) {
                                               try {
-
                                                 print("val>>"+val.toString());
                                                 cubit.userItem = val.toString();
                                                 cubit.customerName = val!.toString();
+                                                for(int i=0;i<cubit.companiesCustomerName.length;i++){
+                                                 if(cubit.userItem!.toLowerCase()==cubit.companiesCustomerName[i].company!.toLowerCase()){
+                                                   customerId=int.parse(cubit.companiesCustomerName[i].id!);
+                                                   print("customerId>>"+customerId.toString());
+                                                   break;
+                                                 }
+                                                }
                                                 setState(() {});
                                               }catch(e){
 
@@ -1989,7 +1989,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                 referenceNo: "SALE2022/10/0001",
                                 // customerId: int.parse(cubit.users[0].id!),
                                 // customerId: int.parse(cubit.companiesEmployeeName[0].id!),
-                                customerId: int.parse(cubit.customerModel[0].id!),
+                                customerId: customerId,
                                 dueDate: "2022-08-16T00:00:00",
                                 hash: "51280eb9564fe8aaa0abca09a2921438e7b0ae05d1714c0badb64238144eef8c",
                                 // customer: cubit.companiesEmployeeName[0].company,
