@@ -21,24 +21,13 @@ import 'package:omar/constant/constant.dart';
 import 'package:omar/tast.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'Controller/BlocObserver.dart';
-import 'View/Data Table/custom table.dart';
-import 'View/Data Table/data-table screen.dart';
-import 'View/Tablet/tablet-home.dart';
-import 'View/home/home.dart';
-import 'View/login/login screen.dart';
-import 'View/sewing invoice screen/Create.dart';
-import 'View/sewing invoice screen/Size Screen.dart';
-import 'View/sewing invoice screen/TabBar Screen.dart';
-import 'View/sewing invoice screen/custom_table_sweing.dart';
-import 'View/sewing invoice screen/sweing_screen.dart';
-import 'View/sewing invoice screen/table_scroll.dart';
+
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   DioHelper.init();
   await CacheHelper.init();
-  await EasyLocalization.ensureInitialized();
 
 
   BlocOverrides.runZoned(
