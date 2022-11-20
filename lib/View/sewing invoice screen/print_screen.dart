@@ -1,10 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
+import 'package:omar/constant/appstrings.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'Widgets.dart';
+import 'package:flutter/services.dart' as p;
+
 
 class PrintScreen extends StatelessWidget {
   static const routeName = "PrintScreen";
@@ -15,7 +19,7 @@ class PrintScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var cubit = LoginCubit.get(context);
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: p.TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           // TODO: implement listener
@@ -50,12 +54,13 @@ class PrintScreen extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            textDirection: TextDirection.rtl,
+                            textDirection: p.TextDirection.rtl,
                             children: [
                               SizedBox(height: 40,width:MediaQuery.of(context).size.width/5,
                                   child:Image.asset('image/logo app.png',width: 40,height: 40,)),
 
                               IconButton(onPressed: () {
+                                cubit.clearControllers();
                                 Navigator.pop(context);
                               }, icon: Icon(Icons.arrow_forward_ios_rounded,color: MyConstant().purpleColor,size: 30,))
                             ],
@@ -134,7 +139,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  ' طول امام : ${cubit.frontHeight.text}'),
+                                                  ' ${AppStrings.frontlength.tr()} : ${cubit.frontHeight.text}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -144,7 +149,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  ' :طول خلف : ${cubit.backHeight.text}'),
+                                                  ' ${AppStrings.lengthbehind.tr()} : ${cubit.backHeight.text}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -168,7 +173,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  ' عرض الكتف : ${cubit.shoulderWidth.text}'),
+                                                  '${AppStrings.shoulderwidth.tr()} : ${cubit.shoulderWidth.text}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -178,7 +183,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  ' ميل الكتف : ${cubit.shoulderSlope.text}'),
+                                                  ' ${AppStrings.shouldertilt.tr()} : ${cubit.shoulderSlope.text}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -188,7 +193,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  '  طول الكم سادة : ${cubit.sleeveLengthPlain.text}'),
+                                                  ' ${AppStrings.sleevelengthplain.tr()} : ${cubit.sleeveLengthPlain.text}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -198,53 +203,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  ' طول الكم اعلي :  ${cubit.sleeveLengthIsHigher.text}'),
-                                        )),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Expanded(
-                                            child: SizedBox(
-                                          width:
-                                              MediaQuery.of(context).size.width /
-                                                  6,
-                                          height: 40,
-                                          child: MyText(
-                                              text:
-                                                  ' وسع المعصم : ${cubit.wideWrist.text}'),
-                                        )),
-                                        Expanded(
-                                            child: SizedBox(
-                                          width:
-                                              MediaQuery.of(context).size.width /
-                                                  6,
-                                          height: 40,
-                                          child: MyText(
-                                              text:
-                                                  ' كفة المصم سادة : ${cubit.plainCuff.text}'),
-                                        )),
-                                        Expanded(
-                                            child: SizedBox(
-                                          width:
-                                              MediaQuery.of(context).size.width /
-                                                  6,
-                                          height: 40,
-                                          child: MyText(
-                                              text:
-                                                  ' طول الكبك : ${cubit.cuffLength.text}'),
-                                        )),
-                                        Expanded(
-                                            child: SizedBox(
-                                          width:
-                                              MediaQuery.of(context).size.width /
-                                                  6,
-                                          height: 40,
-                                          child: MyText(
-                                              text:
-                                                  ' عرض الكبك : ${cubit.cuffShow.text}'),
+                                                  ' ${AppStrings.HigherQuantumExpansion.tr()} :  ${cubit.sleeveLengthIsHigher.text}'),
                                         )),
                                       ],
                                     ),
@@ -260,7 +219,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  'وسع الوسط : ${cubit.wideMiddle.text}'),
+                                                  ' ${AppStrings.widthofthewrist.tr()} : ${cubit.wideWrist.text}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -270,7 +229,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  'وسع الصدر امام : ${cubit.expandTheChestInFront.text}'),
+                                                  ' ${AppStrings.quantumcuffplain.tr()}ة : ${cubit.plainCuff.text}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -280,7 +239,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  'وسع الصدر خلف : ${cubit.expandTheChestBehind.text}'),
+                                                  ' ${AppStrings.cufflength.tr()} : ${cubit.cuffLength.text}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -290,53 +249,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  'كفتة اسفل : ${cubit.koftaBottom.text}'),
-                                        )),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Expanded(
-                                            child: SizedBox(
-                                          width:
-                                              MediaQuery.of(context).size.width /
-                                                  6,
-                                          height: 40,
-                                          child: MyText(
-                                              text:
-                                                  ' وسع اسفل : ${cubit.expandDown.text}'),
-                                        )),
-                                        Expanded(
-                                            child: SizedBox(
-                                          width:
-                                              MediaQuery.of(context).size.width /
-                                                  6,
-                                          height: 40,
-                                          child: MyText(
-                                              text:
-                                                  ' وسع الرقبة سادة : ${cubit.wideNeckPillow.text}'),
-                                        )),
-                                        Expanded(
-                                            child: SizedBox(
-                                          width:
-                                              MediaQuery.of(context).size.width /
-                                                  6,
-                                          height: 40,
-                                          child: MyText(
-                                              text:
-                                                  ' ارتفاع الرقبة : ${cubit.neckHeight.text}'),
-                                        )),
-                                        Expanded(
-                                            child: SizedBox(
-                                          width:
-                                              MediaQuery.of(context).size.width /
-                                                  6,
-                                          height: 40,
-                                          child: MyText(
-                                              text:
-                                                  ' ارتفاع الجبزور : ${cubit.gypsumHeight.text}'),
+                                                  ' ${AppStrings.CupcakeShow.tr()} : ${cubit.cuffShow.text}'),
                                         )),
                                       ],
                                     ),
@@ -352,7 +265,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  ' عرض الجبزور : ${cubit.viewGypsum.text}'),
+                                                  '${AppStrings.widenthemiddle.tr()} : ${cubit.wideMiddle.text}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -362,7 +275,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  ' ط-جيب الصدر : ${cubit.lengthChestPocket.text}'),
+                                                  '${AppStrings.Expandthechestinfrontof.tr()} : ${cubit.expandTheChestInFront.text}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -372,7 +285,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  ' ع-جيب الصدر : ${cubit.wideChestPocket.text}'),
+                                                  '${AppStrings.Expandthechestbehind.tr()} : ${cubit.expandTheChestBehind.text}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -382,53 +295,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  ' ع-جيب الجوال : ${cubit.wideMobilePocket.text}'),
-                                        )),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Expanded(
-                                            child: SizedBox(
-                                          width:
-                                              MediaQuery.of(context).size.width /
-                                                  6,
-                                          height: 40,
-                                          child: MyText(
-                                              text:
-                                                  ' ع-جيب الجوال : ${cubit.wideMobilePocket2.text}'),
-                                        )),
-                                        Expanded(
-                                            child: SizedBox(
-                                          width:
-                                              MediaQuery.of(context).size.width /
-                                                  6,
-                                          height: 40,
-                                          child: MyText(
-                                              text:
-                                                  ' ط-جيب المحفظة : ${cubit.lengthPocketWallet.text}'),
-                                        )),
-                                        Expanded(
-                                            child: SizedBox(
-                                          width:
-                                              MediaQuery.of(context).size.width /
-                                                  6,
-                                          height: 40,
-                                          child: MyText(
-                                              text:
-                                                  ' ع-جيب المحفظة : ${cubit.widePocketWallet.text}'),
-                                        )),
-                                        Expanded(
-                                            child: SizedBox(
-                                          width:
-                                              MediaQuery.of(context).size.width /
-                                                  6,
-                                          height: 40,
-                                          child: MyText(
-                                              text:
-                                                  ' وسع الورك : ${cubit.hipWidth.text}'),
+                                                  '${AppStrings.cuffdown.tr()} : ${cubit.koftaBottom.text}'),
                                         )),
                                       ],
                                     ),
@@ -444,7 +311,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  ' رقم الزرار : ${cubit.buttonNumber.text}'),
+                                                  ' ${AppStrings.expanddown.tr()} : ${cubit.expandDown.text}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -454,7 +321,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  'رقم التطريز : ${cubit.embroideryNumber.text}'),
+                                                  ' ${AppStrings.NeckPlain.tr()} : ${cubit.wideNeckPillow.text}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -464,7 +331,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  ' بين جيب الصدر والكتف : ${cubit.betweenTheChestPocketAndTheShoulder.text}'),
+                                                  ' ${AppStrings.highneck.tr()} : ${cubit.neckHeight.text}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -474,7 +341,145 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  'جيب الجنب : ${cubit.sidePocket.text}'),
+                                                  '${AppStrings.JabzourHeight.tr()} : ${cubit.gypsumHeight.text}'),
+                                        )),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                            child: SizedBox(
+                                          width:
+                                              MediaQuery.of(context).size.width /
+                                                  6,
+                                          height: 40,
+                                          child: MyText(
+                                              text:
+                                                  ' ${AppStrings.JabzourShow.tr()} : ${cubit.viewGypsum.text}'),
+                                        )),
+                                        Expanded(
+                                            child: SizedBox(
+                                          width:
+                                              MediaQuery.of(context).size.width /
+                                                  6,
+                                          height: 40,
+                                          child: MyText(
+                                              text:
+                                                  ' ${AppStrings.ichestpocket.tr()} : ${cubit.lengthChestPocket.text}'),
+                                        )),
+                                        Expanded(
+                                            child: SizedBox(
+                                          width:
+                                              MediaQuery.of(context).size.width /
+                                                  6,
+                                          height: 40,
+                                          child: MyText(
+                                              text:
+                                                  ' ${AppStrings.pchestpocket.tr()} : ${cubit.wideChestPocket.text}'),
+                                        )),
+                                        Expanded(
+                                            child: SizedBox(
+                                          width:
+                                              MediaQuery.of(context).size.width /
+                                                  6,
+                                          height: 40,
+                                          child: MyText(
+                                              text:
+                                                  '${AppStrings.pmobilepocket.tr()} : ${cubit.wideMobilePocket.text}'),
+                                        )),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                            child: SizedBox(
+                                          width:
+                                              MediaQuery.of(context).size.width /
+                                                  6,
+                                          height: 40,
+                                          child: MyText(
+                                              text:
+                                                  ' ${AppStrings.pmobilepocket.tr()} : ${cubit.wideMobilePocket2.text}'),
+                                        )),
+                                        Expanded(
+                                            child: SizedBox(
+                                          width:
+                                              MediaQuery.of(context).size.width /
+                                                  6,
+                                          height: 40,
+                                          child: MyText(
+                                              text:
+                                                  ' ${AppStrings.iwalletpocket.tr()} : ${cubit.lengthPocketWallet.text}'),
+                                        )),
+                                        Expanded(
+                                            child: SizedBox(
+                                          width:
+                                              MediaQuery.of(context).size.width /
+                                                  6,
+                                          height: 40,
+                                          child: MyText(
+                                              text:
+                                                  ' ${AppStrings.pwalletpocket.tr()} : ${cubit.widePocketWallet.text}'),
+                                        )),
+                                        Expanded(
+                                            child: SizedBox(
+                                          width:
+                                              MediaQuery.of(context).size.width /
+                                                  6,
+                                          height: 40,
+                                          child: MyText(
+                                              text:
+                                                  ' ${AppStrings.hipextension.tr()} : ${cubit.hipWidth.text}'),
+                                        )),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                            child: SizedBox(
+                                          width:
+                                              MediaQuery.of(context).size.width /
+                                                  6,
+                                          height: 40,
+                                          child: MyText(
+                                              text:
+                                                  '${AppStrings.buttonnumber.tr()} : ${cubit.buttonNumber.text}'),
+                                        )),
+                                        Expanded(
+                                            child: SizedBox(
+                                          width:
+                                              MediaQuery.of(context).size.width /
+                                                  6,
+                                          height: 40,
+                                          child: MyText(
+                                              text:
+                                                  '${AppStrings.embroiderynumber.tr()} : ${cubit.embroideryNumber.text}'),
+                                        )),
+                                        Expanded(
+                                            child: SizedBox(
+                                          width:
+                                              MediaQuery.of(context).size.width /
+                                                  6,
+                                          height: 40,
+                                          child: MyText(
+                                              text:
+                                                  ' ${AppStrings.betweenchestpocketandshoulder.tr()} : ${cubit.betweenTheChestPocketAndTheShoulder.text}'),
+                                        )),
+                                        Expanded(
+                                            child: SizedBox(
+                                          width:
+                                              MediaQuery.of(context).size.width /
+                                                  6,
+                                          height: 40,
+                                          child: MyText(
+                                              text:
+                                                  '${AppStrings.sidepocket.tr()} : ${cubit.sidePocket.text}'),
                                         )),
                                       ],
                                     ),
@@ -492,7 +497,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  ' وسع الكم وسط : ${cubit.quantumCapacityMedium.text}'),
+                                                  '${AppStrings.sleevewidthmedium.tr()} : ${cubit.quantumCapacityMedium.text}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -502,7 +507,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  ' تخاليص : ${cubit.Takhalis.text}'),
+                                                  ' ${AppStrings.clearance.tr()} : ${cubit.Takhalis.text}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -512,7 +517,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  'القماش المتوقع بالمتر : ${cubit.expectedFabricInMeter.text}'),
+                                                  '${AppStrings.Fabricexpectedbythemeter.tr()} : ${cubit.expectedFabricInMeter.text}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -540,7 +545,7 @@ class PrintScreen extends StatelessWidget {
                                                     .width /
                                                 6,
                                             height: 40,
-                                            child: MyText(text: ' عينه  '),
+                                            child: MyText(text: ' ${AppStrings.asample.tr()}  '),
                                           )),
                                         if (cubit.harryUp == true)
                                           Expanded(
@@ -550,7 +555,7 @@ class PrintScreen extends StatelessWidget {
                                                     .width /
                                                 6,
                                             height: 40,
-                                            child: MyText(text: ' مستعجل '),
+                                            child: MyText(text: "${AppStrings.urgent.tr()}"),
                                           )),
                                         if (cubit.sample == true &&
                                             cubit.harryUp == true)
@@ -589,7 +594,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  ' نوع الموديل : ${cubit.ModelName}'),
+                                                  '${AppStrings.ModelType.tr()} : ${cubit.ModelName}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -599,7 +604,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  ' نوع الياقة : ${cubit.CollerName}'),
+                                                  ' ${AppStrings.collartype.tr()} : ${cubit.CollerName}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -609,7 +614,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  'نوع الكيك : ${cubit.CuffName}'),
+                                                  '${AppStrings.cufftype.tr()} : ${cubit.CuffName}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -637,7 +642,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  ' نوع خيط الجيب : ${cubit.PocketName}'),
+                                                  '${AppStrings.pocketitchingtype.tr()} : ${cubit.PocketName}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -647,7 +652,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  ' نوع الحشوة : ${cubit.FillingName}'),
+                                                  ' ${AppStrings.FillingType.tr()} : ${cubit.FillingName}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -657,7 +662,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  'نوع الجبذور : ${cubit.ZipperName}'),
+                                                  '${AppStrings.Gabzortype.tr()} : ${cubit.ZipperName}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -702,7 +707,7 @@ class PrintScreen extends StatelessWidget {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text('تاريخ الفاتورة',
+                                                Text('${AppStrings.invoicdate.tr()}',
                                                     style: GoogleFonts
                                                         .notoKufiArabic(
                                                             color: Colors.white,
@@ -748,7 +753,7 @@ class PrintScreen extends StatelessWidget {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text('تاريخ التسليم',
+                                                Text('${AppStrings.deliverydate.tr()}',
                                                     style: GoogleFonts
                                                         .notoKufiArabic(
                                                             color: Colors.white,
@@ -789,7 +794,7 @@ class PrintScreen extends StatelessWidget {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text('المرجع',
+                                                Text('${AppStrings.reference.tr()}',
                                                     style: GoogleFonts
                                                         .notoKufiArabic(
                                                             color: Colors.white,
@@ -830,7 +835,7 @@ class PrintScreen extends StatelessWidget {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                    'العميل : ${cubit.customerName}',
+                                                    '${AppStrings.Client.tr()} : ${cubit.customerName}',
                                                     style: GoogleFonts
                                                         .notoKufiArabic(
                                                             color: MyConstant()
@@ -854,7 +859,7 @@ class PrintScreen extends StatelessWidget {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                    'الموظف : ${cubit.employeeName}',
+                                                    '${AppStrings.employee.tr()} : ${cubit.employeeName}',
                                                     style: GoogleFonts
                                                         .notoKufiArabic(
                                                             color: MyConstant()
@@ -877,7 +882,7 @@ class PrintScreen extends StatelessWidget {
                                       alignment: Alignment.centerRight,
                                       padding: const EdgeInsets.only(right: 20),
                                       color: MyConstant().purpleColor,
-                                      child: Text('الثياب',
+                                      child: Text('${AppStrings.cloth.tr()}',
                                           style: GoogleFonts.notoKufiArabic(
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold,
@@ -909,7 +914,7 @@ class PrintScreen extends StatelessWidget {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text('الصنف : ${cubit.typeOfClothes}',
+                                                Text('${AppStrings.item.tr()} : ${cubit.typeOfClothes}',
                                                     style: GoogleFonts
                                                         .notoKufiArabic(
                                                             color: MyConstant()
@@ -939,7 +944,7 @@ class PrintScreen extends StatelessWidget {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text('المقاس : ${cubit.size}',
+                                                Text('${AppStrings.size.tr()} : ${cubit.size}',
                                                     style: GoogleFonts
                                                         .notoKufiArabic(
                                                             color: MyConstant()
@@ -964,7 +969,7 @@ class PrintScreen extends StatelessWidget {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                  'الكمية :${cubit.quantities.text}',
+                                                  '${AppStrings.Quantity.tr()} :${cubit.quantities.text}',
                                                   style: GoogleFonts
                                                       .notoKufiArabic(
                                                           color: MyConstant()
@@ -988,7 +993,7 @@ class PrintScreen extends StatelessWidget {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                  'سعر الوحدة :${cubit.itemPrice.text}',
+                                                  '${AppStrings.unitprice.tr()} :${cubit.itemPrice.text}',
                                                   style: GoogleFonts
                                                       .notoKufiArabic(
                                                           color: MyConstant()
@@ -1019,7 +1024,7 @@ class PrintScreen extends StatelessWidget {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                    'الاجمالى :${cubit.totalPrice.text} ',
+                                                    '${AppStrings.Total.tr()} :${cubit.totalPrice.text} ',
                                                     style: GoogleFonts
                                                         .notoKufiArabic(
                                                             color: MyConstant()
@@ -1047,7 +1052,7 @@ class PrintScreen extends StatelessWidget {
                                       alignment: Alignment.centerRight,
                                       padding: const EdgeInsets.only(right: 20),
                                       color: MyConstant().purpleColor,
-                                      child: Text('اسعار وتفاصيل',
+                                      child: Text('${AppStrings.Pricesanddetails.tr()}',
                                           style: GoogleFonts.notoKufiArabic(
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold,
@@ -1082,7 +1087,7 @@ class PrintScreen extends StatelessWidget {
                                                         6,
                                                     child: MyText(
                                                         text:
-                                                            'الاجمالي  : ${cubit.totalPrice.text}'),
+                                                            '${AppStrings.Total.tr()}  : ${cubit.totalPrice.text}'),
                                                   )),
                                                   Expanded(
                                                       child: SizedBox(
@@ -1092,7 +1097,7 @@ class PrintScreen extends StatelessWidget {
                                                         6,
                                                     child: MyText(
                                                         text:
-                                                            ' الخصم : ${cubit.discount.text}'),
+                                                            ' ${AppStrings.Discount.tr()} : ${cubit.discount.text}'),
                                                   )),
                                                   Expanded(
                                                       child: SizedBox(
@@ -1102,7 +1107,7 @@ class PrintScreen extends StatelessWidget {
                                                         6,
                                                     child: MyText(
                                                         text:
-                                                            ' الضريبة : ${cubit.tax.text}'),
+                                                            ' ${AppStrings.Tax.tr()} : ${cubit.tax.text}'),
                                                   )),
                                                   Expanded(
                                                       child: SizedBox(
@@ -1112,7 +1117,7 @@ class PrintScreen extends StatelessWidget {
                                                         6,
                                                     child: MyText(
                                                         text:
-                                                            ' الصافي : ${cubit.whatYouPay.text}'),
+                                                            ' ${AppStrings.thenet.tr()} : ${cubit.whatYouPay.text}'),
                                                   )),
                                                 ],
                                               ),
@@ -1137,7 +1142,7 @@ class PrintScreen extends StatelessWidget {
                                                         6,
                                                     child: MyText(
                                                         text:
-                                                            ' المبلغ المدفوع : ${cubit.cash.text}'),
+                                                            ' ${AppStrings.Theamountpaid.tr()} : ${cubit.cash.text}'),
                                                   )): Container(),
                                                   (cubit.fixedPaymentType=="شيك بنكى")?  Expanded(
                                                       child: SizedBox(
@@ -1177,7 +1182,7 @@ class PrintScreen extends StatelessWidget {
                                                         6,
                                                     child: MyText(
                                                         text:
-                                                            'المبلغ المتبقي : ${cubit.delayMoney.text}'),
+                                                            '${AppStrings.Remainingamount.tr()} : ${cubit.delayMoney.text}'),
                                                   )),
                                                 ],
                                               ),

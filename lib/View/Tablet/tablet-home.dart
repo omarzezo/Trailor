@@ -1,17 +1,16 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
-import 'package:omar/View/Data%20Table/custom%20table.dart';
 import 'package:omar/View/sewing%20invoice%20screen/TabBar%20Screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/customers_details_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/daily_report_screen.dart';
 import 'package:omar/constant/LoadingPage.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/constant/widgets.dart';
-
+import '../../constant/appstrings.dart';
 import '../sewing invoice screen/settings_screen.dart';
+import 'package:flutter/services.dart' as p;
 
 class TabletHome extends StatefulWidget {
   const TabletHome({Key? key}) : super(key: key);
@@ -36,7 +35,7 @@ class _TabletHomeState extends State<TabletHome> {
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           child: Directionality(
-            textDirection: TextDirection.rtl,
+            textDirection: p.TextDirection.rtl,
             child: Stack(
               children: [
                 Container(
@@ -119,7 +118,7 @@ class _TabletHomeState extends State<TabletHome> {
       ),
       body: SafeArea(
         child: Directionality(
-          textDirection: TextDirection.rtl,
+          textDirection: p.TextDirection.rtl,
           child: Container(
             width: MediaQuery.of(context).size.width / 1,
             height: MediaQuery.of(context).size.height / 1,
@@ -169,7 +168,7 @@ class _TabletHomeState extends State<TabletHome> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          textDirection: TextDirection.rtl,
+                          textDirection:p.TextDirection.rtl,
                           children: [
                             IconButton(
                                 onPressed: () {
@@ -198,7 +197,7 @@ class _TabletHomeState extends State<TabletHome> {
                               height: 50,
                               margin: const EdgeInsets.only(left: 5, right: 5),
                             ),
-                             Text('مركز الابتكار للخياطة',
+                             Text(AppStrings.Tailoringinnovationcenter.tr(),
                                 style: GoogleFonts.notoKufiArabic(
                                     color: Colors.purple,
                                     fontSize: 12,
@@ -206,29 +205,29 @@ class _TabletHomeState extends State<TabletHome> {
                             const SizedBox(width: 10),
                             CustomContainer(
                                 color: Colors.purple,
-                                title: 'فاتورة خياطة',
+                                title:AppStrings.sewingbill.tr(),
                                 titleImage: 'image/invoices.png'),
                             const SizedBox(width: 20,),
                             CustomContainer(
                               color: Colors.purple,
-                              title: 'طباعة المقاسات',
+                              title: AppStrings.printsizes.tr(),
                               titleImage: 'image/measurement.png',
                             ),
                             const SizedBox(width: 20,),
                             CustomContainer(
                                 titleImage: 'image/cutting.png',
                                 color: Colors.purple,
-                                title: 'تاكيد القص'),
+                                title: AppStrings.CheckConfirmation.tr(),),
                             const SizedBox(width: 20,),
                             CustomContainer(
                                 titleImage: 'image/task.png',
                                 color: Colors.purple,
-                                title: 'استلام المعمل'),
+                                title: AppStrings.Receivingthelab.tr(),),
                             const SizedBox(width: 20,),
                             CustomContainer(
                                 titleImage: 'image/clothes (1).png',
                                 color: Colors.purple,
-                                title: 'تسليم الثياب'),
+                                title:AppStrings.deliveryclothes.tr(),),
 
                           ],
                         ),
@@ -243,12 +242,12 @@ class _TabletHomeState extends State<TabletHome> {
                     width: MediaQuery.of(context).size.width / 1,
                     alignment: Alignment.center,
                     child: Row(
-                      textDirection: TextDirection.rtl,
+                      textDirection:p.TextDirection.rtl,
                       // mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                         const Expanded(
+                          Expanded(
                             child: Directionality(
-                            textDirection: TextDirection.ltr,
+                            textDirection: p.TextDirection.rtl,
                             child: TabBarScreen())),
                         // const SizedBox(width: 20,),
                         Container(

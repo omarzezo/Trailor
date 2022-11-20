@@ -19,3 +19,4 @@ class UpdatedInvoiceResponseSuccessState  extends LoginState{}
 class UpdatedInvoiceResponseErrorState  extends LoginState{}
 class AppGetDateFromUserState  extends LoginState{}
 class GetWhatYouPayAfterDiscount  extends LoginState{}
+class ClearControllersState  extends LoginState{}

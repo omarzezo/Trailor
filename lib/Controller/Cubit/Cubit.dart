@@ -118,6 +118,56 @@ class LoginCubit extends Cubit<LoginState> {
   PaymentType? paymentTypeItem;
   int itemIndex=0;
 
+  // variable of controllers
+  String? tailorV;
+  String? typeV;
+  String? frontHeightV;
+  String? backHeightV;
+  String? shoulderWidthV;
+  String? shoulderSlopeV;
+  String? sleeveLengthPlainV;
+  String? sleeveLengthIsHigherV;
+  String? wideWristV;
+  String? plainCuffV;
+  String? cuffLengthV;
+  String? cuffShowV;
+  String? wideMiddleV;
+  String? expandTheChestInFrontV;
+  String? expandTheChestBehindV;
+  String? koftaBottomV;
+  String? expandDownV;
+  String? wideNeckPillowV;
+  String? neckHeightV;
+  String? gypsumHeightV;
+  String? tailorNameV;
+  String? viewGypsumV;
+  String? lengthChestPocketV;
+  String? wideChestPocketV;
+  String? wideMobilePocketV;
+  String? wideMobilePocket2V;
+  String? lengthPocketWalletV;
+  String? widePocketWalletV;
+  String? hipWidthV;
+  String? buttonNumberV;
+  String? embroideryNumberV;
+  String? betweenTheChestPocketAndTheShoulderV;
+  String? sidePocketV;
+  String? quantumCapacityMediumV;
+  String? TakhalisV;
+  String? expectedFabricInMeterV;
+  String? quantitiesV;
+  String? itemPriceV;
+  String? totalPriceV;
+  String? totalPriceDetailsV;
+  String? discountV;
+  String? taxV;
+  String? whatYouPayV;
+  String? cashV;
+  String? onlinePaymentV;
+  String? cheeckPaymentV;
+  String? delayMoneyV;
+  String? searchControllerV;
+
 // String paymentCodeName="";
   bool sample = false;
 
@@ -309,7 +359,7 @@ class LoginCubit extends Cubit<LoginState> {
       // log(jsonEncode(pillRequestModel));
       print(response.data);
       pillResponseModel = PillResponseModel.fromJson(response.data);
-      await getAllInvoiceInformation();
+      // await getAllInvoiceInformation();
 
       return pillResponseModel;
     } else {
@@ -431,7 +481,7 @@ String? salesId;
 //   List<Details> details=[];
 //
 //   pillsResponseModel=PillsResponseModel.fromJson(response.data);
-// 
+//
 //   return pillsResponseModel!;
 //
 //
@@ -457,6 +507,7 @@ String? salesId;
   List<PaymentType> paymentCodeList = [];
 
   void clearControllers() {
+    userItem="";
     tailor.clear();
     type.clear();
     frontHeight.clear();
@@ -502,6 +553,43 @@ String? salesId;
     cash.clear();
     onlinePayment.clear();
     delayMoney.clear();
+    // tRPocketValue==null? tRPocketValue=tRPocketValue:  tRPocketValue!.PocketTypeId="";
+    // tRPocketValue==null? tRPocketValue=tRPocketValue:   tRPocketValue!.PocketName="";
+    // trFillingValue==null? trFillingValue=trFillingValue:   trFillingValue!.FillingName="";
+    // trFillingValue==null? trFillingValue=trFillingValue: trFillingValue!.FillingTypeId="";
+    // tRZipperValue==null? tRZipperValue=tRZipperValue:  tRZipperValue!.ZipperName="";
+    // tRZipperValue==null? tRZipperValue=tRZipperValue: tRZipperValue!.ZipperTypeId="";
+    // tRTailorValue==null? tRTailorValue=tRTailorValue:  tRTailorValue!.TailorName="";
+    // tRTailorValue==null? tRTailorValue=tRTailorValue:  tRTailorValue!.TailorId="";
+    // trModelValue==null? trModelValue=trModelValue: trModelValue!.modelName="";
+    // trModelValue==null? trModelValue=trModelValue: trModelValue!.modelTypeID="";
+    // tRCollarValue==null? tRCollarValue=tRCollarValue: tRCollarValue!.CollarTypeId="";
+    // tRCollarValue==null? tRCollarValue=tRCollarValue:  tRCollarValue!.CollarName="";
+    // tRCuffValue==null? tRCuffValue=tRCuffValue:  tRCuffValue!.CuffName="";
+    // tRCuffValue==null? tRCuffValue=tRCuffValue: tRCuffValue!.CuffTypeId="";
+    // employeeItem==null? employeeItem=employeeItem: employeeItem!.name="";
+    // productItem==null? productItem=productItem: productItem!.name="";
+    // valueItemSize==null? valueItemSize=valueItemSize: valueItemSize!.name="";
+    // valueItemSize==null? valueItemSize=valueItemSize:valueItemSize!.unitValue="";
+     tRPocketValue=tRPocketValue;
+     tRPocketValue=tRPocketValue;
+    trFillingValue=trFillingValue;
+    trFillingValue=trFillingValue;
+    tRZipperValue=tRZipperValue;
+    tRZipperValue=tRZipperValue;
+    tRTailorValue=tRTailorValue;
+    tRTailorValue=tRTailorValue;
+     trModelValue=trModelValue;
+trModelValue=trModelValue;
+ tRCollarValue=tRCollarValue;
+     tRCollarValue=tRCollarValue;
+    tRCuffValue=tRCuffValue;
+   tRCuffValue=tRCuffValue;
+    employeeItem=employeeItem;
+     productItem=productItem;
+     valueItemSize=valueItemSize;
+    valueItemSize=valueItemSize;
+    emit(ClearControllersState());
   }
 String? itemPrice1;
 String? quantities1;
@@ -608,6 +696,8 @@ String? quantities1;
   String? CollarTypeId1;
   String? CuffTypeId1;
   String? tailCode;
+
+
   Future<SizeInformationModel>getSizeInformation(String salesId)async{
 
     try{
@@ -792,7 +882,7 @@ String? quantities1;
       if(response.statusCode==200){
         invoiceUpdateResponseModel=InvoiceUpdateResponseModel.fromJson(response.data);
         emit(UpdatedInvoiceResponseSuccessState());
-clearControllers();
+// clearControllers();
       }else{
         print(response.statusMessage);
       }

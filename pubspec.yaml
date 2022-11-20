@@ -57,6 +57,7 @@ dependencies:
   flutter_esc_pos_network: ^1.0.2
   flutter_bluetooth_basic:
   flutter_blue:
+  easy_localization: ^3.0.1
 
 #  blue_print_pos:
 
@@ -93,6 +94,8 @@ flutter:
     - image/pocket/
     - image/Robe/
     - image/Robe-Species/
+    - assets/translations/ar-EG.json
+    - assets/translations/en-US.json
 
   #   - images/a_dot_ham.jpeg
 

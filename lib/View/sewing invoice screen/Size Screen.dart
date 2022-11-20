@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -6,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
+import 'package:omar/constant/appstrings.dart';
 import 'package:omar/models/TypesModel.dart';
 import 'package:omar/models/tRCollar.dart';
 import 'package:omar/models/tRCuff.dart';
@@ -19,6 +21,8 @@ import '../../constant/List Of Image.dart';
 import '../../constant/constant.dart';
 import '../../models/trFilling.dart';
 import 'Widgets.dart';
+import 'package:flutter/services.dart' as p;
+
 
 class SizeScreen extends StatefulWidget {
   const SizeScreen({Key? key}) : super(key: key);
@@ -57,13 +61,13 @@ class _SizeScreenState extends State<SizeScreen> {
   var controllerList = ScrollController();
   bool isSelect2 = false;
   bool isSelect1 = false;
-  tRPocketModel? tRPocketValue;
-  tRFillingModel? trFillingValue;
-  tRZipperModel? tRZipperValue;
-  tRTailorModel?  tRTailorValue;
-  tRModelModel? trModelValue;
-  tRCollarModel? tRCollarValue;
-  tRCuffModel? tRCuffValue;
+  // tRPocketModel? tRPocketValue;
+  // tRFillingModel? trFillingValue;
+  // tRZipperModel? tRZipperValue;
+  // tRTailorModel?  tRTailorValue;
+  // tRModelModel? trModelValue;
+  // tRCollarModel? tRCollarValue;
+  // tRCuffModel? tRCuffValue;
   int currentIndex = 0;
   int currentImage = 0;
   int currentImage1 = 0;
@@ -92,7 +96,7 @@ class _SizeScreenState extends State<SizeScreen> {
   Widget build(BuildContext context) {
     var cubit = LoginCubit.get(context);
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: p.TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           // TODO: implement listener
@@ -142,7 +146,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                   mainAxisAlignment:
                                   MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  textDirection: TextDirection.rtl,
+                                  textDirection: p.TextDirection.rtl,
                                   children: [
                                     Container(
                                         height: 40,
@@ -233,11 +237,11 @@ class _SizeScreenState extends State<SizeScreen> {
                                             scrollbarThickness: 6,
                                             scrollbarAlwaysShow: true,
                                             items: cubit.tRTailorList.map(tRTailorItemBuild).toList(),
-                                            value: tRTailorValue,
+                                            value:  cubit.tRTailorValue,
                                             isExpanded: true,
                                             onChanged: (value) {
                                               setState(() {
-                                                tRTailorValue = value as tRTailorModel;
+                                                cubit.tRTailorValue = value as tRTailorModel;
                                                 cubit.TaillorName = value.TailorName!;
                                               });
                                             },
@@ -321,7 +325,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             margin:EdgeInsets.only(top: 10,bottom: 10),
                                             // height: 40,
                                             child: customTextField(
-                                              text: 'طول امام',
+                                              text: AppStrings.frontlength.tr(),
                                               controller: cubit.frontHeight,
                                               //
                                               textInputType: TextInputType.number,
@@ -336,7 +340,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             // height: 40,
                                             margin:EdgeInsets.only(top: 14,bottom: 14),
                                             child: customTextField(
-                                              text: 'طول خلف',
+                                              text: AppStrings.lengthbehind.tr(),
                                               controller: cubit.backHeight,
                                               //
                                               textInputType: TextInputType.number,
@@ -347,6 +351,18 @@ class _SizeScreenState extends State<SizeScreen> {
                                             )),
                                       ],
                                     ),
+                                    Container(
+                                      // height: MediaQuery.of(context).size.height/16,
+                                        height: 60,
+                                        width: MediaQuery.of(context).size.width ,
+                                        color: MyConstant().purpleColor,
+                                        child: Center(
+                                            child: Text("الكتف والكم" ,style: GoogleFonts.notoKufiArabic(
+                                            color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20)),
+                                        )),
+
                                     Row(
                                       mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
@@ -356,7 +372,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'عرض الكتف',
+                                              text: AppStrings.shoulderwidth.tr(),
                                               controller: cubit.shoulderWidth,
                                               //
                                               textInputType: TextInputType.number,
@@ -370,7 +386,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'ميل الكتف',
+                                              text: AppStrings.shouldertilt.tr(),
                                               controller: cubit.shoulderSlope,
                                               //
                                               textInputType: TextInputType.number,
@@ -384,7 +400,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'طول الكم سادة',
+                                              text: AppStrings.sleevelengthplain.tr(),
                                               controller: cubit.sleeveLengthPlain,
                                               //
                                               textInputType: TextInputType.number,
@@ -419,7 +435,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'وسع المعصم',
+                                              text: AppStrings.widthofthewrist.tr(),
                                               controller: cubit.wideWrist,
                                               //
                                               textInputType: TextInputType.number,
@@ -433,7 +449,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'كفة الكم سادة',
+                                              text: AppStrings.quantumcuffplain.tr(),
                                               controller: cubit.plainCuff,
                                               //
                                               textInputType: TextInputType.number,
@@ -447,7 +463,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'طول الكبك',
+                                              text:  AppStrings.cufflength.tr(),
                                               controller: cubit.cuffLength,
                                               //
                                               textInputType: TextInputType.number,
@@ -461,7 +477,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'عرض الكبك',
+                                              text:  AppStrings.CupcakeShow.tr(),
                                               controller: cubit.cuffShow,
                                               //
                                               textInputType: TextInputType.number,
@@ -481,7 +497,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'وسع الوسط',
+                                              text: AppStrings.widenthemiddle.tr(),
                                               controller: cubit.wideMiddle,
                                               //
                                               textInputType: TextInputType.number,
@@ -495,7 +511,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'وسع الصدر امام',
+                                              text:AppStrings.Expandthechestinfrontof.tr(),
                                               controller:
                                               cubit.expandTheChestInFront,
                                               //
@@ -510,7 +526,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'وسع الصدر خلف',
+                                              text:AppStrings.Expandthechestbehind.tr(),
                                               controller:
                                               cubit.expandTheChestBehind,
                                               //
@@ -525,7 +541,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'كفة اسفل',
+                                              text: AppStrings.cuffdown.tr(),
                                               controller: cubit.koftaBottom,
                                               //
                                               textInputType: TextInputType.number,
@@ -545,7 +561,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'وسع اسفل',
+                                              text:AppStrings.expanddown.tr(),
                                               controller: cubit.expandDown,
                                               //
                                               textInputType: TextInputType.number,
@@ -559,7 +575,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'وسع الرقبة سادة',
+                                              text: AppStrings.NeckPlain.tr(),
                                               controller: cubit.wideNeckPillow,
                                               //
                                               textInputType: TextInputType.number,
@@ -573,7 +589,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'ارتفاع الرقبة',
+                                              text:AppStrings.highneck.tr(),
                                               controller: cubit.neckHeight,
                                               //
                                               textInputType: TextInputType.number,
@@ -587,7 +603,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'ارتفاع الجبزور',
+                                              text: AppStrings.JabzourHeight.tr(),
                                               controller: cubit.gypsumHeight,
                                               //
                                               textInputType: TextInputType.number,
@@ -598,6 +614,18 @@ class _SizeScreenState extends State<SizeScreen> {
                                             )),
                                       ],
                                     ),
+                                    Container(
+                                      // height: MediaQuery.of(context).size.height/16,
+                                        height: 60,
+                                        width: MediaQuery.of(context).size.width ,
+                                        color: MyConstant().purpleColor,
+                                        child: Center(
+                                          child: Text("الجيب" ,style: GoogleFonts.notoKufiArabic(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20)),
+                                        )),
+
                                     Row(
                                       mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
@@ -607,7 +635,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'عرض الجبزور',
+                                              text:AppStrings.JabzourShow.tr(),
                                               controller: cubit.viewGypsum,
                                               //
                                               textInputType: TextInputType.number,
@@ -621,7 +649,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'ط-جيب الصدر',
+                                              text: AppStrings.ichestpocket.tr(),
                                               controller: cubit.lengthChestPocket,
                                               //
                                               textInputType: TextInputType.number,
@@ -635,7 +663,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'ع-جيب الصدر',
+                                              text: AppStrings.pchestpocket.tr(),
                                               controller: cubit.wideChestPocket,
                                               //
                                               textInputType: TextInputType.number,
@@ -649,7 +677,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'ط-جيب الجوال',
+                                              text: AppStrings.Imobilepocket.tr(),
                                               controller: cubit.wideMobilePocket,
                                               // textInputAction: TextInputAction.next,
                                               textInputType: TextInputType.number,
@@ -669,7 +697,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'ع-جيب الجوال',
+                                              text: AppStrings.pmobilepocket.tr(),
                                               controller: cubit.wideMobilePocket2,
                                               // textInputAction: TextInputAction.next,
                                               textInputType: TextInputType.number,
@@ -683,7 +711,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'ط-جيب المحفظة',
+                                              text: AppStrings.iwalletpocket.tr(),
                                               controller: cubit.lengthPocketWallet,
                                               // textInputAction: TextInputAction.next,
                                               textInputType: TextInputType.number,
@@ -698,7 +726,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'ع-جيب المحفظة',
+                                              text: AppStrings.pwalletpocket.tr(),
                                               controller: cubit.widePocketWallet,
                                               // textInputAction: TextInputAction.next,
                                               textInputType: TextInputType.number,
@@ -712,7 +740,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'وسع الورك',
+                                              text: AppStrings.hipextension.tr(),
                                               controller: cubit.hipWidth,
                                               // textInputAction: TextInputAction.next,
                                               textInputType: TextInputType.number,
@@ -732,7 +760,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'رقم الزرار',
+                                              text: AppStrings.buttonnumber.tr(),
                                               controller: cubit.buttonNumber,
                                               // textInputAction: TextInputAction.next,
                                               textInputType: TextInputType.number,
@@ -746,7 +774,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'رقم التطريز',
+                                              text: AppStrings.embroiderynumber.tr(),
                                               controller: cubit.embroideryNumber,
                                               // textInputAction: TextInputAction.next,
                                               textInputType: TextInputType.number,
@@ -760,7 +788,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 5,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'بين جيب الصدر والكتف',
+                                              text: AppStrings.betweenchestpocketandshoulder.tr(),
                                               controller: cubit.betweenTheChestPocketAndTheShoulder,
                                               // textInputAction: TextInputAction.next,
                                               textInputType: TextInputType.number,
@@ -774,7 +802,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'جيب الجنب',
+                                              text: AppStrings.sidepocket.tr(),
                                               controller: cubit.sidePocket,
                                               // textInputAction: TextInputAction.next,
                                               textInputType: TextInputType.number,
@@ -796,7 +824,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'وسع الكم وسط',
+                                              text: AppStrings.sleevewidthmedium.tr(),
                                               controller:
                                               cubit.quantumCapacityMedium,
                                               // textInputAction: TextInputAction.next,
@@ -845,7 +873,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         crossAxisAlignment: CrossAxisAlignment.center,
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
-                                          Text('عينة',
+                                          Text(AppStrings.asample.tr(),
                                               style: GoogleFonts.notoKufiArabic(
                                                   color: MyConstant().purpleColor,
                                                   fontWeight: FontWeight.bold,
@@ -879,7 +907,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                           const SizedBox(
                                             width: 20,
                                           ),
-                                          Text('مستعجل',
+                                          Text(AppStrings.urgent.tr(),
                                               style: GoogleFonts.notoKufiArabic(
                                                   color: MyConstant().purpleColor,
                                                   fontWeight: FontWeight.bold,
@@ -928,7 +956,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                             children: [
-                                              Text('نوع الموديل',
+                                              Text(AppStrings.ModelType.tr(),
                                                   style: GoogleFonts.notoKufiArabic(
                                                       color: MyConstant().purpleColor,
                                                       fontWeight: FontWeight.bold,
@@ -994,11 +1022,11 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     items: cubit.tRModelList
                                                         .map(trModelItemBuild)
                                                         .toList(),
-                                                    value: trModelValue,
+                                                    value:  cubit.trModelValue,
                                                     isExpanded: true,
                                                     onChanged: (value) {
                                                       setState(() {
-                                                        trModelValue =
+                                                        cubit.trModelValue =
                                                         value as tRModelModel;
                                                         cubit.ModelName =
                                                         value.modelName!;
@@ -1038,7 +1066,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                             children: [
-                                              Text('نوع الياقة',
+                                              Text(AppStrings.collartype.tr(),
                                                   style: GoogleFonts.notoKufiArabic(
                                                       color: MyConstant().purpleColor,
                                                       fontWeight: FontWeight.bold,
@@ -1102,11 +1130,11 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     items: cubit.tRCollarList
                                                         .map(trCollerItemBuild)
                                                         .toList(),
-                                                    value: tRCollarValue,
+                                                    value:  cubit.tRCollarValue,
                                                     isExpanded: true,
                                                     onChanged: (value) {
                                                       setState(() {
-                                                        tRCollarValue =
+                                                        cubit.tRCollarValue =
                                                         value as tRCollarModel;
                                                         cubit.CollerName =
                                                         value.CollarName!;
@@ -1147,7 +1175,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                             children: [
-                                              Text('نوع الكبك',
+                                              Text(AppStrings.cufftype.tr(),
                                                   style: GoogleFonts.notoKufiArabic(
                                                       color: MyConstant().purpleColor,
                                                       fontWeight: FontWeight.bold,
@@ -1211,11 +1239,11 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     items: cubit.tRCuffList
                                                         .map(trCuffItemBuild)
                                                         .toList(),
-                                                    value: tRCuffValue,
+                                                    value:  cubit.tRCuffValue,
                                                     isExpanded: true,
                                                     onChanged: (value) {
                                                       setState(() {
-                                                        tRCuffValue =
+                                                        cubit.tRCuffValue =
                                                         value as tRCuffModel;
                                                         cubit.CuffName =
                                                         value.CuffName!;
@@ -1262,7 +1290,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                             children: [
-                                              Text('نوع خياط الجيب',
+                                              Text(AppStrings.pocketitchingtype.tr(),
                                                   style: GoogleFonts.notoKufiArabic(
                                                       color: MyConstant().purpleColor,
                                                       fontWeight: FontWeight.bold,
@@ -1326,11 +1354,11 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     items: cubit.tRPocketList
                                                         .map(tRPocketItemBuild)
                                                         .toList(),
-                                                    value: tRPocketValue,
+                                                    value:  cubit.tRPocketValue,
                                                     isExpanded: true,
                                                     onChanged: (value) {
                                                       setState(() {
-                                                        tRPocketValue =
+                                                        cubit.tRPocketValue =
                                                         value as tRPocketModel?;
                                                         cubit.PocketName =
                                                         value!.PocketName!;
@@ -1372,7 +1400,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                             children: [
-                                              Text('نوع الحشوة',
+                                              Text(AppStrings.FillingType.tr(),
                                                   style: GoogleFonts.notoKufiArabic(
                                                       color: MyConstant().purpleColor,
                                                       fontWeight: FontWeight.bold,
@@ -1436,11 +1464,11 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     items: cubit.tRFillingList
                                                         .map(tRFillingItemBuild)
                                                         .toList(),
-                                                    value: trFillingValue,
+                                                    value:  cubit.trFillingValue,
                                                     isExpanded: true,
                                                     onChanged: (value) {
                                                       setState(() {
-                                                        trFillingValue =
+                                                        cubit.trFillingValue =
                                                         value as tRFillingModel;
                                                         cubit.FillingName =
                                                         value.FillingName!;
@@ -1482,7 +1510,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                             children: [
-                                              Text('نوع الجبزور',
+                                              Text(AppStrings.typeofgypsum.tr(),
                                                   style: GoogleFonts.notoKufiArabic(
                                                       color: MyConstant().purpleColor,
                                                       fontWeight: FontWeight.bold,
@@ -1546,11 +1574,11 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     items: cubit.tRZipperList
                                                         .map(tRZipperItemBuild)
                                                         .toList(),
-                                                    value: tRZipperValue,
+                                                    value:  cubit.tRZipperValue,
                                                     isExpanded: true,
                                                     onChanged: (value) {
                                                       setState(() {
-                                                        tRZipperValue =
+                                                        cubit.tRZipperValue =
                                                         value as tRZipperModel;
                                                         cubit.ZipperName =
                                                         value.ZipperName!;
@@ -1612,7 +1640,7 @@ class _SizeScreenState extends State<SizeScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            textDirection: TextDirection.rtl,
+                            textDirection: p.TextDirection.rtl,
                             children: [
                               Container(
                                   height: 40,
@@ -1637,7 +1665,7 @@ class _SizeScreenState extends State<SizeScreen> {
                         ),
                         Container(
                           // height: MediaQuery.of(context).size.height/16,
-                          height: 40,
+                          height: 60,
                           width: MediaQuery.of(context).size.width / 1,
                           color: MyConstant().purpleColor,
                           child: Row(
@@ -1702,11 +1730,11 @@ class _SizeScreenState extends State<SizeScreen> {
                                         scrollbarThickness: 6,
                                         scrollbarAlwaysShow: true,
                                         items: cubit.tRTailorList.map(tRTailorItemBuild).toList(),
-                                        value: tRTailorValue,
+                                        value:  cubit.tRTailorValue,
                                         isExpanded: true,
                                         onChanged: (value) {
                                           setState(() {
-                                            tRTailorValue = value as tRTailorModel;
+                                            cubit.tRTailorValue = value as tRTailorModel;
                                             cubit.TaillorName = value.TailorName!;
                                           });
                                         },
@@ -1730,7 +1758,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                   )),
                               Container(
                                   width: 70,
-                                  height: 20,
+                                  height: 40,
                                   // margin: const EdgeInsets.only(left: 40),
                                   child: OutlinedButton(
                                     style: ButtonStyle(
@@ -1786,7 +1814,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'طول امام',
+                                            text: AppStrings.frontlength.tr(),
                                             controller: cubit.frontHeight,
 
                                             textInputType: TextInputType.number,
@@ -1795,6 +1823,17 @@ class _SizeScreenState extends State<SizeScreen> {
                                   ],
                                 ),
                                 SizedBox(height: 10,),
+                                Container(
+                                  // height: MediaQuery.of(context).size.height/16,
+                                    height: 60,
+                                    width: MediaQuery.of(context).size.width ,
+                                    color: MyConstant().purpleColor,
+                                    child: Center(
+                                      child: Text("الكتف والكم" ,style: GoogleFonts.notoKufiArabic(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20)),
+                                    )),
 
                                 Row(
                                   children: [
@@ -1804,7 +1843,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'طول خلف',
+                                            text: AppStrings.lengthbehind.tr(),
                                             controller: cubit.backHeight,
 
                                             textInputType: TextInputType.number,
@@ -1817,7 +1856,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'عرض الكتف',
+                                            text: AppStrings.shoulderwidth.tr(),
                                             controller: cubit.shoulderWidth,
 
                                             textInputType: TextInputType.number,
@@ -1830,7 +1869,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'ميل الكتف',
+                                            text: AppStrings.shouldertilt.tr(),
                                             controller: cubit.shoulderSlope,
 
                                             textInputType: TextInputType.number,
@@ -1849,7 +1888,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'طول الكم سادة',
+                                            text: AppStrings.sleevelengthplain.tr(),
                                             controller: cubit.sleeveLengthPlain,
 
                                             textInputType: TextInputType.number,
@@ -1876,7 +1915,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'وسع المعصم',
+                                            text:AppStrings.widthofthewrist.tr(),
                                             controller: cubit.wideWrist,
 
                                             textInputType: TextInputType.number,
@@ -1895,7 +1934,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'كفة الكم سادة',
+                                            text:AppStrings.quantumcuffplain.tr(),
                                             controller: cubit.plainCuff,
 
                                             textInputType: TextInputType.number,
@@ -1908,7 +1947,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'طول الكبك',
+                                            text: AppStrings.cufflength.tr(),
                                             controller: cubit.cuffLength,
                                             //
                                             textInputType: TextInputType.number,
@@ -1921,7 +1960,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'عرض الكبك',
+                                            text:  AppStrings.CupcakeShow.tr(),
                                             controller: cubit.cuffShow,
                                             //
                                             textInputType: TextInputType.number,
@@ -1942,7 +1981,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'وسع الوسط',
+                                            text: AppStrings.widenthemiddle.tr(),
                                             controller: cubit.wideMiddle,
                                             //
                                             textInputType: TextInputType.number,
@@ -1958,7 +1997,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'وسع الصدر امام',
+                                            text: AppStrings.Expandthechestinfrontof.tr(),
                                             controller:
                                                 cubit.expandTheChestInFront,
                                             //
@@ -1975,7 +2014,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'وسع الصدر خلف',
+                                            text: AppStrings.Expandthechestbehind.tr(),
                                             controller:
                                                 cubit.expandTheChestBehind,
                                             //
@@ -1998,7 +2037,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'كفة اسفل',
+                                            text:AppStrings.cuffdown.tr(),
                                             controller: cubit.koftaBottom,
                                             //
                                             textInputType: TextInputType.number,
@@ -2015,7 +2054,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width /3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'وسع اسفل',
+                                            text: AppStrings.expanddown.tr(),
                                             controller: cubit.expandDown,
                                             //
                                             textInputType: TextInputType.number,
@@ -2031,7 +2070,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'وسع الرقبة سادة',
+                                            text:AppStrings.NeckPlain.tr(),
                                             controller: cubit.wideNeckPillow,
                                             //
                                             textInputType: TextInputType.number,
@@ -2053,7 +2092,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'ارتفاع الرقبة',
+                                            text: AppStrings.highneck.tr(),
                                             controller: cubit.neckHeight,
                                             //
                                             textInputType: TextInputType.number,
@@ -2069,7 +2108,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'ارتفاع الجبزور',
+                                            text: AppStrings.JabzourHeight.tr(),
                                             controller: cubit.gypsumHeight,
                                             //
                                             textInputType: TextInputType.number,
@@ -2085,7 +2124,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'عرض الجبزور',
+                                            text: AppStrings.JabzourShow.tr(),
                                             controller: cubit.viewGypsum,
                                             //
                                             textInputType: TextInputType.number,
@@ -2097,6 +2136,18 @@ class _SizeScreenState extends State<SizeScreen> {
 
                                   ],
                                 ),
+                                Container(
+                                  // height: MediaQuery.of(context).size.height/16,
+                                    height: 60,
+                                    width: MediaQuery.of(context).size.width ,
+                                    color: MyConstant().purpleColor,
+                                    child: Center(
+                                      child: Text("الجيب" ,style: GoogleFonts.notoKufiArabic(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20)),
+                                    )),
+
                                 SizedBox(height: 10,),
 
                                 Row(
@@ -2107,7 +2158,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'ط-جيب الصدر',
+                                            text:AppStrings.ichestpocket.tr(),
                                             controller: cubit.lengthChestPocket,
                                             //
                                             textInputType: TextInputType.number,
@@ -2123,7 +2174,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'ع-جيب الصدر',
+                                            text: AppStrings.pchestpocket.tr(),
                                             controller: cubit.wideChestPocket,
                                             //
                                             textInputType: TextInputType.number,
@@ -2139,7 +2190,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         MediaQuery.of(context).size.width / 3,
                                         // margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'ط-جيب الجوال',
+                                            text: AppStrings.Imobilepocket.tr(),
                                             controller: cubit.wideMobilePocket,
                                             //
                                             textInputType: TextInputType.number,
@@ -2161,7 +2212,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'ع-جيب الجوال',
+                                            text: AppStrings.pmobilepocket.tr(),
                                             controller: cubit.wideMobilePocket2,
                                             //
                                             textInputType: TextInputType.number,
@@ -2174,7 +2225,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'ط-جيب المحفظة',
+                                            text: AppStrings.iwalletpocket.tr(),
                                             controller: cubit.lengthPocketWallet,
                                             //
                                             textInputType: TextInputType.number,
@@ -2188,7 +2239,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'ع-جيب المحفظة',
+                                            text: AppStrings.pwalletpocket.tr(),
                                             controller: cubit.widePocketWallet,
                                             //
                                             textInputType: TextInputType.number,
@@ -2206,7 +2257,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'وسع الورك',
+                                            text: AppStrings.hipextension.tr(),
                                             controller: cubit.hipWidth,
                                             //
                                             textInputType: TextInputType.number,
@@ -2219,7 +2270,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'رقم الزرار',
+                                            text: AppStrings.buttonnumber.tr(),
                                             controller: cubit.buttonNumber,
                                             //
                                             textInputType: TextInputType.number,
@@ -2232,7 +2283,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'رقم التطريز',
+                                            text: AppStrings.embroiderynumber.tr(),
                                             controller: cubit.embroideryNumber,
                                             //
                                             textInputType: TextInputType.number,
@@ -2254,7 +2305,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'بين جيب الصدر والكتف',
+                                            text:AppStrings.betweenchestpocketandshoulder.tr(),
 
                                             controller: cubit
                                                 .betweenTheChestPocketAndTheShoulder,
@@ -2269,7 +2320,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'جيب الجنب',
+                                            text: AppStrings.sidepocket.tr(),
                                             controller: cubit.sidePocket,
                                             //
                                             textInputType: TextInputType.number,
@@ -2285,7 +2336,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         width: MediaQuery.of(context).size.width / 4,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'وسع الكم وسط',
+                                            text: AppStrings.sleevewidthmedium.tr(),
                                             controller:
                                                 cubit.quantumCapacityMedium,
                                             //
@@ -2347,7 +2398,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text('عينة',
+                                      Text(AppStrings.asample.tr(),
                                           style: GoogleFonts.notoKufiArabic(
                                               color: MyConstant().purpleColor,
                                               fontWeight: FontWeight.bold,
@@ -2381,7 +2432,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                       const SizedBox(
                                         width: 10,
                                       ),
-                                      Text('مستعجل',
+                                      Text(AppStrings.urgent.tr(),
                                           style: GoogleFonts.notoKufiArabic(
                                               color: MyConstant().purpleColor,
                                               fontWeight: FontWeight.bold,
@@ -2430,7 +2481,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text('نوع الموديل',
+                                          Text(AppStrings.ModelType.tr(),
                                               style: GoogleFonts.notoKufiArabic(
                                                   color: MyConstant().purpleColor,
                                                   fontWeight: FontWeight.bold,
@@ -2496,11 +2547,11 @@ class _SizeScreenState extends State<SizeScreen> {
                                                 items: cubit.tRModelList
                                                     .map(trModelItemBuild)
                                                     .toList(),
-                                                value: trModelValue,
+                                                value:  cubit.trModelValue,
                                                 isExpanded: true,
                                                 onChanged: (value) {
                                                   setState(() {
-                                                    trModelValue =
+                                                    cubit.trModelValue =
                                                         value as tRModelModel;
                                                     cubit.ModelName =
                                                         value.modelName!;
@@ -2540,7 +2591,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text('نوع الياقة',
+                                          Text(AppStrings.collartype.tr(),
                                               style: GoogleFonts.notoKufiArabic(
                                                   color: MyConstant().purpleColor,
                                                   fontWeight: FontWeight.bold,
@@ -2604,11 +2655,11 @@ class _SizeScreenState extends State<SizeScreen> {
                                                 items: cubit.tRCollarList
                                                     .map(trCollerItemBuild)
                                                     .toList(),
-                                                value: tRCollarValue,
+                                                value:  cubit.tRCollarValue,
                                                 isExpanded: true,
                                                 onChanged: (value) {
                                                   setState(() {
-                                                    tRCollarValue =
+                                                    cubit. tRCollarValue =
                                                         value as tRCollarModel;
                                                     cubit.CollerName =
                                                         value.CollarName!;
@@ -2649,7 +2700,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text('نوع الكبك',
+                                          Text(AppStrings.cufftype.tr(),
                                               style: GoogleFonts.notoKufiArabic(
                                                   color: MyConstant().purpleColor,
                                                   fontWeight: FontWeight.bold,
@@ -2713,11 +2764,11 @@ class _SizeScreenState extends State<SizeScreen> {
                                                 items: cubit.tRCuffList
                                                     .map(trCuffItemBuild)
                                                     .toList(),
-                                                value: tRCuffValue,
+                                                value:  cubit.tRCuffValue,
                                                 isExpanded: true,
                                                 onChanged: (value) {
                                                   setState(() {
-                                                    tRCuffValue =
+                                                    cubit.tRCuffValue =
                                                         value as tRCuffModel;
                                                     cubit.CuffName =
                                                         value.CuffName!;
@@ -2764,7 +2815,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text('نوع خياط الجيب',
+                                          Text(AppStrings.pocketitchingtype.tr(),
                                               style: GoogleFonts.notoKufiArabic(
                                                   color: MyConstant().purpleColor,
                                                   fontWeight: FontWeight.bold,
@@ -2828,11 +2879,11 @@ class _SizeScreenState extends State<SizeScreen> {
                                                 items: cubit.tRPocketList
                                                     .map(tRPocketItemBuild)
                                                     .toList(),
-                                                value: tRPocketValue,
+                                                value:  cubit.tRPocketValue,
                                                 isExpanded: true,
                                                 onChanged: (value) {
                                                   setState(() {
-                                                    tRPocketValue =
+                                                    cubit.tRPocketValue =
                                                         value as tRPocketModel?;
                                                     cubit.PocketName =
                                                         value!.PocketName!;
@@ -2874,7 +2925,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text('نوع الحشوة',
+                                          Text(AppStrings.FillingType.tr(),
                                               style: GoogleFonts.notoKufiArabic(
                                                   color: MyConstant().purpleColor,
                                                   fontWeight: FontWeight.bold,
@@ -2938,11 +2989,11 @@ class _SizeScreenState extends State<SizeScreen> {
                                                 items: cubit.tRFillingList
                                                     .map(tRFillingItemBuild)
                                                     .toList(),
-                                                value: trFillingValue,
+                                                value:  cubit.trFillingValue,
                                                 isExpanded: true,
                                                 onChanged: (value) {
                                                   setState(() {
-                                                    trFillingValue =
+                                                    cubit.trFillingValue =
                                                         value as tRFillingModel;
                                                     cubit.FillingName =
                                                         value.FillingName!;
@@ -2984,7 +3035,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text('نوع الجبزور',
+                                          Text(AppStrings.typeofgypsum.tr(),
                                               style: GoogleFonts.notoKufiArabic(
                                                   color: MyConstant().purpleColor,
                                                   fontWeight: FontWeight.bold,
@@ -3048,11 +3099,11 @@ class _SizeScreenState extends State<SizeScreen> {
                                                 items: cubit.tRZipperList
                                                     .map(tRZipperItemBuild)
                                                     .toList(),
-                                                value: tRZipperValue,
+                                                value:  cubit.tRZipperValue,
                                                 isExpanded: true,
                                                 onChanged: (value) {
                                                   setState(() {
-                                                    tRZipperValue =
+                                                    cubit.tRZipperValue =
                                                         value as tRZipperModel;
                                                     cubit.ZipperName =
                                                         value.ZipperName!;

@@ -40,38 +40,20 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
         },
         builder: (context, state) {
           return  ResponsiveVisibility(
-            replacement: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width /1,
-                  // margin: const EdgeInsets.all(20),
-                  height: 40,
-                  decoration:
-                  BoxDecoration(border: Border.all(color: Colors.purple)),
-                  child: Row(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: MyConstant().greenColor.withOpacity(0.1),
-                          border: Border(
-                            left: BorderSide(color: Colors.green.withOpacity(0.3)),
-                            right: BorderSide(color: Colors.green.withOpacity(0.3)),
-                          ),
-                        ),
-                        height: 80,
-                        width: 40,
-                        child: Text('N',
-                            style: GoogleFonts.notoKufiArabic(
-                              color: MyConstant().greenColor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 12,
-                            )),
-                      ),
-
-                      Expanded(
-                        child: Container(
+            replacement: Container(
+              height: MediaQuery.of(context).size.height,width: MediaQuery.of(context).size.width,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width /1,
+                    // margin: const EdgeInsets.all(20),
+                    height: 40,
+                    decoration:
+                    BoxDecoration(border: Border.all(color: Colors.purple)),
+                    child: Row(
+                      children: [
+                        Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             color: MyConstant().greenColor.withOpacity(0.1),
@@ -81,293 +63,314 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                             ),
                           ),
                           height: 80,
-                          width: 100,
-                          child: Text('اسم العميل',
+                          width: 40,
+                          child: Text('N',
                               style: GoogleFonts.notoKufiArabic(
                                 color: MyConstant().greenColor,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 12,
                               )),
                         ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: MyConstant().greenColor.withOpacity(0.1),
-                            border: Border(
-                              left: BorderSide(color: Colors.green.withOpacity(0.3)),
-                              right: BorderSide(color: Colors.green.withOpacity(0.3)),
+
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: MyConstant().greenColor.withOpacity(0.1),
+                              border: Border(
+                                left: BorderSide(color: Colors.green.withOpacity(0.3)),
+                                right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                              ),
                             ),
+                            height: 80,
+                            width: 100,
+                            child: Text('اسم العميل',
+                                style: GoogleFonts.notoKufiArabic(
+                                  color: MyConstant().greenColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
+                                )),
                           ),
-                          height: 80,
-                          width: 100,
-                          child: Text('البريد الالكتروني',
-                              style: GoogleFonts.notoKufiArabic(
-                                color: MyConstant().greenColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 12,
-                              )),
                         ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: MyConstant().greenColor.withOpacity(0.1),
-                            border: Border(
-                              left: BorderSide(color: Colors.green.withOpacity(0.3)),
-                              right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: MyConstant().greenColor.withOpacity(0.1),
+                              border: Border(
+                                left: BorderSide(color: Colors.green.withOpacity(0.3)),
+                                right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                              ),
                             ),
+                            height: 80,
+                            width: 100,
+                            child: Text('البريد الالكتروني',
+                                style: GoogleFonts.notoKufiArabic(
+                                  color: MyConstant().greenColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
+                                )),
                           ),
-                          height: 80,
-                          width: 100,
-                          child: Text('الرقم الضريبي',
-                              style: GoogleFonts.notoKufiArabic(
-                                color: MyConstant().greenColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 12,
-                              )),
                         ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: MyConstant().greenColor.withOpacity(0.1),
-                            border: Border(
-                              left: BorderSide(color: Colors.green.withOpacity(0.3)),
-                              right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: MyConstant().greenColor.withOpacity(0.1),
+                              border: Border(
+                                left: BorderSide(color: Colors.green.withOpacity(0.3)),
+                                right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                              ),
                             ),
+                            height: 80,
+                            width: 100,
+                            child: Text('الرقم الضريبي',
+                                style: GoogleFonts.notoKufiArabic(
+                                  color: MyConstant().greenColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
+                                )),
                           ),
-                          height: 80,
-                          width: 100,
-                          child: Text('العنوان',
-                              style: GoogleFonts.notoKufiArabic(
-                                color: MyConstant().greenColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 12,
-                              )),
                         ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: MyConstant().greenColor.withOpacity(0.1),
-                            border: Border(
-                              left: BorderSide(color: Colors.green.withOpacity(0.3)),
-                              right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: MyConstant().greenColor.withOpacity(0.1),
+                              border: Border(
+                                left: BorderSide(color: Colors.green.withOpacity(0.3)),
+                                right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                              ),
                             ),
+                            height: 80,
+                            width: 100,
+                            child: Text('العنوان',
+                                style: GoogleFonts.notoKufiArabic(
+                                  color: MyConstant().greenColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
+                                )),
                           ),
-                          height: 80,
-                          width: 100,
-                          child: Text('الرقم البريدي',
-                              style: GoogleFonts.notoKufiArabic(
-                                color: MyConstant().greenColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 12,
-                              )),
                         ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: MyConstant().greenColor.withOpacity(0.1),
-                            border: Border(
-                              left: BorderSide(color: Colors.green.withOpacity(0.3)),
-                              right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: MyConstant().greenColor.withOpacity(0.1),
+                              border: Border(
+                                left: BorderSide(color: Colors.green.withOpacity(0.3)),
+                                right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                              ),
                             ),
+                            height: 80,
+                            width: 100,
+                            child: Text('الرقم البريدي',
+                                style: GoogleFonts.notoKufiArabic(
+                                  color: MyConstant().greenColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
+                                )),
                           ),
-                          height: 80,
-                          width: 100,
-                          child: Text('الجوال',
-                              style: GoogleFonts.notoKufiArabic(
-                                color: MyConstant().greenColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 12,
-                              )),
                         ),
-                      ),
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: MyConstant().greenColor.withOpacity(0.1),
+                              border: Border(
+                                left: BorderSide(color: Colors.green.withOpacity(0.3)),
+                                right: BorderSide(color: Colors.green.withOpacity(0.3)),
+                              ),
+                            ),
+                            height: 80,
+                            width: 100,
+                            child: Text('الجوال',
+                                style: GoogleFonts.notoKufiArabic(
+                                  color: MyConstant().greenColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
+                                )),
+                          ),
+                        ),
 
 
-                    ],
-                  ),
-                ),
-                //todo list view
-                Expanded(
-                  // child: Scrollbar(
-                  //   thickness: 15,
-                  //   controller: scrollControl,
-                  //   radius: const Radius.circular(0),
-                  //   trackVisibility: true,
-                  //   interactive: true,
-                  //   isAlwaysShown: true,
-                  //   showTrackOnHover: true,
-                  //   hoverThickness: 12,
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    // controller: scrollControl,
-                    // physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) => Container(
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      // margin: const EdgeInsets.all(20),
-                      height: 40,
-                      decoration: const BoxDecoration(
-                          border: Border(
-                            left: BorderSide(color: Colors.purple, ),
-                            right: BorderSide(color: Colors.purple, ),
-                            top: BorderSide(color: Colors.grey, width: 0.5),
-                            bottom: BorderSide(color: Colors.grey, width: 0.5),
-                          )),
-                      child: InkWell(
-                        onTap: () {
-                          LoginCubit.get(context).getPillsDetailsForItem( index);
-                          Navigator.pushNamed(context, PillsItemData.routeName);
-                        },
-                        child: Row(
-                          children: [
-                            Container(
-                              alignment: Alignment.center,
-                              decoration:  BoxDecoration(
-                                  border: Border(
-                                    left: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                    right: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                  )),
-                              height: 80,
-                              width: 40,
-                              child: Text((index+1).toString(),
-                                  style: GoogleFonts.notoKufiArabic(
-                                    color: Colors.green,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12,
-                                  )),
-                            ),
-
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.center,
-                                decoration:  BoxDecoration(
-                                    border: Border(
-                                      left: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                      right: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                      // top: BorderSide(color: Colors.grey, width: 0.5),
-                                      // bottom: BorderSide(color: Colors.grey, width: 0.5),
-                                    )),
-                                height: 80,
-                                width: 100,
-                                child: Text(cubit.companiesCustomerName[index].company ?? "",
-                                    style: GoogleFonts.notoKufiArabic(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                    )),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.center,
-                                decoration:  BoxDecoration(
-                                    border: Border(
-                                      left: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                      right: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                      // top: BorderSide(color: Colors.grey, width: 0.5),
-                                      // bottom: BorderSide(color: Colors.grey, width: 0.5),
-                                    )),
-                                height: 80,
-                                width: 100,
-                                child: Text(cubit.companiesCustomerName[index].email ?? "",
-                                    style: GoogleFonts.notoKufiArabic(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                    )),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.center,
-                                decoration:  BoxDecoration(
-                                    border: Border(
-                                      left: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                      right: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                    )),
-                                height: 80,
-                                width: 100,
-                                child: Text(cubit.companiesCustomerName[index].vatNo ?? "",
-                                    style: GoogleFonts.notoKufiArabic(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                    )),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.center,
-                                decoration:  BoxDecoration(
-                                    border: Border(
-                                      left: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                      right: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                    )),
-                                height: 80,
-                                width: 100,
-                                child: Text(cubit.companiesCustomerName[index].address ?? "",
-                                    style: GoogleFonts.notoKufiArabic(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                    )),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.center,
-                                decoration:  BoxDecoration(
-                                    border: Border(
-                                      left: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                      right: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                    )),
-                                height: 80,
-                                width: 100,
-                                child: Text(cubit.companiesCustomerName[index].postalCode ?? "",
-                                    style: GoogleFonts.notoKufiArabic(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                    )),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.center,
-                                decoration:  BoxDecoration(
-                                    border: Border(
-                                      left: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                      right: BorderSide(color: Colors.green.withOpacity(0.3), ),
-                                    )),
-                                height: 80,
-                                width: 100,
-                                child: Text(cubit.companiesCustomerName[index].phone ?? "",
-                                    style: GoogleFonts.notoKufiArabic(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                    )),
-                              ),
-                            ),
-
-
-                          ],
-                        ),
-                      ),
+                      ],
                     ),
-                    itemCount: cubit.companiesCustomerName.length,
                   ),
-                  // ),
-                ),
-              ],
+                  //todo list view
+                  Expanded(
+                    // child: Scrollbar(
+                    //   thickness: 15,
+                    //   controller: scrollControl,
+                    //   radius: const Radius.circular(0),
+                    //   trackVisibility: true,
+                    //   interactive: true,
+                    //   isAlwaysShown: true,
+                    //   showTrackOnHover: true,
+                    //   hoverThickness: 12,
+                    child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      // controller: scrollControl,
+                      // physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) => Container(
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        // margin: const EdgeInsets.all(20),
+                        height: 40,
+                        decoration: const BoxDecoration(
+                            border: Border(
+                              left: BorderSide(color: Colors.purple, ),
+                              right: BorderSide(color: Colors.purple, ),
+                              top: BorderSide(color: Colors.grey, width: 0.5),
+                              bottom: BorderSide(color: Colors.grey, width: 0.5),
+                            )),
+                        child: InkWell(
+                          onTap: () {
+                            LoginCubit.get(context).getPillsDetailsForItem( index);
+                            Navigator.pushNamed(context, PillsItemData.routeName);
+                          },
+                          child: Row(
+                            children: [
+                              Container(
+                                alignment: Alignment.center,
+                                decoration:  BoxDecoration(
+                                    border: Border(
+                                      left: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                      right: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                    )),
+                                height: 80,
+                                width: 40,
+                                child: Text((index+1).toString(),
+                                    style: GoogleFonts.notoKufiArabic(
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 12,
+                                    )),
+                              ),
+
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  decoration:  BoxDecoration(
+                                      border: Border(
+                                        left: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                        right: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                        // top: BorderSide(color: Colors.grey, width: 0.5),
+                                        // bottom: BorderSide(color: Colors.grey, width: 0.5),
+                                      )),
+                                  height: 80,
+                                  width: 100,
+                                  child: Text(cubit.companiesCustomerName[index].company ?? "",
+                                      style: GoogleFonts.notoKufiArabic(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12,
+                                      )),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  decoration:  BoxDecoration(
+                                      border: Border(
+                                        left: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                        right: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                        // top: BorderSide(color: Colors.grey, width: 0.5),
+                                        // bottom: BorderSide(color: Colors.grey, width: 0.5),
+                                      )),
+                                  height: 80,
+                                  width: 100,
+                                  child: Text(cubit.companiesCustomerName[index].email ?? "",
+                                      style: GoogleFonts.notoKufiArabic(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12,
+                                      )),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  decoration:  BoxDecoration(
+                                      border: Border(
+                                        left: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                        right: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                      )),
+                                  height: 80,
+                                  width: 100,
+                                  child: Text(cubit.companiesCustomerName[index].vatNo ?? "",
+                                      style: GoogleFonts.notoKufiArabic(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12,
+                                      )),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  decoration:  BoxDecoration(
+                                      border: Border(
+                                        left: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                        right: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                      )),
+                                  height: 80,
+                                  width: 100,
+                                  child: Text(cubit.companiesCustomerName[index].address ?? "",
+                                      style: GoogleFonts.notoKufiArabic(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12,
+                                      )),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  decoration:  BoxDecoration(
+                                      border: Border(
+                                        left: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                        right: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                      )),
+                                  height: 80,
+                                  width: 100,
+                                  child: Text(cubit.companiesCustomerName[index].postalCode ?? "",
+                                      style: GoogleFonts.notoKufiArabic(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12,
+                                      )),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  decoration:  BoxDecoration(
+                                      border: Border(
+                                        left: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                        right: BorderSide(color: Colors.green.withOpacity(0.3), ),
+                                      )),
+                                  height: 80,
+                                  width: 100,
+                                  child: Text(cubit.companiesCustomerName[index].phone ?? "",
+                                      style: GoogleFonts.notoKufiArabic(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12,
+                                      )),
+                                ),
+                              ),
+
+
+                            ],
+                          ),
+                        ),
+                      ),
+                      itemCount: cubit.companiesCustomerName.length,
+                    ),
+                    // ),
+                  ),
+                ],
+              ),
             ),
             hiddenWhen: [Condition.largerThan(name: MOBILE)],
 
