@@ -35,7 +35,6 @@ void main()async {
       runApp(EasyLocalization(
           supportedLocales: const [Locale('en', 'US'), Locale('ar', "EG")],
           path: "assets/translations",
-          fallbackLocale: Locale("ar","EG"),
           child: const MyApp()));
     },
     blocObserver: MyBlocObserver(),

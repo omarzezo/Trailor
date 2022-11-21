@@ -1,10 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/View/sewing%20invoice%20screen/pills_item_data.dart';
+import 'package:omar/constant/appstrings.dart';
 import 'package:omar/constant/constant.dart';
+import 'package:flutter/services.dart' as p;
+
 
 class CustomTableSweing extends StatefulWidget {
   const CustomTableSweing({Key? key}) : super(key: key);
@@ -40,7 +44,7 @@ class _CustomTableSweingState extends State<CustomTableSweing> {
   },
   builder: (context, state) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: p.TextDirection.rtl,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Padding(
@@ -67,7 +71,7 @@ class _CustomTableSweingState extends State<CustomTableSweing> {
                               )),
                           height: 40,
                           width: 40,
-                          child: Text('المدفوع',
+                          child: Text(AppStrings.paidUp.tr(),
                               style: GoogleFonts.notoKufiArabic(
                                 color:  MyConstant().greenColor,
                                 fontWeight: FontWeight.w600,
@@ -83,7 +87,7 @@ class _CustomTableSweingState extends State<CustomTableSweing> {
                               )),
                           height: 40,
                           width: 40,
-                          child: Text('المتبقي',
+                          child: Text(AppStrings.Residual.tr(),
                               style: GoogleFonts.notoKufiArabic(
                                 color: MyConstant().greenColor,
                                 fontWeight: FontWeight.w600,
@@ -102,7 +106,7 @@ class _CustomTableSweingState extends State<CustomTableSweing> {
                             ),
                             height: 80,
                             width: 100,
-                            child: Text('الاجمالي',
+                            child: Text(AppStrings.Total.tr(),
                                 style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().greenColor,
                                   fontWeight: FontWeight.w600,
@@ -122,7 +126,7 @@ class _CustomTableSweingState extends State<CustomTableSweing> {
                             ),
                             height: 80,
                             width: 100,
-                            child: Text('تاريخ التسليم',
+                            child: Text(AppStrings.deliverydate.tr(),
                                 style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().greenColor,
                                   fontWeight: FontWeight.w600,
@@ -142,7 +146,7 @@ class _CustomTableSweingState extends State<CustomTableSweing> {
                             ),
                             height: 80,
                             width: 100,
-                            child: Text('تاريح الفاتورة',
+                            child: Text(AppStrings.invoicdate.tr(),
                                 style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().greenColor,
                                   fontWeight: FontWeight.w600,
@@ -162,7 +166,7 @@ class _CustomTableSweingState extends State<CustomTableSweing> {
                             ),
                             height: 80,
                             width: 100,
-                            child: Text('العميل',
+                            child: Text(AppStrings.Client.tr(),
                                 style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().greenColor,
                                   fontWeight: FontWeight.w600,
@@ -182,7 +186,7 @@ class _CustomTableSweingState extends State<CustomTableSweing> {
                             ),
                             height: 80,
                             width: 100,
-                            child: Text('الجوال',
+                            child: Text(AppStrings.phoneNumber.tr(),
                                 style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().greenColor,
                                   fontWeight: FontWeight.w600,
@@ -202,7 +206,7 @@ class _CustomTableSweingState extends State<CustomTableSweing> {
                             ),
                             height: 80,
                             width: 100,
-                            child: Text('كود العميل',
+                            child: Text(AppStrings.clientCode.tr(),
                                 style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().greenColor,
                                   fontWeight: FontWeight.w600,
@@ -222,7 +226,7 @@ class _CustomTableSweingState extends State<CustomTableSweing> {
                             ),
                             height: 80,
                             width: 100,
-                            child: Text('المرجع',
+                            child: Text(AppStrings.reference.tr(),
                                 style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().greenColor,
                                   fontWeight: FontWeight.w600,

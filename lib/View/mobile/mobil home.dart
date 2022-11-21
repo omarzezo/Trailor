@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,7 +11,9 @@ import 'package:omar/View/sewing%20invoice%20screen/daily_report_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/settings_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/sweing_screen.dart';
 import 'package:omar/constant/LoadingPage.dart';
+import 'package:omar/constant/appstrings.dart';
 import 'package:omar/constant/constant.dart';
+import 'package:flutter/services.dart' as p;
 
 import '../../constant/widgets.dart';
 
@@ -29,7 +32,7 @@ class MobileHome extends StatelessWidget {
         child: Drawer(
           elevation: 0.0,
           child: Directionality(
-            textDirection: TextDirection.rtl,
+            textDirection: p.TextDirection.rtl,
             child: Stack(
               children: [
                 Container(
@@ -88,7 +91,7 @@ class MobileHome extends StatelessWidget {
       ),
       body: SafeArea(
         child: Directionality(
-          textDirection: TextDirection.rtl,
+          textDirection: p.TextDirection.rtl,
           child: Column(
 
             children: [
@@ -106,7 +109,7 @@ class MobileHome extends StatelessWidget {
                         _scaffoldKey.currentState?.openDrawer();
                       },
                       icon: const Icon(Icons.menu , color: Colors.purple,),padding: EdgeInsets.zero, iconSize: 33,),
-                   Text('الرئسية',
+                   Text( AppStrings.Main.tr(),
                       style: GoogleFonts.notoKufiArabic(
                         color: Colors.black,
                         fontSize: 14

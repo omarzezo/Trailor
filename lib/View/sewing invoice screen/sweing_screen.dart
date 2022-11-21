@@ -134,7 +134,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                 crossAxisAlignment:
                                 CrossAxisAlignment.start,
                                 children: [
-                                  Text('تاريخ الفاتورة',
+                                  Text(AppStrings.invoicdate.tr(),
                                       style: GoogleFonts.notoKufiArabic(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
@@ -172,7 +172,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                 crossAxisAlignment:
                                 CrossAxisAlignment.start,
                                 children: [
-                                  Text('تاريخ التسليم',
+                                  Text(AppStrings.deliverydate.tr(),
                                       style: GoogleFonts.notoKufiArabic(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
@@ -207,7 +207,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                 crossAxisAlignment:
                                 CrossAxisAlignment.start,
                                 children: [
-                                  Text('المرجع',
+                                  Text(AppStrings.reference.tr(),
                                       style: GoogleFonts.notoKufiArabic(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
@@ -240,7 +240,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                 crossAxisAlignment:
                                 CrossAxisAlignment.start,
                                 children: [
-                                  Text('العميل',
+                                  Text(AppStrings.Client.tr(),
                                       style: GoogleFonts.notoKufiArabic(
                                           color: MyConstant().purpleColor,
                                           fontWeight: FontWeight.bold,
@@ -825,7 +825,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                 },
                                 readOnly: true,
                                 // context: context,
-                                text: 'الاجمالي',
+                                text: AppStrings.Total.tr(),
                                 borderSide: const BorderSide(
                                     color: Colors.green, width: 1),
                                 radius: const BorderRadius.only(
@@ -1087,7 +1087,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                         cubit.calculateWhatYouPay();
                                       },
                                       // context: context,
-                                      text: 'سعر الوحدة',
+                                      text: AppStrings.unitprice.tr(),
                                       borderSide: const BorderSide(
                                           color: Colors.green, width: 1),
                                       radius: BorderRadius.zero),
@@ -1263,7 +1263,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                               crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                               children: [
-                                                Text('الدفع بواسطة',
+                                                Text(AppStrings.payWith.tr(),
                                                     style: GoogleFonts
                                                         .notoKufiArabic(
                                                         color: MyConstant()
@@ -1364,14 +1364,14 @@ class _SewingScreenState extends State<SewingScreen> {
                                                 ),
                                               ],
                                             )),
-                                        (cubit.fixedPaymentType == "نقدى" ||
+                                        (cubit.fixedPaymentType == AppStrings.monetary.tr() ||
                                             cubit.fixedPaymentType ==
-                                                "شيك بنكى")
+                                                AppStrings.BankCheck.tr())
                                             ? Container(
                                             width: MediaQuery.of(context).size.width / 6,
                                             margin: EdgeInsets.only(top: 30),
                                             child: customTextField(
-                                              text: 'المبلغ المدفوع',
+                                              text: AppStrings.Theamountpaid.tr(),
                                               controller: cubit.cash,
                                               onChange: (value) {
                                                 cubit
@@ -1389,12 +1389,12 @@ class _SewingScreenState extends State<SewingScreen> {
                                           width: 10,
                                         ),
                                         (cubit.fixedPaymentType ==
-                                            "شيك بنكى")
+                                            AppStrings.BankCheck.tr())
                                             ? Container(
                                             width: MediaQuery.of(context).size.width / 6,
                                             margin: EdgeInsets.only(top: 30),
                                             child: customTextField(
-                                                text: 'رقم الشيك',
+                                                text: AppStrings.cheeckNumber.tr(),
                                                 controller: cubit
                                                     .cheeckPayment))
                                             : Container(
@@ -1402,7 +1402,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                           width: 0,
                                         ),
                                         (cubit.fixedPaymentType ==
-                                            "بطاقة إئتمان")
+                                            AppStrings.CreditCard.tr())
                                             ? Container(
                                             margin: EdgeInsets.only(top: 30,left: 10,right: 10),
                                             width:
@@ -1411,7 +1411,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                                 .width /
                                                 6,
                                             child: customTextField(
-                                                text: 'المدفوع الشبكي',
+                                                text: AppStrings.paidnetwork.tr(),
                                                 controller: cubit
                                                     .onlinePayment))
                                             : Container(
@@ -1419,7 +1419,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                           width: 0,
                                         ),
                                         (cubit.fixedPaymentType ==
-                                            "بطاقة إئتمان")
+                                            AppStrings.CreditCard.tr())
                                             ? Container(
                                             width:
                                             MediaQuery.of(context)
@@ -1647,7 +1647,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                       crossAxisAlignment:
                                       CrossAxisAlignment.start,
                                       children: [
-                                        Text('الدفع بواسطة',
+                                        Text(AppStrings.payWith.tr(),
                                             style: GoogleFonts
                                                 .notoKufiArabic(
                                                 color: MyConstant().purpleColor, fontWeight: FontWeight.bold, fontSize: 14)),
@@ -1750,9 +1750,9 @@ class _SewingScreenState extends State<SewingScreen> {
                                     child: Row(
                                       children: [
 
-                                        (cubit.fixedPaymentType == "نقدى" ||
+                                        (cubit.fixedPaymentType ==  AppStrings.monetary.tr() ||
                                             cubit.fixedPaymentType ==
-                                                "شيك بنكى")
+                                                AppStrings.BankCheck.tr())
                                             ? Container(
                                             width: MediaQuery.of(context).size.width *0.30,
                                             margin: EdgeInsets.only(top: 30),
@@ -1770,12 +1770,12 @@ class _SewingScreenState extends State<SewingScreen> {
                                           width: 10,
                                         ),
                                         (cubit.fixedPaymentType ==
-                                            "شيك بنكى")
+                                            AppStrings.BankCheck.tr())
                                             ? Container(
                                             width: MediaQuery.of(context).size.width *0.30,
                                             margin: EdgeInsets.only(top: 30),
                                             child: customTextField(
-                                                text: 'رقم الشيك',
+                                                text: AppStrings.cheeckNumber.tr(),
                                                 controller: cubit
                                                     .cheeckPayment))
                                             : Container(
@@ -1783,13 +1783,13 @@ class _SewingScreenState extends State<SewingScreen> {
                                           width: 0,
                                         ),
                                         (cubit.fixedPaymentType ==
-                                            "بطاقة إئتمان")
+                                            AppStrings.CreditCard.tr())
                                             ? Container(
                                             margin: EdgeInsets.only(top: 30,left: 10,right: 10),
                                             width:
                                             MediaQuery.of(context).size.width *0.30,
                                             child: customTextField(
-                                                text: 'المدفوع الشبكي',
+                                                text: AppStrings.paidnetwork.tr(),
                                                 controller: cubit
                                                     .onlinePayment))
                                             : Container(
@@ -1797,7 +1797,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                           width: 0,
                                         ),
                                         (cubit.fixedPaymentType ==
-                                            "بطاقة إئتمان")
+                                            AppStrings.CreditCard.tr())
                                             ? Container(
                                             width:
                                             MediaQuery.of(context).size.width *0.30,
@@ -1810,7 +1810,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                               CrossAxisAlignment
                                                   .start,
                                               children: [
-                                                Text('نوع الشبكة',
+                                                Text(AppStrings.networktype.tr(),
                                                     style: GoogleFonts
                                                         .notoKufiArabic(
                                                         color: MyConstant()

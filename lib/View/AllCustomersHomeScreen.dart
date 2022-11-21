@@ -1,11 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/View/sewing%20invoice%20screen/pills_item_data.dart';
+import 'package:omar/constant/appstrings.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:flutter/services.dart' as p;
 
 class AllCustomersHomeScreen extends StatefulWidget {
   const AllCustomersHomeScreen({Key? key}) : super(key: key);
@@ -33,7 +36,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
     var cubit=LoginCubit.get(context);
 
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: p.TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           // TODO: implement listener
@@ -84,7 +87,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                             ),
                             height: 80,
                             width: 100,
-                            child: Text('اسم العميل',
+                            child: Text( AppStrings.clientName.tr(),
                                 style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().greenColor,
                                   fontWeight: FontWeight.w600,
@@ -104,7 +107,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                             ),
                             height: 80,
                             width: 100,
-                            child: Text('البريد الالكتروني',
+                            child: Text(AppStrings.Email.tr(),
                                 style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().greenColor,
                                   fontWeight: FontWeight.w600,
@@ -124,7 +127,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                             ),
                             height: 80,
                             width: 100,
-                            child: Text('الرقم الضريبي',
+                            child: Text(AppStrings.vatNumber.tr(),
                                 style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().greenColor,
                                   fontWeight: FontWeight.w600,
@@ -144,7 +147,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                             ),
                             height: 80,
                             width: 100,
-                            child: Text('العنوان',
+                            child: Text(AppStrings.address.tr(),
                                 style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().greenColor,
                                   fontWeight: FontWeight.w600,
@@ -164,7 +167,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                             ),
                             height: 80,
                             width: 100,
-                            child: Text('الرقم البريدي',
+                            child: Text(AppStrings.zipCode.tr(),
                                 style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().greenColor,
                                   fontWeight: FontWeight.w600,
@@ -184,7 +187,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                             ),
                             height: 80,
                             width: 100,
-                            child: Text('الجوال',
+                            child: Text(AppStrings.phoneNumber.tr(),
                                 style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().greenColor,
                                   fontWeight: FontWeight.w600,
@@ -422,7 +425,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                                 ),
                                 height: 80,
                                 width: 100,
-                                child: Text('اسم العميل',
+                                child: Text(AppStrings.clientName.tr(),
                                     style: GoogleFonts.notoKufiArabic(
                                       color: MyConstant().greenColor,
                                       fontWeight: FontWeight.w600,
@@ -442,7 +445,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                                 ),
                                 height: 80,
                                 width: 100,
-                                child: Text('البريد الالكتروني',
+                                child: Text(AppStrings.Email.tr(),
                                     style: GoogleFonts.notoKufiArabic(
                                       color: MyConstant().greenColor,
                                       fontWeight: FontWeight.w600,
@@ -462,7 +465,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                                 ),
                                 height: 80,
                                 width: 100,
-                                child: Text('الرقم الضريبي',
+                                child: Text(AppStrings.vatNumber.tr(),
                                     style: GoogleFonts.notoKufiArabic(
                                       color: MyConstant().greenColor,
                                       fontWeight: FontWeight.w600,
@@ -482,7 +485,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                                 ),
                                 height: 80,
                                 width: 100,
-                                child: Text('العنوان',
+                                child: Text(AppStrings.address.tr(),
                                     style: GoogleFonts.notoKufiArabic(
                                       color: MyConstant().greenColor,
                                       fontWeight: FontWeight.w600,
@@ -502,7 +505,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                                 ),
                                 height: 80,
                                 width: 100,
-                                child: Text('الرقم البريدي',
+                                child: Text(AppStrings.zipCode.tr(),
                                     style: GoogleFonts.notoKufiArabic(
                                       color: MyConstant().greenColor,
                                       fontWeight: FontWeight.w600,
@@ -522,7 +525,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                                 ),
                                 height: 80,
                                 width: 100,
-                                child: Text('الجوال',
+                                child: Text(AppStrings.phoneNumber.tr(),
                                     style: GoogleFonts.notoKufiArabic(
                                       color: MyConstant().greenColor,
                                       fontWeight: FontWeight.w600,

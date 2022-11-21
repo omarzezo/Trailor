@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:esc_pos_printer/esc_pos_printer.dart' as eco;
 import 'package:esc_pos_utils/esc_pos_utils.dart';
 import 'package:flutter/foundation.dart';
@@ -19,8 +20,10 @@ import 'package:omar/View/sonomiPrinter.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:screenshot/screenshot.dart';
 import '../constant/LoadingPage.dart';
+import '../constant/appstrings.dart';
 import '../constant/constant.dart';
 import '../models/invoiceModel.dart';
+import 'package:flutter/services.dart' as p;
 
 class PrintPillScreen extends StatefulWidget {
   static const routeName="PrintPillScreen";
@@ -69,7 +72,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
     var cubit=LoginCubit.get(context);
     Size size = MediaQuery.of(context).size;
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: p.TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
   listener: (context, state) {
   },
@@ -78,7 +81,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
       backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.purple,
-          title: Text("الطابعة", style: GoogleFonts.notoKufiArabic(
+          title: Text(AppStrings.printer.tr(), style: GoogleFonts.notoKufiArabic(
           color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)), centerTitle: true,),
         body: (cubit.invoiceModel!=null)?  Center(
           child: SingleChildScrollView(
@@ -499,7 +502,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
 //                     ),
                   ),
                   ElevatedButton(
-                    child: Text("طباعة",
+                    child: Text(AppStrings.print.tr(),
                         style: getStyle(color: Colors.white, fontSize: 16)
                     ),
                     onPressed: () async{
@@ -565,7 +568,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                           width: width,
                           color: Colors.white,
                           child: Directionality(
-                              textDirection: TextDirection.ltr,
+                              textDirection: p.TextDirection.ltr,
                               child:Column(
                                 children: [
 
@@ -575,11 +578,11 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                       child:Column(
                                           children: [
 
-                                            Text("مركز الابداع للخياطة", style: getStyle(color: MyConstant().purpleColor, fontSize: textSize)
+                                            Text(AppStrings.Tailoringinnovationcenter.tr(), style: getStyle(color: MyConstant().purpleColor, fontSize: textSize)
                                             ),
                                             Row(
                                               mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [Text("فاتورة ضريبة مبسطة ", style: getStyle(color: Colors.black, fontSize: textSize)
+                                              children: [Text(AppStrings.Simplifiedtaxinvoice.tr(), style: getStyle(color: Colors.black, fontSize: textSize)
                                               )],
                                             ),
                                             const SizedBox(height: 10,),
@@ -591,7 +594,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                 color: Colors.grey.shade300,
                                               ),
                                               padding: const EdgeInsets.only(top: 3,bottom: 3),
-                                              child:Text("مؤسسة وعد الوان", style: getStyle(color: Colors.black, fontSize: textSize)),),
+                                              child:Text(AppStrings.waadcompany.tr(), style: getStyle(color: Colors.black, fontSize: textSize)),),
 
                                             const SizedBox(height: 10,),
                                           ])),
@@ -1185,7 +1188,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
         width: width,
         color: Colors.white,
         child: Directionality(
-            textDirection: TextDirection.ltr,
+            textDirection: p.TextDirection.ltr,
             child:Column(
               children: [
 

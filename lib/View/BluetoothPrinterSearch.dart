@@ -1,10 +1,12 @@
 import 'dart:convert';
 // import 'package:blue_print_pos/blue_print_pos.dart';
 // import 'package:blue_print_pos/models/blue_device.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/SharedPreferencesHelper.dart';
+import 'package:omar/constant/appstrings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -59,7 +61,7 @@ class _BluetoothPrinterSearch extends State<BluetoothPrinterSearch> {
         width: isorientation?MediaQuery.of(context).size.width*0.6:double.infinity,
         child:Scaffold(
           appBar: AppBar(
-            title:  Text('البحث',style: GoogleFonts.notoKufiArabic(
+            title:  Text(AppStrings.search.tr(),style: GoogleFonts.notoKufiArabic(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 16)),

@@ -79,18 +79,18 @@ class _TabletHomeState extends State<TabletHome> {
                     children: [
                       Container(height: 70,padding: const EdgeInsets.symmetric(horizontal: 5),child: RowName(),),
                       const Divider(color: Colors.green,endIndent: 10,indent: 30,thickness: 3,height: 10),
-                      RowNameDetail(title: 'مبيعات التفصيل' , titleImage: 'image/tshirt.png'),
-                      RowNameDetail(title: 'اقمسة-اكسسوارات' , titleImage: 'image/towels.png'),
-                      RowNameDetail(title: 'الحجوزات' , titleImage: 'image/booking.png'),
-                      RowNameDetail(title: 'الرسائل والاشعارات' , titleImage: 'image/email.png'),
-                      RowNameDetail(title: 'الضرائب والحسابات' , titleImage: 'image/profit (1).png'),
-                      RowNameDetail(title: 'ادارة المخزون' ,titleImage: 'image/warehouse (1).png'),
+                      RowNameDetail(title:AppStrings.InventoryManagement.tr() , titleImage: 'image/tshirt.png'),
+                      RowNameDetail(title:AppStrings.TextilesAccessories.tr() , titleImage: 'image/towels.png'),
+                      RowNameDetail(title: AppStrings.bookings.tr() , titleImage: 'image/booking.png'),
+                      RowNameDetail(title: AppStrings.Messagesandnotifications.tr() , titleImage: 'image/email.png'),
+                      RowNameDetail(title: AppStrings.Taxesandaccounts.tr() , titleImage: 'image/profit (1).png'),
+                      RowNameDetail(title: AppStrings.InventoryManagement.tr() ,titleImage: 'image/warehouse (1).png'),
                       InkWell(
                           onTap: ()async {
                             await LoginCubit.get(context).getPillsDetails();
                             Navigator.pushNamed(context, DailyReportScreen.routeName);
                           },
-                          child: RowNameDetail(title: 'التقارير' , titleImage: 'image/report.png')),
+                          child: RowNameDetail(title:AppStrings.reports.tr() , titleImage: 'image/report.png')),
                       InkWell(
                         onTap: () async{
                           LoadingPage(context).show();
@@ -100,13 +100,13 @@ class _TabletHomeState extends State<TabletHome> {
                           Navigator.pushNamed(context, CustomerDetailsScreen.routeName);
 
                         },
-                          child: RowNameDetail(title: 'العملاء' , titleImage: 'image/report.png')),
+                          child: RowNameDetail(title: AppStrings.customers.tr() , titleImage: 'image/report.png')),
 
                       InkWell(
                           onTap: () async{
                             Navigator.of(context).push(createRoute(SettingScreen()));
                           },
-                          child: RowNameDetail(title: 'الاعدادات' , iconData: Icons.settings,)),
+                          child: RowNameDetail(title: AppStrings.settings.tr() , iconData: Icons.settings,)),
 
                     ],
                   ),
@@ -181,7 +181,7 @@ class _TabletHomeState extends State<TabletHome> {
                                 )),
                             Padding(
                               padding: const EdgeInsets.only(right: 8.0),
-                              child: Text('الرئسية',
+                              child: Text(AppStrings.Main.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                       color: Colors.purple,
                                       fontSize: 18,

@@ -1,15 +1,19 @@
 import 'dart:typed_data';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/View/BluetoothPrinterSearch.dart';
+import 'package:omar/constant/appstrings.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:responsive_framework/responsive_value.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import '../../SharedPreferencesHelper.dart';
 
+import 'package:flutter/services.dart' as p;
 
 
 class SettingScreen extends StatefulWidget {
@@ -652,12 +656,12 @@ class SettingScreenState extends State<SettingScreen> {
             )));
 
     return Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: p.TextDirection.rtl,
         child: Scaffold(
           appBar: AppBar(
             // toolbarHeight: 100,
             backgroundColor: Colors.purple,
-            title: Text("اعدادات الطابعة ",style: GoogleFonts.notoKufiArabic(
+            title: Text(AppStrings.printersettings.tr(),style: GoogleFonts.notoKufiArabic(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 18)),
@@ -670,6 +674,43 @@ class SettingScreenState extends State<SettingScreen> {
                 children: [
                   printerContainer,
                   const SizedBox(height: 20,),
+                  Container(
+                    height: 50,
+                    margin: const EdgeInsets.fromLTRB(4,4,4,4),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: MyConstant().purpleColor),
+                      color: const Color(0xffffffff),
+                      borderRadius: const BorderRadius.all(
+                          Radius.circular(10.0) //                 <--- border radius here
+                      ),
+                    ),
+                    child: Row(children: [
+                      Container(
+                          padding:EdgeInsets.symmetric(horizontal: 20),
+                          child: Text("language",
+                              style: GoogleFonts.notoKufiArabic(
+                                  color: MyConstant().purpleColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18))),
+                      Spacer(),
+
+                      InkWell(
+                        onTap: () async {
+                         await LoginCubit.get(context).chaneLangeUage(context);
+
+                        },
+                        child: Container(
+                            padding:EdgeInsets.symmetric(horizontal: 20),
+
+                            child: Text("arabic",
+                                style: GoogleFonts.notoKufiArabic(
+                                    color: MyConstant().purpleColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18))),
+                      )
+                    ],),
+                  ),
+
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Container(
@@ -684,14 +725,15 @@ class SettingScreenState extends State<SettingScreen> {
                           },
                           child: Padding(
                             padding: const EdgeInsets.only(left: 14,right: 14),
-                            child: Text('حفظ',
+                            child: Text(AppStrings.Save.tr(),
                                 style: GoogleFonts.notoKufiArabic(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18)),
                           ),
                         )),
-                  )
+                  ),
+
                 ],
               ),
             ),

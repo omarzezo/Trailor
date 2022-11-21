@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -6,8 +7,10 @@ import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/SharedPreferencesHelper.dart';
 import 'package:omar/View/invoice_Screen.dart';
+import 'package:omar/constant/appstrings.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/models/updatePillsStatus.dart';
+import 'package:flutter/services.dart' as p;
 
 import '../../constant/LoadingPage.dart';
 
@@ -22,7 +25,7 @@ class PillsItemData extends StatelessWidget {
     var cubit = LoginCubit.get(context);
 
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: p.TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is UpdatedPillsResponseSuccessState) {
@@ -33,7 +36,7 @@ class PillsItemData extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
               appBar: AppBar(
-                title: Text("تفاصيل ",
+                title: Text(AppStrings.details.tr(),
                     style: GoogleFonts.notoKufiArabic(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -51,7 +54,7 @@ class PillsItemData extends StatelessWidget {
                     }
                     if(pageSize==null||printerType==null){
                       Fluttertoast.showToast(
-                          msg: "من فضلك اختر نوع الطابعة وحجم الصفحة",
+                          msg: AppStrings.printertoast.tr(),
                           toastLength: Toast.LENGTH_LONG,
                           gravity: ToastGravity.CENTER,
                           timeInSecForIosWeb: 1,
@@ -76,7 +79,7 @@ class PillsItemData extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text("الحالة  ",
+                          Text(AppStrings.statue.tr(),
                               style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().purpleColor,
                                   fontWeight: FontWeight.bold,
@@ -126,7 +129,7 @@ class PillsItemData extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
 
                         children: [
-                          Text("تاريخ التسليم",
+                          Text(AppStrings.deliverydate.tr(),
                               style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().purpleColor,
                                   fontWeight: FontWeight.bold,
@@ -186,7 +189,7 @@ class PillsItemData extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
 
                         children: [
-                          Text("تاريخ الفاتورة",
+                          Text(AppStrings.invoicdate.tr(),
                               style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().purpleColor,
                                   fontWeight: FontWeight.bold,
@@ -215,7 +218,7 @@ class PillsItemData extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
 
                         children: [
-                          Text("العميل",
+                          Text(AppStrings.Client.tr(),
                               style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().purpleColor,
                                   fontWeight: FontWeight.bold,
@@ -239,7 +242,7 @@ class PillsItemData extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
 
                         children: [
-                          Text("الجوال",
+                          Text(AppStrings.phoneNumber.tr(),
                               style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().purpleColor,
                                   fontWeight: FontWeight.bold,
@@ -266,7 +269,7 @@ class PillsItemData extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
 
                         children: [
-                          Text("كود العميل",
+                          Text(AppStrings.clientCode.tr(),
                               style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().purpleColor,
                                   fontWeight: FontWeight.bold,
@@ -294,7 +297,7 @@ class PillsItemData extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
 
                         children: [
-                          Text("المرجع",
+                          Text(AppStrings.reference.tr(),
                               style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().purpleColor,
                                   fontWeight: FontWeight.bold,
@@ -334,7 +337,7 @@ class PillsItemData extends StatelessWidget {
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(top: 10,bottom: 10),
-                              child: Text('تعديل',
+                              child: Text(AppStrings.edit.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,

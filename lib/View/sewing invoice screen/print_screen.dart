@@ -92,14 +92,14 @@ class PrintScreen extends StatelessWidget {
 // mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
                                     Expanded(
-                                      child: Text('المقاسات',
+                                      child: Text(AppStrings.Sizes.tr(),
                                           style: GoogleFonts.notoKufiArabic(
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold,
                                               fontSize: 12)),
                                     ),
                                     Expanded(
-                                      child: Text(' الخياط : ${cubit.TaillorName} ',
+                                      child: Text(' ${AppStrings.thetailor.tr()} : ${cubit.TaillorName} ',
                                           style: GoogleFonts.notoKufiArabic(
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold,
@@ -130,7 +130,7 @@ class PrintScreen extends StatelessWidget {
                                           height: 40,
                                           child: MyText(
                                               text:
-                                                  ' القماش : ${cubit.type.text}'),
+                                                  ' ${AppStrings.cloth.tr()} : ${cubit.type.text}'),
                                         )),
                                         Expanded(
                                             child: SizedBox(
@@ -1135,7 +1135,7 @@ class PrintScreen extends StatelessWidget {
                                                         .spaceBetween,
 // crossAxisAlignment: CrossAxisAlignment.center,
                                                 children: [
-                                                  (cubit.fixedPaymentType=="نقدى"||cubit.fixedPaymentType=="شيك بنكى")?  Expanded(
+                                                  (cubit.fixedPaymentType== AppStrings.monetary.tr()||cubit.fixedPaymentType== AppStrings.BankCheck.tr())?  Expanded(
                                                       child: SizedBox(
                                                     width: MediaQuery.of(context)
                                                             .size
@@ -1145,7 +1145,7 @@ class PrintScreen extends StatelessWidget {
                                                         text:
                                                             ' ${AppStrings.Theamountpaid.tr()} : ${cubit.cash.text}'),
                                                   )): Container(),
-                                                  (cubit.fixedPaymentType=="شيك بنكى")?  Expanded(
+                                                  (cubit.fixedPaymentType== AppStrings.BankCheck.tr())?  Expanded(
                                                       child: SizedBox(
                                                     width: MediaQuery.of(context)
                                                             .size
@@ -1153,9 +1153,9 @@ class PrintScreen extends StatelessWidget {
                                                         6,
                                                     child: MyText(
                                                         text:
-                                                            '  رقم الشيك : ${cubit.cheeckPayment.text}'),
+                                                            '  ${ AppStrings.cheeckNumber.tr()} : ${cubit.cheeckPayment.text}'),
                                                   )):  Container(),
-                                                  (cubit.fixedPaymentType=="بطاقة إئتمان")?  Expanded(
+                                                  (cubit.fixedPaymentType== AppStrings.CreditCard.tr())?  Expanded(
                                                       child: SizedBox(
                                                     width: MediaQuery.of(context)
                                                             .size
@@ -1163,9 +1163,9 @@ class PrintScreen extends StatelessWidget {
                                                         6,
                                                     child: MyText(
                                                         text:
-                                                            ' المدفوع الشبكي : ${cubit.onlinePayment.text}'),
+                                                            ' ${AppStrings.paidnetwork.tr()} : ${cubit.onlinePayment.text}'),
                                                   )): Container(),
-                                                  (cubit.fixedPaymentType=="بطاقة إئتمان")?     Expanded(
+                                                  (cubit.fixedPaymentType== AppStrings.CreditCard.tr())?     Expanded(
                                                       child: SizedBox(
                                                     width: MediaQuery.of(context)
                                                             .size
@@ -1173,7 +1173,7 @@ class PrintScreen extends StatelessWidget {
                                                         6,
                                                     child: MyText(
                                                         text:
-                                                            ' نوع الشبكة : ${cubit.paymentType}'),
+                                                            ' ${AppStrings.networktype.tr()} : ${cubit.paymentType}'),
                                                   )): Container(),
                                                   Expanded(
                                                       child: SizedBox(

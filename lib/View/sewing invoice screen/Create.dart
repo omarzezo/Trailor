@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:omar/constant/appstrings.dart';
 
 import '../../constant/constant.dart';
 
@@ -28,7 +30,7 @@ class _CreateScreenState extends State<CreateScreen> {
                       height: 20,
                       color: MyConstant().purpleColor,
                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Text('الثواب' , style: GoogleFonts.notoKufiArabic(
+                      child: Text(AppStrings.clothes.tr() , style: GoogleFonts.notoKufiArabic(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 12

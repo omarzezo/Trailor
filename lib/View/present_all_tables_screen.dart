@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,8 +11,10 @@ import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/View/Data%20Table/model.dart';
 import 'package:omar/View/Data%20Table/widget%20table.dart';
 import 'package:omar/View/sewing%20invoice%20screen/pills_item_data.dart';
+import 'package:omar/constant/appstrings.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:flutter/services.dart' as p;
 
 class PresentAllTablesScreen extends StatefulWidget {
   const PresentAllTablesScreen({Key? key}) : super(key: key);
@@ -52,7 +55,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
     // filteredList = List.from(cubit.pillsDetails!.data!);
 
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: p.TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           // TODO: implement listener
@@ -107,7 +110,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                               ),
                               height: 80,
                               width: 100,
-                              child: Text('العميل',
+                              child: Text(AppStrings.Client.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.w600,
@@ -127,7 +130,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                               ),
                               height: 80,
                               width: 100,
-                              child: Text('الجوال',
+                              child: Text(AppStrings.phoneNumber.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.w600,
@@ -147,7 +150,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                               ),
                               height: 80,
                               width: 100,
-                              child: Text('الحالة',
+                              child: Text(AppStrings.statue.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.w600,
@@ -167,7 +170,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                               ),
                               height: 80,
                               width: 100,
-                              child: Text('المتبقى',
+                              child: Text(AppStrings.Residual.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.w600,
@@ -187,7 +190,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                               ),
                               height: 80,
                               width: 100,
-                              child: Text('تاريخ التسليم',
+                              child: Text(AppStrings.deliverydate.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.w600,
@@ -207,7 +210,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                               ),
                               height: 80,
                               width: 100,
-                              child: Text('تاريح الفاتورة',
+                              child: Text(AppStrings.invoicdate.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.w600,
@@ -228,7 +231,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                               ),
                               height: 80,
                               width: 100,
-                              child: Text('الجوال',
+                              child: Text(AppStrings.phoneNumber.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.w600,
@@ -248,7 +251,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                               ),
                               height: 80,
                               width: 100,
-                              child: Text('كود العميل',
+                              child: Text(AppStrings.clientCode.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.w600,
@@ -268,7 +271,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                               ),
                               height: 80,
                               width: 100,
-                              child: Text('المرجع',
+                              child: Text(AppStrings.reference.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.w600,
@@ -592,7 +595,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                               ),
                               height: 80,
                               width: 100,
-                              child: Text('العميل',
+                              child: Text(AppStrings.Client.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.w600,
@@ -612,7 +615,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                               ),
                               height: 80,
                               width: 100,
-                              child: Text('الجوال',
+                              child: Text(AppStrings.phoneNumber.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.w600,
@@ -632,7 +635,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                               ),
                               height: 80,
                               width: 100,
-                              child: Text('الحالة',
+                              child: Text(AppStrings.statue.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.w600,
@@ -652,7 +655,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                               ),
                               height: 80,
                               width: 100,
-                              child: Text('المتبقى',
+                              child: Text(AppStrings.Residual.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.w600,
@@ -672,7 +675,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                               ),
                               height: 80,
                               width: 100,
-                              child: Text('تاريخ التسليم',
+                              child: Text(AppStrings.deliverydate.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.w600,
@@ -692,7 +695,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                               ),
                               height: 80,
                               width: 100,
-                              child: Text('تاريح الفاتورة',
+                              child: Text(AppStrings.invoicdate.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.w600,
@@ -713,7 +716,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                               ),
                               height: 80,
                               width: 100,
-                              child: Text('الجوال',
+                              child: Text(AppStrings.phoneNumber.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.w600,
@@ -733,7 +736,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                               ),
                               height: 80,
                               width: 100,
-                              child: Text('كود العميل',
+                              child: Text(AppStrings.clientCode.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.w600,
@@ -753,7 +756,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                               ),
                               height: 80,
                               width: 100,
-                              child: Text('المرجع',
+                              child: Text(AppStrings.reference.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.w600,

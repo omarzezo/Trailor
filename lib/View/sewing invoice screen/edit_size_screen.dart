@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -6,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
+import 'package:omar/constant/appstrings.dart';
 import 'package:omar/models/TypesModel.dart';
 import 'package:omar/models/tRCollar.dart';
 import 'package:omar/models/tRCuff.dart';
@@ -19,6 +21,8 @@ import '../../constant/List Of Image.dart';
 import '../../constant/constant.dart';
 import '../../models/trFilling.dart';
 import 'Widgets.dart';
+import 'package:flutter/services.dart' as p;
+
 
 class EditSizeScreen extends StatefulWidget {
   const EditSizeScreen({
@@ -100,7 +104,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
     var cubit = LoginCubit.get(context);
 
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: p.TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -149,7 +153,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                               mainAxisAlignment:
                               MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              textDirection: TextDirection.rtl,
+                              textDirection: p.TextDirection.rtl,
                               children: [
                                 Container(
                                     height: 40,
@@ -188,7 +192,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Text('المقاسات',
+                            Text(AppStrings.Sizes.tr(),
                                 style: GoogleFonts.notoKufiArabic(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -196,7 +200,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                             const SizedBox(
                               width: 10,
                             ),
-                            Text('الخياط',
+                            Text(AppStrings.thetailor.tr(),
                                 style: GoogleFonts.notoKufiArabic(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -378,7 +382,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       height: 40,
                                       child: customTextField(
                                           hintText: cubit.sizes[0].itemName,
-                                          text: 'القماش',
+                                          text: AppStrings.cloth.tr(),
                                           controller: cubit.type,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.text,
@@ -398,7 +402,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       height: 40,
                                       child: customTextField(
                                           hintText: cubit.sizes[0].frontLength,
-                                          text: 'طول امام',
+                                          text: AppStrings.frontlength.tr(),
                                           controller: cubit.frontHeight,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
@@ -418,7 +422,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       height: 40,
                                       child: customTextField(
                                           hintText: cubit.sizes[0].backLength,
-                                          text: 'طول خلف',
+                                          text: AppStrings.lengthbehind.tr(),
                                           controller: cubit.backHeight,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
@@ -444,7 +448,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       height: 40,
                                       child: customTextField(
                                           hintText: cubit.sizes[0].shoulderWidth,
-                                          text: 'عرض الكتف',
+                                          text: AppStrings.shoulderwidth.tr(),
                                           controller: cubit.shoulderWidth,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
@@ -462,7 +466,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       child: customTextField(
                                           hintText: cubit.sizes[0].shoulderSlope,
 
-                                          text: 'ميل الكتف',
+                                          text: AppStrings.shouldertilt.tr(),
                                           controller: cubit.shoulderSlope,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
@@ -478,7 +482,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text: 'طول الكم سادة',
+                                          text: AppStrings.sleevelengthplain.tr(),
                                           hintText: cubit.sizes[0].sleeve,
 
                                           controller: cubit.sleeveLengthPlain,
@@ -496,7 +500,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text: 'طول الكم اعلي',
+                                          text: AppStrings.Thesleevelengthhigher.tr(),
                                           hintText: cubit.sizes[0].sleeveTop,
 
                                           controller:
@@ -526,7 +530,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       child: customTextField(
                                           hintText: cubit.sizes[0].wrist,
 
-                                          text: 'وسع المعصم',
+                                          text: AppStrings.widthofthewrist.tr(),
                                           controller: cubit.wideWrist,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
@@ -542,7 +546,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text: 'كفة الكم سادة',
+                                          text: AppStrings.quantumcuffplain.tr(),
                                           hintText: cubit.sizes[0]
                                               .plainCuffLength,
 
@@ -563,7 +567,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       child: customTextField(
                                           hintText: cubit.sizes[0].cuffLength,
 
-                                          text: 'طول الكبك',
+                                          text: AppStrings.cufflength.tr(),
                                           controller: cubit.cuffLength,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
@@ -579,7 +583,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text: 'عرض الكبك',
+                                          text:  AppStrings.CupcakeShow.tr(),
                                           hintText: cubit.sizes[0].cuffWidth,
 
                                           controller: cubit.cuffShow,
@@ -606,7 +610,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text: 'وسع الوسط',
+                                          text:  AppStrings.widenthemiddle.tr(),
                                           hintText: cubit.sizes[0].middleWidth,
 
                                           controller: cubit.wideMiddle,
@@ -624,7 +628,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text: 'وسع الصدر امام',
+                                          text:  AppStrings.Expandthechestinfrontof.tr(),
                                           hintText: cubit.sizes[0].chestFront,
 
                                           controller:
@@ -643,7 +647,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text: 'وسع الصدر خلف',
+                                          text: AppStrings.Expandthechestbehind.tr(),
                                           hintText: cubit.sizes[0].chestBack,
 
                                           controller:
@@ -664,7 +668,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       child: customTextField(
                                           hintText: cubit.sizes[0].bottomHeight,
 
-                                          text: 'كفة اسفل',
+                                          text: AppStrings.cuffdown.tr(),
                                           controller: cubit.koftaBottom,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
@@ -691,7 +695,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       child: customTextField(
                                           hintText: cubit.sizes[0].bottomWidth,
 
-                                          text: 'وسع اسفل',
+                                          text:  AppStrings.expanddown.tr(),
                                           controller: cubit.expandDown,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
@@ -707,7 +711,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text: 'وسع الرقبة سادة',
+                                          text: AppStrings.NeckPlain.tr(),
                                           hintText: cubit.sizes[0].collarWidth,
 
                                           controller: cubit.wideNeckPillow,
@@ -727,7 +731,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       child: customTextField(
                                           hintText: cubit.sizes[0].collarHeight,
 
-                                          text: 'ارتفاع الرقبة',
+                                          text: AppStrings.highneck.tr(),
                                           controller: cubit.neckHeight,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
@@ -745,7 +749,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       child: customTextField(
                                           hintText: cubit.sizes[0].zipperHeight,
 
-                                          text: 'ارتفاع الجبزور',
+                                          text:  AppStrings.JabzourHeight.tr(),
                                           controller: cubit.gypsumHeight,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
@@ -772,7 +776,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       child: customTextField(
                                           hintText: cubit.sizes[0].zipperWidth,
 
-                                          text: 'عرض الجبزور',
+                                          text: AppStrings.JabzourShow.tr(),
                                           controller: cubit.viewGypsum,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
@@ -791,7 +795,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           hintText: cubit.sizes[0]
                                               .chestPocketHeight,
 
-                                          text: 'ط-جيب الصدر',
+                                          text: AppStrings.ichestpocket.tr(),
                                           controller: cubit.lengthChestPocket,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
@@ -809,7 +813,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       child: customTextField(
                                           hintText: cubit.sizes[0]
                                               .chestPocketWidth,
-                                          text: 'ع-جيب الصدر',
+                                          text: AppStrings.pchestpocket.tr(),
                                           controller: cubit.wideChestPocket,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
@@ -827,7 +831,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       child: customTextField(
                                           hintText: cubit.sizes[0]
                                               .mobilePocketHeight,
-                                          text: 'ط-جيب الجوال',
+                                          text: AppStrings.Imobilepocket.tr(),
                                           controller: cubit.wideMobilePocket,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
@@ -852,7 +856,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text: 'ع-جيب الجوال',
+                                          text:AppStrings.pmobilepocket.tr(),
                                           controller: cubit.wideMobilePocket2,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
@@ -870,7 +874,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       child: customTextField(
                                           hintText: cubit.sizes[0]
                                               .walletPocketHeight,
-                                          text: 'ط-جيب المحفظة',
+                                          text: AppStrings.iwalletpocket.tr(),
                                           controller: cubit.lengthPocketWallet,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
@@ -889,7 +893,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       child: customTextField(
                                           hintText: cubit.sizes[0]
                                               .walletPocketWidth,
-                                          text: 'ع-جيب المحفظة',
+                                          text:  AppStrings.pwalletpocket.tr(),
                                           controller: cubit.widePocketWallet,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
@@ -906,7 +910,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       height: 40,
                                       child: customTextField(
                                           hintText: cubit.sizes[0].haunchWidth,
-                                          text: 'وسع الورك',
+                                          text:  AppStrings.hipextension.tr(),
                                           controller: cubit.hipWidth,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
@@ -932,7 +936,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       height: 40,
                                       child: customTextField(
                                           hintText: cubit.sizes[0].buttonNo,
-                                          text: 'رقم الزرار',
+                                          text: AppStrings.buttonnumber.tr(),
                                           controller: cubit.buttonNumber,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
@@ -949,7 +953,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       height: 40,
                                       child: customTextField(
                                           hintText: cubit.sizes[0].embroideryNo,
-                                          text: 'رقم التطريز',
+                                          text:  AppStrings.embroiderynumber.tr(),
                                           controller: cubit.embroideryNumber,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
@@ -967,7 +971,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       child: customTextField(
                                           hintText: cubit.sizes[0]
                                               .shoulderChestLength,
-                                          text: 'بين جيب الصدر والكتف',
+                                          text:  AppStrings.betweenchestpocketandshoulder.tr(),
                                           controller: cubit
                                               .betweenTheChestPocketAndTheShoulder,
                                           textInputAction: TextInputAction.next,
@@ -984,7 +988,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text: 'جيب الجنب',
+                                          text:  AppStrings.sidepocket.tr(),
                                           hintText: cubit.sizes[0]
                                               .sidePocketLength,
                                           controller: cubit.sidePocket,
@@ -1013,7 +1017,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text: 'وسع الكم وسط',
+                                          text:  AppStrings.sleevewidthmedium.tr(),
                                           hintText: cubit.sizes[0].sleeveMiddle,
                                           controller:
                                           cubit.quantumCapacityMedium,
@@ -1033,7 +1037,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       height: 40,
                                       child: customTextField(
                                           hintText: cubit.sizes[0].takhalees,
-                                          text: 'تخاليص',
+                                          text: AppStrings.clearance.tr(),
                                           controller: cubit.Takhalis,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.text,
@@ -1052,7 +1056,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       child: customTextField(
                                           hintText: cubit.sizes[0]
                                               .estimatedLength,
-                                          text: 'القماش المتوقع بالمتر',
+                                          text:  AppStrings.Fabricexpectedbythemeter.tr(),
                                           controller:
                                           cubit.expectedFabricInMeter,
                                           textInputAction: TextInputAction.done,
@@ -1070,7 +1074,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text('عينة',
+                                  Text( AppStrings.asample.tr(),
                                       style: GoogleFonts.notoKufiArabic(
                                           color: MyConstant().purpleColor,
                                           fontWeight: FontWeight.bold,
@@ -1105,7 +1109,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  Text('مستعجل',
+                                  Text( AppStrings.urgent.tr(),
                                       style: GoogleFonts.notoKufiArabic(
                                           color: MyConstant().purpleColor,
                                           fontWeight: FontWeight.bold,
@@ -1152,7 +1156,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                     crossAxisAlignment:
                                     CrossAxisAlignment.start,
                                     children: [
-                                      Text('نوع الموديل',
+                                      Text( AppStrings.ModelType.tr(),
                                           style: GoogleFonts.notoKufiArabic(
                                               color: MyConstant().purpleColor,
                                               fontWeight: FontWeight.bold,
@@ -1269,7 +1273,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                     crossAxisAlignment:
                                     CrossAxisAlignment.start,
                                     children: [
-                                      Text('نوع الياقة',
+                                      Text( AppStrings.collartype.tr(),
                                           style: GoogleFonts.notoKufiArabic(
                                               color: MyConstant().purpleColor,
                                               fontWeight: FontWeight.bold,
@@ -1386,7 +1390,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                     crossAxisAlignment:
                                     CrossAxisAlignment.start,
                                     children: [
-                                      Text('نوع الكبك',
+                                      Text( AppStrings.cufftype.tr(),
                                           style: GoogleFonts.notoKufiArabic(
                                               color: MyConstant().purpleColor,
                                               fontWeight: FontWeight.bold,
@@ -1508,7 +1512,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                     crossAxisAlignment:
                                     CrossAxisAlignment.start,
                                     children: [
-                                      Text('نوع خياط الجيب',
+                                      Text( AppStrings.pocketitchingtype.tr(),
                                           style: GoogleFonts.notoKufiArabic(
                                               color: MyConstant().purpleColor,
                                               fontWeight: FontWeight.bold,
@@ -1625,7 +1629,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                     crossAxisAlignment:
                                     CrossAxisAlignment.start,
                                     children: [
-                                      Text('نوع الحشوة',
+                                      Text( AppStrings.FillingType.tr(),
                                           style: GoogleFonts.notoKufiArabic(
                                               color: MyConstant().purpleColor,
                                               fontWeight: FontWeight.bold,
@@ -1743,7 +1747,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                     crossAxisAlignment:
                                     CrossAxisAlignment.start,
                                     children: [
-                                      Text('نوع الجبزور',
+                                      Text( AppStrings.typeofgypsum.tr(),
                                           style: GoogleFonts.notoKufiArabic(
                                               color: MyConstant().purpleColor,
                                               fontWeight: FontWeight.bold,

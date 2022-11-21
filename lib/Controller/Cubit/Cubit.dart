@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:esc_pos_printer/esc_pos_printer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:omar/Controller/End%20Point.dart';
 import 'package:omar/View/Data%20Table/model.dart';
+import 'package:omar/constant/appstrings.dart';
 import 'package:omar/models/Companies.dart';
 import 'package:omar/models/PaymentType.dart';
 import 'package:omar/models/Products.dart';
@@ -174,11 +176,11 @@ class LoginCubit extends Cubit<LoginState> {
   bool harryUp = false;
   GlobalKey repaintKey = GlobalKey();
   List<String> fixedPayment = [
-    "نقدى",
-    "بطاقة إئتمان",
-    "شيك بنكى",
+    AppStrings.monetary.tr(),
+    AppStrings.CreditCard.tr(),
+    AppStrings.BankCheck.tr(),
   ];
-  String? fixedPaymentType="نقدى";
+  String? fixedPaymentType=AppStrings.monetary.tr();
 
   // captureBoundary() async {
   //   Uint8List? pngBytes;
@@ -359,7 +361,7 @@ class LoginCubit extends Cubit<LoginState> {
       // log(jsonEncode(pillRequestModel));
       print(response.data);
       pillResponseModel = PillResponseModel.fromJson(response.data);
-      // await getAllInvoiceInformation();
+      await getAllInvoiceInformation();
 
       return pillResponseModel;
     } else {
@@ -913,4 +915,15 @@ String? quantities1;
   // }
 
   // void getList(List<Details> details) => details.map((e) {});
+
+chaneLangeUage(BuildContext context) async {
+  if(context.locale==Locale("en","US")){
+    await context.setLocale( Locale("ar","EG"));
+    emit(LoginSuccess());
+
+  }else {
+    await  context.setLocale( Locale("en", "US"));
+  }
+
+}
 }

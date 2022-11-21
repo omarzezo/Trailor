@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,8 +6,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/constant/LoadingPage.dart';
+import 'package:omar/constant/appstrings.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/models/customer.dart';
+import 'package:flutter/services.dart' as p;
 
 class NewUserScreen extends StatelessWidget {
   NewUserScreen({Key? key}) : super(key: key);
@@ -38,7 +41,7 @@ class NewUserScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var cubit = LoginCubit.get(context);
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: p.TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
         },
@@ -51,7 +54,7 @@ class NewUserScreen extends StatelessWidget {
               elevation: 0,
               centerTitle: true,
               title: Text(
-                "اضافة عميل",style: GoogleFonts.notoKufiArabic(
+                AppStrings.addnewcustomer.tr(),style: GoogleFonts.notoKufiArabic(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 18),
@@ -68,7 +71,7 @@ class NewUserScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         TextFormFieldWidget(
-                          text: "اسم العميل / الشركة",
+                          text: AppStrings.customerorcompany.tr(),
                           textInputAction: TextInputAction.next,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -79,7 +82,7 @@ class NewUserScreen extends StatelessWidget {
                           textEditingController: companyNameEditingController,
                         ),
                         TextFormFieldWidget(
-                          text: "البريد الالكترونى",
+                          text: AppStrings.Email.tr(),
                           textInputAction: TextInputAction.next,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -102,7 +105,7 @@ class NewUserScreen extends StatelessWidget {
                         //   textEditingController: companyGroupIdrEditingController,
                         // ),
                         TextFormFieldWidget(
-                          text: "رقم تعريف ضريبة القيمة المضافة",
+                          text: AppStrings.vatNumber.tr(),
                           textInputAction: TextInputAction.next,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -124,7 +127,7 @@ class NewUserScreen extends StatelessWidget {
                           textEditingController: companyAddressEditingController,
                         ),
                         TextFormFieldWidget(
-                          text: "الرقم البريدى",
+                          text:AppStrings.zipCode.tr(),
                           textInputAction: TextInputAction.next,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -135,7 +138,7 @@ class NewUserScreen extends StatelessWidget {
                           textEditingController: companyPostalCodeEditingController,
                         ),
                         TextFormFieldWidget(
-                          text: "الدولة",
+                          text: AppStrings.country.tr(),
                           textInputAction: TextInputAction.next,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -146,7 +149,7 @@ class NewUserScreen extends StatelessWidget {
                           textEditingController: companyCountryEditingController,
                         ),
                         TextFormFieldWidget(
-                          text: "الجوال",
+                          text: AppStrings.phoneNumber.tr(),
                           textInputAction: TextInputAction.next,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -158,7 +161,7 @@ class NewUserScreen extends StatelessWidget {
                           companyPhoneNumberEditingController,
                         ),
                         TextFormFieldWidget(
-                          text: "رقم قيد الشركة",
+                          text: AppStrings.companyregistrationnumber.tr(),
                           textInputAction: TextInputAction.next,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -169,7 +172,7 @@ class NewUserScreen extends StatelessWidget {
                           textEditingController: companyCrNoEditingController,
                         ),
                         TextFormFieldWidget(
-                          text: "كود الشركه",
+                          text: AppStrings.companyCode.tr(),
                           textInputAction: TextInputAction.done,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -227,7 +230,7 @@ class NewUserScreen extends StatelessWidget {
                               },
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 10,bottom: 10),
-                                child: Text('اضافة',
+                                child: Text(AppStrings.add.tr(),
                                     style: GoogleFonts.notoKufiArabic(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
@@ -292,7 +295,7 @@ class TextFormFieldWidget extends StatelessWidget {
               controller: textEditingController,
               validator: validator,
               textAlign: TextAlign.start,
-              textDirection: TextDirection.rtl,
+              textDirection: p.TextDirection.rtl,
               textAlignVertical: TextAlignVertical.top,
               decoration: InputDecoration(
                 errorBorder: UnderlineInputBorder(
