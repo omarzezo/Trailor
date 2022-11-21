@@ -362,6 +362,7 @@ class LoginCubit extends Cubit<LoginState> {
       print(response.data);
       pillResponseModel = PillResponseModel.fromJson(response.data);
       await getAllInvoiceInformation();
+      await getPillsDetails();
 
       return pillResponseModel;
     } else {
@@ -467,6 +468,7 @@ String? salesId;
     if(response.statusCode==200){
       print(response.data);
       pillsDetails=PillsDetails.fromJson(response.data);
+
       return pillsDetails!;
     }else{
       print(response.statusMessage);
@@ -916,14 +918,51 @@ String? quantities1;
 
   // void getList(List<Details> details) => details.map((e) {});
 
-chaneLangeUage(BuildContext context) async {
+chaneLangeUage(BuildContext context)  {
   if(context.locale==Locale("en","US")){
-    await context.setLocale( Locale("ar","EG"));
-    emit(LoginSuccess());
+     context.setLocale( Locale("ar","EG"));
+     RestartWidget.restartApp(context);
 
   }else {
-    await  context.setLocale( Locale("en", "US"));
+      context.setLocale( Locale("en", "US"));
+      RestartWidget.restartApp(context);
+
   }
 
 }
+List<PillsDetailsData>? pillsDetailsDataList=[];
+
+
+}
+
+
+class RestartWidget extends StatefulWidget {
+  RestartWidget({required this.child});
+
+  final Widget child;
+
+  static void restartApp(BuildContext context) {
+    context.findAncestorStateOfType<_RestartWidgetState>()!.restartApp();
+  }
+
+  @override
+  _RestartWidgetState createState() => _RestartWidgetState();
+}
+
+class _RestartWidgetState extends State<RestartWidget> {
+  Key key = UniqueKey();
+
+  void restartApp() {
+    setState(() {
+      key = UniqueKey();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return KeyedSubtree(
+      key: key,
+      child: widget.child,
+    );
+  }
 }

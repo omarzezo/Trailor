@@ -34,6 +34,7 @@ void main()async {
         () {
       runApp(EasyLocalization(
           supportedLocales: const [Locale('en', 'US'), Locale('ar', "EG")],
+
           path: "assets/translations",
           child: const MyApp()));
     },
@@ -52,58 +53,60 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (context) => LoginCubit()..getPillsDetails()),
         ],
-        child: MaterialApp(
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          builder: (context, child) => ResponsiveWrapper.builder(
-              child,
-              maxWidth: 1400,
-              minWidth: 480,
-              defaultScale: true,
-              breakpoints: [
-                ResponsiveBreakpoint.resize(480, name: MOBILE),
-                ResponsiveBreakpoint.autoScale(800, name: TABLET),
-                ResponsiveBreakpoint.resize(1000, name: DESKTOP),
-              ],
-              background: Container(color: Color(0xFFF5F5F5))),
-          initialRoute: "/",
-          title: 'Flutter Demo',
-          debugShowCheckedModeBanner: false,
+        child: RestartWidget(
+          child: MaterialApp(
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            builder: (context, child) => ResponsiveWrapper.builder(
+                child,
+                maxWidth: 1400,
+                minWidth: 480,
+                defaultScale: true,
+                breakpoints: [
+                  ResponsiveBreakpoint.resize(480, name: MOBILE),
+                  ResponsiveBreakpoint.autoScale(800, name: TABLET),
+                  ResponsiveBreakpoint.resize(1000, name: DESKTOP),
+                ],
+                background: Container(color: Color(0xFFF5F5F5))),
+            initialRoute: "/",
+            title: 'Flutter Demo',
+            debugShowCheckedModeBanner: false,
 
-          theme: ThemeData.light().copyWith(
-            scrollbarTheme: ScrollbarThemeData(
-              thumbColor: MaterialStateProperty.all(MyConstant().purpleColor),
-              crossAxisMargin: -9,
-              // mainAxisMargin: 10,
-              // minThumbLength: 200,
-              trackColor: MaterialStateProperty.all(MyConstant().purpleColor ,),
+            theme: ThemeData.light().copyWith(
+              scrollbarTheme: ScrollbarThemeData(
+                thumbColor: MaterialStateProperty.all(MyConstant().purpleColor),
+                crossAxisMargin: -9,
+                // mainAxisMargin: 10,
+                // minThumbLength: 200,
+                trackColor: MaterialStateProperty.all(MyConstant().purpleColor ,),
+              ),
+              unselectedWidgetColor: Colors.white,
+              colorScheme: ThemeData.light().colorScheme.copyWith(
+                onPrimary: Colors.white, // Color for checkmark in datatable
+                primary: Colors.purple, // Color used for checkbox fill in datatable
+              ),
+              checkboxTheme: CheckboxThemeData(
+                overlayColor: MaterialStateProperty.all(Colors.purple),
+                side: MaterialStateBorderSide.resolveWith(
+                        (_) => const BorderSide(width: 2, color: Colors.white)),
+                fillColor: MaterialStateProperty.all(Colors.purple),
+                checkColor: MaterialStateProperty.all(Colors.purple),
+              ),
             ),
-            unselectedWidgetColor: Colors.white,
-            colorScheme: ThemeData.light().colorScheme.copyWith(
-              onPrimary: Colors.white, // Color for checkmark in datatable
-              primary: Colors.purple, // Color used for checkbox fill in datatable
-            ),
-            checkboxTheme: CheckboxThemeData(
-              overlayColor: MaterialStateProperty.all(Colors.purple),
-              side: MaterialStateBorderSide.resolveWith(
-                      (_) => const BorderSide(width: 2, color: Colors.white)),
-              fillColor: MaterialStateProperty.all(Colors.purple),
-              checkColor: MaterialStateProperty.all(Colors.purple),
-            ),
+
+            home: const SplashScreen(),
+            routes: {
+              PrintScreen.routeName:(context) => const PrintScreen(),
+              NewUserScreen.routeName:(context) =>  NewUserScreen(),
+              CustomerDetailsScreen.routeName:(context) =>  CustomerDetailsScreen(),
+              PillsItemData.routeName:(context) =>  PillsItemData(),
+              PrintPillScreen.routeName:(context) =>  PrintPillScreen(),
+              // WifiThroughrIpPrinter.routeName:(context) =>  WifiThroughrIpPrinter(),
+              EditSizeScreen.routeName:(context) =>  EditSizeScreen(),
+              DailyReportScreen.routeName:(context) =>  DailyReportScreen(),
+            },
           ),
-
-          home: const SplashScreen(),
-          routes: {
-            PrintScreen.routeName:(context) => const PrintScreen(),
-            NewUserScreen.routeName:(context) =>  NewUserScreen(),
-            CustomerDetailsScreen.routeName:(context) =>  CustomerDetailsScreen(),
-            PillsItemData.routeName:(context) =>  PillsItemData(),
-            PrintPillScreen.routeName:(context) =>  PrintPillScreen(),
-            // WifiThroughrIpPrinter.routeName:(context) =>  WifiThroughrIpPrinter(),
-            EditSizeScreen.routeName:(context) =>  EditSizeScreen(),
-            DailyReportScreen.routeName:(context) =>  DailyReportScreen(),
-          },
         ));
   }
 }

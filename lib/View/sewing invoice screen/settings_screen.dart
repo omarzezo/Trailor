@@ -695,8 +695,8 @@ class SettingScreenState extends State<SettingScreen> {
                       Spacer(),
 
                       InkWell(
-                        onTap: () async {
-                         await LoginCubit.get(context).chaneLangeUage(context);
+                        onTap: ()  {
+                          LoginCubit.get(context).chaneLangeUage(context);
 
                         },
                         child: Container(
