@@ -28,6 +28,13 @@ abstract class AppStrings {
   static const BankCheck = "BankCheck";
   static const CreditCard = "CreditCard";
   static const monetary = "monetary";
+  static const language = "language";
+  static const translation = "translation";
+  static const printertype = "printertype";
+  static const clickHere = "clickHere";
+  static const pleaseSearch = "pleaseSearch";
+  static const pageSize = "pageSize";
+  static const insertip = "insertip";
   static const address = "address";
   static const printer = "printer";
   static const print = "print";

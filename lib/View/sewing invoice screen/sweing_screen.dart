@@ -363,15 +363,15 @@ class _SewingScreenState extends State<SewingScreen> {
                                                                 .bold, fontSize: 12)),
                                                   ),
                                                 )).toList(),
-                                            value: cubit.userItem,
+                                            value: cubit.userItemName,
                                             isExpanded: true,
                                             onChanged: (val) {
                                               try {
                                                 print("val>>"+val.toString());
-                                                cubit.userItem = val.toString();
+                                                cubit.userItemName = val.toString();
                                                 cubit.customerName = val!.toString();
                                                 for(int i=0;i<cubit.companiesCustomerName.length;i++){
-                                                 if(cubit.userItem!.toLowerCase()==cubit.companiesCustomerName[i].company!.toLowerCase()){
+                                                 if(cubit.userItemName!.toLowerCase()==cubit.companiesCustomerName[i].company!.toLowerCase()){
                                                    customerId=int.parse(cubit.companiesCustomerName[i].id!);
                                                    print("customerId>>"+customerId.toString());
                                                    break;
@@ -496,18 +496,32 @@ class _SewingScreenState extends State<SewingScreen> {
                                         const Radius.circular(20),
                                         scrollbarThickness: 6,
                                         scrollbarAlwaysShow: true,
-                                        items: cubit.companiesEmployeeName
-                                            .map(EmployeeBuild)
-                                            .toList(),
-                                        value: cubit.employeeItem,
+                                        items:cubit.companiesEmployeeName.map((item) => DropdownMenuItem(
+            value: item.company,
+            child: Center(child: Text(
+            item.company!,
+            style: GoogleFonts.notoKufiArabic(
+            color: Colors
+                .black,
+            fontWeight:
+            FontWeight
+                .bold, fontSize: 12)
+            ),),
+            )).toList(),
+                                        // items: cubit.companiesEmployeeName
+                                        //     .map(EmployeeBuild)
+                                        //     .toList(),
+                                        value: cubit.employeeItemName,
                                         isExpanded: true,
 
                                         onChanged: (val) {
                                           setState(() {
-                                            cubit.employeeItem =
-                                            val as Companies;
-                                            cubit.employeeName =
-                                            val.company!;
+                                            // cubit.employeeItem =
+                                            // val as Companies;
+                                            // cubit.employeeName =
+                                            // val.company!;
+                                            cubit.employeeItemName=val as String;
+                                            cubit.employeeName=val;
                                           });
                                         },
                                         iconSize: 40,
@@ -616,34 +630,71 @@ class _SewingScreenState extends State<SewingScreen> {
                                           const Radius.circular(20),
                                           scrollbarThickness: 6,
                                           scrollbarAlwaysShow: true,
-
-                                          items: cubit.productsNameList
-                                              .map(ProductsBuild)
-                                              .toList(),
-                                          value: cubit.productItem,
                                           isExpanded: true,
+
+                                          // items: cubit.productsNameList
+                                          //     .map(ProductsBuild)
+                                          //     .toList(),
+                                          // value: cubit.productItem,
+                                          // onChanged: (value) {
+                                          //   setState(() {
+                                          //     cubit.productItem =
+                                          //     value as Products;
+                                          //     cubit.typeOfClothes =
+                                          //     value.name!;
+                                          //     cubit.itemCode = value.code!;
+                                          //     cubit.itemPrice.text=double.parse(value.price!).toStringAsFixed(2);
+                                          //     cubit.calculateWhatYouPay();
+                                          //     // cubit.itemPrice.text =
+                                          //     //     value.price!;
+                                          //     // cubit.tax.text= cubit.taxRatesNameList.where((element) => element.id==value.taxRate).toString();
+                                          //     cubit.taxRatesNameList
+                                          //         .forEach((element) {
+                                          //       if (element.id ==
+                                          //           value.taxRate) {
+                                          //         cubit.tax.text =
+                                          //             double.parse( element.rate!)
+                                          //                 .toStringAsFixed(2);
+                                          //         // element.rate!
+                                          //       }
+                                          //     });
+                                          //   });
+                                          // },
+                                          items:cubit.productsNameList.map((item) => DropdownMenuItem(
+                                            value: item.name,
+                                            child: Center(child: Text(
+                                                item.name!,
+                                                style: GoogleFonts.notoKufiArabic(
+                                                    color: Colors
+                                                        .black,
+                                                    fontWeight:
+                                                    FontWeight
+                                                        .bold, fontSize: 12)
+                                            ),),)).toList(),
+                                          value: cubit.productItemName,
                                           onChanged: (value) {
                                             setState(() {
-                                              cubit.productItem =
-                                              value as Products;
-                                              cubit.typeOfClothes =
-                                              value.name!;
-                                              cubit.itemCode = value.code!;
-                                              cubit.itemPrice.text=double.parse(value.price!).toStringAsFixed(2);
-                                              cubit.calculateWhatYouPay();
-                                              // cubit.itemPrice.text =
-                                              //     value.price!;
-                                              // cubit.tax.text= cubit.taxRatesNameList.where((element) => element.id==value.taxRate).toString();
-                                              cubit.taxRatesNameList
-                                                  .forEach((element) {
-                                                if (element.id ==
-                                                    value.taxRate) {
-                                                  cubit.tax.text =
-                                                      double.parse( element.rate!)
-                                                          .toStringAsFixed(2);
-                                                  // element.rate!
+                                              cubit.productsNameList.forEach((product) {
+                                                if(product.name==value){
+                                                  cubit.productItem=product;
+                                                  cubit.itemCode = product.code! ;
+                                                  cubit.itemPrice.text=double.parse(product.price!).toStringAsFixed(2);
+                                                  cubit.calculateWhatYouPay();
+                                                  cubit.taxRatesNameList
+                                                      .forEach((element) {
+                                                    if (element.id ==
+                                                        product.taxRate) {
+                                                      cubit.tax.text =
+                                                          double.parse( element.rate!)
+                                                              .toStringAsFixed(2);
+                                                      // element.rate!
+                                                    }
+                                                  });
                                                 }
                                               });
+                                              cubit.productItemName=value as String;
+                                              cubit.typeOfClothes =value;
+
                                             });
                                           },
                                           iconSize: 40,
@@ -731,17 +782,49 @@ class _SewingScreenState extends State<SewingScreen> {
                                           const Radius.circular(20),
                                           scrollbarThickness: 6,
                                           scrollbarAlwaysShow: true,
-                                          items: cubit.unitsNameList
-                                              .map(UnitsBuild)
-                                              .toList(),
-                                          value: cubit.valueItemSize,
-                                          isExpanded: true,
+                                          // items: cubit.unitsNameList
+                                          //     .map(UnitsBuild)
+                                          //     .toList(),
+                                          // value: cubit.valueItemSize,
+                                          // isExpanded: true,
+                                          //
+                                          // onChanged: (value) {
+                                          //   setState(() {
+                                          //     cubit.valueItemSize =
+                                          //     value as Units;
+                                          //     cubit.size = value.name!;
+                                          //   });
+                                          // },
+                                          items: cubit.unitsNameList.map((unit) => DropdownMenuItem(
+                                            value: unit.name,
+                                            child: Center(child: Text(
+                                                unit.name!,
+                                                style: GoogleFonts.notoKufiArabic(
+                                                    color: Colors
+                                                        .black,
+                                                    fontWeight:
+                                                    FontWeight
+                                                        .bold, fontSize: 12)
+                                            ),),)).toList(),
 
+                                          // items: cubit.unitsNameList
+                                          //   .map(UnitsBuild)
+                                          //   .toList(),
+                                          value: cubit.valueItemSizeName,
+                                          isExpanded: true,
                                           onChanged: (value) {
                                             setState(() {
-                                              cubit.valueItemSize =
-                                              value as Units;
-                                              cubit.size = value.name!;
+                                              // cubit.valueItemSize =
+                                              // value as Units;
+                                              // cubit.size = value.name!;
+                                              cubit.valueItemSizeName =
+                                              value as String;
+                                              cubit.unitsNameList.forEach((unit) {
+                                                if(unit.name==value){
+                                                  cubit.size = unit.name!;
+
+                                                }
+                                              });
                                             });
                                           },
                                           iconSize: 40,
@@ -907,33 +990,68 @@ class _SewingScreenState extends State<SewingScreen> {
                                               const Radius.circular(20),
                                               scrollbarThickness: 6,
                                               scrollbarAlwaysShow: true,
-                                              items: cubit.productsNameList
-                                                  .map(ProductsBuild)
-                                                  .toList(),
-                                              value: cubit.productItem,
+                                              items:cubit.productsNameList.map((item) => DropdownMenuItem(
+                                                  value: item.name,
+                                                  child: Center(child: Text(
+                                                      item.name!,
+                                                      style: GoogleFonts.notoKufiArabic(
+                                                          color: Colors
+                                                              .black,
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .bold, fontSize: 12)
+                                                  ),),)).toList(),
+                                              // items: cubit.productsNameList
+                                              //     .map(ProductsBuild)
+                                              //     .toList(),
+                                              value: cubit.productItemName,
                                               isExpanded: true,
                                               onChanged: (value) {
                                                 setState(() {
-                                                  cubit.productItem =
-                                                  value as Products;
-                                                  cubit.typeOfClothes =
-                                                  value.name!;
-                                                  cubit.itemCode = value.code!;
-                                                  cubit.itemPrice.text=double.parse(value.price!).toStringAsFixed(2);
-                                                  cubit.calculateWhatYouPay();
-                                                  // cubit.itemPrice.text =
-                                                  //     value.price!;
-                                                  // cubit.tax.text= cubit.taxRatesNameList.where((element) => element.id==value.taxRate).toString();
-                                                  cubit.taxRatesNameList
-                                                      .forEach((element) {
-                                                    if (element.id ==
-                                                        value.taxRate) {
-                                                      cubit.tax.text =
-                                                          double.parse( element.rate!)
-                                                              .toStringAsFixed(2);
-                                                      // element.rate!
-                                                    }
-                                                  });
+                                                cubit.productsNameList.forEach((product) {
+                                                  if(product.name==value){
+                                                    cubit.productItem=product;
+                                                    cubit.itemCode = product.code! ;
+                                                    cubit.itemPrice.text=double.parse(product.price!).toStringAsFixed(2);
+                                                    cubit.calculateWhatYouPay();
+                                                    // cubit.itemPrice.text =
+                                                    //     value.price!;
+                                                    // cubit.tax.text= cubit.taxRatesNameList.where((element) => element.id==value.taxRate).toString();
+                                                    cubit.taxRatesNameList
+                                                        .forEach((element) {
+                                                      if (element.id ==
+                                                          product.taxRate) {
+                                                        cubit.tax.text =
+                                                            double.parse( element.rate!)
+                                                                .toStringAsFixed(2);
+                                                        // element.rate!
+                                                      }
+                                                    });
+                                                  }
+                                                });
+                                                cubit.productItemName=value as String;
+                                                  cubit.typeOfClothes =value;
+
+                                                  // cubit.productItem =
+                                                  // value as Products;
+                                                  // cubit.typeOfClothes =
+                                                  // value.name!;
+                                                  // cubit.itemCode = value.code!;
+                                                  // cubit.itemPrice.text=double.parse(value.price!).toStringAsFixed(2);
+                                                  // cubit.calculateWhatYouPay();
+                                                  // // cubit.itemPrice.text =
+                                                  // //     value.price!;
+                                                  // // cubit.tax.text= cubit.taxRatesNameList.where((element) => element.id==value.taxRate).toString();
+                                                  // cubit.taxRatesNameList
+                                                  //     .forEach((element) {
+                                                  //   if (element.id ==
+                                                  //       value.taxRate) {
+                                                  //     cubit.tax.text =
+                                                  //         double.parse( element.rate!)
+                                                  //             .toStringAsFixed(2);
+                                                  //     // element.rate!
+                                                  //   }
+                                                  // });
                                                 });
                                               },
                                               iconSize: 40,
@@ -1012,16 +1130,36 @@ class _SewingScreenState extends State<SewingScreen> {
                                               const Radius.circular(20),
                                               scrollbarThickness: 6,
                                               scrollbarAlwaysShow: true,
-                                              items: cubit.unitsNameList
-                                                  .map(UnitsBuild)
-                                                  .toList(),
-                                              value: cubit.valueItemSize,
+                                                items: cubit.unitsNameList.map((unit) => DropdownMenuItem(
+                                                    value: unit.name,
+                                                    child: Center(child: Text(
+                                                        unit.name!,
+                                                        style: GoogleFonts.notoKufiArabic(
+                                                            color: Colors
+                                                                .black,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .bold, fontSize: 12)
+                                                    ),),)).toList(),
+
+                                                // items: cubit.unitsNameList
+                                                //   .map(UnitsBuild)
+                                                //   .toList(),
+                                              value: cubit.valueItemSizeName,
                                               isExpanded: true,
                                               onChanged: (value) {
                                                 setState(() {
-                                                  cubit.valueItemSize =
-                                                  value as Units;
-                                                  cubit.size = value.name!;
+                                                  // cubit.valueItemSize =
+                                                  // value as Units;
+                                                  // cubit.size = value.name!;
+                                                  cubit.valueItemSizeName =
+                                                  value as String;
+                                                  cubit.unitsNameList.forEach((unit) {
+                                                    if(unit.name==value){
+                                                      cubit.size = unit.name!;
+
+                                                    }
+                                                  });
                                                 });
                                               },
                                               iconSize: 40,
@@ -1994,7 +2132,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                 hash: "51280eb9564fe8aaa0abca09a2921438e7b0ae05d1714c0badb64238144eef8c",
                                 // customer: cubit.companiesEmployeeName[0].company,
                                 // customer: cubit.companiesEmployeeName[0].company,
-                                customer: cubit.userItem,
+                                customer: cubit.userItemName,
                                 biller: cubit.users[0].username,
                                 billerId: int.parse(cubit.companiesEmployeeName[0].id!),
                                 total: 8.6957,

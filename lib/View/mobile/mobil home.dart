@@ -50,12 +50,12 @@ class MobileHome extends StatelessWidget {
                     children: [
                       Container(height: 70,padding: const EdgeInsets.symmetric(horizontal: 5),child: RowName(),),
                       const Divider(color: Colors.green,endIndent: 10,indent: 30,thickness: 3,height: 10),
-                      RowNameDetail(title: 'مبيعات التفصيل' , titleImage: 'image/tshirt.png'),
-                      RowNameDetail(title: 'اقمسة-اكسسوارات' , titleImage: 'image/towels.png'),
-                      RowNameDetail(title: 'الحجوزات' , titleImage: 'image/booking.png'),
-                      RowNameDetail(title: 'الرسائل والاشعارات' , titleImage: 'image/email.png'),
-                      RowNameDetail(title: 'الضرائب والحسابات' , titleImage: 'image/profit (1).png'),
-                      RowNameDetail(title: 'ادارة المخزون' ,titleImage: 'image/warehouse (1).png'),
+                      RowNameDetail(title: AppStrings.InventoryManagement.tr() , titleImage: 'image/tshirt.png'),
+                      RowNameDetail(title: AppStrings.TextilesAccessories.tr() , titleImage: 'image/towels.png'),
+                      RowNameDetail(title: AppStrings.bookings.tr() , titleImage: 'image/booking.png'),
+                      RowNameDetail(title: AppStrings.Messagesandnotifications.tr() , titleImage: 'image/email.png'),
+                      RowNameDetail(title:  AppStrings.Taxesandaccounts.tr() , titleImage: 'image/profit (1).png'),
+                      RowNameDetail(title: AppStrings.InventoryManagement.tr() ,titleImage: 'image/warehouse (1).png'),
                       InkWell(
                           onTap: () async{
                             await LoginCubit.get(context).getPillsDetails();
@@ -63,7 +63,7 @@ class MobileHome extends StatelessWidget {
                             Navigator.pushNamed(context, DailyReportScreen.routeName);
 
                           },
-                          child: RowNameDetail(title: 'التقارير' , titleImage: 'image/report.png')),
+                          child: RowNameDetail(title: AppStrings.reports.tr() , titleImage: 'image/report.png')),
                       InkWell(
                           onTap: ()async {
                             LoadingPage(context).show();
@@ -73,12 +73,12 @@ class MobileHome extends StatelessWidget {
 
                             Navigator.pushNamed(context, CustomerDetailsScreen.routeName);
                           },
-                          child: RowNameDetail(title: 'العملاء' , titleImage: 'image/report.png')),
+                          child: RowNameDetail(title:  AppStrings.customers.tr() , titleImage: 'image/report.png')),
                       InkWell(
                           onTap: () async{
                             Navigator.of(context).push(createRoute(SettingScreen()));
                           },
-                          child: RowNameDetail(title: 'الاعدادات' , iconData: Icons.settings,)),
+                          child: RowNameDetail(title:  AppStrings.settings.tr()  , iconData: Icons.settings,)),
 
 
                     ],
@@ -121,7 +121,7 @@ class MobileHome extends StatelessWidget {
                   const Spacer(),
                   Container(width: 1,color: Colors.grey,height: 18,),
                   const SizedBox(width: 10,),
-                   Text('مركز الابتكار للخياطة',
+                   Text(AppStrings.Tailoringinnovationcenter.tr(),
                       style: GoogleFonts.notoKufiArabic(
                           color: Colors.purple,
                           fontSize: 12,
@@ -145,13 +145,13 @@ class MobileHome extends StatelessWidget {
                     children: [
                       CustomContainer(
                           color: Colors.purple,
-                          title: 'فاتورة خياطة',
+                          title: AppStrings.sewingbill.tr(),
                           titleImage: 'image/invoices.png'),
                       const SizedBox(width: 10),
 
                       CustomContainer(
                           color: Colors.purple,
-                          title: 'طباعة المقاسات',
+                          title: AppStrings.printsizes.tr(),
                           titleImage: 'image/measurement.png',
                       ),
                       const SizedBox(width: 10),
@@ -159,21 +159,21 @@ class MobileHome extends StatelessWidget {
                       CustomContainer(
                           titleImage: 'image/cutting.png',
                           color: Colors.purple,
-                          title: 'تاكيد القص'),
+                          title: AppStrings.CheckConfirmation.tr()),
                       const SizedBox(width: 10),
 
 
                       CustomContainer(
                           titleImage: 'image/task.png',
                           color: Colors.purple,
-                          title: 'استلام المعمل'),
+                          title: AppStrings.Receivingthelab.tr()),
                       const SizedBox(width: 10),
 
 
                       CustomContainer(
                           titleImage: 'image/clothes (1).png',
                           color: Colors.purple,
-                          title: 'تسليم الثياب'),
+                          title: AppStrings.deliveryclothes.tr()),
                     ],
                   ),
                 ),
