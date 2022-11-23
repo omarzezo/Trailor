@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,8 +6,10 @@ import 'package:omar/View/Data%20Table/custom%20table.dart';
 import 'package:omar/View/present_all_tables_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/change_size_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/sweing_screen.dart';
+import 'package:omar/constant/appstrings.dart';
 import '../../constant/constant.dart';
 import '../AllCustomersHomeScreen.dart';
+import 'package:flutter/services.dart' as p;
 
 class TabBarScreen extends StatefulWidget {
   const TabBarScreen({Key? key}) : super(key: key);
@@ -49,7 +52,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: p.TextDirection.rtl,
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: Padding(
@@ -72,7 +75,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
                               children:  [
                                 Icon(Icons.add_to_photos_rounded,size: 20,color: initialIndex==0?MyConstant().purpleColor:Colors.grey,),
                                 const SizedBox(height: 10,),
-                                Text('العملاء',style: GoogleFonts.notoKufiArabic(
+                                Text(AppStrings.customers.tr(),style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14),)
@@ -90,7 +93,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
                               children:  [
                                 Icon(Icons.add_to_photos_rounded,size: 20,color: initialIndex==1?MyConstant().purpleColor:Colors.grey,),
                                 const SizedBox(height: 10,),
-                                Text('اضافة',style: GoogleFonts.notoKufiArabic(
+                                Text(AppStrings.add.tr(),style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14),)
@@ -108,7 +111,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
                               children:  [
                                 Icon(Icons.print,size: 20,color: initialIndex==2?MyConstant().purpleColor:Colors.grey,),
                                 const SizedBox(height: 10,),
-                                Text('طباعة فاتورة',style: GoogleFonts.notoKufiArabic(
+                                Text(AppStrings.printInvoice.tr(),style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14),textAlign: TextAlign.center,)
@@ -126,7 +129,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
                               children:  [
                                 Icon(Icons.mode_edit_outlined,size: 20,color: initialIndex==3?MyConstant().purpleColor:Colors.grey,),
                                 const SizedBox(height: 10,),
-                                Text('تعديل مقاسات',style: GoogleFonts.notoKufiArabic(
+                                Text(AppStrings.editSizes.tr(),style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14),textAlign: TextAlign.center,)
@@ -144,7 +147,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
                               children:  [
                                 Icon(Icons.tv_outlined,size: 20,color: initialIndex==4?MyConstant().purpleColor:Colors.grey,),
                                 const SizedBox(height: 10,),
-                                Text('عرض',style: GoogleFonts.notoKufiArabic(
+                                Text(AppStrings.show.tr(),style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14),)

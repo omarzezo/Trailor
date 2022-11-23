@@ -177,7 +177,7 @@ class _SizeScreenState extends State<SizeScreen> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
-                                  Text('المقاسات',
+                                  Text(AppStrings.Sizes.tr(),
                                       style: GoogleFonts.notoKufiArabic(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
@@ -185,7 +185,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  Text('الخياط',
+                                  Text(AppStrings.thetailor.tr(),
                                       style: GoogleFonts.notoKufiArabic(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
@@ -204,7 +204,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         ),
                                         padding: const EdgeInsets.only(right: 10),
                                         child: DropdownButtonHideUnderline(
-                                          child:  DropdownButton2(
+                                          child:  DropdownButton2<dynamic>(
                                             iconEnabledColor:
                                             Colors.white,
                                             iconDisabledColor:
@@ -236,12 +236,20 @@ class _SizeScreenState extends State<SizeScreen> {
                                             scrollbarThickness: 6,
                                             scrollbarAlwaysShow: true,
                                             items: cubit.tRTailorList.map(tRTailorItemBuild).toList(),
-                                            value:  cubit.tRTailorValue,
+                                            value:  cubit.tRTailorValueName,
                                             isExpanded: true,
                                             onChanged: (value) {
                                               setState(() {
-                                                cubit.tRTailorValue = value as tRTailorModel;
-                                                cubit.TaillorName = value.TailorName!;
+                                                cubit.tRTailorList.forEach((tailor) {
+                                                  if(tailor.TailorName==value){
+                                                    cubit.tRTailorValue = tailor;
+
+                                                  }
+                                                });
+                                                // cubit.tRTailorValue = value as tRTailorModel;
+                                                cubit.TaillorName = value as String;
+                                                cubit.tRTailorValueName=value;
+
                                               });
                                             },
                                             iconSize: 40,
@@ -278,7 +286,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                           await cubit.getWidgetImage();
                                           Navigator.pop(context);
                                         },
-                                        child: Text('حفظ',
+                                        child: Text(AppStrings.Save.tr(),
                                             style: GoogleFonts.notoKufiArabic(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.bold,
@@ -310,7 +318,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             width: MediaQuery.of(context).size.width / 2.52,
                                             margin:EdgeInsets.only(top: 14,bottom: 14),
                                             child: customTextField(
-                                              text: 'القماش',
+                                              text: AppStrings.cloth.tr(),
                                               controller: cubit.type,
                                               //
                                               textInputType: TextInputType.text,
@@ -356,7 +364,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         width: MediaQuery.of(context).size.width ,
                                         color: MyConstant().purpleColor,
                                         child: Center(
-                                            child: Text("الكتف والكم" ,style: GoogleFonts.notoKufiArabic(
+                                            child: Text(AppStrings.shoulderandsleeve.tr() ,style: GoogleFonts.notoKufiArabic(
                                             color: Colors.white,
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 20)),
@@ -413,7 +421,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'طول الكم اعلي',
+                                              text: AppStrings.Thesleevelengthhigher.tr(),
                                               controller:
                                               cubit.sleeveLengthIsHigher,
                                               //
@@ -619,7 +627,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         width: MediaQuery.of(context).size.width ,
                                         color: MyConstant().purpleColor,
                                         child: Center(
-                                          child: Text("الجيب" ,style: GoogleFonts.notoKufiArabic(
+                                          child: Text(AppStrings.pocket.tr() ,style: GoogleFonts.notoKufiArabic(
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold,
                                               fontSize: 20)),
@@ -839,7 +847,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 6,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'تخاليص',
+                                              text:AppStrings.clearance.tr(),
                                               controller: cubit.Takhalis,
                                               // textInputAction: TextInputAction.next,
                                               textInputType: TextInputType.text,
@@ -854,7 +862,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 5,
                                             margin:EdgeInsets.only(top: 8,bottom: 8),
                                             child: customTextField(
-                                              text: 'القماش المتوقع بالمتر',
+                                              text: AppStrings.Fabricexpectedbythemeter.tr(),
                                               controller:
                                               cubit.expectedFabricInMeter,
                                               // textInputAction: TextInputAction.done,
@@ -977,7 +985,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                 ),
                                                 child: DropdownButtonHideUnderline(
 
-                                                  child:DropdownButton2(
+                                                  child:DropdownButton2<dynamic>(
                                                     iconEnabledColor:
                                                     Colors.white,
                                                     iconDisabledColor:
@@ -1021,16 +1029,27 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     items: cubit.tRModelList
                                                         .map(trModelItemBuild)
                                                         .toList(),
-                                                    value:  cubit.trModelValue,
+                                                    value:  cubit.trModelValueName,
                                                     isExpanded: true,
                                                     onChanged: (value) {
                                                       setState(() {
-                                                        cubit.trModelValue =
-                                                        value as tRModelModel;
+                                                        cubit.trModelValueName=value as String;
+                                                        // cubit.trModelValue =
+                                                        // value as tRModelModel;
+                                                        // cubit.ModelName =
+                                                        // value.modelName!;
+                                                        // cubit.ModelTypeID = int.parse(
+                                                        //     value.modelTypeID!);
+                                                        //
                                                         cubit.ModelName =
-                                                        value.modelName!;
-                                                        cubit.ModelTypeID = int.parse(
-                                                            value.modelTypeID!);
+                                                        value;
+                                                        cubit.tRModelList.forEach((model) {
+                                                          if(model.modelName==value){
+                                                            cubit.ModelTypeID = int.parse(
+                                                                model.modelTypeID!);
+                                                          }
+                                                        });
+
                                                       });
                                                     },
                                                     iconSize: 40,
@@ -1086,7 +1105,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                   BorderRadius.circular(5),
                                                 ),
                                                 child: DropdownButtonHideUnderline(
-                                                  child:  DropdownButton2(
+                                                  child:  DropdownButton2<dynamic>(
                                                     iconEnabledColor:
                                                     Colors.white,
                                                     iconDisabledColor:
@@ -1129,17 +1148,27 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     items: cubit.tRCollarList
                                                         .map(trCollerItemBuild)
                                                         .toList(),
-                                                    value:  cubit.tRCollarValue,
+                                                    value:  cubit.tRCollarValueName,
                                                     isExpanded: true,
                                                     onChanged: (value) {
                                                       setState(() {
-                                                        cubit.tRCollarValue =
-                                                        value as tRCollarModel;
+                                                        cubit.tRCollarValueName=value as String;
                                                         cubit.CollerName =
-                                                        value.CollarName!;
-                                                        cubit.CollerTypeID =
-                                                            int.parse(
-                                                                value.CollarTypeId!);
+                                                        value;
+                                                        cubit.tRCollarList.forEach((coller) {
+                                                          if(coller.CollarName==value){
+                                                            cubit.CollerTypeID =
+                                                                int.parse(
+                                                                    coller.CollarTypeId!);
+                                                          }
+                                                        });
+                                                        // cubit.tRCollarValue =
+                                                        // value as tRCollarModel;
+                                                        // cubit.CollerName =
+                                                        // value.CollarName!;
+                                                        // cubit.CollerTypeID =
+                                                        //     int.parse(
+                                                        //         value.CollarTypeId!);
                                                       });
                                                     },
                                                     iconSize: 40,
@@ -1195,7 +1224,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                   BorderRadius.circular(5),
                                                 ),
                                                 child: DropdownButtonHideUnderline(
-                                                  child:  DropdownButton2(
+                                                  child:  DropdownButton2<dynamic>(
                                                     iconEnabledColor:
                                                     Colors.white,
                                                     iconDisabledColor:
@@ -1238,16 +1267,24 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     items: cubit.tRCuffList
                                                         .map(trCuffItemBuild)
                                                         .toList(),
-                                                    value:  cubit.tRCuffValue,
+                                                    value:  cubit.tRCuffValueName,
                                                     isExpanded: true,
                                                     onChanged: (value) {
+
                                                       setState(() {
-                                                        cubit.tRCuffValue =
-                                                        value as tRCuffModel;
+                                                        cubit.tRCuffValueName=value as String;
                                                         cubit.CuffName =
-                                                        value.CuffName!;
-                                                        cubit.CuffTypeID = int.parse(
-                                                            value.CuffTypeId!);
+                                                            value;
+                                                        cubit.tRCuffList.forEach((cuff) {if(cuff.CuffName==value) {
+                                                          cubit.CuffTypeID = int.parse(
+                                                              cuff.CuffTypeId!);
+                                                        }});
+                                                        // cubit.tRCuffValue =
+                                                        //     value as tRCuffModel;
+                                                        // cubit.CuffName =
+                                                        //     value.CuffName!;
+                                                        // cubit.CuffTypeID = int.parse(
+                                                        //     value.CuffTypeId!);
                                                       });
                                                     },
 
@@ -1310,7 +1347,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                   BorderRadius.circular(5),
                                                 ),
                                                 child: DropdownButtonHideUnderline(
-                                                  child:  DropdownButton2(
+                                                  child:  DropdownButton2<dynamic>(
                                                     iconEnabledColor:
                                                     Colors.white,
                                                     iconDisabledColor:
@@ -1353,17 +1390,26 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     items: cubit.tRPocketList
                                                         .map(tRPocketItemBuild)
                                                         .toList(),
-                                                    value:  cubit.tRPocketValue,
+                                                    value:  cubit.tRPocketValueName,
                                                     isExpanded: true,
                                                     onChanged: (value) {
                                                       setState(() {
-                                                        cubit.tRPocketValue =
-                                                        value as tRPocketModel?;
-                                                        cubit.PocketName =
-                                                        value!.PocketName!;
-                                                        cubit.PocketTypeID =
-                                                            int.parse(
-                                                                value.PocketTypeId!);
+                                                        cubit.tRPocketValueName=value as String;
+                                                        cubit.PocketName =   value;
+                                                        cubit.tRPocketList.forEach((pocket) {
+                                                          if(pocket.PocketName==value){
+                                                            cubit.PocketTypeID =
+                                                                int.parse(
+                                                                    pocket.PocketTypeId!);
+                                                          }
+                                                        });
+                                                        // cubit.tRPocketValue =
+                                                        // value as tRPocketModel?;
+                                                        // cubit.PocketName =
+                                                        // value!.PocketName!;
+                                                        // cubit.PocketTypeID =
+                                                        //     int.parse(
+                                                        //         value.PocketTypeId!);
                                                       });
                                                     },
 
@@ -1420,7 +1466,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                   BorderRadius.circular(5),
                                                 ),
                                                 child: DropdownButtonHideUnderline(
-                                                  child:  DropdownButton2(
+                                                  child:  DropdownButton2<dynamic>(
                                                     iconEnabledColor:
                                                     Colors.white,
                                                     iconDisabledColor:
@@ -1463,17 +1509,28 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     items: cubit.tRFillingList
                                                         .map(tRFillingItemBuild)
                                                         .toList(),
-                                                    value:  cubit.trFillingValue,
+                                                    value:  cubit.trFillingValueName,
                                                     isExpanded: true,
                                                     onChanged: (value) {
                                                       setState(() {
-                                                        cubit.trFillingValue =
-                                                        value as tRFillingModel;
+                                                        cubit.trFillingValueName=value as String;
                                                         cubit.FillingName =
-                                                        value.FillingName!;
-                                                        cubit.FillingTypeID =
-                                                            int.parse(
-                                                                value.FillingTypeId!);
+                                                            value;
+                                                        cubit.tRFillingList.forEach((filling) {
+                                                          if(filling.FillingName==value){
+                                                            cubit.FillingTypeID =
+                                                                int.parse(
+                                                                    filling.FillingTypeId!);
+                                                          }
+                                                        });
+
+                                                        // cubit.trFillingValue =
+                                                        //     value as tRFillingModel;
+                                                        // cubit.FillingName =
+                                                        //     value.FillingName!;
+                                                        // cubit.FillingTypeID =
+                                                        //     int.parse(
+                                                        //         value.FillingTypeId!);
                                                       });
                                                     },
 
@@ -1530,7 +1587,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                   BorderRadius.circular(5),
                                                 ),
                                                 child: DropdownButtonHideUnderline(
-                                                  child:  DropdownButton2(
+                                                  child:  DropdownButton2<dynamic>(
                                                     iconEnabledColor:
                                                     Colors.white,
                                                     iconDisabledColor:
@@ -1573,19 +1630,35 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     items: cubit.tRZipperList
                                                         .map(tRZipperItemBuild)
                                                         .toList(),
-                                                    value:  cubit.tRZipperValue,
+                                                    value:  cubit.tRZipperValueName,
                                                     isExpanded: true,
                                                     onChanged: (value) {
                                                       setState(() {
-                                                        cubit.tRZipperValue =
-                                                        value as tRZipperModel;
+                                                        cubit
+                                                            .tRZipperValueName =
+                                                        value as String;
                                                         cubit.ZipperName =
-                                                        value.ZipperName!;
-                                                        cubit.ZipperTypeID =
-                                                            int.parse(
-                                                                value.ZipperTypeId!);
-                                                      });
-                                                    },
+                                                            value;
+                                                        cubit.tRZipperList
+                                                            .forEach((zipper) {
+                                                          if (zipper
+                                                              .ZipperName ==
+                                                              value) {
+                                                            cubit.ZipperTypeID =
+                                                                int.parse(
+                                                                    zipper
+                                                                        .ZipperTypeId!);
+                                                          }
+                                                        });
+                                                        //   cubit.tRZipperValue =
+                                                        //   value as tRZipperModel;
+                                                        //   cubit.ZipperName =
+                                                        //   value.ZipperName!;
+                                                        //   cubit.ZipperTypeID =
+                                                        //       int.parse(
+                                                        //           value.ZipperTypeId!);
+                                                        // });
+                                                      }); },
 
                                                     iconSize: 40,
                                                     icon: Container(
@@ -1670,7 +1743,7 @@ class _SizeScreenState extends State<SizeScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Text('المقاسات',
+                              Text(AppStrings.Sizes.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
@@ -1678,7 +1751,7 @@ class _SizeScreenState extends State<SizeScreen> {
                               const SizedBox(
                                 width: 10,
                               ),
-                              Text('الخياط',
+                              Text(AppStrings.thetailor.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
@@ -1697,7 +1770,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         ),
                                     padding: const EdgeInsets.only(right: 10),
                                     child: DropdownButtonHideUnderline(
-                                      child:  DropdownButton2(
+                                      child:  DropdownButton2<dynamic>(
                                         iconEnabledColor:
                                         Colors.white,
                                         iconDisabledColor:
@@ -1729,12 +1802,19 @@ class _SizeScreenState extends State<SizeScreen> {
                                         scrollbarThickness: 6,
                                         scrollbarAlwaysShow: true,
                                         items: cubit.tRTailorList.map(tRTailorItemBuild).toList(),
-                                        value:  cubit.tRTailorValue,
+                                        value:  cubit.tRTailorValueName,
                                         isExpanded: true,
                                         onChanged: (value) {
                                           setState(() {
-                                            cubit.tRTailorValue = value as tRTailorModel;
-                                            cubit.TaillorName = value.TailorName!;
+                                            cubit.tRTailorList.forEach((tailor) {
+                                              if(tailor.TailorName==value){
+                                                cubit.tRTailorValue = tailor;
+
+                                              }
+                                            });
+                                            // cubit.tRTailorValue = value as tRTailorModel;
+                                            cubit.TaillorName = value as String;
+                                            cubit.tRTailorValueName=value;
                                           });
                                         },
                                         iconSize: 40,
@@ -1774,7 +1854,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                       }catch(e){}
 
                                     },
-                                    child: Text('حفظ',
+                                    child: Text(AppStrings.Save.tr(),
                                         style: GoogleFonts.notoKufiArabic(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,
@@ -1801,7 +1881,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             2.52,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'القماش',
+                                            text:AppStrings.cloth.tr(),
                                             controller: cubit.type,
 
                                             textInputType: TextInputType.text,
@@ -1828,7 +1908,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                     width: MediaQuery.of(context).size.width ,
                                     color: MyConstant().purpleColor,
                                     child: Center(
-                                      child: Text("الكتف والكم" ,style: GoogleFonts.notoKufiArabic(
+                                      child: Text(AppStrings.shoulderandsleeve.tr() ,style: GoogleFonts.notoKufiArabic(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20)),
@@ -1900,7 +1980,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                             MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'طول الكم اعلي',
+                                            text:AppStrings.Thesleevelengthhigher.tr() ,
                                             controller:
                                                 cubit.sleeveLengthIsHigher,
 
@@ -2141,7 +2221,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                     width: MediaQuery.of(context).size.width ,
                                     color: MyConstant().purpleColor,
                                     child: Center(
-                                      child: Text("الجيب" ,style: GoogleFonts.notoKufiArabic(
+                                      child: Text(AppStrings.pocket.tr() ,style: GoogleFonts.notoKufiArabic(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20)),
@@ -2360,7 +2440,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'تخاليص',
+                                            text: AppStrings.clearance.tr(),
                                             controller: cubit.Takhalis,
                                             //
                                             textInputType: TextInputType.text,
@@ -2377,7 +2457,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                         MediaQuery.of(context).size.width / 3,
                                         margin:EdgeInsets.only(top: 14,bottom: 14),
                                         child: customTextField(
-                                            text: 'القماش المتوقع بالمتر',
+                                            text:AppStrings.Fabricexpectedbythemeter.tr(),
                                             controller:
                                             cubit.expectedFabricInMeter,
                                             // textInputAction: TextInputAction.done,
@@ -2502,7 +2582,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                ),
                                             child: DropdownButtonHideUnderline(
 
-                                              child:DropdownButton2(
+                                              child:DropdownButton2<dynamic>(
                                                 iconEnabledColor:
                                                 Colors.white,
                                                 iconDisabledColor:
@@ -2546,16 +2626,27 @@ class _SizeScreenState extends State<SizeScreen> {
                                                 items: cubit.tRModelList
                                                     .map(trModelItemBuild)
                                                     .toList(),
-                                                value:  cubit.trModelValue,
+                                                value:  cubit.trModelValueName,
                                                 isExpanded: true,
                                                 onChanged: (value) {
                                                   setState(() {
-                                                    cubit.trModelValue =
-                                                        value as tRModelModel;
+                                                    cubit.trModelValueName=value as String;
+                                                    // cubit.trModelValue =
+                                                    // value as tRModelModel;
+                                                    // cubit.ModelName =
+                                                    // value.modelName!;
+                                                    // cubit.ModelTypeID = int.parse(
+                                                    //     value.modelTypeID!);
+                                                    //
                                                     cubit.ModelName =
-                                                        value.modelName!;
-                                                    cubit.ModelTypeID = int.parse(
-                                                        value.modelTypeID!);
+                                                        value;
+                                                    cubit.tRModelList.forEach((model) {
+                                                      if(model.modelName==value){
+                                                        cubit.ModelTypeID = int.parse(
+                                                            model.modelTypeID!);
+                                                      }
+                                                    });
+
                                                   });
                                                 },
                                                 iconSize: 40,
@@ -2611,7 +2702,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     BorderRadius.circular(5),
                                                ),
                                             child: DropdownButtonHideUnderline(
-                                              child:  DropdownButton2(
+                                              child:  DropdownButton2<dynamic>(
                                                 iconEnabledColor:
                                                 Colors.white,
                                                 iconDisabledColor:
@@ -2654,17 +2745,27 @@ class _SizeScreenState extends State<SizeScreen> {
                                                 items: cubit.tRCollarList
                                                     .map(trCollerItemBuild)
                                                     .toList(),
-                                                value:  cubit.tRCollarValue,
+                                                value:  cubit.tRCollarValueName,
                                                 isExpanded: true,
                                                 onChanged: (value) {
                                                   setState(() {
-                                                    cubit. tRCollarValue =
-                                                        value as tRCollarModel;
+                                                    cubit.tRCollarValueName=value as String;
                                                     cubit.CollerName =
-                                                        value.CollarName!;
-                                                    cubit.CollerTypeID =
-                                                        int.parse(
-                                                            value.CollarTypeId!);
+                                                        value;
+                                                    cubit.tRCollarList.forEach((coller) {
+                                                      if(coller.CollarName==value){
+                                                        cubit.CollerTypeID =
+                                                            int.parse(
+                                                                coller.CollarTypeId!);
+                                                      }
+                                                    });
+                                                    // cubit.tRCollarValue =
+                                                    // value as tRCollarModel;
+                                                    // cubit.CollerName =
+                                                    // value.CollarName!;
+                                                    // cubit.CollerTypeID =
+                                                    //     int.parse(
+                                                    //         value.CollarTypeId!);
                                                   });
                                                 },
                                                 iconSize: 40,
@@ -2720,7 +2821,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     BorderRadius.circular(5),
                                                 ),
                                             child: DropdownButtonHideUnderline(
-                                              child:  DropdownButton2(
+                                              child:  DropdownButton2<dynamic>(
                                                 iconEnabledColor:
                                                 Colors.white,
                                                 iconDisabledColor:
@@ -2763,16 +2864,24 @@ class _SizeScreenState extends State<SizeScreen> {
                                                 items: cubit.tRCuffList
                                                     .map(trCuffItemBuild)
                                                     .toList(),
-                                                value:  cubit.tRCuffValue,
+                                                value:  cubit.tRCuffValueName,
                                                 isExpanded: true,
                                                 onChanged: (value) {
+
                                                   setState(() {
-                                                    cubit.tRCuffValue =
-                                                        value as tRCuffModel;
+                                                    cubit.tRCuffValueName=value as String;
                                                     cubit.CuffName =
-                                                        value.CuffName!;
-                                                    cubit.CuffTypeID = int.parse(
-                                                        value.CuffTypeId!);
+                                                        value;
+                                                    cubit.tRCuffList.forEach((cuff) {if(cuff.CuffName==value) {
+                                                      cubit.CuffTypeID = int.parse(
+                                                          cuff.CuffTypeId!);
+                                                    }});
+                                                    // cubit.tRCuffValue =
+                                                    //     value as tRCuffModel;
+                                                    // cubit.CuffName =
+                                                    //     value.CuffName!;
+                                                    // cubit.CuffTypeID = int.parse(
+                                                    //     value.CuffTypeId!);
                                                   });
                                                 },
 
@@ -2835,7 +2944,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     BorderRadius.circular(5),
                                                ),
                                             child: DropdownButtonHideUnderline(
-                                              child:  DropdownButton2(
+                                              child:  DropdownButton2<dynamic>(
                                                 iconEnabledColor:
                                                 Colors.white,
                                                 iconDisabledColor:
@@ -2878,17 +2987,26 @@ class _SizeScreenState extends State<SizeScreen> {
                                                 items: cubit.tRPocketList
                                                     .map(tRPocketItemBuild)
                                                     .toList(),
-                                                value:  cubit.tRPocketValue,
+                                                value:  cubit.tRPocketValueName,
                                                 isExpanded: true,
                                                 onChanged: (value) {
                                                   setState(() {
-                                                    cubit.tRPocketValue =
-                                                        value as tRPocketModel?;
-                                                    cubit.PocketName =
-                                                        value!.PocketName!;
-                                                    cubit.PocketTypeID =
-                                                        int.parse(
-                                                            value.PocketTypeId!);
+                                                    cubit.tRPocketValueName=value as String;
+                                                    cubit.PocketName =   value;
+                                                    cubit.tRPocketList.forEach((pocket) {
+                                                      if(pocket.PocketName==value){
+                                                        cubit.PocketTypeID =
+                                                            int.parse(
+                                                                pocket.PocketTypeId!);
+                                                      }
+                                                    });
+                                                    // cubit.tRPocketValue =
+                                                    // value as tRPocketModel?;
+                                                    // cubit.PocketName =
+                                                    // value!.PocketName!;
+                                                    // cubit.PocketTypeID =
+                                                    //     int.parse(
+                                                    //         value.PocketTypeId!);
                                                   });
                                                 },
 
@@ -2945,7 +3063,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     BorderRadius.circular(5),
                                                ),
                                             child: DropdownButtonHideUnderline(
-                                              child:  DropdownButton2(
+                                              child:  DropdownButton2<dynamic>(
                                                 iconEnabledColor:
                                                 Colors.white,
                                                 iconDisabledColor:
@@ -2988,17 +3106,28 @@ class _SizeScreenState extends State<SizeScreen> {
                                                 items: cubit.tRFillingList
                                                     .map(tRFillingItemBuild)
                                                     .toList(),
-                                                value:  cubit.trFillingValue,
+                                                value:  cubit.trFillingValueName,
                                                 isExpanded: true,
                                                 onChanged: (value) {
                                                   setState(() {
-                                                    cubit.trFillingValue =
-                                                        value as tRFillingModel;
+                                                    cubit.trFillingValueName=value as String;
                                                     cubit.FillingName =
-                                                        value.FillingName!;
-                                                    cubit.FillingTypeID =
-                                                        int.parse(
-                                                            value.FillingTypeId!);
+                                                        value;
+                                                    cubit.tRFillingList.forEach((filling) {
+                                                      if(filling.FillingName==value){
+                                                        cubit.FillingTypeID =
+                                                            int.parse(
+                                                                filling.FillingTypeId!);
+                                                      }
+                                                    });
+
+                                                    // cubit.trFillingValue =
+                                                    //     value as tRFillingModel;
+                                                    // cubit.FillingName =
+                                                    //     value.FillingName!;
+                                                    // cubit.FillingTypeID =
+                                                    //     int.parse(
+                                                    //         value.FillingTypeId!);
                                                   });
                                                 },
 
@@ -3055,7 +3184,7 @@ class _SizeScreenState extends State<SizeScreen> {
                                                     BorderRadius.circular(5),
                                                ),
                                             child: DropdownButtonHideUnderline(
-                                              child:  DropdownButton2(
+                                              child:  DropdownButton2<dynamic>(
                                                 iconEnabledColor:
                                                 Colors.white,
                                                 iconDisabledColor:
@@ -3098,19 +3227,35 @@ class _SizeScreenState extends State<SizeScreen> {
                                                 items: cubit.tRZipperList
                                                     .map(tRZipperItemBuild)
                                                     .toList(),
-                                                value:  cubit.tRZipperValue,
+                                                value:  cubit.tRZipperValueName,
                                                 isExpanded: true,
                                                 onChanged: (value) {
                                                   setState(() {
-                                                    cubit.tRZipperValue =
-                                                        value as tRZipperModel;
+                                                    cubit
+                                                        .tRZipperValueName =
+                                                    value as String;
                                                     cubit.ZipperName =
-                                                        value.ZipperName!;
-                                                    cubit.ZipperTypeID =
-                                                        int.parse(
-                                                            value.ZipperTypeId!);
-                                                  });
-                                                },
+                                                        value;
+                                                    cubit.tRZipperList
+                                                        .forEach((zipper) {
+                                                      if (zipper
+                                                          .ZipperName ==
+                                                          value) {
+                                                        cubit.ZipperTypeID =
+                                                            int.parse(
+                                                                zipper
+                                                                    .ZipperTypeId!);
+                                                      }
+                                                    });
+                                                    //   cubit.tRZipperValue =
+                                                    //   value as tRZipperModel;
+                                                    //   cubit.ZipperName =
+                                                    //   value.ZipperName!;
+                                                    //   cubit.ZipperTypeID =
+                                                    //       int.parse(
+                                                    //           value.ZipperTypeId!);
+                                                    // });
+                                                  }); },
 
                                                 iconSize: 40,
                                                 icon: Container(
@@ -3164,9 +3309,9 @@ class _SizeScreenState extends State<SizeScreen> {
         ),
       );
 
-  DropdownMenuItem<tRCollarModel> trCollerItemBuild(tRCollarModel item) =>
+  DropdownMenuItem <dynamic>trCollerItemBuild(tRCollarModel item) =>
       DropdownMenuItem(
-        value: item,
+        value: item.CollarName,
         child: Center(
           child: Text(item.CollarName!,
               style: GoogleFonts.notoKufiArabic(
@@ -3176,9 +3321,9 @@ class _SizeScreenState extends State<SizeScreen> {
         ),
       );
 
-  DropdownMenuItem<tRModelModel> trModelItemBuild(tRModelModel item) =>
+  DropdownMenuItem<dynamic> trModelItemBuild(tRModelModel item) =>
       DropdownMenuItem(
-        value: item,
+        value: item.modelName,
         child: Center(
           child: Text(item.modelName!,
               style: GoogleFonts.notoKufiArabic(
@@ -3188,9 +3333,9 @@ class _SizeScreenState extends State<SizeScreen> {
         ),
       );
 
-  DropdownMenuItem<tRCuffModel> trCuffItemBuild(tRCuffModel item) =>
+  DropdownMenuItem<dynamic> trCuffItemBuild(tRCuffModel item) =>
       DropdownMenuItem(
-        value: item,
+        value: item.CuffName,
         child: Center(
           child: Text(item.CuffName!,
               style: GoogleFonts.notoKufiArabic(
@@ -3200,9 +3345,9 @@ class _SizeScreenState extends State<SizeScreen> {
         ),
       );
 
-  DropdownMenuItem<tRFillingModel> tRFillingItemBuild(tRFillingModel item) =>
+  DropdownMenuItem<dynamic> tRFillingItemBuild(tRFillingModel item) =>
       DropdownMenuItem(
-        value: item,
+        value: item.FillingName,
         child: Center(
           child: Text(item.FillingName!,
               style: GoogleFonts.notoKufiArabic(
@@ -3212,9 +3357,9 @@ class _SizeScreenState extends State<SizeScreen> {
         ),
       );
 
-  DropdownMenuItem<tRPocketModel> tRPocketItemBuild(tRPocketModel item) =>
+  DropdownMenuItem<dynamic> tRPocketItemBuild(tRPocketModel item) =>
       DropdownMenuItem(
-        value: item,
+        value: item.PocketName,
         child: Center(
           child: Text(item.PocketName!,
               style: GoogleFonts.notoKufiArabic(
@@ -3224,9 +3369,9 @@ class _SizeScreenState extends State<SizeScreen> {
         ),
       );
 
-  DropdownMenuItem<tRZipperModel> tRZipperItemBuild(tRZipperModel item) =>
+  DropdownMenuItem<dynamic> tRZipperItemBuild(tRZipperModel item) =>
       DropdownMenuItem(
-        value: item,
+        value: item.ZipperName,
         child: Center(
           child: Text(item.ZipperName!,
               style: GoogleFonts.notoKufiArabic(
@@ -3235,9 +3380,9 @@ class _SizeScreenState extends State<SizeScreen> {
                   fontSize: Size)),
         ),
       );
-  DropdownMenuItem<tRTailorModel> tRTailorItemBuild(tRTailorModel item) =>
+  DropdownMenuItem<dynamic> tRTailorItemBuild(tRTailorModel item) =>
       DropdownMenuItem(
-        value: item,
+        value: item.TailorName,
         child: Center(
           child: Text(item.TailorName!,
               style: GoogleFonts.notoKufiArabic(

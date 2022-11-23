@@ -1,15 +1,19 @@
 import 'dart:typed_data';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/View/BluetoothPrinterSearch.dart';
+import 'package:omar/constant/appstrings.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:responsive_framework/responsive_value.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import '../../SharedPreferencesHelper.dart';
 
+import 'package:flutter/services.dart' as p;
 
 
 class SettingScreen extends StatefulWidget {
@@ -41,11 +45,11 @@ class SettingScreenState extends State<SettingScreen> {
     ipPrinter =(await SharedPreferencesHelper.getIpPrinter())!;
     ipPntroller.text=ipPrinter!=null?ipPrinter:"";
     if(printerType==1){
-      printerText="طابعة bluetooth";
+      printerText="${ AppStrings.printer.tr() } bluetooth";
     }if(printerType==2){
-      printerText="طابعة wifi";
+      printerText="${ AppStrings.printer.tr() } wifi";
     }if(printerType==3){
-      printerText="طابعة sunmi";
+      printerText="${ AppStrings.printer.tr() } sunmi";
     }
     pageSize =(await SharedPreferencesHelper.getPageSize())!;
     print("pageSize>>"+pageSize.toString());
@@ -147,7 +151,7 @@ class SettingScreenState extends State<SettingScreen> {
                         const EdgeInsets.only(left: 30, right: 20),
                         child: Align(
                           alignment: Alignment.centerRight,
-                          child: Text('اعدادات الطابعة',
+                          child: Text('${ AppStrings.printersettings.tr() }',
                               style: GoogleFonts.notoKufiArabic(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -160,7 +164,7 @@ class SettingScreenState extends State<SettingScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                              "نوع الطابعة",
+                               AppStrings.printertype.tr() ,
                               style: GoogleFonts.notoKufiArabic(
                                   color:  MyConstant().purpleColor,
                                   fontWeight: FontWeight.bold,
@@ -192,7 +196,7 @@ class SettingScreenState extends State<SettingScreen> {
                             onTap: () async{
                               await SharedPreferencesHelper.setPrinterType(1);
                               printerType=1;
-                              printerText="طابعة bluetooth";
+                              printerText="${AppStrings.printer.tr()} bluetooth";
                               setState(() {});
                             },
                             child: Container(
@@ -203,7 +207,7 @@ class SettingScreenState extends State<SettingScreen> {
                                   color: printerType==1?MyConstant().purpleColor:Colors.white,
                                   border: Border.all(width: 1, color: MyConstant().purpleColor),
                                 ),
-                                child: Text("طابعة bluetooth",style: GoogleFonts.notoKufiArabic(
+                                child: Text(" ${AppStrings.printer.tr()}  bluetooth",style: GoogleFonts.notoKufiArabic(
                                     color: printerType==1?Colors.white:Colors.black,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18),
@@ -219,11 +223,11 @@ class SettingScreenState extends State<SettingScreen> {
                               // height: 40,
                               child: Column(
                                 children: [
-                                  Text("يرجي عمل بحث عن  Bluetooth ",style: GoogleFonts.notoKufiArabic(
+                                  Text("${AppStrings.pleaseSearch.tr()}  Bluetooth ",style: GoogleFonts.notoKufiArabic(
                                       color: Colors.red,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18)),
-                                  Text("من فضلك اضغط هنا",style: GoogleFonts.notoKufiArabic(
+                                  Text("${AppStrings.clickHere.tr()}",style: GoogleFonts.notoKufiArabic(
                                       color: Colors.red,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18)
@@ -237,7 +241,7 @@ class SettingScreenState extends State<SettingScreen> {
 
                               await SharedPreferencesHelper.setPrinterType(2);
                               printerType=2;
-                              printerText="طابعة Wifi";
+                              printerText="${AppStrings.printer.tr()} Wifi";
                               setState(() { });
                             },
                             child: Container(
@@ -248,7 +252,7 @@ class SettingScreenState extends State<SettingScreen> {
                                   color: printerType==2?MyConstant().purpleColor:Colors.white,
                                   border: Border.all(width: 1, color: MyConstant().purpleColor),
                                 ),
-                                child: Text("طابعة Wifi",style: GoogleFonts.notoKufiArabic(
+                                child: Text("${AppStrings.printer.tr()} Wifi",style: GoogleFonts.notoKufiArabic(
                                     color:printerType==2?Colors.white: Colors.black,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18),
@@ -277,9 +281,9 @@ class SettingScreenState extends State<SettingScreen> {
                                       onChanged: (value) {
                                         SharedPreferencesHelper.setIpPrinter(value);
                                       },
-                                      decoration: const InputDecoration(
+                                      decoration:  InputDecoration(
                                         border: InputBorder.none,
-                                        hintText: 'الرجاء ادخال IP الطابعة',
+                                        hintText: AppStrings.insertip.tr(),
                                       )))),
                           const SizedBox(width: 10,height: 20,),
                           InkWell(
@@ -287,7 +291,7 @@ class SettingScreenState extends State<SettingScreen> {
 
                               await SharedPreferencesHelper.setPrinterType(3);
                               printerType=3;
-                              printerText="طابعة Sunmi";
+                              printerText="${AppStrings.printer.tr()} Sunmi";
                               setState(() {});
                             },
                             child: Container(
@@ -298,7 +302,7 @@ class SettingScreenState extends State<SettingScreen> {
                                   color:printerType==3?MyConstant().purpleColor: Colors.white,
                                   border: Border.all(width: 1, color: MyConstant().purpleColor),
                                 ),
-                                child: Text("طابعة Sunmi",style: GoogleFonts.notoKufiArabic(
+                                child: Text("${AppStrings.printer.tr()} Sunmi",style: GoogleFonts.notoKufiArabic(
                                     color:printerType==3?Colors.white: Colors.black,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18),
@@ -335,7 +339,7 @@ class SettingScreenState extends State<SettingScreen> {
                                 onTap: () async{
                                     await SharedPreferencesHelper.setPrinterType(1);
                                     printerType=1;
-                                    printerText="طابعة bluetooth";
+                                    printerText="${AppStrings.printer.tr()} bluetooth";
                                     setState(() {});
                                 },
                                 child: Container(
@@ -346,7 +350,7 @@ class SettingScreenState extends State<SettingScreen> {
                                       color: printerType==1?MyConstant().purpleColor:Colors.white,
                                       border: Border.all(width: 1, color: MyConstant().purpleColor),
                                     ),
-                                    child: Text("طابعة bluetooth",style: GoogleFonts.notoKufiArabic(
+                                    child: Text("${AppStrings.printer.tr()} bluetooth",style: GoogleFonts.notoKufiArabic(
                                         color: printerType==1?Colors.white:Colors.black,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18),
@@ -362,11 +366,11 @@ class SettingScreenState extends State<SettingScreen> {
                                     // height: 40,
                                     child: Column(
                                       children: [
-                                        Text("يرجي عمل بحث عن  Bluetooth ",style: GoogleFonts.notoKufiArabic(
+                                        Text("${AppStrings.pleaseSearch.tr()} Bluetooth ",style: GoogleFonts.notoKufiArabic(
                                             color: Colors.red,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 18)),
-                                        Text("من فضلك اضغط هنا",style: GoogleFonts.notoKufiArabic(
+                                        Text("${AppStrings.clickHere.tr()}",style: GoogleFonts.notoKufiArabic(
                                             color: Colors.red,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 18)
@@ -380,7 +384,7 @@ class SettingScreenState extends State<SettingScreen> {
 
                                    await SharedPreferencesHelper.setPrinterType(2);
                                     printerType=2;
-                                    printerText="طابعة Wifi";
+                                    printerText="${AppStrings.printer.tr()} Wifi";
                                     setState(() { });
                                 },
                                 child: Container(
@@ -391,7 +395,7 @@ class SettingScreenState extends State<SettingScreen> {
                                       color: printerType==2?MyConstant().purpleColor:Colors.white,
                                       border: Border.all(width: 1, color: MyConstant().purpleColor),
                                     ),
-                                    child: Text("طابعة Wifi",style: GoogleFonts.notoKufiArabic(
+                                    child: Text("${AppStrings.printer.tr()} Wifi",style: GoogleFonts.notoKufiArabic(
                                         color:printerType==2?Colors.white: Colors.black,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18),
@@ -420,9 +424,9 @@ class SettingScreenState extends State<SettingScreen> {
                                           onChanged: (value) {
                                             SharedPreferencesHelper.setIpPrinter(value);
                                           },
-                                          decoration: const InputDecoration(
+                                          decoration:  InputDecoration(
                                             border: InputBorder.none,
-                                            hintText: 'الرجاء ادخال IP الطابعة',
+                                            hintText: AppStrings.insertip.tr(),
                                           )))),
                               const SizedBox(width: 10,height: 20,),
                               InkWell(
@@ -430,7 +434,7 @@ class SettingScreenState extends State<SettingScreen> {
 
                                     await SharedPreferencesHelper.setPrinterType(3);
                                     printerType=3;
-                                    printerText="طابعة Sunmi";
+                                    printerText="${AppStrings.printer.tr()} Sunmi";
                                     setState(() {});
                                 },
                                 child: Container(
@@ -441,7 +445,7 @@ class SettingScreenState extends State<SettingScreen> {
                                       color:printerType==3?MyConstant().purpleColor: Colors.white,
                                       border: Border.all(width: 1, color: MyConstant().purpleColor),
                                     ),
-                                    child: Text("طابعة Sunmi",style: GoogleFonts.notoKufiArabic(
+                                    child: Text("${AppStrings.printer.tr()} Sunmi",style: GoogleFonts.notoKufiArabic(
                                         color:printerType==3?Colors.white: Colors.black,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18),
@@ -454,7 +458,7 @@ class SettingScreenState extends State<SettingScreen> {
                             onTap: () async {
                               await SharedPreferencesHelper.setPrinterType(4);
                               printerType=4;
-                              printerText="طابعة Wifi اخري";
+                              printerText="${AppStrings.printer.tr()} Wifi ";
                               setState(() { });
                             },
                             child: Container(
@@ -465,7 +469,7 @@ class SettingScreenState extends State<SettingScreen> {
                                   color: printerType==4?MyConstant().purpleColor:Colors.white,
                                   border: Border.all(width: 1, color: MyConstant().purpleColor),
                                 ),
-                                child: Text("طابعة Wifi اخري",style: GoogleFonts.notoKufiArabic(
+                                child: Text("${AppStrings.printer.tr()} Wifi ",style: GoogleFonts.notoKufiArabic(
                                     color:printerType==4?Colors.white: Colors.black,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18),
@@ -492,14 +496,14 @@ class SettingScreenState extends State<SettingScreen> {
                                       onChanged: (value) {
                                         SharedPreferencesHelper.setIpPrinter(value);
                                       },
-                                      decoration: const InputDecoration(
+                                      decoration:  InputDecoration(
                                         border: InputBorder.none,
-                                        hintText: 'الرجاء ادخال IP الطابعة',
+                                        hintText: AppStrings.insertip.tr(),
                                       )))),
 
                           const SizedBox(height: 40,),
                           Text(
-                              "حجم الصفحة",
+                              AppStrings.pageSize.tr(),
                               style: GoogleFonts.notoKufiArabic(
                                   color: MyConstant().purpleColor,
                                   fontWeight: FontWeight.bold,
@@ -652,12 +656,12 @@ class SettingScreenState extends State<SettingScreen> {
             )));
 
     return Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: p.TextDirection.rtl,
         child: Scaffold(
           appBar: AppBar(
             // toolbarHeight: 100,
             backgroundColor: Colors.purple,
-            title: Text("اعدادات الطابعة ",style: GoogleFonts.notoKufiArabic(
+            title: Text(AppStrings.printersettings.tr(),style: GoogleFonts.notoKufiArabic(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 18)),
@@ -670,6 +674,43 @@ class SettingScreenState extends State<SettingScreen> {
                 children: [
                   printerContainer,
                   const SizedBox(height: 20,),
+                  Container(
+                    height: 50,
+                    margin: const EdgeInsets.fromLTRB(4,4,4,4),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: MyConstant().purpleColor),
+                      color: const Color(0xffffffff),
+                      borderRadius: const BorderRadius.all(
+                          Radius.circular(10.0) //                 <--- border radius here
+                      ),
+                    ),
+                    child: Row(children: [
+                      Container(
+                          padding:EdgeInsets.symmetric(horizontal: 20),
+                          child: Text(AppStrings.language.tr(),
+                              style: GoogleFonts.notoKufiArabic(
+                                  color: MyConstant().purpleColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18))),
+                      Spacer(),
+
+                      InkWell(
+                        onTap: ()  {
+                          LoginCubit.get(context).chaneLangeUage(context);
+
+                        },
+                        child: Container(
+                            padding:EdgeInsets.symmetric(horizontal: 20),
+
+                            child: Text(AppStrings.translation.tr(),
+                                style: GoogleFonts.notoKufiArabic(
+                                    color: MyConstant().purpleColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18))),
+                      )
+                    ],),
+                  ),
+
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Container(
@@ -684,14 +725,15 @@ class SettingScreenState extends State<SettingScreen> {
                           },
                           child: Padding(
                             padding: const EdgeInsets.only(left: 14,right: 14),
-                            child: Text('حفظ',
+                            child: Text(AppStrings.Save.tr(),
                                 style: GoogleFonts.notoKufiArabic(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18)),
                           ),
                         )),
-                  )
+                  ),
+
                 ],
               ),
             ),

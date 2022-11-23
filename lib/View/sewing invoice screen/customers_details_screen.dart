@@ -1,9 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
+import 'package:omar/constant/appstrings.dart';
 import 'package:omar/constant/constant.dart';
+import 'package:flutter/services.dart' as p;
 
 import 'add_new_customer_screen.dart';
 
@@ -17,14 +20,14 @@ class CustomerDetailsScreen extends StatelessWidget {
     var cubit = LoginCubit.get(context);
 
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: p.TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
         },
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: Text("قائمة العملاء",style: GoogleFonts.notoKufiArabic(
+              title: Text(AppStrings.customersList.tr(),style: GoogleFonts.notoKufiArabic(
                   color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 16)),
@@ -41,32 +44,32 @@ class CustomerDetailsScreen extends StatelessWidget {
 
 
                     DataColumn(
-                      label:  Text("اسم العميل ",
+                      label:  Text(AppStrings.clientName.tr(),
                           style: GoogleFonts.notoKufiArabic(
                               color: MyConstant().purpleColor,
                               fontWeight: FontWeight.bold,
                               fontSize: 16)),),
-                    DataColumn(label:  Text("البريد الالكترونى",
+                    DataColumn(label:  Text(AppStrings.Email.tr(),
                         style: GoogleFonts.notoKufiArabic(
                             color: MyConstant().purpleColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 16)),),
                     DataColumn(label: Text(
-                        "الرقم الضريبي", style: GoogleFonts.notoKufiArabic(
+                        AppStrings.taxNumber.tr(), style: GoogleFonts.notoKufiArabic(
                         color: MyConstant().purpleColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 16)),),
-                    DataColumn(label: Text("العنوان",
+                    DataColumn(label: Text(AppStrings.address.tr(),
                         style: GoogleFonts.notoKufiArabic(
                             color: MyConstant().purpleColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 16)),),
-                    DataColumn(label: Text("الرقم البريدى",
+                    DataColumn(label: Text(AppStrings.zipCode.tr(),
                         style: GoogleFonts.notoKufiArabic(
                             color: MyConstant().purpleColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 16)),),
-                    DataColumn(label: Text("الجوال",
+                    DataColumn(label: Text(AppStrings.phoneNumber.tr(),
                         style: GoogleFonts.notoKufiArabic(
                             color: MyConstant().purpleColor,
                             fontWeight: FontWeight.bold,
@@ -109,7 +112,7 @@ class CustomerDetailsScreen extends StatelessWidget {
               children: [
                 MaterialButton(onPressed: (){
                   Navigator.pushReplacementNamed(context, NewUserScreen.routeName);
-                },child: Text("اضافة عميل",style: GoogleFonts.notoKufiArabic(
+                },child: Text(AppStrings.addnewcustomer.tr(),style: GoogleFonts.notoKufiArabic(
                     color: MyConstant().purpleColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 14)) ,)

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,7 +6,9 @@ import 'package:intl/intl.dart' as p;
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/View/Data%20Table/model.dart';
+import 'package:omar/constant/appstrings.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:flutter/services.dart' as p1;
 
 class DailyReportScreen extends StatelessWidget {
   static const routeName = "DailyReportScreen";
@@ -32,7 +35,7 @@ class DailyReportScreen extends StatelessWidget {
         })
         .toList();
     return Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: p1.TextDirection.rtl,
         child: BlocConsumer<LoginCubit, LoginState>(
           listener: (context, state) {},
           builder: (context, state) {
@@ -40,7 +43,7 @@ class DailyReportScreen extends StatelessWidget {
               appBar: AppBar(
                 // toolbarHeight: 100,
                 backgroundColor: Colors.purple,
-                title: Text("التقارير اليومية ",
+                title: Text(AppStrings.dailyReports.tr(),
                     style: GoogleFonts.notoKufiArabic(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -70,7 +73,7 @@ class DailyReportScreen extends StatelessWidget {
                                   ),
                               itemCount: pillsDetails.data!.length),
                           if(pillsDetails.data==null||pillsDetails.data!.isEmpty)
-                          Center(child: Text("لا يوجد طلبات جديدة اليوم ",style: GoogleFonts.notoKufiArabic(
+                          Center(child: Text(AppStrings.Therearenoneworderstoday.tr(),style: GoogleFonts.notoKufiArabic(
                           color: Colors.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 40)))
@@ -104,7 +107,7 @@ class DailyReportScreen extends StatelessWidget {
                                   ),
                                   itemCount: pillsDetails.data!.length),
                             if(pillsDetails.data==null||pillsDetails.data!.isEmpty)
-                              Center(child: Text("لا يوجد طلبات جديدة اليوم ",style: GoogleFonts.notoKufiArabic(
+                              Center(child: Text(AppStrings.Therearenoneworderstoday.tr(),style: GoogleFonts.notoKufiArabic(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 40)))
@@ -144,27 +147,27 @@ class ReportItem extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Text("تم انشاء طلب بتاريخ : ${dateNow} ",
+        Text("${AppStrings.Anorderwascreatedon.tr()} : ${dateNow} ",
             style: GoogleFonts.notoKufiArabic(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 16)),
-        Text("تاريخ الفاتورة : ${date.split(" ").first}",
+        Text("${AppStrings.invoicdate.tr()} : ${date.split(" ").first}",
             style: GoogleFonts.notoKufiArabic(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 16)),
-        Text("تاريخ التسليم : ${deleverDate.split(" ").first}",
+        Text("${AppStrings.deliverydate.tr()} : ${deleverDate.split(" ").first}",
             style: GoogleFonts.notoKufiArabic(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 16)),
-        Text("اسم العميل : ${customerName}",
+        Text("${AppStrings.clientName.tr()} : ${customerName}",
             style: GoogleFonts.notoKufiArabic(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 16)),
-        Text("المرجع : ${refrenceiD}",
+        Text("${AppStrings.reference.tr()} : ${refrenceiD}",
             style: GoogleFonts.notoKufiArabic(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,

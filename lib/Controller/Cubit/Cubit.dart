@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:esc_pos_printer/esc_pos_printer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:omar/Controller/End%20Point.dart';
 import 'package:omar/View/Data%20Table/model.dart';
+import 'package:omar/View/sewing%20invoice%20screen/restart_screen.dart';
+import 'package:omar/constant/appstrings.dart';
 import 'package:omar/models/Companies.dart';
 import 'package:omar/models/PaymentType.dart';
 import 'package:omar/models/Products.dart';
@@ -111,9 +114,12 @@ class LoginCubit extends Cubit<LoginState> {
   int FillingTypeID = 0;
   String itemCode = "";
   Products? productItem;
-  Units? valueItemSize;
-  // Companies? userItem;
-  String? userItem;
+  String? productItemName;
+  // Units? valueItemSize;
+  String? valueItemSizeName;
+  Companies? userItem;
+  String? userItemName;
+  String? employeeItemName;
   Companies? employeeItem;
   PaymentType? paymentTypeItem;
   int itemIndex=0;
@@ -174,11 +180,11 @@ class LoginCubit extends Cubit<LoginState> {
   bool harryUp = false;
   GlobalKey repaintKey = GlobalKey();
   List<String> fixedPayment = [
-    "نقدى",
-    "بطاقة إئتمان",
-    "شيك بنكى",
+    AppStrings.monetary.tr(),
+    AppStrings.CreditCard.tr(),
+    AppStrings.BankCheck.tr(),
   ];
-  String? fixedPaymentType="نقدى";
+  String? fixedPaymentType=AppStrings.monetary.tr();
 
   // captureBoundary() async {
   //   Uint8List? pngBytes;
@@ -359,7 +365,8 @@ class LoginCubit extends Cubit<LoginState> {
       // log(jsonEncode(pillRequestModel));
       print(response.data);
       pillResponseModel = PillResponseModel.fromJson(response.data);
-      // await getAllInvoiceInformation();
+      await getAllInvoiceInformation();
+      await getPillsDetails();
 
       return pillResponseModel;
     } else {
@@ -465,6 +472,7 @@ String? salesId;
     if(response.statusCode==200){
       print(response.data);
       pillsDetails=PillsDetails.fromJson(response.data);
+
       return pillsDetails!;
     }else{
       print(response.statusMessage);
@@ -507,7 +515,20 @@ String? salesId;
   List<PaymentType> paymentCodeList = [];
 
   void clearControllers() {
-    userItem="";
+    userItemName=null;
+    employeeItemName=null;
+    productItemName=null;
+    valueItemSizeName=null;
+    itemPrice1=null;
+    quantities1=null;
+
+     tRPocketValueName=null;
+     trFillingValueName=null;
+   tRZipperValueName=null;
+     tRTailorValueName=null;
+     trModelValueName=null;
+     tRCollarValueName=null;
+     tRCuffValueName=null;
     tailor.clear();
     type.clear();
     frontHeight.clear();
@@ -571,25 +592,34 @@ String? salesId;
     // productItem==null? productItem=productItem: productItem!.name="";
     // valueItemSize==null? valueItemSize=valueItemSize: valueItemSize!.name="";
     // valueItemSize==null? valueItemSize=valueItemSize:valueItemSize!.unitValue="";
-     tRPocketValue=tRPocketValue;
-     tRPocketValue=tRPocketValue;
-    trFillingValue=trFillingValue;
-    trFillingValue=trFillingValue;
-    tRZipperValue=tRZipperValue;
-    tRZipperValue=tRZipperValue;
-    tRTailorValue=tRTailorValue;
-    tRTailorValue=tRTailorValue;
-     trModelValue=trModelValue;
-trModelValue=trModelValue;
- tRCollarValue=tRCollarValue;
-     tRCollarValue=tRCollarValue;
-    tRCuffValue=tRCuffValue;
-   tRCuffValue=tRCuffValue;
-    employeeItem=employeeItem;
-     productItem=productItem;
-     valueItemSize=valueItemSize;
-    valueItemSize=valueItemSize;
+    // tRPocketValue=tRPocketValue;
+    // tRPocketValue=tRPocketValue;
+    // trFillingValue=trFillingValue;
+    // trFillingValue=trFillingValue;
+    // tRZipperValue=tRZipperValue;
+    // tRZipperValue=tRZipperValue;
+    // tRTailorValue=tRTailorValue;
+    // tRTailorValue=tRTailorValue;
+    // trModelValue=trModelValue;
+    // trModelValue=trModelValue;
+    // tRCollarValue=tRCollarValue;
+    // tRCollarValue=tRCollarValue;
+    // tRCuffValue=tRCuffValue;
+    // tRCuffValue=tRCuffValue;
+    // employeeItem=employeeItem;
+    // productItem=productItem;
+    // valueItemSize=valueItemSize;
+    // valueItemSize=valueItemSize;
+
+    trModelValue=null;
+    tRCollarValue=null;
+    tRCuffValue=null;
+    tRPocketValue=null;
+    trFillingValue=null;
+    tRZipperValue=null;
+    tRTailorValue=null;
     emit(ClearControllersState());
+
   }
 String? itemPrice1;
 String? quantities1;
@@ -780,6 +810,13 @@ String? quantities1;
   tRModelModel? trModelValue;
   tRCollarModel? tRCollarValue;
   tRCuffModel? tRCuffValue;
+  String? tRPocketValueName;
+  String? trFillingValueName;
+  String? tRZipperValueName;
+  String? tRTailorValueName;
+  String? trModelValueName;
+  String? tRCollarValueName;
+  String? tRCuffValueName;
   bool isSelect2 =false;
   bool isSelect1 = false;
   Future<void> setDropDownValues()async{
@@ -913,4 +950,21 @@ String? quantities1;
   // }
 
   // void getList(List<Details> details) => details.map((e) {});
+
+chaneLangeUage(BuildContext context)  {
+  if(context.locale==Locale("en","US")){
+     context.setLocale( Locale("ar","EG"));
+     RestartWidget.restartApp(context);
+
+  }else {
+      context.setLocale( Locale("en", "US"));
+      RestartWidget.restartApp(context);
+
+  }
+
 }
+List<PillsDetailsData>? pillsDetailsDataList=[];
+
+
+}
+

@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:omar/View/sewing%20invoice%20screen/TabBar%20Screen.dart';
+import 'package:omar/constant/appstrings.dart';
 
 import '../../constant/widgets.dart';
 
@@ -23,29 +25,29 @@ class _TabletTabBarScreenState extends State<TabletTabBarScreen> {
                 tabs: [
                   CustomContainer(
                       color: Colors.purple,
-                      title: 'فاتورة خياطة',
+                      title: AppStrings.sewingbill.tr(),
                       titleImage: 'image/invoices.png'),
                   const SizedBox(width: 20,),
                   CustomContainer(
                     color: Colors.purple,
-                    title: 'طباعة المقاسات',
+                    title: AppStrings.printsizes.tr(),
                     titleImage: 'image/measurement.png',
                   ),
                   const SizedBox(width: 20,),
                   CustomContainer(
                       titleImage: 'image/cutting.png',
                       color: Colors.purple,
-                      title: 'تاكيد القص'),
+                      title: AppStrings.Cutconfirmation.tr()),
                   const SizedBox(width: 20,),
                   CustomContainer(
                       titleImage: 'image/task.png',
                       color: Colors.purple,
-                      title: 'استلام المعمل'),
+                      title: AppStrings.Receiptofthelaboratory.tr()),
                   const SizedBox(width: 20,),
                   CustomContainer(
                       titleImage: 'image/clothes (1).png',
                       color: Colors.purple,
-                      title: 'تسليم الثياب'),
+                      title: AppStrings.deliveryclothes.tr()),
                 ]
             ),
             Expanded(
