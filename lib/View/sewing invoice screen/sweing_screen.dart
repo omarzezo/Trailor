@@ -389,12 +389,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                               const BoxDecoration(
                                                 color: Colors.green,
                                                 borderRadius:
-                                                BorderRadius.only(
-                                                    bottomLeft: Radius
-                                                        .circular(5),
-                                                    topLeft: Radius
-                                                        .circular(5)),
-                                              ),
+                                                BorderRadius.only(bottomLeft: Radius.circular(5), topLeft: Radius.circular(5)),),
                                               child: const Icon(Icons
                                                   .keyboard_arrow_down_sharp),
                                             ),
