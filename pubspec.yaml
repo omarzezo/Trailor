@@ -58,6 +58,7 @@ dependencies:
   flutter_bluetooth_basic:
   flutter_blue:
   easy_localization: ^3.0.1
+  awesome_dialog: ^3.0.2
 
 #  blue_print_pos:
 

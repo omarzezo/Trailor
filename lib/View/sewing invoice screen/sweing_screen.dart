@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart' as localize;
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -13,6 +15,7 @@ import 'package:flutter/services.dart' as p1;
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/View/sewing%20invoice%20screen/add_new_customer_screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/casher.dart';
 import 'package:omar/View/sewing%20invoice%20screen/print_screen.dart';
 import 'package:omar/constant/LoadingPage.dart';
 import 'package:omar/constant/appstrings.dart';
@@ -79,7 +82,7 @@ class _SewingScreenState extends State<SewingScreen> {
     cubit.companiesCustomerName.retainWhere((x) => ids.add(x.name));
 
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: p1.TextDirection.rtl,
       child: SafeArea(
         child: BlocConsumer<LoginCubit, LoginState>(
           listener: (context, state) {
@@ -107,6 +110,51 @@ class _SewingScreenState extends State<SewingScreen> {
                 //     iconAndText(iconData: Icons.subdirectory_arrow_left, nameText: 'مرتجع'),
                 //   ],),
                 // ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        color: MyConstant().purpleColor,child: MaterialButton(onPressed: () {
+
+                        AwesomeDialog(context: context,
+                            dialogType: DialogType.question,
+                            animType: AnimType.rightSlide,
+                          width:MediaQuery.of(context).size.width/1.2,
+                          // width:400,
+                          body: OpenCashier(),
+
+                        ).show();
+
+                      },child: Text(AppStrings.Openthecashregister.tr(),style: GoogleFonts.notoKufiArabic(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 18)),),),
+                    ),
+                    SizedBox(width: 20,),
+                    Expanded(
+
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+
+                        color:  MyConstant().purpleColor,child: MaterialButton(onPressed: () {
+
+                        AwesomeDialog(context: context,
+                            dialogType: DialogType.noHeader,
+                            animType: AnimType.rightSlide,
+                          width:MediaQuery.of(context).size.width,
+                          // width:400,
+                          body:  CashierScreen(),
+
+                        ).show();
+
+                      },child: Text(AppStrings.Closethecashier.tr(),style: GoogleFonts.notoKufiArabic(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 18)),),),
+                    ),
+                  ],
+                ),
                 Container(
                   // width: 600,
                   width: MediaQuery.of(context).size.width / w,
@@ -2423,3 +2471,106 @@ class _SewingScreenState extends State<SewingScreen> {
 //     ],
 //   );
 }
+// Future<void> _showMyDialog(context) async {
+//   return showDialog<void>(
+//     context: context,
+//     barrierDismissible: false, // user must tap button!
+//     builder: (BuildContext context) {
+//       return AlertDialog(
+//
+//         backgroundColor: Colors.teal,
+//         insetPadding: EdgeInsets.zero,
+//         contentPadding: EdgeInsets.zero,
+//
+//         title: const Text("فتح الكاشير"),
+//
+//         content:Container(
+//             width: double.infinity,
+//             padding: EdgeInsets.symmetric(horizontal: 20),
+//
+//             child: CashierScreen()),
+//         actions: <Widget>[
+//           TextButton(
+//             child: const Text('اضافة'),
+//             onPressed: () {
+//               Navigator.of(context).pop();
+//             },
+//           ),
+//           TextButton(
+//             child: const Text('الغاء'),
+//             onPressed: () {
+//               Navigator.of(context).pop();
+//             },
+//           ),
+//         ],
+//       );
+//     },
+//   );
+// }
+// Future _showMyDialog(context) async {
+//   return Builder(builder: (context) => Container(child:  AwesomeDialog(context: context,
+//
+//     width: double.infinity,
+//     body: OpenCashier(),
+//     btnOk:   TextButton(
+//       child: const Text('الغاء'),
+//       onPressed: () {
+//         Navigator.of(context).pop();
+//       },
+//     ),
+//     btnCancel:   TextButton(
+//       child: const Text('الغاء'),
+//       onPressed: () {
+//         Navigator.of(context).pop();
+//       },
+//     ),
+//
+//   ),);,)
+//   return AwesomeDialog(context: context,
+//
+//   width: double.infinity,
+//   body: OpenCashier(),
+//     btnOk:   TextButton(
+//         child: const Text('الغاء'),
+//         onPressed: () {
+//           Navigator.of(context).pop();
+//         },
+//       ),
+//     btnCancel:   TextButton(
+//         child: const Text('الغاء'),
+//         onPressed: () {
+//           Navigator.of(context).pop();
+//         },
+//       ),
+//
+//   );
+//       // return AwesomeDialog(
+//       //
+//       //
+//       //   title: "فتح الكاشير",
+//       //
+//       //   body:Container(
+//       //       width: double.infinity,
+//       //       padding: EdgeInsets.symmetric(horizontal: 20),
+//       //
+//       //       child: CashierScreen()),
+//       //   actions: <Widget>[
+//       //     TextButton(
+//       //       child: const Text('اضافة'),
+//       //       onPressed: () {
+//       //         Navigator.of(context).pop();
+//       //       },
+//       //     ),
+//       //     TextButton(
+//       //       child: const Text('الغاء'),
+//       //       onPressed: () {
+//       //         Navigator.of(context).pop();
+//       //       },
+//       //     ),
+//       //   ], context: null,
+//       // );
+//
+//
+// }
+
+
