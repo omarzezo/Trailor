@@ -50,6 +50,14 @@ abstract class AppStrings {
   static const pleaseSearch = "pleaseSearch";
   static const pageSize = "pageSize";
   static const insertip = "insertip";
+  static const userCode = "userCode";
+  static const closedBy = "closedBy";
+  static const totalCash = "totalCash";
+  static const totalCheckMoney = "totalCheckMoney";
+  static const totalCardsMoney = "totalCardsMoney";
+  static const closingDate = "closingDate";
+  static const note = "note";
+  static const invoiceNumber = "invoiceNumber";
   static const address = "address";
   static const printer = "printer";
   static const print = "print";

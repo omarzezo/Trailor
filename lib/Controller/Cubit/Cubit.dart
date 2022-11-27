@@ -19,6 +19,9 @@ import 'package:omar/models/Products.dart';
 import 'package:omar/models/Taxrates.dart';
 import 'package:omar/models/Units.dart';
 import 'package:omar/models/Users.dart';
+import 'package:omar/models/cashier_response.dart';
+import 'package:omar/models/cashierclose.dart';
+import 'package:omar/models/cashierstart.dart';
 import 'package:omar/models/customer.dart';
 import 'package:omar/models/invoiceModel.dart';
 import 'package:omar/models/invoiceUpdateResponse.dart';
@@ -336,6 +339,7 @@ class LoginCubit extends Cubit<LoginState> {
           companiesEmployeeName.add(element);
         }
       });
+      usersList=  lenderResponseModel.users;
       // users.forEach((element) {usersName.add(element.company!);});
 
     } catch (e) {
@@ -344,8 +348,12 @@ class LoginCubit extends Cubit<LoginState> {
     }
 
     return lenderResponseModel;
-  }
 
+  }
+  List<Users>? usersList;
+  String? userName;
+String totalCash="0";
+int invoiceNumbers=0;
   Future<PillResponseModel> pillResponse(
       {required PillRequestModel pillRequestModel}) async {
     Dio dio = Dio();
@@ -964,6 +972,66 @@ chaneLangeUage(BuildContext context)  {
 
 }
 List<PillsDetailsData>? pillsDetailsDataList=[];
+
+String? userId;
+  CashierResponse? openCashierResponse;
+  CashierResponse? closeCashierResponse;
+  bool cashierIsOpened=false;
+
+  Future<CashierResponse> openCashier(CashierStartRequest cashierStartRequest)async{
+
+  Dio dio = Dio();
+  dio.options.headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Accept-Version': 'V1',
+    'Accept-Language': 'en',
+    'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko',
+  };
+  // final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
+  final response=await dio.post("https://cpe-soft.com/admin/api/v1/OpenRegister",data: jsonEncode(cashierStartRequest));
+  if(response.statusCode==200){
+    print(response.data);
+    openCashierResponse=CashierResponse.fromJson(response.data);
+    cashierIsOpened=openCashierResponse!.status!;
+  }else{
+    print(response.statusMessage);
+  }
+  return openCashierResponse!;
+}
+Future<CashierResponse> closeCashier(CashierCloseRequest cashierCloseRequest)async{
+  Dio dio = Dio();
+  dio.interceptors.add(LogInterceptor(
+      requestBody: true,
+      error: true,
+      requestHeader: true,
+      responseHeader: true,
+      responseBody: true
+  ));
+  dio.options.headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Accept-Version': 'V1',
+    'Accept-Language': 'en',
+    'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko'
+
+
+  };
+  // final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
+  final response=await dio.post("https://cpe-soft.com/admin/api/v1/CloseRegister",data: jsonEncode(cashierCloseRequest));
+  if(response.statusCode==200){
+    print(response.data);
+    closeCashierResponse=CashierResponse.fromJson(response.data);
+  }else{
+    print(response.statusMessage);
+  }
+  return closeCashierResponse!;
+}
+
+  TextEditingController cashInHandController=TextEditingController();
+  String cashInHand="0";
+
+
 
 
 }

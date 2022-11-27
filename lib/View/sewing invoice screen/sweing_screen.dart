@@ -2149,6 +2149,7 @@ class _SewingScreenState extends State<SewingScreen> {
                               MyConstant().purpleColor),
                         ),
                         onPressed: () async {
+                          if(cubit.cashierIsOpened==true){
                           try {
                             LoadingPage(context).show();
                             List<ProductModel> productList = [
@@ -2362,13 +2363,15 @@ class _SewingScreenState extends State<SewingScreen> {
                                 pillRequestModel: pillRequestModel);
                             // await cubit.getAllInvoiceInformation();
                             log("requestIs>>"+jsonEncode(pillRequestModel));
+                            cubit.totalCash=(double.parse(cubit.totalCash)+double.parse(cubit.whatYouPay.text)).toString();
+                            cubit.invoiceNumbers+=1;
                             LoadingPage(context).close();
 
                             Navigator.pushNamed(
                                 context, PrintScreen.routeName);
                           } catch (error) {
                             print(error.toString());
-                          }
+                          }}
                         },
                         child: Text(AppStrings.Save.tr(),
                             style: GoogleFonts.notoKufiArabic(
