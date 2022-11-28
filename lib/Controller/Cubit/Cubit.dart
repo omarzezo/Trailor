@@ -977,7 +977,8 @@ String? userId;
   CashierResponse? openCashierResponse;
   CashierResponse? closeCashierResponse;
   bool cashierIsOpened=false;
-
+String startDate="";
+String endDate="";
   Future<CashierResponse> openCashier(CashierStartRequest cashierStartRequest)async{
 
   Dio dio = Dio();
@@ -1022,6 +1023,8 @@ Future<CashierResponse> closeCashier(CashierCloseRequest cashierCloseRequest)asy
   if(response.statusCode==200){
     print(response.data);
     closeCashierResponse=CashierResponse.fromJson(response.data);
+    cashierIsOpened=false;
+
   }else{
     print(response.statusMessage);
   }

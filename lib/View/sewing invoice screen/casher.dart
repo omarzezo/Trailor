@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/View/sewing%20invoice%20screen/Widgets.dart';
+import 'package:omar/View/sewing%20invoice%20screen/cashier_report.dart';
 import 'package:omar/constant/appstrings.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/models/cashierclose.dart';
@@ -289,9 +290,13 @@ height: 30,
                 child: MaterialButton(
                   color: MyConstant().purpleColor,
                   onPressed: ()async {
+                    LoginCubit.get(context).endDate=DateFormat("yyyy-MM-dd HH:mm:ss").format(DateTime.now()).toString();
+
                     CashierCloseRequest cashierCloseRequest=CashierCloseRequest(userId:LoginCubit.get(context).userId ,closedAt: DateFormat("yyyy-MM-dd HH:mm:ss").format(DateTime.now()).toString(),closedBy:LoginCubit.get(context).userId ,invoiceCount:LoginCubit.get(context).invoiceNumbers.toString() ,note:" " ,totalCash:LoginCubit.get(context).totalCash ,totalCc:"0" ,totalCheques: "0");
-                    await LoginCubit.get(context).closeCashier(cashierCloseRequest).then((value) {
+                    await LoginCubit.get(context).closeCashier(cashierCloseRequest).then((value) async{
                       if(value.status==true){
+                   await    Navigator.pushNamed(context, CashierPillScreen.routeName);
+
                         LoginCubit.get(context).invoiceNumbers=0;
                         LoginCubit.get(context).totalCash="0";
                         LoginCubit.get(context).cashInHandController.text="0";
@@ -300,7 +305,7 @@ height: 30,
 
 
                     });
-                    Navigator.of(context).pop();
+                    // Navigator.of(context).pop();
 
                   },child: Text(AppStrings.close.tr(),
                     style: GoogleFonts.notoKufiArabic(
@@ -458,6 +463,8 @@ class _OpenCashierState extends State<OpenCashier> {
             text: " ", radius: BorderRadius.circular(5), borderSide: BorderSide(color: Colors.grey)),
         Row(children: [
           Expanded(child: TextButton(child: Text(AppStrings.add .tr(),),onPressed: ()async {
+            LoginCubit.get(context).startDate=DateFormat("yyyy-MM-dd HH:mm:ss").format(DateTime.now()).toString();
+            LoginCubit.get(context).cashInHand=LoginCubit.get(context).cashInHandController.text;
             CashierStartRequest cashierStartRequest=CashierStartRequest(userId:LoginCubit.get(context).userId ,cashInHand:LoginCubit.get(context).cashInHandController.text ,date: DateFormat("yyyy-MM-dd HH:mm:ss").format(DateTime.now()).toString());
 await LoginCubit.get(context).openCashier(cashierStartRequest).then((value) {
   if(value.status==true){
