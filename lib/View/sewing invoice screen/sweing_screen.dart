@@ -1959,7 +1959,9 @@ class _SewingScreenState extends State<SewingScreen> {
                                             AppStrings.BankCheck.tr())
                                             ? Container(
                                             width: MediaQuery.of(context).size.width *0.30,
-                                            margin: EdgeInsets.only(top: 30),
+
+
+            margin: EdgeInsets.only(top: 30),
                                             child: customTextField(
                                                 text: AppStrings.cheeckNumber.tr(),
                                                 controller: cubit
@@ -2083,6 +2085,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                                                 as PaymentType;
                                                                 cubit.paymentType =
                                                                 value.code!;
+                                                                cubit.paymentId=int.parse(value.id!);
                                                               });
                                                         },
                                                         iconSize:
@@ -2222,10 +2225,13 @@ class _SewingScreenState extends State<SewingScreen> {
                                 exitDate: "0001-01-01T00:00:00",
                                 payment: [
                                   Payment(
-                                    id: 1,
+                                    id: cubit.fixedPaymentType ==  AppStrings.monetary.tr()?cubit.paymentId=1:cubit.fixedPaymentType ==
+                                        AppStrings.BankCheck.tr()?cubit.paymentId=3:cubit.paymentId,
                                     date: "2022-08-16T00:59:44+03:00",
                                     amount: 10.0000,
-                                    paidBy: "cash",
+                                    // paidBy: "cash",
+                                    paidBy:cubit.fixedPaymentType ==  AppStrings.monetary.tr()?cubit.paymentType="cash":cubit.fixedPaymentType ==
+                                        AppStrings.BankCheck.tr()?cubit.paymentType="cheque":cubit.paymentType,
                                     commercialDiscount: 10.0000,
                                     commercialDiscountId: null,
                                     chequeNo: null,
@@ -2365,6 +2371,8 @@ class _SewingScreenState extends State<SewingScreen> {
                             log("requestIs>>"+jsonEncode(pillRequestModel));
                             cubit.totalCash=(double.parse(cubit.totalCash)+double.parse(cubit.whatYouPay.text)).toString();
                             cubit.invoiceNumbers+=1;
+                            print("the way of paying ${cubit.paymentType}");
+                            print("the way of paying ${cubit.paymentId}");
                             LoadingPage(context).close();
 
                             Navigator.pushNamed(

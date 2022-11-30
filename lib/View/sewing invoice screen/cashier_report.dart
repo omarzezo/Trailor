@@ -296,7 +296,8 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                                                         width: 100,
                                                         alignment: Alignment.center,
                                                         child:Text(
-                                                          cubit.invoiceNumbers.toString(),textAlign: TextAlign.center,
+                                                          // cubit.invoiceNumbers.toString(),textAlign: TextAlign.center,
+                                                          cubit.closeCashierDetailsResponse!.invoiceCount.toString(),textAlign: TextAlign.center,
 
                                                           // invoiceModel!.invoiceData![0].date!,textAlign: TextAlign.center,
                                                           style: getStyle(color: Colors.black, fontSize: textSize-1),
@@ -320,7 +321,7 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                                                         width: 100,
                                                         alignment: Alignment.center,
                                                         child:Text(
-                                                         "0",textAlign: TextAlign.center,
+                                                          cubit.closeCashierDetailsResponse!.returnInvoiceCount.toString(),textAlign: TextAlign.center,
 
                                                           // invoiceModel!.invoiceData![0].referenceNo!,textAlign: TextAlign.center,
                                                           style: getStyle(color: Colors.black, fontSize: textSize-1),
@@ -344,7 +345,8 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                                                         width: 90,
                                                         alignment: Alignment.center,
                                                         child:Text(
-                                                          cubit.cashInHandController.text,textAlign: TextAlign.center,
+                                                          // cubit.cashInHandController.text,textAlign: TextAlign.center,
+                                                          cubit.closeCashierDetailsResponse!.cashInHand.toString(),textAlign: TextAlign.center,
 
                                                           // invoiceModel!.invoiceData![0].customer!,textAlign: TextAlign.center,
                                                           style: getStyle(color: Colors.black, fontSize: textSize-1),
@@ -369,7 +371,8 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                                                         width: 90,
                                                         alignment: Alignment.center,
                                                         child:Text(
-                                                          cubit.startDate!,textAlign: TextAlign.center,
+                                                          // cubit.startDate!,textAlign: TextAlign.center,
+                                                          cubit.closeCashierDetailsResponse!.openDate.toString(),textAlign: TextAlign.center,
 
                                                           // invoiceModel!.invoiceData![0].customer!,textAlign: TextAlign.center,
                                                           style: getStyle(color: Colors.black, fontSize: textSize-1),
@@ -393,7 +396,8 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                                                         width: 80,
                                                         alignment: Alignment.center,
                                                         child:Text(
-                                                          cubit.endDate!,textAlign: TextAlign.left,
+                                                          // cubit.endDate!,textAlign: TextAlign.left,
+                                                          cubit.closeCashierDetailsResponse!.closeDate.toString(),textAlign: TextAlign.left,
 
                                                           // invoiceModel!.invoiceData![0].items![0].tax!,textAlign: TextAlign.left,
                                                           style: getStyle(color: Colors.black, fontSize: textSize-1),
@@ -418,7 +422,8 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              cubit.totalCash,
+                                              // cubit.totalCash,
+                                              cubit.closeCashierDetailsResponse!.totalCash.toString(),
 
                                               // invoiceModel!.invoiceData![0].id!,
                                               style: getStyle(color: Colors.black, fontSize: textSize-1),
@@ -481,7 +486,8 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              cubit.totalCash,
+                                              // cubit.totalCash,
+                                              cubit.closeCashierDetailsResponse!.totalCash.toString(),
 
                                               // invoiceModel!.invoiceData![0].id!,
                                               style: getStyle(color: Colors.black, fontSize: textSize-1),
@@ -502,7 +508,7 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              "0",
+                                              cubit.closeCashierDetailsResponse!.netSalesGrandTotal.toString(),
 
                                               // invoiceModel!.invoiceData![0].id!,
                                               style: getStyle(color: Colors.black, fontSize: textSize-1),
@@ -523,7 +529,7 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              "0",
+                                              cubit.closeCashierDetailsResponse!.totalAdvance.toString(),
 
                                               // invoiceModel!.invoiceData![0].id!,
                                               style: getStyle(color: Colors.black, fontSize: textSize-1),
@@ -544,7 +550,7 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              "0",
+                                              cubit.closeCashierDetailsResponse!.returnInvoiceGrandTotal.toString(),
 
                                               // invoiceModel!.invoiceData![0].id!,
                                               style: getStyle(color: Colors.black, fontSize: textSize-1),
@@ -564,7 +570,8 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              ((double.parse(cubit.totalCash))+(double.parse(cubit.cashInHand))).toString(),
+                                              // ((double.parse(cubit.totalCash))+(double.parse(cubit.cashInHand))).toString(),
+                                              cubit.closeCashierDetailsResponse!.totalCash.toString(),
 
                                               // invoiceModel!.invoiceData![0].id!,
                                               style: getStyle(color: Colors.black, fontSize: textSize-1),

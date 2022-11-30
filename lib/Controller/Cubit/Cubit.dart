@@ -22,6 +22,8 @@ import 'package:omar/models/Users.dart';
 import 'package:omar/models/cashier_response.dart';
 import 'package:omar/models/cashierclose.dart';
 import 'package:omar/models/cashierstart.dart';
+import 'package:omar/models/close_cashier_request.dart';
+import 'package:omar/models/close_cashier_respone.dart';
 import 'package:omar/models/customer.dart';
 import 'package:omar/models/invoiceModel.dart';
 import 'package:omar/models/invoiceUpdateResponse.dart';
@@ -126,7 +128,7 @@ class LoginCubit extends Cubit<LoginState> {
   Companies? employeeItem;
   PaymentType? paymentTypeItem;
   int itemIndex=0;
-
+int? paymentId;
   // variable of controllers
   String? tailorV;
   String? typeV;
@@ -1023,6 +1025,7 @@ Future<CashierResponse> closeCashier(CashierCloseRequest cashierCloseRequest)asy
   if(response.statusCode==200){
     print(response.data);
     closeCashierResponse=CashierResponse.fromJson(response.data);
+    await closeCashierDetails();
     cashierIsOpened=false;
 
   }else{
@@ -1034,8 +1037,36 @@ Future<CashierResponse> closeCashier(CashierCloseRequest cashierCloseRequest)asy
   TextEditingController cashInHandController=TextEditingController();
   String cashInHand="0";
 
+  CloseCashierResponse? closeCashierDetailsResponse;
+Future<CloseCashierResponse> closeCashierDetails()async{
+  CloseCashierRequest closeCashierRequest=CloseCashierRequest(userId: userId,closedAt: endDate);
+  Dio dio = Dio();
+  dio.interceptors.add(LogInterceptor(
+      requestBody: true,
+      error: true,
+      requestHeader: true,
+      responseHeader: true,
+      responseBody: true
+  ));
+  dio.options.headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Accept-Version': 'V1',
+    'Accept-Language': 'en',
+    'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko'
 
 
+  };
+  final response=await dio.post("https://cpe-soft.com/admin/api/v1/RegisterDetails",data: jsonEncode(closeCashierRequest));
+  if(response.statusCode==200){
+    print(response.data);
+    closeCashierDetailsResponse=CloseCashierResponse.fromJson(response.data);
+
+  }else{
+    print(response.statusMessage);
+  }
+  return closeCashierDetailsResponse!;
+}
 
 }
 
