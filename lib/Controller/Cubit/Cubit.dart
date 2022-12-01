@@ -549,6 +549,7 @@ String? salesId;
     sleeveLengthIsHigher.clear();
     wideWrist.clear();
     plainCuff.clear();
+    cheeckPayment.clear();
     cuffLength.clear();
     cuffShow.clear();
     wideMiddle.clear();
@@ -981,6 +982,7 @@ String? userId;
   bool cashierIsOpened=false;
 String startDate="";
 String endDate="";
+// String cashInHand="0";
   Future<CashierResponse> openCashier(CashierStartRequest cashierStartRequest)async{
 
   Dio dio = Dio();

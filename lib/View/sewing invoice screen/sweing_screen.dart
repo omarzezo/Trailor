@@ -10,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart' as p;
+
 import 'package:flutter/services.dart' as p1;
 
 import 'package:omar/Controller/Cubit/Cubit.dart';
@@ -2175,12 +2176,12 @@ class _SewingScreenState extends State<SewingScreen> {
                             List<salesModel> salesList = [
                               salesModel(
                                 // date: "2022-10-10 20:22:00",
-                                date: p.DateFormat('yyyy-MM-dd HH:mm').parse(DateTime.now().toString()).toString(),
+                                date: p.DateFormat("yyyy-MM-dd HH:mm:ss","en").parse(DateTime.now().toString()).toString(),
                                 referenceNo: "SALE2022/10/0001",
                                 // customerId: int.parse(cubit.users[0].id!),
                                 // customerId: int.parse(cubit.companiesEmployeeName[0].id!),
                                 customerId: customerId,
-                                dueDate: "2022-08-16T00:00:00",
+                                dueDate: p.DateFormat("yyyy-MM-dd HH:mm:ss","en").parse(DateTime.now().toString()).toString(),
                                 hash: "51280eb9564fe8aaa0abca09a2921438e7b0ae05d1714c0badb64238144eef8c",
                                 // customer: cubit.companiesEmployeeName[0].company,
                                 // customer: cubit.companiesEmployeeName[0].company,

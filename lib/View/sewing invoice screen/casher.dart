@@ -290,12 +290,12 @@ height: 30,
                 child: MaterialButton(
                   color: MyConstant().purpleColor,
                   onPressed: ()async {
-                    LoginCubit.get(context).endDate=DateFormat("yyyy-MM-dd HH:mm:ss").format(DateTime.now()).toString();
+                    LoginCubit.get(context).endDate=DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString();
 
-                    CashierCloseRequest cashierCloseRequest=CashierCloseRequest(userId:LoginCubit.get(context).userId ,closedAt: DateFormat("yyyy-MM-dd HH:mm:ss").format(DateTime.now()).toString(),closedBy:LoginCubit.get(context).userId ,invoiceCount:LoginCubit.get(context).invoiceNumbers.toString() ,note:" " ,totalCash:LoginCubit.get(context).totalCash ,totalCc:"0" ,totalCheques: "0");
+                    CashierCloseRequest cashierCloseRequest=CashierCloseRequest(userId:LoginCubit.get(context).userId ,closedAt: DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString(),closedBy:LoginCubit.get(context).userId ,invoiceCount:LoginCubit.get(context).invoiceNumbers.toString() ,note:" " ,totalCash:LoginCubit.get(context).totalCash ,totalCc:"0" ,totalCheques: "0");
                     await LoginCubit.get(context).closeCashier(cashierCloseRequest).then((value) async{
                       if(value.status==true){
-                   await    Navigator.pushNamed(context, CashierPillScreen.routeName);
+                   await    Navigator.pushReplacementNamed(context, CashierPillScreen.routeName);
 
                         LoginCubit.get(context).invoiceNumbers=0;
                         LoginCubit.get(context).totalCash="0";
@@ -459,16 +459,20 @@ class _OpenCashierState extends State<OpenCashier> {
                 fontSize: 18)),
         textField(
           controller: LoginCubit.get(context).cashInHandController,
+            onChanged: (value) {
+              LoginCubit.get(context).cashInHand=value;
+            },
+
 
             text: " ", radius: BorderRadius.circular(5), borderSide: BorderSide(color: Colors.grey)),
         Row(children: [
           Expanded(child: TextButton(child: Text(AppStrings.add .tr(),),onPressed: ()async {
-            LoginCubit.get(context).startDate=DateFormat("yyyy-MM-dd HH:mm:ss").format(DateTime.now()).toString();
-            LoginCubit.get(context).cashInHand=LoginCubit.get(context).cashInHandController.text;
-            CashierStartRequest cashierStartRequest=CashierStartRequest(userId:LoginCubit.get(context).userId ,cashInHand:LoginCubit.get(context).cashInHandController.text ,date: DateFormat("yyyy-MM-dd HH:mm:ss").format(DateTime.now()).toString());
+            LoginCubit.get(context).startDate=DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString();
+            // LoginCubit.get(context).cashInHand=LoginCubit.get(context).cashInHandController.text.isEmpty?"0":LoginCubit.get(context).cashInHandController.text;
+            CashierStartRequest cashierStartRequest=CashierStartRequest(userId:LoginCubit.get(context).userId ,cashInHand:LoginCubit.get(context).cashInHandController.text.isEmpty?"0":LoginCubit.get(context).cashInHandController.text ,date: DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString());
 await LoginCubit.get(context).openCashier(cashierStartRequest).then((value) {
   if(value.status==true){
-    LoginCubit.get(context).totalCash=(double.parse(LoginCubit.get(context).cashInHandController.text)+double.parse(LoginCubit.get(context).totalCash)).toString();
+    LoginCubit.get(context).totalCash=(double.parse(LoginCubit.get(context).cashInHandController.text.isEmpty?"0":LoginCubit.get(context).cashInHandController.text)+double.parse(LoginCubit.get(context).totalCash)).toString();
 
   }
 });
