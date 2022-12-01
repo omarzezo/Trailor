@@ -476,6 +476,7 @@ String? salesId;
   PillsDetails? pillsDetails;
   data.PillsDetailsData?   pillsDetailsItem;
   Future<PillsDetails> getPillsDetails ()async{
+    companiesEmployeeName=[];
     Dio dio = Dio();
     // final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
     final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
@@ -1063,6 +1064,7 @@ Future<CloseCashierResponse> closeCashierDetails()async{
   if(response.statusCode==200){
     print(response.data);
     closeCashierDetailsResponse=CloseCashierResponse.fromJson(response.data);
+    clearControllers();
 
   }else{
     print(response.statusMessage);
