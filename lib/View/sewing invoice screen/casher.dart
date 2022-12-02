@@ -423,6 +423,8 @@ class _OpenCashierState extends State<OpenCashier> {
 
                     setState(() {
                       LoginCubit.get(context).userName=val as String;
+                      LoginCubit.get(context).userNamevar=val;
+
                       // LoginCubit.get(context).userName=val;
                       LoginCubit.get(context).usersList!.forEach((user) {
                         if(val ==user.username){

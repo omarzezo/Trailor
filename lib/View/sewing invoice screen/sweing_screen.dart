@@ -2380,7 +2380,28 @@ class _SewingScreenState extends State<SewingScreen> {
                                 context, PrintScreen.routeName);
                           } catch (error) {
                             print(error.toString());
-                          }}
+                          }}else{
+                            AwesomeDialog(context: context,
+                              dialogType: DialogType.error,
+                              animType: AnimType.rightSlide,
+                              width:MediaQuery.of(context).size.width,
+                              // width:400,
+                              body:  Container(
+                                height: 50,
+                                child: Text(
+                                 AppStrings.openCh.tr(),
+                                    style: GoogleFonts.notoKufiArabic(
+                                    color: MyConstant().purpleColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14)
+                                ),
+                              ),
+                              btnOk:  TextButton(child: Text(AppStrings.Cancel.tr(),),onPressed: () {
+                                Navigator.of(context).pop();
+                              },)
+
+                            ).show();
+                          }
                         },
                         child: Text(AppStrings.Save.tr(),
                             style: GoogleFonts.notoKufiArabic(

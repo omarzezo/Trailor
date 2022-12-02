@@ -237,7 +237,7 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                                                         width: 80,
                                                         alignment: Alignment.center,
                                                         child:Text(
-                                                           cubit.userName!,textAlign: TextAlign.center,
+                                                           cubit.userNamevar!,textAlign: TextAlign.center,
                                                             style: getStyle(color: Colors.black, fontSize: textSize-1)
                                                         )),  Container(
                                                         width: 55,
@@ -582,26 +582,27 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                                             ),
                                           ],),
                                       ),
-                                      const SizedBox(height:5,),
+                                      const SizedBox(height:20,),
 
 
 
 
 
-                                      const Divider(
-                                        color: Colors.black,
-                                      ),
-                                      QrImage(
-                                        data: QrCodeTVL(context),
-                                        version: QrVersions.auto,
-                                        size: 140.0,
-                                      )
+                                      // const Divider(
+                                      //   color: Colors.black,
+                                      // ),
+                                      // QrImage(
+                                      //   data: QrCodeTVL(context),
+                                      //   version: QrVersions.auto,
+                                      //   size: 140.0,
+                                      // )
                                     ],
                                   )))
 
 
 
                       ),
+                      SizedBox(height: 10,),
                       ElevatedButton(
                         child: Text("طباعة",
                             style: getStyle(color: Colors.white, fontSize: 16)
@@ -738,7 +739,7 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                                   width: 80,
                                   alignment: Alignment.center,
                                   child:Text(
-                                      LoginCubit.get(context).userName!,textAlign: TextAlign.center,
+                                      LoginCubit.get(context).userNamevar,textAlign: TextAlign.center,
                                       style: getStyle(color: Colors.black, fontSize: textSize-1)
                                   )),  Container(
                                   width: 55,
@@ -1145,15 +1146,15 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
 
                 const SizedBox(height:5,),
 
-
-                const Divider(
-                  color: Colors.black,
-                ),
-                QrImage(
-                  data: QrCodeTVL(context),
-                  version: QrVersions.auto,
-                  size: 140.0,
-                )
+                //
+                // const Divider(
+                //   color: Colors.black,
+                // ),
+                // QrImage(
+                //   data: QrCodeTVL(context),
+                //   version: QrVersions.auto,
+                //   size: 140.0,
+                // )
               ],
             )));
   }

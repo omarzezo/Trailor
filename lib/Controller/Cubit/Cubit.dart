@@ -290,6 +290,28 @@ int? paymentId;
 //   }
 //   return customerModel;
 // }
+
+
+  Future<List<Companies>> getAllData()async{
+  //  https://cpe-soft.com/admin/api/v1/data?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1
+    Dio dio = Dio();
+    // final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
+    final response=await dio.get("https://cpe-soft.com/admin/api/v1/data?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
+    if(response.statusCode==200){
+      print(response.data);
+      companiesEmployeeName=[];
+       TrailorListsResponse.fromJson(response.data).companies!.forEach((element) {
+        if (element.groupName == "biller") {
+          companiesEmployeeName.add(element);
+        }
+      });
+      // Companies.fromJson(response.data);
+
+    }else{
+      print(response.statusMessage);
+    }
+    return companiesEmployeeName;
+  }
   Future<TrailorListsResponse> login({
     required String email,
     required String password,
@@ -483,6 +505,7 @@ String? salesId;
     if(response.statusCode==200){
       print(response.data);
       pillsDetails=PillsDetails.fromJson(response.data);
+      await getAllData();
 
       return pillsDetails!;
     }else{
@@ -532,7 +555,8 @@ String? salesId;
     valueItemSizeName=null;
     itemPrice1=null;
     quantities1=null;
-
+    userName=null;
+    cashInHandController.clear();
      tRPocketValueName=null;
      trFillingValueName=null;
    tRZipperValueName=null;
@@ -1066,11 +1090,13 @@ Future<CloseCashierResponse> closeCashierDetails()async{
     closeCashierDetailsResponse=CloseCashierResponse.fromJson(response.data);
     clearControllers();
 
+
   }else{
     print(response.statusMessage);
   }
   return closeCashierDetailsResponse!;
 }
+  String userNamevar="";
 
 }
 

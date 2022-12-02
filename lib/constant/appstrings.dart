@@ -59,6 +59,7 @@ abstract class AppStrings {
   static const note = "note";
   static const invoiceNumber = "invoiceNumber";
   static const address = "address";
+  static const openCh = "openCh";
   static const printer = "printer";
   static const print = "print";
   static const Simplifiedtaxinvoice = "Simplifiedtaxinvoice";
