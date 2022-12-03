@@ -51,6 +51,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
   @override
   void initState() {
    onStartScreen();
+
    super.initState();
   }
 
