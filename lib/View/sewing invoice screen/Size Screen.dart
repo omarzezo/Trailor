@@ -310,10 +310,19 @@ class _SizeScreenState extends State<SizeScreen> {
                                 // color: MyConstant().greenColor,
                                 child: Column(
                                   children: [
+
+                                    Container(
+                                      padding:EdgeInsets.symmetric(horizontal: 20),
+
+                                      color: MyConstant().purpleColor,child: Text("${AppStrings.Client.tr()} : ${cubit.userItemName??" "}" ,style: GoogleFonts.notoKufiArabic(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20)),),
                                     Row(
                                       mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
                                       children: [
+
                                         Container(
                                             width: MediaQuery.of(context).size.width / 2.52,
                                             margin:EdgeInsets.only(top: 14,bottom: 14),
@@ -1873,6 +1882,15 @@ class _SizeScreenState extends State<SizeScreen> {
                             child: Column(
                               children: [
                                 SizedBox(height: 10,),
+                                Container(
+                                  padding:EdgeInsets.symmetric(horizontal: 20),
+
+                                  color: MyConstant().purpleColor,child: Text("${AppStrings.Client.tr()} : ${cubit.userItemName??" "}" ,style: GoogleFonts.notoKufiArabic(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20)),),
+                                SizedBox(height: 10,),
+
                                 Row(
 
                                   children: [

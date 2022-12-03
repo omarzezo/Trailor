@@ -41,7 +41,9 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
   // BluePrinter bluePrinter=BluePrinter();
   SonomiPrinter sonomiPrinter=SonomiPrinter();
 
-  double vatNo=0567218888;
+  String vatNo="0567218888";
+  // double vatNo=LoginCubit.get(context).allInvoices[ LoginCubit.get(context).allInvoices.length-1].items[0].;
+  // double vatNo=LoginCubit.get(context).allInvoices[ cubit.allInvoices.length-1].items[0]!;
   double textSize=14;
   double width=400;
   BluetoothManager bluetoothManager = BluetoothManager.instance;
@@ -70,12 +72,17 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     var cubit=LoginCubit.get(context);
+    cubit.companiesCustomerName.forEach((element) {if(element.company== cubit.invoiceModel!.invoiceData![0].customer){
+      vatNo=element.vatNo!;
+    }});
     Size size = MediaQuery.of(context).size;
     return Directionality(
       textDirection: p.TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
   listener: (context, state) {
+    
   },
   builder: (context, state) {
     return Scaffold(
@@ -641,7 +648,9 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                     width: 80,
                                                     alignment: Alignment.center,
                                                     child:Text(
-                                                        "${double.parse(cubit.tax.text).toStringAsFixed(0)} %",textAlign: TextAlign.center,
+                                                
+                                                        
+                                                        vatNo,textAlign: TextAlign.center,
                                                         style: getStyle(color: Colors.black, fontSize: textSize-1)
                                                     )),  Container(
                                                     width: 55,
@@ -824,7 +833,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                     width: 80,
                                                     alignment: Alignment.center,
                                                     child:Text(
-                                                      "${double.parse(cubit.tax.text).toStringAsFixed(0)} %",textAlign: TextAlign.left,
+                                                      vatNo,textAlign: TextAlign.left,
 
                                                       // invoiceModel!.invoiceData![0].items![0].tax!,textAlign: TextAlign.left,
                                                       style: getStyle(color: Colors.black, fontSize: textSize-1),
@@ -1261,7 +1270,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                   width: 80,
                                   alignment: Alignment.center,
                                   child:Text(
-                                    invoiceModel!.invoiceData![0].items![0].tax!,textAlign: TextAlign.center,
+                                      vatNo,textAlign: TextAlign.center,
                                     style: getStyle(color: Colors.black, fontSize: textSize-1)
                                   )),  Container(
                                   width: 55,
@@ -1435,7 +1444,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                   width: 80,
                                   alignment: Alignment.center,
                                   child:Text(
-                                    invoiceModel!.invoiceData![0].items![0].tax!,textAlign: TextAlign.left,
+                                    vatNo,textAlign: TextAlign.left,
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),  Container(
                                   width: 55,
@@ -1739,7 +1748,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
     bytesBuilder.add(getSetting);
 
     bytesBuilder.addByte(2);
-    List<int> getvat_no=utf8.encode(vatNo.toString());
+    List<int> getvat_no=utf8.encode(vatNo);
     // bytesBuilder.addByte(getvat_no.length);
     bytesBuilder.addByte(getvat_no.length);
     bytesBuilder.add(getvat_no);

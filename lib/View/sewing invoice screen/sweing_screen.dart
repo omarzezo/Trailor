@@ -1,18 +1,22 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart' as localize;
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart' as p;
+
 import 'package:flutter/services.dart' as p1;
 
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/View/sewing%20invoice%20screen/add_new_customer_screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/casher.dart';
 import 'package:omar/View/sewing%20invoice%20screen/print_screen.dart';
 import 'package:omar/constant/LoadingPage.dart';
 import 'package:omar/constant/appstrings.dart';
@@ -79,7 +83,7 @@ class _SewingScreenState extends State<SewingScreen> {
     cubit.companiesCustomerName.retainWhere((x) => ids.add(x.name));
 
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: p1.TextDirection.rtl,
       child: SafeArea(
         child: BlocConsumer<LoginCubit, LoginState>(
           listener: (context, state) {
@@ -107,6 +111,51 @@ class _SewingScreenState extends State<SewingScreen> {
                 //     iconAndText(iconData: Icons.subdirectory_arrow_left, nameText: 'مرتجع'),
                 //   ],),
                 // ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        color: MyConstant().purpleColor,child: MaterialButton(onPressed: () {
+
+                        AwesomeDialog(context: context,
+                            dialogType: DialogType.question,
+                            animType: AnimType.rightSlide,
+                          width:MediaQuery.of(context).size.width/1.2,
+                          // width:400,
+                          body: OpenCashier(),
+
+                        ).show();
+
+                      },child: Text(AppStrings.Openthecashregister.tr(),style: GoogleFonts.notoKufiArabic(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 18)),),),
+                    ),
+                    SizedBox(width: 20,),
+                    Expanded(
+
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+
+                        color:  MyConstant().purpleColor,child: MaterialButton(onPressed: () {
+
+                        AwesomeDialog(context: context,
+                            dialogType: DialogType.noHeader,
+                            animType: AnimType.rightSlide,
+                          width:MediaQuery.of(context).size.width,
+                          // width:400,
+                          body:  CashierScreen(),
+
+                        ).show();
+
+                      },child: Text(AppStrings.Closethecashier.tr(),style: GoogleFonts.notoKufiArabic(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 18)),),),
+                    ),
+                  ],
+                ),
                 Container(
                   // width: 600,
                   width: MediaQuery.of(context).size.width / w,
@@ -1906,7 +1955,9 @@ class _SewingScreenState extends State<SewingScreen> {
                                             AppStrings.BankCheck.tr())
                                             ? Container(
                                             width: MediaQuery.of(context).size.width *0.30,
-                                            margin: EdgeInsets.only(top: 30),
+
+
+            margin: EdgeInsets.only(top: 30),
                                             child: customTextField(
                                                 text: AppStrings.cheeckNumber.tr(),
                                                 controller: cubit
@@ -2030,6 +2081,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                                                 as PaymentType;
                                                                 cubit.paymentType =
                                                                 value.code!;
+                                                                cubit.paymentId=int.parse(value.id!);
                                                               });
                                                         },
                                                         iconSize:
@@ -2096,6 +2148,7 @@ class _SewingScreenState extends State<SewingScreen> {
                               MyConstant().purpleColor),
                         ),
                         onPressed: () async {
+                          if(cubit.cashierIsOpened==true){
                           try {
                             LoadingPage(context).show();
                             List<ProductModel> productList = [
@@ -2118,12 +2171,12 @@ class _SewingScreenState extends State<SewingScreen> {
                             List<salesModel> salesList = [
                               salesModel(
                                 // date: "2022-10-10 20:22:00",
-                                date: p.DateFormat('yyyy-MM-dd HH:mm').parse(DateTime.now().toString()).toString(),
+                                date: p.DateFormat("yyyy-MM-dd HH:mm:ss","en").parse(DateTime.now().toString()).toString(),
                                 referenceNo: "SALE2022/10/0001",
                                 // customerId: int.parse(cubit.users[0].id!),
                                 // customerId: int.parse(cubit.companiesEmployeeName[0].id!),
                                 customerId: customerId,
-                                dueDate: "2022-08-16T00:00:00",
+                                dueDate: p.DateFormat("yyyy-MM-dd HH:mm:ss","en").parse(DateTime.now().toString()).toString(),
                                 hash: "51280eb9564fe8aaa0abca09a2921438e7b0ae05d1714c0badb64238144eef8c",
                                 // customer: cubit.companiesEmployeeName[0].company,
                                 // customer: cubit.companiesEmployeeName[0].company,
@@ -2168,10 +2221,13 @@ class _SewingScreenState extends State<SewingScreen> {
                                 exitDate: "0001-01-01T00:00:00",
                                 payment: [
                                   Payment(
-                                    id: 1,
+                                    id: cubit.fixedPaymentType ==  AppStrings.monetary.tr()?cubit.paymentId=1:cubit.fixedPaymentType ==
+                                        AppStrings.BankCheck.tr()?cubit.paymentId=3:cubit.paymentId,
                                     date: "2022-08-16T00:59:44+03:00",
                                     amount: 10.0000,
-                                    paidBy: "cash",
+                                    // paidBy: "cash",
+                                    paidBy:cubit.fixedPaymentType ==  AppStrings.monetary.tr()?cubit.paymentType="cash":cubit.fixedPaymentType ==
+                                        AppStrings.BankCheck.tr()?cubit.paymentType="cheque":cubit.paymentType,
                                     commercialDiscount: 10.0000,
                                     commercialDiscountId: null,
                                     chequeNo: null,
@@ -2309,12 +2365,37 @@ class _SewingScreenState extends State<SewingScreen> {
                                 pillRequestModel: pillRequestModel);
                             // await cubit.getAllInvoiceInformation();
                             log("requestIs>>"+jsonEncode(pillRequestModel));
+                            cubit.totalCash=(double.parse(cubit.totalCash)+double.parse(cubit.whatYouPay.text)).toString();
+                            cubit.invoiceNumbers+=1;
+                            print("the way of paying ${cubit.paymentType}");
+                            print("the way of paying ${cubit.paymentId}");
                             LoadingPage(context).close();
 
                             Navigator.pushNamed(
                                 context, PrintScreen.routeName);
                           } catch (error) {
                             print(error.toString());
+                          }}else{
+                            AwesomeDialog(context: context,
+                              dialogType: DialogType.error,
+                              animType: AnimType.rightSlide,
+                              width:MediaQuery.of(context).size.width,
+                              // width:400,
+                              body:  Container(
+                                height: 50,
+                                child: Text(
+                                 AppStrings.openCh.tr(),
+                                    style: GoogleFonts.notoKufiArabic(
+                                    color: MyConstant().purpleColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14)
+                                ),
+                              ),
+                              btnOk:  TextButton(child: Text(AppStrings.Cancel.tr(),),onPressed: () {
+                                Navigator.of(context).pop();
+                              },)
+
+                            ).show();
                           }
                         },
                         child: Text(AppStrings.Save.tr(),
@@ -2418,3 +2499,106 @@ class _SewingScreenState extends State<SewingScreen> {
 //     ],
 //   );
 }
+// Future<void> _showMyDialog(context) async {
+//   return showDialog<void>(
+//     context: context,
+//     barrierDismissible: false, // user must tap button!
+//     builder: (BuildContext context) {
+//       return AlertDialog(
+//
+//         backgroundColor: Colors.teal,
+//         insetPadding: EdgeInsets.zero,
+//         contentPadding: EdgeInsets.zero,
+//
+//         title: const Text("فتح الكاشير"),
+//
+//         content:Container(
+//             width: double.infinity,
+//             padding: EdgeInsets.symmetric(horizontal: 20),
+//
+//             child: CashierScreen()),
+//         actions: <Widget>[
+//           TextButton(
+//             child: const Text('اضافة'),
+//             onPressed: () {
+//               Navigator.of(context).pop();
+//             },
+//           ),
+//           TextButton(
+//             child: const Text('الغاء'),
+//             onPressed: () {
+//               Navigator.of(context).pop();
+//             },
+//           ),
+//         ],
+//       );
+//     },
+//   );
+// }
+// Future _showMyDialog(context) async {
+//   return Builder(builder: (context) => Container(child:  AwesomeDialog(context: context,
+//
+//     width: double.infinity,
+//     body: OpenCashier(),
+//     btnOk:   TextButton(
+//       child: const Text('الغاء'),
+//       onPressed: () {
+//         Navigator.of(context).pop();
+//       },
+//     ),
+//     btnCancel:   TextButton(
+//       child: const Text('الغاء'),
+//       onPressed: () {
+//         Navigator.of(context).pop();
+//       },
+//     ),
+//
+//   ),);,)
+//   return AwesomeDialog(context: context,
+//
+//   width: double.infinity,
+//   body: OpenCashier(),
+//     btnOk:   TextButton(
+//         child: const Text('الغاء'),
+//         onPressed: () {
+//           Navigator.of(context).pop();
+//         },
+//       ),
+//     btnCancel:   TextButton(
+//         child: const Text('الغاء'),
+//         onPressed: () {
+//           Navigator.of(context).pop();
+//         },
+//       ),
+//
+//   );
+//       // return AwesomeDialog(
+//       //
+//       //
+//       //   title: "فتح الكاشير",
+//       //
+//       //   body:Container(
+//       //       width: double.infinity,
+//       //       padding: EdgeInsets.symmetric(horizontal: 20),
+//       //
+//       //       child: CashierScreen()),
+//       //   actions: <Widget>[
+//       //     TextButton(
+//       //       child: const Text('اضافة'),
+//       //       onPressed: () {
+//       //         Navigator.of(context).pop();
+//       //       },
+//       //     ),
+//       //     TextButton(
+//       //       child: const Text('الغاء'),
+//       //       onPressed: () {
+//       //         Navigator.of(context).pop();
+//       //       },
+//       //     ),
+//       //   ], context: null,
+//       // );
+//
+//
+// }
+
+
