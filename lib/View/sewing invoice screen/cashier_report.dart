@@ -83,7 +83,7 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
               backgroundColor: Colors.purple,
               title: Text("معاينة الفاتورة", style: GoogleFonts.notoKufiArabic(
                   color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)), centerTitle: true,),
-            body: (cubit.closeCashierResponse!=null)?
+            body: (cubit.closeCashierResponse!=null&&cubit.closeCashierResponse!.status==true)?
             Center(
               child: SingleChildScrollView(
 
@@ -214,7 +214,7 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                                                         width: 90,
                                                         alignment: Alignment.center,
                                                         child:Text(
-                                                          "Alhelaly",
+                                                          " ",
                                                           style: getStyle(color: Colors.black, fontSize: textSize),
                                                         )),  Container(
                                                         width: 50,
@@ -346,7 +346,7 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                                                         alignment: Alignment.center,
                                                         child:Text(
                                                           // cubit.cashInHandController.text,textAlign: TextAlign.center,
-                                                          cubit.closeCashierDetailsResponse!.cashInHand.toString(),textAlign: TextAlign.center,
+                                                          double.parse(cubit.closeCashierDetailsResponse!.cashInHand!).toStringAsFixed(2),textAlign: TextAlign.center,
 
                                                           // invoiceModel!.invoiceData![0].customer!,textAlign: TextAlign.center,
                                                           style: getStyle(color: Colors.black, fontSize: textSize-1),
@@ -716,7 +716,7 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                                   width: 90,
                                   alignment: Alignment.center,
                                   child:Text(
-                                    "Alhelaly",
+                                    " ",
                                     style: getStyle(color: Colors.black, fontSize: textSize),
                                   )),  Container(
                                   width: 50,
@@ -861,7 +861,8 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                                   // width: 90,
                                   alignment: Alignment.center,
                                   child:Text(
-                                    LoginCubit.get(context).cashInHandController.text,textAlign: TextAlign.center,
+                                    // LoginCubit.get(context).cashInHandController.text,textAlign: TextAlign.center,
+                                    double.parse(LoginCubit.get(context).closeCashierDetailsResponse!.cashInHand!).toStringAsFixed(2),textAlign: TextAlign.center,
 
                                     // invoiceModel!.invoiceData![0].customer!,textAlign: TextAlign.center,
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
@@ -1132,7 +1133,7 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        ((double.parse(LoginCubit.get(context).totalCash))+(double.parse(LoginCubit.get(context).cashInHand))).toString(),
+                        ((double.parse(LoginCubit.get(context).totalCash))+(LoginCubit.get(context).cashInHand)).toString(),
 
                         // invoiceModel!.invoiceData![0].id!,
                         style: getStyle(color: Colors.black, fontSize: textSize-1),

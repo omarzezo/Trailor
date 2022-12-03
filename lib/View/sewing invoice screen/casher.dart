@@ -467,7 +467,7 @@ class _OpenCashierState extends State<OpenCashier> {
         textField(
           controller: LoginCubit.get(context).cashInHandController,
             onChanged: (value) {
-              LoginCubit.get(context).cashInHand=value;
+              LoginCubit.get(context).cashInHand=double.parse(value);
             },
 
 
@@ -476,10 +476,10 @@ class _OpenCashierState extends State<OpenCashier> {
           Expanded(child: TextButton(child: Text(AppStrings.add .tr(),),onPressed: ()async {
             LoginCubit.get(context).startDate=DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString();
             // LoginCubit.get(context).cashInHand=LoginCubit.get(context).cashInHandController.text.isEmpty?"0":LoginCubit.get(context).cashInHandController.text;
-            CashierStartRequest cashierStartRequest=CashierStartRequest(userId:LoginCubit.get(context).userId ,cashInHand:LoginCubit.get(context).cashInHandController.text.isEmpty?"0":LoginCubit.get(context).cashInHandController.text ,date: DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString());
+            CashierStartRequest cashierStartRequest=CashierStartRequest(userId:LoginCubit.get(context).userId ,cashInHand:LoginCubit.get(context).cashInHand.toStringAsFixed(2) ,date: DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString());
 await LoginCubit.get(context).openCashier(cashierStartRequest).then((value) {
   if(value.status==true){
-    LoginCubit.get(context).totalCash=(double.parse(LoginCubit.get(context).cashInHandController.text.isEmpty?"0":LoginCubit.get(context).cashInHandController.text)+double.parse(LoginCubit.get(context).totalCash)).toString();
+    LoginCubit.get(context).totalCash=(LoginCubit.get(context).cashInHand+double.parse(LoginCubit.get(context).totalCash)).toString();
 
   }
 });

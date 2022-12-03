@@ -1062,7 +1062,7 @@ Future<CashierResponse> closeCashier(CashierCloseRequest cashierCloseRequest)asy
 }
 
   TextEditingController cashInHandController=TextEditingController();
-  String cashInHand="0";
+ double cashInHand=0;
 
   CloseCashierResponse? closeCashierDetailsResponse;
 Future<CloseCashierResponse> closeCashierDetails()async{
@@ -1089,6 +1089,7 @@ Future<CloseCashierResponse> closeCashierDetails()async{
     print(response.data);
     closeCashierDetailsResponse=CloseCashierResponse.fromJson(response.data);
     clearControllers();
+    cashInHand=0;
 
 
   }else{
