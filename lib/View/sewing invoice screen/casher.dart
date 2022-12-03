@@ -290,22 +290,27 @@ height: 30,
                 child: MaterialButton(
                   color: MyConstant().purpleColor,
                   onPressed: ()async {
-                    LoginCubit.get(context).endDate=DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString();
+                    if(LoginCubit.get(context).cashierIsOpened==true){
+                      LoginCubit.get(context).endDate=DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString();
 
-                    CashierCloseRequest cashierCloseRequest=CashierCloseRequest(userId:LoginCubit.get(context).userId ,closedAt: DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString(),closedBy:LoginCubit.get(context).userId ,invoiceCount:LoginCubit.get(context).invoiceNumbers.toString() ,note:" " ,totalCash:LoginCubit.get(context).totalCash ,totalCc:"0" ,totalCheques: "0");
-                    await LoginCubit.get(context).closeCashier(cashierCloseRequest).then((value) async{
-                      if(value.status==true){
-                   await    Navigator.pushReplacementNamed(context, CashierPillScreen.routeName);
+                      CashierCloseRequest cashierCloseRequest=CashierCloseRequest(userId:LoginCubit.get(context).userId ,closedAt: DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString(),closedBy:LoginCubit.get(context).userId ,invoiceCount:LoginCubit.get(context).invoiceNumbers.toString() ,note:" " ,totalCash:LoginCubit.get(context).totalCash ,totalCc:"0" ,totalCheques: "0");
+                      await LoginCubit.get(context).closeCashier(cashierCloseRequest).then((value) async{
+                        if(value.status==true){
+                          await    Navigator.pushReplacementNamed(context, CashierPillScreen.routeName);
 
-                        LoginCubit.get(context).invoiceNumbers=0;
-                        LoginCubit.get(context).totalCash="0";
-                        LoginCubit.get(context).cashInHandController.text="0";
+                          LoginCubit.get(context).invoiceNumbers=0;
+                          LoginCubit.get(context).totalCash="0";
+                          LoginCubit.get(context).cashInHandController.text="0";
 
-                      }
+                        }
 
 
-                    });
-                    // Navigator.of(context).pop();
+                      });
+                    }else{
+                      Navigator.of(context).pop();
+
+                    }
+
 
                   },child: Text(AppStrings.close.tr(),
                     style: GoogleFonts.notoKufiArabic(

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/View/Data%20Table/custom%20table.dart';
 import 'package:omar/View/present_all_tables_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/change_size_screen.dart';
@@ -140,8 +141,9 @@ class _TabBarScreenState extends State<TabBarScreen> {
                         Expanded(
                           flex: 1,
                           child: InkWell(
-                            onTap: () {
+                            onTap: ()async {
                               setScreen(4);
+                            await  LoginCubit.get(context).getPillsDetails();
                             },
                             child: Column(
                               children:  [
