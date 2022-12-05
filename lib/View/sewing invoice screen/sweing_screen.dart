@@ -111,51 +111,51 @@ class _SewingScreenState extends State<SewingScreen> {
                 //     iconAndText(iconData: Icons.subdirectory_arrow_left, nameText: 'مرتجع'),
                 //   ],),
                 // ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        color: MyConstant().purpleColor,child: MaterialButton(onPressed: () {
-
-                        AwesomeDialog(context: context,
-                            dialogType: DialogType.question,
-                            animType: AnimType.rightSlide,
-                          width:MediaQuery.of(context).size.width/1.2,
-                          // width:400,
-                          body: OpenCashier(),
-
-                        ).show();
-
-                      },child: Text(AppStrings.Openthecashregister.tr(),style: GoogleFonts.notoKufiArabic(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 18)),),),
-                    ),
-                    SizedBox(width: 20,),
-                    Expanded(
-
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-
-                        color:  MyConstant().purpleColor,child: MaterialButton(onPressed: () {
-
-                        AwesomeDialog(context: context,
-                            dialogType: DialogType.noHeader,
-                            animType: AnimType.rightSlide,
-                          width:MediaQuery.of(context).size.width,
-                          // width:400,
-                          body:  CashierScreen(),
-
-                        ).show();
-
-                      },child: Text(AppStrings.Closethecashier.tr(),style: GoogleFonts.notoKufiArabic(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 18)),),),
-                    ),
-                  ],
-                ),
+            //     Row(
+            //       children: [
+            //         Expanded(
+            //           child: Container(
+            //             padding: EdgeInsets.symmetric(horizontal: 20),
+            //             color: MyConstant().purpleColor,child: MaterialButton(onPressed: () {
+            //
+            //             AwesomeDialog(context: context,
+            //                 dialogType: DialogType.question,
+            //                 animType: AnimType.rightSlide,
+            //               width:MediaQuery.of(context).size.width/1.2,
+            //               // width:400,
+            //               body: OpenCashier(),
+            //
+            //             ).show();
+            //
+            //           },child: Text(AppStrings.Openthecashregister.tr(),style: GoogleFonts.notoKufiArabic(
+            // color: Colors.white,
+            // fontWeight: FontWeight.bold,
+            // fontSize: 18)),),),
+            //         ),
+            //         SizedBox(width: 20,),
+            //         Expanded(
+            //
+            //           child: Container(
+            //             padding: EdgeInsets.symmetric(horizontal: 20),
+            //
+            //             color:  MyConstant().purpleColor,child: MaterialButton(onPressed: () {
+            //
+            //             AwesomeDialog(context: context,
+            //                 dialogType: DialogType.noHeader,
+            //                 animType: AnimType.rightSlide,
+            //               width:MediaQuery.of(context).size.width,
+            //               // width:400,
+            //               body:  CashierScreen(),
+            //
+            //             ).show();
+            //
+            //           },child: Text(AppStrings.Closethecashier.tr(),style: GoogleFonts.notoKufiArabic(
+            // color: Colors.white,
+            // fontWeight: FontWeight.bold,
+            // fontSize: 18)),),),
+            //         ),
+            //       ],
+            //     ),
                 Container(
                   // width: 600,
                   width: MediaQuery.of(context).size.width / w,
@@ -2188,8 +2188,8 @@ class _SewingScreenState extends State<SewingScreen> {
                                 customer: cubit.userItemName,
                                 biller: cubit.users[0].username,
                                 billerId: int.parse(cubit.companiesEmployeeName[0].id!),
-                                total: 8.6957,
-                                discountAllowance: 0.0000,
+                                total: double.parse(cubit.whatYouPay.text.isEmpty?"0":cubit.whatYouPay.text),
+                                discountAllowance: double.parse(cubit.discount.text.isEmpty?"0":cubit.discount.text),
                                 returnSaleRef: null,
                                 returnId: null,
                                 saleStatus: "completed",
@@ -2197,21 +2197,21 @@ class _SewingScreenState extends State<SewingScreen> {
                                 paymentStatus: "paid",
                                 warehouseCode: "w_1",
                                 warehouseId: 1,
-                                grandTotal: 10.0000,
+                                grandTotal: double.parse(cubit.whatYouPay.text.isEmpty?"0":cubit.whatYouPay.text),
                                 pos: true,
                                 surcharge: 0.0000,
                                 returnSaleTotal: 0.0000,
-                                paid: 10.0000,
-                                totalTax: 1.3043,
+                                paid: double.parse(cubit.cash.text.isEmpty?"0":cubit.cash.text),
+                                totalTax:double.parse(cubit.tax.text.isEmpty?"0":cubit.tax.text),
                                 note: null,
                                 staffNote: null,
                                 productDiscount: null,
                                 orderDiscountId: null,
                                 orderDiscount: 0.0000,
-                                totalDiscount: 0.0000,
+                                totalDiscount: double.parse(cubit.discount.text.isEmpty?"0":cubit.discount.text),
                                 productTax: null,
                                 orderTaxId: null,
-                                orderTax: 1.3043,
+                                orderTax: double.parse(cubit.tax.text.isEmpty?"0":cubit.tax.text),
                                 shipping: 0.0000,
                                 totalItems: 1,
                                 paymentTerm: null,
@@ -2229,13 +2229,14 @@ class _SewingScreenState extends State<SewingScreen> {
                                     id: cubit.fixedPaymentType ==  AppStrings.monetary.tr()?cubit.paymentId=1:cubit.fixedPaymentType ==
                                         AppStrings.BankCheck.tr()?cubit.paymentId=3:cubit.paymentId,
                                     date: "2022-08-16T00:59:44+03:00",
-                                    amount: 10.0000,
+                                    amount:double.parse(cubit.quantities.text.isEmpty?"0":cubit.quantities.text),
                                     // paidBy: "cash",
                                     paidBy:cubit.fixedPaymentType ==  AppStrings.monetary.tr()?cubit.paymentType="cash":cubit.fixedPaymentType ==
                                         AppStrings.BankCheck.tr()?cubit.paymentType="cheque":cubit.paymentType,
-                                    commercialDiscount: 10.0000,
+                                    commercialDiscount:double.parse(cubit.discountV??"0"),
                                     commercialDiscountId: null,
-                                    chequeNo: null,
+                                    chequeNo:cubit.fixedPaymentType ==
+                                        AppStrings.BankCheck.tr()?cubit.cheeckPaymentV:null,
                                     glPaymentMethodId: 0,
                                     ccNo: null,
                                     ccHolder: null,
@@ -2245,7 +2246,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                     createdBy: 1,
                                     type: "received",
                                     note: null,
-                                    posPaid: 10.0000,
+                                    posPaid: double.parse(cubit.whatYouPay.text.isEmpty?"0":cubit.whatYouPay.text),
                                     posBalance: 0.0000,
                                   ),
                                 ],
@@ -2257,21 +2258,21 @@ class _SewingScreenState extends State<SewingScreen> {
                                     productType: "standard",
                                     optionId: null,
                                     netUnitPrice: 8.6957,
-                                    unitPrice: 8.6957,
-                                    unitQuantity: 1.0000,
-                                    realUnitPrice: 10.0000,
-                                    productUnitId: 1,
-                                    productUnitCode: "حبة",
-                                    quantity: 1.0000,
-                                    subtotal: 10.0000,
+                                    unitPrice: double.parse(cubit.itemPrice.text.isEmpty?"0":cubit.itemPrice.text),
+                                    unitQuantity:double.parse(cubit.quantities.text.isEmpty?"0":cubit.quantities.text),
+                                    realUnitPrice: double.parse(cubit.itemPrice.text.isEmpty?"0":cubit.itemPrice.text),
+                                    productUnitId: int.parse(cubit.itemCode??"0"),
+                                    productUnitCode:cubit.valueItemSizeName??"0",
+                                    quantity:double.parse(cubit.quantities.text.isEmpty?"0":cubit.quantities.text),
+                                    subtotal: double.parse(cubit.totalPrice.text.isEmpty?"0":cubit.totalPrice.text),
                                     warehouseId: 1,
                                     warehouseCode: "w_1",
-                                    itemTax: 1.3043,
+                                    itemTax: double.parse(cubit.tax.text.isEmpty?"0":cubit.tax.text),
                                     taxRateId: 3,
                                     tax: "ضريبة النسبة الأساسية 15%",
-                                    discount: null,
+                                    discount: double.parse(cubit.discount.text.isEmpty?"0":cubit.discount.text),
                                     serialNo: null,
-                                    itemDiscount: 0.0000,
+                                    itemDiscount: double.parse(cubit.discount.text.isEmpty?"0":cubit.discount.text),
                                     promoFree: false,
                                   ),
                                 ],

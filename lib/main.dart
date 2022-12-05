@@ -15,10 +15,12 @@ import 'package:omar/View/sewing%20invoice%20screen/add_new_customer_screen.dart
 import 'package:omar/View/sewing%20invoice%20screen/cashier_report.dart';
 import 'package:omar/View/sewing%20invoice%20screen/customers_details_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/daily_report_screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/edit_customer_info.dart';
 import 'package:omar/View/sewing%20invoice%20screen/edit_size_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/pills_item_data.dart';
 import 'package:omar/View/sewing%20invoice%20screen/print_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/restart_screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/return_item_screen.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/tast.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
@@ -108,6 +110,8 @@ class MyApp extends StatelessWidget {
               EditSizeScreen.routeName:(context) =>  EditSizeScreen(),
               DailyReportScreen.routeName:(context) =>  DailyReportScreen(),
               CashierPillScreen.routeName:(context) =>  CashierPillScreen(),
+              ReturnItemScreen.routeName:(context) =>  ReturnItemScreen(),
+              EditCustomerScreen.routeName:(context) =>  EditCustomerScreen(),
             },
           ),
         ));

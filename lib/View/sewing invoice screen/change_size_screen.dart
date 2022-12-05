@@ -308,10 +308,10 @@ class _ChangeSizeScreenState extends State<ChangeSizeScreen> {
                             // int salesId=0;
                             LoginCubit.get(context).getPillsDetailsForItem( index);
                             await cubit.getSizeInformation(cubit.salesId!);
-                            if(cubit.sizeInformationModel!.sizesData![0].measurement!.isNotEmpty){
+                            // if(cubit.sizeInformationModel!.sizesData![0].measurement!.isNotEmpty){
                               Navigator.pushNamed(context, EditSizeScreen.routeName,arguments: EditSizeScreen(salesId: cubit.salesId,));
 
-                            }
+                            // }
                           },
                           child: Row(
                             children: [

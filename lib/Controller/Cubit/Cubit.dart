@@ -42,6 +42,7 @@ import 'package:omar/models/updatePillsStatus.dart';
 import 'package:omar/models/updatedSizes.dart';
 // import 'package:sunmi_printer_plus/sunmi_printer_plus.dart';
 import '../../models/TrailorListsResponse.dart';
+import '../../models/modelreturn.dart';
 import 'State.dart';
 import 'dart:ui' as ui;
 
@@ -483,6 +484,21 @@ emit(AddCustomerSuccessState());
     return pillResponseModel!;
   }
 String? salesId;
+String? returnid;
+  returnsalesModel? returnsizeInformationModel;
+Future<returnsalesModel>getReturnId(int index)async{
+
+  Dio dio = Dio();
+  // final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
+  final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_id=w_1");
+  if(response.statusCode==200){
+    returnsizeInformationModel= returnsalesModel.fromJson(response.data);
+    returnid=  returnsizeInformationModel!.data![index].items![0].saleId;
+  }else {
+    print(response.statusCode);
+  }
+  return returnsizeInformationModel!;
+}
   getPillsDetailsForItem(int itemIndex ){
     // return pillsDetails!.data!.where((element) => element.id==itemId);
     pillsDetailsItem=pillsDetails!.data![itemIndex];
@@ -543,6 +559,8 @@ String? salesId;
   List<Users> users = [];
   List<Companies> companiesCustomerName = [];
   List<Products> productsNameList = [];
+  List<String> statusNameList = ["Completed","Pending","un delivered"];
+  String? stausName;
   List<Taxrates> taxRatesNameList = [];
   List<Units> unitsNameList = [];
   List<Companies> companiesEmployeeName = [];
@@ -713,7 +731,7 @@ String? quantities1;
         firstDate: DateTime(2015, 8),
         lastDate:  DateTime(2040));
     if (picked != null ) {
-      selectedDate =  intl.DateFormat("yyyy-MM-dd HH:mm:ss").format(picked).toString();
+      selectedDate =  intl.DateFormat("yyyy-MM-dd HH:mm:ss","en").format(picked).toString();
       emit(AppGetDateFromUserState());
     }else {
       return;
@@ -763,48 +781,60 @@ String? quantities1;
   String? CuffTypeId1;
   String? tailCode;
 
-
-  Future<SizeInformationModel>getSizeInformation(String salesId)async{
+  SizeInformationModel? returnInvoice;
+  Future<SizeInformationModel?>getSizeInformation(String salesId)async{
 
     try{
       Dio dio = Dio();
+      dio.interceptors.add(LogInterceptor(
+          requestBody: true,
+          error: true,
+          requestHeader: true,
+          responseHeader: true,
+          responseBody: true
+      ));
       final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_id=w_1&id=$salesId");
       if(response.statusCode==200){
         sizeInformationModel=SizeInformationModel.fromJson(response.data);
-        sizes=sizeInformationModel!.sizesData![0].measurement!;
-        type.text=sizes[0].itemName!;
-        frontHeight.text=sizes[0].frontLength!;
-        backHeight.text=sizes[0].backLength!;
-        shoulderWidth.text=sizes[0].shoulderWidth!;
-        shoulderSlope.text=sizes[0].shoulderSlope!;
-        sleeveLengthPlain.text=sizes[0].sleeve!;
-        sleeveLengthIsHigher.text=sizes[0].sleeveTop!;
-        wideWrist.text=sizes[0].wrist!;
-        plainCuff.text=sizes[0].plainCuffLength!;
-        cuffLength.text=sizes[0].cuffLength!;
-        cuffShow.text=sizes[0].cuffWidth!;
-        wideMiddle.text=sizes[0].middleWidth!;
-        expandTheChestInFront.text=sizes[0].chestFront!;
-        expandTheChestBehind.text=sizes[0].chestBack!;
-        koftaBottom.text=sizes[0].bottomHeight!;
-        expandDown.text=sizes[0].bottomWidth!;
-        wideNeckPillow.text=sizes[0].collarWidth!;
-        neckHeight.text=sizes[0].collarHeight!;
-        gypsumHeight.text=sizes[0].zipperHeight!;
-        viewGypsum.text=sizes[0].zipperWidth!;
-        lengthChestPocket.text=sizes[0].chestPocketHeight!;
-        wideChestPocket.text=sizes[0].chestPocketWidth!;
-        wideMobilePocket.text=sizes[0].mobilePocketHeight!;
-        lengthPocketWallet.text=sizes[0].walletPocketHeight!;
-        widePocketWallet.text=sizes[0].walletPocketWidth!;
-        hipWidth.text=sizes[0].haunchWidth!;
-        buttonNumber.text=sizes[0].buttonNo!;
-        embroideryNumber.text=sizes[0].embroideryNo!;
-        betweenTheChestPocketAndTheShoulder.text=sizes[0].shoulderChestLength!;
-        sidePocket.text=sizes[0].sidePocketLength!;
-        quantumCapacityMedium.text=sizes[0].sleeveMiddle!;
-        Takhalis.text=sizes[0].takhalees!;
-        expectedFabricInMeter.text=sizes[0].estimatedLength!;
+        returnInvoice=sizeInformationModel;
+
+        if(sizeInformationModel!.sizesData![0].measurement!=null){
+
+
+        sizes=sizeInformationModel!.sizesData![0].measurement??[];
+        type.text=sizes[0].itemName??"";
+        frontHeight.text=sizes[0].frontLength??"";
+        backHeight.text=sizes[0].backLength??"";
+        shoulderWidth.text=sizes[0].shoulderWidth??"";
+        shoulderSlope.text=sizes[0].shoulderSlope??"";
+        sleeveLengthPlain.text=sizes[0].sleeve??"";
+        sleeveLengthIsHigher.text=sizes[0].sleeveTop??"";
+        wideWrist.text=sizes[0].wrist??"";
+        plainCuff.text=sizes[0].plainCuffLength??"";
+        cuffLength.text=sizes[0].cuffLength??"";
+        cuffShow.text=sizes[0].cuffWidth??"";
+        wideMiddle.text=sizes[0].middleWidth??"";
+        expandTheChestInFront.text=sizes[0].chestFront??"";
+        expandTheChestBehind.text=sizes[0].chestBack??"";
+        koftaBottom.text=sizes[0].bottomHeight??"";
+        expandDown.text=sizes[0].bottomWidth??"";
+        wideNeckPillow.text=sizes[0].collarWidth??"";
+        neckHeight.text=sizes[0].collarHeight??"";
+        gypsumHeight.text=sizes[0].zipperHeight??"";
+        viewGypsum.text=sizes[0].zipperWidth??"";
+        lengthChestPocket.text=sizes[0].chestPocketHeight??"";
+        wideChestPocket.text=sizes[0].chestPocketWidth??"";
+        wideMobilePocket.text=sizes[0].mobilePocketHeight??"";
+        lengthPocketWallet.text=sizes[0].walletPocketHeight??"";
+        widePocketWallet.text=sizes[0].walletPocketWidth??"";
+        hipWidth.text=sizes[0].haunchWidth??"";
+        buttonNumber.text=sizes[0].buttonNo??"";
+        embroideryNumber.text=sizes[0].embroideryNo??"";
+        betweenTheChestPocketAndTheShoulder.text=sizes[0].shoulderChestLength??"";
+        sidePocket.text=sizes[0].sidePocketLength??"";
+        quantumCapacityMedium.text=sizes[0].sleeveMiddle??"";
+        Takhalis.text=sizes[0].takhalees??"";
+        expectedFabricInMeter.text=sizes[0].estimatedLength??"";
         modelTypeID1=sizes[0].modelTypeID;
         TailorId1=sizes[0].tailorId;
         ZipperTypeId1=sizes[0].zipperTypeID;
@@ -820,7 +850,10 @@ String? quantities1;
          isSelect1 = (sizes[0].urgent == "1")
             ? true
             : false;
-        await setDropDownValues();
+        await setDropDownValues();}
+        else{
+          sizeInformationModel!.sizesData![0].measurement=[];
+        }
       }else{
         print(response.statusMessage);
       }
@@ -828,7 +861,7 @@ String? quantities1;
     }catch(error){
       print(error.toString());
     }
-    return sizeInformationModel!;
+    return sizeInformationModel;
 
   }
 

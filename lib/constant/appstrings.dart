@@ -121,6 +121,8 @@ abstract class AppStrings {
   static const Remainingamount = "Remainingamount";
   static const  Theamountpaid = "Theamountpaid";
   static const  Save= "Save";
+  static const  returnitem= "return";
+  static const  quantity= "quantity";
   static const thetailor= "thetailor";
   static const cloth= "cloth";
   static const frontlength= "frontlength";
@@ -178,4 +180,5 @@ abstract class AppStrings {
   static const Kuwaiti= "Kuwaiti";
   static const Omani= "Omani";
   static const Emirati= "Emirati";
+  static const type= "type";
 }
