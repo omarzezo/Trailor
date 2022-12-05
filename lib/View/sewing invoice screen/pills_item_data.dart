@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,11 +15,17 @@ import 'package:flutter/services.dart' as p;
 
 import '../../constant/LoadingPage.dart';
 
-class PillsItemData extends StatelessWidget {
+class PillsItemData extends StatefulWidget {
   static const routeName = "PillsItemData";
-  TextEditingController controller=TextEditingController();
+
    PillsItemData({Key? key}) : super(key: key);
 
+  @override
+  State<PillsItemData> createState() => _PillsItemDataState();
+}
+
+class _PillsItemDataState extends State<PillsItemData> {
+  TextEditingController controller=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +38,7 @@ class PillsItemData extends StatelessWidget {
           if (state is UpdatedPillsResponseSuccessState) {
             LoadingPage(context).close();
             Navigator.pop(context, true);
-          }  
+          }
         },
         builder: (context, state) {
           return Scaffold(
@@ -86,33 +93,120 @@ class PillsItemData extends StatelessWidget {
                                   fontSize: 18)),
                           Spacer(),
                           Container(
-                            // padding: const EdgeInsets.only(left: 10),
+                            width: MediaQuery.of(context).size.width*0.40,
+                            // padding: const EdgeInsets.only(right: 10),
+                            height: 44,
+                            padding: EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              borderRadius:
+                              BorderRadius.circular(5),
+                            ),
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton2(
+                                iconEnabledColor: Colors.white,
+                                iconDisabledColor: Colors.grey,
+                                buttonHeight: 100,
+                                buttonWidth: 160,
+                                // buttonElevation: 2,
+                                itemHeight: 50,
+                                itemPadding:
+                                const EdgeInsets.only(
+                                    left: 14, right: 14),
+                                dropdownMaxHeight: 200,
+                                dropdownWidth: 200,
 
-                            width: 125,
-                            child: TextField(
-                              style: GoogleFonts.notoKufiArabic(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18),
-                             controller: controller,
-                              onChanged: (value) {
-                                if(value.isNotEmpty){
-                                  cubit.status=value;
-                                }
-                              },
+                                buttonDecoration: BoxDecoration(
+                                  borderRadius:
+                                  BorderRadius.circular(5),
+                                  border: Border.all(
+                                    color: Colors.green,
+                                  ),
+                                  color: Colors.white,
+                                ),
+                                dropdownDecoration: BoxDecoration(
+                                  borderRadius:
+                                  BorderRadius.circular(5),
+                                  color: Colors.white,
+                                ),
+
+                                dropdownElevation: 8,
+                                scrollbarRadius:
+                                const Radius.circular(20),
+                                scrollbarThickness: 6,
+                                scrollbarAlwaysShow: true,
+                                items:cubit.statusNameList.map((item) => DropdownMenuItem(
+                                  value: item,
+                                  child: Center(child: Text(
+                                      item,
+                                      style: GoogleFonts.notoKufiArabic(
+                                          color: Colors
+                                              .black,
+                                          fontWeight:
+                                          FontWeight
+                                              .bold, fontSize: 12)
+                                  ),),)).toList(),
+                                // items: cubit.productsNameList
+                                //     .map(ProductsBuild)
+                                //     .toList(),
+                                value: cubit.stausName,
+                                isExpanded: true,
+                                onChanged: (value) {
+                                  setState(() {
+                                    cubit.stausName=value as String;
+                                    if(value.isNotEmpty){
+            cubit.status=value;
+          }
 
 
-                              decoration: InputDecoration(
-                                hintStyle:  GoogleFonts.notoKufiArabic(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18),
-                                border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-                                hintText: cubit.status ,
-
+                                  });
+                                },
+                                iconSize: 40,
+                                icon: Container(
+                                  decoration: const BoxDecoration(
+                                    color: Colors.green,
+                                    borderRadius:
+                                    BorderRadius.only(
+                                        bottomLeft: Radius
+                                            .circular(5),
+                                        topLeft:
+                                        Radius.circular(
+                                            5)),
+                                  ),
+                                  child: const Icon(Icons
+                                      .keyboard_arrow_down_sharp),
+                                ),
                               ),
                             ),
                           ),
+
+                          // Container(
+                          //   // padding: const EdgeInsets.only(left: 10),
+                          //
+                          //   width: 125,
+                          //   child: TextField(
+                          //     style: GoogleFonts.notoKufiArabic(
+                          //       color: Colors.black,
+                          //       fontWeight: FontWeight.bold,
+                          //       fontSize: 18),
+                          //    controller: controller,
+                          //     onChanged: (value) {
+                          //       if(value.isNotEmpty){
+                          //         cubit.status=value;
+                          //       }
+                          //     },
+                          //
+                          //
+                          //     decoration: InputDecoration(
+                          //       hintStyle:  GoogleFonts.notoKufiArabic(
+                          //           color: Colors.black,
+                          //           fontWeight: FontWeight.bold,
+                          //           fontSize: 18),
+                          //       border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+                          //       hintText: cubit.status ,
+                          //
+                          //     ),
+                          //   ),
+                          // ),
 
                           // Text(cubit.pillsDetailsItem!.saleStatus ?? "",
                           //     style: GoogleFonts.notoKufiArabic(
@@ -328,7 +422,7 @@ class PillsItemData extends StatelessWidget {
                             onPressed: () async {
                               try{
                                 LoadingPage(context).show();
-                                UpdatedPillsStatusModel model=UpdatedPillsStatusModel(saleId: cubit.pillsDetailsItem!.id, deliveryDate: cubit.selectedDate, saleStatus: cubit.status, note: "");
+                                UpdatedPillsStatusModel model=UpdatedPillsStatusModel(saleId: cubit.pillsDetailsItem!.id, deliveryDate: cubit.selectedDate, saleStatus: cubit.stausName, note: "");
                                 cubit.updatePills(model);
                               }catch(error){
                                 print(error.toString());

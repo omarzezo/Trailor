@@ -11,6 +11,7 @@ import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/View/Data%20Table/model.dart';
 import 'package:omar/View/Data%20Table/widget%20table.dart';
 import 'package:omar/View/sewing%20invoice%20screen/pills_item_data.dart';
+import 'package:omar/View/sewing%20invoice%20screen/return_item_screen.dart';
 import 'package:omar/constant/appstrings.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -311,9 +312,14 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                                   bottom: BorderSide(color: Colors.grey, width: 0.5),
                                 )),
                             child: InkWell(
-                              onTap: () {
-                                LoginCubit.get(context).getPillsDetailsForItem( index);
-                                Navigator.pushNamed(context, PillsItemData.routeName);
+                              onTap: () async{
+                                await    LoginCubit.get(context).getReturnId( index);
+                                // Navigator.pushNamed(context, PillsItemData.routeName);
+                                var saleint=  textSearch.isNotEmpty ? filteredList[index].id : pillsDetailsDataList![index].id;
+
+                                await LoginCubit.get(context).getSizeInformation(LoginCubit.get(context).returnid.toString());
+                                Navigator.pushNamed(context, ReturnItemScreen.routeName);
+
                               },
                               child: Row(
                                 children: [
@@ -796,9 +802,13 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                                   bottom: BorderSide(color: Colors.grey, width: 0.5),
                                 )),
                             child: InkWell(
-                              onTap: () {
-                                LoginCubit.get(context).getPillsDetailsForItem( index);
-                                Navigator.pushNamed(context, PillsItemData.routeName);
+                              onTap: ()async {
+                               await LoginCubit.get(context).getReturnId( index);
+                                // Navigator.pushNamed(context, PillsItemData.routeName);
+                                // var saleint=  textSearch.isNotEmpty ? filteredList[index].referenceNo : pillsDetailsDataList![index].id;
+                               await LoginCubit.get(context).getSizeInformation(LoginCubit.get(context).returnid.toString());
+
+                                Navigator.pushNamed(context, ReturnItemScreen.routeName);
                               },
                               child: Row(
                                 children: [

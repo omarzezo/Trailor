@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/View/Data%20Table/custom%20table.dart';
 import 'package:omar/View/sewing%20invoice%20screen/Size%20Screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/TabBar%20Screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/casher.dart';
 import 'package:omar/View/sewing%20invoice%20screen/customers_details_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/daily_report_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/settings_screen.dart';
@@ -163,17 +165,41 @@ class MobileHome extends StatelessWidget {
                       const SizedBox(width: 10),
 
 
-                      CustomContainer(
-                          titleImage: 'image/task.png',
-                          color: Colors.purple,
-                          title: AppStrings.Receivingthelab.tr()),
+                      InkWell(
+                        onTap: () {
+                          AwesomeDialog(context: context,
+                            dialogType: DialogType.question,
+                            animType: AnimType.rightSlide,
+                            width:MediaQuery.of(context).size.width/1.2,
+                            // width:400,
+                            body: OpenCashier(),
+
+                          ).show();
+                        },
+                        child: CustomContainer(
+                            titleImage: 'image/task.png',
+                            color: Colors.purple,
+                            title: AppStrings.Openthecashregister.tr()),
+                      ),
                       const SizedBox(width: 10),
 
 
-                      CustomContainer(
-                          titleImage: 'image/clothes (1).png',
-                          color: Colors.purple,
-                          title: AppStrings.deliveryclothes.tr()),
+                      InkWell(
+                        onTap: () {
+                          AwesomeDialog(context: context,
+                            dialogType: DialogType.noHeader,
+                            animType: AnimType.rightSlide,
+                            width:MediaQuery.of(context).size.width,
+                            // width:400,
+                            body:  CashierScreen(),
+
+                          ).show();
+                        },
+                        child: CustomContainer(
+                            titleImage: 'image/clothes (1).png',
+                            color: Colors.purple,
+                            title: AppStrings.Closethecashier.tr()),
+                      ),
                     ],
                   ),
                 ),

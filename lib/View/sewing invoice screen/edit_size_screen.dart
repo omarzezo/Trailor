@@ -266,8 +266,8 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           value as tRTailorModel;
                                           cubit.tRTailorValue =value;
 
-                                          cubit.TaillorName = value.TailorName!;
-                                          cubit.tailorId = value.TailorId!;
+                                          cubit.TaillorName = value.TailorName??"";
+                                          cubit.tailorId = value.TailorId??"";
                                         });
                                       },
                                       iconSize: 25,
@@ -333,21 +333,21 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       buttonNo: int.parse(cubit.buttonNumber.text),
                                       embroideryNo: int.parse(cubit.embroideryNumber.text),
                                       estimatedLength: double.parse(cubit.cuffLength.text),
-                                      tailorId: int.parse(cubit.tRTailorValue!.TailorId!),
+                                      tailorId: int.parse(cubit.tRTailorValue!.TailorId??""),
                                       sample: cubit.sample?1:0,
                                       urgent: cubit.harryUp?1:0,
                                       shoulderChestLength: double.parse(cubit.betweenTheChestPocketAndTheShoulder.text),
                                       sleeveMiddle: double.parse(cubit.quantumCapacityMedium.text),
                                       sidePocketLength: double.parse(cubit.sidePocket.text),
                                       takhalees: cubit.Takhalis.text,
-                                      collarTypeID: int.parse(cubit.tRCollarValue!.CollarTypeId!),
-                                      cuffTypeID:int.parse(cubit.tRCuffValue!.CuffTypeId!),
-                                      modelTypeID: int.parse(cubit.trModelValue!.modelTypeID!),
-                                      pocketTypeID: int.parse(cubit.tRPocketValue!.PocketTypeId!),
-                                      fillingTypeID: int.parse(cubit.trFillingValue!.FillingTypeId!),
-                                      zipperTypeID:int.parse(cubit.tRZipperValue!.ZipperTypeId!),
+                                      collarTypeID: int.parse(cubit.tRCollarValue!.CollarTypeId??""),
+                                      cuffTypeID:int.parse(cubit.tRCuffValue!.CuffTypeId??""),
+                                      modelTypeID: int.parse(cubit.trModelValue!.modelTypeID??""),
+                                      pocketTypeID: int.parse(cubit.tRPocketValue!.PocketTypeId??""),
+                                      fillingTypeID: int.parse(cubit.trFillingValue!.FillingTypeId??""),
+                                      zipperTypeID:int.parse(cubit.tRZipperValue!.ZipperTypeId??""),
                                       note: "",);
-                                    Sales sales = Sales(id:int.parse(cubit.salesId!), measurement:[measurement]);
+                                    Sales sales = Sales(id:int.parse(cubit.salesId??""), measurement:[measurement]);
                                     InvoiceNewSizesModel invoiceNewSizesModel = InvoiceNewSizesModel(
                                         sales:[sales]);
                                     cubit.updateSize(invoiceNewSizesModel);

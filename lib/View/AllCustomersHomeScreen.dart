@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
+import 'package:omar/View/sewing%20invoice%20screen/edit_customer_info.dart';
 import 'package:omar/View/sewing%20invoice%20screen/pills_item_data.dart';
 import 'package:omar/constant/appstrings.dart';
 import 'package:omar/constant/constant.dart';
@@ -228,8 +229,8 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                             )),
                         child: InkWell(
                           onTap: () {
-                            LoginCubit.get(context).getPillsDetailsForItem( index);
-                            Navigator.pushNamed(context, PillsItemData.routeName);
+                            // LoginCubit.get(context).getPillsDetailsForItem( index);
+                            Navigator.pushNamed(context, EditCustomerScreen.routeName);
                           },
                           child: Row(
                             children: [
@@ -557,8 +558,8 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                                 )),
                             child: InkWell(
                               onTap: () {
-                                LoginCubit.get(context).getPillsDetailsForItem( index);
-                                Navigator.pushNamed(context, PillsItemData.routeName);
+                                // LoginCubit.get(context).getPillsDetailsForItem( index);
+                                Navigator.pushNamed(context, EditCustomerScreen.routeName);
                               },
                               child: Row(
                                 children: [

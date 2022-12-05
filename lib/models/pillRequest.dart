@@ -297,7 +297,7 @@ class Payment {
   String? paidBy;
   double? commercialDiscount;
   Null? commercialDiscountId;
-  Null? chequeNo;
+  dynamic? chequeNo;
   int? glPaymentMethodId;
   Null? ccNo;
   Null? ccHolder;
@@ -395,7 +395,7 @@ class Items {
   double? itemTax;
   int? taxRateId;
   String? tax;
-  Null? discount;
+  dynamic discount;
   Null? serialNo;
   double? itemDiscount;
   bool? promoFree;
