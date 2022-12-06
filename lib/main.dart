@@ -8,8 +8,10 @@ import 'package:omar/Controller/local/shared_pref.dart';
 import 'package:omar/View/BlutothPrinter.dart';
 import 'package:omar/View/WifiThroughIpPrinter.dart';
 import 'package:omar/View/choose_printer_screen.dart';
+import 'package:omar/View/home/home.dart';
 import 'package:omar/View/home/splash_screen.dart';
 import 'package:omar/View/invoice_Screen.dart';
+import 'package:omar/View/login/login%20screen.dart';
 import 'package:omar/View/mobile/mobil%20home.dart';
 import 'package:omar/View/sewing%20invoice%20screen/add_new_customer_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/cashier_report.dart';
@@ -102,6 +104,8 @@ class MyApp extends StatelessWidget {
             home: const SplashScreen(),
             routes: {
               PrintScreen.routeName:(context) => const PrintScreen(),
+              HomeScreen.routeName:(context) => const HomeScreen(),
+              LoginScreen.routeName:(context) => const LoginScreen(),
               NewUserScreen.routeName:(context) =>  NewUserScreen(),
               CustomerDetailsScreen.routeName:(context) =>  CustomerDetailsScreen(),
               PillsItemData.routeName:(context) =>  PillsItemData(),

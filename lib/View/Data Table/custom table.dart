@@ -328,8 +328,15 @@ class _CustomTableState extends State<CustomTable> {
                           bottom: BorderSide(color: Colors.grey, width: 0.5),
                         )),
                     child: InkWell(
-                      onTap: () {
-                        LoginCubit.get(context).getPillsDetailsForItem( index);
+                      onTap: () async{
+                        String salesID=pillsDetails.data![index].id!;
+                        // LoginCubit.get(context).salesIdSearch=pillsDetails.data![index].id;
+
+                        // LoginCubit.get(context).getPillsDetailsForItem( index);
+                        // LoginCubit.get(context).getPillsDetailsForItemFilterd( index);
+                      await  LoginCubit.get(context).getPillsDetailsForItemFilterd( int.parse(pillsDetails.data![index].id!));
+
+
                         Navigator.pushNamed(context, PillsItemData.routeName);
                       },
                       child: Row(
@@ -851,7 +858,15 @@ class _CustomTableState extends State<CustomTable> {
                                 )),
                             child: InkWell(
                               onTap: () {
-                                LoginCubit.get(context).getPillsDetailsForItem( index);
+                                // String? salesID;
+                                // pillsDetails.data![index].id!;
+                                // LoginCubit.get(context).getPillsDetailsForItem( index);
+                                // Navigator.pushNamed(context, PillsItemData.routeName);
+                                // LoginCubit.get(context).salesIdSearch=pillsDetails.data![index].id;
+
+                                // LoginCubit.get(context).getPillsDetailsForItem( index);
+                                LoginCubit.get(context).getPillsDetailsForItemFilterd( int.parse(pillsDetails.data![index].id!));
+
                                 Navigator.pushNamed(context, PillsItemData.routeName);
                               },
                               child: Row(

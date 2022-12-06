@@ -15,6 +15,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/TrailorListsResponse.dart';
 
 class LoginScreen extends StatefulWidget {
+  static const routeName = "LoginScreen";
+
   const LoginScreen({Key? key}) : super(key: key);
 
   @override

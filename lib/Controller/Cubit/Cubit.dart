@@ -30,6 +30,7 @@ import 'package:omar/models/invoiceUpdateResponse.dart';
 import 'package:omar/models/pillRequest.dart';
 import 'package:omar/models/pillResponse.dart';
 import 'package:omar/View/Data Table/model.dart' as data;
+import 'package:omar/models/returninvoicemodel.dart';
 import 'package:omar/models/sizeInformation.dart';
 import 'package:omar/models/tRCollar.dart';
 import 'package:omar/models/tRCuff.dart';
@@ -511,6 +512,30 @@ Future<returnsalesModel>getReturnId(int index)async{
    status =pillsDetailsItem!.saleStatus ?? "";
     // return pillsDetails!.data![itemIndex];
   }
+
+  getPillsDetailsForItemFilterd(int itemIndex ){
+    // PillsDetails? pillsDetails=PillsDetails();
+    // pillsDetails.data=[];
+    // pillsDetails.data = pillsDetails!.data!.where((i) => i.saleStatus!.contains('completed')?false:true).toList();
+
+    // return pillsDetails!.data!.where((element) => element.id==itemId);
+   pillsDetails!.data!.forEach((element) {if(element.id==itemIndex.toString()){
+     pillsDetailsItem=element;
+     salesId=element.id;
+     selectedDate=element.deliveryDate!.split(" ")
+         .first ??
+         "";
+     status=element.saleStatus??"";
+    }});
+   //  salesId=pillsDetails!.data![itemIndex].id;
+   //  selectedDate=
+   //      pillsDetailsItem!.deliveryDate!
+   //          .split(" ")
+   //          .first ??
+   //          "";
+   // status =pillsDetailsItem!.saleStatus ?? "";
+    // return pillsDetails!.data![itemIndex];
+  }
   PillsDetails? pillsDetails;
   data.PillsDetailsData?   pillsDetailsItem;
   Future<PillsDetails> getPillsDetails ()async{
@@ -781,9 +806,33 @@ String? quantities1;
   String? CuffTypeId1;
   String? tailCode;
 
-  SizeInformationModel? returnInvoice;
-  Future<SizeInformationModel?>getSizeInformation(String salesId)async{
+  ReturnInvoiceItem? returnInvoice;
+  Future getReturnItemInformation(String salesId)async{
+    try{
+      Dio dio = Dio();
+      dio.interceptors.add(LogInterceptor(
+          requestBody: true,
+          error: true,
+          requestHeader: true,
+          responseHeader: true,
+          responseBody: true
+      ));
+      final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_id=w_1&id=$salesId");
+      if(response.statusCode==200){
+        returnInvoice=null;
 
+        returnInvoice=ReturnInvoiceItem.fromJson(response.data);
+      }else{
+        print(response.statusMessage);
+
+      }
+      }catch(error){
+      print(error.toString());
+
+    }
+  }
+
+    Future<SizeInformationModel?>getSizeInformation(String salesId)async{
     try{
       Dio dio = Dio();
       dio.interceptors.add(LogInterceptor(
@@ -796,12 +845,13 @@ String? quantities1;
       final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_id=w_1&id=$salesId");
       if(response.statusCode==200){
         sizeInformationModel=SizeInformationModel.fromJson(response.data);
-        returnInvoice=sizeInformationModel;
+        // returnInvoice=sizeInformationModel;
 
         if(sizeInformationModel!.sizesData![0].measurement!=null){
 
 
         sizes=sizeInformationModel!.sizesData![0].measurement??[];
+        // sizes=sizeInformationModel!.sizesData==null?[]:sizeInformationModel!.sizesData![0].measurement!;
         type.text=sizes[0].itemName??"";
         frontHeight.text=sizes[0].frontLength??"";
         backHeight.text=sizes[0].backLength??"";
@@ -987,6 +1037,8 @@ String? quantities1;
           data: jsonEncode(invoiceNewSizesModel));
       if(response.statusCode==200){
         invoiceUpdateResponseModel=InvoiceUpdateResponseModel.fromJson(response.data);
+        print(response.data);
+        clearControllers();
         emit(UpdatedInvoiceResponseSuccessState());
 // clearControllers();
       }else{
@@ -1131,6 +1183,9 @@ Future<CloseCashierResponse> closeCashierDetails()async{
   return closeCashierDetailsResponse!;
 }
   String userNamevar="";
+
+
+String? salesIdSearch;
 
 }
 

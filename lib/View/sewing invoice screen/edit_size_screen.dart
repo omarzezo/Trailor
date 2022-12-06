@@ -255,7 +255,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           20),
                                       scrollbarThickness: 6,
                                       scrollbarAlwaysShow: true,
-                                      hint: Text(cubit.tRTailorValue!.TailorName??""),
+                                      hint: Text(cubit.tRTailorValue==null?"":cubit.tRTailorValue!.TailorName??""),
                                       items: cubit.tRTailorList.map(
                                           tRTailorItemBuild).toList(),
                                       value: tRTailorValue,
@@ -302,58 +302,215 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
 
                                       () async {
                                     // await cubit.getWidgetImage();
-                                    Measurement measurement = Measurement(
-                                      itemName: cubit.type.text,
-                                      itemCode: cubit.tailCode,
-                                      frontLength: double.parse(cubit.frontHeight.text),
-                                      backLength: double.parse(cubit.backHeight.text),
-                                      shoulderWidth: double.parse(cubit.shoulderWidth.text),
-                                      shoulderSlope: double.parse(cubit.shoulderSlope.text),
-                                      sleeve: double.parse(cubit.sleeveLengthPlain.text),
-                                      sleeveTop: double.parse(cubit.sleeveLengthIsHigher.text),
-                                      wrist: double.parse(cubit.wideWrist.text),
-                                      plainCuffLength: double.parse(cubit.plainCuff.text),
-                                      cuffLength: double.parse(cubit.cuffLength.text),
-                                      cuffWidth: double.parse(cubit.cuffShow.text),
-                                      middleWidth: double.parse(cubit.wideMiddle.text),
-                                      chestFront: double.parse(cubit.expandTheChestInFront.text),
-                                      chestBack:double.parse(cubit.expandTheChestBehind.text),
-                                      bottomHeight: double.parse(cubit.koftaBottom.text),
-                                      bottomWidth: double.parse(cubit.expandDown.text),
-                                      collarWidth: double.parse(cubit.wideNeckPillow.text),
-                                      collarHeight: double.parse(cubit.neckHeight.text),
-                                      zipperHeight: double.parse(cubit.gypsumHeight.text),
-                                      zipperWidth: double.parse(cubit.viewGypsum.text),
-                                      chestPocketHeight: double.parse(cubit.lengthChestPocket.text),
-                                      chestPocketWidth: double.parse(cubit.wideChestPocket.text),
-                                      mobilePocketHeight: double.parse(cubit.wideMobilePocket.text),
-                                      walletPocketHeight: double.parse(cubit.lengthPocketWallet.text),
-                                      walletPocketWidth: double.parse(cubit.widePocketWallet.text),
-                                      haunchWidth: double.parse(cubit.hipWidth.text),
-                                      buttonNo: int.parse(cubit.buttonNumber.text),
-                                      embroideryNo: int.parse(cubit.embroideryNumber.text),
-                                      estimatedLength: double.parse(cubit.cuffLength.text),
-                                      tailorId: int.parse(cubit.tRTailorValue!.TailorId??""),
-                                      sample: cubit.sample?1:0,
-                                      urgent: cubit.harryUp?1:0,
-                                      shoulderChestLength: double.parse(cubit.betweenTheChestPocketAndTheShoulder.text),
-                                      sleeveMiddle: double.parse(cubit.quantumCapacityMedium.text),
-                                      sidePocketLength: double.parse(cubit.sidePocket.text),
-                                      takhalees: cubit.Takhalis.text,
-                                      collarTypeID: int.parse(cubit.tRCollarValue!.CollarTypeId??""),
-                                      cuffTypeID:int.parse(cubit.tRCuffValue!.CuffTypeId??""),
-                                      modelTypeID: int.parse(cubit.trModelValue!.modelTypeID??""),
-                                      pocketTypeID: int.parse(cubit.tRPocketValue!.PocketTypeId??""),
-                                      fillingTypeID: int.parse(cubit.trFillingValue!.FillingTypeId??""),
-                                      zipperTypeID:int.parse(cubit.tRZipperValue!.ZipperTypeId??""),
-                                      note: "",);
-                                    Sales sales = Sales(id:int.parse(cubit.salesId??""), measurement:[measurement]);
+                                    // Measurement measurement = Measurement(
+                                    //   itemName: cubit.type.text,
+                                    //   itemCode: cubit.tailCode,
+                                    //   frontLength: double.parse(cubit.frontHeight.text),
+                                    //   backLength: double.parse(cubit.backHeight.text),
+                                    //   shoulderWidth: double.parse(cubit.shoulderWidth.text),
+                                    //   shoulderSlope: double.parse(cubit.shoulderSlope.text),
+                                    //   sleeve: double.parse(cubit.sleeveLengthPlain.text),
+                                    //   sleeveTop: double.parse(cubit.sleeveLengthIsHigher.text),
+                                    //   wrist: double.parse(cubit.wideWrist.text),
+                                    //   plainCuffLength: double.parse(cubit.plainCuff.text),
+                                    //   cuffLength: double.parse(cubit.cuffLength.text),
+                                    //   cuffWidth: double.parse(cubit.cuffShow.text),
+                                    //   middleWidth: double.parse(cubit.wideMiddle.text),
+                                    //   chestFront: double.parse(cubit.expandTheChestInFront.text),
+                                    //   chestBack:double.parse(cubit.expandTheChestBehind.text),
+                                    //   bottomHeight: double.parse(cubit.koftaBottom.text),
+                                    //   bottomWidth: double.parse(cubit.expandDown.text),
+                                    //   collarWidth: double.parse(cubit.wideNeckPillow.text),
+                                    //   collarHeight: double.parse(cubit.neckHeight.text),
+                                    //   zipperHeight: double.parse(cubit.gypsumHeight.text),
+                                    //   zipperWidth: double.parse(cubit.viewGypsum.text),
+                                    //   chestPocketHeight: double.parse(cubit.lengthChestPocket.text),
+                                    //   chestPocketWidth: double.parse(cubit.wideChestPocket.text),
+                                    //   mobilePocketHeight: double.parse(cubit.wideMobilePocket.text),
+                                    //   walletPocketHeight: double.parse(cubit.lengthPocketWallet.text),
+                                    //   walletPocketWidth: double.parse(cubit.widePocketWallet.text),
+                                    //   haunchWidth: double.parse(cubit.hipWidth.text),
+                                    //   buttonNo: int.parse(cubit.buttonNumber.text),
+                                    //   embroideryNo: int.parse(cubit.embroideryNumber.text),
+                                    //   estimatedLength: double.parse(cubit.cuffLength.text),
+                                    //   tailorId: int.parse(cubit.tRTailorValue!.TailorId??""),
+                                    //   sample: cubit.sample?1:0,
+                                    //   urgent: cubit.harryUp?1:0,
+                                    //   shoulderChestLength: double.parse(cubit.betweenTheChestPocketAndTheShoulder.text),
+                                    //   sleeveMiddle: double.parse(cubit.quantumCapacityMedium.text),
+                                    //   sidePocketLength: double.parse(cubit.sidePocket.text),
+                                    //   takhalees: cubit.Takhalis.text,
+                                    //   collarTypeID: int.parse(cubit.tRCollarValue!.CollarTypeId??""),
+                                    //   cuffTypeID:int.parse(cubit.tRCuffValue!.CuffTypeId??""),
+                                    //   modelTypeID: int.parse(cubit.trModelValue!.modelTypeID??""),
+                                    //   pocketTypeID: int.parse(cubit.tRPocketValue!.PocketTypeId??""),
+                                    //   fillingTypeID: int.parse(cubit.trFillingValue!.FillingTypeId??""),
+                                    //   zipperTypeID:int.parse(cubit.tRZipperValue!.ZipperTypeId??""),
+                                    //   note: "",);
+                                    //     Measurement(
+                                    //       itemName: cubit.typeOfClothes,
+                                    //       itemCode: cubit.itemCode,
+                                    //       frontLength: double.parse(
+                                    //           cubit.frontHeight.text.isEmpty?"0":cubit.frontHeight.text),
+                                    //       backLength:
+                                    //       double.parse(cubit.backHeight.text.isEmpty?"0":cubit.backHeight.text),
+                                    //       shoulderWidth: double.parse(
+                                    //           cubit.shoulderWidth.text.isEmpty?"0":cubit.shoulderWidth.text),
+                                    //       shoulderSlope: double.parse(
+                                    //           cubit.shoulderSlope.text.isEmpty?"0":cubit.shoulderSlope.text),
+                                    //       sleeve: double.parse(
+                                    //           cubit.sleeveLengthPlain.text.isEmpty?"0":cubit.sleeveLengthPlain.text),
+                                    //       sleeveTop: double.parse(
+                                    //           cubit.sleeveLengthIsHigher.text.isEmpty?"0":cubit.sleeveLengthIsHigher.text),
+                                    //       wrist:
+                                    //       double.parse(cubit.wideWrist.text.isEmpty?"0":cubit.wideWrist.text),
+                                    //       plainCuffLength:
+                                    //       double.parse(cubit.plainCuff.text.isEmpty?"0":cubit.plainCuff.text),
+                                    //       cuffLength:
+                                    //       double.parse(cubit.cuffLength.text.isEmpty?"0":cubit.cuffLength.text),
+                                    //       cuffWidth:
+                                    //       double.parse(cubit.cuffShow.text.isEmpty?"0":cubit.cuffShow.text),
+                                    //       middleWidth:
+                                    //       double.parse(cubit.wideMiddle.text.isEmpty?"0":cubit.wideMiddle.text),
+                                    //       chestFront: double.parse(
+                                    //           cubit.expandTheChestInFront.text.isEmpty?"0":cubit.expandTheChestInFront.text),
+                                    //       chestBack: double.parse(
+                                    //           cubit.expandTheChestBehind.text.isEmpty?"0":cubit.expandTheChestBehind.text),
+                                    //       bottomHeight: double.parse(
+                                    //           cubit.koftaBottom.text.isEmpty?"0":cubit.koftaBottom.text),
+                                    //       bottomWidth:
+                                    //       double.parse(cubit.expandDown.text.isEmpty?"0":cubit.expandDown.text),
+                                    //       collarWidth: double.parse(
+                                    //           cubit.wideNeckPillow.text.isEmpty?"0":cubit.wideNeckPillow.text),
+                                    //       collarHeight:
+                                    //       double.parse(cubit.neckHeight.text.isEmpty?"0":cubit.neckHeight.text),
+                                    //       zipperHeight: double.parse(
+                                    //           cubit.gypsumHeight.text.isEmpty?"0":cubit.gypsumHeight.text),
+                                    //       zipperWidth:
+                                    //       double.parse(cubit.viewGypsum.text.isEmpty?"0":cubit.viewGypsum.text),
+                                    //       chestPocketHeight: double.parse(
+                                    //           cubit.lengthChestPocket.text.isEmpty?"0":cubit.lengthChestPocket.text),
+                                    //       chestPocketWidth: double.parse(
+                                    //           cubit.wideChestPocket.text.isEmpty?"0":cubit.wideChestPocket.text),
+                                    //       mobilePocketHeight: double.parse(
+                                    //           cubit.wideMobilePocket.text.isEmpty?"0":cubit.wideMobilePocket.text),
+                                    //       walletPocketHeight: double.parse(
+                                    //           cubit.lengthPocketWallet.text.isEmpty?"0":cubit.lengthPocketWallet.text),
+                                    //       walletPocketWidth: double.parse(
+                                    //           cubit.widePocketWallet.text.isEmpty?"0":cubit.widePocketWallet.text),
+                                    //       haunchWidth:
+                                    //       double.parse(cubit.hipWidth.text.isEmpty?"0":cubit.hipWidth.text),
+                                    //       buttonNo:
+                                    //       int.parse(cubit.buttonNumber.text.isEmpty?"0":cubit.buttonNumber.text),
+                                    //       embroideryNo: int.parse(
+                                    //           cubit.embroideryNumber.text.isEmpty?"0":cubit.embroideryNumber.text),
+                                    //       estimatedLength: double.parse(
+                                    //           cubit.expectedFabricInMeter.text.isEmpty?"0":cubit.expectedFabricInMeter.text),
+                                    //       tailorId: 1,
+                                    //       sample: cubit.sample?1:0,
+                                    //       urgent: cubit.harryUp?1:0,
+                                    //       shoulderChestLength: double.parse(cubit
+                                    //           .betweenTheChestPocketAndTheShoulder
+                                    //           .text.isEmpty?"0":cubit.betweenTheChestPocketAndTheShoulder.text),
+                                    //       sleeveMiddle: double.parse(
+                                    //           cubit.quantumCapacityMedium.text.isEmpty?"0":cubit.quantumCapacityMedium.text),
+                                    //       sidePocketLength:
+                                    //       double.parse(cubit.sidePocket.text.isEmpty?"0":cubit.sidePocket.text),
+                                    //       takhalees: cubit.Takhalis.text,
+                                    //       collarTypeID: cubit.CollerTypeID,
+                                    //       cuffTypeID: cubit.CuffTypeID,
+                                    //       modelTypeID: cubit.ModelTypeID,
+                                    //       pocketTypeID: cubit.PocketTypeID,
+                                    //       fillingTypeID: cubit.FillingTypeID,
+                                    //       zipperTypeID: cubit.ZipperTypeID,
+                                    //       note: "",
+                                    //     );
+
+                                        Sales sales = Sales(id:int.parse(cubit.salesIdSearch??""), measurement:[                                  Measurement(
+                                          itemName: cubit.typeOfClothes,
+                                          itemCode: cubit.itemCode,
+                                          frontLength: double.parse(
+                                              cubit.frontHeight.text.isEmpty?"0":cubit.frontHeight.text),
+                                          backLength:
+                                          double.parse(cubit.backHeight.text.isEmpty?"0":cubit.backHeight.text),
+                                          shoulderWidth: double.parse(
+                                              cubit.shoulderWidth.text.isEmpty?"0":cubit.shoulderWidth.text),
+                                          shoulderSlope: double.parse(
+                                              cubit.shoulderSlope.text.isEmpty?"0":cubit.shoulderSlope.text),
+                                          sleeve: double.parse(
+                                              cubit.sleeveLengthPlain.text.isEmpty?"0":cubit.sleeveLengthPlain.text),
+                                          sleeveTop: double.parse(
+                                              cubit.sleeveLengthIsHigher.text.isEmpty?"0":cubit.sleeveLengthIsHigher.text),
+                                          wrist:
+                                          double.parse(cubit.wideWrist.text.isEmpty?"0":cubit.wideWrist.text),
+                                          plainCuffLength:
+                                          double.parse(cubit.plainCuff.text.isEmpty?"0":cubit.plainCuff.text),
+                                          cuffLength:
+                                          double.parse(cubit.cuffLength.text.isEmpty?"0":cubit.cuffLength.text),
+                                          cuffWidth:
+                                          double.parse(cubit.cuffShow.text.isEmpty?"0":cubit.cuffShow.text),
+                                          middleWidth:
+                                          double.parse(cubit.wideMiddle.text.isEmpty?"0":cubit.wideMiddle.text),
+                                          chestFront: double.parse(
+                                              cubit.expandTheChestInFront.text.isEmpty?"0":cubit.expandTheChestInFront.text),
+                                          chestBack: double.parse(
+                                              cubit.expandTheChestBehind.text.isEmpty?"0":cubit.expandTheChestBehind.text),
+                                          bottomHeight: double.parse(
+                                              cubit.koftaBottom.text.isEmpty?"0":cubit.koftaBottom.text),
+                                          bottomWidth:
+                                          double.parse(cubit.expandDown.text.isEmpty?"0":cubit.expandDown.text),
+                                          collarWidth: double.parse(
+                                              cubit.wideNeckPillow.text.isEmpty?"0":cubit.wideNeckPillow.text),
+                                          collarHeight:
+                                          double.parse(cubit.neckHeight.text.isEmpty?"0":cubit.neckHeight.text),
+                                          zipperHeight: double.parse(
+                                              cubit.gypsumHeight.text.isEmpty?"0":cubit.gypsumHeight.text),
+                                          zipperWidth:
+                                          double.parse(cubit.viewGypsum.text.isEmpty?"0":cubit.viewGypsum.text),
+                                          chestPocketHeight: double.parse(
+                                              cubit.lengthChestPocket.text.isEmpty?"0":cubit.lengthChestPocket.text),
+                                          chestPocketWidth: double.parse(
+                                              cubit.wideChestPocket.text.isEmpty?"0":cubit.wideChestPocket.text),
+                                          mobilePocketHeight: double.parse(
+                                              cubit.wideMobilePocket.text.isEmpty?"0":cubit.wideMobilePocket.text),
+                                          walletPocketHeight: double.parse(
+                                              cubit.lengthPocketWallet.text.isEmpty?"0":cubit.lengthPocketWallet.text),
+                                          walletPocketWidth: double.parse(
+                                              cubit.widePocketWallet.text.isEmpty?"0":cubit.widePocketWallet.text),
+                                          haunchWidth:
+                                          double.parse(cubit.hipWidth.text.isEmpty?"0":cubit.hipWidth.text),
+                                          buttonNo:
+                                          int.parse(cubit.buttonNumber.text.isEmpty?"0":cubit.buttonNumber.text),
+                                          embroideryNo: int.parse(
+                                              cubit.embroideryNumber.text.isEmpty?"0":cubit.embroideryNumber.text),
+                                          estimatedLength: double.parse(
+                                              cubit.expectedFabricInMeter.text.isEmpty?"0":cubit.expectedFabricInMeter.text),
+                                          tailorId: 1,
+                                          sample: cubit.sample?1:0,
+                                          urgent: cubit.harryUp?1:0,
+                                          shoulderChestLength: double.parse(cubit
+                                              .betweenTheChestPocketAndTheShoulder
+                                              .text.isEmpty?"0":cubit.betweenTheChestPocketAndTheShoulder.text),
+                                          sleeveMiddle: double.parse(
+                                              cubit.quantumCapacityMedium.text.isEmpty?"0":cubit.quantumCapacityMedium.text),
+                                          sidePocketLength:
+                                          double.parse(cubit.sidePocket.text.isEmpty?"0":cubit.sidePocket.text),
+                                          takhalees: cubit.Takhalis.text,
+                                          collarTypeID: cubit.CollerTypeID,
+                                          cuffTypeID: cubit.CuffTypeID,
+                                          modelTypeID: cubit.ModelTypeID,
+                                          pocketTypeID: cubit.PocketTypeID,
+                                          fillingTypeID: cubit.FillingTypeID,
+                                          zipperTypeID: cubit.ZipperTypeID,
+                                          note: "",
+                                        ),
+                                        ]);
                                     InvoiceNewSizesModel invoiceNewSizesModel = InvoiceNewSizesModel(
                                         sales:[sales]);
                                     cubit.updateSize(invoiceNewSizesModel);
                                     Navigator.pop(context);
                                   },
-                                  child: Text('حفظ',
+                                  child: Text(AppStrings.Save.tr(),
                                       style: GoogleFonts.notoKufiArabic(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
@@ -381,7 +538,8 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       width: MediaQuery.of(context).size.width / 2.52,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0].itemName,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].itemName,
+                                          
                                           text: AppStrings.cloth.tr(),
                                           controller: cubit.type,
                                           textInputAction: TextInputAction.next,
@@ -401,7 +559,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0].frontLength,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].frontLength,
                                           text: AppStrings.frontlength.tr(),
                                           controller: cubit.frontHeight,
                                           textInputAction: TextInputAction.next,
@@ -421,7 +579,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0].backLength,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].backLength,
                                           text: AppStrings.lengthbehind.tr(),
                                           controller: cubit.backHeight,
                                           textInputAction: TextInputAction.next,
@@ -447,7 +605,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0].shoulderWidth,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].shoulderWidth,
                                           text: AppStrings.shoulderwidth.tr(),
                                           controller: cubit.shoulderWidth,
                                           textInputAction: TextInputAction.next,
@@ -464,7 +622,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0].shoulderSlope,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].shoulderSlope,
 
                                           text: AppStrings.shouldertilt.tr(),
                                           controller: cubit.shoulderSlope,
@@ -483,7 +641,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       height: 40,
                                       child: customTextField(
                                           text: AppStrings.sleevelengthplain.tr(),
-                                          hintText: cubit.sizes[0].sleeve,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].sleeve,
 
                                           controller: cubit.sleeveLengthPlain,
                                           textInputAction: TextInputAction.next,
@@ -501,7 +659,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       height: 40,
                                       child: customTextField(
                                           text: AppStrings.Thesleevelengthhigher.tr(),
-                                          hintText: cubit.sizes[0].sleeveTop,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].sleeveTop,
 
                                           controller:
                                           cubit.sleeveLengthIsHigher,
@@ -528,7 +686,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0].wrist,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].wrist,
 
                                           text: AppStrings.widthofthewrist.tr(),
                                           controller: cubit.wideWrist,
@@ -547,7 +705,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       height: 40,
                                       child: customTextField(
                                           text: AppStrings.quantumcuffplain.tr(),
-                                          hintText: cubit.sizes[0]
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
                                               .plainCuffLength,
 
                                           controller: cubit.plainCuff,
@@ -565,7 +723,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0].cuffLength,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].cuffLength,
 
                                           text: AppStrings.cufflength.tr(),
                                           controller: cubit.cuffLength,
@@ -584,7 +742,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       height: 40,
                                       child: customTextField(
                                           text:  AppStrings.CupcakeShow.tr(),
-                                          hintText: cubit.sizes[0].cuffWidth,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].cuffWidth,
 
                                           controller: cubit.cuffShow,
                                           textInputAction: TextInputAction.next,
@@ -611,7 +769,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       height: 40,
                                       child: customTextField(
                                           text:  AppStrings.widenthemiddle.tr(),
-                                          hintText: cubit.sizes[0].middleWidth,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].middleWidth,
 
                                           controller: cubit.wideMiddle,
                                           textInputAction: TextInputAction.next,
@@ -629,7 +787,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       height: 40,
                                       child: customTextField(
                                           text:  AppStrings.Expandthechestinfrontof.tr(),
-                                          hintText: cubit.sizes[0].chestFront,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].chestFront,
 
                                           controller:
                                           cubit.expandTheChestInFront,
@@ -648,7 +806,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       height: 40,
                                       child: customTextField(
                                           text: AppStrings.Expandthechestbehind.tr(),
-                                          hintText: cubit.sizes[0].chestBack,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].chestBack,
 
                                           controller:
                                           cubit.expandTheChestBehind,
@@ -666,7 +824,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0].bottomHeight,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].bottomHeight,
 
                                           text: AppStrings.cuffdown.tr(),
                                           controller: cubit.koftaBottom,
@@ -693,7 +851,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0].bottomWidth,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].bottomWidth,
 
                                           text:  AppStrings.expanddown.tr(),
                                           controller: cubit.expandDown,
@@ -712,7 +870,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       height: 40,
                                       child: customTextField(
                                           text: AppStrings.NeckPlain.tr(),
-                                          hintText: cubit.sizes[0].collarWidth,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].collarWidth,
 
                                           controller: cubit.wideNeckPillow,
                                           textInputAction: TextInputAction.next,
@@ -729,7 +887,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0].collarHeight,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].collarHeight,
 
                                           text: AppStrings.highneck.tr(),
                                           controller: cubit.neckHeight,
@@ -747,7 +905,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0].zipperHeight,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].zipperHeight,
 
                                           text:  AppStrings.JabzourHeight.tr(),
                                           controller: cubit.gypsumHeight,
@@ -774,7 +932,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0].zipperWidth,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].zipperWidth,
 
                                           text: AppStrings.JabzourShow.tr(),
                                           controller: cubit.viewGypsum,
@@ -792,7 +950,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0]
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
                                               .chestPocketHeight,
 
                                           text: AppStrings.ichestpocket.tr(),
@@ -811,7 +969,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0]
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
                                               .chestPocketWidth,
                                           text: AppStrings.pchestpocket.tr(),
                                           controller: cubit.wideChestPocket,
@@ -829,7 +987,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0]
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
                                               .mobilePocketHeight,
                                           text: AppStrings.Imobilepocket.tr(),
                                           controller: cubit.wideMobilePocket,
@@ -872,7 +1030,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0]
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
                                               .walletPocketHeight,
                                           text: AppStrings.iwalletpocket.tr(),
                                           controller: cubit.lengthPocketWallet,
@@ -891,7 +1049,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0]
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
                                               .walletPocketWidth,
                                           text:  AppStrings.pwalletpocket.tr(),
                                           controller: cubit.widePocketWallet,
@@ -909,7 +1067,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0].haunchWidth,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].haunchWidth,
                                           text:  AppStrings.hipextension.tr(),
                                           controller: cubit.hipWidth,
                                           textInputAction: TextInputAction.next,
@@ -935,7 +1093,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0].buttonNo,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].buttonNo,
                                           text: AppStrings.buttonnumber.tr(),
                                           controller: cubit.buttonNumber,
                                           textInputAction: TextInputAction.next,
@@ -952,7 +1110,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0].embroideryNo,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].embroideryNo,
                                           text:  AppStrings.embroiderynumber.tr(),
                                           controller: cubit.embroideryNumber,
                                           textInputAction: TextInputAction.next,
@@ -969,7 +1127,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 5,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0]
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
                                               .shoulderChestLength,
                                           text:  AppStrings.betweenchestpocketandshoulder.tr(),
                                           controller: cubit
@@ -989,7 +1147,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       height: 40,
                                       child: customTextField(
                                           text:  AppStrings.sidepocket.tr(),
-                                          hintText: cubit.sizes[0]
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
                                               .sidePocketLength,
                                           controller: cubit.sidePocket,
                                           textInputAction: TextInputAction.next,
@@ -1018,7 +1176,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                       height: 40,
                                       child: customTextField(
                                           text:  AppStrings.sleevewidthmedium.tr(),
-                                          hintText: cubit.sizes[0].sleeveMiddle,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].sleeveMiddle,
                                           controller:
                                           cubit.quantumCapacityMedium,
                                           textInputAction: TextInputAction.next,
@@ -1036,7 +1194,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0].takhalees,
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].takhalees,
                                           text: AppStrings.clearance.tr(),
                                           controller: cubit.Takhalis,
                                           textInputAction: TextInputAction.next,
@@ -1054,7 +1212,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                           .width / 5,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes[0]
+                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
                                               .estimatedLength,
                                           text:  AppStrings.Fabricexpectedbythemeter.tr(),
                                           controller:
@@ -1180,7 +1338,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         child: DropdownButtonHideUnderline(
 
                                           child: DropdownButton2(
-                                            hint: Text(cubit.trModelValue!.modelName??""),
+                                            hint: Text(cubit.trModelValue==null?"":cubit.trModelValue!.modelName??""),
                                             iconEnabledColor:
                                             Colors.white,
                                             iconDisabledColor:
@@ -1296,7 +1454,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         ),
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton2(
-                                            hint: Text(cubit.tRCollarValue!.CollarName??""),
+                                            hint: Text(cubit.tRCollarValue==null?"":cubit.tRCollarValue!.CollarName??""),
                                             iconEnabledColor:
                                             Colors.white,
                                             iconDisabledColor:
@@ -1413,7 +1571,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         ),
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton2(
-                                            hint: Text(cubit.tRCuffValue!.CuffName??""),
+                                            hint: Text(cubit.tRCuffValue==null?"":cubit.tRCuffValue!.CuffName??""),
                                             iconEnabledColor:
                                             Colors.white,
                                             iconDisabledColor:
@@ -1535,7 +1693,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         ),
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton2(
-                                            hint: Text(cubit.tRPocketValue!.PocketName??""),
+                                            hint: Text(cubit.tRPocketValue==null?"":cubit.tRPocketValue!.PocketName??""),
                                             iconEnabledColor:
                                             Colors.white,
                                             iconDisabledColor:
@@ -1653,7 +1811,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton2(
                                             hint: Text(
-                                                cubit.trFillingValue!.FillingName ?? ""),
+                                                cubit.trFillingValue==null?"":cubit.trFillingValue!.FillingName ?? ""),
                                             iconEnabledColor:
                                             Colors.white,
                                             iconDisabledColor:
@@ -1770,7 +1928,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                         ),
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton2(
-                                            hint: Text(cubit.tRZipperValue!.ZipperName??""),
+                                            hint: Text(cubit.tRZipperValue==null?"":cubit.tRZipperValue!.ZipperName??""),
                                             iconEnabledColor:
                                             Colors.white,
                                             iconDisabledColor:

@@ -9,7 +9,10 @@ abstract class AppStrings {
   static const zipCode = "zipCode";
   static const Email = "Email";
   static const add = "add";
+  static const closeMg = "closeMg";
   static const statue = "statue";
+  static const Yes = "Yes";
+  static const NO = "NO";
   static const clothes = "clothes";
   static const paidUp = "paidUp";
   static const clientName = "clientName";
