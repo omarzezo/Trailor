@@ -108,6 +108,8 @@ abstract class AppStrings {
   static const Total = "Total";
   static const   paidup= "paidup";
   static const Residual = "Residual";
+  static const customer = "customer";
+  static const returnitems = "returnitems";
   static const employee= "employee";
   static const  item= "item";
   static const size= "size";

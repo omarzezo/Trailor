@@ -41,21 +41,21 @@ class ReturnItemScreen extends StatelessWidget {
                 // mainAxisAlignment: MainAxisAlignment.start,
                 // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("${AppStrings.customerorcompany.tr()} : ${cubit.returnInvoice!.data![0].customer}",
+                  Text("${AppStrings.customerorcompany.tr()} : ${cubit.returnInvoice!.data!=null?cubit.returnInvoice!.data![0].customer:""}",
                       style: GoogleFonts.notoKufiArabic(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 18)),
-                  Text("referenceNo : ${cubit.returnInvoice!.data![0].referenceNo}",style: GoogleFonts.notoKufiArabic(
+                  Text("referenceNo : ${cubit.returnInvoice!.data!=null?cubit.returnInvoice!.data![0].referenceNo:""}",style: GoogleFonts.notoKufiArabic(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 18)),
-                  Text("${AppStrings.type.tr()} : ${cubit.returnInvoice!.data![0].items![0].productName}",
+                  Text("${AppStrings.type.tr()} : ${cubit.returnInvoice!.data!=null?cubit.returnInvoice!.data![0].items![0].productName:""}",
                       style: GoogleFonts.notoKufiArabic(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 18)),
-                  Text("${AppStrings.size.tr()} ${cubit.returnInvoice!.data![0].items![0].productUnitCode}",
+                  Text("${AppStrings.size.tr()} ${cubit.returnInvoice!.data!=null?cubit.returnInvoice!.data![0].items![0].productUnitCode:""}",
                       style: GoogleFonts.notoKufiArabic(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,

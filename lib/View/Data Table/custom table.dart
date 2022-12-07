@@ -17,6 +17,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:flutter/services.dart' as p;
 
 class CustomTable extends StatefulWidget {
+
   const CustomTable({Key? key}) : super(key: key);
 
   @override

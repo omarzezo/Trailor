@@ -40,7 +40,7 @@ void main()async {
         () {
       runApp(EasyLocalization(
           supportedLocales: const [Locale('en', 'US'), Locale('ar', "EG")],
-
+fallbackLocale: Locale('ar', "EG"),
           path: "assets/translations",
           child: const MyApp()));
     },

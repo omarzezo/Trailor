@@ -501,6 +501,7 @@ Future<returnsalesModel>getReturnId(int index)async{
   return returnsizeInformationModel!;
 }
   getPillsDetailsForItem(int itemIndex ){
+
     // return pillsDetails!.data!.where((element) => element.id==itemId);
     pillsDetailsItem=pillsDetails!.data![itemIndex];
     salesId=pillsDetails!.data![itemIndex].id;
@@ -514,6 +515,8 @@ Future<returnsalesModel>getReturnId(int index)async{
   }
 
   getPillsDetailsForItemFilterd(int itemIndex ){
+    stausName=null;
+
     // PillsDetails? pillsDetails=PillsDetails();
     // pillsDetails.data=[];
     // pillsDetails.data = pillsDetails!.data!.where((i) => i.saleStatus!.contains('completed')?false:true).toList();
@@ -525,7 +528,9 @@ Future<returnsalesModel>getReturnId(int index)async{
      selectedDate=element.deliveryDate!.split(" ")
          .first ??
          "";
-     status=element.saleStatus??"";
+     // status=element.saleStatus??"";
+     stausName=element.saleStatus;
+
     }});
    //  salesId=pillsDetails!.data![itemIndex].id;
    //  selectedDate=
@@ -584,7 +589,8 @@ Future<returnsalesModel>getReturnId(int index)async{
   List<Users> users = [];
   List<Companies> companiesCustomerName = [];
   List<Products> productsNameList = [];
-  List<String> statusNameList = ["Completed","Pending","un delivered"];
+  List<String> statusNameList = ["pending","completed","un delivered"];
+
   String? stausName;
   List<Taxrates> taxRatesNameList = [];
   List<Units> unitsNameList = [];
@@ -592,6 +598,7 @@ Future<returnsalesModel>getReturnId(int index)async{
   List<PaymentType> paymentCodeList = [];
 
   void clearControllers() {
+    pngBytes=null;
     userItemName=null;
     employeeItemName=null;
     productItemName=null;

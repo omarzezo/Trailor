@@ -127,6 +127,8 @@
   "add": " add ",
   "customersList": " customers List ",
   "statue": " statue ",
+  "returnitems": "returns",
+  "customer": " Customer ",
   "clientName": " client Name ",
   "paidUp": " paid Up ",
   "clientCode": " clientCode ",
