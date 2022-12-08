@@ -111,8 +111,14 @@ abstract class AppStrings {
   static const customer = "customer";
   static const returnitems = "returnitems";
   static const employee= "employee";
+  static const editCustomerInfo= "editCustomerInfo";
   static const  item= "item";
+  static const  loginToYourAccount= "loginToYourAccount";
   static const size= "size";
+  static const userName= "userName";
+  static const password= "password";
+  static const Login= "Login";
+  static const forgetPassword= "forgetPassword";
   static const   Quantity= "Quantity";
   static const  unitprice= "unitprice";
   static const Sizes= "Sizes";

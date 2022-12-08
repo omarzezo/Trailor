@@ -105,6 +105,7 @@ Widget customTextField({
   TextInputAction? textInputAction,
   bool? readOnly=false,
   TextInputType? textInputType,
+ double  fontSize=16,
   String? hintText,
 }) {
   return TextFormField(
@@ -114,6 +115,7 @@ Widget customTextField({
     textAlign: TextAlign.right,
     decoration:
     InputDecoration(
+
       contentPadding: const EdgeInsets.only(left: 10,right: 10),
       fillColor: Colors.white,
       hintStyle:GoogleFonts.notoKufiArabic(
@@ -123,7 +125,7 @@ Widget customTextField({
       ),
       label: Text(text,style:GoogleFonts.notoKufiArabic(
           color: Colors.black45,
-          fontSize: 16,
+          fontSize: fontSize,
           fontWeight: FontWeight.w500
       ) ,),
       focusedBorder: OutlineInputBorder(

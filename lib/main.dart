@@ -39,8 +39,10 @@ void main()async {
   BlocOverrides.runZoned(
         () {
       runApp(EasyLocalization(
+
+
           supportedLocales: const [Locale('en', 'US'), Locale('ar', "EG")],
-fallbackLocale: Locale('ar', "EG"),
+          startLocale:  Locale('ar', "EG"),
           path: "assets/translations",
           child: const MyApp()));
     },
@@ -64,6 +66,14 @@ class MyApp extends StatelessWidget {
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
+            // localeListResolutionCallback: (allLocales, supportedLocales) {
+            //   final locale = allLocales?.first.languageCode;
+            //   if (locale == 'en') {
+            //     return const Locale('en', 'US');
+            //   }
+            //   // The default locale
+            //   return const Locale('ar', 'EG');
+            // },
             builder: (context, child) => ResponsiveWrapper.builder(
                 child,
                 maxWidth: 1400,

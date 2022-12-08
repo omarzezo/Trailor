@@ -245,7 +245,9 @@ cubit.stausName=null;
                                 child: TextField(
                                   onTap: ()async{
                                     await cubit.getDateFromUser(context);
-                                    DatePickerDialog(initialDate: DateTime.now(), firstDate:  DateTime.now(), lastDate:  DateTime.now());
+                                    DatePickerDialog(
+
+                                        initialDate: DateTime.now(), firstDate:  DateTime.now(), lastDate:  DateTime.now());
                                   },
                                   readOnly: true,
                                   decoration: InputDecoration(
@@ -434,7 +436,8 @@ cubit.stausName=null;
                                 UpdatedPillsStatusModel model=UpdatedPillsStatusModel(saleId: cubit.pillsDetailsItem!.id, deliveryDate: cubit.selectedDate, saleStatus: cubit.stausName, note: "");
                                 cubit.updatePills(model);
                                 cubit.stausName=null;
-                                cubit.getPillsDetails();
+                               await cubit.getPillsDetails();
+
                                 LoadingPage(context).close();
                                 Navigator.pop(context);
 
