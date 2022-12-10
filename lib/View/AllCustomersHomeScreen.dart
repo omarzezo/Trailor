@@ -229,8 +229,8 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                             )),
                         child: InkWell(
                           onTap: ()async {
-                     int id= int.parse(LoginCubit.get(context).allCustomerResponse!.data![index].id!);
-                     await LoginCubit.get(context).getCustomerDetails(id);
+                           int id= int.parse(LoginCubit.get(context).allCustomerResponse!.data![index].id!);
+                           await LoginCubit.get(context).getCustomerDetails(context,id);
                             // LoginCubit.get(context).getPillsDetailsForItem( index);
                             Navigator.pushNamed(context, EditCustomerScreen.routeName);
                           },
@@ -561,7 +561,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                             child: InkWell(
                               onTap: ()async {
                                 int id= int.parse(LoginCubit.get(context).allCustomerResponse!.data![index].id!);
-                                await LoginCubit.get(context).getCustomerDetails(id);
+                                await LoginCubit.get(context).getCustomerDetails(context,id);
                                 // LoginCubit.get(context).getPillsDetailsForItem( index);
                                 Navigator.pushNamed(context, EditCustomerScreen.routeName);
                               },

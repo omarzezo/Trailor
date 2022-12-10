@@ -1443,11 +1443,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                             height: 10,
                                           ),
                                           Container(
-                                            width: MediaQuery
-                                                .of(context)
-                                                .size
-                                                .width /
-                                                4,
+                                            width: MediaQuery.of(context).size.width / 4,
                                             padding:
                                             const EdgeInsets.only(right: 5),
                                             height: 40,
@@ -3309,11 +3305,10 @@ fontSize: 12,
                                 ),
                               ),
                               Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
-                                    width: MediaQuery.of(context).size.width / 4,
+                                    width: MediaQuery.of(context).size.width *0.40,
                                     padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
                                     child: Column(
                                       mainAxisAlignment:
@@ -3333,8 +3328,7 @@ fontSize: 12,
                                           width: MediaQuery
                                               .of(context)
                                               .size
-                                              .width /
-                                              4,
+                                              .width *0.40,
                                           padding:
                                           const EdgeInsets.only(right: 5),
                                           height: 40,
@@ -3426,10 +3420,7 @@ fontSize: 12,
                                   ),
                                   Container(
                                     width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 4,
+                                    MediaQuery.of(context).size.width *0.40,
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 5),
                                     child: Column(
@@ -3447,13 +3438,7 @@ fontSize: 12,
                                           height: 10,
                                         ),
                                         Container(
-                                          width: MediaQuery
-                                              .of(context)
-                                              .size
-                                              .width /
-                                              4,
-                                          padding:
-                                          const EdgeInsets.only(right: 5),
+                                          width: MediaQuery.of(context).size.width *0.40,
                                           height: 40,
                                           decoration: BoxDecoration(
                                             borderRadius:
@@ -3462,21 +3447,14 @@ fontSize: 12,
                                           child: DropdownButtonHideUnderline(
                                             child: DropdownButton2(
                                               hint: Text(cubit.tRCollarValue==null?"":cubit.tRCollarValue!.CollarName??""),
-                                              iconEnabledColor:
-                                              Colors.white,
-                                              iconDisabledColor:
-                                              Colors.grey,
+                                              iconEnabledColor: Colors.white,
+                                              iconDisabledColor: Colors.grey,
                                               buttonHeight: 100,
                                               buttonWidth: 160,
-                                              // buttonElevation: 2,
                                               itemHeight: 50,
-                                              itemPadding:
-                                              const EdgeInsets.only(
-                                                  left: 14,
-                                                  right: 14),
+                                              // itemPadding: const EdgeInsets.only(left: 14, right: 14),
                                               dropdownMaxHeight: 200,
                                               dropdownWidth: 200,
-
                                               buttonDecoration:
                                               BoxDecoration(
                                                 borderRadius:
@@ -3541,251 +3519,251 @@ fontSize: 12,
                                       ],
                                     ),
                                   ),
-                                  Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 4,
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        Text( AppStrings.cufftype.tr(),
-                                            style: GoogleFonts.notoKufiArabic(
-                                                color: MyConstant().purpleColor,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: Size)),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Container(
-                                          width: MediaQuery
-                                              .of(context)
-                                              .size
-                                              .width /
-                                              4,
-                                          padding:
-                                          const EdgeInsets.only(right: 5),
-                                          height: 40,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(5),
+
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 20,bottom: 20),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Container(
+                                      width:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width *0.40,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 5),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Text( AppStrings.cufftype.tr(),
+                                              style: GoogleFonts.notoKufiArabic(
+                                                  color: MyConstant().purpleColor,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: Size)),
+                                          const SizedBox(
+                                            height: 10,
                                           ),
-                                          child: DropdownButtonHideUnderline(
-                                            child: DropdownButton2(
-                                              hint: Text(cubit.tRCuffValue==null?"":cubit.tRCuffValue!.CuffName??""),
-                                              iconEnabledColor:
-                                              Colors.white,
-                                              iconDisabledColor:
-                                              Colors.grey,
-                                              buttonHeight: 100,
-                                              buttonWidth: 160,
-                                              // buttonElevation: 2,
-                                              itemHeight: 50,
-                                              itemPadding:
-                                              const EdgeInsets.only(
-                                                  left: 14,
-                                                  right: 14),
-                                              dropdownMaxHeight: 200,
-                                              dropdownWidth: 200,
+                                          Container(
+                                            width: MediaQuery
+                                                .of(context)
+                                                .size
+                                                .width *0.40,
+                                            padding:
+                                            const EdgeInsets.only(right: 5),
+                                            height: 40,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                              BorderRadius.circular(5),
+                                            ),
+                                            child: DropdownButtonHideUnderline(
+                                              child: DropdownButton2(
+                                                hint: Text(cubit.tRCuffValue==null?"":cubit.tRCuffValue!.CuffName??""),
+                                                iconEnabledColor:
+                                                Colors.white,
+                                                iconDisabledColor:
+                                                Colors.grey,
+                                                buttonHeight: 100,
+                                                buttonWidth: 160,
+                                                // buttonElevation: 2,
+                                                itemHeight: 50,
+                                                itemPadding:
+                                                const EdgeInsets.only(
+                                                    left: 14,
+                                                    right: 14),
+                                                dropdownMaxHeight: 200,
+                                                dropdownWidth: 200,
 
-                                              buttonDecoration:
-                                              BoxDecoration(
-                                                borderRadius:
-                                                BorderRadius.circular(
-                                                    5),
-                                                border: Border.all(
-                                                  color: Colors.green,
-                                                ),
-                                                color: Colors.white,
-                                              ),
-                                              dropdownDecoration:
-                                              BoxDecoration(
-                                                borderRadius:
-                                                BorderRadius.circular(
-                                                    5),
-                                                color: Colors.white,
-                                              ),
-
-                                              dropdownElevation: 8,
-                                              scrollbarRadius:
-                                              const Radius.circular(
-                                                  20),
-                                              scrollbarThickness: 6,
-                                              scrollbarAlwaysShow: true,
-                                              items: cubit.tRCuffList
-                                                  .map(trCuffItemBuild)
-                                                  .toList(),
-                                              value: tRCuffValue,
-                                              isExpanded: true,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  tRCuffValue =
-                                                  value as tRCuffModel;
-                                                  cubit.tRCuffValue =value;
-
-                                                  cubit.CuffName =
-                                                  value.CuffName!;
-                                                  cubit.CuffTypeID = int.parse(
-                                                      value.CuffTypeId!);
-                                                });
-                                              },
-
-                                              iconSize: 40,
-                                              icon: Container(
-                                                decoration: const BoxDecoration(
-                                                  color: Colors.green,
+                                                buttonDecoration:
+                                                BoxDecoration(
                                                   borderRadius:
-                                                  BorderRadius.only(
-                                                      bottomLeft: Radius
-                                                          .circular(
-                                                          5),
-                                                      topLeft: Radius
-                                                          .circular(
-                                                          5)),
-                                                ), child: const Icon(Icons
-                                                  .keyboard_arrow_down_sharp),
+                                                  BorderRadius.circular(
+                                                      5),
+                                                  border: Border.all(
+                                                    color: Colors.green,
+                                                  ),
+                                                  color: Colors.white,
+                                                ),
+                                                dropdownDecoration:
+                                                BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius.circular(
+                                                      5),
+                                                  color: Colors.white,
+                                                ),
+
+                                                dropdownElevation: 8,
+                                                scrollbarRadius:
+                                                const Radius.circular(
+                                                    20),
+                                                scrollbarThickness: 6,
+                                                scrollbarAlwaysShow: true,
+                                                items: cubit.tRCuffList
+                                                    .map(trCuffItemBuild)
+                                                    .toList(),
+                                                value: tRCuffValue,
+                                                isExpanded: true,
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    tRCuffValue =
+                                                    value as tRCuffModel;
+                                                    cubit.tRCuffValue =value;
+
+                                                    cubit.CuffName =
+                                                    value.CuffName!;
+                                                    cubit.CuffTypeID = int.parse(
+                                                        value.CuffTypeId!);
+                                                  });
+                                                },
+
+                                                iconSize: 40,
+                                                icon: Container(
+                                                  decoration: const BoxDecoration(
+                                                    color: Colors.green,
+                                                    borderRadius:
+                                                    BorderRadius.only(
+                                                        bottomLeft: Radius
+                                                            .circular(
+                                                            5),
+                                                        topLeft: Radius
+                                                            .circular(
+                                                            5)),
+                                                  ), child: const Icon(Icons
+                                                    .keyboard_arrow_down_sharp),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        )
-                                      ],
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *0.40,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 5, vertical: 3),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Text( AppStrings.pocketitchingtype.tr(),
+                                              style: GoogleFonts.notoKufiArabic(
+                                                  color: MyConstant().purpleColor,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: Size)),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Container(
+                                            width: MediaQuery
+                                                .of(context)
+                                                .size
+                                                .width *0.40,
+                                            padding:
+                                            const EdgeInsets.only(right: 5),
+                                            height: 40,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                              BorderRadius.circular(5),
+                                            ),
+                                            child: DropdownButtonHideUnderline(
+                                              child: DropdownButton2(
+                                                hint: Text(cubit.tRPocketValue==null?"":cubit.tRPocketValue!.PocketName??""),
+                                                iconEnabledColor:
+                                                Colors.white,
+                                                iconDisabledColor:
+                                                Colors.grey,
+                                                buttonHeight: 100,
+                                                buttonWidth: 160,
+                                                // buttonElevation: 2,
+                                                itemHeight: 50,
+                                                itemPadding:
+                                                const EdgeInsets.only(
+                                                    left: 14,
+                                                    right: 14),
+                                                dropdownMaxHeight: 200,
+                                                dropdownWidth: 200,
+
+                                                buttonDecoration:
+                                                BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius.circular(
+                                                      5),
+                                                  border: Border.all(
+                                                    color: Colors.green,
+                                                  ),
+                                                  color: Colors.white,
+                                                ),
+                                                dropdownDecoration:
+                                                BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius.circular(
+                                                      5),
+                                                  color: Colors.white,
+                                                ),
+
+                                                dropdownElevation: 8,
+                                                scrollbarRadius:
+                                                const Radius.circular(
+                                                    20),
+                                                scrollbarThickness: 6,
+                                                scrollbarAlwaysShow: true,
+                                                items: cubit.tRPocketList
+                                                    .map(tRPocketItemBuild)
+                                                    .toList(),
+                                                value: tRPocketValue,
+                                                isExpanded: true,
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    tRPocketValue =
+                                                    value as tRPocketModel?;
+                                                    cubit.tRPocketValue =value;
+
+                                                    cubit.PocketName =
+                                                    value!.PocketName!;
+                                                    cubit.PocketTypeID =
+                                                        int.parse(
+                                                            value.PocketTypeId!);
+                                                  });
+                                                },
+
+                                                iconSize: 40,
+                                                icon: Container(
+                                                  decoration: const BoxDecoration(
+                                                    color: Colors.green,
+                                                    borderRadius:
+                                                    BorderRadius.only(
+                                                        bottomLeft: Radius
+                                                            .circular(
+                                                            5),
+                                                        topLeft: Radius
+                                                            .circular(
+                                                            5)),
+                                                  ), child: const Icon(Icons
+                                                    .keyboard_arrow_down_sharp),
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                               Row(
                                 mainAxisAlignment:
                                 MainAxisAlignment.spaceAround,
                                 children: [
+
                                   Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 4,
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5, vertical: 3),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        Text( AppStrings.pocketitchingtype.tr(),
-                                            style: GoogleFonts.notoKufiArabic(
-                                                color: MyConstant().purpleColor,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: Size)),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Container(
-                                          width: MediaQuery
-                                              .of(context)
-                                              .size
-                                              .width /
-                                              4,
-                                          padding:
-                                          const EdgeInsets.only(right: 5),
-                                          height: 40,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(5),
-                                          ),
-                                          child: DropdownButtonHideUnderline(
-                                            child: DropdownButton2(
-                                              hint: Text(cubit.tRPocketValue==null?"":cubit.tRPocketValue!.PocketName??""),
-                                              iconEnabledColor:
-                                              Colors.white,
-                                              iconDisabledColor:
-                                              Colors.grey,
-                                              buttonHeight: 100,
-                                              buttonWidth: 160,
-                                              // buttonElevation: 2,
-                                              itemHeight: 50,
-                                              itemPadding:
-                                              const EdgeInsets.only(
-                                                  left: 14,
-                                                  right: 14),
-                                              dropdownMaxHeight: 200,
-                                              dropdownWidth: 200,
-
-                                              buttonDecoration:
-                                              BoxDecoration(
-                                                borderRadius:
-                                                BorderRadius.circular(
-                                                    5),
-                                                border: Border.all(
-                                                  color: Colors.green,
-                                                ),
-                                                color: Colors.white,
-                                              ),
-                                              dropdownDecoration:
-                                              BoxDecoration(
-                                                borderRadius:
-                                                BorderRadius.circular(
-                                                    5),
-                                                color: Colors.white,
-                                              ),
-
-                                              dropdownElevation: 8,
-                                              scrollbarRadius:
-                                              const Radius.circular(
-                                                  20),
-                                              scrollbarThickness: 6,
-                                              scrollbarAlwaysShow: true,
-                                              items: cubit.tRPocketList
-                                                  .map(tRPocketItemBuild)
-                                                  .toList(),
-                                              value: tRPocketValue,
-                                              isExpanded: true,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  tRPocketValue =
-                                                  value as tRPocketModel?;
-                                                  cubit.tRPocketValue =value;
-
-                                                  cubit.PocketName =
-                                                  value!.PocketName!;
-                                                  cubit.PocketTypeID =
-                                                      int.parse(
-                                                          value.PocketTypeId!);
-                                                });
-                                              },
-
-                                              iconSize: 40,
-                                              icon: Container(
-                                                decoration: const BoxDecoration(
-                                                  color: Colors.green,
-                                                  borderRadius:
-                                                  BorderRadius.only(
-                                                      bottomLeft: Radius
-                                                          .circular(
-                                                          5),
-                                                      topLeft: Radius
-                                                          .circular(
-                                                          5)),
-                                                ), child: const Icon(Icons
-                                                  .keyboard_arrow_down_sharp),
-                                              ),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 4,
+                                    width: MediaQuery.of(context).size.width *0.40,
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 5),
                                     child: Column(
@@ -3803,11 +3781,7 @@ fontSize: 12,
                                           height: 10,
                                         ),
                                         Container(
-                                          width: MediaQuery
-                                              .of(context)
-                                              .size
-                                              .width /
-                                              4,
+                                          width: MediaQuery.of(context).size.width *0.40,
                                           padding:
                                           const EdgeInsets.only(right: 5),
                                           height: 40,
@@ -3900,10 +3874,7 @@ fontSize: 12,
                                   ),
                                   Container(
                                     width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 4,
+                                    MediaQuery.of(context).size.width *0.40,
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 5),
                                     child: Column(
@@ -3921,11 +3892,7 @@ fontSize: 12,
                                           height: 10,
                                         ),
                                         Container(
-                                          width: MediaQuery
-                                              .of(context)
-                                              .size
-                                              .width /
-                                              4,
+                                          width: MediaQuery.of(context).size.width *0.40,
                                           padding:
                                           const EdgeInsets.only(right: 5),
                                           height: 40,

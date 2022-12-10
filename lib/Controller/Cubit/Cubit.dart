@@ -12,6 +12,7 @@ import 'package:intl/intl.dart' as intl;
 import 'package:omar/Controller/End%20Point.dart';
 import 'package:omar/View/Data%20Table/model.dart';
 import 'package:omar/View/sewing%20invoice%20screen/restart_screen.dart';
+import 'package:omar/constant/LoadingPage.dart';
 import 'package:omar/constant/appstrings.dart';
 import 'package:omar/models/Companies.dart';
 import 'package:omar/models/PaymentType.dart';
@@ -843,7 +844,8 @@ String? quantities1;
     }
   }
 
-    Future<SizeInformationModel?>getSizeInformation(String salesId)async{
+    Future<SizeInformationModel?>getSizeInformation(BuildContext context ,String salesId)async{
+      LoadingPage(context).show();
     try{
       Dio dio = Dio();
       dio.interceptors.add(LogInterceptor(
@@ -922,6 +924,7 @@ String? quantities1;
     }catch(error){
       print(error.toString());
     }
+      LoadingPage(context).close();
     return sizeInformationModel;
 
   }
@@ -1230,8 +1233,8 @@ Future<AllCustomerResponse> getAllCustomers()async{
   }
   return allCustomerResponse!;
 }
-Future<AllCustomerResponse> getCustomerDetails(int id)async{
-
+Future<AllCustomerResponse> getCustomerDetails(BuildContext context ,int id)async{
+  LoadingPage(context).show();
   Dio dio = Dio();
   dio.interceptors.add(LogInterceptor(
       requestBody: true,
@@ -1250,6 +1253,7 @@ Future<AllCustomerResponse> getCustomerDetails(int id)async{
   //
   // };
   final response=await dio.get("https://cpe-soft.com/admin/api/v1/company?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&id=$id");
+
   if(response.statusCode==200){
     print(response.data);
     customerResponse=AllCustomerResponse.fromJson(response.data);
@@ -1283,6 +1287,7 @@ Future<AllCustomerResponse> getCustomerDetails(int id)async{
   }else{
     print(response.statusMessage);
   }
+  LoadingPage(context).close();
   return customerResponse!;
 }
   InvoiceUpdateResponseModel? customerUpdateResponse;

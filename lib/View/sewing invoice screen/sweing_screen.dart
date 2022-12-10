@@ -1072,8 +1072,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                                           .text = double.parse(
                                                               product.price!)
                                                           .toStringAsFixed(2);
-                                                      cubit
-                                                          .calculateWhatYouPay();
+                                                      cubit.calculateWhatYouPay();
                                                       // cubit.itemPrice.text =
                                                       //     value.price!;
                                                       // cubit.tax.text= cubit.taxRatesNameList.where((element) => element.id==value.taxRate).toString();

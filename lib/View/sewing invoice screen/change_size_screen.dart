@@ -310,7 +310,7 @@ class _ChangeSizeScreenState extends State<ChangeSizeScreen> {
                             cubit.salesIdSearch=pillsDetails.data![index].id;
 
                             // await cubit.getSizeInformation(cubit.salesId!);
-                            await cubit.getSizeInformation(cubit.salesIdSearch!);
+                            await cubit.getSizeInformation(context,cubit.salesIdSearch!);
                             // if(cubit.sizeInformationModel!.sizesData![0].measurement!.isNotEmpty){
                               Navigator.pushNamed(context, EditSizeScreen.routeName,arguments: EditSizeScreen(salesId: cubit.salesIdSearch,));
                               // Navigator.pushNamed(context, EditSizeScreen.routeName,arguments: EditSizeScreen(salesId: cubit.salesId,));
@@ -802,7 +802,7 @@ class _ChangeSizeScreenState extends State<ChangeSizeScreen> {
                                 cubit.salesIdSearch=pillsDetails.data![index].id;
 
                                 // await cubit.getSizeInformation(cubit.salesId!);
-                                await cubit.getSizeInformation(cubit.salesIdSearch!);
+                                await cubit.getSizeInformation(context,cubit.salesIdSearch!);
                                 // if(cubit.sizeInformationModel!.sizesData![0].measurement!.isNotEmpty){
                                 Navigator.pushNamed(context, EditSizeScreen.routeName,arguments: EditSizeScreen(salesId: cubit.salesIdSearch,));
                                 // Navigator.pushNamed(context, EditSizeScreen.routeName,arguments: EditSizeScreen(salesId: cubit.salesId,));
