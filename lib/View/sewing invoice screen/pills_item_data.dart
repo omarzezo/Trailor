@@ -43,6 +43,16 @@ class _PillsItemDataState extends State<PillsItemData> {
         builder: (context, state) {
           return Scaffold(
               appBar: AppBar(
+                leading: InkWell(
+                  onTap: () {
+cubit.stausName=null;
+                    Navigator.pop(context);
+
+                  },
+                  child: Icon(
+                  Icons.arrow_back_ios
+
+                ),),
                 title: Text(AppStrings.details.tr(),
                     style: GoogleFonts.notoKufiArabic(
                         color: Colors.white,
@@ -76,6 +86,7 @@ class _PillsItemDataState extends State<PillsItemData> {
                   }, icon: Icon(Icons.print),)
                 ],
                 centerTitle: true,
+
               ),
               body: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 10),
@@ -134,8 +145,9 @@ class _PillsItemDataState extends State<PillsItemData> {
                                 const Radius.circular(20),
                                 scrollbarThickness: 6,
                                 scrollbarAlwaysShow: true,
-                                items:cubit.statusNameList.map((item) => DropdownMenuItem(
+                                items:  cubit.statusNameList.map((item) => DropdownMenuItem(
                                   value: item,
+
                                   child: Center(child: Text(
                                       item,
                                       style: GoogleFonts.notoKufiArabic(
@@ -145,17 +157,13 @@ class _PillsItemDataState extends State<PillsItemData> {
                                           FontWeight
                                               .bold, fontSize: 12)
                                   ),),)).toList(),
-                                // items: cubit.productsNameList
-                                //     .map(ProductsBuild)
-                                //     .toList(),
+
                                 value: cubit.stausName,
                                 isExpanded: true,
                                 onChanged: (value) {
                                   setState(() {
                                     cubit.stausName=value as String;
-                                    if(value.isNotEmpty){
-            cubit.status=value;
-          }
+
 
 
                                   });
@@ -237,7 +245,9 @@ class _PillsItemDataState extends State<PillsItemData> {
                                 child: TextField(
                                   onTap: ()async{
                                     await cubit.getDateFromUser(context);
-                                    DatePickerDialog(initialDate: DateTime.now(), firstDate:  DateTime.now(), lastDate:  DateTime.now());
+                                    DatePickerDialog(
+
+                                        initialDate: DateTime.now(), firstDate:  DateTime.now(), lastDate:  DateTime.now());
                                   },
                                   readOnly: true,
                                   decoration: InputDecoration(
@@ -422,8 +432,15 @@ class _PillsItemDataState extends State<PillsItemData> {
                             onPressed: () async {
                               try{
                                 LoadingPage(context).show();
+
                                 UpdatedPillsStatusModel model=UpdatedPillsStatusModel(saleId: cubit.pillsDetailsItem!.id, deliveryDate: cubit.selectedDate, saleStatus: cubit.stausName, note: "");
                                 cubit.updatePills(model);
+                                cubit.stausName=null;
+                               await cubit.getPillsDetails();
+
+                                LoadingPage(context).close();
+                                Navigator.pop(context);
+
                               }catch(error){
                                 print(error.toString());
                               }
@@ -448,3 +465,13 @@ class _PillsItemDataState extends State<PillsItemData> {
     );
   }
 }
+DropdownMenuItem<String> itemBuild(String item) => DropdownMenuItem(
+  value: item,
+  child: Center(
+    child: Text(item,
+        style: GoogleFonts.notoKufiArabic(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 12)),
+  ),
+);

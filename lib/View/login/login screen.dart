@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,6 +8,7 @@ import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/Controller/local/shared_pref.dart';
 import 'package:omar/constant/LoadingPage.dart';
+import 'package:omar/constant/appstrings.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/View/home/home.dart';
 import 'package:omar/View/responsive.dart';
@@ -15,6 +17,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/TrailorListsResponse.dart';
 
 class LoginScreen extends StatefulWidget {
+  static const routeName = "LoginScreen";
+
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -59,15 +63,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    alignment: Alignment.centerLeft,
                       padding: const EdgeInsets.only(left: 30 , bottom: 20),
                       height: 60,width:MediaQuery.of(context).size.width/1,
                       child:Image.asset('image/logo app.png',)),
                   Align(
-                    alignment: Alignment.centerLeft,
+                    // alignment: Alignment.centerLeft,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 30.0),
-                      child: Text('Login to \nyour account',
+                      child: Text(AppStrings.loginToYourAccount.tr(),
                           textAlign: TextAlign.left,
                           style: GoogleFonts.poppins(
                               color: MyConstant().purpleColor,
@@ -149,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(5),
                           ),
                           // prefixIcon: const Icon(Icons.key, color: Colors.purple),
-                          hintText: "اسم المستخدم",
+                          hintText: AppStrings.userName.tr(),
                           hintStyle: GoogleFonts.almarai(
                               color: Colors.grey,
                               fontSize: 20,
@@ -184,7 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(5),
                           ),
                           // prefixIcon: const Icon(Icons.key, color: Colors.purple),
-                          hintText: "كلمة السر",
+                          hintText: AppStrings.password.tr(),
                           hintStyle: GoogleFonts.almarai(
                               color: Colors.grey,
                               fontSize: 20,
@@ -201,14 +204,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Forget Password ?',
-                            style: GoogleFonts.poppins(
-                                color: MyConstant().purpleColor,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600)),
-                        const Spacer(),
+                        // Text('Forget Password ?',
+                        //     style: GoogleFonts.poppins(
+                        //         color: MyConstant().purpleColor,
+                        //         fontSize: 16,
+                        //         fontWeight: FontWeight.w600)),
+                        // const Spacer(),
 
-                        TextButton(onPressed: (){}, child:  Text('نسيت الباسورد ؟',
+                        TextButton(onPressed: (){}, child:  Text(AppStrings.forgetPassword.tr(),
                             style: GoogleFonts.notoKufiArabic(
                                 color: MyConstant().purpleColor,
                                 fontSize: 16,
@@ -246,7 +249,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         });
                       },
-                      child: Text('Login',
+                      child: Text(AppStrings.Login.tr(),
                           style: GoogleFonts.roboto(
                               color: Colors.white,
                               fontSize: 20,

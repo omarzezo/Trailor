@@ -29,9 +29,11 @@ class _SplashScreenState extends State<SplashScreen> {
       bool isLogged=   await CacheHelper.isUserLoggedIn();
       if(isLogged){
         await LoginCubit.get(context).login(email: email, password: password);
-        Navigator.push(context,MaterialPageRoute(builder: (context) => const HomeScreen()));
+        Navigator.pushReplacementNamed(context, HomeScreen.routeName);
       }else{
-        Navigator.push(context,MaterialPageRoute(builder: (context) => const LoginScreen()));
+        Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+
+        // Navigator.push( LoginScreen()));
       }
 
     }

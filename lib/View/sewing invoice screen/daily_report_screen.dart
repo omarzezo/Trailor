@@ -28,7 +28,7 @@ class DailyReportScreen extends StatelessWidget {
     //     .toList();
         pillsDetails.data = cubit.pillsDetails!.data!
         .where((i) {
-          return (i.date!.split(" ").first.contains( p.DateFormat('yyyy-MM-dd HH:mm')
+          return (i.date!.split(" ").first.contains( p.DateFormat('yyyy-MM-dd HH:mm',"en")
               .parse(DateTime.now().toString())
               .toString().split(" ").first))?true:false;
 
@@ -65,7 +65,7 @@ class DailyReportScreen extends StatelessWidget {
                               shrinkWrap: true,
                               // scrollDirection: Axis.horizontal,
                               physics: NeverScrollableScrollPhysics(),
-                              itemBuilder: (context, index) => ReportItem( dateNow:p.DateFormat('yyyy-MM-dd HH:mm')
+                              itemBuilder: (context, index) => ReportItem( dateNow:p.DateFormat('yyyy-MM-dd HH:mm',"en")
                                   .parse(DateTime.now().toString())
                                   .toString().split(" ").first ,date: pillsDetails.data![index].date??"", deleverDate: pillsDetails.data![index].deliveryDate??"", customerName: pillsDetails.data![index].customer??"", refrenceiD: pillsDetails.data![index].referenceNo??""),
                               separatorBuilder: (context, index) => SizedBox(
@@ -99,7 +99,7 @@ class DailyReportScreen extends StatelessWidget {
                                   shrinkWrap: true,
                                   // scrollDirection: Axis.horizontal,
                                   physics: NeverScrollableScrollPhysics(),
-                                  itemBuilder: (context, index) => ReportItem( dateNow:p.DateFormat('yyyy-MM-dd HH:mm')
+                                  itemBuilder: (context, index) => ReportItem( dateNow:p.DateFormat('yyyy-MM-dd HH:mm',"en")
                                       .parse(DateTime.now().toString())
                                       .toString().split(" ").first ,date: pillsDetails.data![index].date??"", deleverDate: pillsDetails.data![index].deliveryDate??"", customerName: pillsDetails.data![index].customer??"", refrenceiD: pillsDetails.data![index].referenceNo??""),
                                   separatorBuilder: (context, index) => SizedBox(

@@ -10,32 +10,27 @@ import 'package:omar/constant/appstrings.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/models/customer.dart';
 import 'package:flutter/services.dart' as p;
+import 'package:omar/models/customer_request.dart';
 
-class EditCustomerScreen extends StatelessWidget {
+class EditCustomerScreen extends StatefulWidget {
   EditCustomerScreen({Key? key}) : super(key: key);
   static const routeName = "EditCustomerScreen";
+
+  @override
+  State<EditCustomerScreen> createState() => _EditCustomerScreenState();
+}
+
+class _EditCustomerScreenState extends State<EditCustomerScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController companyNameEditingController = TextEditingController();
-  TextEditingController companyEmailAddressEditingController =
-  TextEditingController();
-  TextEditingController companyGroupIdrEditingController =
-  TextEditingController();
-  TextEditingController companyGroupNameEditingController =
-  TextEditingController();
-  TextEditingController companyVatNoEditingController = TextEditingController();
-  TextEditingController companyAddressEditingController =
-  TextEditingController();
-  TextEditingController companyStateEditingController = TextEditingController();
-  TextEditingController companyPostalCodeEditingController =
-  TextEditingController();
-  TextEditingController companyCountryEditingController =
-  TextEditingController();
-  TextEditingController companyPhoneNumberEditingController =
-  TextEditingController();
-  TextEditingController companyCrNoEditingController = TextEditingController();
-  TextEditingController companyOfflineIdEditingController =
-  TextEditingController();
+
+
+  @override
+  void initState() {
+ 
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +38,7 @@ class EditCustomerScreen extends StatelessWidget {
     return Directionality(
       textDirection: p.TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
-        listener: (context, state) {
-        },
+        listener: (context, state) {},
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
@@ -54,14 +48,20 @@ class EditCustomerScreen extends StatelessWidget {
               elevation: 0,
               centerTitle: true,
               title: Text(
-                "Edit customer information",style: GoogleFonts.notoKufiArabic(
+                AppStrings.editCustomerInfo.tr(),style: GoogleFonts.notoKufiArabic(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 18),
               ),
             ),
             body: Padding(
-              padding:  EdgeInsets.only(left:(MediaQuery.of(context).size.width>500)? 60:10,right: (MediaQuery.of(context).size.width>500)? 60:10),
+              padding: EdgeInsets.only(left: (MediaQuery
+                  .of(context)
+                  .size
+                  .width > 500) ? 60 : 10, right: (MediaQuery
+                  .of(context)
+                  .size
+                  .width > 500) ? 60 : 10),
               child: Form(
                 key: _formKey,
                 child: SingleChildScrollView(
@@ -79,7 +79,7 @@ class EditCustomerScreen extends StatelessWidget {
                             }
                             return null;
                           },
-                          textEditingController: companyNameEditingController,
+                          textEditingController:LoginCubit.get(context).companyNameEditingController,
                         ),
                         TextFormFieldWidget(
                           text: AppStrings.Email.tr(),
@@ -90,8 +90,7 @@ class EditCustomerScreen extends StatelessWidget {
                             }
                             return null;
                           },
-                          textEditingController:
-                          companyEmailAddressEditingController,
+                          textEditingController:LoginCubit.get(context).companyEmailAddressEditingController,
                         ),
                         // TextFormFieldWidget(
                         //   text: "رقم جروب العميل",
@@ -113,7 +112,7 @@ class EditCustomerScreen extends StatelessWidget {
                             }
                             return null;
                           },
-                          textEditingController: companyVatNoEditingController,
+                          textEditingController:LoginCubit.get(context).companyVatNoEditingController,
                         ),
                         TextFormFieldWidget(
                           text: "العنوان",
@@ -124,10 +123,10 @@ class EditCustomerScreen extends StatelessWidget {
                             }
                             return null;
                           },
-                          textEditingController: companyAddressEditingController,
+                          textEditingController:LoginCubit.get(context).companyAddressEditingController,
                         ),
                         TextFormFieldWidget(
-                          text:AppStrings.zipCode.tr(),
+                          text: AppStrings.zipCode.tr(),
                           textInputAction: TextInputAction.next,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -135,7 +134,7 @@ class EditCustomerScreen extends StatelessWidget {
                             }
                             return null;
                           },
-                          textEditingController: companyPostalCodeEditingController,
+                          textEditingController:LoginCubit.get(context).companyPostalCodeEditingController,
                         ),
                         TextFormFieldWidget(
                           text: AppStrings.country.tr(),
@@ -146,7 +145,7 @@ class EditCustomerScreen extends StatelessWidget {
                             }
                             return null;
                           },
-                          textEditingController: companyCountryEditingController,
+                          textEditingController:LoginCubit.get(context).companyCountryEditingController,
                         ),
                         TextFormFieldWidget(
                           text: AppStrings.phoneNumber.tr(),
@@ -157,10 +156,10 @@ class EditCustomerScreen extends StatelessWidget {
                             }
                             return null;
                           },
-                          textEditingController:
-                          companyPhoneNumberEditingController,
+                          textEditingController:LoginCubit.get(context).companyPhoneNumberEditingController,
                         ),
                         TextFormFieldWidget(
+
                           text: AppStrings.companyregistrationnumber.tr(),
                           textInputAction: TextInputAction.next,
                           validator: (value) {
@@ -169,7 +168,7 @@ class EditCustomerScreen extends StatelessWidget {
                             }
                             return null;
                           },
-                          textEditingController: companyCrNoEditingController,
+                          textEditingController:LoginCubit.get(context).companyCrNoEditingController,
                         ),
                         TextFormFieldWidget(
                           text: AppStrings.companyCode.tr(),
@@ -180,10 +179,13 @@ class EditCustomerScreen extends StatelessWidget {
                             }
                             return null;
                           },
-                          textEditingController: companyOfflineIdEditingController,
+                          textEditingController:LoginCubit.get(context).companyOfflineIdEditingController,
                         ),
                         Container(
-                            width: MediaQuery.of(context).size.width/2,
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width / 2,
                             margin: const EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 10),
                             child: OutlinedButton(
@@ -192,44 +194,47 @@ class EditCustomerScreen extends StatelessWidget {
                                     MyConstant().purpleColor),
                               ),
                               onPressed: () async {
-                                try{
+                                try {
                                   // if (_formKey.currentState!.validate()) {
                                   LoadingPage(context).show();
+                                  CustomerRequest customerRequest = CustomerRequest(
+                                    name
+                                    :LoginCubit.get(context).companyNameEditingController.text,
+                                    id
+                                    :LoginCubit.get(context).customerid,
+                                    email
+                                    :LoginCubit.get(context).companyEmailAddressEditingController.text ,
+                                    company
+                                    :LoginCubit.get(context).companyNameEditingController.text,
+                                    country
+                                    :LoginCubit.get(context).companyCountryEditingController.text,
+                                    phone
+                                    :LoginCubit.get(context).companyPhoneNumberEditingController.text,
+                                    address
+                                    :LoginCubit.get(context).companyAddressEditingController.text,
+                                    crNo
+                                    :LoginCubit.get(context).companyCrNoEditingController.text,
+                                    postalCode
+                                    :LoginCubit.get(context).companyPostalCodeEditingController.text,
+                                    state
+                                    :LoginCubit.get(context).companyStateEditingController.text,
+                                    vatNo
+                                    :LoginCubit.get(context).companyVatNoEditingController.text,);
+                                  await
+                                  cubit.updateCustomerDetails(customerRequest);
 
-                                  // Navigator.pop(context);
-                                  Customer customer = Customer(
-                                    company: companyNameEditingController.text ?? "",
-                                    email: companyEmailAddressEditingController.text ?? "",
-                                    // customerGroupId: int.parse(companyGroupIdrEditingController.text),
-                                    customerGroupId: 2 ,
-                                    customerGroupName: companyGroupNameEditingController.text ?? "",
-                                    vatNo: companyVatNoEditingController.text ?? "",
-                                    address: companyAddressEditingController.text ?? "",
-                                    state: companyStateEditingController.text ?? "",
-                                    postalCode: companyPostalCodeEditingController.text ?? "",
-                                    country: companyCountryEditingController.text ?? "",
-                                    phone: companyPhoneNumberEditingController.text ?? "",
-                                    crNo: companyCrNoEditingController.text ?? "",
-                                    offlineId:companyOfflineIdEditingController.text!=null&&companyOfflineIdEditingController.text.isNotEmpty?
-                                    int.parse(companyOfflineIdEditingController.text):0,
-                                  );
-                                  // CustomerModel(customer: [customer]);
-                                  //  PillRequestModel customerList=PillRequestModel(productList: [], customerList: [customer], categoryList: [], posRegisterList: [], salesList: [], payment: [], expensesList: []);
-                                  await cubit.addCustomerResponse(
-                                      customerModel:
-                                      CustomerModel(customer: [customer]));
-                                  await cubit.getCustomers();
                                   LoadingPage(context).close();
 
                                   Navigator.pop(context);
                                   // }
 
-                                }catch(error){
+                                } catch (error) {
                                   print(error.toString());
                                 }
                               },
                               child: Padding(
-                                padding: const EdgeInsets.only(top: 10,bottom: 10),
+                                padding: const EdgeInsets.only(
+                                    top: 10, bottom: 10),
                                 child: Text(AppStrings.edit.tr(),
                                     style: GoogleFonts.notoKufiArabic(
                                         color: Colors.white,
@@ -253,6 +258,7 @@ class EditCustomerScreen extends StatelessWidget {
 class TextFormFieldWidget extends StatelessWidget {
   const TextFormFieldWidget({
     this.onFieldSubmitted,
+    this.hintText="",
     this.textInputAction,
     required this.text,
     this.height = 40,
@@ -263,6 +269,7 @@ class TextFormFieldWidget extends StatelessWidget {
     required this.textEditingController,
   }) : super(key: key);
   final String text;
+  final String hintText;
   final TextEditingController textEditingController;
   final double? height;
   final double? width;
@@ -290,14 +297,16 @@ class TextFormFieldWidget extends StatelessWidget {
             height: height,
             width: width,
             child: TextFormField(
+
               textInputAction: textInputAction,
               onFieldSubmitted: onFieldSubmitted,
               controller: textEditingController,
               validator: validator,
-              textAlign: TextAlign.start,
-              textDirection: p.TextDirection.rtl,
-              textAlignVertical: TextAlignVertical.top,
+              // textAlign: TextAlign.start,
+              // textDirection: p.TextDirection.rtl,
+              textAlignVertical: TextAlignVertical.bottom,
               decoration: InputDecoration(
+                hintText: hintText,
                 errorBorder: UnderlineInputBorder(
                     borderRadius: BorderRadius.circular(4),
                     borderSide: BorderSide(color: Colors.red)),

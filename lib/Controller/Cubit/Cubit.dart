@@ -25,11 +25,13 @@ import 'package:omar/models/cashierstart.dart';
 import 'package:omar/models/close_cashier_request.dart';
 import 'package:omar/models/close_cashier_respone.dart';
 import 'package:omar/models/customer.dart';
+import 'package:omar/models/customer_request.dart';
 import 'package:omar/models/invoiceModel.dart';
 import 'package:omar/models/invoiceUpdateResponse.dart';
 import 'package:omar/models/pillRequest.dart';
 import 'package:omar/models/pillResponse.dart';
 import 'package:omar/View/Data Table/model.dart' as data;
+import 'package:omar/models/returninvoicemodel.dart';
 import 'package:omar/models/sizeInformation.dart';
 import 'package:omar/models/tRCollar.dart';
 import 'package:omar/models/tRCuff.dart';
@@ -42,6 +44,7 @@ import 'package:omar/models/updatePillsStatus.dart';
 import 'package:omar/models/updatedSizes.dart';
 // import 'package:sunmi_printer_plus/sunmi_printer_plus.dart';
 import '../../models/TrailorListsResponse.dart';
+import '../../models/allcustomer_response.dart';
 import '../../models/modelreturn.dart';
 import 'State.dart';
 import 'dart:ui' as ui;
@@ -328,6 +331,7 @@ int? paymentId;
           'Content-Type': 'application/json',
           'Accept': 'application/json',
         });
+    await getAllCustomers();
     TrailorListsResponse lenderResponseModel = TrailorListsResponse();
 
     try {
@@ -371,7 +375,6 @@ int? paymentId;
       print(e.toString());
       print(e);
     }
-
     return lenderResponseModel;
 
   }
@@ -411,9 +414,9 @@ int invoiceNumbers=0;
   Future<List<Companies>> getCustomers(
       ) async {
     customerModel=[] ;
+    companiesCustomerName=[];
 
     emit(GetCustomerLoadingState());
-    companiesCustomerName=[];
 
     // dio.options.headers = {
     //   'Content-Type': 'application/json',
@@ -473,6 +476,7 @@ emit(AddCustomerLoadingState());
       // log(jsonEncode(pillRequestModel));
       print(response.data);
       pillResponseModel = PillResponseModel.fromJson(response.data);
+    await  getAllCustomers();
 emit(AddCustomerSuccessState());
       return pillResponseModel;
     } else {
@@ -500,6 +504,7 @@ Future<returnsalesModel>getReturnId(int index)async{
   return returnsizeInformationModel!;
 }
   getPillsDetailsForItem(int itemIndex ){
+
     // return pillsDetails!.data!.where((element) => element.id==itemId);
     pillsDetailsItem=pillsDetails!.data![itemIndex];
     salesId=pillsDetails!.data![itemIndex].id;
@@ -509,6 +514,34 @@ Future<returnsalesModel>getReturnId(int index)async{
             .first ??
             "";
    status =pillsDetailsItem!.saleStatus ?? "";
+    // return pillsDetails!.data![itemIndex];
+  }
+
+  getPillsDetailsForItemFilterd(int itemIndex ){
+    stausName=null;
+
+    // PillsDetails? pillsDetails=PillsDetails();
+    // pillsDetails.data=[];
+    // pillsDetails.data = pillsDetails!.data!.where((i) => i.saleStatus!.contains('completed')?false:true).toList();
+
+    // return pillsDetails!.data!.where((element) => element.id==itemId);
+   pillsDetails!.data!.forEach((element) {if(element.id==itemIndex.toString()){
+     pillsDetailsItem=element;
+     salesId=element.id;
+     selectedDate=element.deliveryDate!.split(" ")
+         .first ??
+         "";
+     // status=element.saleStatus??"";
+     stausName=element.saleStatus;
+
+    }});
+   //  salesId=pillsDetails!.data![itemIndex].id;
+   //  selectedDate=
+   //      pillsDetailsItem!.deliveryDate!
+   //          .split(" ")
+   //          .first ??
+   //          "";
+   // status =pillsDetailsItem!.saleStatus ?? "";
     // return pillsDetails!.data![itemIndex];
   }
   PillsDetails? pillsDetails;
@@ -559,7 +592,8 @@ Future<returnsalesModel>getReturnId(int index)async{
   List<Users> users = [];
   List<Companies> companiesCustomerName = [];
   List<Products> productsNameList = [];
-  List<String> statusNameList = ["Completed","Pending","un delivered"];
+  List<String> statusNameList = ["pending","completed","un delivered"];
+
   String? stausName;
   List<Taxrates> taxRatesNameList = [];
   List<Units> unitsNameList = [];
@@ -567,6 +601,7 @@ Future<returnsalesModel>getReturnId(int index)async{
   List<PaymentType> paymentCodeList = [];
 
   void clearControllers() {
+    pngBytes=null;
     userItemName=null;
     employeeItemName=null;
     productItemName=null;
@@ -756,8 +791,9 @@ String? quantities1;
     // print(jsonEncode(updatedPillsStatusModel).toString());
     if(response.statusCode==200){
       print(response.data);
+    await  getPillsDetails();
+
       emit(UpdatedPillsResponseSuccessState());
-      getPillsDetails();
       return UpdatedPillsResponse.fromJson(response.data);
 
     }else{
@@ -781,9 +817,33 @@ String? quantities1;
   String? CuffTypeId1;
   String? tailCode;
 
-  SizeInformationModel? returnInvoice;
-  Future<SizeInformationModel?>getSizeInformation(String salesId)async{
+  ReturnInvoiceItem? returnInvoice;
+  Future getReturnItemInformation(String salesId)async{
+    try{
+      Dio dio = Dio();
+      dio.interceptors.add(LogInterceptor(
+          requestBody: true,
+          error: true,
+          requestHeader: true,
+          responseHeader: true,
+          responseBody: true
+      ));
+      final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_id=w_1&id=$salesId");
+      if(response.statusCode==200){
+        returnInvoice=null;
 
+        returnInvoice=ReturnInvoiceItem.fromJson(response.data);
+      }else{
+        print(response.statusMessage);
+
+      }
+      }catch(error){
+      print(error.toString());
+
+    }
+  }
+
+    Future<SizeInformationModel?>getSizeInformation(String salesId)async{
     try{
       Dio dio = Dio();
       dio.interceptors.add(LogInterceptor(
@@ -796,12 +856,13 @@ String? quantities1;
       final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_id=w_1&id=$salesId");
       if(response.statusCode==200){
         sizeInformationModel=SizeInformationModel.fromJson(response.data);
-        returnInvoice=sizeInformationModel;
+        // returnInvoice=sizeInformationModel;
 
         if(sizeInformationModel!.sizesData![0].measurement!=null){
 
 
         sizes=sizeInformationModel!.sizesData![0].measurement??[];
+        // sizes=sizeInformationModel!.sizesData==null?[]:sizeInformationModel!.sizesData![0].measurement!;
         type.text=sizes[0].itemName??"";
         frontHeight.text=sizes[0].frontLength??"";
         backHeight.text=sizes[0].backLength??"";
@@ -987,6 +1048,8 @@ String? quantities1;
           data: jsonEncode(invoiceNewSizesModel));
       if(response.statusCode==200){
         invoiceUpdateResponseModel=InvoiceUpdateResponseModel.fromJson(response.data);
+        print(response.data);
+        clearControllers();
         emit(UpdatedInvoiceResponseSuccessState());
 // clearControllers();
       }else{
@@ -1122,7 +1185,6 @@ Future<CloseCashierResponse> closeCashierDetails()async{
     print(response.data);
     closeCashierDetailsResponse=CloseCashierResponse.fromJson(response.data);
     clearControllers();
-    cashInHand=0;
 
 
   }else{
@@ -1131,6 +1193,164 @@ Future<CloseCashierResponse> closeCashierDetails()async{
   return closeCashierDetailsResponse!;
 }
   String userNamevar="";
+
+
+String? salesIdSearch;
+  AllCustomerResponse? allCustomerResponse;
+  AllCustomerResponse? customerResponse;
+Future<AllCustomerResponse> getAllCustomers()async{
+
+  Dio dio = Dio();
+  dio.interceptors.add(LogInterceptor(
+      requestBody: true,
+      error: true,
+      requestHeader: true,
+      responseHeader: true,
+      responseBody: true
+  ));
+  // dio.options.headers = {
+  //   'Content-Type': 'application/json',
+  //   'Accept': 'application/json',
+  //   'Accept-Version': 'V1',
+  //   'Accept-Language': 'en',
+  //   'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko'
+  //
+  //
+  // };
+  final response=await dio.get("https://cpe-soft.com/admin/api/v1/company?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko");
+  if(response.statusCode==200){
+    print(response.data);
+    allCustomerResponse=AllCustomerResponse.fromJson(response.data);
+    clearControllers();
+    cashInHand=0;
+
+
+  }else{
+    print(response.statusMessage);
+  }
+  return allCustomerResponse!;
+}
+Future<AllCustomerResponse> getCustomerDetails(int id)async{
+
+  Dio dio = Dio();
+  dio.interceptors.add(LogInterceptor(
+      requestBody: true,
+      error: true,
+      requestHeader: true,
+      responseHeader: true,
+      responseBody: true
+  ));
+  // dio.options.headers = {
+  //   'Content-Type': 'application/json',
+  //   'Accept': 'application/json',
+  //   'Accept-Version': 'V1',
+  //   'Accept-Language': 'en',
+  //   'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko'
+  //
+  //
+  // };
+  final response=await dio.get("https://cpe-soft.com/admin/api/v1/company?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&id=$id");
+  if(response.statusCode==200){
+    print(response.data);
+    customerResponse=AllCustomerResponse.fromJson(response.data);
+    customerid=customerResponse!.data![0].id!;
+    companyNameEditingController.text =
+    customerResponse!.data![0].company!;
+    companyEmailAddressEditingController.text =
+    customerResponse!.data![0].email!;
+    companyGroupIdrEditingController.text =
+    customerResponse!.data![0].groupId!;
+    companyGroupNameEditingController.text =
+    customerResponse!.data![0].groupName!;
+    companyVatNoEditingController.text =
+    customerResponse!.data![0].vatNo!;
+    companyAddressEditingController.text =
+    customerResponse!.data![0].address!;
+    companyStateEditingController.text =
+    customerResponse!.data![0].state!;
+    companyPostalCodeEditingController.text =
+    customerResponse!.data![0].postalCode!;
+    companyCountryEditingController.text =
+    customerResponse!.data![0].country!;
+    companyPhoneNumberEditingController.text =
+    customerResponse!.data![0].phone!;
+    companyCrNoEditingController.text = customerResponse!.data![0].crNo!;
+    companyOfflineIdEditingController.text =
+    customerResponse!.data![0].offlineId!;
+   getAllCustomers();
+
+
+  }else{
+    print(response.statusMessage);
+  }
+  return customerResponse!;
+}
+  InvoiceUpdateResponseModel? customerUpdateResponse;
+Future<InvoiceUpdateResponseModel> updateCustomerDetails(CustomerRequest customerRequest)async{
+
+  Dio dio = Dio();
+  dio.interceptors.add(LogInterceptor(
+      requestBody: true,
+      error: true,
+      requestHeader: true,
+      responseHeader: true,
+      responseBody: true
+  ));
+  dio.options.headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Accept-Version': 'V1',
+    'Accept-Language': 'en',
+    'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko'
+
+
+  };
+  final response=await dio.post("https://cpe-soft.com/admin/api/v1/UpdateCustomers",data: jsonEncode(customerRequest));
+  if(response.statusCode==200){
+    print(response.data);
+    customerUpdateResponse=InvoiceUpdateResponseModel.fromJson(response.data);
+    getCustomers();
+   await getAllCustomers();
+
+
+  }else{
+    print(response.statusMessage);
+  }
+  return customerUpdateResponse!;
+}
+
+  TextEditingController companyNameEditingController = TextEditingController();
+
+  TextEditingController companyEmailAddressEditingController =
+  TextEditingController();
+
+  TextEditingController companyGroupIdrEditingController =
+  TextEditingController();
+
+  TextEditingController companyGroupNameEditingController =
+  TextEditingController();
+
+  TextEditingController companyVatNoEditingController = TextEditingController();
+
+  TextEditingController companyAddressEditingController =
+  TextEditingController();
+
+  TextEditingController companyStateEditingController = TextEditingController();
+
+  TextEditingController companyPostalCodeEditingController =
+  TextEditingController();
+
+  TextEditingController companyCountryEditingController =
+  TextEditingController();
+
+  TextEditingController companyPhoneNumberEditingController =
+  TextEditingController();
+
+  TextEditingController companyCrNoEditingController = TextEditingController();
+
+  TextEditingController companyOfflineIdEditingController =
+  TextEditingController();
+  String? customerid;
 
 }
 

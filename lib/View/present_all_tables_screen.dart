@@ -313,12 +313,10 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                                 )),
                             child: InkWell(
                               onTap: () async{
-                                await    LoginCubit.get(context).getReturnId( index);
-                                // Navigator.pushNamed(context, PillsItemData.routeName);
-                                var saleint=  textSearch.isNotEmpty ? filteredList[index].id : pillsDetailsDataList![index].id;
-
-                                await LoginCubit.get(context).getSizeInformation(LoginCubit.get(context).returnid.toString());
-                                Navigator.pushNamed(context, ReturnItemScreen.routeName);
+                                // LoginCubit.get(context).salesIdSearch=item.id;
+                                //
+                                // await LoginCubit.get(context).getReturnItemInformation(LoginCubit.get(context).salesIdSearch.toString());
+                                // Navigator.pushNamed(context, ReturnItemScreen.routeName);
 
                               },
                               child: Row(
@@ -803,12 +801,22 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                                 )),
                             child: InkWell(
                               onTap: ()async {
-                               await LoginCubit.get(context).getReturnId( index);
-                                // Navigator.pushNamed(context, PillsItemData.routeName);
-                                // var saleint=  textSearch.isNotEmpty ? filteredList[index].referenceNo : pillsDetailsDataList![index].id;
-                               await LoginCubit.get(context).getSizeInformation(LoginCubit.get(context).returnid.toString());
-
-                                Navigator.pushNamed(context, ReturnItemScreen.routeName);
+                                // LoginCubit.get(context).salesIdSearch=item.id;
+                                //
+                                // // await    LoginCubit.get(context).getReturnId( index);
+                                // // Navigator.pushNamed(context, PillsItemData.routeName);
+                                // // var saleint=  textSearch.isNotEmpty ? filteredList[index].id : pillsDetailsDataList![index].id;
+                                //
+                                // // await LoginCubit.get(context).getSizeInformation(LoginCubit.get(context).salesIdSearch.toString());
+                                // await LoginCubit.get(context).getReturnItemInformation(LoginCubit.get(context).salesIdSearch.toString());
+                                // Navigator.pushNamed(context, ReturnItemScreen.routeName);
+                               //
+                               //  await LoginCubit.get(context).getReturnId( index);
+                               //  // Navigator.pushNamed(context, PillsItemData.routeName);
+                               //  // var saleint=  textSearch.isNotEmpty ? filteredList[index].referenceNo : pillsDetailsDataList![index].id;
+                               // await LoginCubit.get(context).getSizeInformation(LoginCubit.get(context).returnid.toString());
+                               //
+                               //  Navigator.pushNamed(context, ReturnItemScreen.routeName);
                               },
                               child: Row(
                                 children: [

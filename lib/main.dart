@@ -8,8 +8,10 @@ import 'package:omar/Controller/local/shared_pref.dart';
 import 'package:omar/View/BlutothPrinter.dart';
 import 'package:omar/View/WifiThroughIpPrinter.dart';
 import 'package:omar/View/choose_printer_screen.dart';
+import 'package:omar/View/home/home.dart';
 import 'package:omar/View/home/splash_screen.dart';
 import 'package:omar/View/invoice_Screen.dart';
+import 'package:omar/View/login/login%20screen.dart';
 import 'package:omar/View/mobile/mobil%20home.dart';
 import 'package:omar/View/sewing%20invoice%20screen/add_new_customer_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/cashier_report.dart';
@@ -37,8 +39,10 @@ void main()async {
   BlocOverrides.runZoned(
         () {
       runApp(EasyLocalization(
-          supportedLocales: const [Locale('en', 'US'), Locale('ar', "EG")],
 
+
+          supportedLocales: const [Locale('en', 'US'), Locale('ar', "EG")],
+          startLocale:  Locale('ar', "EG"),
           path: "assets/translations",
           child: const MyApp()));
     },
@@ -62,6 +66,14 @@ class MyApp extends StatelessWidget {
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
+            // localeListResolutionCallback: (allLocales, supportedLocales) {
+            //   final locale = allLocales?.first.languageCode;
+            //   if (locale == 'en') {
+            //     return const Locale('en', 'US');
+            //   }
+            //   // The default locale
+            //   return const Locale('ar', 'EG');
+            // },
             builder: (context, child) => ResponsiveWrapper.builder(
                 child,
                 maxWidth: 1400,
@@ -102,6 +114,8 @@ class MyApp extends StatelessWidget {
             home: const SplashScreen(),
             routes: {
               PrintScreen.routeName:(context) => const PrintScreen(),
+              HomeScreen.routeName:(context) => const HomeScreen(),
+              LoginScreen.routeName:(context) => const LoginScreen(),
               NewUserScreen.routeName:(context) =>  NewUserScreen(),
               CustomerDetailsScreen.routeName:(context) =>  CustomerDetailsScreen(),
               PillsItemData.routeName:(context) =>  PillsItemData(),

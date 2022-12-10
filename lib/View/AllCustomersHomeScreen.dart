@@ -228,7 +228,9 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                               bottom: BorderSide(color: Colors.grey, width: 0.5),
                             )),
                         child: InkWell(
-                          onTap: () {
+                          onTap: ()async {
+                     int id= int.parse(LoginCubit.get(context).allCustomerResponse!.data![index].id!);
+                     await LoginCubit.get(context).getCustomerDetails(id);
                             // LoginCubit.get(context).getPillsDetailsForItem( index);
                             Navigator.pushNamed(context, EditCustomerScreen.routeName);
                           },
@@ -263,7 +265,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                                       )),
                                   height: 80,
                                   width: 100,
-                                  child: Text(cubit.companiesCustomerName[index].company ?? "",
+                                  child: Text(cubit.allCustomerResponse!.data![index].company ?? "",
                                       style: GoogleFonts.notoKufiArabic(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w600,
@@ -283,7 +285,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                                       )),
                                   height: 80,
                                   width: 100,
-                                  child: Text(cubit.companiesCustomerName[index].email ?? "",
+                                  child: Text(cubit.allCustomerResponse!.data![index].email ?? "",
                                       style: GoogleFonts.notoKufiArabic(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w600,
@@ -301,7 +303,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                                       )),
                                   height: 80,
                                   width: 100,
-                                  child: Text(cubit.companiesCustomerName[index].vatNo ?? "",
+                                  child: Text(cubit.allCustomerResponse!.data![index].vatNo ?? "",
                                       style: GoogleFonts.notoKufiArabic(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w600,
@@ -319,7 +321,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                                       )),
                                   height: 80,
                                   width: 100,
-                                  child: Text(cubit.companiesCustomerName[index].address ?? "",
+                                  child: Text(cubit.allCustomerResponse!.data![index].address ?? "",
                                       style: GoogleFonts.notoKufiArabic(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w600,
@@ -337,7 +339,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                                       )),
                                   height: 80,
                                   width: 100,
-                                  child: Text(cubit.companiesCustomerName[index].postalCode ?? "",
+                                  child: Text(cubit.allCustomerResponse!.data![index].postalCode ?? "",
                                       style: GoogleFonts.notoKufiArabic(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w600,
@@ -355,7 +357,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                                       )),
                                   height: 80,
                                   width: 100,
-                                  child: Text(cubit.companiesCustomerName[index].phone ?? "",
+                                  child: Text(cubit.allCustomerResponse!.data![index].phone ?? "",
                                       style: GoogleFonts.notoKufiArabic(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w600,
@@ -369,7 +371,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                           ),
                         ),
                       ),
-                      itemCount: cubit.companiesCustomerName.length,
+                      itemCount: cubit.allCustomerResponse!.data!.length,
                     ),
                     // ),
                   ),
@@ -557,7 +559,9 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                                   bottom: BorderSide(color: Colors.grey, width: 0.5),
                                 )),
                             child: InkWell(
-                              onTap: () {
+                              onTap: ()async {
+                                int id= int.parse(LoginCubit.get(context).allCustomerResponse!.data![index].id!);
+                                await LoginCubit.get(context).getCustomerDetails(id);
                                 // LoginCubit.get(context).getPillsDetailsForItem( index);
                                 Navigator.pushNamed(context, EditCustomerScreen.routeName);
                               },
@@ -592,7 +596,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                                           )),
                                       height: 80,
                                       width: 100,
-                                      child: Text(cubit.companiesCustomerName[index].company!,
+                                      child: Text(cubit.allCustomerResponse!.data![index].company!,
                                           style: GoogleFonts.notoKufiArabic(
                                             color: Colors.black,
                                             fontWeight: FontWeight.w600,
@@ -612,7 +616,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                                           )),
                                       height: 80,
                                       width: 100,
-                                      child: Text(cubit.companiesCustomerName[index].email!,
+                                      child: Text(cubit.allCustomerResponse!.data![index].email!,
                                           style: GoogleFonts.notoKufiArabic(
                                             color: Colors.black,
                                             fontWeight: FontWeight.w600,
@@ -630,7 +634,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                                           )),
                                       height: 80,
                                       width: 100,
-                                      child: Text(cubit.companiesCustomerName[index].vatNo! ??"",
+                                      child: Text(cubit.allCustomerResponse!.data![index].vatNo! ??"",
                                           style: GoogleFonts.notoKufiArabic(
                                             color: Colors.black,
                                             fontWeight: FontWeight.w600,
@@ -648,7 +652,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                                           )),
                                       height: 80,
                                       width: 100,
-                                      child: Text(cubit.companiesCustomerName[index].address ?? "",
+                                      child: Text(cubit.allCustomerResponse!.data![index].address ?? "",
                                           style: GoogleFonts.notoKufiArabic(
                                             color: Colors.black,
                                             fontWeight: FontWeight.w600,
@@ -666,7 +670,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                                           )),
                                       height: 80,
                                       width: 100,
-                                      child: Text(cubit.companiesCustomerName[index].postalCode ?? "",
+                                      child: Text(cubit.allCustomerResponse!.data![index].postalCode ?? "",
                                           style: GoogleFonts.notoKufiArabic(
                                             color: Colors.black,
                                             fontWeight: FontWeight.w600,
@@ -684,7 +688,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                                           )),
                                       height: 80,
                                       width: 100,
-                                      child: Text(cubit.companiesCustomerName[index].phone ?? "",
+                                      child: Text(cubit.allCustomerResponse!.data![index].phone ?? "",
                                           style: GoogleFonts.notoKufiArabic(
                                             color: Colors.black,
                                             fontWeight: FontWeight.w600,
@@ -698,7 +702,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                               ),
                             ),
                           ),
-                          itemCount: cubit.companiesCustomerName.length,
+                          itemCount:cubit.allCustomerResponse!.data!.length,
                         ),
                         // ),
                       ),

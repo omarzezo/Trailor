@@ -306,10 +306,14 @@ class _ChangeSizeScreenState extends State<ChangeSizeScreen> {
                         child: InkWell(
                           onTap: ()async {
                             // int salesId=0;
-                            LoginCubit.get(context).getPillsDetailsForItem( index);
-                            await cubit.getSizeInformation(cubit.salesId!);
+                            cubit.getPillsDetailsForItem( index);
+                            cubit.salesIdSearch=pillsDetails.data![index].id;
+
+                            // await cubit.getSizeInformation(cubit.salesId!);
+                            await cubit.getSizeInformation(cubit.salesIdSearch!);
                             // if(cubit.sizeInformationModel!.sizesData![0].measurement!.isNotEmpty){
-                              Navigator.pushNamed(context, EditSizeScreen.routeName,arguments: EditSizeScreen(salesId: cubit.salesId,));
+                              Navigator.pushNamed(context, EditSizeScreen.routeName,arguments: EditSizeScreen(salesId: cubit.salesIdSearch,));
+                              // Navigator.pushNamed(context, EditSizeScreen.routeName,arguments: EditSizeScreen(salesId: cubit.salesId,));
 
                             // }
                           },
@@ -793,13 +797,23 @@ class _ChangeSizeScreenState extends State<ChangeSizeScreen> {
                                 )),
                             child: InkWell(
                               onTap: ()async {
-                                // int salesId=0;
-                                LoginCubit.get(context).getPillsDetailsForItem( index);
-                                await cubit.getSizeInformation(cubit.salesId!);
-                                if(cubit.sizeInformationModel!.sizesData![0].measurement!.isNotEmpty){
-                                  Navigator.pushNamed(context, EditSizeScreen.routeName,arguments: EditSizeScreen(salesId: cubit.salesId,));
+                                // cubit.getPillsDetailsForItem( index);
+                                cubit.getPillsDetailsForItemFilterd( index);
+                                cubit.salesIdSearch=pillsDetails.data![index].id;
 
-                                }
+                                // await cubit.getSizeInformation(cubit.salesId!);
+                                await cubit.getSizeInformation(cubit.salesIdSearch!);
+                                // if(cubit.sizeInformationModel!.sizesData![0].measurement!.isNotEmpty){
+                                Navigator.pushNamed(context, EditSizeScreen.routeName,arguments: EditSizeScreen(salesId: cubit.salesIdSearch,));
+                                // Navigator.pushNamed(context, EditSizeScreen.routeName,arguments: EditSizeScreen(salesId: cubit.salesId,));
+
+                                // int salesId=0;
+                                // LoginCubit.get(context).getPillsDetailsForItem( index);
+                                // await cubit.getSizeInformation(cubit.salesId!);
+                                // if(cubit.sizeInformationModel!.sizesData![0].measurement!.isNotEmpty){
+                                //   Navigator.pushNamed(context, EditSizeScreen.routeName,arguments: EditSizeScreen(salesId: cubit.salesId,));
+                                //
+                                // }
                               },
                               child: Row(
                                 children: [
