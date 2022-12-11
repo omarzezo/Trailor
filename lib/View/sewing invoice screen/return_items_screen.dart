@@ -12,6 +12,7 @@ import 'package:omar/View/Data%20Table/model.dart';
 import 'package:omar/View/Data%20Table/widget%20table.dart';
 import 'package:omar/View/sewing%20invoice%20screen/pills_item_data.dart';
 import 'package:omar/View/sewing%20invoice%20screen/return_item_screen.dart';
+import 'package:omar/constant/LoadingPage.dart';
 import 'package:omar/constant/appstrings.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -72,10 +73,14 @@ class ReturnItemsScreenState extends State<ReturnItemsScreen> {
 
                     return InkWell(
                       onTap: () async {
+                        LoadingPage(context).show();
+
                         LoginCubit.get(context).salesIdSearch=item.id;
 
 
                         await LoginCubit.get(context).getReturnItemInformation(LoginCubit.get(context).salesIdSearch.toString());
+                        LoadingPage(context).close();
+
                         Navigator.pushNamed(context, ReturnItemScreen.routeName);
 
                       },

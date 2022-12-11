@@ -298,13 +298,14 @@ int? paymentId;
 
 
   Future<List<Companies>> getAllData()async{
-  //  https://cpe-soft.com/admin/api/v1/data?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1
+    companiesEmployeeName=[];
+
+    //  https://cpe-soft.com/admin/api/v1/data?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1
     Dio dio = Dio();
     // final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
     final response=await dio.get("https://cpe-soft.com/admin/api/v1/data?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
     if(response.statusCode==200){
       print(response.data);
-      companiesEmployeeName=[];
        TrailorListsResponse.fromJson(response.data).companies!.forEach((element) {
         if (element.groupName == "biller") {
           companiesEmployeeName.add(element);
@@ -336,6 +337,7 @@ int? paymentId;
     TrailorListsResponse lenderResponseModel = TrailorListsResponse();
 
     try {
+      companiesEmployeeName=[];
       print(jsonDecode(const Utf8Decoder().convert(response.bodyBytes)));
       lenderResponseModel = TrailorListsResponse.fromJson(
           jsonDecode(const Utf8Decoder().convert(response.bodyBytes)));

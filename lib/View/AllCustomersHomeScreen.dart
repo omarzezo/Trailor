@@ -12,6 +12,8 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:flutter/services.dart' as p;
 
 class AllCustomersHomeScreen extends StatefulWidget {
+  static const routeName = "AllCustomersHomeScreen";
+
   const AllCustomersHomeScreen({Key? key}) : super(key: key);
 
   @override

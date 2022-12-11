@@ -19,6 +19,7 @@ import 'package:flutter/services.dart' as p;
 
 class PresentAllTablesScreen extends StatefulWidget {
   const PresentAllTablesScreen({Key? key}) : super(key: key);
+  static const routeName = "PresentAllTablesScreen";
 
   @override
   PresentAllTablesScreenState createState() => PresentAllTablesScreenState();
@@ -313,6 +314,15 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                                 )),
                             child: InkWell(
                               onTap: () async{
+                                // String salesID=pillsDetails.data![index].id!;
+                                String salesID=textSearch.isNotEmpty ? filteredList[index].id! : pillsDetailsDataList![index].id!;
+                                await  LoginCubit.get(context).getPillsDetailsForItemFilterd( int.parse(salesID));
+                                Navigator.pushNamed(context, PillsItemData.routeName);
+
+                                // LoginCubit.get(context).salesIdSearch=pillsDetails.data![index].id;
+
+                                // LoginCubit.get(context).getPillsDetailsForItem( index);
+                                // LoginCubit.get(context).getPillsDetailsForItemFilterd( index);
                                 // LoginCubit.get(context).salesIdSearch=item.id;
                                 //
                                 // await LoginCubit.get(context).getReturnItemInformation(LoginCubit.get(context).salesIdSearch.toString());
@@ -801,6 +811,10 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                                 )),
                             child: InkWell(
                               onTap: ()async {
+                                String salesID=textSearch.isNotEmpty ? filteredList[index].id! : pillsDetailsDataList![index].id!;
+                                await  LoginCubit.get(context).getPillsDetailsForItemFilterd( int.parse(salesID));
+                                Navigator.pushNamed(context, PillsItemData.routeName);
+
                                 // LoginCubit.get(context).salesIdSearch=item.id;
                                 //
                                 // // await    LoginCubit.get(context).getReturnId( index);

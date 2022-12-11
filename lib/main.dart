@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Network/Remote%20Data/Dio%20Helper.dart';
 import 'package:omar/Controller/local/shared_pref.dart';
+import 'package:omar/View/AllCustomersHomeScreen.dart';
 import 'package:omar/View/BlutothPrinter.dart';
 import 'package:omar/View/WifiThroughIpPrinter.dart';
 import 'package:omar/View/choose_printer_screen.dart';
@@ -13,6 +14,8 @@ import 'package:omar/View/home/splash_screen.dart';
 import 'package:omar/View/invoice_Screen.dart';
 import 'package:omar/View/login/login%20screen.dart';
 import 'package:omar/View/mobile/mobil%20home.dart';
+import 'package:omar/View/present_all_tables_screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/TabBar%20Screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/add_new_customer_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/cashier_report.dart';
 import 'package:omar/View/sewing%20invoice%20screen/customers_details_screen.dart';
@@ -23,6 +26,8 @@ import 'package:omar/View/sewing%20invoice%20screen/pills_item_data.dart';
 import 'package:omar/View/sewing%20invoice%20screen/print_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/restart_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/return_item_screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/settings_screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/start_screen.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:omar/tast.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
@@ -115,11 +120,16 @@ class MyApp extends StatelessWidget {
             routes: {
               PrintScreen.routeName:(context) => const PrintScreen(),
               HomeScreen.routeName:(context) => const HomeScreen(),
+              // StartScreen.routeName:(context) => const StartScreen(),
               LoginScreen.routeName:(context) => const LoginScreen(),
               NewUserScreen.routeName:(context) =>  NewUserScreen(),
               CustomerDetailsScreen.routeName:(context) =>  CustomerDetailsScreen(),
               PillsItemData.routeName:(context) =>  PillsItemData(),
               PrintPillScreen.routeName:(context) =>  PrintPillScreen(),
+              AllCustomersHomeScreen.routeName:(context) =>  AllCustomersHomeScreen(),
+              TabBarScreen.routeName:(context) =>  TabBarScreen(),
+              PresentAllTablesScreen.routeName:(context) =>  PresentAllTablesScreen(),
+              SettingScreen.routeName:(context) =>  SettingScreen(),
               // WifiThroughrIpPrinter.routeName:(context) =>  WifiThroughrIpPrinter(),
               EditSizeScreen.routeName:(context) =>  EditSizeScreen(),
               DailyReportScreen.routeName:(context) =>  DailyReportScreen(),

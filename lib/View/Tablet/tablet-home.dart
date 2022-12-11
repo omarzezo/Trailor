@@ -81,12 +81,12 @@ class _TabletHomeState extends State<TabletHome> {
                     children: [
                       Container(height: 70,padding: const EdgeInsets.symmetric(horizontal: 5),child: RowName(),),
                       const Divider(color: Colors.green,endIndent: 10,indent: 30,thickness: 3,height: 10),
-                      RowNameDetail(title:AppStrings.InventoryManagement.tr() , titleImage: 'image/tshirt.png'),
-                      RowNameDetail(title:AppStrings.TextilesAccessories.tr() , titleImage: 'image/towels.png'),
-                      RowNameDetail(title: AppStrings.bookings.tr() , titleImage: 'image/booking.png'),
-                      RowNameDetail(title: AppStrings.Messagesandnotifications.tr() , titleImage: 'image/email.png'),
-                      RowNameDetail(title: AppStrings.Taxesandaccounts.tr() , titleImage: 'image/profit (1).png'),
-                      RowNameDetail(title: AppStrings.InventoryManagement.tr() ,titleImage: 'image/warehouse (1).png'),
+                      // RowNameDetail(title:AppStrings.InventoryManagement.tr() , titleImage: 'image/tshirt.png'),
+                      // RowNameDetail(title:AppStrings.TextilesAccessories.tr() , titleImage: 'image/towels.png'),
+                      // RowNameDetail(title: AppStrings.bookings.tr() , titleImage: 'image/booking.png'),
+                      // RowNameDetail(title: AppStrings.Messagesandnotifications.tr() , titleImage: 'image/email.png'),
+                      // RowNameDetail(title: AppStrings.Taxesandaccounts.tr() , titleImage: 'image/profit (1).png'),
+                      // RowNameDetail(title: AppStrings.InventoryManagement.tr() ,titleImage: 'image/warehouse (1).png'),
                       InkWell(
                           onTap: ()async {
                             await LoginCubit.get(context).getPillsDetails();

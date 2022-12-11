@@ -159,6 +159,7 @@ class _SewingScreenState extends State<SewingScreen> {
                 //         ),
                 //       ],
                 //     ),
+
                 Container(
                   // width: 600,
                   width: MediaQuery.of(context).size.width / w,
@@ -257,6 +258,148 @@ class _SewingScreenState extends State<SewingScreen> {
                               ),
                             ],
                           )),
+                      SizedBox(height: 20,),
+                      Container(
+                        height: 70,
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(AppStrings.statue.tr(),
+                                    style: GoogleFonts.notoKufiArabic(
+                                        color: MyConstant().purpleColor,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12)),
+                                Spacer(),
+                                Container(
+                                  width: MediaQuery.of(context).size.width*0.40,
+                                  // padding: const EdgeInsets.only(right: 10),
+                                  height: 44,
+                                  padding: EdgeInsets.all(4),
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                    BorderRadius.circular(5),
+                                  ),
+                                  child: DropdownButtonHideUnderline(
+                                    child: DropdownButton2(
+                                      iconEnabledColor: Colors.white,
+                                      iconDisabledColor: Colors.grey,
+                                      buttonHeight: 100,
+                                      buttonWidth: 160,
+                                      // buttonElevation: 2,
+                                      itemHeight: 50,
+                                      itemPadding:
+                                      const EdgeInsets.only(
+                                          left: 14, right: 14),
+                                      dropdownMaxHeight: 200,
+                                      dropdownWidth: 200,
+
+                                      buttonDecoration: BoxDecoration(
+                                        borderRadius:
+                                        BorderRadius.circular(5),
+                                        border: Border.all(
+                                          color: Colors.green,
+                                        ),
+                                        color: Colors.white,
+                                      ),
+                                      dropdownDecoration: BoxDecoration(
+                                        borderRadius:
+                                        BorderRadius.circular(5),
+                                        color: Colors.white,
+                                      ),
+
+                                      dropdownElevation: 8,
+                                      scrollbarRadius:
+                                      const Radius.circular(20),
+                                      scrollbarThickness: 6,
+                                      scrollbarAlwaysShow: true,
+                                      items:  cubit.statusNameList.map((item) => DropdownMenuItem(
+                                        value: item,
+
+                                        child: Center(child: Text(
+                                            item,
+                                            style: GoogleFonts.notoKufiArabic(
+                                                color: Colors
+                                                    .black,
+                                                fontWeight:
+                                                FontWeight
+                                                    .bold, fontSize: 12)
+                                        ),),)).toList(),
+
+                                      value: cubit.stausName,
+                                      isExpanded: true,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          cubit.stausName=value as String;
+
+
+
+                                        });
+                                      },
+                                      iconSize: 40,
+                                      icon: Container(
+                                        decoration: const BoxDecoration(
+                                          color: Colors.green,
+                                          borderRadius:
+                                          BorderRadius.only(
+                                              bottomLeft: Radius
+                                                  .circular(5),
+                                              topLeft:
+                                              Radius.circular(
+                                                  5)),
+                                        ),
+                                        child: const Icon(Icons
+                                            .keyboard_arrow_down_sharp),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                // Container(
+                                //   // padding: const EdgeInsets.only(left: 10),
+                                //
+                                //   width: 125,
+                                //   child: TextField(
+                                //     style: GoogleFonts.notoKufiArabic(
+                                //       color: Colors.black,
+                                //       fontWeight: FontWeight.bold,
+                                //       fontSize: 18),
+                                //    controller: controller,
+                                //     onChanged: (value) {
+                                //       if(value.isNotEmpty){
+                                //         cubit.status=value;
+                                //       }
+                                //     },
+                                //
+                                //
+                                //     decoration: InputDecoration(
+                                //       hintStyle:  GoogleFonts.notoKufiArabic(
+                                //           color: Colors.black,
+                                //           fontWeight: FontWeight.bold,
+                                //           fontSize: 18),
+                                //       border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+                                //       hintText: cubit.status ,
+                                //
+                                //     ),
+                                //   ),
+                                // ),
+
+                                // Text(cubit.pillsDetailsItem!.saleStatus ?? "",
+                                //     style: GoogleFonts.notoKufiArabic(
+                                //         color: Colors.black,
+                                //         fontWeight: FontWeight.bold,
+                                //         fontSize: 18)),
+                                Spacer(),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 10,),
+
                       Container(
                         width: double.infinity,
                         height: MediaQuery.of(context).size.height / 9,
@@ -266,6 +409,7 @@ class _SewingScreenState extends State<SewingScreen> {
                         child: Row(
                           // mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
+
                             Container(
                               width: MediaQuery.of(context).size.width / 2,
                               child: Column(
@@ -588,6 +732,7 @@ class _SewingScreenState extends State<SewingScreen> {
                           ],
                         ),
                       ),
+                      SizedBox(height: 10,),
                       Container(
                         height: 30,
                         width: double.infinity,
@@ -2251,7 +2396,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                           : cubit.discount.text),
                                   returnSaleRef: null,
                                   returnId: null,
-                                  saleStatus: "completed",
+                                  saleStatus: cubit.stausName,
                                   saleId: null,
                                   paymentStatus: "paid",
                                   warehouseCode: "w_1",

@@ -14,6 +14,8 @@ import '../AllCustomersHomeScreen.dart';
 import 'package:flutter/services.dart' as p;
 
 class TabBarScreen extends StatefulWidget {
+  static const routeName = "TabBarScreen";
+
   const TabBarScreen({Key? key}) : super(key: key);
 
   @override
@@ -29,9 +31,9 @@ class _TabBarScreenState extends State<TabBarScreen> {
     initialIndex=0;
     setScreen(0);
   }
-  int initialIndex=0;
+ static int initialIndex=0;
   Widget screen= Container();
-  void setScreen (int index){
+   void setScreen (int index){
     if(index==0){
       initialIndex=0;
        screen= AllCustomersHomeScreen();

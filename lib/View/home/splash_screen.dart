@@ -6,6 +6,7 @@ import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/local/shared_pref.dart';
 import 'package:omar/View/home/home.dart';
 import 'package:omar/View/login/login%20screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/start_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = 'SplashWidget';

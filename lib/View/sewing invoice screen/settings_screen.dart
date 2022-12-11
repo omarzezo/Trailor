@@ -17,6 +17,7 @@ import 'package:flutter/services.dart' as p;
 
 
 class SettingScreen extends StatefulWidget {
+  static const routeName = "SettingScreen";
 
   @override
   State<SettingScreen> createState() => SettingScreenState();
