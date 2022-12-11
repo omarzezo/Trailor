@@ -72,12 +72,11 @@ class StartScreen extends StatelessWidget {
 
               Expanded(
                 child: Container(
-                  height: 100,
-                  width: 300,
+                  height: MediaQuery.of(context).size.height/5,
+                  width: MediaQuery.of(context).size.width,
                   color: Colors.blueAccent,
-
                   child: IconButton(onPressed: () {
-Navigator.pushNamed(context, HomeScreen.routeName);
+                    Navigator.pushNamed(context, HomeScreen.routeName);
                   }, icon: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -86,67 +85,68 @@ Navigator.pushNamed(context, HomeScreen.routeName);
                     fontWeight: FontWeight.bold,
                     fontSize: 30,
                   )),
-                      Icon(Icons.home_filled,size: 45,)
+                      const Icon(Icons.home_filled,size: 45,color: Colors.white,)
                     ],
                   )),
 
                 ),
               ),
               SizedBox(height: 20,),
-              Expanded(
-                child: Container(
-                  height: 100,
-                  width: 300,
-                  color: Colors.teal,
-                  child:  IconButton(onPressed: () {
-                    // TabBarScreen.initialIndex=0;
-                    Navigator.pushNamed(context, AllCustomerScreen.routeName);
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      height: MediaQuery.of(context).size.height/5,
+                      color: Colors.teal,
+                      child:  IconButton(onPressed: () {
+                        Navigator.pushNamed(context, AllCustomerScreen.routeName);
+                      }, icon: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
 
-                  }, icon: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-
-                    children: [
-                      Text(AppStrings.customers.tr(), style: GoogleFonts.notoKufiArabic(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
+                        children: [
+                          Text(AppStrings.customers.tr(), style: GoogleFonts.notoKufiArabic(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
+                          )),
+                          Icon(Icons.people,size: 45,color: Colors.white,)
+                        ],
                       )),
-                      Icon(Icons.people,size: 45)
-                    ],
-                  )),
-                ),
-              ),
-              SizedBox(height: 20,),
+                    ),
+                  ),
+                  const SizedBox(width: 20,),
+                  Expanded(
+                    child: Container(
+                      height: MediaQuery.of(context).size.height/5,
+                      color: Colors.teal,
+                      child:  IconButton(onPressed: () {
+                        // TabBarScreen.initialIndex=0;
+                        Navigator.pushNamed(context, AddInvoiceScreen.routeName);
 
-              Expanded(
-                child: Container(
-                  height: 100,
-                  width: 300,
-                  color: Colors.teal,
-                  child:  IconButton(onPressed: () {
-                    // TabBarScreen.initialIndex=0;
-                    Navigator.pushNamed(context, AddInvoiceScreen.routeName);
+                      }, icon: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
 
-                  }, icon: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-
-                    children: [
-                      Text(AppStrings.addinvoice.tr(), style: GoogleFonts.notoKufiArabic(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
+                        children: [
+                          Text(AppStrings.addinvoice.tr(), style: GoogleFonts.notoKufiArabic(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
+                          )),
+                          const Icon(Icons.add_shopping_cart,size: 45,color: Colors.white,)
+                        ],
                       )),
-                      Icon(Icons.add_shopping_cart,size: 45)
-                    ],
-                  )),
-                ),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(height: 20,),
 
+
+
               Expanded(
                 child: Container(
-                  height: 100,
-                  width: 300,
+                  height: MediaQuery.of(context).size.height/5,
+                  width: MediaQuery.of(context).size.width,
                   color:MyConstant().purpleColor,
                   child:  IconButton(onPressed: () {
                     // TabBarScreen.initialIndex=4;
@@ -162,7 +162,7 @@ Navigator.pushNamed(context, HomeScreen.routeName);
                         fontWeight: FontWeight.bold,
                         fontSize: 30,
                       )),
-                      Icon(Icons.inventory_outlined,size: 45,)
+                      const Icon(Icons.inventory_outlined,size: 45,color: Colors.white,)
                     ],
                   )),
 
@@ -172,8 +172,8 @@ Navigator.pushNamed(context, HomeScreen.routeName);
 
               Expanded(
                 child: Container(
-                  height: 100,
-                  width: 300,
+                  height: MediaQuery.of(context).size.height/5,
+                  width: MediaQuery.of(context).size.width,
                   color: MyConstant().greenColor,
                   child: IconButton(onPressed: () {
                     Navigator.pushNamed(context, SettingScreen.routeName);
@@ -182,12 +182,12 @@ Navigator.pushNamed(context, HomeScreen.routeName);
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
 
                     children: [
-                      Text("setting", style: GoogleFonts.notoKufiArabic(
+                      Text(AppStrings.settings.tr(), style: GoogleFonts.notoKufiArabic(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 30,
                       )),
-                      Icon(Icons.settings,size: 45,)
+                      const Icon(Icons.settings,size: 45,color: Colors.white,)
                     ],
                   )),
 

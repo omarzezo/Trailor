@@ -97,71 +97,8 @@ class _SewingScreenState extends State<SewingScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Container(
-                //   height: MediaQuery.of(context).size.height/11,
-                //   // width: double.infinity,
-                //   width: MediaQuery.of(context).size.width/1,
-                //   padding: const EdgeInsets.symmetric(horizontal: 20),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                //     // crossAxisAlignment: CrossAxisAlignment.center,
-                //     children: [
-                //     iconAndText(iconData: Icons.add_to_photos_rounded, nameText: 'اضافة'),
-                //     iconAndText(iconData: Icons.print , nameText: 'طباعة الفاتورة'),
-                //     iconAndText(iconData: Icons.mode_edit_outlined, nameText: 'تعديل المقاسات'),
-                //     iconAndText(iconData: Icons.tv_outlined, nameText: 'عرض'),
-                //     iconAndText(iconData: Icons.clean_hands_sharp, nameText: 'دفعه نقدية'),
-                //     iconAndText(iconData: Icons.subdirectory_arrow_left, nameText: 'مرتجع'),
-                //   ],),
-                // ),
-                //     Row(
-                //       children: [
-                //         Expanded(
-                //           child: Container(
-                //             padding: EdgeInsets.symmetric(horizontal: 20),
-                //             color: MyConstant().purpleColor,child: MaterialButton(onPressed: () {
-                //
-                //             AwesomeDialog(context: context,
-                //                 dialogType: DialogType.question,
-                //                 animType: AnimType.rightSlide,
-                //               width:MediaQuery.of(context).size.width/1.2,
-                //               // width:400,
-                //               body: OpenCashier(),
-                //
-                //             ).show();
-                //
-                //           },child: Text(AppStrings.Openthecashregister.tr(),style: GoogleFonts.notoKufiArabic(
-                // color: Colors.white,
-                // fontWeight: FontWeight.bold,
-                // fontSize: 18)),),),
-                //         ),
-                //         SizedBox(width: 20,),
-                //         Expanded(
-                //
-                //           child: Container(
-                //             padding: EdgeInsets.symmetric(horizontal: 20),
-                //
-                //             color:  MyConstant().purpleColor,child: MaterialButton(onPressed: () {
-                //
-                //             AwesomeDialog(context: context,
-                //                 dialogType: DialogType.noHeader,
-                //                 animType: AnimType.rightSlide,
-                //               width:MediaQuery.of(context).size.width,
-                //               // width:400,
-                //               body:  CashierScreen(),
-                //
-                //             ).show();
-                //
-                //           },child: Text(AppStrings.Closethecashier.tr(),style: GoogleFonts.notoKufiArabic(
-                // color: Colors.white,
-                // fontWeight: FontWeight.bold,
-                // fontSize: 18)),),),
-                //         ),
-                //       ],
-                //     ),
 
                 Container(
-                  // width: 600,
                   width: MediaQuery.of(context).size.width / w,
                   // height: MediaQuery.of(context).size.height/1.5,
                   margin:
@@ -318,15 +255,19 @@ class _SewingScreenState extends State<SewingScreen> {
                                       scrollbarAlwaysShow: true,
                                       items:  cubit.statusNameList.map((item) => DropdownMenuItem(
                                         value: item,
-
-                                        child: Center(child: Text(
-                                            item,
-                                            style: GoogleFonts.notoKufiArabic(
-                                                color: Colors
-                                                    .black,
-                                                fontWeight:
-                                                FontWeight
-                                                    .bold, fontSize: 12)
+                                        child: Center(child: Container(
+                                          padding: const EdgeInsets.only(top: 6,bottom: 6),
+                                          width: 160,
+                                        color:item==AppStrings.pendingState.tr()?const Color(0xffefae50) :
+                                        item==AppStrings.completedState.tr()?Colors.green:Colors.red,
+                                          child: Center(
+                                            child: Text(
+                                                item,
+                                                style: GoogleFonts.notoKufiArabic(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold, fontSize: 14)
+                                            ),
+                                          ),
                                         ),),)).toList(),
 
                                       value: cubit.stausName,
@@ -540,7 +481,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                                                         FontWeight
                                                                             .bold,
                                                                     fontSize:
-                                                                        12)),
+                                                                        14)),
                                                       ),
                                                     ))
                                                 .toList(),

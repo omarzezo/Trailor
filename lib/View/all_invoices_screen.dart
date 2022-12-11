@@ -395,7 +395,7 @@ class AllInvoicesScreenState extends State<AllInvoicesScreen> {
                                         child: Container(
                                           alignment: Alignment.center,
                                           decoration:  BoxDecoration(
-                                              color: item.saleStatus!.startsWith("p")||item.saleStatus!.startsWith("مر")?Colors.yellow:item.saleStatus!.startsWith("c")||item.saleStatus!.startsWith("مك")?Colors.green:Colors.red,
+                                              color: item.saleStatus!.startsWith("p")||item.saleStatus!.startsWith("مر")?Color(0xffefae50):item.saleStatus!.startsWith("c")||item.saleStatus!.startsWith("مك")?Colors.green:Colors.red,
 
                                               border: Border(
                                                 left: BorderSide(color: Colors.green.withOpacity(0.3), ),
@@ -903,7 +903,7 @@ class AllInvoicesScreenState extends State<AllInvoicesScreen> {
                                         child: Container(
                                           alignment: Alignment.center,
                                           decoration:  BoxDecoration(
-                                              color: item.saleStatus!.startsWith("p")||item.saleStatus!.startsWith("مر")?Colors.yellow:item.saleStatus!.startsWith("c")||item.saleStatus!.startsWith("مك")?Colors.green:Colors.red,
+                                              color: item.saleStatus!.startsWith("p")||item.saleStatus!.startsWith("مر")?Color(0xffefae50):item.saleStatus!.startsWith("c")||item.saleStatus!.startsWith("مك")?Colors.green:Colors.red,
 
                                               border: Border(
                                                 left: BorderSide(color: Colors.green.withOpacity(0.3), ),

@@ -442,7 +442,7 @@ class _CustomTableState extends State<CustomTable> {
                             child: Container(
                               alignment: Alignment.center,
                               decoration:  BoxDecoration(
-                                  color: pillsDetails!.data![index].saleStatus!.startsWith("p")||pillsDetails!.data![index].saleStatus!.startsWith("مر")?Colors.yellow:pillsDetails!.data![index].saleStatus!.startsWith("c")||pillsDetails!.data![index].saleStatus!.startsWith("مك")?Colors.green:Colors.red,
+                                  color: pillsDetails!.data![index].saleStatus!.startsWith("p")||pillsDetails!.data![index].saleStatus!.startsWith("مر")?Color(0xffefae50):pillsDetails!.data![index].saleStatus!.startsWith("c")||pillsDetails!.data![index].saleStatus!.startsWith("مك")?Colors.green:Colors.red,
 
                                   border: Border(
                                     left: BorderSide(color: Colors.green.withOpacity(0.3), ),
@@ -930,7 +930,7 @@ class _CustomTableState extends State<CustomTable> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       decoration:  BoxDecoration(
-                                          color: pillsDetails!.data![index].saleStatus!.startsWith("p")||pillsDetails!.data![index].saleStatus!.startsWith("مر")?Colors.yellow:pillsDetails!.data![index].saleStatus!.startsWith("c")||pillsDetails!.data![index].saleStatus!.startsWith("مك")?Colors.green:Colors.red,
+                                          color: pillsDetails!.data![index].saleStatus!.startsWith("p")||pillsDetails!.data![index].saleStatus!.startsWith("مر")?Color(0xffefae50):pillsDetails!.data![index].saleStatus!.startsWith("c")||pillsDetails!.data![index].saleStatus!.startsWith("مك")?Colors.green:Colors.red,
 
                                           border: Border(
                                             left: BorderSide(color: Colors.green.withOpacity(0.3), ),
