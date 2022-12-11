@@ -595,7 +595,7 @@ Future<returnsalesModel>getReturnId(int index)async{
   List<Users> users = [];
   List<Companies> companiesCustomerName = [];
   List<Products> productsNameList = [];
-  List<String> statusNameList = ["pending","completed","un delivered"];
+  List<String> statusNameList = [AppStrings.pendingState.tr(),AppStrings.completedState.tr(),AppStrings.returnedState.tr()];
 
   String? stausName;
   List<Taxrates> taxRatesNameList = [];

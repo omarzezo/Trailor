@@ -94,9 +94,34 @@ class ReturnItemsScreenState extends State<ReturnItemsScreen> {
                         ),
                         child: Column(
                           children: [
-                            Row(
+                        Row(
+
+                          children: [
+                            Expanded(
+                              child: RichText(text: TextSpan(
+                              text: "${AppStrings.clothes.tr()} : ",
+                                style: GoogleFonts.notoKufiArabic(
+                                    color: MyConstant().greenColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
+                                children:[
+                                  TextSpan(
+                                    text:   pillsDetailsDataList![index].items!=null?pillsDetailsDataList![index].items![0].productName:"",
+                                    style: GoogleFonts.notoKufiArabic(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  )
+                                ]
+                      )
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
                               children: [
-                                Expanded(child:    RichText(text: TextSpan(
+                                Expanded(child:
+                                RichText(text: TextSpan(
                                     text: "${AppStrings.customer.tr()} : ",
                                     style: GoogleFonts.notoKufiArabic(
                                         color: MyConstant().greenColor,
@@ -111,7 +136,9 @@ class ReturnItemsScreenState extends State<ReturnItemsScreen> {
                                             fontSize: 18),
                                       )
                                     ]
-                                ))
+                                )
+
+                                )
                                 ),
                                 Expanded(child:
                                 RichText(

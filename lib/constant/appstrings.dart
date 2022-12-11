@@ -106,6 +106,11 @@ abstract class AppStrings {
   static const invoicdate= "invoicdate";
   static const deliverydate = "deliverydate";
   static const Total = "Total";
+  static const completedState = "completed";
+  static const pendingState = "pending";
+  static const returnedState = "returned";
+  static const addinvoice = "addinvoice";
+  static const invoices = "invoices";
   static const   paidup= "paidup";
   static const Residual = "Residual";
   static const customer = "customer";

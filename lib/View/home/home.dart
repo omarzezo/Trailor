@@ -20,55 +20,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: ()async {
-        final shouldPop = await showDialog<bool>(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title:  Text(AppStrings.closeMg.tr(),
-                  style: GoogleFonts.notoKufiArabic(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18)),
-              actionsAlignment: MainAxisAlignment.spaceBetween,
-              actions: [
-                TextButton(
-                  style: ButtonStyle(backgroundColor: MaterialStateProperty.all(MyConstant().purpleColor)),
-                  onPressed: () {
-                    Navigator.pop(context, true);
-                  },
-                  child:  Text(AppStrings.Yes.tr(),
-                      style: GoogleFonts.notoKufiArabic(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18)),
-                ),
-                TextButton(
-                  style: ButtonStyle(backgroundColor: MaterialStateProperty.all(MyConstant().purpleColor)),
-
-                  onPressed: () {
-                    Navigator.pop(context, false);
-                  },
-                  child:  Text(AppStrings.NO.tr(),
-                      style: GoogleFonts.notoKufiArabic(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18)),
-                ),
-              ],
-            );
-          },
-        );
-        return shouldPop!;
-      },
-      child: Scaffold(
+    return  Scaffold(
 
         body: Responsive(
           mobilWidget: const MobileHome(),
           tabletWidget: const TabletHome(),
         ),
-      ),
+
     );
   }
 }

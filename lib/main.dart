@@ -7,7 +7,10 @@ import 'package:omar/Controller/Network/Remote%20Data/Dio%20Helper.dart';
 import 'package:omar/Controller/local/shared_pref.dart';
 import 'package:omar/View/AllCustomersHomeScreen.dart';
 import 'package:omar/View/BlutothPrinter.dart';
+import 'package:omar/View/add_invoice.dart';
+import 'package:omar/View/all_invoices_screen.dart';
 import 'package:omar/View/WifiThroughIpPrinter.dart';
+import 'package:omar/View/all_customers_screen.dart';
 import 'package:omar/View/choose_printer_screen.dart';
 import 'package:omar/View/home/home.dart';
 import 'package:omar/View/home/splash_screen.dart';
@@ -120,8 +123,11 @@ class MyApp extends StatelessWidget {
             routes: {
               PrintScreen.routeName:(context) => const PrintScreen(),
               HomeScreen.routeName:(context) => const HomeScreen(),
-              // StartScreen.routeName:(context) => const StartScreen(),
+              StartScreen.routeName:(context) => const StartScreen(),
               LoginScreen.routeName:(context) => const LoginScreen(),
+              AllCustomerScreen.routeName:(context) => const AllCustomerScreen(),
+              AllInvoicesScreen.routeName:(context) => const AllInvoicesScreen(),
+              AddInvoiceScreen.routeName:(context) => const AddInvoiceScreen(),
               NewUserScreen.routeName:(context) =>  NewUserScreen(),
               CustomerDetailsScreen.routeName:(context) =>  CustomerDetailsScreen(),
               PillsItemData.routeName:(context) =>  PillsItemData(),
