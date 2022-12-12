@@ -1222,10 +1222,10 @@ class PrintScreen extends StatelessWidget {
                         ),
 
                         MediaQuery.of(context).orientation==Orientation.landscape?
-
+                        (cubit.pngBytes!=null)?
                         Expanded(  flex: 1,
                           child:  (cubit.pngBytes != null)?
-                            Image.memory(cubit.pngBytes!):Container()):Container(),
+                            Image.memory(cubit.pngBytes!):Container()):Container():Container(),
                       ],
 
                     ),
