@@ -297,31 +297,34 @@ int? paymentId;
 // }
 
 
-  Future<List<Companies>> getAllData()async{
-    companiesEmployeeName=[];
-
-    //  https://cpe-soft.com/admin/api/v1/data?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1
-    Dio dio = Dio();
-    // final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
-    final response=await dio.get("https://cpe-soft.com/admin/api/v1/data?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
-    if(response.statusCode==200){
-      print(response.data);
-       TrailorListsResponse.fromJson(response.data).companies!.forEach((element) {
-        if (element.groupName == "biller") {
-          companiesEmployeeName.add(element);
-        }
-      });
-      // Companies.fromJson(response.data);
-
-    }else{
-      print(response.statusMessage);
-    }
-    return companiesEmployeeName;
-  }
+  // Future<List<Companies>> getAllData()async{
+  //   companiesEmployeeName=[];
+  //
+  //   //  https://cpe-soft.com/admin/api/v1/data?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1
+  //   Dio dio = Dio();
+  //   // final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
+  //   final response=await dio.get("https://cpe-soft.com/admin/api/v1/data?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
+  //   if(response.statusCode==200){
+  //     print(response.data);
+  //     //  TrailorListsResponse.fromJson(response.data).companies!.forEach((element) {
+  //     //   if (element.groupName == "biller") {
+  //     //     companiesEmployeeName.add(element);
+  //     //   }
+  //     // });
+  //     // Companies.fromJson(response.data);
+  //
+  //   }else{
+  //     print(response.statusMessage);
+  //   }
+  //   final ids = Set();
+  //   // companiesEmployeeName.retainWhere((x) => ids.add(x.id));
+  //   return companiesEmployeeName;
+  // }
   Future<TrailorListsResponse> login({
     required String email,
     required String password,
   }) async {
+    companiesCustomerName=[];
     customerModel=[];
     var response = await http.get(
         Uri.parse(BASEURL +
@@ -371,6 +374,8 @@ int? paymentId;
           companiesEmployeeName.add(element);
         }
       });
+
+
       usersList=  lenderResponseModel.users;
       // users.forEach((element) {usersName.add(element.company!);});
 
@@ -445,6 +450,8 @@ int invoiceNumbers=0;
         emit(GetCustomerSuccessState());
 
       });
+      final ids = Set();
+      companiesEmployeeName.retainWhere((x) => ids.add(x.id));
       print(response.data);
 return companiesCustomerName;
     } else {
@@ -550,14 +557,14 @@ Future<returnsalesModel>getReturnId(int index)async{
   PillsDetails? pillsDetails;
   data.PillsDetailsData?   pillsDetailsItem;
   Future<PillsDetails> getPillsDetails ()async{
-    companiesEmployeeName=[];
+    // companiesEmployeeName=[];
     Dio dio = Dio();
     // final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
     final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
     if(response.statusCode==200){
       print(response.data);
       pillsDetails=PillsDetails.fromJson(response.data);
-      await getAllData();
+      // await getAllData();
 
       return pillsDetails!;
     }else{
@@ -594,6 +601,7 @@ Future<returnsalesModel>getReturnId(int index)async{
   List<tRTailorModel> tRTailorList = [];
   List<Users> users = [];
   List<Companies> companiesCustomerName = [];
+
   List<Products> productsNameList = [];
   List<String> statusNameList = [AppStrings.pendingState.tr(),AppStrings.completedState.tr(),AppStrings.returnedState.tr()];
 

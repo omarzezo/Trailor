@@ -70,7 +70,9 @@ class PrintScreen extends StatelessWidget {
                       ],
                     ),
                     MediaQuery.of(context).orientation==Orientation.portrait?
-                    SizedBox(
+                        LoginCubit.get(context).pngBytes==null?
+                           Container():
+                         SizedBox(
                       height: 400,
                       width: 400,
                       child:  (cubit.pngBytes != null)?
