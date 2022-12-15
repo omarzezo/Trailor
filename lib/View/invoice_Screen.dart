@@ -622,7 +622,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                       "Phone",
                                                       style: getStyle(color: Colors.black, fontSize: textSize),
                                                     )),  Container(
-                                                    width: 90,
+                                                    width: 120,
                                                     alignment: Alignment.center,
                                                     child:Text(
                                                       "961751515151",
@@ -639,13 +639,13 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
                                                 Container(
-                                                    width: 55,
+                                                    width: 45,
                                                     alignment: Alignment.centerLeft,
                                                     child:  Text(
                                                       "Vat No",
                                                       style: getStyle(color: Colors.black, fontSize: textSize),
                                                     )),  Container(
-                                                    width: 80,
+                                                    width: 120,
                                                     alignment: Alignment.center,
                                                     child:Text(
                                                 
@@ -653,7 +653,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                         vatNo,textAlign: TextAlign.center,
                                                         style: getStyle(color: Colors.black, fontSize: textSize-1)
                                                     )),  Container(
-                                                    width: 55,
+                                                    width: 90,
                                                     alignment: Alignment.centerRight,
                                                     child: Text(
                                                       "الرقم الضريبي",textAlign: TextAlign.right,
@@ -667,14 +667,14 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
                                                 Container(
-                                                    width: 50,
+                                                    width: 45,
                                                     alignment: Alignment.centerLeft,
                                                     child:  Text(
                                                       "CR No",
                                                       style:getStyle(color: Colors.black, fontSize: textSize-1),
                                                     )),
                                                 Container(
-                                                    width: 80,
+                                                    width: 120,
                                                     alignment: Alignment.center,
                                                     child:Text(
                                                       cubit.allInvoices[ cubit.allInvoices.length-1].referenceNo!,textAlign: TextAlign.center,
@@ -682,7 +682,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                       style:  getStyle(color: Colors.black, fontSize: textSize-1),
                                                     )),
                                                 Container(
-                                                    width: 60,
+                                                    width: 100,
                                                     alignment: Alignment.centerRight,
                                                     child: Text(
                                                       "السجل التجاري",textAlign: TextAlign.right,
@@ -706,13 +706,13 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
                                                 Container(
-                                                    width: 45,
+                                                    width: 40,
                                                     alignment: Alignment.centerLeft,
                                                     child:  Text(
                                                       "Date",
                                                       style: getStyle(color: Colors.black, fontSize: textSize-1),
                                                     )),  Container(
-                                                    width: 100,
+                                                    width: 150,
                                                     alignment: Alignment.center,
                                                     child:Text(
                                                       cubit.allInvoices[ cubit.allInvoices.length-1].date!.split(" ").first,textAlign: TextAlign.center,
@@ -810,7 +810,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                       // invoiceModel!.invoiceData![0].customer!,textAlign: TextAlign.center,
                                                       style: getStyle(color: Colors.black, fontSize: textSize-1),
                                                     )),  Container(
-                                                    width: 50,
+                                                    width: 45,
                                                     alignment: Alignment.centerRight,
                                                     child: Text(
                                                       "العميل",textAlign: TextAlign.center,
@@ -838,7 +838,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                       // invoiceModel!.invoiceData![0].items![0].tax!,textAlign: TextAlign.left,
                                                       style: getStyle(color: Colors.black, fontSize: textSize-1),
                                                     )),  Container(
-                                                    width: 55,
+                                                    width: 90,
                                                     alignment: Alignment.centerRight,
                                                     child: Text(
                                                       "الرقم الضريبي",textAlign: TextAlign.right,
@@ -1030,7 +1030,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Container(
-                                              width:70,
+                                              width:95,
                                               alignment: Alignment.centerLeft,
                                               child: Text(
                                                   "Grand Total",
@@ -1048,7 +1048,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                   style: getStyle(color: Colors.black, fontSize: textSize-1)
                                               )),
                                           Container(
-                                              width: 70,
+                                              width: 100,
                                               alignment: Alignment.centerRight,
                                               child:  Text(
                                                 "المبلغ المطلوب",
@@ -1215,7 +1215,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                             children: [Text("فاتورة ضريبة مبسطة ", style: getStyle(color: Colors.black, fontSize: textSize)
                             )],
                           ),
-                          const SizedBox(height: 10,),
+                          // const SizedBox(height: 10,),
 
                           Container(
                             width: double.infinity,
@@ -1226,7 +1226,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                             padding: const EdgeInsets.only(top: 3,bottom: 3),
                             child:Text("مؤسسة وعد الوان", style: getStyle(color: Colors.black, fontSize: textSize)),),
 
-                          const SizedBox(height: 10,),
+                          // const SizedBox(height: 10,),
                         ])),
                 Container(
                     alignment: Alignment.center,
@@ -1244,7 +1244,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                     "Phone",
                                     style: getStyle(color: Colors.black, fontSize: textSize),
                                   )),  Container(
-                                  width: 90,
+                                  width: 120,
                                   alignment: Alignment.center,
                                   child:Text(
                                     "961751515151",
@@ -1261,47 +1261,48 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                  width: 55,
+                                  width: 45,
                                   alignment: Alignment.centerLeft,
                                   child:  Text(
                                     "Vat No",
                                     style: getStyle(color: Colors.black, fontSize: textSize),
                                   )),  Container(
-                                  width: 80,
+                                  width: 120,
                                   alignment: Alignment.center,
                                   child:Text(
                                       vatNo,textAlign: TextAlign.center,
                                     style: getStyle(color: Colors.black, fontSize: textSize-1)
                                   )),  Container(
-                                  width: 55,
+                                  width: 90,
                                   alignment: Alignment.centerRight,
                                   child: Text(
                                     "الرقم الضريبي",textAlign: TextAlign.right,
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),
 
-                            ],), const SizedBox(
-                            height: 5,
-                          ),
+                            ],),
+                          // const SizedBox(
+                          //   height: 5,
+                          // ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                  width: 50,
+                                  width: 45,
                                   alignment: Alignment.centerLeft,
                                   child:  Text(
                                     "CR No",
                                     style:getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),
                               Container(
-                                  width: 80,
+                                  width: 120,
                                   alignment: Alignment.center,
                                   child:Text(
                                     invoiceModel!.invoiceData![0].referenceNo!,textAlign: TextAlign.center,
                                     style:  getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),
                               Container(
-                                  width: 60,
+                                  width: 100,
                                   alignment: Alignment.centerRight,
                                   child: Text(
                                     "السجل التجاري",textAlign: TextAlign.right,
@@ -1312,9 +1313,9 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
 
 
                         ])),
-                const SizedBox(
-                  height: 5,
-                ),
+                // const SizedBox(
+                //   height: 5,
+                // ),
                 Container(
                     alignment: Alignment.center,
                     width: width,
@@ -1325,13 +1326,13 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                  width: 45,
+                                  width: 30,
                                   alignment: Alignment.centerLeft,
                                   child:  Text(
                                     "Date",
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),  Container(
-                                  width: 100,
+                                  width: 150,
                                   alignment: Alignment.center,
                                   child:Text(
                                     invoiceModel!.invoiceData![0].date!,textAlign: TextAlign.center,
@@ -1345,27 +1346,27 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                   )),
 
                             ],),
-                          const SizedBox(
-                            height: 5,
-                          ),
+                          // const SizedBox(
+                          //   height: 0,
+                          // ),
 
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                  width: 50,
+                                  width: 62,
                                   alignment: Alignment.centerLeft,
                                   child:  Text(
                                     "Reference",
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),  Container(
-                                  width: 100,
+                                  width: 120,
                                   alignment: Alignment.center,
                                   child:Text(
                                     invoiceModel!.invoiceData![0].referenceNo!,textAlign: TextAlign.center,
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),  Container(
-                                  width: 40,
+                                  width: 45,
                                   alignment: Alignment.centerRight,
                                   child: Text(
                                     "المرجع",textAlign: TextAlign.center,
@@ -1374,9 +1375,9 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
 
                             ],),
 
-                          const SizedBox(
-                            height: 5,
-                          ),
+                          // const SizedBox(
+                          //   height: 5,
+                          // ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -1402,14 +1403,14 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
 
                             ],),
 
-                          const SizedBox(
-                            height: 5,
-                          ),
+                          // const SizedBox(
+                          //   height: 5,
+                          // ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                  width: 50,
+                                  width: 60,
                                   alignment: Alignment.centerLeft,
                                   child:  Text(
                                     "Customer",
@@ -1421,7 +1422,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                     invoiceModel!.invoiceData![0].customer!,textAlign: TextAlign.center,
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),  Container(
-                                  width: 50,
+                                  width: 45,
                                   alignment: Alignment.centerRight,
                                   child: Text(
                                     "العميل",textAlign: TextAlign.center,
@@ -1429,9 +1430,10 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                   )),
 
                             ],),
-                          const SizedBox(
-                            height: 5,
-                          ),Row(
+                          // const SizedBox(
+                          //   height: 5,
+                          // ),
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
@@ -1441,13 +1443,13 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                     "Vat_No",
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),  Container(
-                                  width: 80,
+                                  width: 120,
                                   alignment: Alignment.center,
                                   child:Text(
                                     vatNo,textAlign: TextAlign.left,
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),  Container(
-                                  width: 55,
+                                  width: 90,
                                   alignment: Alignment.centerRight,
                                   child: Text(
                                     "الرقم الضريبي",textAlign: TextAlign.right,
@@ -1577,7 +1579,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                             width: 60,
                             alignment: Alignment.center,
                             child: Text(
-                              invoiceModel!.invoiceData![0].items![0].tax!,
+                              "${double.parse(invoiceModel!.invoiceData![0].items![0].itemTax!).toStringAsFixed(2)} %",
                               textAlign: TextAlign.center,
                               style: getStyle(color: Colors.black, fontSize: textSize-1),
                             )),
@@ -1627,7 +1629,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                            width:70,
+                            width:95,
                             alignment: Alignment.centerLeft,
                             child: Text(
                               "Grand Total",
@@ -1638,12 +1640,12 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                             width: 50,
                             alignment: Alignment.center,
                             child: Text(
-                              invoiceModel!.invoiceData![0].items![0].subtotal!,
+                              double.parse(invoiceModel!.invoiceData![0].items![0].subtotal!).toStringAsFixed(2),
                               textAlign: TextAlign.center,
                               style: getStyle(color: Colors.black, fontSize: textSize-1)
                             )),
                         Container(
-                            width: 70,
+                            width: 100,
                             alignment: Alignment.centerRight,
                             child:  Text(
                               "المبلغ المطلوب",
@@ -1669,12 +1671,12 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                             width: 50,
                             alignment: Alignment.center,
                             child: Text(
-                              invoiceModel!.invoiceData![0].items![0].realUnitPrice!,
+                              double.parse(invoiceModel!.invoiceData![0].items![0].realUnitPrice!).toStringAsFixed(2),
                               textAlign: TextAlign.center,
                               style: getStyle(color: Colors.black, fontSize: textSize-1)
                             )),
                         Container(
-                            width: 70,
+                            width: 100,
                             alignment: Alignment.centerRight,
                             child:  Text(
                               "المبلغ المدفوع",
@@ -1690,7 +1692,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                            width: 70,
+                            width: 100,
                             alignment: Alignment.centerLeft,
                             child: Text(
                               "Payment Status",

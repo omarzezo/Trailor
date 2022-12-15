@@ -23,7 +23,6 @@ class PrintScreen extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
-          // TODO: implement listener
         },
         builder: (context, state) {
           return Scaffold(
