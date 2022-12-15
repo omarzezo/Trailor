@@ -2337,7 +2337,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                           : cubit.discount.text),
                                   returnSaleRef: null,
                                   returnId: null,
-                                  saleStatus: cubit.stausName,
+                                  saleStatus: (cubit.stausName==AppStrings.pendingState?"pending":cubit.stausName==AppStrings.completedState?"completed":"returned"),
                                   saleId: null,
                                   paymentStatus: "paid",
                                   warehouseCode: "w_1",
