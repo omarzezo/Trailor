@@ -30,7 +30,7 @@ class _PillsItemDataState extends State<PillsItemData> {
   @override
   Widget build(BuildContext context) {
     var cubit = LoginCubit.get(context);
-
+print("hbhjbh>>"+cubit.statusNameList.toList().toString());
     return Directionality(
       textDirection: p.TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(
@@ -103,7 +103,7 @@ cubit.stausName=null;
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18)),
                           Spacer(),
-                          Container(
+                          if(cubit.statusNameList!=null&&cubit.statusNameList.isNotEmpty)  Container(
                             width: MediaQuery.of(context).size.width*0.40,
                             // padding: const EdgeInsets.only(right: 10),
                             height: 44,
@@ -147,7 +147,6 @@ cubit.stausName=null;
                                 scrollbarAlwaysShow: true,
                                 items:  cubit.statusNameList.map((item) => DropdownMenuItem(
                                   value: item,
-
                                   child: Center(child: Text(
                                       item,
                                       style: GoogleFonts.notoKufiArabic(
@@ -157,15 +156,11 @@ cubit.stausName=null;
                                           FontWeight
                                               .bold, fontSize: 12)
                                   ),),)).toList(),
-
                                 value: cubit.stausName,
                                 isExpanded: true,
                                 onChanged: (value) {
                                   setState(() {
                                     cubit.stausName=value as String;
-
-
-
                                   });
                                 },
                                 iconSize: 40,

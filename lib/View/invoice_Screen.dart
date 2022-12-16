@@ -46,6 +46,8 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
   // double vatNo=LoginCubit.get(context).allInvoices[ cubit.allInvoices.length-1].items[0]!;
   double textSize=14;
   double width=400;
+
+
   BluetoothManager bluetoothManager = BluetoothManager.instance;
   var MacJeson;
   String ipPrinter="";
@@ -62,11 +64,12 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
       width=MediaQuery.of(context).size.width*0.60;
     });
     // prefs = await SharedPreferences.getInstance();
-
-    MacJeson=await SharedPreferencesHelper.getMacAddress();
+    try {
+      MacJeson = await SharedPreferencesHelper.getMacAddress();
+    }catch(e){}
+    try {
     ipPrinter=(await SharedPreferencesHelper.getIpPrinter())!;
-    print("ipPrinter>>"+ipPrinter.toString());
-    print("MacJeson>>"+MacJeson.toString());
+    }catch(e){}
     setState(() {});
   }
 
@@ -104,410 +107,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                     child:getContent(size, context, cubit.invoiceModel!)
 
 
-//                     Container(
-//                       margin: EdgeInsets.only(left: 20,right: 20),
-//                       width: width,
-//                       color: Colors.white,
-//                       child: Column(
-//                         mainAxisAlignment: MainAxisAlignment.center,
-//                         crossAxisAlignment: CrossAxisAlignment.center,
-//                         children: [
-//                           Text("مركز الابداع للخياطة", style: getStyle(color: MyConstant().purpleColor, fontSize: textSize)
-//                           ),
-//                           Row(
-//                             mainAxisAlignment: MainAxisAlignment.center,
-//                             children: [Text("فاتورة ضريبة مبسطة ", style: getStyle(color: Colors.black, fontSize: textSize)
-//                             )],
-//                           ),
-//                           const SizedBox(height: 20,),
-//                           Row(
-//                             mainAxisAlignment: MainAxisAlignment.center,
-//                             children: [Text("مؤسسة وعد الوان", style: getStyle(color: Colors.black, fontSize: textSize))],
-//                           ),
-//                           SizedBox(
-//                             height: 10,
-//                           ),
-//                           Divider(
-//                             height: 2,
-//                             thickness: 2,
-//                             color: Colors.black54,
-//                           ),
-//                           SizedBox(
-//                             height: 10,
-//                           ),
-//                           Column(
-//                             mainAxisAlignment: MainAxisAlignment.center,
-//                             crossAxisAlignment: CrossAxisAlignment.center,
-//                             children: [
-//                               Row(
-//                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Text("الهاتف", style: getStyle(color: Colors.black, fontSize: textSize),),
-// //
-//                                   Padding(
-//                                     padding: const EdgeInsets.only(left: 0,right: 5),
-//                                     child: Text("0567218888", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                                   ),
-// //
-//                                   Text("phone", style: getStyle(color: Colors.black, fontSize: textSize)),
-//                                 ],
-//                               ),
-//                               Row(
-//                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Text("الرقم الضريبى", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                                   Padding(
-//                                     padding: const EdgeInsets.only(left: 30,right: 0),
-//                                     child: Text("0567218888", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                                   ),
-//                                   Text("Vat No", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                                 ],
-//                               ),
-//                               Row(
-//                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Text("السجل التجارى", style: getStyle(color: Colors.black, fontSize: textSize),),
-// //
-//                                   Padding(
-//                                     padding: const EdgeInsets.only(left: 30,right: 0),
-//                                     child: Text("057673637", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                                   ),
-//
-//                                   Text("CR No", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                                 ],
-//                               ),
-//                               Row(
-//                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Text("التاريخ", style: getStyle(color: Colors.black, fontSize: textSize),),
-// //
-//
-//                                   Padding(
-//                                     padding: const EdgeInsets.only(left: 5,right: 5),
-//                                     // child: Text(cubit.invoiceModel!.invoiceData![0].date??"".split(" ")
-//
-//                                     child: Text(cubit.invoiceModel!.invoiceData![0].date!.split(" ")
-//                                         .first , style: getStyle(color: Colors.black, fontSize: textSize),),
-//                                   ),
-// //
-//                                   Text("Date", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                                 ],
-//                               ),
-//                               Row(
-//                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Text("المرجع", style: getStyle(color: Colors.black, fontSize: textSize),),
-// //
-//                                   Padding(
-//                                     padding: const EdgeInsets.only(left: 0,right: 30),
-//                                     child: Text(cubit.invoiceModel!.invoiceData![0].referenceNo!??"", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                                   ),
-// //
-//                                   Text("Refernce", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                                 ],
-//                               ),
-//                               Row(
-//                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Text("البائع", style: getStyle(color: Colors.black, fontSize: textSize),),
-// //
-//                                   Padding(
-//                                     padding: const EdgeInsets.only(left: 0,right: 20),
-//                                     child: Text("cashier1", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                                   ),
-// //
-//                                   Text("Seller", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                                 ],
-//                               ),
-//                               Row(
-//                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Text("العميل", style: getStyle(color: Colors.black, fontSize: textSize),),
-// //
-//                                   Padding(
-//                                     padding: const EdgeInsets.only(left: 0,right: 40),
-//                                     child: Text(cubit.invoiceModel!.invoiceData![0].customer!??"", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                                   ),
-//
-// //
-//                                   Text("Customer", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                                 ],
-//                               ),
-//                               Row(
-//                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Text("الرقم الضريبى", style: getStyle(color: Colors.black, fontSize: textSize),),
-// //
-//
-//                                   Padding(
-//                                     padding: const EdgeInsets.only(left: 15,right: 0),
-//                                     child: Text("654564532132", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                                   ),
-// //
-//                                   Text("Vat No", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                                 ],
-//                               ),
-//                             ],
-//                           ),
-//                           SizedBox(
-//                             height: 10,
-//                           ),
-//                           Divider(
-//                             height: 2,
-//                             thickness: 2,
-//                             color: Colors.black54,
-//                           ),
-//                           SizedBox(
-//                             height: 10,
-//                           ),
-//                           Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                             children: [
-//                               Text("رقم الفاتورة", style: getStyle(color: Colors.black, fontSize: textSize),),
-// //
-//                               Text(cubit.invoiceModel!.invoiceData![0].items![0].saleId!??"", style: getStyle(color: Colors.black, fontSize: textSize),),
-// //
-//                               Text("Invoice No", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                             ],
-//                           ),
-//                           SizedBox(
-//                             height: 10,
-//                           ),
-//
-//
-//                           Container(
-//                             // width: width,
-//                             margin: const EdgeInsets.all(5),
-//                             padding: const EdgeInsets.all(5),
-//                             child: DataTable(
-//                               horizontalMargin: 0,
-//                               dividerThickness: 1,
-//                               border: TableBorder(
-//                                 borderRadius: BorderRadius.circular(10),
-//                                 horizontalInside: BorderSide(color: Colors.black),
-//                                 verticalInside: BorderSide(color: Colors.black),
-//                                 bottom: BorderSide(color: Colors.black),
-//                                 top: BorderSide(color: Colors.black),
-//                                 left: BorderSide(color: Colors.black),
-//                                 right: BorderSide(color: Colors.black),
-//                               ),
-//                               columns: [
-//                                 DataColumn(
-//
-//                                     label:Row(
-//                                       mainAxisAlignment: MainAxisAlignment.center,
-//                                       crossAxisAlignment: CrossAxisAlignment.center,
-//                                       children: [
-//                                         Padding(
-//                                           padding: const EdgeInsets.only(right: 8),
-//                                           child: Text("الاجمالى"+"\n"+"Total", style: getStyle(color: Colors.black,
-//                                               fontSize: textSize),),
-//                                         ),
-//
-//                                         Padding(
-//                                           padding: const EdgeInsets.only(right: 8),
-//                                           child:
-//                                           Text("السعر"+"\n"+"price", style: getStyle(color: Colors.black,
-//                                               fontSize: textSize),),
-//                                         ),
-//
-//                                         Padding(
-//                                           padding: const EdgeInsets.only(right: 8),
-//                                           child: Text("الكمية"+"\n"+"Qty", style: getStyle(color: Colors.black,
-//                                               fontSize: textSize),),
-//                                         ),
-//                                         Padding(
-//                                           padding: const EdgeInsets.only(right: 8),
-//                                           child: Text("Desc"+"\n"+"النوع", style: getStyle(color: Colors.black,
-//                                               fontSize: textSize),),
-//                                         ),
-//
-//
-//                                       ],
-//                                     ),
-//                                 ),
-//
-//                               ],
-//                               rows:
-//                               List.generate(
-//                                   cubit.invoiceModel!.invoiceData![0].items!.length,
-//                                       (index) => DataRow(cells: [
-//                                 DataCell(
-//                                   Row(
-//                                     mainAxisAlignment: MainAxisAlignment.center,
-//                                     crossAxisAlignment: CrossAxisAlignment.center,
-//                                     children: [
-//                                       Padding(
-//                                         padding: const EdgeInsets.only(right: 0),
-//                                         child: Text(double.parse(cubit.invoiceModel!.invoiceData![0].items![index].subtotal!).toStringAsFixed(2), style: getStyle(color: Colors.black, fontSize: textSize),),
-//                                       ),
-//
-//
-//                                       Padding(
-//                                         padding: const EdgeInsets.only(right: 8),
-//                                         child: Text(double.parse(cubit.invoiceModel!.invoiceData![0].items![index].realUnitPrice!).toStringAsFixed(2), style: getStyle(color: Colors.black, fontSize: textSize),),
-//                                       ),
-//
-//                                       Padding(
-//                                         padding: const EdgeInsets.only(right: 8),
-//                                         child: Text(double.parse(cubit.invoiceModel!.invoiceData![0].items![index].quantity!).toStringAsFixed(2), style: getStyle(color: Colors.black, fontSize: textSize),),
-//                                       ),
-//                                       Padding(
-//                                         padding: const EdgeInsets.only(right: 8),
-//                                         child: Text(cubit.invoiceModel!.invoiceData![0].items![index].productName!,
-//                                           style: getStyle(color: Colors.black, fontSize: textSize),),
-//                                       ),
-//                                     ],
-//                                   ),
-//                                 ),
-//
-//                               ]))
-//                               ,
-//                             ),
-//                           ),
-//                           SizedBox(
-//                             height: 10,
-//                           ),
-//
-//                           Divider(
-//                             height: 2,
-//                             thickness: 2,
-//                             color: Colors.black54,
-//                           ),
-//                           Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                             children: [
-//                               Text("الاجمالى", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                               Padding(
-//                                 padding: const EdgeInsets.only(left: 0,right: 0),
-//                                 child: Text("1500.0", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                               ),
-//                               Text("Total", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                             ],
-//                           ),
-//
-//                           Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                             children: [
-//                               Text("الضريبة", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                               Padding(
-//                                 padding: const EdgeInsets.only(left: 0,right: 0),
-//                                 child: Text(cubit.invoiceModel!.invoiceData![0].items![0].tax!, style: getStyle(color: Colors.black, fontSize: textSize),),
-//                               ),
-//
-//                               Text("Vat", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                             ],
-//                           ),
-//                           Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                             children: [
-//                               Text("الخصم", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                               Padding(
-//                                 padding: const EdgeInsets.only(left: 0,right: 0),
-//                                 child: Text(cubit.invoiceModel!.invoiceData![0].items![0].discount??"0.0", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                               ),
-//                               Text("Discount", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                             ],
-//                           ),
-//                           Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                             children: [
-//                               Text("شحن", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                               Padding(
-//                                 padding: const EdgeInsets.only(left: 0,right: 0),
-//                                 child: Text("0.0", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                               ),
-//
-//                               Text("Shipping", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                             ],
-//                           ),
-//                           Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                             children: [
-//                               Text("المبلغ المطلوب", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                               Padding(
-//                                 padding: const EdgeInsets.only(left: 0,right: 0),
-//                                 child: Text("1500.0", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                               ),
-//
-//                               Text("Grand Total", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                             ],
-//                           ),
-//                           Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                             children: [
-//                               Text("المبلغ المدفوع", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                               Padding(
-//                                 padding: const EdgeInsets.only(left: 0,right: 0),
-//                                 child: Text("1500.0", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                               ),
-//
-//                               Text("Paid", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                             ],
-//                           ),
-//                           Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                             children: [
-//                               Text("حالة الدفع", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                               Padding(
-//                                 padding: const EdgeInsets.only(left: 0,right:0),
-//                                 child: Text(cubit.invoiceModel!.invoiceData![0].saleStatus!, style: getStyle(color: Colors.black, fontSize: textSize),),
-//                               ),
-//
-//                               Text("Payment Status", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                             ],
-//                           ),
-//                           Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                             children: [
-//                               Text("نقدى", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                               Padding(
-//                                 padding: const EdgeInsets.only(left: 0,right:0),
-//                                 child: Text("1500.0", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                               ),
-//                               Text("Cash", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                             ],
-//                           ),
-//                           Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                             children: [
-//                               Text("اجل", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                               Padding(
-//                                 padding: const EdgeInsets.only(left: 0,right:0),
-//                                 child: Text("0.0", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                               ),
-//
-//                               Text("Credit", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                             ],
-//                           ),
-//                           Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                             children: [
-//                               Text("المتبقى", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                               Padding(
-//                                 padding: const EdgeInsets.only(left: 0,right:0),
-//                                 child: Text("0.0", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                               ),
-//                               Text("Chang", style: getStyle(color: Colors.black, fontSize: textSize),),
-//                             ],
-//                           ),
-//                           Divider(
-//                             height: 2,
-//                             thickness: 2,
-//                             color: Colors.black54,
-//                           ),
-//                           Container(
-//                             width: 140,
-//                             child: QrImage(
-//                               data: QrCodeTVL(context),
-//                               version: QrVersions.auto,
-//                               size: 180.0,
-//                             ),
-//                           ),
-//
-//                         ],
-//                       )
-//                     ),
                   ),
                   ElevatedButton(
                     child: Text(AppStrings.print.tr(),
@@ -561,7 +160,8 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                   ),
                 ],
               )),
-        ):(cubit.whatYouPay.text.isNotEmpty)?Center(
+        ):(cubit.whatYouPay.text.isNotEmpty)?
+        Center(
           child: SingleChildScrollView(
 
               child:Column(
@@ -616,19 +216,16 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
                                                 Container(
-                                                    width: 50,
                                                     alignment: Alignment.centerLeft,
                                                     child:  Text(
                                                       "Phone",
                                                       style: getStyle(color: Colors.black, fontSize: textSize),
                                                     )),  Container(
-                                                    width: 120,
                                                     alignment: Alignment.center,
                                                     child:Text(
                                                       "961751515151",
                                                       style: getStyle(color: Colors.black, fontSize: textSize),
                                                     )),  Container(
-                                                    width: 50,
                                                     alignment: Alignment.centerRight,
                                                     child: Text(
                                                       "الهاتف",textAlign: TextAlign.center,
@@ -639,13 +236,11 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
                                                 Container(
-                                                    width: 45,
                                                     alignment: Alignment.centerLeft,
                                                     child:  Text(
                                                       "Vat No",
                                                       style: getStyle(color: Colors.black, fontSize: textSize),
                                                     )),  Container(
-                                                    width: 120,
                                                     alignment: Alignment.center,
                                                     child:Text(
                                                 
@@ -653,7 +248,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                         vatNo,textAlign: TextAlign.center,
                                                         style: getStyle(color: Colors.black, fontSize: textSize-1)
                                                     )),  Container(
-                                                    width: 90,
                                                     alignment: Alignment.centerRight,
                                                     child: Text(
                                                       "الرقم الضريبي",textAlign: TextAlign.right,
@@ -667,14 +261,12 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
                                                 Container(
-                                                    width: 45,
                                                     alignment: Alignment.centerLeft,
                                                     child:  Text(
                                                       "CR No",
                                                       style:getStyle(color: Colors.black, fontSize: textSize-1),
                                                     )),
                                                 Container(
-                                                    width: 120,
                                                     alignment: Alignment.center,
                                                     child:Text(
                                                       cubit.allInvoices[ cubit.allInvoices.length-1].referenceNo!,textAlign: TextAlign.center,
@@ -682,7 +274,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                       style:  getStyle(color: Colors.black, fontSize: textSize-1),
                                                     )),
                                                 Container(
-                                                    width: 100,
                                                     alignment: Alignment.centerRight,
                                                     child: Text(
                                                       "السجل التجاري",textAlign: TextAlign.right,
@@ -706,13 +297,11 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
                                                 Container(
-                                                    width: 40,
                                                     alignment: Alignment.centerLeft,
                                                     child:  Text(
                                                       "Date",
                                                       style: getStyle(color: Colors.black, fontSize: textSize-1),
                                                     )),  Container(
-                                                    width: 150,
                                                     alignment: Alignment.center,
                                                     child:Text(
                                                       cubit.allInvoices[ cubit.allInvoices.length-1].date!.split(" ").first,textAlign: TextAlign.center,
@@ -720,7 +309,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                       // invoiceModel!.invoiceData![0].date!,textAlign: TextAlign.center,
                                                       style: getStyle(color: Colors.black, fontSize: textSize-1),
                                                     )),  Container(
-                                                    width: 45,
                                                     alignment: Alignment.centerRight,
                                                     child: Text(
                                                         "التاريخ",textAlign: TextAlign.center,
@@ -736,13 +324,11 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
                                                 Container(
-                                                    width: 50,
                                                     alignment: Alignment.centerLeft,
                                                     child:  Text(
                                                       "Reference",
                                                       style: getStyle(color: Colors.black, fontSize: textSize-1),
                                                     )),  Container(
-                                                    width: 100,
                                                     alignment: Alignment.center,
                                                     child:Text(
                                                       cubit.allInvoices[ cubit.allInvoices.length-1].referenceNo!,textAlign: TextAlign.center,
@@ -750,7 +336,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                       // invoiceModel!.invoiceData![0].referenceNo!,textAlign: TextAlign.center,
                                                       style: getStyle(color: Colors.black, fontSize: textSize-1),
                                                     )),  Container(
-                                                    width: 40,
                                                     alignment: Alignment.centerRight,
                                                     child: Text(
                                                       "المرجع",textAlign: TextAlign.center,
@@ -766,13 +351,11 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
                                                 Container(
-                                                    width: 50,
                                                     alignment: Alignment.centerLeft,
                                                     child:  Text(
                                                       "Seller",
                                                       style: getStyle(color: Colors.black, fontSize: textSize-1),
                                                     )),  Container(
-                                                    width: 90,
                                                     alignment: Alignment.center,
                                                     child:Text(
                                                       cubit.allInvoices[ cubit.allInvoices.length-1].customer!,textAlign: TextAlign.center,
@@ -780,7 +363,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                       // invoiceModel!.invoiceData![0].customer!,textAlign: TextAlign.center,
                                                       style: getStyle(color: Colors.black, fontSize: textSize-1),
                                                     )),  Container(
-                                                    width: 50,
                                                     alignment: Alignment.centerRight,
                                                     child: Text(
                                                       "البائع",textAlign: TextAlign.center,
@@ -796,13 +378,11 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
                                                 Container(
-                                                    width: 50,
                                                     alignment: Alignment.centerLeft,
                                                     child:  Text(
                                                       "Customer",
                                                       style: getStyle(color: Colors.black, fontSize: textSize-1),
                                                     )),  Container(
-                                                    width: 90,
                                                     alignment: Alignment.center,
                                                     child:Text(
                                                       cubit.allInvoices[ cubit.allInvoices.length-1].customer!,textAlign: TextAlign.center,
@@ -810,7 +390,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                       // invoiceModel!.invoiceData![0].customer!,textAlign: TextAlign.center,
                                                       style: getStyle(color: Colors.black, fontSize: textSize-1),
                                                     )),  Container(
-                                                    width: 45,
                                                     alignment: Alignment.centerRight,
                                                     child: Text(
                                                       "العميل",textAlign: TextAlign.center,
@@ -820,34 +399,9 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                               ],),
                                             const SizedBox(
                                               height: 5,
-                                            ),Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                Container(
-                                                    width: 55,
-                                                    alignment: Alignment.centerLeft,
-                                                    child:  Text(
-                                                      "Vat_No",
-                                                      style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                                    )),  Container(
-                                                    width: 80,
-                                                    alignment: Alignment.center,
-                                                    child:Text(
-                                                      vatNo,textAlign: TextAlign.left,
+                                            ),
 
-                                                      // invoiceModel!.invoiceData![0].items![0].tax!,textAlign: TextAlign.left,
-                                                      style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                                    )),  Container(
-                                                    width: 90,
-                                                    alignment: Alignment.centerRight,
-                                                    child: Text(
-                                                      "الرقم الضريبي",textAlign: TextAlign.right,
-                                                      style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                                    )),
-
-                                              ],),
-
-                                          ])),                            const Divider(
+                                          ])),          const Divider(
                                     color: Colors.black,
                                   ),
                                   Container(
@@ -887,7 +441,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                 children: <Widget>[
                                                   Container(
                                                     // height: 35,
-                                                      width: 95,
                                                       alignment: Alignment.centerLeft,
                                                       margin: const EdgeInsets.only(top: 4,left: 4),
                                                       child: Column(
@@ -908,7 +461,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                         ],)),
                                                   Container(
                                                     // height: 35,
-                                                    width: 95,
                                                     alignment: Alignment.centerLeft,
                                                     margin: const EdgeInsets.only(top: 4,left: 4),
                                                     child: Column(
@@ -930,7 +482,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Container(
-                                              width: 65,
                                               alignment: Alignment.centerLeft,
                                               child: Text(
                                                 "Total",
@@ -938,7 +489,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                 style: getStyle(color: Colors.black, fontSize: textSize-1),
                                               )),
                                           Container(
-                                              width: 60,
                                               alignment: Alignment.center,
                                               child: Text(
                                                 // cubit.allInvoices[ cubit.allInvoices.length-1].items![0].subtotal!,textAlign: TextAlign.center,
@@ -948,7 +498,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                 style: getStyle(color: Colors.black, fontSize: textSize-1),
                                               )),
                                           Container(
-                                              width: 65,
                                               alignment: Alignment.centerRight,
                                               child: Text(
                                                 "الاجمالي",
@@ -963,7 +512,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Container(
-                                              width: 65,
                                               alignment: Alignment.centerLeft,
                                               child: Text(
                                                 "VAT",
@@ -971,7 +519,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                 style: getStyle(color: Colors.black, fontSize: textSize-1),
                                               )),
                                           Container(
-                                              width: 60,
                                               alignment: Alignment.center,
                                               child: Text(
                                                 // cubit.allInvoices[ cubit.allInvoices.length-1].items![0].tax!,textAlign: TextAlign.center,
@@ -982,7 +529,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                 style: getStyle(color: Colors.black, fontSize: textSize-1),
                                               )),
                                           Container(
-                                              width: 65,
                                               alignment: Alignment.centerRight,
                                               child:  Text(
                                                 "الضريبة",
@@ -996,7 +542,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Container(
-                                              width: 60,
                                               alignment: Alignment.centerLeft,
                                               child:  Text(
                                                   "Discount",
@@ -1004,7 +549,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                   style: getStyle(color: Colors.black, fontSize: textSize-1)
                                               )),
                                           Container(
-                                              width: 60,
                                               alignment: Alignment.center,
                                               child: Text(
                                                   // cubit.allInvoices[ cubit.allInvoices.length-1].items![0].discount!=null? cubit.allInvoices[ cubit.allInvoices.length-1].items![0].discount!:"0",textAlign: TextAlign.center,
@@ -1015,7 +559,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                   style:getStyle(color: Colors.black, fontSize: textSize-1)
                                               )),
                                           Container(
-                                              width: 60,
                                               alignment: Alignment.centerRight,
                                               child:   Text(
                                                   "الخصم",
@@ -1030,7 +573,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Container(
-                                              width:95,
                                               alignment: Alignment.centerLeft,
                                               child: Text(
                                                   "Grand Total",
@@ -1038,7 +580,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                   style: getStyle(color: Colors.black, fontSize: textSize-1)
                                               )),
                                           Container(
-                                              width: 50,
                                               alignment: Alignment.center,
                                               child: Text(
                                                   // cubit.allInvoices[ cubit.allInvoices.length-1].items![0].subtotal!,
@@ -1048,7 +589,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                   style: getStyle(color: Colors.black, fontSize: textSize-1)
                                               )),
                                           Container(
-                                              width: 100,
                                               alignment: Alignment.centerRight,
                                               child:  Text(
                                                 "المبلغ المطلوب",
@@ -1063,7 +603,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Container(
-                                              width:70,
                                               alignment: Alignment.centerLeft,
                                               child: Text(
                                                   "Paid",
@@ -1071,7 +610,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                   style: getStyle(color: Colors.black, fontSize: textSize-1)
                                               )),
                                           Container(
-                                              width: 50,
                                               alignment: Alignment.center,
                                               child: Text(
                                                   // cubit.allInvoices[ cubit.allInvoices.length-1].items![0].realUnitPrice!,
@@ -1081,7 +619,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                   style: getStyle(color: Colors.black, fontSize: textSize-1)
                                               )),
                                           Container(
-                                              width: 70,
                                               alignment: Alignment.centerRight,
                                               child:  Text(
                                                   "المبلغ المدفوع",
@@ -1097,7 +634,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Container(
-                                              width: 70,
                                               alignment: Alignment.centerLeft,
                                               child: Text(
                                                   "Payment Status",
@@ -1105,7 +641,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                   style: getStyle(color: Colors.black, fontSize: textSize-1)
                                               )),
                                           Container(
-                                              width: 50,
                                               alignment: Alignment.center,
                                               child: Text(
                                                   cubit.allInvoices[ cubit.allInvoices.length-1].saleStatus!,
@@ -1115,7 +650,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                                   style: getStyle(color: Colors.black, fontSize: textSize)
                                               )),
                                           Container(
-                                              width: 70,
                                               alignment: Alignment.centerRight,
                                               child:  Text(
                                                   "حالة الدفع",
@@ -1238,19 +772,16 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                  width: 50,
                                   alignment: Alignment.centerLeft,
                                   child:  Text(
                                     "Phone",
                                     style: getStyle(color: Colors.black, fontSize: textSize),
                                   )),  Container(
-                                  width: 120,
                                   alignment: Alignment.center,
                                   child:Text(
                                     "961751515151",
                                     style: getStyle(color: Colors.black, fontSize: textSize),
                                   )),  Container(
-                                  width: 50,
                                   alignment: Alignment.centerRight,
                                   child: Text(
                                     "الهاتف",textAlign: TextAlign.center,
@@ -1261,19 +792,16 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                  width: 45,
                                   alignment: Alignment.centerLeft,
                                   child:  Text(
                                     "Vat No",
                                     style: getStyle(color: Colors.black, fontSize: textSize),
                                   )),  Container(
-                                  width: 120,
                                   alignment: Alignment.center,
                                   child:Text(
                                       vatNo,textAlign: TextAlign.center,
                                     style: getStyle(color: Colors.black, fontSize: textSize-1)
                                   )),  Container(
-                                  width: 90,
                                   alignment: Alignment.centerRight,
                                   child: Text(
                                     "الرقم الضريبي",textAlign: TextAlign.right,
@@ -1288,21 +816,18 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                  width: 45,
                                   alignment: Alignment.centerLeft,
                                   child:  Text(
                                     "CR No",
                                     style:getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),
                               Container(
-                                  width: 120,
                                   alignment: Alignment.center,
                                   child:Text(
                                     invoiceModel!.invoiceData![0].referenceNo!,textAlign: TextAlign.center,
                                     style:  getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),
                               Container(
-                                  width: 100,
                                   alignment: Alignment.centerRight,
                                   child: Text(
                                     "السجل التجاري",textAlign: TextAlign.right,
@@ -1326,19 +851,16 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                  width: 30,
                                   alignment: Alignment.centerLeft,
                                   child:  Text(
                                     "Date",
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),  Container(
-                                  width: 150,
                                   alignment: Alignment.center,
                                   child:Text(
                                     invoiceModel!.invoiceData![0].date!,textAlign: TextAlign.center,
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),  Container(
-                                  width: 45,
                                   alignment: Alignment.centerRight,
                                   child: Text(
                                     "التاريخ",textAlign: TextAlign.center,
@@ -1354,19 +876,16 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                  width: 62,
                                   alignment: Alignment.centerLeft,
                                   child:  Text(
                                     "Reference",
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),  Container(
-                                  width: 120,
                                   alignment: Alignment.center,
                                   child:Text(
                                     invoiceModel!.invoiceData![0].referenceNo!,textAlign: TextAlign.center,
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),  Container(
-                                  width: 45,
                                   alignment: Alignment.centerRight,
                                   child: Text(
                                     "المرجع",textAlign: TextAlign.center,
@@ -1382,19 +901,16 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                  width: 50,
                                   alignment: Alignment.centerLeft,
                                   child:  Text(
                                     "Seller",
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),  Container(
-                                  width: 90,
                                   alignment: Alignment.center,
                                   child:Text(
                                     invoiceModel!.invoiceData![0].customer!,textAlign: TextAlign.center,
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),  Container(
-                                  width: 50,
                                   alignment: Alignment.centerRight,
                                   child: Text(
                                     "البائع",textAlign: TextAlign.center,
@@ -1410,19 +926,16 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                  width: 60,
                                   alignment: Alignment.centerLeft,
                                   child:  Text(
                                     "Customer",
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),  Container(
-                                  width: 90,
                                   alignment: Alignment.center,
                                   child:Text(
                                     invoiceModel!.invoiceData![0].customer!,textAlign: TextAlign.center,
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),  Container(
-                                  width: 45,
                                   alignment: Alignment.centerRight,
                                   child: Text(
                                     "العميل",textAlign: TextAlign.center,
@@ -1433,37 +946,12 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                           // const SizedBox(
                           //   height: 5,
                           // ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                  width: 55,
-                                  alignment: Alignment.centerLeft,
-                                  child:  Text(
-                                    "Vat_No",
-                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                  )),  Container(
-                                  width: 120,
-                                  alignment: Alignment.center,
-                                  child:Text(
-                                    vatNo,textAlign: TextAlign.left,
-                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                  )),  Container(
-                                  width: 90,
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    "الرقم الضريبي",textAlign: TextAlign.right,
-                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                  )),
 
-                            ],),
-
-                        ])),                            const Divider(
+                        ])),   const Divider(
                   color: Colors.black,
                 ),
                 Container(
                   alignment: Alignment.center,
-                  height: 20,
                   width: width,
                   child:
                   Row(
@@ -1496,7 +984,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                               children: <Widget>[
                                 Container(
                                     // height: 35,
-                                    width: 95,
                                     alignment: Alignment.centerLeft,
                                     margin: const EdgeInsets.only(top: 4,left: 4),
                                     child: Column(
@@ -1537,7 +1024,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                            width: 65,
                             alignment: Alignment.centerLeft,
                             child: Text(
                               "Total",
@@ -1545,7 +1031,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                               style: getStyle(color: Colors.black, fontSize: textSize-1),
                             )),
                         Container(
-                            width: 60,
                             alignment: Alignment.center,
                             child: Text(
                               invoiceModel!.invoiceData![0].items![0].subtotal!,
@@ -1553,7 +1038,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                               style: getStyle(color: Colors.black, fontSize: textSize-1),
                             )),
                         Container(
-                            width: 65,
                             alignment: Alignment.centerRight,
                             child: Text(
                               "الاجمالي",
@@ -1568,7 +1052,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                            width: 65,
+
                             alignment: Alignment.centerLeft,
                             child: Text(
                               "VAT",
@@ -1576,7 +1060,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                               style: getStyle(color: Colors.black, fontSize: textSize-1),
                             )),
                         Container(
-                            width: 60,
                             alignment: Alignment.center,
                             child: Text(
                               "${double.parse(invoiceModel!.invoiceData![0].items![0].itemTax!).toStringAsFixed(2)} %",
@@ -1584,7 +1067,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                               style: getStyle(color: Colors.black, fontSize: textSize-1),
                             )),
                         Container(
-                            width: 65,
                             alignment: Alignment.centerRight,
                             child:  Text(
                               "الضريبة",
@@ -1598,7 +1080,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                            width: 60,
                             alignment: Alignment.centerLeft,
                             child:  Text(
                               "Discount",
@@ -1606,7 +1087,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                               style: getStyle(color: Colors.black, fontSize: textSize-1)
                             )),
                         Container(
-                            width: 60,
                             alignment: Alignment.center,
                             child: Text(
                               invoiceModel!.invoiceData![0].items![0].discount!=null?invoiceModel!.invoiceData![0].items![0].discount!:"15",
@@ -1614,7 +1094,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                               style:getStyle(color: Colors.black, fontSize: textSize-1)
                             )),
                         Container(
-                            width: 60,
                             alignment: Alignment.centerRight,
                             child:   Text(
                               "الخصم",
@@ -1629,7 +1108,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                            width:95,
                             alignment: Alignment.centerLeft,
                             child: Text(
                               "Grand Total",
@@ -1637,7 +1115,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                               style: getStyle(color: Colors.black, fontSize: textSize-1)
                             )),
                         Container(
-                            width: 50,
                             alignment: Alignment.center,
                             child: Text(
                               double.parse(invoiceModel!.invoiceData![0].items![0].subtotal!).toStringAsFixed(2),
@@ -1645,7 +1122,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                               style: getStyle(color: Colors.black, fontSize: textSize-1)
                             )),
                         Container(
-                            width: 100,
                             alignment: Alignment.centerRight,
                             child:  Text(
                               "المبلغ المطلوب",
@@ -1660,7 +1136,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                            width:70,
                             alignment: Alignment.centerLeft,
                             child: Text(
                               "Paid",
@@ -1668,7 +1143,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                               style: getStyle(color: Colors.black, fontSize: textSize-1)
                             )),
                         Container(
-                            width: 50,
                             alignment: Alignment.center,
                             child: Text(
                               double.parse(invoiceModel!.invoiceData![0].items![0].realUnitPrice!).toStringAsFixed(2),
@@ -1676,7 +1150,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                               style: getStyle(color: Colors.black, fontSize: textSize-1)
                             )),
                         Container(
-                            width: 100,
                             alignment: Alignment.centerRight,
                             child:  Text(
                               "المبلغ المدفوع",
@@ -1692,7 +1165,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                            width: 100,
                             alignment: Alignment.centerLeft,
                             child: Text(
                               "Payment Status",
@@ -1700,7 +1172,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                               style: getStyle(color: Colors.black, fontSize: textSize-1)
                             )),
                         Container(
-                            width: 50,
                             alignment: Alignment.center,
                             child: Text(
                               invoiceModel!.invoiceData![0].saleStatus!,
@@ -1708,7 +1179,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                               style: getStyle(color: Colors.black, fontSize: textSize)
                             )),
                         Container(
-                            width: 70,
                             alignment: Alignment.centerRight,
                             child:  Text(
                               "حالة الدفع",
@@ -1719,10 +1189,6 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
 
 
 
-
-                const Divider(
-                  color: Colors.black,
-                ),
                 QrImage(
                   data: QrCodeTVL(context),
                   version: QrVersions.auto,
@@ -1731,6 +1197,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
               ],
             )));
   }
+
 
   SanmiPrint(Uint8List byte)async{
     await MaxxSunmiPrinter.initializePrinter();

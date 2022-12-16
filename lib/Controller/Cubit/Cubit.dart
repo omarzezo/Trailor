@@ -542,6 +542,7 @@ Future<returnsalesModel>getReturnId(int index)async{
          .first ??
          "";
      // status=element.saleStatus??"";
+
      stausName=element.saleStatus;
 
     }});
@@ -603,7 +604,8 @@ Future<returnsalesModel>getReturnId(int index)async{
   List<Companies> companiesCustomerName = [];
 
   List<Products> productsNameList = [];
-  List<String> statusNameList = [AppStrings.pendingState.tr(),AppStrings.completedState.tr(),AppStrings.returnedState.tr()];
+  // List<String> statusNameList = [AppStrings.pendingState.tr(),AppStrings.completedState.tr(),AppStrings.returnedState.tr()];
+  List<String> statusNameList = ['pending','completed','returned'];
 
   String? stausName;
   List<Taxrates> taxRatesNameList = [];
