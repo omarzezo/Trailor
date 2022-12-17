@@ -51,12 +51,12 @@ class _LoginScreenState extends State<LoginScreen> {
         }
       },
        builder : (context , state) =>  Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xffF0F2F7),
         body: SingleChildScrollView(
             child: SafeArea(
           child: Container(
             height: MediaQuery.of(context).size.height / 1,
-            color:  Colors.white,
+            color:  const Color(0xffF0F2F7),
             child: Form(
               key: _key,
               child: Column(
@@ -65,15 +65,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Container(
                       padding: const EdgeInsets.only(left: 30 , bottom: 20),
-                      height: 60,width:MediaQuery.of(context).size.width/1,
-                      child:Image.asset('image/logo app.png',)),
+                      height: 160,width:240,
+                      child:Image.asset('image/cpe.PNG',fit: BoxFit.fill,height: 160,width:240,)),
                   Align(
                     // alignment: Alignment.centerLeft,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 30.0),
                       child: Text(AppStrings.loginToYourAccount.tr(),
                           textAlign: TextAlign.left,
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.notoKufiArabic(
                               color: MyConstant().purpleColor,
                               fontSize: 30,
                               fontWeight: FontWeight.normal)),
@@ -252,7 +252,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         });
                       },
                       child: Text(AppStrings.Login.tr(),
-                          style: GoogleFonts.roboto(
+                          style: GoogleFonts.notoKufiArabic(
                               color: Colors.white,
                               fontSize: 20,
                               fontWeight: FontWeight.w700)),

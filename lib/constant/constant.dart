@@ -4,7 +4,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class MyConstant{
-  final  Color purpleColor = const Color(0xff9A3CAD);
+  // final  Color purpleColor = const Color(0xff9A3CAD);
+  final  Color purpleColor = const Color(0xff10A9F4);
   final  Color greenColor = const Color(0xff3B9E3F);
 }
 Route createRoute(Widget page) {
