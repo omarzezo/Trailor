@@ -21,3 +21,4 @@ class AppGetDateFromUserState  extends LoginState{}
 class GetWhatYouPayAfterDiscount  extends LoginState{}
 class ClearControllersState  extends LoginState{}
 class ChangeLanguageState  extends LoginState{}
+class ChangeCashierState extends LoginState{}

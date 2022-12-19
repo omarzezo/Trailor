@@ -296,6 +296,8 @@ height: 30,
                       CashierCloseRequest cashierCloseRequest=CashierCloseRequest(userId:LoginCubit.get(context).userId ,closedAt: DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString(),closedBy:LoginCubit.get(context).userId ,invoiceCount:LoginCubit.get(context).invoiceNumbers.toString() ,note:" " ,totalCash:LoginCubit.get(context).totalCash ,totalCc:"0" ,totalCheques: "0");
                       await LoginCubit.get(context).closeCashier(cashierCloseRequest).then((value) async{
                         if(value.status==true){
+                          LoginCubit.get(context).changeCashierState();
+
                           await    Navigator.pushReplacementNamed(context, CashierPillScreen.routeName);
 
                           LoginCubit.get(context).invoiceNumbers=0;
@@ -480,6 +482,7 @@ class _OpenCashierState extends State<OpenCashier> {
 await LoginCubit.get(context).openCashier(cashierStartRequest).then((value) {
   if(value.status==true){
     LoginCubit.get(context).totalCash=(LoginCubit.get(context).cashInHand+double.parse(LoginCubit.get(context).totalCash)).toString();
+    LoginCubit.get(context).changeCashierState();
 
   }
 });

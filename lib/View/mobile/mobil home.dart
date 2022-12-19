@@ -167,8 +167,8 @@ class MobileHome extends StatelessWidget {
 
 
                       InkWell(
-                        onTap: () {
-                          AwesomeDialog(context: context,
+                       onTap: () {
+                         LoginCubit.get(context).cashierOpened?SizedBox(): AwesomeDialog(context: context,
                             dialogType: DialogType.question,
                             animType: AnimType.rightSlide,
                             width:MediaQuery.of(context).size.width/1.2,
@@ -187,7 +187,7 @@ class MobileHome extends StatelessWidget {
 
                       InkWell(
                         onTap: () {
-                          AwesomeDialog(context: context,
+                          LoginCubit.get(context).cashierClosed?SizedBox(): AwesomeDialog(context: context,
                             dialogType: DialogType.noHeader,
                             animType: AnimType.rightSlide,
                             width:MediaQuery.of(context).size.width,

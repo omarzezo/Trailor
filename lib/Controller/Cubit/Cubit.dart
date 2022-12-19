@@ -1369,5 +1369,16 @@ Future<InvoiceUpdateResponseModel> updateCustomerDetails(CustomerRequest custome
   TextEditingController();
   String? customerid;
 
+
+
+  bool cashierOpened=false;
+  bool cashierClosed=true;
+  changeCashierState(){
+    cashierOpened=!cashierOpened;
+    cashierClosed=!cashierClosed;
+    emit(ChangeCashierState());
+  }
+
+
 }
 
