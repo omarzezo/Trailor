@@ -25,6 +25,7 @@ import 'package:omar/View/sewing%20invoice%20screen/customers_details_screen.dar
 import 'package:omar/View/sewing%20invoice%20screen/daily_report_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/edit_customer_info.dart';
 import 'package:omar/View/sewing%20invoice%20screen/edit_size_screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/new_add_customer_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/pills_item_data.dart';
 import 'package:omar/View/sewing%20invoice%20screen/print_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/restart_screen.dart';
@@ -122,6 +123,7 @@ class MyApp extends StatelessWidget {
             home: const SplashScreen(),
             routes: {
               PrintScreen.routeName:(context) => const PrintScreen(),
+              NewAddCustomerScreen.routeName:(context) =>  NewAddCustomerScreen(),
               HomeScreen.routeName:(context) => const HomeScreen(),
               StartScreen.routeName:(context) => const StartScreen(),
               LoginScreen.routeName:(context) => const LoginScreen(),

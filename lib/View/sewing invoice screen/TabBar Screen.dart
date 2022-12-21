@@ -6,6 +6,7 @@ import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/View/Data%20Table/custom%20table.dart';
 import 'package:omar/View/present_all_tables_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/change_size_screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/new_add_customer_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/return_items_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/sweing_screen.dart';
 import 'package:omar/constant/appstrings.dart';
@@ -52,6 +53,9 @@ class _TabBarScreenState extends State<TabBarScreen> {
     }else if(index==5){
       initialIndex=5;
       screen= ReturnItemsScreen();}
+    else if(index==6){
+      initialIndex=6;
+      screen= NewAddCustomerScreen();}
     setState(() {});
   }
   @override
@@ -174,6 +178,25 @@ class _TabBarScreenState extends State<TabBarScreen> {
                                 Icon(Icons.remove_shopping_cart_outlined,size: 20,color: initialIndex==5?MyConstant().purpleColor:Colors.grey,),
                                 const SizedBox(height: 10,),
                                 Text(AppStrings.returnitems.tr(),style: GoogleFonts.notoKufiArabic(
+                                    color: MyConstant().greenColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14),)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: InkWell(
+                            onTap: () {
+                              setScreen(6);
+                            // await  LoginCubit.get(context).getPillsDetails();
+                            },
+                            child: Column(
+                              children:  [
+                                Icon(Icons.person_add_alt_1,size: 20,color: initialIndex==6?MyConstant().purpleColor:Colors.grey,),
+                                const SizedBox(height: 10,),
+                                Text(AppStrings.addnewcustomer.tr(),style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14),)
