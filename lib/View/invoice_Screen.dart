@@ -11,12 +11,12 @@ import 'package:flutter_bluetooth_basic/flutter_bluetooth_basic.dart';
 import 'package:flutter_esc_pos_network/flutter_esc_pos_network.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image/image.dart' as img;
-import 'package:image/image.dart';
 import 'package:maxx_sunmi_printer/maxx_sunmi_printer.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/SharedPreferencesHelper.dart';
 import 'package:omar/View/sonomiPrinter.dart';
+import 'package:omar/models/details_of_sales_models.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:screenshot/screenshot.dart';
 import '../constant/LoadingPage.dart';
@@ -741,6 +741,10 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                     width: double.infinity,
                     child:Column(
                         children: [
+                          Container(height: 100,width: 100,
+                          child: Image.asset("image/logo2.png"),
+                          // child: Image(),
+                          ),
 
                           Text("مركز الابداع للخياطة", style: getStyle(color: MyConstant().purpleColor, fontSize: textSize)
                           ),
@@ -1014,7 +1018,16 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                       Text(
                                         "الاجمالي  سعر  الكمية",
                                         style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                      ),],),
+                                      ),
+                                      Text(
+                                        "${double.parse(invoiceModel.invoiceData![0].items![0].quantity!).toStringAsFixed(0)}  ${double.parse(invoiceModel.invoiceData![0].items![0].unitPrice!).toStringAsFixed(2)}  ${double.parse(invoiceModel.invoiceData![0].items![0].subtotal!).toStringAsFixed(2)}",
+                                        style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                      ),
+
+
+
+
+                                      ],),
 
                                 )])])),
 
@@ -1117,7 +1130,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                         Container(
                             alignment: Alignment.center,
                             child: Text(
-                              double.parse(invoiceModel!.invoiceData![0].items![0].subtotal!).toStringAsFixed(2),
+                              double.parse(invoiceModel.invoiceData![0].items![0].netUnitPrice!).toStringAsFixed(2),
                               textAlign: TextAlign.center,
                               style: getStyle(color: Colors.black, fontSize: textSize-1)
                             )),
@@ -1145,7 +1158,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                         Container(
                             alignment: Alignment.center,
                             child: Text(
-                              double.parse(invoiceModel!.invoiceData![0].items![0].realUnitPrice!).toStringAsFixed(2),
+                              double.parse(invoiceModel!.invoiceData![0].payments![0].posPaid!).toStringAsFixed(2),
                               textAlign: TextAlign.center,
                               style: getStyle(color: Colors.black, fontSize: textSize-1)
                             )),
@@ -1155,6 +1168,34 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                               "المبلغ المدفوع",
                               textAlign: TextAlign.right,
                               style: getStyle(color: Colors.black, fontSize: textSize-1)
+                            )),
+                      ],)),
+                const SizedBox(height:3,),
+                SizedBox(
+                    width: width,
+                    child:  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                                "Returend",
+                                textAlign: TextAlign.left,
+                                style: getStyle(color: Colors.black, fontSize: textSize-1)
+                            )),
+                        Container(
+                            alignment: Alignment.center,
+                            child: Text(
+                                double.parse(invoiceModel!.invoiceData![0].payments![0].posBalance!).toStringAsFixed(2),
+                                textAlign: TextAlign.center,
+                                style: getStyle(color: Colors.black, fontSize: textSize-1)
+                            )),
+                        Container(
+                            alignment: Alignment.centerRight,
+                            child:  Text(
+                                "المبلغ المتبقى",
+                                textAlign: TextAlign.right,
+                                style: getStyle(color: Colors.black, fontSize: textSize-1)
                             )),
                       ],)),
                 const SizedBox(height:3,),
@@ -1350,7 +1391,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
   }
   Future<void> testReceipt(
       eco.NetworkPrinter printer,  Uint8List theimageThatC) async {
-    final img.Image? image = decodeImage(theimageThatC);
+    final img.Image? image = img.decodeImage(theimageThatC);
     printer.image(image! , align: PosAlign.center);
     printer.cut();
   }

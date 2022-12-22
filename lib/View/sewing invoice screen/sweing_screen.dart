@@ -97,7 +97,6 @@ class _SewingScreenState extends State<SewingScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 Container(
                   width: MediaQuery.of(context).size.width / w,
                   // height: MediaQuery.of(context).size.height/1.5,
@@ -195,7 +194,9 @@ class _SewingScreenState extends State<SewingScreen> {
                               ),
                             ],
                           )),
-                      SizedBox(height: 20,),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Container(
                         height: 70,
                         padding: EdgeInsets.symmetric(horizontal: 20),
@@ -212,13 +213,13 @@ class _SewingScreenState extends State<SewingScreen> {
                                         fontSize: 12)),
                                 Spacer(),
                                 Container(
-                                  width: MediaQuery.of(context).size.width*0.40,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.40,
                                   // padding: const EdgeInsets.only(right: 10),
                                   height: 44,
                                   padding: EdgeInsets.all(4),
                                   decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.circular(5),
+                                    borderRadius: BorderRadius.circular(5),
                                   ),
                                   child: DropdownButtonHideUnderline(
                                     child: DropdownButton2(
@@ -228,72 +229,83 @@ class _SewingScreenState extends State<SewingScreen> {
                                       buttonWidth: 160,
                                       // buttonElevation: 2,
                                       itemHeight: 50,
-                                      itemPadding:
-                                      const EdgeInsets.only(
+                                      itemPadding: const EdgeInsets.only(
                                           left: 14, right: 14),
                                       dropdownMaxHeight: 200,
                                       dropdownWidth: 200,
 
                                       buttonDecoration: BoxDecoration(
-                                        borderRadius:
-                                        BorderRadius.circular(5),
+                                        borderRadius: BorderRadius.circular(5),
                                         border: Border.all(
                                           color: Colors.green,
                                         ),
                                         color: Colors.white,
                                       ),
                                       dropdownDecoration: BoxDecoration(
-                                        borderRadius:
-                                        BorderRadius.circular(5),
+                                        borderRadius: BorderRadius.circular(5),
                                         color: Colors.white,
                                       ),
 
                                       dropdownElevation: 8,
                                       scrollbarRadius:
-                                      const Radius.circular(20),
+                                          const Radius.circular(20),
                                       scrollbarThickness: 6,
                                       scrollbarAlwaysShow: true,
-                                      items:  cubit.statusNameList.map((item) => DropdownMenuItem(
-                                        value: item,
-                                        child: Center(child: Container(
-                                          padding: const EdgeInsets.only(top: 6,bottom: 6),
-                                          width: 160,
-                                        color:item==AppStrings.pendingState.tr()?const Color(0xffefae50) :
-                                        item==AppStrings.completedState.tr()?Colors.green:Colors.red,
-                                          child: Center(
-                                            child: Text(
-                                                item,
-                                                style: GoogleFonts.notoKufiArabic(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.bold, fontSize: 14)
-                                            ),
-                                          ),
-                                        ),),)).toList(),
+                                      items: cubit.statusNameList
+                                          .map((item) => DropdownMenuItem(
+                                                value: item,
+                                                child: Center(
+                                                  child: Container(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 6, bottom: 6),
+                                                    width: 160,
+                                                    color: item ==
+                                                            AppStrings
+                                                                .pendingState
+                                                                .tr()
+                                                        ? const Color(
+                                                            0xffefae50)
+                                                        : item ==
+                                                                AppStrings
+                                                                    .completedState
+                                                                    .tr()
+                                                            ? Colors.green
+                                                            : Colors.red,
+                                                    child: Center(
+                                                      child: Text(item,
+                                                          style: GoogleFonts
+                                                              .notoKufiArabic(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize:
+                                                                      14)),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ))
+                                          .toList(),
 
                                       value: cubit.stausName,
                                       isExpanded: true,
                                       onChanged: (value) {
                                         setState(() {
-                                          cubit.stausName=value as String;
-
-
-
+                                          cubit.stausName = value as String;
                                         });
                                       },
                                       iconSize: 40,
                                       icon: Container(
                                         decoration: const BoxDecoration(
                                           color: Colors.green,
-                                          borderRadius:
-                                          BorderRadius.only(
-                                              bottomLeft: Radius
-                                                  .circular(5),
-                                              topLeft:
-                                              Radius.circular(
-                                                  5)),
+                                          borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(5),
+                                              topLeft: Radius.circular(5)),
                                         ),
-                                        child: const Icon(Icons
-                                            .keyboard_arrow_down_sharp),
+                                        child: const Icon(
+                                            Icons.keyboard_arrow_down_sharp),
                                       ),
                                     ),
                                   ),
@@ -339,8 +351,9 @@ class _SewingScreenState extends State<SewingScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 10,),
-
+                      SizedBox(
+                        height: 10,
+                      ),
                       Container(
                         width: double.infinity,
                         height: MediaQuery.of(context).size.height / 9,
@@ -350,7 +363,6 @@ class _SewingScreenState extends State<SewingScreen> {
                         child: Row(
                           // mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-
                             Container(
                               width: MediaQuery.of(context).size.width / 2,
                               child: Column(
@@ -524,9 +536,12 @@ class _SewingScreenState extends State<SewingScreen> {
                                             icon: Container(
                                               decoration: const BoxDecoration(
                                                 color: Colors.green,
-                                                borderRadius:
-                                                BorderRadius.only(bottomLeft: Radius.circular(5), topLeft: Radius.circular(5)),),
-
+                                                borderRadius: BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(5),
+                                                    topLeft:
+                                                        Radius.circular(5)),
+                                              ),
                                               child: const Icon(Icons
                                                   .keyboard_arrow_down_sharp),
                                             ),
@@ -673,7 +688,9 @@ class _SewingScreenState extends State<SewingScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 10,),
+                      SizedBox(
+                        height: 10,
+                      ),
                       Container(
                         height: 30,
                         width: double.infinity,
@@ -1158,7 +1175,8 @@ class _SewingScreenState extends State<SewingScreen> {
                                                           .text = double.parse(
                                                               product.price!)
                                                           .toStringAsFixed(2);
-                                                      cubit.calculateWhatYouPay();
+                                                      cubit
+                                                          .calculateWhatYouPay();
                                                       // cubit.itemPrice.text =
                                                       //     value.price!;
                                                       // cubit.tax.text= cubit.taxRatesNameList.where((element) => element.id==value.taxRate).toString();
@@ -2303,7 +2321,32 @@ class _SewingScreenState extends State<SewingScreen> {
                               List<dynamic> categoryList = [];
                               List<dynamic> posRegisterList = [];
                               List<dynamic> expensesList = [];
-                              List<dynamic> payment = [];
+                              List<Payment> paymentList = [];
+                              // Payment payment = Payment(
+                              //   id: null,
+                              //   date: null,
+                              //   amount: null,
+                              //   paidBy: null,
+                              //   commercialDiscount: null,
+                              //   commercialDiscountId: null,
+                              //   chequeNo: null,
+                              //   glPaymentMethodId: null,
+                              //   ccNo: null,
+                              //   ccHolder: null,
+                              //   ccMonth: null,
+                              //   ccYear: null,
+                              //   ccType: null,
+                              //   createdBy: null,
+                              //   type: null,
+                              //   note: null,
+                              //   posPaid:  double.parse(
+                              //       cubit.totalPriceDetails.text.isEmpty
+                              //           ? "0"
+                              //           : cubit.totalPriceDetails.text),
+                              //   posBalance: double.parse(cubit.cash.text.isEmpty
+                              //       ? "0"
+                              //       : cubit.cash.text),
+                              // );
                               List<salesModel> salesList = [
                                 salesModel(
                                   // date: "2022-10-10 20:22:00",
@@ -2327,25 +2370,39 @@ class _SewingScreenState extends State<SewingScreen> {
                                   biller: cubit.users[0].username,
                                   billerId: int.parse(
                                       cubit.companiesEmployeeName[0].id!),
+                                  // total: double.parse(
+                                  //     cubit.whatYouPay.text.isEmpty
+                                  //         ? "0"
+                                  //         : cubit.whatYouPay.text),
                                   total: double.parse(
-                                      cubit.whatYouPay.text.isEmpty
+                                      cubit.totalPrice.text.isEmpty
                                           ? "0"
-                                          : cubit.whatYouPay.text),
+                                          : cubit.totalPrice.text),
                                   discountAllowance: double.parse(
                                       cubit.discount.text.isEmpty
                                           ? "0"
                                           : cubit.discount.text),
                                   returnSaleRef: null,
                                   returnId: null,
-                                  saleStatus: (cubit.stausName==AppStrings.pendingState?"pending":cubit.stausName==AppStrings.completedState?"completed":"returned"),
+                                  saleStatus: (cubit.stausName ==
+                                          AppStrings.pendingState
+                                      ? "pending"
+                                      : cubit.stausName ==
+                                              AppStrings.completedState
+                                          ? "completed"
+                                          : "returned"),
                                   saleId: null,
                                   paymentStatus: "paid",
                                   warehouseCode: "w_1",
                                   warehouseId: 1,
+                                  // grandTotal: double.parse(
+                                  //     cubit.whatYouPay.text.isEmpty
+                                  //         ? "0"
+                                  //         : cubit.whatYouPay.text),
                                   grandTotal: double.parse(
-                                      cubit.whatYouPay.text.isEmpty
+                                      cubit.totalPriceDetails.text.isEmpty
                                           ? "0"
-                                          : cubit.whatYouPay.text),
+                                          : cubit.totalPriceDetails.text),
                                   pos: true,
                                   surcharge: 0.0000,
                                   returnSaleTotal: 0.0000,
@@ -2419,11 +2476,19 @@ class _SewingScreenState extends State<SewingScreen> {
                                       createdBy: 1,
                                       type: "received",
                                       note: null,
+                                      // posPaid: double.parse(
+                                      //     cubit.whatYouPay.text.isEmpty
+                                      //         ? "0"
+                                      //         : cubit.whatYouPay.text),
                                       posPaid: double.parse(
-                                          cubit.whatYouPay.text.isEmpty
+                                          cubit.cash.text.isEmpty
                                               ? "0"
-                                              : cubit.whatYouPay.text),
-                                      posBalance: 0.0000,
+                                              : cubit.cash.text),
+                                      // posBalance: 0.0000,
+                                      posBalance: double.parse(
+                                          cubit.delayMoney.text.isEmpty
+                                              ? "0"
+                                              : cubit.delayMoney.text),
                                     ),
                                   ],
                                   items: [
@@ -2433,7 +2498,8 @@ class _SewingScreenState extends State<SewingScreen> {
                                       productCode: cubit.itemCode,
                                       productType: "standard",
                                       optionId: null,
-                                      netUnitPrice: 8.6957,
+                                      netUnitPrice: double.parse(
+                                          (double.parse(cubit.cash.text)-double.parse(cubit.delayMoney.text.isEmpty?"0":cubit.delayMoney.text)).toString()),
                                       unitPrice: double.parse(
                                           cubit.itemPrice.text.isEmpty
                                               ? "0"
@@ -2480,186 +2546,154 @@ class _SewingScreenState extends State<SewingScreen> {
                                   ],
                                   measurement: [
                                     Measurement(
-                                              itemName: cubit.typeOfClothes,
-                                              itemCode: cubit.itemCode,
-                                              frontLength: double.parse(
-                                                  cubit.frontHeight.text.isEmpty
-                                                      ? "0"
-                                                      : cubit.frontHeight.text),
-                                              backLength: double.parse(
-                                                  cubit.backHeight.text.isEmpty
-                                                      ? "0"
-                                                      : cubit.backHeight.text),
-                                              shoulderWidth: double.parse(cubit
-                                                      .shoulderWidth
-                                                      .text
-                                                      .isEmpty
-                                                  ? "0"
-                                                  : cubit.shoulderWidth.text),
-                                              shoulderSlope: double.parse(cubit
-                                                      .shoulderSlope
-                                                      .text
-                                                      .isEmpty
-                                                  ? "0"
-                                                  : cubit.shoulderSlope.text),
-                                              sleeve: double.parse(cubit
-                                                      .sleeveLengthPlain
-                                                      .text
-                                                      .isEmpty
-                                                  ? "0"
-                                                  : cubit
-                                                      .sleeveLengthPlain.text),
-                                              sleeveTop: double.parse(cubit
-                                                      .sleeveLengthIsHigher
-                                                      .text
-                                                      .isEmpty
-                                                  ? "0"
-                                                  : cubit.sleeveLengthIsHigher
-                                                      .text),
-                                              wrist: double.parse(
-                                                  cubit.wideWrist.text.isEmpty
-                                                      ? "0"
-                                                      : cubit.wideWrist.text),
-                                              plainCuffLength: double.parse(
-                                                  cubit.plainCuff.text.isEmpty
-                                                      ? "0"
-                                                      : cubit.plainCuff.text),
-                                              cuffLength: double.parse(
-                                                  cubit.cuffLength.text.isEmpty
-                                                      ? "0"
-                                                      : cubit.cuffLength.text),
-                                              cuffWidth: double.parse(
-                                                  cubit.cuffShow.text.isEmpty
-                                                      ? "0"
-                                                      : cubit.cuffShow.text),
-                                              middleWidth: double.parse(
-                                                  cubit.wideMiddle.text.isEmpty
-                                                      ? "0"
-                                                      : cubit.wideMiddle.text),
-                                              chestFront: double.parse(cubit
-                                                      .expandTheChestInFront
-                                                      .text
-                                                      .isEmpty
-                                                  ? "0"
-                                                  : cubit.expandTheChestInFront
-                                                      .text),
-                                              chestBack: double.parse(cubit
-                                                      .expandTheChestBehind
-                                                      .text
-                                                      .isEmpty
-                                                  ? "0"
-                                                  : cubit.expandTheChestBehind
-                                                      .text),
-                                              bottomHeight: double.parse(
-                                                  cubit.koftaBottom.text.isEmpty
-                                                      ? "0"
-                                                      : cubit.koftaBottom.text),
-                                              bottomWidth: double.parse(
-                                                  cubit.expandDown.text.isEmpty
-                                                      ? "0"
-                                                      : cubit.expandDown.text),
-                                              collarWidth: double.parse(cubit
-                                                      .wideNeckPillow
-                                                      .text
-                                                      .isEmpty
-                                                  ? "0"
-                                                  : cubit.wideNeckPillow.text),
-                                              collarHeight: double.parse(
-                                                  cubit.neckHeight.text.isEmpty
-                                                      ? "0"
-                                                      : cubit.neckHeight.text),
-                                              zipperHeight: double.parse(cubit
-                                                      .gypsumHeight.text.isEmpty
-                                                  ? "0"
-                                                  : cubit.gypsumHeight.text),
-                                              zipperWidth: double.parse(
-                                                  cubit.viewGypsum.text.isEmpty
-                                                      ? "0"
-                                                      : cubit.viewGypsum.text),
-                                              chestPocketHeight: double.parse(
-                                                  cubit.lengthChestPocket.text
-                                                          .isEmpty
-                                                      ? "0"
-                                                      : cubit.lengthChestPocket
-                                                          .text),
-                                              chestPocketWidth: double.parse(
-                                                  cubit.wideChestPocket.text
-                                                          .isEmpty
-                                                      ? "0"
-                                                      : cubit.wideChestPocket
-                                                          .text),
-                                              mobilePocketHeight: double.parse(
-                                                  cubit.wideMobilePocket.text
-                                                          .isEmpty
-                                                      ? "0"
-                                                      : cubit.wideMobilePocket
-                                                          .text),
-                                              walletPocketHeight: double.parse(
-                                                  cubit.lengthPocketWallet.text
-                                                          .isEmpty
-                                                      ? "0"
-                                                      : cubit.lengthPocketWallet
-                                                          .text),
-                                              walletPocketWidth: double.parse(
-                                                  cubit.widePocketWallet.text
-                                                          .isEmpty
-                                                      ? "0"
-                                                      : cubit.widePocketWallet
-                                                          .text),
-                                              haunchWidth: double.parse(
-                                                  cubit.hipWidth.text.isEmpty
-                                                      ? "0"
-                                                      : cubit.hipWidth.text),
-                                              buttonNo: int.parse(cubit
-                                                      .buttonNumber.text.isEmpty
-                                                  ? "0"
-                                                  : cubit.buttonNumber.text),
-                                              embroideryNo: int.parse(cubit
-                                                      .embroideryNumber
-                                                      .text
-                                                      .isEmpty
-                                                  ? "0"
-                                                  : cubit
-                                                      .embroideryNumber.text),
-                                              estimatedLength: double.parse(
-                                                  cubit.expectedFabricInMeter
-                                                          .text.isEmpty
-                                                      ? "0"
-                                                      : cubit
-                                                          .expectedFabricInMeter
-                                                          .text),
-                                              tailorId: 1,
-                                              sample: cubit.sample ? 1 : 0,
-                                              urgent: cubit.harryUp ? 1 : 0,
-                                              shoulderChestLength: double.parse(cubit
-                                                      .betweenTheChestPocketAndTheShoulder
-                                                      .text
-                                                      .isEmpty
-                                                  ? "0"
-                                                  : cubit
-                                                      .betweenTheChestPocketAndTheShoulder
-                                                      .text),
-                                              sleeveMiddle: double.parse(cubit
-                                                      .quantumCapacityMedium
-                                                      .text
-                                                      .isEmpty
-                                                  ? "0"
-                                                  : cubit.quantumCapacityMedium
-                                                      .text),
-                                              sidePocketLength: double.parse(
-                                                  cubit.sidePocket.text.isEmpty
-                                                      ? "0"
-                                                      : cubit.sidePocket.text),
-                                              takhalees: cubit.Takhalis.text,
-                                              collarTypeID: cubit.CollerTypeID,
-                                              cuffTypeID: cubit.CuffTypeID,
-                                              modelTypeID: cubit.ModelTypeID,
-                                              pocketTypeID: cubit.PocketTypeID,
-                                              fillingTypeID:
-                                                  cubit.FillingTypeID,
-                                              zipperTypeID: cubit.ZipperTypeID,
-                                              note: "",
-                                            ) ,
+                                      itemName: cubit.typeOfClothes,
+                                      itemCode: cubit.itemCode,
+                                      frontLength: double.parse(
+                                          cubit.frontHeight.text.isEmpty
+                                              ? "0"
+                                              : cubit.frontHeight.text),
+                                      backLength: double.parse(
+                                          cubit.backHeight.text.isEmpty
+                                              ? "0"
+                                              : cubit.backHeight.text),
+                                      shoulderWidth: double.parse(
+                                          cubit.shoulderWidth.text.isEmpty
+                                              ? "0"
+                                              : cubit.shoulderWidth.text),
+                                      shoulderSlope: double.parse(
+                                          cubit.shoulderSlope.text.isEmpty
+                                              ? "0"
+                                              : cubit.shoulderSlope.text),
+                                      sleeve: double.parse(
+                                          cubit.sleeveLengthPlain.text.isEmpty
+                                              ? "0"
+                                              : cubit.sleeveLengthPlain.text),
+                                      sleeveTop: double.parse(cubit
+                                              .sleeveLengthIsHigher.text.isEmpty
+                                          ? "0"
+                                          : cubit.sleeveLengthIsHigher.text),
+                                      wrist: double.parse(
+                                          cubit.wideWrist.text.isEmpty
+                                              ? "0"
+                                              : cubit.wideWrist.text),
+                                      plainCuffLength: double.parse(
+                                          cubit.plainCuff.text.isEmpty
+                                              ? "0"
+                                              : cubit.plainCuff.text),
+                                      cuffLength: double.parse(
+                                          cubit.cuffLength.text.isEmpty
+                                              ? "0"
+                                              : cubit.cuffLength.text),
+                                      cuffWidth: double.parse(
+                                          cubit.cuffShow.text.isEmpty
+                                              ? "0"
+                                              : cubit.cuffShow.text),
+                                      middleWidth: double.parse(
+                                          cubit.wideMiddle.text.isEmpty
+                                              ? "0"
+                                              : cubit.wideMiddle.text),
+                                      chestFront: double.parse(cubit
+                                              .expandTheChestInFront
+                                              .text
+                                              .isEmpty
+                                          ? "0"
+                                          : cubit.expandTheChestInFront.text),
+                                      chestBack: double.parse(cubit
+                                              .expandTheChestBehind.text.isEmpty
+                                          ? "0"
+                                          : cubit.expandTheChestBehind.text),
+                                      bottomHeight: double.parse(
+                                          cubit.koftaBottom.text.isEmpty
+                                              ? "0"
+                                              : cubit.koftaBottom.text),
+                                      bottomWidth: double.parse(
+                                          cubit.expandDown.text.isEmpty
+                                              ? "0"
+                                              : cubit.expandDown.text),
+                                      collarWidth: double.parse(
+                                          cubit.wideNeckPillow.text.isEmpty
+                                              ? "0"
+                                              : cubit.wideNeckPillow.text),
+                                      collarHeight: double.parse(
+                                          cubit.neckHeight.text.isEmpty
+                                              ? "0"
+                                              : cubit.neckHeight.text),
+                                      zipperHeight: double.parse(
+                                          cubit.gypsumHeight.text.isEmpty
+                                              ? "0"
+                                              : cubit.gypsumHeight.text),
+                                      zipperWidth: double.parse(
+                                          cubit.viewGypsum.text.isEmpty
+                                              ? "0"
+                                              : cubit.viewGypsum.text),
+                                      chestPocketHeight: double.parse(
+                                          cubit.lengthChestPocket.text.isEmpty
+                                              ? "0"
+                                              : cubit.lengthChestPocket.text),
+                                      chestPocketWidth: double.parse(
+                                          cubit.wideChestPocket.text.isEmpty
+                                              ? "0"
+                                              : cubit.wideChestPocket.text),
+                                      mobilePocketHeight: double.parse(
+                                          cubit.wideMobilePocket.text.isEmpty
+                                              ? "0"
+                                              : cubit.wideMobilePocket.text),
+                                      walletPocketHeight: double.parse(
+                                          cubit.lengthPocketWallet.text.isEmpty
+                                              ? "0"
+                                              : cubit.lengthPocketWallet.text),
+                                      walletPocketWidth: double.parse(
+                                          cubit.widePocketWallet.text.isEmpty
+                                              ? "0"
+                                              : cubit.widePocketWallet.text),
+                                      haunchWidth: double.parse(
+                                          cubit.hipWidth.text.isEmpty
+                                              ? "0"
+                                              : cubit.hipWidth.text),
+                                      buttonNo: int.parse(
+                                          cubit.buttonNumber.text.isEmpty
+                                              ? "0"
+                                              : cubit.buttonNumber.text),
+                                      embroideryNo: int.parse(
+                                          cubit.embroideryNumber.text.isEmpty
+                                              ? "0"
+                                              : cubit.embroideryNumber.text),
+                                      estimatedLength: double.parse(cubit
+                                              .expectedFabricInMeter
+                                              .text
+                                              .isEmpty
+                                          ? "0"
+                                          : cubit.expectedFabricInMeter.text),
+                                      tailorId: 1,
+                                      sample: cubit.sample ? 1 : 0,
+                                      urgent: cubit.harryUp ? 1 : 0,
+                                      shoulderChestLength: double.parse(cubit
+                                              .betweenTheChestPocketAndTheShoulder
+                                              .text
+                                              .isEmpty
+                                          ? "0"
+                                          : cubit
+                                              .betweenTheChestPocketAndTheShoulder
+                                              .text),
+                                      sleeveMiddle: double.parse(cubit
+                                              .quantumCapacityMedium
+                                              .text
+                                              .isEmpty
+                                          ? "0"
+                                          : cubit.quantumCapacityMedium.text),
+                                      sidePocketLength: double.parse(
+                                          cubit.sidePocket.text.isEmpty
+                                              ? "0"
+                                              : cubit.sidePocket.text),
+                                      takhalees: cubit.Takhalis.text,
+                                      collarTypeID: cubit.CollerTypeID,
+                                      cuffTypeID: cubit.CuffTypeID,
+                                      modelTypeID: cubit.ModelTypeID,
+                                      pocketTypeID: cubit.PocketTypeID,
+                                      fillingTypeID: cubit.FillingTypeID,
+                                      zipperTypeID: cubit.ZipperTypeID,
+                                      note: "",
+                                    ),
                                   ],
                                 ),
                               ];
@@ -2670,7 +2704,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                       categoryList: categoryList,
                                       posRegisterList: posRegisterList,
                                       salesList: salesList,
-                                      payment: payment,
+                                      payment: paymentList,
                                       expensesList: expensesList);
                               await cubit.pillResponse(
                                   pillRequestModel: pillRequestModel);
