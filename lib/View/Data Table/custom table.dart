@@ -46,8 +46,8 @@ class _CustomTableState extends State<CustomTable> {
     var cubit=LoginCubit.get(context);
     PillsDetails? pillsDetails=PillsDetails();
     pillsDetails.data=[];
-    pillsDetails.data = cubit.pillsDetails!.data!.where((i) => i.saleStatus!.contains('completed')?false:true).toList();
-    log("datais>>"+jsonEncode(pillsDetails.data));
+    pillsDetails.data =  cubit.pillsDetails!=null?cubit.pillsDetails!.data!.where((i) => i.saleStatus!.contains('completed')?false:true).toList():[];
+    // log("datais>>"+jsonEncode(pillsDetails.data));
     return Directionality(
       textDirection: p.TextDirection.rtl,
       child: BlocConsumer<LoginCubit, LoginState>(

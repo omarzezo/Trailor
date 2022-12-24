@@ -374,7 +374,8 @@ class _OpenCashierState extends State<OpenCashier> {
                 borderRadius:
                 BorderRadius.circular(5),
               ),
-              child: DropdownButtonHideUnderline(
+
+              child: (LoginCubit.get(context).usersList !=null)?DropdownButtonHideUnderline(
                 child: DropdownButton2(
                   iconEnabledColor: Colors.white,
                   iconDisabledColor: Colors.grey,
@@ -457,7 +458,7 @@ class _OpenCashierState extends State<OpenCashier> {
                         .keyboard_arrow_down_sharp),
                   ),
                 ),
-              ),
+              ):Container(),
             )
           ],
         ),

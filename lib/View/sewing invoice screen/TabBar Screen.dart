@@ -46,7 +46,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
      screen= CustomTable();
     }else if(index==3){
       initialIndex=3;
-     screen= ChangeSizeScreen();
+     screen=ChangeSizeScreen();
     }else if(index==4){
       initialIndex=4;
      screen= PresentAllTablesScreen();

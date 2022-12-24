@@ -38,9 +38,9 @@ class _LoginScreenState extends State<LoginScreen> {
     // TODO: implement initState
     super.initState();
     // goNext();
-    userNameController.text="$APIKEY1";
+    // userNameController.text="$APIKEY1";
     // userNameController.text="wggko8so4gs0wks0g000s4kk00o0o0wgwco0sww4";
-    passwordController.text="w_1";
+    // passwordController.text="w_1";
   }
   @override
   Widget build(BuildContext context) {

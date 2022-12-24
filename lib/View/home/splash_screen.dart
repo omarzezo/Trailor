@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
+import 'package:omar/Controller/End%20Point.dart';
 import 'package:omar/Controller/local/shared_pref.dart';
 import 'package:omar/View/home/home.dart';
 import 'package:omar/View/login/login%20screen.dart';
@@ -27,6 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
     goNext()async{
       var email=CacheHelper.getData(key: 'email');
       var password= CacheHelper.getData(key: 'password');
+      APIKEY1=CacheHelper.getData(key: 'email')??"k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko";
       bool isLogged=   await CacheHelper.isUserLoggedIn();
       if(isLogged){
         await LoginCubit.get(context).login(email: email, password: password);

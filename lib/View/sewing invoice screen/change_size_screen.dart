@@ -42,7 +42,7 @@ class _ChangeSizeScreenState extends State<ChangeSizeScreen> {
     var cubit=LoginCubit.get(context);
     PillsDetails? pillsDetails=PillsDetails();
     pillsDetails.data=[];
-    pillsDetails.data = cubit.pillsDetails!.data!.where((i) => i.saleStatus!.contains('completed')?false:true).toList();
+    pillsDetails.data =  cubit.pillsDetails!=null?cubit.pillsDetails!.data!.where((i) => i.saleStatus!.contains('completed')?false:true).toList():[];
 
     return Directionality(
       textDirection: p.TextDirection.rtl,
