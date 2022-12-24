@@ -2381,6 +2381,418 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
                                   MyConstant().purpleColor),
                             ),
                             onPressed: () async {
+                              // if (cubit.cashierIsOpened == true) {
+                              //   try {
+                              //     LoadingPage(context).show();
+                              //     List<ProductModel> productList = [
+                              //       ProductModel(
+                              //           id: int.parse(cubit.productItem!.id!),
+                              //           code: cubit.productItem!.code,
+                              //           name: cubit.productItem!.slug,
+                              //           category_id: int.parse(
+                              //               cubit.productItem!.categoryId!),
+                              //           unit: int.parse(cubit.productItem!.unit!),
+                              //           price:
+                              //           double.parse(cubit.productItem!.price!),
+                              //           tax_rate:
+                              //           int.parse(cubit.productItem!.taxRate!),
+                              //           tax_method:
+                              //           cubit.productItem!.taxMethod == "0"
+                              //               ? false
+                              //               : true,
+                              //           warehouse: 1),
+                              //     ];
+                              //     List<dynamic> customerList = [];
+                              //     List<dynamic> categoryList = [];
+                              //     List<dynamic> posRegisterList = [];
+                              //     List<dynamic> expensesList = [];
+                              //     List<dynamic> payment = [];
+                              //     List<salesModel> salesList = [
+                              //       salesModel(
+                              //         // date: "2022-10-10 20:22:00",
+                              //         date:
+                              //         p.DateFormat("yyyy-MM-dd HH:mm:ss", "en")
+                              //             .parse(DateTime.now().toString())
+                              //             .toString(),
+                              //         referenceNo: "SALE2022/10/0001",
+                              //         // customerId: int.parse(cubit.users[0].id!),
+                              //         // customerId: int.parse(cubit.companiesEmployeeName[0].id!),
+                              //         customerId: customerId,
+                              //         dueDate:
+                              //         p.DateFormat("yyyy-MM-dd HH:mm:ss", "en")
+                              //             .parse(DateTime.now().toString())
+                              //             .toString(),
+                              //         hash:
+                              //         "51280eb9564fe8aaa0abca09a2921438e7b0ae05d1714c0badb64238144eef8c",
+                              //         // customer: cubit.companiesEmployeeName[0].company,
+                              //         // customer: cubit.companiesEmployeeName[0].company,
+                              //         customer: cubit.userItemName,
+                              //         biller: cubit.users[0].username,
+                              //         billerId: int.parse(
+                              //             cubit.companiesEmployeeName[0].id!),
+                              //         total: double.parse(
+                              //             cubit.whatYouPay.text.isEmpty
+                              //                 ? "0"
+                              //                 : cubit.whatYouPay.text),
+                              //         discountAllowance: double.parse(
+                              //             cubit.discount.text.isEmpty
+                              //                 ? "0"
+                              //                 : cubit.discount.text),
+                              //         returnSaleRef: null,
+                              //         returnId: null,
+                              //         saleStatus: (cubit.stausName==AppStrings.pendingState?"pending":cubit.stausName==AppStrings.completedState?"completed":"returned"),
+                              //         saleId: null,
+                              //         paymentStatus: "paid",
+                              //         warehouseCode: "w_1",
+                              //         warehouseId: 1,
+                              //         grandTotal: double.parse(
+                              //             cubit.whatYouPay.text.isEmpty
+                              //                 ? "0"
+                              //                 : cubit.whatYouPay.text),
+                              //         pos: true,
+                              //         surcharge: 0.0000,
+                              //         returnSaleTotal: 0.0000,
+                              //         paid: double.parse(cubit.cash.text.isEmpty
+                              //             ? "0"
+                              //             : cubit.cash.text),
+                              //         totalTax: double.parse(cubit.tax.text.isEmpty
+                              //             ? "0"
+                              //             : cubit.tax.text),
+                              //         note: null,
+                              //         staffNote: null,
+                              //         productDiscount: null,
+                              //         orderDiscountId: null,
+                              //         orderDiscount: 0.0000,
+                              //         totalDiscount: double.parse(
+                              //             cubit.discount.text.isEmpty
+                              //                 ? "0"
+                              //                 : cubit.discount.text),
+                              //         productTax: null,
+                              //         orderTaxId: null,
+                              //         orderTax: double.parse(cubit.tax.text.isEmpty
+                              //             ? "0"
+                              //             : cubit.tax.text),
+                              //         shipping: 0.0000,
+                              //         totalItems: 1,
+                              //         paymentTerm: null,
+                              //         rounding: null,
+                              //         createdBy: 1,
+                              //         orderType: 1,
+                              //         tableNo: 0,
+                              //         dept: 1,
+                              //         empId: null,
+                              //         empType: null,
+                              //         plateNo: null,
+                              //         exitDate: "0001-01-01T00:00:00",
+                              //         payment: [
+                              //           Payment(
+                              //             id: cubit.fixedPaymentType ==
+                              //                 AppStrings.monetary.tr()
+                              //                 ? cubit.paymentId = 1
+                              //                 : cubit.fixedPaymentType ==
+                              //                 AppStrings.BankCheck.tr()
+                              //                 ? cubit.paymentId = 3
+                              //                 : cubit.paymentId,
+                              //             date: "2022-08-16T00:59:44+03:00",
+                              //             amount: double.parse(
+                              //                 cubit.quantities.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.quantities.text),
+                              //             // paidBy: "cash",
+                              //             paidBy: cubit.fixedPaymentType ==
+                              //                 AppStrings.monetary.tr()
+                              //                 ? cubit.paymentType = "cash"
+                              //                 : cubit.fixedPaymentType ==
+                              //                 AppStrings.BankCheck.tr()
+                              //                 ? cubit.paymentType = "cheque"
+                              //                 : cubit.paymentType,
+                              //             commercialDiscount:
+                              //             double.parse(cubit.discountV ?? "0"),
+                              //             commercialDiscountId: null,
+                              //             chequeNo: cubit.fixedPaymentType ==
+                              //                 AppStrings.BankCheck.tr()
+                              //                 ? cubit.cheeckPaymentV
+                              //                 : null,
+                              //             glPaymentMethodId: 0,
+                              //             ccNo: null,
+                              //             ccHolder: null,
+                              //             ccMonth: null,
+                              //             ccYear: null,
+                              //             ccType: null,
+                              //             createdBy: 1,
+                              //             type: "received",
+                              //             note: null,
+                              //             posPaid: double.parse(
+                              //                 cubit.whatYouPay.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.whatYouPay.text),
+                              //             posBalance: 0.0000,
+                              //           ),
+                              //         ],
+                              //         items: [
+                              //           Items(
+                              //             productId: 1,
+                              //             productName: cubit.typeOfClothes,
+                              //             productCode: cubit.itemCode,
+                              //             productType: "standard",
+                              //             optionId: null,
+                              //             netUnitPrice: 8.6957,
+                              //             unitPrice: double.parse(
+                              //                 cubit.itemPrice.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.itemPrice.text),
+                              //             unitQuantity: double.parse(
+                              //                 cubit.quantities.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.quantities.text),
+                              //             realUnitPrice: double.parse(
+                              //                 cubit.itemPrice.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.itemPrice.text),
+                              //             productUnitId:
+                              //             int.parse(cubit.itemCode ?? "0"),
+                              //             productUnitCode:
+                              //             cubit.valueItemSizeName ?? "0",
+                              //             quantity: double.parse(
+                              //                 cubit.quantities.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.quantities.text),
+                              //             subtotal: double.parse(
+                              //                 cubit.totalPrice.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.totalPrice.text),
+                              //             warehouseId: 1,
+                              //             warehouseCode: "w_1",
+                              //             itemTax: double.parse(
+                              //                 cubit.tax.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.tax.text),
+                              //             taxRateId: 3,
+                              //             tax: "ضريبة النسبة الأساسية 15%",
+                              //             discount: double.parse(
+                              //                 cubit.discount.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.discount.text),
+                              //             serialNo: null,
+                              //             itemDiscount: double.parse(
+                              //                 cubit.discount.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.discount.text),
+                              //             promoFree: false,
+                              //           ),
+                              //         ],
+                              //         measurement: [
+                              //           Measurement(
+                              //             itemName: cubit.typeOfClothes,
+                              //             itemCode: cubit.itemCode,
+                              //             frontLength: double.parse(
+                              //                 cubit.frontHeight.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.frontHeight.text),
+                              //             backLength: double.parse(
+                              //                 cubit.backHeight.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.backHeight.text),
+                              //             shoulderWidth: double.parse(cubit
+                              //                 .shoulderWidth
+                              //                 .text
+                              //                 .isEmpty
+                              //                 ? "0"
+                              //                 : cubit.shoulderWidth.text),
+                              //             shoulderSlope: double.parse(cubit
+                              //                 .shoulderSlope
+                              //                 .text
+                              //                 .isEmpty
+                              //                 ? "0"
+                              //                 : cubit.shoulderSlope.text),
+                              //             sleeve: double.parse(cubit
+                              //                 .sleeveLengthPlain
+                              //                 .text
+                              //                 .isEmpty
+                              //                 ? "0"
+                              //                 : cubit
+                              //                 .sleeveLengthPlain.text),
+                              //             sleeveTop: double.parse(cubit
+                              //                 .sleeveLengthIsHigher
+                              //                 .text
+                              //                 .isEmpty
+                              //                 ? "0"
+                              //                 : cubit.sleeveLengthIsHigher
+                              //                 .text),
+                              //             wrist: double.parse(
+                              //                 cubit.wideWrist.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.wideWrist.text),
+                              //             plainCuffLength: double.parse(
+                              //                 cubit.plainCuff.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.plainCuff.text),
+                              //             cuffLength: double.parse(
+                              //                 cubit.cuffLength.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.cuffLength.text),
+                              //             cuffWidth: double.parse(
+                              //                 cubit.cuffShow.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.cuffShow.text),
+                              //             middleWidth: double.parse(
+                              //                 cubit.wideMiddle.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.wideMiddle.text),
+                              //             chestFront: double.parse(cubit
+                              //                 .expandTheChestInFront
+                              //                 .text
+                              //                 .isEmpty
+                              //                 ? "0"
+                              //                 : cubit.expandTheChestInFront
+                              //                 .text),
+                              //             chestBack: double.parse(cubit
+                              //                 .expandTheChestBehind
+                              //                 .text
+                              //                 .isEmpty
+                              //                 ? "0"
+                              //                 : cubit.expandTheChestBehind
+                              //                 .text),
+                              //             bottomHeight: double.parse(
+                              //                 cubit.koftaBottom.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.koftaBottom.text),
+                              //             bottomWidth: double.parse(
+                              //                 cubit.expandDown.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.expandDown.text),
+                              //             collarWidth: double.parse(cubit
+                              //                 .wideNeckPillow
+                              //                 .text
+                              //                 .isEmpty
+                              //                 ? "0"
+                              //                 : cubit.wideNeckPillow.text),
+                              //             collarHeight: double.parse(
+                              //                 cubit.neckHeight.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.neckHeight.text),
+                              //             zipperHeight: double.parse(cubit
+                              //                 .gypsumHeight.text.isEmpty
+                              //                 ? "0"
+                              //                 : cubit.gypsumHeight.text),
+                              //             zipperWidth: double.parse(
+                              //                 cubit.viewGypsum.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.viewGypsum.text),
+                              //             chestPocketHeight: double.parse(
+                              //                 cubit.lengthChestPocket.text
+                              //                     .isEmpty
+                              //                     ? "0"
+                              //                     : cubit.lengthChestPocket
+                              //                     .text),
+                              //             chestPocketWidth: double.parse(
+                              //                 cubit.wideChestPocket.text
+                              //                     .isEmpty
+                              //                     ? "0"
+                              //                     : cubit.wideChestPocket
+                              //                     .text),
+                              //             mobilePocketHeight: double.parse(
+                              //                 cubit.wideMobilePocket.text
+                              //                     .isEmpty
+                              //                     ? "0"
+                              //                     : cubit.wideMobilePocket
+                              //                     .text),
+                              //             walletPocketHeight: double.parse(
+                              //                 cubit.lengthPocketWallet.text
+                              //                     .isEmpty
+                              //                     ? "0"
+                              //                     : cubit.lengthPocketWallet
+                              //                     .text),
+                              //             walletPocketWidth: double.parse(
+                              //                 cubit.widePocketWallet.text
+                              //                     .isEmpty
+                              //                     ? "0"
+                              //                     : cubit.widePocketWallet
+                              //                     .text),
+                              //             haunchWidth: double.parse(
+                              //                 cubit.hipWidth.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.hipWidth.text),
+                              //             buttonNo: int.parse(cubit
+                              //                 .buttonNumber.text.isEmpty
+                              //                 ? "0"
+                              //                 : cubit.buttonNumber.text),
+                              //             embroideryNo: int.parse(cubit
+                              //                 .embroideryNumber
+                              //                 .text
+                              //                 .isEmpty
+                              //                 ? "0"
+                              //                 : cubit
+                              //                 .embroideryNumber.text),
+                              //             estimatedLength: double.parse(
+                              //                 cubit.expectedFabricInMeter
+                              //                     .text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit
+                              //                     .expectedFabricInMeter
+                              //                     .text),
+                              //             tailorId: 1,
+                              //             sample: cubit.sample ? 1 : 0,
+                              //             urgent: cubit.harryUp ? 1 : 0,
+                              //             shoulderChestLength: double.parse(cubit
+                              //                 .betweenTheChestPocketAndTheShoulder
+                              //                 .text
+                              //                 .isEmpty
+                              //                 ? "0"
+                              //                 : cubit
+                              //                 .betweenTheChestPocketAndTheShoulder
+                              //                 .text),
+                              //             sleeveMiddle: double.parse(cubit
+                              //                 .quantumCapacityMedium
+                              //                 .text
+                              //                 .isEmpty
+                              //                 ? "0"
+                              //                 : cubit.quantumCapacityMedium
+                              //                 .text),
+                              //             sidePocketLength: double.parse(
+                              //                 cubit.sidePocket.text.isEmpty
+                              //                     ? "0"
+                              //                     : cubit.sidePocket.text),
+                              //             takhalees: cubit.Takhalis.text,
+                              //             collarTypeID: cubit.CollerTypeID,
+                              //             cuffTypeID: cubit.CuffTypeID,
+                              //             modelTypeID: cubit.ModelTypeID,
+                              //             pocketTypeID: cubit.PocketTypeID,
+                              //             fillingTypeID:
+                              //             cubit.FillingTypeID,
+                              //             zipperTypeID: cubit.ZipperTypeID,
+                              //             note: "",
+                              //           ) ,
+                              //         ],
+                              //       ),
+                              //     ];
+                              //     PillRequestModel pillRequestModel =
+                              //     PillRequestModel(
+                              //         productList: productList,
+                              //         customerList: customerList,
+                              //         categoryList: categoryList,
+                              //         posRegisterList: posRegisterList,
+                              //         salesList: salesList,
+                              //         payment: payment,
+                              //         expensesList: expensesList);
+                              //     await cubit.pillResponse(
+                              //         pillRequestModel: pillRequestModel);
+                              //     // await cubit.getAllInvoiceInformation();
+                              //     log("requestIs>>" + jsonEncode(pillRequestModel));
+                              //     cubit.totalCash = (double.parse(cubit.totalCash) +
+                              //         double.parse(cubit.whatYouPay.text))
+                              //         .toString();
+                              //     cubit.invoiceNumbers += 1;
+                              //     print("the way of paying ${cubit.paymentType}");
+                              //     print("the way of paying ${cubit.paymentId}");
+                              //     LoadingPage(context).close();
+                              //
+                              //     Navigator.pushNamed(
+                              //         context, PrintScreen.routeName);
+                              //   } catch (error) {
+                              //     print(error.toString());
+                              //   }
+                              // }
                               if (cubit.cashierIsOpened == true) {
                                 try {
                                   LoadingPage(context).show();
@@ -2406,7 +2818,32 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
                                   List<dynamic> categoryList = [];
                                   List<dynamic> posRegisterList = [];
                                   List<dynamic> expensesList = [];
-                                  List<dynamic> payment = [];
+                                  List<Payment> paymentList = [];
+                                  // Payment payment = Payment(
+                                  //   id: null,
+                                  //   date: null,
+                                  //   amount: null,
+                                  //   paidBy: null,
+                                  //   commercialDiscount: null,
+                                  //   commercialDiscountId: null,
+                                  //   chequeNo: null,
+                                  //   glPaymentMethodId: null,
+                                  //   ccNo: null,
+                                  //   ccHolder: null,
+                                  //   ccMonth: null,
+                                  //   ccYear: null,
+                                  //   ccType: null,
+                                  //   createdBy: null,
+                                  //   type: null,
+                                  //   note: null,
+                                  //   posPaid:  double.parse(
+                                  //       cubit.totalPriceDetails.text.isEmpty
+                                  //           ? "0"
+                                  //           : cubit.totalPriceDetails.text),
+                                  //   posBalance: double.parse(cubit.cash.text.isEmpty
+                                  //       ? "0"
+                                  //       : cubit.cash.text),
+                                  // );
                                   List<salesModel> salesList = [
                                     salesModel(
                                       // date: "2022-10-10 20:22:00",
@@ -2430,25 +2867,39 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
                                       biller: cubit.users[0].username,
                                       billerId: int.parse(
                                           cubit.companiesEmployeeName[0].id!),
+                                      // total: double.parse(
+                                      //     cubit.whatYouPay.text.isEmpty
+                                      //         ? "0"
+                                      //         : cubit.whatYouPay.text),
                                       total: double.parse(
-                                          cubit.whatYouPay.text.isEmpty
+                                          cubit.totalPrice.text.isEmpty
                                               ? "0"
-                                              : cubit.whatYouPay.text),
+                                              : cubit.totalPrice.text),
                                       discountAllowance: double.parse(
                                           cubit.discount.text.isEmpty
                                               ? "0"
                                               : cubit.discount.text),
                                       returnSaleRef: null,
                                       returnId: null,
-                                      saleStatus: (cubit.stausName==AppStrings.pendingState?"pending":cubit.stausName==AppStrings.completedState?"completed":"returned"),
+                                      saleStatus: (cubit.stausName ==
+                                          AppStrings.pendingState
+                                          ? "pending"
+                                          : cubit.stausName ==
+                                          AppStrings.completedState
+                                          ? "completed"
+                                          : "returned"),
                                       saleId: null,
                                       paymentStatus: "paid",
                                       warehouseCode: "w_1",
                                       warehouseId: 1,
+                                      // grandTotal: double.parse(
+                                      //     cubit.whatYouPay.text.isEmpty
+                                      //         ? "0"
+                                      //         : cubit.whatYouPay.text),
                                       grandTotal: double.parse(
-                                          cubit.whatYouPay.text.isEmpty
+                                          cubit.totalPriceDetails.text.isEmpty
                                               ? "0"
-                                              : cubit.whatYouPay.text),
+                                              : cubit.totalPriceDetails.text),
                                       pos: true,
                                       surcharge: 0.0000,
                                       returnSaleTotal: 0.0000,
@@ -2521,12 +2972,20 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
                                           ccType: null,
                                           createdBy: 1,
                                           type: "received",
-                                          note: null,
+                                          note: cubit.userName??"",
+                                          // posPaid: double.parse(
+                                          //     cubit.whatYouPay.text.isEmpty
+                                          //         ? "0"
+                                          //         : cubit.whatYouPay.text),
                                           posPaid: double.parse(
-                                              cubit.whatYouPay.text.isEmpty
+                                              cubit.cash.text.isEmpty
                                                   ? "0"
-                                                  : cubit.whatYouPay.text),
-                                          posBalance: 0.0000,
+                                                  : cubit.cash.text),
+                                          // posBalance: 0.0000,
+                                          posBalance: double.parse(
+                                              cubit.delayMoney.text.isEmpty
+                                                  ? "0"
+                                                  : cubit.delayMoney.text),
                                         ),
                                       ],
                                       items: [
@@ -2536,7 +2995,8 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
                                           productCode: cubit.itemCode,
                                           productType: "standard",
                                           optionId: null,
-                                          netUnitPrice: 8.6957,
+                                          netUnitPrice: double.parse(
+                                              (double.parse(cubit.cash.text)-double.parse(cubit.delayMoney.text.isEmpty?"0":cubit.delayMoney.text)).toString()),
                                           unitPrice: double.parse(
                                               cubit.itemPrice.text.isEmpty
                                                   ? "0"
@@ -2593,32 +3053,22 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
                                               cubit.backHeight.text.isEmpty
                                                   ? "0"
                                                   : cubit.backHeight.text),
-                                          shoulderWidth: double.parse(cubit
-                                              .shoulderWidth
-                                              .text
-                                              .isEmpty
-                                              ? "0"
-                                              : cubit.shoulderWidth.text),
-                                          shoulderSlope: double.parse(cubit
-                                              .shoulderSlope
-                                              .text
-                                              .isEmpty
-                                              ? "0"
-                                              : cubit.shoulderSlope.text),
-                                          sleeve: double.parse(cubit
-                                              .sleeveLengthPlain
-                                              .text
-                                              .isEmpty
-                                              ? "0"
-                                              : cubit
-                                              .sleeveLengthPlain.text),
+                                          shoulderWidth: double.parse(
+                                              cubit.shoulderWidth.text.isEmpty
+                                                  ? "0"
+                                                  : cubit.shoulderWidth.text),
+                                          shoulderSlope: double.parse(
+                                              cubit.shoulderSlope.text.isEmpty
+                                                  ? "0"
+                                                  : cubit.shoulderSlope.text),
+                                          sleeve: double.parse(
+                                              cubit.sleeveLengthPlain.text.isEmpty
+                                                  ? "0"
+                                                  : cubit.sleeveLengthPlain.text),
                                           sleeveTop: double.parse(cubit
-                                              .sleeveLengthIsHigher
-                                              .text
-                                              .isEmpty
+                                              .sleeveLengthIsHigher.text.isEmpty
                                               ? "0"
-                                              : cubit.sleeveLengthIsHigher
-                                              .text),
+                                              : cubit.sleeveLengthIsHigher.text),
                                           wrist: double.parse(
                                               cubit.wideWrist.text.isEmpty
                                                   ? "0"
@@ -2644,15 +3094,11 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
                                               .text
                                               .isEmpty
                                               ? "0"
-                                              : cubit.expandTheChestInFront
-                                              .text),
+                                              : cubit.expandTheChestInFront.text),
                                           chestBack: double.parse(cubit
-                                              .expandTheChestBehind
-                                              .text
-                                              .isEmpty
+                                              .expandTheChestBehind.text.isEmpty
                                               ? "0"
-                                              : cubit.expandTheChestBehind
-                                              .text),
+                                              : cubit.expandTheChestBehind.text),
                                           bottomHeight: double.parse(
                                               cubit.koftaBottom.text.isEmpty
                                                   ? "0"
@@ -2661,76 +3107,60 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
                                               cubit.expandDown.text.isEmpty
                                                   ? "0"
                                                   : cubit.expandDown.text),
-                                          collarWidth: double.parse(cubit
-                                              .wideNeckPillow
-                                              .text
-                                              .isEmpty
-                                              ? "0"
-                                              : cubit.wideNeckPillow.text),
+                                          collarWidth: double.parse(
+                                              cubit.wideNeckPillow.text.isEmpty
+                                                  ? "0"
+                                                  : cubit.wideNeckPillow.text),
                                           collarHeight: double.parse(
                                               cubit.neckHeight.text.isEmpty
                                                   ? "0"
                                                   : cubit.neckHeight.text),
-                                          zipperHeight: double.parse(cubit
-                                              .gypsumHeight.text.isEmpty
-                                              ? "0"
-                                              : cubit.gypsumHeight.text),
+                                          zipperHeight: double.parse(
+                                              cubit.gypsumHeight.text.isEmpty
+                                                  ? "0"
+                                                  : cubit.gypsumHeight.text),
                                           zipperWidth: double.parse(
                                               cubit.viewGypsum.text.isEmpty
                                                   ? "0"
                                                   : cubit.viewGypsum.text),
                                           chestPocketHeight: double.parse(
-                                              cubit.lengthChestPocket.text
-                                                  .isEmpty
+                                              cubit.lengthChestPocket.text.isEmpty
                                                   ? "0"
-                                                  : cubit.lengthChestPocket
-                                                  .text),
+                                                  : cubit.lengthChestPocket.text),
                                           chestPocketWidth: double.parse(
-                                              cubit.wideChestPocket.text
-                                                  .isEmpty
+                                              cubit.wideChestPocket.text.isEmpty
                                                   ? "0"
-                                                  : cubit.wideChestPocket
-                                                  .text),
+                                                  : cubit.wideChestPocket.text),
                                           mobilePocketHeight: double.parse(
-                                              cubit.wideMobilePocket.text
-                                                  .isEmpty
+                                              cubit.wideMobilePocket.text.isEmpty
                                                   ? "0"
-                                                  : cubit.wideMobilePocket
-                                                  .text),
+                                                  : cubit.wideMobilePocket.text),
                                           walletPocketHeight: double.parse(
-                                              cubit.lengthPocketWallet.text
-                                                  .isEmpty
+                                              cubit.lengthPocketWallet.text.isEmpty
                                                   ? "0"
-                                                  : cubit.lengthPocketWallet
-                                                  .text),
+                                                  : cubit.lengthPocketWallet.text),
                                           walletPocketWidth: double.parse(
-                                              cubit.widePocketWallet.text
-                                                  .isEmpty
+                                              cubit.widePocketWallet.text.isEmpty
                                                   ? "0"
-                                                  : cubit.widePocketWallet
-                                                  .text),
+                                                  : cubit.widePocketWallet.text),
                                           haunchWidth: double.parse(
                                               cubit.hipWidth.text.isEmpty
                                                   ? "0"
                                                   : cubit.hipWidth.text),
-                                          buttonNo: int.parse(cubit
-                                              .buttonNumber.text.isEmpty
-                                              ? "0"
-                                              : cubit.buttonNumber.text),
-                                          embroideryNo: int.parse(cubit
-                                              .embroideryNumber
+                                          buttonNo: int.parse(
+                                              cubit.buttonNumber.text.isEmpty
+                                                  ? "0"
+                                                  : cubit.buttonNumber.text),
+                                          embroideryNo: int.parse(
+                                              cubit.embroideryNumber.text.isEmpty
+                                                  ? "0"
+                                                  : cubit.embroideryNumber.text),
+                                          estimatedLength: double.parse(cubit
+                                              .expectedFabricInMeter
                                               .text
                                               .isEmpty
                                               ? "0"
-                                              : cubit
-                                              .embroideryNumber.text),
-                                          estimatedLength: double.parse(
-                                              cubit.expectedFabricInMeter
-                                                  .text.isEmpty
-                                                  ? "0"
-                                                  : cubit
-                                                  .expectedFabricInMeter
-                                                  .text),
+                                              : cubit.expectedFabricInMeter.text),
                                           tailorId: 1,
                                           sample: cubit.sample ? 1 : 0,
                                           urgent: cubit.harryUp ? 1 : 0,
@@ -2747,8 +3177,7 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
                                               .text
                                               .isEmpty
                                               ? "0"
-                                              : cubit.quantumCapacityMedium
-                                              .text),
+                                              : cubit.quantumCapacityMedium.text),
                                           sidePocketLength: double.parse(
                                               cubit.sidePocket.text.isEmpty
                                                   ? "0"
@@ -2758,11 +3187,10 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
                                           cuffTypeID: cubit.CuffTypeID,
                                           modelTypeID: cubit.ModelTypeID,
                                           pocketTypeID: cubit.PocketTypeID,
-                                          fillingTypeID:
-                                          cubit.FillingTypeID,
+                                          fillingTypeID: cubit.FillingTypeID,
                                           zipperTypeID: cubit.ZipperTypeID,
                                           note: "",
-                                        ) ,
+                                        ),
                                       ],
                                     ),
                                   ];
@@ -2773,7 +3201,7 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
                                       categoryList: categoryList,
                                       posRegisterList: posRegisterList,
                                       salesList: salesList,
-                                      payment: payment,
+                                      payment: paymentList,
                                       expensesList: expensesList);
                                   await cubit.pillResponse(
                                       pillRequestModel: pillRequestModel);
@@ -2792,7 +3220,8 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
                                 } catch (error) {
                                   print(error.toString());
                                 }
-                              } else {
+                              }
+                              else {
                                 AwesomeDialog(
                                     context: context,
                                     dialogType: DialogType.error,

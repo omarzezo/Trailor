@@ -2475,7 +2475,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                       ccType: null,
                                       createdBy: 1,
                                       type: "received",
-                                      note: null,
+                                      note: cubit.userName??"",
                                       // posPaid: double.parse(
                                       //     cubit.whatYouPay.text.isEmpty
                                       //         ? "0"

@@ -25,6 +25,8 @@ import '../constant/constant.dart';
 import '../models/invoiceModel.dart';
 import 'package:flutter/services.dart' as p;
 
+import '../models/test.dart';
+
 class PrintPillScreen extends StatefulWidget {
   static const routeName="PrintPillScreen";
   int? printerType;
@@ -727,7 +729,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
     );
   }
 
-  getContent(size,context,InvoiceModel? invoiceModel){
+  getContent(size,context,AllInvoicesDetails? invoiceModel){
     return  Container(
         width: width,
         color: Colors.white,
@@ -912,7 +914,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                   )),  Container(
                                   alignment: Alignment.center,
                                   child:Text(
-                                    invoiceModel!.invoiceData![0].customer!,textAlign: TextAlign.center,
+                                    invoiceModel!.invoiceData![0].payments![0].note??"",textAlign: TextAlign.center,
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                                   )),  Container(
                                   alignment: Alignment.centerRight,

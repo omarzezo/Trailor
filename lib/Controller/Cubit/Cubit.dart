@@ -45,6 +45,7 @@ import 'package:omar/models/updatedSizes.dart';
 import '../../models/TrailorListsResponse.dart';
 import '../../models/allcustomer_response.dart';
 import '../../models/modelreturn.dart';
+import '../../models/test.dart';
 import 'State.dart';
 import 'dart:ui' as ui;
 
@@ -212,16 +213,16 @@ int? paymentId;
   //     print(e);
   //   }
   // }
-  InvoiceModel? invoiceModel;
-  Future<InvoiceModel>  getInvoiceInformation(String id )async{
+  AllInvoicesDetails? invoiceModel;
+  Future<AllInvoicesDetails>  getInvoiceInformation(String id )async{
     Dio dio = Dio();
 
 
     final response = await dio.get(
-      'https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_id=w_1&id=$id',
+      'https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=${APIKEY1}&warehouse_id=w_1&id=$id',
     );
     if(response.statusCode==200){
-      invoiceModel=InvoiceModel.fromJson(response.data);
+      invoiceModel=AllInvoicesDetails.fromJson(response.data);
 
     }else{
       print (response.statusMessage);
@@ -233,15 +234,23 @@ int? paymentId;
   Future<List<InvoiceData>>  getAllInvoiceInformation()async{
     Dio dio = Dio();
 
+    dio.interceptors.add(LogInterceptor(
+        requestBody: true,
+        error: true,
+        requestHeader: true,
+        responseHeader: true,
+        responseBody: true,
 
+    ));
     final response = await dio.get(
-      'https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_id=w_1',
+      'https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=${APIKEY1}&warehouse_id=w_1',
     );
     if(response.statusCode==200){
-      InvoiceModel.fromJson(response.data).invoiceData!.forEach((invoice){
-
-        allInvoices.add(invoice);
-      });
+      allInvoices=AllInvoicesDetails.fromJson(response.data).invoiceData!;
+      // AllInvoicesDetails.fromJson(response.data).invoiceData!.forEach((invoice){
+      //
+      //   allInvoices.add(invoice);
+      // });
     }else{
       print (response.statusMessage);
     }
@@ -397,15 +406,15 @@ int invoiceNumbers=0;
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Accept-Version': 'V1',
-      'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko'
+      'api-key': APIKEY1
     };
     final response = await dio.post(
         'https://cpe-soft.com/admin/api/v1/SalesSet3',
         data: jsonEncode(pillRequestModel));
     if (response.statusCode == 200) {
-      debugPrint(jsonEncode(pillRequestModel));
+      // debugPrint(jsonEncode(pillRequestModel));
       // log(jsonEncode(pillRequestModel));
-      print(response.data);
+      // print(response.data);
       pillResponseModel = PillResponseModel.fromJson(response.data);
       await getAllInvoiceInformation();
       await getPillsDetails();
@@ -434,7 +443,7 @@ int invoiceNumbers=0;
 
 
     final response = await dio.get(
-        'https://cpe-soft.com/admin/api/v1/data?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1',
+        "https://cpe-soft.com/admin/api/v1/data?api-key=${APIKEY1}&warehouse_code=w_1",
         );
     if (response.statusCode == 200) {
       // log(jsonEncode(pillRequestModel));
@@ -476,7 +485,7 @@ emit(AddCustomerLoadingState());
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Accept-Version': 'V1',
-      'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko'
+      'api-key': '${APIKEY1}'
     };
     final response = await dio.post('https://cpe-soft.com/admin/api/v1/SalesSet3', data: jsonEncode(customerModel));
     if (response.statusCode == 200) {
@@ -502,7 +511,7 @@ Future<returnsalesModel>getReturnId(int index)async{
 
   Dio dio = Dio();
   // final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
-  final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_id=w_1");
+  final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=${APIKEY1}&warehouse_id=w_1");
   if(response.statusCode==200){
     returnsizeInformationModel= returnsalesModel.fromJson(response.data);
     returnid=  returnsizeInformationModel!.data![index].items![0].saleId;
@@ -559,7 +568,7 @@ Future<returnsalesModel>getReturnId(int index)async{
     // companiesEmployeeName=[];
     Dio dio = Dio();
     // final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
-    final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
+    final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=${APIKEY1}&warehouse_code=w_1");
     if(response.statusCode==200){
       print(response.data);
       pillsDetails=PillsDetails.fromJson(response.data);
@@ -793,7 +802,7 @@ String? quantities1;
       'Accept': 'application/json',
       'Accept-Version': 'V1',
       'Accept-Language': 'en',
-      'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko'
+      'api-key': '$APIKEY1'
     };
     emit(UpdatedPillsResponseLoadingState());
     final response = await dio.post(
@@ -839,7 +848,7 @@ String? quantities1;
           responseHeader: true,
           responseBody: true
       ));
-      final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_id=w_1&id=$salesId");
+      final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=${APIKEY1}&warehouse_id=w_1&id=$salesId");
       if(response.statusCode==200){
         returnInvoice=null;
 
@@ -865,7 +874,7 @@ String? quantities1;
           responseHeader: true,
           responseBody: true
       ));
-      final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_id=w_1&id=$salesId");
+      final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=${APIKEY1}&warehouse_id=w_1&id=$salesId");
       if(response.statusCode==200){
         sizeInformationModel=SizeInformationModel.fromJson(response.data);
         // returnInvoice=sizeInformationModel;
@@ -1054,7 +1063,7 @@ String? quantities1;
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Accept-Version': 'V1',
-        'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko'
+        'api-key': '$APIKEY1'
       };
       final response = await dio.post(
           'https://cpe-soft.com/admin/api/v1/UpdateSalesMeasurement',
@@ -1125,7 +1134,7 @@ String endDate="";
     'Accept': 'application/json',
     'Accept-Version': 'V1',
     'Accept-Language': 'en',
-    'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko',
+    'api-key': '$APIKEY1',
   };
   // final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
   final response=await dio.post("https://cpe-soft.com/admin/api/v1/OpenRegister",data: jsonEncode(cashierStartRequest));
@@ -1152,7 +1161,7 @@ Future<CashierResponse> closeCashier(CashierCloseRequest cashierCloseRequest)asy
     'Accept': 'application/json',
     'Accept-Version': 'V1',
     'Accept-Language': 'en',
-    'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko'
+    'api-key': '$APIKEY1'
 
 
   };
@@ -1189,7 +1198,7 @@ Future<CloseCashierResponse> closeCashierDetails()async{
     'Accept': 'application/json',
     'Accept-Version': 'V1',
     'Accept-Language': 'en',
-    'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko'
+    'api-key': '$APIKEY1'
 
 
   };
@@ -1230,7 +1239,7 @@ Future<AllCustomerResponse> getAllCustomers()async{
   //
   //
   // };
-  final response=await dio.get("https://cpe-soft.com/admin/api/v1/company?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko");
+  final response=await dio.get("https://cpe-soft.com/admin/api/v1/company?api-key=$APIKEY1");
   if(response.statusCode==200){
     print(response.data);
     allCustomerResponse=AllCustomerResponse.fromJson(response.data);
@@ -1262,7 +1271,7 @@ Future<AllCustomerResponse> getCustomerDetails(BuildContext context ,int id)asyn
   //
   //
   // };
-  final response=await dio.get("https://cpe-soft.com/admin/api/v1/company?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&id=$id");
+  final response=await dio.get("https://cpe-soft.com/admin/api/v1/company?api-key=$APIKEY1&id=$id");
 
   if(response.statusCode==200){
     print(response.data);
@@ -1316,7 +1325,7 @@ Future<InvoiceUpdateResponseModel> updateCustomerDetails(CustomerRequest custome
     'Accept': 'application/json',
     'Accept-Version': 'V1',
     'Accept-Language': 'en',
-    'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko'
+    'api-key': '$APIKEY1'
 
 
   };

@@ -32,12 +32,12 @@ class AllCustomerResponse {
 
 class Data {
   String? offlineId;
-  Null? additionalNo;
+  String? additionalNo;
   String? address;
-  Null? addressEn;
+  String? addressEn;
   String? api;
   String? awardPoints;
-  Null? buildingNo;
+  String? buildingNo;
   String? cf1;
   String? cf2;
   String? cf3;
@@ -47,31 +47,31 @@ class Data {
   String? city;
   String? coType;
   String? company;
-  Null? companyEn;
+  dynamic companyEn;
   String? country;
   String? crNo;
   String? customerGroupId;
   String? customerGroupName;
-  Null? depositAmount;
-  Null? districtName;
+  dynamic depositAmount;
+  dynamic districtName;
   String? email;
   String? groupId;
   String? groupName;
-  Null? gstNo;
+  dynamic gstNo;
   String? hideInPos;
   String? id;
-  Null? invoiceFooter;
+  dynamic invoiceFooter;
   String? logo;
   String? logoImageUrl;
   String? name;
-  Null? nameEn;
+  dynamic nameEn;
   String? paymentTerm;
   String? phone;
   String? postalCode;
   String? priceGroupId;
   String? priceGroupName;
   String? state;
-  Null? streetName;
+  dynamic streetName;
   String? vatNo;
 
   Data(

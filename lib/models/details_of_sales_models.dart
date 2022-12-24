@@ -1,12 +1,12 @@
-class InvoiceModel {
+class AllInvoicesDetails {
   List<InvoiceData>? invoiceData;
   int? limit;
   int? start;
   int? total;
 
-  InvoiceModel({this.invoiceData, this.limit, this.start, this.total});
+  AllInvoicesDetails({this.invoiceData, this.limit, this.start, this.total});
 
-  InvoiceModel.fromJson(Map<String, dynamic> json) {
+  AllInvoicesDetails.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
       invoiceData = <InvoiceData>[];
       json['data'].forEach((v) {
@@ -74,13 +74,13 @@ class InvoiceData {
         items!.add(new Items.fromJson(v));
       });
     }
-    if (json['payments'] != null) {
+    if (json['payments'] != null&&json['payments'] != false) {
       payments = <Payments>[];
       json['payments'].forEach((v) {
         payments!.add(new Payments.fromJson(v));
       });
     }
-    if (json['Measurement'] != null) {
+    if (json['Measurement'] != null&&json['Measurement'] != false) {
       measurement = <Measurement>[];
       json['Measurement'].forEach((v) {
         measurement!.add(new Measurement.fromJson(v));
@@ -102,10 +102,10 @@ class InvoiceData {
     if (this.items != null) {
       data['items'] = this.items!.map((v) => v.toJson()).toList();
     }
-    if (this.payments != null) {
+    if (this.payments != null&&this.payments!=false) {
       data['payments'] = this.payments!.map((v) => v.toJson()).toList();
     }
-    if (this.measurement != null) {
+    if (this.measurement != null&&this.measurement!=false) {
       data['Measurement'] = this.measurement!.map((v) => v.toJson()).toList();
     }
     return data;
@@ -119,7 +119,7 @@ class Items {
   String? productCode;
   String? productName;
   String? productType;
-  Null? optionId;
+  dynamic optionId;
   String? netUnitPrice;
   String? unitPrice;
   String? quantity;
@@ -132,15 +132,15 @@ class Items {
   String? subtotal;
   String? serialNo;
   String? realUnitPrice;
-  Null? saleItemId;
+  dynamic saleItemId;
   String? productUnitId;
   String? productUnitCode;
   String? unitQuantity;
-  Null? comment;
-  Null? gst;
-  Null? cgst;
-  Null? sgst;
-  Null? igst;
+  dynamic comment;
+  dynamic gst;
+  dynamic cgst;
+  dynamic sgst;
+  dynamic igst;
   String? itemCostValue;
   String? avgCost;
   String? overselling;
@@ -261,10 +261,10 @@ class Payments {
   String? id;
   String? date;
   String? saleId;
-  Null? returnId;
-  Null? purchaseId;
+  dynamic returnId;
+  dynamic purchaseId;
   String? referenceNo;
-  Null? transactionId;
+  dynamic transactionId;
   String? paidBy;
   String? chequeNo;
   String? ccNo;
@@ -273,18 +273,18 @@ class Payments {
   String? ccYear;
   String? ccType;
   String? amount;
-  Null? currency;
+  dynamic currency;
   String? createdBy;
-  Null? attachment;
+  dynamic attachment;
   String? type;
   String? note;
   String? posPaid;
   String? posBalance;
-  Null? approvalCode;
+  dynamic approvalCode;
   String? currencyRate;
   String? glPaymentMethodId;
   String? commercialDiscount;
-  Null? commercialDiscountId;
+  dynamic commercialDiscountId;
 
   Payments(
       {this.id,
@@ -423,7 +423,7 @@ class Measurement {
   String? modelTypeID;
   String? pocketTypeID;
   String? fillingTypeID;
-  Null? zipperTypeID;
+  dynamic zipperTypeID;
   String? note;
 
   Measurement(

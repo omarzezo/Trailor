@@ -306,7 +306,7 @@ class Payment {
   Null? ccType;
   int? createdBy;
   String? type;
-  Null? note;
+  String? note;
   double? posPaid;
   double? posBalance;
 

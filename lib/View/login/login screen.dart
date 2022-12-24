@@ -15,6 +15,7 @@ import 'package:omar/View/home/home.dart';
 import 'package:omar/View/responsive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../Controller/End Point.dart';
 import '../../models/TrailorListsResponse.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -37,7 +38,8 @@ class _LoginScreenState extends State<LoginScreen> {
     // TODO: implement initState
     super.initState();
     // goNext();
-    userNameController.text="k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko";
+    userNameController.text="$APIKEY1";
+    // userNameController.text="wggko8so4gs0wks0g000s4kk00o0o0wgwco0sww4";
     passwordController.text="w_1";
   }
   @override
