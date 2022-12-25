@@ -26,11 +26,12 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
     goNext()async{
-      var email=CacheHelper.getData(key: 'email');
-      var password= CacheHelper.getData(key: 'password');
-      APIKEY1=CacheHelper.getData(key: 'email')??"k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko";
+
       bool isLogged=   await CacheHelper.isUserLoggedIn();
       if(isLogged){
+        var email=CacheHelper.getData(key: 'email');
+        var password= CacheHelper.getData(key: 'password');
+        APIKEY1=CacheHelper.getData(key: 'email');
         await LoginCubit.get(context).login(email: email, password: password);
         Navigator.pushReplacementNamed(context, StartScreen.routeName);
       }else{

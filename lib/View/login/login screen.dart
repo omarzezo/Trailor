@@ -235,12 +235,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () async {
                         LoadingPage(context).show();
                         TrailorListsResponse model = await LoginCubit.get(context).login(email: userNameController.text, password: passwordController.text);
-                        CacheHelper.saveData(
-                            key: 'email',
-                            value: userNameController.text);
-                        CacheHelper.saveData(
-                            key: 'password',
-                            value: passwordController.text);
+                        bool isLogged=   await CacheHelper.isUserLoggedIn();
+
+                        if(!isLogged){
+                          CacheHelper.saveData(
+                              key: 'email',
+                              value: userNameController.text);
+                          CacheHelper.saveData(
+                              key: 'password',
+                              value: passwordController.text);
+                        }
+
                         CacheHelper.setIsUserLoggedIn();
                         print("model>>"+model.toString());
                         String jsonUser = jsonEncode(model);
