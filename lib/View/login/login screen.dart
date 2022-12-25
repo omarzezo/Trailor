@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/Controller/local/shared_pref.dart';
+import 'package:omar/SharedPreferencesHelper.dart';
 import 'package:omar/View/sewing%20invoice%20screen/start_screen.dart';
 import 'package:omar/constant/LoadingPage.dart';
 import 'package:omar/constant/appstrings.dart';
@@ -247,14 +248,19 @@ class _LoginScreenState extends State<LoginScreen> {
                         }
 
                         CacheHelper.setIsUserLoggedIn();
-                        print("model>>"+model.toString());
+                        // print("model>>"+model.toString());
                         String jsonUser = jsonEncode(model);
                         final prefs = await SharedPreferences.getInstance();
                         await prefs.setString('json', jsonUser).then((value) {
                           if(value){
-                            LoadingPage(context).close();
-                            // Navigator.push(context,MaterialPageRoute(builder: (context) => const HomeScreen()));
-                            Navigator.push(context,MaterialPageRoute(builder: (context) => const StartScreen()));
+                            SharedPreferencesHelper.setApiKey(userNameController.text).then((value) {
+                              LoginCubit()..getPillsDetails().then((value){
+                                LoadingPage(context).close();
+                                // Navigator.push(context,MaterialPageRoute(builder: (context) => const HomeScreen()));
+                                Navigator.push(context,MaterialPageRoute(builder: (context) => const StartScreen()));
+                              });
+
+                            });
                           }
                         });
                       },

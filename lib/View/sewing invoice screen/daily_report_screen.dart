@@ -34,95 +34,93 @@ class DailyReportScreen extends StatelessWidget {
 
         })
         .toList();
-    return Directionality(
-        textDirection: p1.TextDirection.rtl,
-        child: BlocConsumer<LoginCubit, LoginState>(
-          listener: (context, state) {},
-          builder: (context, state) {
-            return Scaffold(
-              appBar: AppBar(
-                // toolbarHeight: 100,
-                backgroundColor: Colors.purple,
-                title: Text(AppStrings.dailyReports.tr(),
-                    style: GoogleFonts.notoKufiArabic(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18)),
-                centerTitle: true,
+    return BlocConsumer<LoginCubit, LoginState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            // toolbarHeight: 100,
+            backgroundColor: Colors.purple,
+            title: Text(AppStrings.dailyReports.tr(),
+                style: GoogleFonts.notoKufiArabic(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18)),
+            centerTitle: true,
+          ),
+          body: SafeArea(
+            child: ResponsiveVisibility(
+
+              replacement: SingleChildScrollView(
+                child: Padding(
+                  padding:
+                  EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+
+                  child: Column(
+                    children: [
+                      if(pillsDetails.data!.isNotEmpty)
+                        ListView.separated(
+                            shrinkWrap: true,
+                            // scrollDirection: Axis.horizontal,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) => ReportItem( dateNow:p.DateFormat('yyyy-MM-dd HH:mm',"en")
+                                .parse(DateTime.now().toString())
+                                .toString().split(" ").first ,date: pillsDetails.data![index].date??"", deleverDate: pillsDetails.data![index].deliveryDate??"", customerName: pillsDetails.data![index].customer??"", refrenceiD: pillsDetails.data![index].referenceNo??""),
+                            separatorBuilder: (context, index) => SizedBox(
+                              height: 20,
+                            ),
+                            itemCount: pillsDetails.data!.length),
+                      if(pillsDetails.data==null||pillsDetails.data!.isEmpty)
+                        Center(child: Text(AppStrings.Therearenoneworderstoday.tr(),style: GoogleFonts.notoKufiArabic(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 40)))
+                    ],
+                  ),
+                ),
               ),
-              body: SafeArea(
-                child: ResponsiveVisibility(
+              hiddenWhen: [Condition.largerThan(name: MOBILE)],
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding:
+                    EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
 
-                  replacement: SingleChildScrollView(
-                    child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
-
+                    child: Container(
+                      height: MediaQuery.of(context).size.height,
+                      width: 1500,
                       child: Column(
                         children: [
                           if(pillsDetails.data!.isNotEmpty)
                             ListView.separated(
-                              shrinkWrap: true,
-                              // scrollDirection: Axis.horizontal,
-                              physics: NeverScrollableScrollPhysics(),
-                              itemBuilder: (context, index) => ReportItem( dateNow:p.DateFormat('yyyy-MM-dd HH:mm',"en")
-                                  .parse(DateTime.now().toString())
-                                  .toString().split(" ").first ,date: pillsDetails.data![index].date??"", deleverDate: pillsDetails.data![index].deliveryDate??"", customerName: pillsDetails.data![index].customer??"", refrenceiD: pillsDetails.data![index].referenceNo??""),
-                              separatorBuilder: (context, index) => SizedBox(
-                                    height: 20,
-                                  ),
-                              itemCount: pillsDetails.data!.length),
+                                shrinkWrap: true,
+                                // scrollDirection: Axis.horizontal,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemBuilder: (context, index) => ReportItem( dateNow:p.DateFormat('yyyy-MM-dd HH:mm',"en")
+                                    .parse(DateTime.now().toString())
+                                    .toString().split(" ").first ,date: pillsDetails.data![index].date??"", deleverDate: pillsDetails.data![index].deliveryDate??"", customerName: pillsDetails.data![index].customer??"", refrenceiD: pillsDetails.data![index].referenceNo??""),
+                                separatorBuilder: (context, index) => SizedBox(
+                                  height: 20,
+                                ),
+                                itemCount: pillsDetails.data!.length),
                           if(pillsDetails.data==null||pillsDetails.data!.isEmpty)
-                          Center(child: Text(AppStrings.Therearenoneworderstoday.tr(),style: GoogleFonts.notoKufiArabic(
-                          color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 40)))
+                            Center(child: Text(AppStrings.Therearenoneworderstoday.tr(),style: GoogleFonts.notoKufiArabic(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 40)))
                         ],
                       ),
                     ),
                   ),
-                  hiddenWhen: [Condition.largerThan(name: MOBILE)],
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: SingleChildScrollView(
-                    child: Padding(
-                      padding:
-                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
-
-                      child: Container(
-                        height: MediaQuery.of(context).size.height,
-                        width: 1500,
-                        child: Column(
-                          children: [
-                            if(pillsDetails.data!.isNotEmpty)
-                              ListView.separated(
-                                  shrinkWrap: true,
-                                  // scrollDirection: Axis.horizontal,
-                                  physics: NeverScrollableScrollPhysics(),
-                                  itemBuilder: (context, index) => ReportItem( dateNow:p.DateFormat('yyyy-MM-dd HH:mm',"en")
-                                      .parse(DateTime.now().toString())
-                                      .toString().split(" ").first ,date: pillsDetails.data![index].date??"", deleverDate: pillsDetails.data![index].deliveryDate??"", customerName: pillsDetails.data![index].customer??"", refrenceiD: pillsDetails.data![index].referenceNo??""),
-                                  separatorBuilder: (context, index) => SizedBox(
-                                    height: 20,
-                                  ),
-                                  itemCount: pillsDetails.data!.length),
-                            if(pillsDetails.data==null||pillsDetails.data!.isEmpty)
-                              Center(child: Text(AppStrings.Therearenoneworderstoday.tr(),style: GoogleFonts.notoKufiArabic(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 40)))
-                          ],
-                        ),
-                      ),
-                    ),
-                ),
-                  ),
-
                 ),
               ),
-            );
-          },
-        ));
+
+            ),
+          ),
+        );
+      },
+    );
   }
 }
 

@@ -127,11 +127,13 @@ class StartScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
 
                         children: [
-                          Text(AppStrings.addinvoice.tr(), style: GoogleFonts.notoKufiArabic(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30,
-                          )),
+                          Flexible(
+                            child: Text(AppStrings.addinvoice.tr(), style: GoogleFonts.notoKufiArabic(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30,
+                            )),
+                          ),
                           const Icon(Icons.add_shopping_cart,size: 45,color: Colors.white,)
                         ],
                       )),

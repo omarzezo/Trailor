@@ -656,90 +656,88 @@ class SettingScreenState extends State<SettingScreen> {
               ),
             )));
 
-    return Directionality(
-        textDirection: p.TextDirection.rtl,
-        child: Scaffold(
-          appBar: AppBar(
-            // toolbarHeight: 100,
-            backgroundColor: Colors.purple,
-            title: Text(AppStrings.printersettings.tr(),style: GoogleFonts.notoKufiArabic(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 18)),
-            centerTitle: true,
-          ),
-          body: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  printerContainer,
-                  const SizedBox(height: 20,),
+    return Scaffold(
+      appBar: AppBar(
+        // toolbarHeight: 100,
+        backgroundColor: Colors.purple,
+        title: Text(AppStrings.printersettings.tr(),style: GoogleFonts.notoKufiArabic(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 18)),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              printerContainer,
+              const SizedBox(height: 20,),
+              Container(
+                height: 50,
+                margin: const EdgeInsets.fromLTRB(4,4,4,4),
+                decoration: BoxDecoration(
+                  border: Border.all(color: MyConstant().purpleColor),
+                  color: const Color(0xffffffff),
+                  borderRadius: const BorderRadius.all(
+                      Radius.circular(10.0) //                 <--- border radius here
+                  ),
+                ),
+                child: Row(children: [
                   Container(
-                    height: 50,
-                    margin: const EdgeInsets.fromLTRB(4,4,4,4),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: MyConstant().purpleColor),
-                      color: const Color(0xffffffff),
-                      borderRadius: const BorderRadius.all(
-                          Radius.circular(10.0) //                 <--- border radius here
-                      ),
-                    ),
-                    child: Row(children: [
-                      Container(
-                          padding:EdgeInsets.symmetric(horizontal: 20),
-                          child: Text(AppStrings.language.tr(),
-                              style: GoogleFonts.notoKufiArabic(
-                                  color: MyConstant().purpleColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18))),
-                      Spacer(),
+                      padding:EdgeInsets.symmetric(horizontal: 20),
+                      child: Text(AppStrings.language.tr(),
+                          style: GoogleFonts.notoKufiArabic(
+                              color: MyConstant().purpleColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18))),
+                  Spacer(),
 
-                      InkWell(
-                        onTap: ()  {
-                          LoginCubit.get(context).chaneLangeUage(context);
+                  InkWell(
+                    onTap: ()  {
+                      LoginCubit.get(context).chaneLangeUage(context);
 
-                        },
-                        child: Container(
-                            padding:EdgeInsets.symmetric(horizontal: 20),
-
-                            child: Text(AppStrings.translation.tr(),
-                                style: GoogleFonts.notoKufiArabic(
-                                    color: MyConstant().purpleColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18))),
-                      )
-                    ],),
-                  ),
-
-                  Align(
-                    alignment: Alignment.centerLeft,
+                    },
                     child: Container(
-                        child: OutlinedButton(
-                          style: ButtonStyle(
-                            backgroundColor:
-                            MaterialStateProperty.all(
-                                MyConstant().purpleColor),
-                          ),
-                          onPressed: () async {
-                            Navigator.pop(context);
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 14,right: 14),
-                            child: Text(AppStrings.Save.tr(),
-                                style: GoogleFonts.notoKufiArabic(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18)),
-                          ),
-                        )),
-                  ),
+                        padding:EdgeInsets.symmetric(horizontal: 20),
 
-                ],
+                        child: Text(AppStrings.translation.tr(),
+                            style: GoogleFonts.notoKufiArabic(
+                                color: MyConstant().purpleColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18))),
+                  )
+                ],),
               ),
-            ),
+
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                    child: OutlinedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                        MaterialStateProperty.all(
+                            MyConstant().purpleColor),
+                      ),
+                      onPressed: () async {
+                        Navigator.pop(context);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 14,right: 14),
+                        child: Text(AppStrings.Save.tr(),
+                            style: GoogleFonts.notoKufiArabic(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18)),
+                      ),
+                    )),
+              ),
+
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 
 

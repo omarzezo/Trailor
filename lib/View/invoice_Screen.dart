@@ -83,649 +83,644 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
       vatNo=element.vatNo!;
     }});
     Size size = MediaQuery.of(context).size;
-    return Directionality(
-      textDirection: p.TextDirection.rtl,
-      child: BlocConsumer<LoginCubit, LoginState>(
-  listener: (context, state) {
-    
-  },
-  builder: (context, state) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.purple,
-          title: Text(AppStrings.printer.tr(), style: GoogleFonts.notoKufiArabic(
-          color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)), centerTitle: true,),
-        body: (cubit.invoiceModel!=null)?  Center(
-          child: SingleChildScrollView(
+    return BlocConsumer<LoginCubit, LoginState>(
+      listener: (context, state) {
 
-               child:Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 20,),
-                  Screenshot(
-                    controller: screenshotController,
-                    child:getContent(size, context, cubit.invoiceModel!)
+      },
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            backgroundColor: Colors.purple,
+            title: Text(AppStrings.printer.tr(), style: GoogleFonts.notoKufiArabic(
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)), centerTitle: true,),
+          body: (cubit.invoiceModel!=null)?  Center(
+            child: SingleChildScrollView(
+
+                child:Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 20,),
+                    Screenshot(
+                        controller: screenshotController,
+                        child:getContent(size, context, cubit.invoiceModel!)
 
 
-                  ),
-                  ElevatedButton(
-                    child: Text(AppStrings.print.tr(),
-                        style: getStyle(color: Colors.white, fontSize: 16)
                     ),
-                    onPressed: () async{
-                      LoadingPage(context).show();
-                      widget.printerType=await SharedPreferencesHelper.getPrinterType();
-                      int printerSize  =(await SharedPreferencesHelper.getPageSize())!;
-                      if(widget.printerType==3){
-                        textSize=10;
-                        width=190;
-                      }else{
-                        textSize=20;
-                        width=420;
-                      }
-                      setState(() {});
-                      await screenshotController.capture(delay: const Duration(milliseconds: 10)).then((capturedImage) async {
-                        if( widget.printerType==1){
-                          LoadingPage(context).close();
-                          if(printerSize==80){
-                            printBluetooth80(capturedImage!);
-                          }else{
-                            printBluetooth58(capturedImage!);
-                          }
-                        }else if(widget.printerType==2){
-                          LoadingPage(context).close();
-                          if(printerSize==80){
-                            PrinterWiFi80(ipPrinter,capturedImage!);
-                          }else{
-                            PrinterWiFi58(ipPrinter,capturedImage!);
-                          }
-                        }else if(widget.printerType==3){
-                          LoadingPage(context).close();
-                          await SanmiPrint(capturedImage!);
-                          print("sonomi");
-                        }else if(widget.printerType==4){
-                          print("hhhhhhhhhhhhhhhhhhhh");
-                          LoadingPage(context).close();
-                          if(printerSize==80){
-                            testPrint(80,ipPrinter,capturedImage!);
-                          }else{
-                            testPrint(58,ipPrinter,capturedImage!);
-                          }
+                    ElevatedButton(
+                      child: Text(AppStrings.print.tr(),
+                          style: getStyle(color: Colors.white, fontSize: 16)
+                      ),
+                      onPressed: () async{
+                        LoadingPage(context).show();
+                        widget.printerType=await SharedPreferencesHelper.getPrinterType();
+                        int printerSize  =(await SharedPreferencesHelper.getPageSize())!;
+                        if(widget.printerType==3){
+                          textSize=10;
+                          width=190;
+                        }else{
+                          textSize=20;
+                          width=420;
                         }
+                        setState(() {});
+                        await screenshotController.capture(delay: const Duration(milliseconds: 10)).then((capturedImage) async {
+                          if( widget.printerType==1){
+                            LoadingPage(context).close();
+                            if(printerSize==80){
+                              printBluetooth80(capturedImage!);
+                            }else{
+                              printBluetooth58(capturedImage!);
+                            }
+                          }else if(widget.printerType==2){
+                            LoadingPage(context).close();
+                            if(printerSize==80){
+                              PrinterWiFi80(ipPrinter,capturedImage!);
+                            }else{
+                              PrinterWiFi58(ipPrinter,capturedImage!);
+                            }
+                          }else if(widget.printerType==3){
+                            LoadingPage(context).close();
+                            await SanmiPrint(capturedImage!);
+                            print("sonomi");
+                          }else if(widget.printerType==4){
+                            print("hhhhhhhhhhhhhhhhhhhh");
+                            LoadingPage(context).close();
+                            if(printerSize==80){
+                              testPrint(80,ipPrinter,capturedImage!);
+                            }else{
+                              testPrint(58,ipPrinter,capturedImage!);
+                            }
+                          }
 
-                      }).catchError((onError) {
-                        print(onError);
-                      });
-                    },
-                  ),
-                ],
-              )),
-        ):(cubit.whatYouPay.text.isNotEmpty)?
-        Center(
-          child: SingleChildScrollView(
+                        }).catchError((onError) {
+                          print(onError);
+                        });
+                      },
+                    ),
+                  ],
+                )),
+          ):(cubit.whatYouPay.text.isNotEmpty)?
+          Center(
+            child: SingleChildScrollView(
 
-              child:Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 20,),
-                  Screenshot(
-                      controller: screenshotController,
-                      // child:getContent(size, context, cubit.invoiceModel!)
-                      child:Container(
-                          width: width,
-                          color: Colors.white,
-                          child: Directionality(
-                              textDirection: p.TextDirection.ltr,
-                              child:Column(
-                                children: [
+                child:Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 20,),
+                    Screenshot(
+                        controller: screenshotController,
+                        // child:getContent(size, context, cubit.invoiceModel!)
+                        child:Container(
+                            width: width,
+                            color: Colors.white,
+                            child: Column(
+                              children: [
 
-                                  Container(
-                                      alignment: Alignment.center,
-                                      width: double.infinity,
-                                      child:Column(
-                                          children: [
-
-                                            Text(AppStrings.Tailoringinnovationcenter.tr(), style: getStyle(color: MyConstant().purpleColor, fontSize: textSize)
-                                            ),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [Text(AppStrings.Simplifiedtaxinvoice.tr(), style: getStyle(color: Colors.black, fontSize: textSize)
-                                              )],
-                                            ),
-                                            const SizedBox(height: 10,),
-
-                                            Container(
-                                              width: double.infinity,
-                                              alignment: Alignment.center,
-                                              decoration: BoxDecoration(
-                                                color: Colors.grey.shade300,
-                                              ),
-                                              padding: const EdgeInsets.only(top: 3,bottom: 3),
-                                              child:Text(AppStrings.waadcompany.tr(), style: getStyle(color: Colors.black, fontSize: textSize)),),
-
-                                            const SizedBox(height: 10,),
-                                          ])),
-                                  Container(
-                                      alignment: Alignment.center,
-
-                                      width: double.infinity,
-                                      child:Column(
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                Container(
-                                                    alignment: Alignment.centerLeft,
-                                                    child:  Text(
-                                                      "Phone",
-                                                      style: getStyle(color: Colors.black, fontSize: textSize),
-                                                    )),  Container(
-                                                    alignment: Alignment.center,
-                                                    child:Text(
-                                                      "961751515151",
-                                                      style: getStyle(color: Colors.black, fontSize: textSize),
-                                                    )),  Container(
-                                                    alignment: Alignment.centerRight,
-                                                    child: Text(
-                                                      "الهاتف",textAlign: TextAlign.center,
-                                                      style: getStyle(color: Colors.black, fontSize: textSize),
-                                                    )),
-                                              ],),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                Container(
-                                                    alignment: Alignment.centerLeft,
-                                                    child:  Text(
-                                                      "Vat No",
-                                                      style: getStyle(color: Colors.black, fontSize: textSize),
-                                                    )),  Container(
-                                                    alignment: Alignment.center,
-                                                    child:Text(
-                                                
-                                                        
-                                                        vatNo,textAlign: TextAlign.center,
-                                                        style: getStyle(color: Colors.black, fontSize: textSize-1)
-                                                    )),  Container(
-                                                    alignment: Alignment.centerRight,
-                                                    child: Text(
-                                                      "الرقم الضريبي",textAlign: TextAlign.right,
-                                                      style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                                    )),
-
-                                              ],), const SizedBox(
-                                              height: 5,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                Container(
-                                                    alignment: Alignment.centerLeft,
-                                                    child:  Text(
-                                                      "CR No",
-                                                      style:getStyle(color: Colors.black, fontSize: textSize-1),
-                                                    )),
-                                                Container(
-                                                    alignment: Alignment.center,
-                                                    child:Text(
-                                                      cubit.allInvoices[ cubit.allInvoices.length-1].referenceNo!,textAlign: TextAlign.center,
-                                                      // invoiceModel!.invoiceData![0].referenceNo!,textAlign: TextAlign.center,
-                                                      style:  getStyle(color: Colors.black, fontSize: textSize-1),
-                                                    )),
-                                                Container(
-                                                    alignment: Alignment.centerRight,
-                                                    child: Text(
-                                                      "السجل التجاري",textAlign: TextAlign.right,
-                                                      style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                                    )),
-
-                                              ],),
-
-
-                                          ])),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Container(
-                                      alignment: Alignment.center,
-                                      width: width,
-                                      child:Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                Container(
-                                                    alignment: Alignment.centerLeft,
-                                                    child:  Text(
-                                                      "Date",
-                                                      style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                                    )),  Container(
-                                                    alignment: Alignment.center,
-                                                    child:Text(
-                                                      cubit.allInvoices[ cubit.allInvoices.length-1].date!.split(" ").first,textAlign: TextAlign.center,
-
-                                                      // invoiceModel!.invoiceData![0].date!,textAlign: TextAlign.center,
-                                                      style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                                    )),  Container(
-                                                    alignment: Alignment.centerRight,
-                                                    child: Text(
-                                                        "التاريخ",textAlign: TextAlign.center,
-                                                        style: getStyle(color: Colors.black, fontSize: textSize-1)
-                                                    )),
-
-                                              ],),
-                                            const SizedBox(
-                                              height: 5,
-                                            ),
-
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                Container(
-                                                    alignment: Alignment.centerLeft,
-                                                    child:  Text(
-                                                      "Reference",
-                                                      style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                                    )),  Container(
-                                                    alignment: Alignment.center,
-                                                    child:Text(
-                                                      cubit.allInvoices[ cubit.allInvoices.length-1].referenceNo!,textAlign: TextAlign.center,
-
-                                                      // invoiceModel!.invoiceData![0].referenceNo!,textAlign: TextAlign.center,
-                                                      style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                                    )),  Container(
-                                                    alignment: Alignment.centerRight,
-                                                    child: Text(
-                                                      "المرجع",textAlign: TextAlign.center,
-                                                      style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                                    )),
-
-                                              ],),
-
-                                            const SizedBox(
-                                              height: 5,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                Container(
-                                                    alignment: Alignment.centerLeft,
-                                                    child:  Text(
-                                                      "Seller",
-                                                      style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                                    )),  Container(
-                                                    alignment: Alignment.center,
-                                                    child:Text(
-                                                      cubit.allInvoices[ cubit.allInvoices.length-1].customer!,textAlign: TextAlign.center,
-
-                                                      // invoiceModel!.invoiceData![0].customer!,textAlign: TextAlign.center,
-                                                      style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                                    )),  Container(
-                                                    alignment: Alignment.centerRight,
-                                                    child: Text(
-                                                      "البائع",textAlign: TextAlign.center,
-                                                      style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                                    )),
-
-                                              ],),
-
-                                            const SizedBox(
-                                              height: 5,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                Container(
-                                                    alignment: Alignment.centerLeft,
-                                                    child:  Text(
-                                                      "Customer",
-                                                      style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                                    )),  Container(
-                                                    alignment: Alignment.center,
-                                                    child:Text(
-                                                      cubit.allInvoices[ cubit.allInvoices.length-1].customer!,textAlign: TextAlign.center,
-
-                                                      // invoiceModel!.invoiceData![0].customer!,textAlign: TextAlign.center,
-                                                      style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                                    )),  Container(
-                                                    alignment: Alignment.centerRight,
-                                                    child: Text(
-                                                      "العميل",textAlign: TextAlign.center,
-                                                      style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                                    )),
-
-                                              ],),
-                                            const SizedBox(
-                                              height: 5,
-                                            ),
-
-                                          ])),          const Divider(
-                                    color: Colors.black,
-                                  ),
-                                  Container(
+                                Container(
                                     alignment: Alignment.center,
-                                    height: 20,
+                                    width: double.infinity,
+                                    child:Column(
+                                        children: [
+
+                                          Text(AppStrings.Tailoringinnovationcenter.tr(), style: getStyle(color: MyConstant().purpleColor, fontSize: textSize)
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [Text(AppStrings.Simplifiedtaxinvoice.tr(), style: getStyle(color: Colors.black, fontSize: textSize)
+                                            )],
+                                          ),
+                                          const SizedBox(height: 10,),
+
+                                          Container(
+                                            width: double.infinity,
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey.shade300,
+                                            ),
+                                            padding: const EdgeInsets.only(top: 3,bottom: 3),
+                                            child:Text(AppStrings.waadcompany.tr(), style: getStyle(color: Colors.black, fontSize: textSize)),),
+
+                                          const SizedBox(height: 10,),
+                                        ])),
+                                Container(
+                                    alignment: Alignment.center,
+
+                                    width: double.infinity,
+                                    child:Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Container(
+                                                  alignment: Alignment.centerLeft,
+                                                  child:  Text(
+                                                    "Phone",
+                                                    style: getStyle(color: Colors.black, fontSize: textSize),
+                                                  )),  Container(
+                                                  alignment: Alignment.center,
+                                                  child:Text(
+                                                    "961751515151",
+                                                    style: getStyle(color: Colors.black, fontSize: textSize),
+                                                  )),  Container(
+                                                  alignment: Alignment.centerRight,
+                                                  child: Text(
+                                                    "الهاتف",textAlign: TextAlign.center,
+                                                    style: getStyle(color: Colors.black, fontSize: textSize),
+                                                  )),
+                                            ],),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Container(
+                                                  alignment: Alignment.centerLeft,
+                                                  child:  Text(
+                                                    "Vat No",
+                                                    style: getStyle(color: Colors.black, fontSize: textSize),
+                                                  )),  Container(
+                                                  alignment: Alignment.center,
+                                                  child:Text(
+
+
+                                                      vatNo,textAlign: TextAlign.center,
+                                                      style: getStyle(color: Colors.black, fontSize: textSize-1)
+                                                  )),  Container(
+                                                  alignment: Alignment.centerRight,
+                                                  child: Text(
+                                                    "الرقم الضريبي",textAlign: TextAlign.right,
+                                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                                  )),
+
+                                            ],), const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Container(
+                                                  alignment: Alignment.centerLeft,
+                                                  child:  Text(
+                                                    "CR No",
+                                                    style:getStyle(color: Colors.black, fontSize: textSize-1),
+                                                  )),
+                                              Container(
+                                                  alignment: Alignment.center,
+                                                  child:Text(
+                                                    cubit.allInvoices[ cubit.allInvoices.length-1].referenceNo!,textAlign: TextAlign.center,
+                                                    // invoiceModel!.invoiceData![0].referenceNo!,textAlign: TextAlign.center,
+                                                    style:  getStyle(color: Colors.black, fontSize: textSize-1),
+                                                  )),
+                                              Container(
+                                                  alignment: Alignment.centerRight,
+                                                  child: Text(
+                                                    "السجل التجاري",textAlign: TextAlign.right,
+                                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                                  )),
+
+                                            ],),
+
+
+                                        ])),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Container(
+                                    alignment: Alignment.center,
                                     width: width,
-                                    child:
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [ Text(
-                                        "Invoice No",
+                                    child:Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Container(
+                                                  alignment: Alignment.centerLeft,
+                                                  child:  Text(
+                                                    "Date",
+                                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                                  )),  Container(
+                                                  alignment: Alignment.center,
+                                                  child:Text(
+                                                    cubit.allInvoices[ cubit.allInvoices.length-1].date!.split(" ").first,textAlign: TextAlign.center,
+
+                                                    // invoiceModel!.invoiceData![0].date!,textAlign: TextAlign.center,
+                                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                                  )),  Container(
+                                                  alignment: Alignment.centerRight,
+                                                  child: Text(
+                                                      "التاريخ",textAlign: TextAlign.center,
+                                                      style: getStyle(color: Colors.black, fontSize: textSize-1)
+                                                  )),
+
+                                            ],),
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Container(
+                                                  alignment: Alignment.centerLeft,
+                                                  child:  Text(
+                                                    "Reference",
+                                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                                  )),  Container(
+                                                  alignment: Alignment.center,
+                                                  child:Text(
+                                                    cubit.allInvoices[ cubit.allInvoices.length-1].referenceNo!,textAlign: TextAlign.center,
+
+                                                    // invoiceModel!.invoiceData![0].referenceNo!,textAlign: TextAlign.center,
+                                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                                  )),  Container(
+                                                  alignment: Alignment.centerRight,
+                                                  child: Text(
+                                                    "المرجع",textAlign: TextAlign.center,
+                                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                                  )),
+
+                                            ],),
+
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Container(
+                                                  alignment: Alignment.centerLeft,
+                                                  child:  Text(
+                                                    "Seller",
+                                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                                  )),  Container(
+                                                  alignment: Alignment.center,
+                                                  child:Text(
+                                                    cubit.allInvoices[ cubit.allInvoices.length-1].customer!,textAlign: TextAlign.center,
+
+                                                    // invoiceModel!.invoiceData![0].customer!,textAlign: TextAlign.center,
+                                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                                  )),  Container(
+                                                  alignment: Alignment.centerRight,
+                                                  child: Text(
+                                                    "البائع",textAlign: TextAlign.center,
+                                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                                  )),
+
+                                            ],),
+
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Container(
+                                                  alignment: Alignment.centerLeft,
+                                                  child:  Text(
+                                                    "Customer",
+                                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                                  )),  Container(
+                                                  alignment: Alignment.center,
+                                                  child:Text(
+                                                    cubit.allInvoices[ cubit.allInvoices.length-1].customer!,textAlign: TextAlign.center,
+
+                                                    // invoiceModel!.invoiceData![0].customer!,textAlign: TextAlign.center,
+                                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                                  )),  Container(
+                                                  alignment: Alignment.centerRight,
+                                                  child: Text(
+                                                    "العميل",textAlign: TextAlign.center,
+                                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                                  )),
+
+                                            ],),
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+
+                                        ])),          const Divider(
+                                  color: Colors.black,
+                                ),
+                                Container(
+                                  alignment: Alignment.center,
+                                  height: 20,
+                                  width: width,
+                                  child:
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [ Text(
+                                      "Invoice No",
+                                      style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                    ),
+                                      Text(
+                                        cubit.allInvoices[ cubit.allInvoices.length-1].id!,
+
+                                        // invoiceModel!.invoiceData![0].id!,
+                                        style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                      ),  Text(
+                                        "رقم الفاتورة",
                                         style: getStyle(color: Colors.black, fontSize: textSize-1),
                                       ),
-                                        Text(
-                                          cubit.allInvoices[ cubit.allInvoices.length-1].id!,
-
-                                          // invoiceModel!.invoiceData![0].id!,
-                                          style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                        ),  Text(
-                                          "رقم الفاتورة",
-                                          style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                        ),
-                                      ],),
-                                  ),
-                                  const SizedBox(height:5,),
-                                  SizedBox(
-                                    // height: 30,
-                                      width: width,
-                                      child:Table(
-                                          border: TableBorder.all(),
-                                          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                                          children: <TableRow>[
-                                            TableRow(
-                                                decoration: const BoxDecoration(
-                                                  color: Colors.white,
-                                                ),
-                                                children: <Widget>[
-                                                  Container(
-                                                    // height: 35,
-                                                      alignment: Alignment.centerLeft,
-                                                      margin: const EdgeInsets.only(top: 4,left: 4),
-                                                      child: Column(
-                                                        children:  [
-                                                          Text(
-                                                            "Description",
-                                                            textAlign: TextAlign.left,
-                                                            style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                                          ),
-                                                          Text(
-                                                            cubit.allInvoices[ cubit.allInvoices.length-1].items![0].productName!,textAlign: TextAlign.left,
-
-                                                            // invoiceModel!.invoiceData![0].items![0].productName!,
-                                                            // textAlign: TextAlign.left,
-                                                            style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                                          ),
-
-                                                        ],)),
-                                                  Container(
-                                                    // height: 35,
+                                    ],),
+                                ),
+                                const SizedBox(height:5,),
+                                SizedBox(
+                                  // height: 30,
+                                    width: width,
+                                    child:Table(
+                                        border: TableBorder.all(),
+                                        defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                                        children: <TableRow>[
+                                          TableRow(
+                                              decoration: const BoxDecoration(
+                                                color: Colors.white,
+                                              ),
+                                              children: <Widget>[
+                                                Container(
+                                                  // height: 35,
                                                     alignment: Alignment.centerLeft,
                                                     margin: const EdgeInsets.only(top: 4,left: 4),
                                                     child: Column(
                                                       children:  [
                                                         Text(
-                                                          "QTY   Price   Total",
+                                                          "Description",
+                                                          textAlign: TextAlign.left,
                                                           style: getStyle(color: Colors.black, fontSize: textSize-1),
                                                         ),
                                                         Text(
-                                                          "الاجمالي  سعر  الكمية",
+                                                          cubit.allInvoices[ cubit.allInvoices.length-1].items![0].productName!,textAlign: TextAlign.left,
+
+                                                          // invoiceModel!.invoiceData![0].items![0].productName!,
+                                                          // textAlign: TextAlign.left,
                                                           style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                                        ),],),
+                                                        ),
 
-                                                  )])])),
+                                                      ],)),
+                                                Container(
+                                                  // height: 35,
+                                                  alignment: Alignment.centerLeft,
+                                                  margin: const EdgeInsets.only(top: 4,left: 4),
+                                                  child: Column(
+                                                    children:  [
+                                                      Text(
+                                                        "QTY   Price   Total",
+                                                        style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                                      ),
+                                                      Text(
+                                                        "الاجمالي  سعر  الكمية",
+                                                        style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                                      ),],),
 
-                                  SizedBox(
-                                      width: width,
-                                      child:  Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                              alignment: Alignment.centerLeft,
-                                              child: Text(
-                                                "Total",
+                                                )])])),
+
+                                SizedBox(
+                                    width: width,
+                                    child:  Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                              "Total",
+                                              textAlign: TextAlign.left,
+                                              style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                            )),
+                                        Container(
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              // cubit.allInvoices[ cubit.allInvoices.length-1].items![0].subtotal!,textAlign: TextAlign.center,
+                                              cubit.whatYouPay.text,
+                                              // invoiceModel!.invoiceData![0].items![0].subtotal!,
+                                              // textAlign: TextAlign.center,
+                                              style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                            )),
+                                        Container(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                              "الاجمالي",
+                                              textAlign: TextAlign.right,
+                                              style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                            )),
+                                      ],)),
+                                const SizedBox(height:3,),
+                                SizedBox(
+                                    width: width,
+                                    child:  Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                              "VAT",
+                                              textAlign: TextAlign.left,
+                                              style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                            )),
+                                        Container(
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              // cubit.allInvoices[ cubit.allInvoices.length-1].items![0].tax!,textAlign: TextAlign.center,
+                                              "${double.parse(cubit.tax.text).toStringAsFixed(0)} %",textAlign: TextAlign.center,
+
+                                              // invoiceModel!.invoiceData![0].items![0].tax!,
+                                              // textAlign: TextAlign.center,
+                                              style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                            )),
+                                        Container(
+                                            alignment: Alignment.centerRight,
+                                            child:  Text(
+                                              "الضريبة",
+                                              textAlign: TextAlign.right,
+                                              style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                            )),
+                                      ],)),
+                                SizedBox(
+                                    width: width,
+                                    child:  Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                            alignment: Alignment.centerLeft,
+                                            child:  Text(
+                                                "Discount",
                                                 textAlign: TextAlign.left,
-                                                style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                              )),
-                                          Container(
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                // cubit.allInvoices[ cubit.allInvoices.length-1].items![0].subtotal!,textAlign: TextAlign.center,
-                                                    cubit.whatYouPay.text,
+                                                style: getStyle(color: Colors.black, fontSize: textSize-1)
+                                            )),
+                                        Container(
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              // cubit.allInvoices[ cubit.allInvoices.length-1].items![0].discount!=null? cubit.allInvoices[ cubit.allInvoices.length-1].items![0].discount!:"0",textAlign: TextAlign.center,
+                                                "${double.parse(cubit.discount.text).toStringAsFixed(0)} %",textAlign: TextAlign.center,
+
+                                                // invoiceModel!.invoiceData![0].items![0].discount!=null?invoiceModel!.invoiceData![0].items![0].discount!:"15",
+                                                // textAlign: TextAlign.center,
+                                                style:getStyle(color: Colors.black, fontSize: textSize-1)
+                                            )),
+                                        Container(
+                                            alignment: Alignment.centerRight,
+                                            child:   Text(
+                                                "الخصم",
+                                                textAlign: TextAlign.right,
+                                                style: getStyle(color: Colors.black, fontSize: textSize-1)
+                                            )),
+                                      ],)),
+                                const SizedBox(height:3,),
+                                SizedBox(
+                                    width: width,
+                                    child:  Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                                "Grand Total",
+                                                textAlign: TextAlign.left,
+                                                style: getStyle(color: Colors.black, fontSize: textSize-1)
+                                            )),
+                                        Container(
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              // cubit.allInvoices[ cubit.allInvoices.length-1].items![0].subtotal!,
+                                                double.parse(cubit.totalPrice.text).toStringAsFixed(0),
                                                 // invoiceModel!.invoiceData![0].items![0].subtotal!,
-                                                // textAlign: TextAlign.center,
-                                                style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                              )),
-                                          Container(
-                                              alignment: Alignment.centerRight,
-                                              child: Text(
-                                                "الاجمالي",
-                                                textAlign: TextAlign.right,
-                                                style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                              )),
-                                        ],)),
-                                  const SizedBox(height:3,),
-                                  SizedBox(
-                                      width: width,
-                                      child:  Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                              alignment: Alignment.centerLeft,
-                                              child: Text(
-                                                "VAT",
+                                                textAlign: TextAlign.center,
+                                                style: getStyle(color: Colors.black, fontSize: textSize-1)
+                                            )),
+                                        Container(
+                                            alignment: Alignment.centerRight,
+                                            child:  Text(
+                                              "المبلغ المطلوب",
+                                              textAlign: TextAlign.right,
+                                              style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                            )),
+                                      ],)),
+                                const SizedBox(height:3,),
+                                SizedBox(
+                                    width: width,
+                                    child:  Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                                "Paid",
                                                 textAlign: TextAlign.left,
-                                                style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                              )),
-                                          Container(
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                // cubit.allInvoices[ cubit.allInvoices.length-1].items![0].tax!,textAlign: TextAlign.center,
-                                                "${double.parse(cubit.tax.text).toStringAsFixed(0)} %",textAlign: TextAlign.center,
-
-                                                // invoiceModel!.invoiceData![0].items![0].tax!,
-                                                // textAlign: TextAlign.center,
-                                                style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                              )),
-                                          Container(
-                                              alignment: Alignment.centerRight,
-                                              child:  Text(
-                                                "الضريبة",
+                                                style: getStyle(color: Colors.black, fontSize: textSize-1)
+                                            )),
+                                        Container(
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              // cubit.allInvoices[ cubit.allInvoices.length-1].items![0].realUnitPrice!,
+                                                double.parse(cubit.cash.text).toStringAsFixed(0),
+                                                // invoiceModel!.invoiceData![0].items![0].realUnitPrice!,
+                                                textAlign: TextAlign.center,
+                                                style: getStyle(color: Colors.black, fontSize: textSize-1)
+                                            )),
+                                        Container(
+                                            alignment: Alignment.centerRight,
+                                            child:  Text(
+                                                "المبلغ المدفوع",
                                                 textAlign: TextAlign.right,
-                                                style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                              )),
-                                        ],)),
-                                  SizedBox(
-                                      width: width,
-                                      child:  Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                              alignment: Alignment.centerLeft,
-                                              child:  Text(
-                                                  "Discount",
-                                                  textAlign: TextAlign.left,
-                                                  style: getStyle(color: Colors.black, fontSize: textSize-1)
-                                              )),
-                                          Container(
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                  // cubit.allInvoices[ cubit.allInvoices.length-1].items![0].discount!=null? cubit.allInvoices[ cubit.allInvoices.length-1].items![0].discount!:"0",textAlign: TextAlign.center,
-                                                  "${double.parse(cubit.discount.text).toStringAsFixed(0)} %",textAlign: TextAlign.center,
+                                                style: getStyle(color: Colors.black, fontSize: textSize-1)
+                                            )),
+                                      ],)),
+                                const SizedBox(height:3,),
 
-                                                  // invoiceModel!.invoiceData![0].items![0].discount!=null?invoiceModel!.invoiceData![0].items![0].discount!:"15",
-                                                  // textAlign: TextAlign.center,
-                                                  style:getStyle(color: Colors.black, fontSize: textSize-1)
-                                              )),
-                                          Container(
-                                              alignment: Alignment.centerRight,
-                                              child:   Text(
-                                                  "الخصم",
-                                                  textAlign: TextAlign.right,
-                                                  style: getStyle(color: Colors.black, fontSize: textSize-1)
-                                              )),
-                                        ],)),
-                                  const SizedBox(height:3,),
-                                  SizedBox(
-                                      width: width,
-                                      child:  Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                              alignment: Alignment.centerLeft,
-                                              child: Text(
-                                                  "Grand Total",
-                                                  textAlign: TextAlign.left,
-                                                  style: getStyle(color: Colors.black, fontSize: textSize-1)
-                                              )),
-                                          Container(
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                  // cubit.allInvoices[ cubit.allInvoices.length-1].items![0].subtotal!,
-                                                  double.parse(cubit.totalPrice.text).toStringAsFixed(0),
-                                                  // invoiceModel!.invoiceData![0].items![0].subtotal!,
-                                                  textAlign: TextAlign.center,
-                                                  style: getStyle(color: Colors.black, fontSize: textSize-1)
-                                              )),
-                                          Container(
-                                              alignment: Alignment.centerRight,
-                                              child:  Text(
-                                                "المبلغ المطلوب",
+                                SizedBox(
+                                    width: width,
+                                    child:  Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                                "Payment Status",
+                                                textAlign: TextAlign.left,
+                                                style: getStyle(color: Colors.black, fontSize: textSize-1)
+                                            )),
+                                        Container(
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                                cubit.allInvoices[ cubit.allInvoices.length-1].saleStatus!,
+                                                // double.parse(cubit.delayMoney.text).toStringAsFixed(0),
+                                                // invoiceModel!.invoiceData![0].saleStatus!,
+                                                textAlign: TextAlign.center,
+                                                style: getStyle(color: Colors.black, fontSize: textSize)
+                                            )),
+                                        Container(
+                                            alignment: Alignment.centerRight,
+                                            child:  Text(
+                                                "حالة الدفع",
                                                 textAlign: TextAlign.right,
-                                                style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                              )),
-                                        ],)),
-                                  const SizedBox(height:3,),
-                                  SizedBox(
-                                      width: width,
-                                      child:  Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                              alignment: Alignment.centerLeft,
-                                              child: Text(
-                                                  "Paid",
-                                                  textAlign: TextAlign.left,
-                                                  style: getStyle(color: Colors.black, fontSize: textSize-1)
-                                              )),
-                                          Container(
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                  // cubit.allInvoices[ cubit.allInvoices.length-1].items![0].realUnitPrice!,
-                                                   double.parse(cubit.cash.text).toStringAsFixed(0),
-                                                  // invoiceModel!.invoiceData![0].items![0].realUnitPrice!,
-                                                  textAlign: TextAlign.center,
-                                                  style: getStyle(color: Colors.black, fontSize: textSize-1)
-                                              )),
-                                          Container(
-                                              alignment: Alignment.centerRight,
-                                              child:  Text(
-                                                  "المبلغ المدفوع",
-                                                  textAlign: TextAlign.right,
-                                                  style: getStyle(color: Colors.black, fontSize: textSize-1)
-                                              )),
-                                        ],)),
-                                  const SizedBox(height:3,),
-
-                                  SizedBox(
-                                      width: width,
-                                      child:  Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                              alignment: Alignment.centerLeft,
-                                              child: Text(
-                                                  "Payment Status",
-                                                  textAlign: TextAlign.left,
-                                                  style: getStyle(color: Colors.black, fontSize: textSize-1)
-                                              )),
-                                          Container(
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                  cubit.allInvoices[ cubit.allInvoices.length-1].saleStatus!,
-                                                  // double.parse(cubit.delayMoney.text).toStringAsFixed(0),
-                                                  // invoiceModel!.invoiceData![0].saleStatus!,
-                                                  textAlign: TextAlign.center,
-                                                  style: getStyle(color: Colors.black, fontSize: textSize)
-                                              )),
-                                          Container(
-                                              alignment: Alignment.centerRight,
-                                              child:  Text(
-                                                  "حالة الدفع",
-                                                  textAlign: TextAlign.right,
-                                                  style: getStyle(color: Colors.black, fontSize: textSize-1)
-                                              )),
-                                        ],)),
+                                                style: getStyle(color: Colors.black, fontSize: textSize-1)
+                                            )),
+                                      ],)),
 
 
 
 
-                                  const Divider(
-                                    color: Colors.black,
-                                  ),
-                                  QrImage(
-                                    data: QrCodeTVL(context),
-                                    version: QrVersions.auto,
-                                    size: 140.0,
-                                  )
-                                ],
-                              )))
+                                const Divider(
+                                  color: Colors.black,
+                                ),
+                                QrImage(
+                                  data: QrCodeTVL(context),
+                                  version: QrVersions.auto,
+                                  size: 140.0,
+                                )
+                              ],
+                            ))
 
 
 
-                  ),
-                  ElevatedButton(
-                    child: Text("طباعة",
-                        style: getStyle(color: Colors.white, fontSize: 16)
                     ),
-                    onPressed: () async{
-                      LoadingPage(context).show();
-                      widget.printerType=await SharedPreferencesHelper.getPrinterType();
-                      int printerSize  =(await SharedPreferencesHelper.getPageSize())!;
-                      if(widget.printerType==3){
-                        textSize=10;
-                        width=190;
-                      }else{
-                        textSize=20;
-                        width=420;
-                      }
-                      setState(() {});
-                      await screenshotController.capture(delay: const Duration(milliseconds: 10)).then((capturedImage) async {
-                        if( widget.printerType==1){
-                          LoadingPage(context).close();
-                          if(printerSize==80){
-                            printBluetooth80(capturedImage!);
-                          }else{
-                            printBluetooth58(capturedImage!);
-                          }
-                        }else if(widget.printerType==2){
-                          LoadingPage(context).close();
-                          if(printerSize==80){
-                            PrinterWiFi80(ipPrinter,capturedImage!);
-                          }else{
-                            PrinterWiFi58(ipPrinter,capturedImage!);
-                          }
-                        }else if(widget.printerType==3){
-                          LoadingPage(context).close();
-                          await SanmiPrint(capturedImage!);
-                          print("sonomi");
+                    ElevatedButton(
+                      child: Text("طباعة",
+                          style: getStyle(color: Colors.white, fontSize: 16)
+                      ),
+                      onPressed: () async{
+                        LoadingPage(context).show();
+                        widget.printerType=await SharedPreferencesHelper.getPrinterType();
+                        int printerSize  =(await SharedPreferencesHelper.getPageSize())!;
+                        if(widget.printerType==3){
+                          textSize=10;
+                          width=190;
+                        }else{
+                          textSize=20;
+                          width=420;
                         }
+                        setState(() {});
+                        await screenshotController.capture(delay: const Duration(milliseconds: 10)).then((capturedImage) async {
+                          if( widget.printerType==1){
+                            LoadingPage(context).close();
+                            if(printerSize==80){
+                              printBluetooth80(capturedImage!);
+                            }else{
+                              printBluetooth58(capturedImage!);
+                            }
+                          }else if(widget.printerType==2){
+                            LoadingPage(context).close();
+                            if(printerSize==80){
+                              PrinterWiFi80(ipPrinter,capturedImage!);
+                            }else{
+                              PrinterWiFi58(ipPrinter,capturedImage!);
+                            }
+                          }else if(widget.printerType==3){
+                            LoadingPage(context).close();
+                            await SanmiPrint(capturedImage!);
+                            print("sonomi");
+                          }
 
-                      }).catchError((onError) {
-                        print(onError);
-                      });
-                    },
-                  ),
-                ],
-              )),
-        ):Container(),
-      );
+                        }).catchError((onError) {
+                          print(onError);
+                        });
+                      },
+                    ),
+                  ],
+                )),
+          ):Container(),
+        );
 
-  },
-),
+      },
     );
   }
 
@@ -733,512 +728,510 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
     return  Container(
         width: width,
         color: Colors.white,
-        child: Directionality(
-            textDirection: p.TextDirection.ltr,
-            child:Column(
-              children: [
+        child: Column(
+          children: [
 
-                Container(
-                    alignment: Alignment.center,
-                    width: double.infinity,
-                    child:Column(
-                        children: [
-                          Container(height: 100,width: 100,
-                          child: Image.asset("image/logo2.png"),
-                          // child: Image(),
-                          ),
-
-                          Text("مركز الابداع للخياطة", style: getStyle(color: MyConstant().purpleColor, fontSize: textSize)
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [Text("فاتورة ضريبة مبسطة ", style: getStyle(color: Colors.black, fontSize: textSize)
-                            )],
-                          ),
-                          // const SizedBox(height: 10,),
-
-                          Container(
-                            width: double.infinity,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: Colors.grey.shade300,
-                            ),
-                            padding: const EdgeInsets.only(top: 3,bottom: 3),
-                            child:Text("مؤسسة وعد الوان", style: getStyle(color: Colors.black, fontSize: textSize)),),
-
-                          // const SizedBox(height: 10,),
-                        ])),
-                Container(
-                    alignment: Alignment.center,
-
-                    width: double.infinity,
-                    child:Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                  alignment: Alignment.centerLeft,
-                                  child:  Text(
-                                    "Phone",
-                                    style: getStyle(color: Colors.black, fontSize: textSize),
-                                  )),  Container(
-                                  alignment: Alignment.center,
-                                  child:Text(
-                                    "961751515151",
-                                    style: getStyle(color: Colors.black, fontSize: textSize),
-                                  )),  Container(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    "الهاتف",textAlign: TextAlign.center,
-                                    style: getStyle(color: Colors.black, fontSize: textSize),
-                                  )),
-                            ],),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                  alignment: Alignment.centerLeft,
-                                  child:  Text(
-                                    "Vat No",
-                                    style: getStyle(color: Colors.black, fontSize: textSize),
-                                  )),  Container(
-                                  alignment: Alignment.center,
-                                  child:Text(
-                                      vatNo,textAlign: TextAlign.center,
-                                    style: getStyle(color: Colors.black, fontSize: textSize-1)
-                                  )),  Container(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    "الرقم الضريبي",textAlign: TextAlign.right,
-                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                  )),
-
-                            ],),
-                          // const SizedBox(
-                          //   height: 5,
-                          // ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                  alignment: Alignment.centerLeft,
-                                  child:  Text(
-                                    "CR No",
-                                    style:getStyle(color: Colors.black, fontSize: textSize-1),
-                                  )),
-                              Container(
-                                  alignment: Alignment.center,
-                                  child:Text(
-                                    invoiceModel!.invoiceData![0].referenceNo!,textAlign: TextAlign.center,
-                                    style:  getStyle(color: Colors.black, fontSize: textSize-1),
-                                  )),
-                              Container(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    "السجل التجاري",textAlign: TextAlign.right,
-                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                  )),
-
-                            ],),
-
-
-                        ])),
-                // const SizedBox(
-                //   height: 5,
-                // ),
-                Container(
-                    alignment: Alignment.center,
-                    width: width,
-                    child:Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                  alignment: Alignment.centerLeft,
-                                  child:  Text(
-                                    "Date",
-                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                  )),  Container(
-                                  alignment: Alignment.center,
-                                  child:Text(
-                                    invoiceModel!.invoiceData![0].date!,textAlign: TextAlign.center,
-                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                  )),  Container(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    "التاريخ",textAlign: TextAlign.center,
-                                    style: getStyle(color: Colors.black, fontSize: textSize-1)
-                                  )),
-
-                            ],),
-                          // const SizedBox(
-                          //   height: 0,
-                          // ),
-
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                  alignment: Alignment.centerLeft,
-                                  child:  Text(
-                                    "Reference",
-                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                  )),  Container(
-                                  alignment: Alignment.center,
-                                  child:Text(
-                                    invoiceModel!.invoiceData![0].referenceNo!,textAlign: TextAlign.center,
-                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                  )),  Container(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    "المرجع",textAlign: TextAlign.center,
-                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                  )),
-
-                            ],),
-
-                          // const SizedBox(
-                          //   height: 5,
-                          // ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                  alignment: Alignment.centerLeft,
-                                  child:  Text(
-                                    "Seller",
-                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                  )),  Container(
-                                  alignment: Alignment.center,
-                                  child:Text(
-                                    invoiceModel!.invoiceData![0].payments![0].note??"",textAlign: TextAlign.center,
-                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                  )),  Container(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    "البائع",textAlign: TextAlign.center,
-                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                  )),
-
-                            ],),
-
-                          // const SizedBox(
-                          //   height: 5,
-                          // ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                  alignment: Alignment.centerLeft,
-                                  child:  Text(
-                                    "Customer",
-                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                  )),  Container(
-                                  alignment: Alignment.center,
-                                  child:Text(
-                                    invoiceModel!.invoiceData![0].customer!,textAlign: TextAlign.center,
-                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                  )),  Container(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    "العميل",textAlign: TextAlign.center,
-                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                  )),
-
-                            ],),
-                          // const SizedBox(
-                          //   height: 5,
-                          // ),
-
-                        ])),   const Divider(
-                  color: Colors.black,
-                ),
-                Container(
-                  alignment: Alignment.center,
-                  width: width,
-                  child:
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [ Text(
-                      "Invoice No",
-                      style: getStyle(color: Colors.black, fontSize: textSize-1),
-                    ),
-                      Text(
-                        invoiceModel!.invoiceData![0].id!,
-                        style: getStyle(color: Colors.black, fontSize: textSize-1),
-                      ),  Text(
-                        "رقم الفاتورة",
-                        style: getStyle(color: Colors.black, fontSize: textSize-1),
+            Container(
+                alignment: Alignment.center,
+                width: double.infinity,
+                child:Column(
+                    children: [
+                      Container(height: 100,width: 100,
+                        child: Image.asset("image/logo2.png"),
+                        // child: Image(),
                       ),
-                    ],),
+
+                      Text("مركز الابداع للخياطة", style: getStyle(color: MyConstant().purpleColor, fontSize: textSize)
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [Text("فاتورة ضريبة مبسطة ", style: getStyle(color: Colors.black, fontSize: textSize)
+                        )],
+                      ),
+                      // const SizedBox(height: 10,),
+
+                      Container(
+                        width: double.infinity,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade300,
+                        ),
+                        padding: const EdgeInsets.only(top: 3,bottom: 3),
+                        child:Text("مؤسسة وعد الوان", style: getStyle(color: Colors.black, fontSize: textSize)),),
+
+                      // const SizedBox(height: 10,),
+                    ])),
+            Container(
+                alignment: Alignment.center,
+
+                width: double.infinity,
+                child:Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              alignment: Alignment.centerLeft,
+                              child:  Text(
+                                "Phone",
+                                style: getStyle(color: Colors.black, fontSize: textSize),
+                              )),  Container(
+                              alignment: Alignment.center,
+                              child:Text(
+                                "961751515151",
+                                style: getStyle(color: Colors.black, fontSize: textSize),
+                              )),  Container(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                "الهاتف",textAlign: TextAlign.center,
+                                style: getStyle(color: Colors.black, fontSize: textSize),
+                              )),
+                        ],),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              alignment: Alignment.centerLeft,
+                              child:  Text(
+                                "Vat No",
+                                style: getStyle(color: Colors.black, fontSize: textSize),
+                              )),  Container(
+                              alignment: Alignment.center,
+                              child:Text(
+                                  vatNo,textAlign: TextAlign.center,
+                                  style: getStyle(color: Colors.black, fontSize: textSize-1)
+                              )),  Container(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                "الرقم الضريبي",textAlign: TextAlign.right,
+                                style: getStyle(color: Colors.black, fontSize: textSize-1),
+                              )),
+
+                        ],),
+                      // const SizedBox(
+                      //   height: 5,
+                      // ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              alignment: Alignment.centerLeft,
+                              child:  Text(
+                                "CR No",
+                                style:getStyle(color: Colors.black, fontSize: textSize-1),
+                              )),
+                          Container(
+                              alignment: Alignment.center,
+                              child:Text(
+                                invoiceModel!.invoiceData![0].referenceNo!,textAlign: TextAlign.center,
+                                style:  getStyle(color: Colors.black, fontSize: textSize-1),
+                              )),
+                          Container(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                "السجل التجاري",textAlign: TextAlign.right,
+                                style: getStyle(color: Colors.black, fontSize: textSize-1),
+                              )),
+
+                        ],),
+
+
+                    ])),
+            // const SizedBox(
+            //   height: 5,
+            // ),
+            Container(
+                alignment: Alignment.center,
+                width: width,
+                child:Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              alignment: Alignment.centerLeft,
+                              child:  Text(
+                                "Date",
+                                style: getStyle(color: Colors.black, fontSize: textSize-1),
+                              )),  Container(
+                              alignment: Alignment.center,
+                              child:Text(
+                                invoiceModel!.invoiceData![0].date!,textAlign: TextAlign.center,
+                                style: getStyle(color: Colors.black, fontSize: textSize-1),
+                              )),  Container(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                  "التاريخ",textAlign: TextAlign.center,
+                                  style: getStyle(color: Colors.black, fontSize: textSize-1)
+                              )),
+
+                        ],),
+                      // const SizedBox(
+                      //   height: 0,
+                      // ),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              alignment: Alignment.centerLeft,
+                              child:  Text(
+                                "Reference",
+                                style: getStyle(color: Colors.black, fontSize: textSize-1),
+                              )),  Container(
+                              alignment: Alignment.center,
+                              child:Text(
+                                invoiceModel!.invoiceData![0].referenceNo!,textAlign: TextAlign.center,
+                                style: getStyle(color: Colors.black, fontSize: textSize-1),
+                              )),  Container(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                "المرجع",textAlign: TextAlign.center,
+                                style: getStyle(color: Colors.black, fontSize: textSize-1),
+                              )),
+
+                        ],),
+
+                      // const SizedBox(
+                      //   height: 5,
+                      // ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              alignment: Alignment.centerLeft,
+                              child:  Text(
+                                "Seller",
+                                style: getStyle(color: Colors.black, fontSize: textSize-1),
+                              )),  Container(
+                              alignment: Alignment.center,
+                              child:Text(
+                                invoiceModel.invoiceData?[0].payments?[0].note ?? "",textAlign: TextAlign.center,
+                                style: getStyle(color: Colors.black, fontSize: textSize-1),
+                              )),  Container(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                "البائع",textAlign: TextAlign.center,
+                                style: getStyle(color: Colors.black, fontSize: textSize-1),
+                              )),
+
+                        ],),
+
+                      // const SizedBox(
+                      //   height: 5,
+                      // ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              alignment: Alignment.centerLeft,
+                              child:  Text(
+                                "Customer",
+                                style: getStyle(color: Colors.black, fontSize: textSize-1),
+                              )),  Container(
+                              alignment: Alignment.center,
+                              child:Text(
+                                invoiceModel.invoiceData![0].customer!,textAlign: TextAlign.center,
+                                style: getStyle(color: Colors.black, fontSize: textSize-1),
+                              )),  Container(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                "العميل",textAlign: TextAlign.center,
+                                style: getStyle(color: Colors.black, fontSize: textSize-1),
+                              )),
+
+                        ],),
+                      // const SizedBox(
+                      //   height: 5,
+                      // ),
+
+                    ])),   const Divider(
+              color: Colors.black,
+            ),
+            Container(
+              alignment: Alignment.center,
+              width: width,
+              child:
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [ Text(
+                  "Invoice No",
+                  style: getStyle(color: Colors.black, fontSize: textSize-1),
                 ),
-                const SizedBox(height:5,),
-                SizedBox(
-                    // height: 30,
-                    width: width,
-                    child:Table(
-                        border: TableBorder.all(),
-                        defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                        children: <TableRow>[
-                          TableRow(
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                              ),
-                              children: <Widget>[
-                                Container(
-                                    // height: 35,
-                                    alignment: Alignment.centerLeft,
-                                    margin: const EdgeInsets.only(top: 4,left: 4),
-                                    child: Column(
-                                      children:  [
-                                        Text(
-                                          "Description",
-                                          textAlign: TextAlign.left,
-                                          style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                        ),
-                                        Text(
-                                          invoiceModel!.invoiceData![0].items![0].productName!,
-                                          textAlign: TextAlign.left,
-                                          style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                        ),
+                  Text(
+                    invoiceModel!.invoiceData![0].id!,
+                    style: getStyle(color: Colors.black, fontSize: textSize-1),
+                  ),  Text(
+                    "رقم الفاتورة",
+                    style: getStyle(color: Colors.black, fontSize: textSize-1),
+                  ),
+                ],),
+            ),
+            const SizedBox(height:5,),
+            SizedBox(
+              // height: 30,
+                width: width,
+                child:Table(
+                    border: TableBorder.all(),
+                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                    children: <TableRow>[
+                      TableRow(
+                          decoration: const BoxDecoration(
+                            color: Colors.white,
+                          ),
+                          children: <Widget>[
+                            Container(
+                              // height: 35,
+                                alignment: Alignment.centerLeft,
+                                margin: const EdgeInsets.only(top: 4,left: 4),
+                                child: Column(
+                                  children:  [
+                                    Text(
+                                      "Description",
+                                      textAlign: TextAlign.left,
+                                      style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                    ),
+                                    Text(
+                                      invoiceModel!.invoiceData![0].items![0].productName!,
+                                      textAlign: TextAlign.left,
+                                      style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                    ),
 
-                                      ],)),
-                                Container(
-                                  // height: 35,
-                                  width: 95,
-                                  alignment: Alignment.centerLeft,
-                                  margin: const EdgeInsets.only(top: 4,left: 4),
-                                  child: Column(
-                                    children:  [
-                                      Text(
-                                        "QTY   Price   Total",
-                                        style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                      ),
-                                      Text(
-                                        "الاجمالي  سعر  الكمية",
-                                        style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                      ),
-                                      Text(
-                                        "${double.parse(invoiceModel.invoiceData![0].items![0].quantity!).toStringAsFixed(0)}  ${double.parse(invoiceModel.invoiceData![0].items![0].unitPrice!).toStringAsFixed(2)}  ${double.parse(invoiceModel.invoiceData![0].items![0].subtotal!).toStringAsFixed(2)}",
-                                        style: getStyle(color: Colors.black, fontSize: textSize-1),
-                                      ),
-
-
-
-
-                                      ],),
-
-                                )])])),
-
-                SizedBox(
-                    width: width,
-                    child:  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "Total",
-                              textAlign: TextAlign.left,
-                              style: getStyle(color: Colors.black, fontSize: textSize-1),
-                            )),
-                        Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              invoiceModel!.invoiceData![0].items![0].subtotal!,
-                              textAlign: TextAlign.center,
-                              style: getStyle(color: Colors.black, fontSize: textSize-1),
-                            )),
-                        Container(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              "الاجمالي",
-                              textAlign: TextAlign.right,
-                              style: getStyle(color: Colors.black, fontSize: textSize-1),
-                            )),
-                      ],)),
-                const SizedBox(height:3,),
-                SizedBox(
-                    width: width,
-                    child:  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "VAT",
-                              textAlign: TextAlign.left,
-                              style: getStyle(color: Colors.black, fontSize: textSize-1),
-                            )),
-                        Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              "${double.parse(invoiceModel!.invoiceData![0].items![0].itemTax!).toStringAsFixed(2)} %",
-                              textAlign: TextAlign.center,
-                              style: getStyle(color: Colors.black, fontSize: textSize-1),
-                            )),
-                        Container(
-                            alignment: Alignment.centerRight,
-                            child:  Text(
-                              "الضريبة",
-                              textAlign: TextAlign.right,
-                              style: getStyle(color: Colors.black, fontSize: textSize-1),
-                            )),
-                      ],)),
-                SizedBox(
-                    width: width,
-                    child:  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            alignment: Alignment.centerLeft,
-                            child:  Text(
-                              "Discount",
-                              textAlign: TextAlign.left,
-                              style: getStyle(color: Colors.black, fontSize: textSize-1)
-                            )),
-                        Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              invoiceModel!.invoiceData![0].items![0].discount!=null?invoiceModel!.invoiceData![0].items![0].discount!:"15",
-                              textAlign: TextAlign.center,
-                              style:getStyle(color: Colors.black, fontSize: textSize-1)
-                            )),
-                        Container(
-                            alignment: Alignment.centerRight,
-                            child:   Text(
-                              "الخصم",
-                              textAlign: TextAlign.right,
-                              style: getStyle(color: Colors.black, fontSize: textSize-1)
-                            )),
-                      ],)),
-                const SizedBox(height:3,),
-                SizedBox(
-                    width: width,
-                    child:  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "Grand Total",
-                              textAlign: TextAlign.left,
-                              style: getStyle(color: Colors.black, fontSize: textSize-1)
-                            )),
-                        Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              double.parse(invoiceModel.invoiceData![0].items![0].netUnitPrice!).toStringAsFixed(2),
-                              textAlign: TextAlign.center,
-                              style: getStyle(color: Colors.black, fontSize: textSize-1)
-                            )),
-                        Container(
-                            alignment: Alignment.centerRight,
-                            child:  Text(
-                              "المبلغ المطلوب",
-                              textAlign: TextAlign.right,
-                              style: getStyle(color: Colors.black, fontSize: textSize-1),
-                            )),
-                      ],)),
-                const SizedBox(height:3,),
-                SizedBox(
-                    width: width,
-                    child:  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "Paid",
-                              textAlign: TextAlign.left,
-                              style: getStyle(color: Colors.black, fontSize: textSize-1)
-                            )),
-                        Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              double.parse(invoiceModel!.invoiceData![0].payments![0].posPaid!).toStringAsFixed(2),
-                              textAlign: TextAlign.center,
-                              style: getStyle(color: Colors.black, fontSize: textSize-1)
-                            )),
-                        Container(
-                            alignment: Alignment.centerRight,
-                            child:  Text(
-                              "المبلغ المدفوع",
-                              textAlign: TextAlign.right,
-                              style: getStyle(color: Colors.black, fontSize: textSize-1)
-                            )),
-                      ],)),
-                const SizedBox(height:3,),
-                SizedBox(
-                    width: width,
-                    child:  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                                "Returend",
-                                textAlign: TextAlign.left,
-                                style: getStyle(color: Colors.black, fontSize: textSize-1)
-                            )),
-                        Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                                double.parse(invoiceModel!.invoiceData![0].payments![0].posBalance!).toStringAsFixed(2),
-                                textAlign: TextAlign.center,
-                                style: getStyle(color: Colors.black, fontSize: textSize-1)
-                            )),
-                        Container(
-                            alignment: Alignment.centerRight,
-                            child:  Text(
-                                "المبلغ المتبقى",
-                                textAlign: TextAlign.right,
-                                style: getStyle(color: Colors.black, fontSize: textSize-1)
-                            )),
-                      ],)),
-                const SizedBox(height:3,),
-
-                SizedBox(
-                    width: width,
-                    child:  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "Payment Status",
-                              textAlign: TextAlign.left,
-                              style: getStyle(color: Colors.black, fontSize: textSize-1)
-                            )),
-                        Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              invoiceModel!.invoiceData![0].saleStatus!,
-                              textAlign: TextAlign.center,
-                              style: getStyle(color: Colors.black, fontSize: textSize)
-                            )),
-                        Container(
-                            alignment: Alignment.centerRight,
-                            child:  Text(
-                              "حالة الدفع",
-                              textAlign: TextAlign.right,
-                              style: getStyle(color: Colors.black, fontSize: textSize-1)
-                            )),
-                      ],)),
+                                  ],)),
+                            Container(
+                              // height: 35,
+                              width: 95,
+                              alignment: Alignment.centerLeft,
+                              margin: const EdgeInsets.only(top: 4,left: 4),
+                              child: Column(
+                                children:  [
+                                  Text(
+                                    "QTY   Price   Total",
+                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                  ),
+                                  Text(
+                                    "الاجمالي  سعر  الكمية",
+                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                  ),
+                                  Text(
+                                    "${double.parse(invoiceModel.invoiceData![0].items![0].quantity!).toStringAsFixed(0)}  ${double.parse(invoiceModel.invoiceData![0].items![0].unitPrice!).toStringAsFixed(2)}  ${double.parse(invoiceModel.invoiceData![0].items![0].subtotal!).toStringAsFixed(2)}",
+                                    style: getStyle(color: Colors.black, fontSize: textSize-1),
+                                  ),
 
 
 
-                QrImage(
-                  data: QrCodeTVL(context),
-                  version: QrVersions.auto,
-                  size: 140.0,
-                )
-              ],
-            )));
+
+                                ],),
+
+                            )])])),
+
+            SizedBox(
+                width: width,
+                child:  Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Total",
+                          textAlign: TextAlign.left,
+                          style: getStyle(color: Colors.black, fontSize: textSize-1),
+                        )),
+                    Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                          invoiceModel!.invoiceData![0].items![0].subtotal!,
+                          textAlign: TextAlign.center,
+                          style: getStyle(color: Colors.black, fontSize: textSize-1),
+                        )),
+                    Container(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          "الاجمالي",
+                          textAlign: TextAlign.right,
+                          style: getStyle(color: Colors.black, fontSize: textSize-1),
+                        )),
+                  ],)),
+            const SizedBox(height:3,),
+            SizedBox(
+                width: width,
+                child:  Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "VAT",
+                          textAlign: TextAlign.left,
+                          style: getStyle(color: Colors.black, fontSize: textSize-1),
+                        )),
+                    Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "${double.parse(invoiceModel!.invoiceData![0].items![0].itemTax!).toStringAsFixed(2)} %",
+                          textAlign: TextAlign.center,
+                          style: getStyle(color: Colors.black, fontSize: textSize-1),
+                        )),
+                    Container(
+                        alignment: Alignment.centerRight,
+                        child:  Text(
+                          "الضريبة",
+                          textAlign: TextAlign.right,
+                          style: getStyle(color: Colors.black, fontSize: textSize-1),
+                        )),
+                  ],)),
+            SizedBox(
+                width: width,
+                child:  Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                        alignment: Alignment.centerLeft,
+                        child:  Text(
+                            "Discount",
+                            textAlign: TextAlign.left,
+                            style: getStyle(color: Colors.black, fontSize: textSize-1)
+                        )),
+                    Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                            invoiceModel!.invoiceData![0].items![0].discount!=null?invoiceModel!.invoiceData![0].items![0].discount!:"15",
+                            textAlign: TextAlign.center,
+                            style:getStyle(color: Colors.black, fontSize: textSize-1)
+                        )),
+                    Container(
+                        alignment: Alignment.centerRight,
+                        child:   Text(
+                            "الخصم",
+                            textAlign: TextAlign.right,
+                            style: getStyle(color: Colors.black, fontSize: textSize-1)
+                        )),
+                  ],)),
+            const SizedBox(height:3,),
+            SizedBox(
+                width: width,
+                child:  Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                            "Grand Total",
+                            textAlign: TextAlign.left,
+                            style: getStyle(color: Colors.black, fontSize: textSize-1)
+                        )),
+                    Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                            double.parse(invoiceModel.invoiceData![0].items![0].netUnitPrice!).toStringAsFixed(2),
+                            textAlign: TextAlign.center,
+                            style: getStyle(color: Colors.black, fontSize: textSize-1)
+                        )),
+                    Container(
+                        alignment: Alignment.centerRight,
+                        child:  Text(
+                          "المبلغ المطلوب",
+                          textAlign: TextAlign.right,
+                          style: getStyle(color: Colors.black, fontSize: textSize-1),
+                        )),
+                  ],)),
+            const SizedBox(height:3,),
+            SizedBox(
+                width: width,
+                child:  Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                            "Paid",
+                            textAlign: TextAlign.left,
+                            style: getStyle(color: Colors.black, fontSize: textSize-1)
+                        )),
+                    Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                            double.parse(invoiceModel.invoiceData?[0].payments?[0].posPaid ?? '0').toStringAsFixed(2),
+                            textAlign: TextAlign.center,
+                            style: getStyle(color: Colors.black, fontSize: textSize-1)
+                        )),
+                    Container(
+                        alignment: Alignment.centerRight,
+                        child:  Text(
+                            "المبلغ المدفوع",
+                            textAlign: TextAlign.right,
+                            style: getStyle(color: Colors.black, fontSize: textSize-1)
+                        )),
+                  ],)),
+            const SizedBox(height:3,),
+            SizedBox(
+                width: width,
+                child:  Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                            "Returend",
+                            textAlign: TextAlign.left,
+                            style: getStyle(color: Colors.black, fontSize: textSize-1)
+                        )),
+                    Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                            double.parse(invoiceModel!.invoiceData?[0].payments?[0].posBalance ?? '0').toStringAsFixed(2),
+                            textAlign: TextAlign.center,
+                            style: getStyle(color: Colors.black, fontSize: textSize-1)
+                        )),
+                    Container(
+                        alignment: Alignment.centerRight,
+                        child:  Text(
+                            "المبلغ المتبقى",
+                            textAlign: TextAlign.right,
+                            style: getStyle(color: Colors.black, fontSize: textSize-1)
+                        )),
+                  ],)),
+            const SizedBox(height:3,),
+
+            SizedBox(
+                width: width,
+                child:  Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                            "Payment Status",
+                            textAlign: TextAlign.left,
+                            style: getStyle(color: Colors.black, fontSize: textSize-1)
+                        )),
+                    Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                            invoiceModel!.invoiceData![0].saleStatus!,
+                            textAlign: TextAlign.center,
+                            style: getStyle(color: Colors.black, fontSize: textSize)
+                        )),
+                    Container(
+                        alignment: Alignment.centerRight,
+                        child:  Text(
+                            "حالة الدفع",
+                            textAlign: TextAlign.right,
+                            style: getStyle(color: Colors.black, fontSize: textSize-1)
+                        )),
+                  ],)),
+
+
+
+            QrImage(
+              data: QrCodeTVL(context),
+              version: QrVersions.auto,
+              size: 140.0,
+            )
+          ],
+        ));
   }
 
 

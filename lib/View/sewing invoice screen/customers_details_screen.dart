@@ -19,28 +19,26 @@ class CustomerDetailsScreen extends StatelessWidget {
 
     var cubit = LoginCubit.get(context);
 
-    return Directionality(
-      textDirection: p.TextDirection.rtl,
-      child: BlocConsumer<LoginCubit, LoginState>(
-        listener: (context, state) {
-        },
-        builder: (context, state) {
-          return Scaffold(
-            appBar: AppBar(
-              title: Text(AppStrings.customersList.tr(),style: GoogleFonts.notoKufiArabic(
-                  color: Colors.white,
+    return BlocConsumer<LoginCubit, LoginState>(
+      listener: (context, state) {
+      },
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(AppStrings.customersList.tr(),style: GoogleFonts.notoKufiArabic(
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 16)),
-              centerTitle: true,
-            ),
-            body:Center(
+            centerTitle: true,
+          ),
+          body:Center(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
               child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: DataTable(
+                scrollDirection: Axis.horizontal,
+                child: DataTable(
 
-                    columns: [
+                  columns: [
 
 
                     DataColumn(
@@ -76,51 +74,50 @@ class CustomerDetailsScreen extends StatelessWidget {
                             fontSize: 16)),),
 
                   ], rows:
-                  List.generate(cubit.companiesCustomerName.length, (index) => DataRow(cells: [
+                List.generate(cubit.companiesCustomerName.length, (index) => DataRow(cells: [
 
-                    DataCell(Text(cubit.companiesCustomerName[index].company ?? "",style: GoogleFonts.notoKufiArabic(
+                  DataCell(Text(cubit.companiesCustomerName[index].company ?? "",style: GoogleFonts.notoKufiArabic(
                       color:  Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 14))),
-                    DataCell(Text(cubit.companiesCustomerName[index].email ?? "",style: GoogleFonts.notoKufiArabic(
-                        color:  Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16))),
-                    DataCell(Text(cubit.companiesCustomerName[index].vatNo ?? "",style: GoogleFonts.notoKufiArabic(
-          color:  Colors.black,
-          fontWeight: FontWeight.bold,
-          fontSize: 16))),
-                    DataCell(Text(cubit.companiesCustomerName[index].address ?? "",style: GoogleFonts.notoKufiArabic(
-          color:  Colors.black,
-          fontWeight: FontWeight.bold,
-          fontSize: 16))),
-                    DataCell(Text(cubit.companiesCustomerName[index].postalCode ?? "",style: GoogleFonts.notoKufiArabic(
-          color: Colors.black,
-          fontWeight: FontWeight.bold,
-          fontSize: 16))),
-                    DataCell(Text(cubit.companiesCustomerName[index].phone ?? "",style: GoogleFonts.notoKufiArabic(
-                        color:  Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16))),
-                  ])),
+                  DataCell(Text(cubit.companiesCustomerName[index].email ?? "",style: GoogleFonts.notoKufiArabic(
+                      color:  Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16))),
+                  DataCell(Text(cubit.companiesCustomerName[index].vatNo ?? "",style: GoogleFonts.notoKufiArabic(
+                      color:  Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16))),
+                  DataCell(Text(cubit.companiesCustomerName[index].address ?? "",style: GoogleFonts.notoKufiArabic(
+                      color:  Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16))),
+                  DataCell(Text(cubit.companiesCustomerName[index].postalCode ?? "",style: GoogleFonts.notoKufiArabic(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16))),
+                  DataCell(Text(cubit.companiesCustomerName[index].phone ?? "",style: GoogleFonts.notoKufiArabic(
+                      color:  Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16))),
+                ])),
 
-                  ),
                 ),
               ),
             ),
-            bottomNavigationBar:Row(
-              children: [
-                MaterialButton(onPressed: (){
-                  Navigator.pushReplacementNamed(context, NewUserScreen.routeName);
-                },child: Text(AppStrings.addnewcustomer.tr(),style: GoogleFonts.notoKufiArabic(
-                    color: MyConstant().purpleColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14)) ,)
-              ],
-            ) ,
-          );
-        },
-      ),
+          ),
+          bottomNavigationBar:Row(
+            children: [
+              MaterialButton(onPressed: (){
+                Navigator.pushReplacementNamed(context, NewUserScreen.routeName);
+              },child: Text(AppStrings.addnewcustomer.tr(),style: GoogleFonts.notoKufiArabic(
+                  color: MyConstant().purpleColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14)) ,)
+            ],
+          ) ,
+        );
+      },
     );
   }
 }

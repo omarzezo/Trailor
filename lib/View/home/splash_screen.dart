@@ -26,12 +26,11 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
     goNext()async{
-
       bool isLogged=   await CacheHelper.isUserLoggedIn();
       if(isLogged){
         var email=CacheHelper.getData(key: 'email');
         var password= CacheHelper.getData(key: 'password');
-        APIKEY1=CacheHelper.getData(key: 'email');
+        APIKEYLogin=CacheHelper.getData(key: 'email');
         await LoginCubit.get(context).login(email: email, password: password);
         Navigator.pushReplacementNamed(context, StartScreen.routeName);
       }else{
@@ -58,15 +57,16 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: const Color(0xffF0F2F7),
         body: Container(
           height: double.infinity,
           width: double.infinity,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              // fit: BoxFit.cover,
-              image: AssetImage(
-                'image/splashScreen.png',
-              ),
+          child: Center(
+            child: Image.asset(
+              'image/cpe.PNG',
+              width: MediaQuery.of(context).size.width/5,
+              height: MediaQuery.of(context).size.height/5,
+              fit: BoxFit.fill,
             ),
           ),
         ));

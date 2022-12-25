@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/View/Data%20Table/model.dart';
-import 'package:omar/View/Data%20Table/widget%20table.dart';
 import 'package:omar/View/sewing%20invoice%20screen/pills_item_data.dart';
-import 'package:omar/View/sewing%20invoice%20screen/return_item_screen.dart';
 import 'package:omar/constant/appstrings.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -56,14 +51,12 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
     // pillsDetailsDataList = List.from(cubit.pillsDetails!.data!);
     // filteredList = List.from(cubit.pillsDetails!.data!);
 
-    return Directionality(
-      textDirection: p.TextDirection.rtl,
-      child: BlocConsumer<LoginCubit, LoginState>(
-        listener: (context, state) {
-          // TODO: implement listener
-        },
-        builder: (context, state) {
-          return  ResponsiveVisibility(
+    return BlocConsumer<LoginCubit, LoginState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        return  ResponsiveVisibility(
             replacement: SingleChildScrollView(
               // height:30000,
               // width: MediaQuery.of(context).size.width,
@@ -435,7 +428,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                                           )),
                                       height: 80,
                                       width: 100,
-                                      child: Text('${item.deliveryDate!.split( " ").first}',
+                                      child: Text(item.deliveryDate!=null?'${item.deliveryDate!.split( " ").first}':'',
                                           style: GoogleFonts.notoKufiArabic(
                                             color: Colors.black,
                                             fontWeight: FontWeight.w600,
@@ -826,13 +819,13 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                                 // // await LoginCubit.get(context).getSizeInformation(LoginCubit.get(context).salesIdSearch.toString());
                                 // await LoginCubit.get(context).getReturnItemInformation(LoginCubit.get(context).salesIdSearch.toString());
                                 // Navigator.pushNamed(context, ReturnItemScreen.routeName);
-                               //
-                               //  await LoginCubit.get(context).getReturnId( index);
-                               //  // Navigator.pushNamed(context, PillsItemData.routeName);
-                               //  // var saleint=  textSearch.isNotEmpty ? filteredList[index].referenceNo : pillsDetailsDataList![index].id;
-                               // await LoginCubit.get(context).getSizeInformation(LoginCubit.get(context).returnid.toString());
-                               //
-                               //  Navigator.pushNamed(context, ReturnItemScreen.routeName);
+                                //
+                                //  await LoginCubit.get(context).getReturnId( index);
+                                //  // Navigator.pushNamed(context, PillsItemData.routeName);
+                                //  // var saleint=  textSearch.isNotEmpty ? filteredList[index].referenceNo : pillsDetailsDataList![index].id;
+                                // await LoginCubit.get(context).getSizeInformation(LoginCubit.get(context).returnid.toString());
+                                //
+                                //  Navigator.pushNamed(context, ReturnItemScreen.routeName);
                               },
                               child: Row(
                                 children: [
@@ -940,7 +933,7 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                                           )),
                                       height: 80,
                                       width: 100,
-                                      child: Text('${item.deliveryDate!.split( " ").first}',
+                                      child: Text(item.deliveryDate!=null?'${item.deliveryDate!.split( " ").first}':"",
                                           style: GoogleFonts.notoKufiArabic(
                                             color: Colors.black,
                                             fontWeight: FontWeight.w600,
@@ -1037,10 +1030,9 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                 ),
               ),
             )
-          );
+        );
 
-        },
-      ),
+      },
     );
   }
 

@@ -60,260 +60,255 @@ class _TabBarScreenState extends State<TabBarScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Directionality(
-        textDirection: p.TextDirection.rtl,
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0),
-            child: SingleChildScrollView(
-              child: Column(
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        child: SingleChildScrollView(
+          child: Column(
 
-                children:  [
-                  Container(
-                    height: 100,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: InkWell(
-                            onTap: () {
-                              setScreen(0);
-                            },
-                            child: Column(
-                              children:  [
-                                Icon(Icons.add_to_photos_rounded,size: 20,color: initialIndex==0?MyConstant().purpleColor:Colors.grey,),
-                                const SizedBox(height: 10,),
-                                Text(AppStrings.customers.tr(),style: GoogleFonts.notoKufiArabic(
-                                    color: MyConstant().greenColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14),)
-                              ],
-                            ),
-                          ),
+            children:  [
+              Container(
+                height: 100,
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: InkWell(
+                        onTap: () {
+                          setScreen(0);
+                        },
+                        child: Column(
+                          children:  [
+                            Icon(Icons.add_to_photos_rounded,size: 20,color: initialIndex==0?MyConstant().purpleColor:Colors.grey,),
+                            const SizedBox(height: 10,),
+                            Text(AppStrings.customers.tr(),style: GoogleFonts.notoKufiArabic(
+                                color: MyConstant().greenColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14),)
+                          ],
                         ),
-                        Expanded(
-                          flex: 1,
-                          child: InkWell(
-                            onTap: () {
-                              setScreen(1);
-                            },
-                            child: Column(
-                              children:  [
-                                Icon(Icons.add_to_photos_rounded,size: 20,color: initialIndex==1?MyConstant().purpleColor:Colors.grey,),
-                                const SizedBox(height: 10,),
-                                Text(AppStrings.add.tr(),style: GoogleFonts.notoKufiArabic(
-                                    color: MyConstant().greenColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14),)
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: InkWell(
-                            onTap: () {
-                              setScreen(2);
-                            },
-                            child: Column(
-                              children:  [
-                                Icon(Icons.print,size: 20,color: initialIndex==2?MyConstant().purpleColor:Colors.grey,),
-                                const SizedBox(height: 10,),
-                                Text(AppStrings.printInvoice.tr(),style: GoogleFonts.notoKufiArabic(
-                                    color: MyConstant().greenColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14),textAlign: TextAlign.center,)
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: InkWell(
-                            onTap: () {
-                              setScreen(3);
-                            },
-                            child: Column(
-                              children:  [
-                                Icon(Icons.mode_edit_outlined,size: 20,color: initialIndex==3?MyConstant().purpleColor:Colors.grey,),
-                                const SizedBox(height: 10,),
-                                Text(AppStrings.editSizes.tr(),style: GoogleFonts.notoKufiArabic(
-                                    color: MyConstant().greenColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14),textAlign: TextAlign.center,)
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: InkWell(
-                            onTap: ()async {
-                              setScreen(4);
-                            await  LoginCubit.get(context).getPillsDetails();
-                            },
-                            child: Column(
-                              children:  [
-                                Icon(Icons.tv_outlined,size: 20,color: initialIndex==4?MyConstant().purpleColor:Colors.grey,),
-                                const SizedBox(height: 10,),
-                                Text(AppStrings.show.tr(),style: GoogleFonts.notoKufiArabic(
-                                    color: MyConstant().greenColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14),)
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: InkWell(
-                            onTap: ()async {
-                              setScreen(5);
-                            await  LoginCubit.get(context).getPillsDetails();
-                            },
-                            child: Column(
-                              children:  [
-                                Icon(Icons.remove_shopping_cart_outlined,size: 20,color: initialIndex==5?MyConstant().purpleColor:Colors.grey,),
-                                const SizedBox(height: 10,),
-                                Text(AppStrings.returnitems.tr(),style: GoogleFonts.notoKufiArabic(
-                                    color: MyConstant().greenColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14),)
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: InkWell(
-                            onTap: () {
-                              setScreen(6);
-                            // await  LoginCubit.get(context).getPillsDetails();
-                            },
-                            child: Column(
-                              children:  [
-                                Icon(Icons.person_add_alt_1,size: 20,color: initialIndex==6?MyConstant().purpleColor:Colors.grey,),
-                                const SizedBox(height: 10,),
-                                Text(AppStrings.addnewcustomer.tr(),style: GoogleFonts.notoKufiArabic(
-                                    color: MyConstant().greenColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14),)
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                  screen
-                  // TabBar(
-                  //   isScrollable: vlaue,
-                  //   unselectedLabelColor: Colors.grey,
-                  //     labelColor: Colors.purple,
-                  //
-                  //     unselectedLabelStyle: const TextStyle(
-                  //       color: Colors.green
-                  //     ),
-                  //     // overlayColor: MaterialStateProperty.all(Colors.green),
-                  //     indicator: BoxDecoration(
-                  //       border: Border.all(color: Colors.transparent)
-                  //     ),
-                  //     onTap: (value) {
-                  //       // setState(() {});
-                  //     },
-                  //     tabs: [
-                  //       Column(
-                  //         children:  [
-                  //           const Icon(Icons.add_to_photos_rounded,size: 20),
-                  //           const SizedBox(height: 10,),
-                  //           Text('العملاء',style: GoogleFonts.notoKufiArabic(
-                  //               color: MyConstant().greenColor,
-                  //               fontWeight: FontWeight.bold,
-                  //               fontSize: 14),)
-                  //         ],
-                  //       ),
-                  //   Column(
-                  //     children:  [
-                  //       const Icon(Icons.add_to_photos_rounded,size: 20),
-                  //        const SizedBox(height: 10,),
-                  //       Text('اضافة',style: GoogleFonts.notoKufiArabic(
-                  //           color: MyConstant().greenColor,
-                  //           fontWeight: FontWeight.bold,
-                  //           fontSize: 14),)
-                  //     ],
-                  //   ),
-                  //   Column(
-                  //     children:  [
-                  //       const Icon(Icons.print,size: 20,),
-                  //       const SizedBox(height: 10,),
-                  //       Text('طباعة فاتورة',style: GoogleFonts.notoKufiArabic(
-                  //           color: MyConstant().greenColor,
-                  //           fontWeight: FontWeight.bold,
-                  //           fontSize: 14),textAlign: TextAlign.center,)
-                  //     ],
-                  //   ),
-                  //   Column(
-                  //     children:  [
-                  //       const Icon(Icons.mode_edit_outlined,size: 20,),
-                  //       const SizedBox(height: 10,),
-                  //       Text('تعديل مقاسات',style: GoogleFonts.notoKufiArabic(
-                  //           color: MyConstant().greenColor,
-                  //           fontWeight: FontWeight.bold,
-                  //           fontSize: 14),textAlign: TextAlign.center,)
-                  //     ],
-                  //   ),
-                  //   Column(
-                  //     children:  [
-                  //       const Icon(Icons.tv_outlined,size: 20,),
-                  //       const SizedBox(height: 10,),
-                  //       Text('عرض',style: GoogleFonts.notoKufiArabic(
-                  //           color: MyConstant().greenColor,
-                  //           fontWeight: FontWeight.bold,
-                  //           fontSize: 14),)
-                  //     ],
-                  //   ),
-                  //   // Column(
-                  //   //   children:  [
-                  //   //     const Icon(Icons.clean_hands_sharp,size: 20,),
-                  //   //     const SizedBox(height: 10,),
-                  //   //     Text('دفعة نقدية',style: GoogleFonts.notoKufiArabic(
-                  //   //         color: MyConstant().greenColor,
-                  //   //         fontWeight: FontWeight.bold,
-                  //   //         fontSize: 14),)
-                  //   //   ],
-                  //   // ),
-                  //   Column(
-                  //         children:  [
-                  //           const Icon(Icons.subdirectory_arrow_left,size: 20,),
-                  //           const SizedBox(height: 10,),
-                  //           Text('مرتجع',style: GoogleFonts.notoKufiArabic(
-                  //               color: MyConstant().greenColor,
-                  //               fontWeight: FontWeight.bold,
-                  //               fontSize: 14),)
-                  //         ],
-                  //       ),
-                  // ]),
-                  //  Expanded(
-                  //   child: TabBarView(
-                  //
-                  //     physics: NeverScrollableScrollPhysics(),
-                  //       children: [
-                  //         AllCustomersHomeScreen(),
-                  //         SewingScreen(),
-                  //         // CustomTableSweing(),
-                  //         CustomTable(),
-                  //         ChangeSizeScreen(),
-                  //         // EditPrinterScreen(),
-                  //         PresentAllTablesScreen(),
-                  //         // SizedBox(),
-                  //         SizedBox(),
-                  //   ]),
-                  // )
-                ],
+                    Expanded(
+                      flex: 1,
+                      child: InkWell(
+                        onTap: () {
+                          setScreen(1);
+                        },
+                        child: Column(
+                          children:  [
+                            Icon(Icons.add_to_photos_rounded,size: 20,color: initialIndex==1?MyConstant().purpleColor:Colors.grey,),
+                            const SizedBox(height: 10,),
+                            Text(AppStrings.add.tr(),style: GoogleFonts.notoKufiArabic(
+                                color: MyConstant().greenColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14),)
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: InkWell(
+                        onTap: () {
+                          setScreen(2);
+                        },
+                        child: Column(
+                          children:  [
+                            Icon(Icons.print,size: 20,color: initialIndex==2?MyConstant().purpleColor:Colors.grey,),
+                            const SizedBox(height: 10,),
+                            Text(AppStrings.printInvoice.tr(),style: GoogleFonts.notoKufiArabic(
+                                color: MyConstant().greenColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14),textAlign: TextAlign.center,)
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: InkWell(
+                        onTap: () {
+                          setScreen(3);
+                        },
+                        child: Column(
+                          children:  [
+                            Icon(Icons.mode_edit_outlined,size: 20,color: initialIndex==3?MyConstant().purpleColor:Colors.grey,),
+                            const SizedBox(height: 10,),
+                            Text(AppStrings.editSizes.tr(),style: GoogleFonts.notoKufiArabic(
+                                color: MyConstant().greenColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14),textAlign: TextAlign.center,)
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: InkWell(
+                        onTap: ()async {
+                          setScreen(4);
+                          await  LoginCubit.get(context).getPillsDetails();
+                        },
+                        child: Column(
+                          children:  [
+                            Icon(Icons.tv_outlined,size: 20,color: initialIndex==4?MyConstant().purpleColor:Colors.grey,),
+                            const SizedBox(height: 10,),
+                            Text(AppStrings.show.tr(),style: GoogleFonts.notoKufiArabic(
+                                color: MyConstant().greenColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14),)
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: InkWell(
+                        onTap: ()async {
+                          setScreen(5);
+                          await  LoginCubit.get(context).getPillsDetails();
+                        },
+                        child: Column(
+                          children:  [
+                            Icon(Icons.remove_shopping_cart_outlined,size: 20,color: initialIndex==5?MyConstant().purpleColor:Colors.grey,),
+                            const SizedBox(height: 10,),
+                            Text(AppStrings.returnitems.tr(),style: GoogleFonts.notoKufiArabic(
+                                color: MyConstant().greenColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14),)
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: InkWell(
+                        onTap: () {
+                          setScreen(6);
+                          // await  LoginCubit.get(context).getPillsDetails();
+                        },
+                        child: Column(
+                          children:  [
+                            Icon(Icons.person_add_alt_1,size: 20,color: initialIndex==6?MyConstant().purpleColor:Colors.grey,),
+                            const SizedBox(height: 10,),
+                            Text(AppStrings.addnewcustomer.tr(),style: GoogleFonts.notoKufiArabic(
+                                color: MyConstant().greenColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14),)
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
+              screen
+              // TabBar(
+              //   isScrollable: vlaue,
+              //   unselectedLabelColor: Colors.grey,
+              //     labelColor: Colors.purple,
+              //
+              //     unselectedLabelStyle: const TextStyle(
+              //       color: Colors.green
+              //     ),
+              //     // overlayColor: MaterialStateProperty.all(Colors.green),
+              //     indicator: BoxDecoration(
+              //       border: Border.all(color: Colors.transparent)
+              //     ),
+              //     onTap: (value) {
+              //       // setState(() {});
+              //     },
+              //     tabs: [
+              //       Column(
+              //         children:  [
+              //           const Icon(Icons.add_to_photos_rounded,size: 20),
+              //           const SizedBox(height: 10,),
+              //           Text('العملاء',style: GoogleFonts.notoKufiArabic(
+              //               color: MyConstant().greenColor,
+              //               fontWeight: FontWeight.bold,
+              //               fontSize: 14),)
+              //         ],
+              //       ),
+              //   Column(
+              //     children:  [
+              //       const Icon(Icons.add_to_photos_rounded,size: 20),
+              //        const SizedBox(height: 10,),
+              //       Text('اضافة',style: GoogleFonts.notoKufiArabic(
+              //           color: MyConstant().greenColor,
+              //           fontWeight: FontWeight.bold,
+              //           fontSize: 14),)
+              //     ],
+              //   ),
+              //   Column(
+              //     children:  [
+              //       const Icon(Icons.print,size: 20,),
+              //       const SizedBox(height: 10,),
+              //       Text('طباعة فاتورة',style: GoogleFonts.notoKufiArabic(
+              //           color: MyConstant().greenColor,
+              //           fontWeight: FontWeight.bold,
+              //           fontSize: 14),textAlign: TextAlign.center,)
+              //     ],
+              //   ),
+              //   Column(
+              //     children:  [
+              //       const Icon(Icons.mode_edit_outlined,size: 20,),
+              //       const SizedBox(height: 10,),
+              //       Text('تعديل مقاسات',style: GoogleFonts.notoKufiArabic(
+              //           color: MyConstant().greenColor,
+              //           fontWeight: FontWeight.bold,
+              //           fontSize: 14),textAlign: TextAlign.center,)
+              //     ],
+              //   ),
+              //   Column(
+              //     children:  [
+              //       const Icon(Icons.tv_outlined,size: 20,),
+              //       const SizedBox(height: 10,),
+              //       Text('عرض',style: GoogleFonts.notoKufiArabic(
+              //           color: MyConstant().greenColor,
+              //           fontWeight: FontWeight.bold,
+              //           fontSize: 14),)
+              //     ],
+              //   ),
+              //   // Column(
+              //   //   children:  [
+              //   //     const Icon(Icons.clean_hands_sharp,size: 20,),
+              //   //     const SizedBox(height: 10,),
+              //   //     Text('دفعة نقدية',style: GoogleFonts.notoKufiArabic(
+              //   //         color: MyConstant().greenColor,
+              //   //         fontWeight: FontWeight.bold,
+              //   //         fontSize: 14),)
+              //   //   ],
+              //   // ),
+              //   Column(
+              //         children:  [
+              //           const Icon(Icons.subdirectory_arrow_left,size: 20,),
+              //           const SizedBox(height: 10,),
+              //           Text('مرتجع',style: GoogleFonts.notoKufiArabic(
+              //               color: MyConstant().greenColor,
+              //               fontWeight: FontWeight.bold,
+              //               fontSize: 14),)
+              //         ],
+              //       ),
+              // ]),
+              //  Expanded(
+              //   child: TabBarView(
+              //
+              //     physics: NeverScrollableScrollPhysics(),
+              //       children: [
+              //         AllCustomersHomeScreen(),
+              //         SewingScreen(),
+              //         // CustomTableSweing(),
+              //         CustomTable(),
+              //         ChangeSizeScreen(),
+              //         // EditPrinterScreen(),
+              //         PresentAllTablesScreen(),
+              //         // SizedBox(),
+              //         SizedBox(),
+              //   ]),
+              // )
+            ],
           ),
         ),
       ),

@@ -5,6 +5,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesHelper {
 
+  static Future<String?> getApiKey() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString("ApiKey");
+  }
+  static Future<bool> setApiKey(String? value) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString("ApiKey", value!);
+  }
+
   static Future<int?> getPrinterType() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getInt("PrinterType");

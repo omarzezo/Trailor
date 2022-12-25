@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:omar/Controller/End%20Point.dart';
+import 'package:omar/SharedPreferencesHelper.dart';
 import 'package:omar/View/Data%20Table/model.dart';
 import 'package:omar/View/sewing%20invoice%20screen/restart_screen.dart';
 import 'package:omar/constant/LoadingPage.dart';
@@ -41,7 +42,6 @@ import 'package:omar/models/tRZipper.dart';
 import 'package:omar/models/trFilling.dart';
 import 'package:omar/models/updatePillsStatus.dart';
 import 'package:omar/models/updatedSizes.dart';
-// import 'package:sunmi_printer_plus/sunmi_printer_plus.dart';
 import '../../models/TrailorListsResponse.dart';
 import '../../models/allcustomer_response.dart';
 import '../../models/modelreturn.dart';
@@ -215,9 +215,9 @@ int? paymentId;
   // }
   AllInvoicesDetails? invoiceModel;
   Future<AllInvoicesDetails>  getInvoiceInformation(String id )async{
+    String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
+    print("urlIs"+'https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=${APIKEY1}&warehouse_id=w_1&id=$id');
     Dio dio = Dio();
-
-
     final response = await dio.get(
       'https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=${APIKEY1}&warehouse_id=w_1&id=$id',
     );
@@ -232,6 +232,8 @@ int? paymentId;
   // List<InvoiceModel> allInvoices=[];
   List<InvoiceData> allInvoices=[];
   Future<List<InvoiceData>>  getAllInvoiceInformation()async{
+    String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
+    print("urlIS>>"+'https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=$APIKEY1&warehouse_id=w_1');
     Dio dio = Dio();
 
     dio.interceptors.add(LogInterceptor(
@@ -243,7 +245,7 @@ int? paymentId;
 
     ));
     final response = await dio.get(
-      'https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=${APIKEY1}&warehouse_id=w_1',
+      'https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=$APIKEY1&warehouse_id=w_1',
     );
     if(response.statusCode==200){
       allInvoices=AllInvoicesDetails.fromJson(response.data).invoiceData!;
@@ -397,8 +399,8 @@ int? paymentId;
   String? userName;
 String totalCash="0";
 int invoiceNumbers=0;
-  Future<PillResponseModel> pillResponse(
-      {required PillRequestModel pillRequestModel}) async {
+  Future<PillResponseModel> pillResponse({required PillRequestModel pillRequestModel}) async {
+    String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
     Dio dio = Dio();
     PillResponseModel? pillResponseModel;
 
@@ -409,8 +411,7 @@ int invoiceNumbers=0;
       'api-key': APIKEY1
     };
     final response = await dio.post(
-        'https://cpe-soft.com/admin/api/v1/SalesSet3',
-        data: jsonEncode(pillRequestModel));
+        'https://cpe-soft.com/admin/api/v1/SalesSet3', data: jsonEncode(pillRequestModel));
     if (response.statusCode == 200) {
       // debugPrint(jsonEncode(pillRequestModel));
       // log(jsonEncode(pillRequestModel));
@@ -426,8 +427,9 @@ int invoiceNumbers=0;
     return pillResponseModel!;
   }
 
-  Future<List<Companies>> getCustomers(
-      ) async {
+  Future<List<Companies>> getCustomers() async {
+    String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
+    print("urlIs>>"+"https://cpe-soft.com/admin/api/v1/data?api-key=${APIKEY1}&warehouse_code=w_1");
     customerModel=[] ;
     companiesCustomerName=[];
 
@@ -474,9 +476,9 @@ return companiesCustomerName;
 
 
   }
-  Future<PillResponseModel> addCustomerResponse(
-      {required CustomerModel customerModel}) async {
-emit(AddCustomerLoadingState());
+  Future<PillResponseModel> addCustomerResponse({required CustomerModel customerModel}) async {
+    String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
+    emit(AddCustomerLoadingState());
     Dio dio = Dio();
 
     PillResponseModel? pillResponseModel;
@@ -507,8 +509,10 @@ emit(AddCustomerSuccessState());
 String? salesId;
 String? returnid;
   returnsalesModel? returnsizeInformationModel;
-Future<returnsalesModel>getReturnId(int index)async{
 
+Future<returnsalesModel>getReturnId(int index)async{
+  String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
+  print("urlIs>>"+"https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=${APIKEY1}&warehouse_id=w_1");
   Dio dio = Dio();
   // final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
   final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=${APIKEY1}&warehouse_id=w_1");
@@ -520,15 +524,15 @@ Future<returnsalesModel>getReturnId(int index)async{
   }
   return returnsizeInformationModel!;
 }
+
+
   getPillsDetailsForItem(int itemIndex ){
 
     // return pillsDetails!.data!.where((element) => element.id==itemId);
     pillsDetailsItem=pillsDetails!.data![itemIndex];
     salesId=pillsDetails!.data![itemIndex].id;
     selectedDate=
-        pillsDetailsItem!.deliveryDate!
-            .split(" ")
-            .first ??
+        pillsDetailsItem!.deliveryDate?.split(" ").first ??
             "";
    status =pillsDetailsItem!.saleStatus ?? "";
     // return pillsDetails!.data![itemIndex];
@@ -545,9 +549,7 @@ Future<returnsalesModel>getReturnId(int index)async{
    pillsDetails!.data!.forEach((element) {if(element.id==itemIndex.toString()){
      pillsDetailsItem=element;
      salesId=element.id;
-     selectedDate=element.deliveryDate!.split(" ")
-         .first ??
-         "";
+     selectedDate=element.deliveryDate?.split(" ").first ?? "";
      // status=element.saleStatus??"";
 
      stausName=element.saleStatus;
@@ -562,10 +564,13 @@ Future<returnsalesModel>getReturnId(int index)async{
    // status =pillsDetailsItem!.saleStatus ?? "";
     // return pillsDetails!.data![itemIndex];
   }
+
   PillsDetails? pillsDetails;
   data.PillsDetailsData?   pillsDetailsItem;
   Future<PillsDetails> getPillsDetails ()async{
     // companiesEmployeeName=[];
+    String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
+    print("urlIs>>"+"https://cpe-soft.com/admin/api/v1/Getallsales?api-key=${APIKEY1}&warehouse_code=w_1");
     Dio dio = Dio();
     // final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
     final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=${APIKEY1}&warehouse_code=w_1");
@@ -795,7 +800,7 @@ String? quantities1;
   String? status;
 
   Future<UpdatedPillsResponse> updatePills(UpdatedPillsStatusModel updatedPillsStatusModel)async{
-
+    String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
     Dio dio = Dio();
     dio.options.headers = {
       'Content-Type': 'application/json',
@@ -839,6 +844,8 @@ String? quantities1;
 
   ReturnInvoiceItem? returnInvoice;
   Future getReturnItemInformation(String salesId)async{
+    String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
+    print("urlIs>>"+"https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=${APIKEY1}&warehouse_id=w_1&id=$salesId");
     try{
       Dio dio = Dio();
       dio.interceptors.add(LogInterceptor(
@@ -864,6 +871,8 @@ String? quantities1;
   }
 
     Future<SizeInformationModel?>getSizeInformation(BuildContext context ,String salesId)async{
+      String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
+      print("urlIs>>"+"https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=${APIKEY1}&warehouse_id=w_1&id=$salesId");
       LoadingPage(context).show();
     try{
       Dio dio = Dio();
@@ -874,7 +883,8 @@ String? quantities1;
           responseHeader: true,
           responseBody: true
       ));
-      final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=${APIKEY1}&warehouse_id=w_1&id=$salesId");
+      final response=await dio.get(
+          "https://cpe-soft.com/admin/api/v1/Getallsalesdetails?api-key=${APIKEY1}&warehouse_id=w_1&id=$salesId");
       if(response.statusCode==200){
         sizeInformationModel=SizeInformationModel.fromJson(response.data);
         // returnInvoice=sizeInformationModel;
@@ -1054,7 +1064,9 @@ String? quantities1;
   String? fillId;
   String? pockettailId;
   InvoiceUpdateResponseModel? invoiceUpdateResponseModel;
+
   Future<InvoiceUpdateResponseModel> updateSize(InvoiceNewSizesModel invoiceNewSizesModel)async{
+    String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
     try{
       emit(UpdatedInvoiceResponseLoadingState());
       Dio dio = Dio();
@@ -1127,7 +1139,7 @@ String startDate="";
 String endDate="";
 // String cashInHand="0";
   Future<CashierResponse> openCashier(CashierStartRequest cashierStartRequest)async{
-
+    String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
   Dio dio = Dio();
   dio.options.headers = {
     'Content-Type': 'application/json',
@@ -1148,6 +1160,7 @@ String endDate="";
   return openCashierResponse!;
 }
 Future<CashierResponse> closeCashier(CashierCloseRequest cashierCloseRequest)async{
+  String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
   Dio dio = Dio();
   dio.interceptors.add(LogInterceptor(
       requestBody: true,
@@ -1162,8 +1175,6 @@ Future<CashierResponse> closeCashier(CashierCloseRequest cashierCloseRequest)asy
     'Accept-Version': 'V1',
     'Accept-Language': 'en',
     'api-key': '$APIKEY1'
-
-
   };
   // final response=await dio.get("https://cpe-soft.com/admin/api/v1/Getallsales?api-key=k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko&warehouse_code=w_1");
   final response=await dio.post("https://cpe-soft.com/admin/api/v1/CloseRegister",data: jsonEncode(cashierCloseRequest));
@@ -1184,6 +1195,7 @@ Future<CashierResponse> closeCashier(CashierCloseRequest cashierCloseRequest)asy
 
   CloseCashierResponse? closeCashierDetailsResponse;
 Future<CloseCashierResponse> closeCashierDetails()async{
+  String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
   CloseCashierRequest closeCashierRequest=CloseCashierRequest(userId: userId,closedAt: endDate);
   Dio dio = Dio();
   dio.interceptors.add(LogInterceptor(
@@ -1220,8 +1232,10 @@ Future<CloseCashierResponse> closeCashierDetails()async{
 String? salesIdSearch;
   AllCustomerResponse? allCustomerResponse;
   AllCustomerResponse? customerResponse;
-Future<AllCustomerResponse> getAllCustomers()async{
 
+Future<AllCustomerResponse> getAllCustomers()async{
+  String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
+  print("urlIs>>"+"https://cpe-soft.com/admin/api/v1/company?api-key=$APIKEY1");
   Dio dio = Dio();
   dio.interceptors.add(LogInterceptor(
       requestBody: true,
@@ -1230,29 +1244,21 @@ Future<AllCustomerResponse> getAllCustomers()async{
       responseHeader: true,
       responseBody: true
   ));
-  // dio.options.headers = {
-  //   'Content-Type': 'application/json',
-  //   'Accept': 'application/json',
-  //   'Accept-Version': 'V1',
-  //   'Accept-Language': 'en',
-  //   'api-key': 'k4csscc0gcosgs0s8ossows4kkkc4wsw8wgc8wko'
-  //
-  //
-  // };
   final response=await dio.get("https://cpe-soft.com/admin/api/v1/company?api-key=$APIKEY1");
+  print("statata>>"+response.statusCode.toString());
   if(response.statusCode==200){
     print(response.data);
     allCustomerResponse=AllCustomerResponse.fromJson(response.data);
     clearControllers();
     cashInHand=0;
-
-
   }else{
     print(response.statusMessage);
   }
   return allCustomerResponse!;
 }
 Future<AllCustomerResponse> getCustomerDetails(BuildContext context ,int id)async{
+  String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
+  print("urlIs>>"+"https://cpe-soft.com/admin/api/v1/company?api-key=$APIKEY1&id=$id");
   LoadingPage(context).show();
   Dio dio = Dio();
   dio.interceptors.add(LogInterceptor(
@@ -1298,8 +1304,7 @@ Future<AllCustomerResponse> getCustomerDetails(BuildContext context ,int id)asyn
     companyPhoneNumberEditingController.text =
     customerResponse!.data![0].phone!;
     companyCrNoEditingController.text = customerResponse!.data![0].crNo!;
-    companyOfflineIdEditingController.text =
-    customerResponse!.data![0].offlineId!;
+    companyOfflineIdEditingController.text = customerResponse!.data![0].offlineId ?? '';
    getAllCustomers();
 
 
@@ -1311,7 +1316,7 @@ Future<AllCustomerResponse> getCustomerDetails(BuildContext context ,int id)asyn
 }
   InvoiceUpdateResponseModel? customerUpdateResponse;
 Future<InvoiceUpdateResponseModel> updateCustomerDetails(CustomerRequest customerRequest)async{
-
+  String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
   Dio dio = Dio();
   dio.interceptors.add(LogInterceptor(
       requestBody: true,
