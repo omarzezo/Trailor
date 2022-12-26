@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if(isLogged){
         var email=CacheHelper.getData(key: 'email');
         var password= CacheHelper.getData(key: 'password');
-        APIKEYLogin=CacheHelper.getData(key: 'email');
+        APIKEYLogin=CacheHelper.getData(key: 'password');
         await LoginCubit.get(context).login(email: email, password: password);
         Navigator.pushReplacementNamed(context, StartScreen.routeName);
       }else{

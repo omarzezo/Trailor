@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:omar/Controller/local/shared_pref.dart';
 import 'package:omar/constant/constant.dart';
 
 Widget CustomContainer({
@@ -45,7 +46,7 @@ Widget RowName()
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     children:  [
-      Text('عدنان محمد',
+      Text(CacheHelper.getData(key: 'email')??"",
           style: GoogleFonts.notoKufiArabic(
               color: Colors.purple,
               fontSize: 12,

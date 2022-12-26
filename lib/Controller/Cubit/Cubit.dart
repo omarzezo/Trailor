@@ -342,9 +342,9 @@ int? paymentId;
     var response = await http.get(
         Uri.parse(BASEURL +
             "v1/data?api-key=" +
-            email +
+            password +
             "&warehouse_code=" +
-            password),
+            email),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',

@@ -142,15 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderSide: const BorderSide(color: Colors.transparent),
                             borderRadius: BorderRadius.circular(5),
                           ),
-                          suffixIcon: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  obscureText = !obscureText;
-                                });
-                              },
-                              icon: obscureText ?  const Icon(Icons.visibility_off,color: Color(0xff9BA1B3),) :
-                              const Icon(Icons.visibility,color: Color(0xff9BA1B3),)
-                          ),
+
                           focusedBorder: OutlineInputBorder(
                             borderSide: const BorderSide(color: Colors.transparent),
                             borderRadius: BorderRadius.circular(5),
@@ -174,6 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       alignment: Alignment.center,
                       height: MediaQuery.of(context).size.height/ 14,
                       child: TextFormField(
+
                         controller: passwordController,
                         validator: (val){
                           if(val!.isEmpty){
@@ -182,6 +175,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         obscureText: obscureText,
                         decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  obscureText = !obscureText;
+                                });
+                              },
+                              icon: obscureText ?  const Icon(Icons.visibility_off,color: Color(0xff9BA1B3),) :
+                              const Icon(Icons.visibility,color: Color(0xff9BA1B3),)
+                          ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: const BorderSide(color: Colors.transparent),
                             borderRadius: BorderRadius.circular(5),
@@ -253,7 +255,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         final prefs = await SharedPreferences.getInstance();
                         await prefs.setString('json', jsonUser).then((value) {
                           if(value){
-                            SharedPreferencesHelper.setApiKey(userNameController.text).then((value) {
+                            SharedPreferencesHelper.setApiKey(passwordController.text).then((value) {
                               LoginCubit()..getPillsDetails().then((value){
                                 LoadingPage(context).close();
                                 // Navigator.push(context,MaterialPageRoute(builder: (context) => const HomeScreen()));
