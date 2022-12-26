@@ -59,9 +59,14 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
       width=MediaQuery.of(context).size.width*0.60;
     });
     // prefs = await SharedPreferences.getInstance();
+try{
+  MacJeson=await SharedPreferencesHelper.getMacAddress();
 
-    MacJeson=await SharedPreferencesHelper.getMacAddress();
-    ipPrinter=(await SharedPreferencesHelper.getIpPrinter())!;
+}catch(e){}
+    try{
+      ipPrinter=(await SharedPreferencesHelper.getIpPrinter())!;
+
+    }catch(e){}
     print("ipPrinter>>"+ipPrinter.toString());
     print("MacJeson>>"+MacJeson.toString());
     setState(() {});
@@ -796,8 +801,8 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                             // width: 100,
                               alignment: Alignment.center,
                               child:Text(
-                                LoginCubit.get(context).invoiceNumbers.toString(),textAlign: TextAlign.center,
-
+                                // LoginCubit.get(context).invoiceNumbers.toString(),textAlign: TextAlign.center,
+                                  double.parse(LoginCubit.get(context).closeCashierDetailsResponse!.invoiceCount!).toStringAsFixed(0),textAlign: TextAlign.center,
                                 // invoiceModel!.invoiceData![0].date!,textAlign: TextAlign.center,
                                 style: getStyle(color: Colors.black, fontSize: textSize-1),
                               )),  Container(
@@ -825,7 +830,7 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                             // width: 100,
                               alignment: Alignment.center,
                               child:Text(
-                                "0",textAlign: TextAlign.center,
+                                double.parse(LoginCubit.get(context).closeCashierDetailsResponse!.returnInvoiceCount!).toStringAsFixed(0),textAlign: TextAlign.center,
 
                                 // invoiceModel!.invoiceData![0].referenceNo!,textAlign: TextAlign.center,
                                 style: getStyle(color: Colors.black, fontSize: textSize-1),
@@ -944,7 +949,8 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    LoginCubit.get(context).totalCash,
+                    // LoginCubit.get(context).totalCash,
+                    double.parse(LoginCubit.get(context).closeCashierDetailsResponse!.invoiceGrandTotal!).toStringAsFixed(2),
 
                     // invoiceModel!.invoiceData![0].id!,
                     style: getStyle(color: Colors.black, fontSize: textSize-1),
@@ -1022,8 +1028,8 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    LoginCubit.get(context).totalCash,
-
+                    // LoginCubit.get(context).totalCash,
+                double.parse(LoginCubit.get(context).closeCashierDetailsResponse!.invoiceGrandTotal!).toStringAsFixed(2),
                     // invoiceModel!.invoiceData![0].id!,
                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                   ),
@@ -1048,7 +1054,7 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "0",
+                    double.parse(LoginCubit.get(context).closeCashierDetailsResponse!.netSalesGrandTotal!.toString()).toStringAsFixed(2),
 
                     // invoiceModel!.invoiceData![0].id!,
                     style: getStyle(color: Colors.black, fontSize: textSize-1),
@@ -1100,7 +1106,7 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "0",
+                    double.parse(LoginCubit.get(context).closeCashierDetailsResponse!.returnInvoiceGrandTotal!).toStringAsFixed(2),
 
                     // invoiceModel!.invoiceData![0].id!,
                     style: getStyle(color: Colors.black, fontSize: textSize-1),
@@ -1126,7 +1132,8 @@ class _CashierPillScreenState extends State<CashierPillScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    ((double.parse(LoginCubit.get(context).totalCash))+(LoginCubit.get(context).cashInHand)).toString(),
+                    // ((double.parse(LoginCubit.get(context).totalCash))+(LoginCubit.get(context).cashInHand)).toString(),
+                    ((double.parse(LoginCubit.get(context).closeCashierDetailsResponse!.invoiceGrandTotal!))+(double.parse(LoginCubit.get(context).closeCashierDetailsResponse!.cashInHand!))).toString(),
 
                     // invoiceModel!.invoiceData![0].id!,
                     style: getStyle(color: Colors.black, fontSize: textSize-1),

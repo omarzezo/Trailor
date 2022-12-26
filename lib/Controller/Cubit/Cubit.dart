@@ -1156,7 +1156,15 @@ String endDate="";
   Future<CashierResponse> openCashier(CashierStartRequest cashierStartRequest)async{
     String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
   Dio dio = Dio();
-  dio.options.headers = {
+    dio.interceptors.add(LogInterceptor(
+        requestBody: true,
+        error: true,
+        requestHeader: true,
+        responseHeader: true,
+        responseBody: true
+    ));
+
+    dio.options.headers = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
     'Accept-Version': 'V1',
