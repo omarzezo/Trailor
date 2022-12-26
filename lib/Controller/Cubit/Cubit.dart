@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -329,6 +330,9 @@ int? paymentId;
   //   // companiesEmployeeName.retainWhere((x) => ids.add(x.id));
   //   return companiesEmployeeName;
   // }
+
+
+  List<Companies> customerListOfData=[];
   Future<TrailorListsResponse> login({
     required String email,
     required String password,
@@ -369,7 +373,11 @@ int? paymentId;
       taxRatesNameList = lenderResponseModel.taxrates!;
       customerModel = lenderResponseModel.companies!;
 
-
+      lenderResponseModel.companies!.forEach((element) {
+        if(element.groupName=="customer"){
+          customerListOfData.add(element);
+        }
+      });
       lenderResponseModel.paymentType!.forEach((element) {
         if (element.isActive == "1" && element.isCC == "1") {
           paymentCodeList.add(element);
@@ -403,13 +411,20 @@ int invoiceNumbers=0;
     String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
     Dio dio = Dio();
     PillResponseModel? pillResponseModel;
-
+    dio.interceptors.add(LogInterceptor(
+        requestBody: true,
+        error: true,
+        requestHeader: true,
+        responseHeader: true,
+        responseBody: true
+    ));
     dio.options.headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Accept-Version': 'V1',
       'api-key': APIKEY1
     };
+    log(jsonEncode(pillRequestModel));
     final response = await dio.post(
         'https://cpe-soft.com/admin/api/v1/SalesSet3', data: jsonEncode(pillRequestModel));
     if (response.statusCode == 200) {
@@ -809,7 +824,7 @@ String? quantities1;
       'Accept-Language': 'en',
       'api-key': '$APIKEY1'
     };
-    emit(UpdatedPillsResponseLoadingState());
+    // emit(UpdatedPillsResponseLoadingState());
     final response = await dio.post(
         'https://cpe-soft.com/admin/api/v1/UpdateSales',
         data: jsonEncode(updatedPillsStatusModel));
@@ -1234,6 +1249,7 @@ String? salesIdSearch;
   AllCustomerResponse? customerResponse;
 
 Future<AllCustomerResponse> getAllCustomers()async{
+  // allCustomerResponse=null;
   String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
   print("urlIs>>"+"https://cpe-soft.com/admin/api/v1/company?api-key=$APIKEY1");
   Dio dio = Dio();

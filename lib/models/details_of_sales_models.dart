@@ -68,11 +68,17 @@ class InvoiceData {
     deliveryDate = json['delivery_date'];
     saleStatus = json['sale_status'];
     balance = json['balance'];
-    if (json['items'] != null) {
-      items = <Items>[];
-      json['items'].forEach((v) {
-        items!.add(new Items.fromJson(v));
-      });
+    if (json['items'] != null&&json['items'] != false) {
+      try{
+        items = <Items>[];
+        json['items'].forEach((v) {
+          items!.add(new Items.fromJson(v));
+        });
+      }catch(e){
+
+      }
+
+
     }
     if (json['payments'] != null&&json['payments'] != false) {
       payments = <Payments>[];

@@ -426,7 +426,7 @@ class _PillsItemDataState extends State<PillsItemData> {
                               LoadingPage(context).show();
 
                               UpdatedPillsStatusModel model=UpdatedPillsStatusModel(saleId: cubit.pillsDetailsItem!.id, deliveryDate: cubit.selectedDate, saleStatus: cubit.stausName, note: "");
-                              cubit.updatePills(model);
+                             await cubit.updatePills(model);
                               cubit.stausName=null;
                               await cubit.getPillsDetails();
 

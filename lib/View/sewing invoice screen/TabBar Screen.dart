@@ -75,7 +75,8 @@ class _TabBarScreenState extends State<TabBarScreen> {
                     Expanded(
                       flex: 1,
                       child: InkWell(
-                        onTap: () {
+                        onTap: ()async {
+                        await LoginCubit.get(context). getAllCustomers();
                           setScreen(0);
                         },
                         child: Column(

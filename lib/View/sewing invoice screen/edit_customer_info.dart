@@ -220,7 +220,7 @@ class _EditCustomerScreenState extends State<EditCustomerScreen> {
                                       :LoginCubit.get(context).companyVatNoEditingController.text,);
                                 await
                                 cubit.updateCustomerDetails(customerRequest);
-
+await cubit.getAllCustomers();
                                 LoadingPage(context).close();
 
                                 Navigator.pop(context);

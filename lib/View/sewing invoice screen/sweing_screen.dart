@@ -17,6 +17,7 @@ import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/View/sewing%20invoice%20screen/add_new_customer_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/casher.dart';
+import 'package:omar/View/sewing%20invoice%20screen/new_add_customer_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/print_screen.dart';
 import 'package:omar/constant/LoadingPage.dart';
 import 'package:omar/constant/appstrings.dart';
@@ -26,6 +27,7 @@ import 'package:omar/models/PaymentType.dart';
 import 'package:omar/models/Products.dart';
 import 'package:omar/models/TrailorListsResponse.dart';
 import 'package:omar/models/Units.dart';
+import 'package:omar/models/customer.dart';
 import 'package:omar/models/pillRequest.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -259,15 +261,11 @@ class _SewingScreenState extends State<SewingScreen> {
                                               top: 6, bottom: 6),
                                           width: 160,
                                           color: item ==
-                                              AppStrings
-                                                  .pendingState
-                                                  .tr()
+                                              "pending"||item.contains("تحت")
                                               ? const Color(
                                               0xffefae50)
                                               : item ==
-                                              AppStrings
-                                                  .completedState
-                                                  .tr()
+                                             "completed"||item.contains("مك")
                                               ? Colors.green
                                               : Colors.red,
                                           child: Center(
@@ -2315,7 +2313,14 @@ class _SewingScreenState extends State<SewingScreen> {
                                       : true,
                                   warehouse: 1),
                             ];
-                            List<dynamic> customerList = [];
+                            Customer? customer;
+                            cubit.customerListOfData.forEach((element) {if(element.name==cubit.userItemName){
+
+                               customer=Customer(company: element.company, email: element.email, customerGroupId:int.parse( element.customerGroupId), customerGroupName: element.customerGroupName, vatNo: element.vatNo, address: element.address, state: element.state, postalCode: element.postalCode, country: element.country, phone: element.phone, crNo: element.crNo.toString(), offlineId: int.parse(element.offlineId));
+                               customerId=int.parse(element.id!);
+                            }});
+                            List<dynamic> customerList = [customer];
+
                             List<dynamic> categoryList = [];
                             List<dynamic> posRegisterList = [];
                             List<dynamic> expensesList = [];
@@ -2365,7 +2370,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                 // customer: cubit.companiesEmployeeName[0].company,
                                 // customer: cubit.companiesEmployeeName[0].company,
                                 customer: cubit.userItemName,
-                                biller: cubit.users[0].username,
+                                biller: cubit.userName,
                                 billerId: int.parse(
                                     cubit.companiesEmployeeName[0].id!),
                                 // total: double.parse(
@@ -2473,7 +2478,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                     ccType: null,
                                     createdBy: 1,
                                     type: "received",
-                                    note: cubit.userName??"",
+                                    note: cubit.userName,
                                     // posPaid: double.parse(
                                     //     cubit.whatYouPay.text.isEmpty
                                     //         ? "0"
@@ -2695,6 +2700,7 @@ class _SewingScreenState extends State<SewingScreen> {
                                 ],
                               ),
                             ];
+                            
                             PillRequestModel pillRequestModel =
                             PillRequestModel(
                                 productList: productList,

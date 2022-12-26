@@ -1014,8 +1014,11 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                     "الاجمالي  سعر  الكمية",
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                                   ),
+
                                   Text(
+
                                     "${double.parse(invoiceModel.invoiceData![0].items![0].quantity!).toStringAsFixed(0)}  ${double.parse(invoiceModel.invoiceData![0].items![0].unitPrice!).toStringAsFixed(2)}  ${double.parse(invoiceModel.invoiceData![0].items![0].subtotal!).toStringAsFixed(2)}",
+                                   textDirection: Locale!=Locale("ar","EG")?p.TextDirection.ltr:p.TextDirection.rtl,
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                                   ),
 
