@@ -44,6 +44,8 @@ class ReturnItemsScreenState extends State<ReturnItemsScreen> {
     pillsDetailsDataList = cubit.pillsDetails!=null?List.from(cubit.pillsDetails!.data!):[];
     filteredList = cubit.pillsDetails!=null? List.from(cubit.pillsDetails!.data!):[];
 
+    // print("pillsDetailsDataList>>"+pillsDetailsDataList!.length.toString());
+    // print("pillsDetailsDataList>>"+filteredList!.length.toString());
     // log("dataisNew>>"+jsonEncode(cubit.pillsDetails!.data!));
 
     setState(() {});
@@ -56,168 +58,161 @@ class ReturnItemsScreenState extends State<ReturnItemsScreen> {
     // pillsDetailsDataList = List.from(cubit.pillsDetails!.data!);
     // filteredList = List.from(cubit.pillsDetails!.data!);
 
-    return BlocConsumer<LoginCubit, LoginState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
-      builder: (context, state) {
-        return SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  searchField(),
-                  ListView.separated(itemBuilder: (context, index) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          searchField(),
+          ListView.builder(
+            itemCount:textSearch.isNotEmpty ? filteredList.length : pillsDetailsDataList!.length,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+            PillsDetailsData item = textSearch.isNotEmpty ? filteredList[index] : pillsDetailsDataList![index];
 
-                    PillsDetailsData item = textSearch.isNotEmpty ? filteredList[index] : pillsDetailsDataList![index];
+            return InkWell(
+              onTap: () async {
+                LoadingPage(context).show();
 
-                    return InkWell(
-                      onTap: () async {
-                        LoadingPage(context).show();
-
-                        LoginCubit.get(context).salesIdSearch=item.id;
+                LoginCubit.get(context).salesIdSearch=item.id;
 
 
-                        await LoginCubit.get(context).getReturnItemInformation(LoginCubit.get(context).salesIdSearch.toString());
-                        LoadingPage(context).close();
+                await LoginCubit.get(context).getReturnItemInformation(LoginCubit.get(context).salesIdSearch.toString());
+                LoadingPage(context).close();
 
-                        Navigator.pushNamed(context, ReturnItemScreen.routeName);
+                Navigator.pushNamed(context, ReturnItemScreen.routeName);
 
-                      },
-                      child: Container(
-                        padding: EdgeInsets.all(20),
-                        margin: EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: MyConstant().greenColor)
+              },
+              child: Container(
+                padding: EdgeInsets.all(20),
+                margin: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: MyConstant().greenColor)
 
-                        ),
-                        child: Column(
-                          children: [
-                        Row(
+                ),
+                child: Column(
+                  children: [
+                    Row(
 
-                          children: [
-                            Expanded(
-                              child: RichText(text: TextSpan(
+                      children: [
+                        Expanded(
+                          child: RichText(text: TextSpan(
                               text: "${AppStrings.clothes.tr()} : ",
+                              style: GoogleFonts.notoKufiArabic(
+                                  color: MyConstant().greenColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                              children:[
+                                TextSpan(
+                                  text:   pillsDetailsDataList![index].items!=null&&pillsDetailsDataList![index].items!.isNotEmpty?
+                                  pillsDetailsDataList![index].items![0].productName ?? '':"",
+                                  style: GoogleFonts.notoKufiArabic(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                )
+                              ]
+                          )
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(child:
+                        RichText(text: TextSpan(
+                            text: "${AppStrings.customer.tr()} : ",
+                            style: GoogleFonts.notoKufiArabic(
+                                color: MyConstant().greenColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18),
+                            children:[
+                              TextSpan(
+                                text: "  ${pillsDetailsDataList![index].customer}  ",
+                                style: GoogleFonts.notoKufiArabic(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
+                              )
+                            ]
+                        )
+
+                        )
+                        ),
+                        Expanded(child:
+                        RichText(
+                            text: TextSpan(
+                                text: "${AppStrings.statue.tr()} : ",
                                 style: GoogleFonts.notoKufiArabic(
                                     color: MyConstant().greenColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18),
                                 children:[
                                   TextSpan(
-                                    text:   pillsDetailsDataList![index].items!=null?pillsDetailsDataList![index].items![0].productName:"",
+                                    text: "  ${pillsDetailsDataList![index].saleStatus}  ",
                                     style: GoogleFonts.notoKufiArabic(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18),
                                   )
                                 ]
-                      )
-                              ),
-                            ),
-                          ],
+                            ))
                         ),
-                        Row(
-                              children: [
-                                Expanded(child:
-                                RichText(text: TextSpan(
-                                    text: "${AppStrings.customer.tr()} : ",
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(child:    RichText(text: TextSpan(
+                            text: "${AppStrings.deliverydate.tr()} : ",
+                            style: GoogleFonts.notoKufiArabic(
+                                color: MyConstant().greenColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18),
+                            children:[
+                              TextSpan(
+                                text: "  ${pillsDetailsDataList![index].deliveryDate}  ",
+                                style: GoogleFonts.notoKufiArabic(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
+                              )
+                            ]
+                        ))
+                        ),
+                        Expanded(child:
+                        RichText(
+                            text: TextSpan(
+                                text: "${AppStrings.Residual.tr()} : ",
+                                style: GoogleFonts.notoKufiArabic(
+                                    color: MyConstant().greenColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
+                                children:[
+                                  TextSpan(
+                                    text: "  ${pillsDetailsDataList![index].balance}  ",
                                     style: GoogleFonts.notoKufiArabic(
-                                        color: MyConstant().greenColor,
+                                        color: Colors.black,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18),
-                                    children:[
-                                      TextSpan(
-                                        text: "  ${pillsDetailsDataList![index].customer}  ",
-                                        style: GoogleFonts.notoKufiArabic(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18),
-                                      )
-                                    ]
-                                )
-
-                                )
-                                ),
-                                Expanded(child:
-                                RichText(
-                                    text: TextSpan(
-                                    text: "${AppStrings.statue.tr()} : ",
-                                    style: GoogleFonts.notoKufiArabic(
-                                        color: MyConstant().greenColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                    children:[
-                                      TextSpan(
-                                        text: "  ${pillsDetailsDataList![index].saleStatus}  ",
-                                        style: GoogleFonts.notoKufiArabic(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18),
-                                      )
-                                    ]
-                                ))
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Expanded(child:    RichText(text: TextSpan(
-                                    text: "${AppStrings.deliverydate.tr()} : ",
-                                    style: GoogleFonts.notoKufiArabic(
-                                        color: MyConstant().greenColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                    children:[
-                                      TextSpan(
-                                        text: "  ${pillsDetailsDataList![index].deliveryDate}  ",
-                                        style: GoogleFonts.notoKufiArabic(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18),
-                                      )
-                                    ]
-                                ))
-                                ),
-                                Expanded(child:
-                                RichText(
-                                    text: TextSpan(
-                                        text: "${AppStrings.Residual.tr()} : ",
-                                        style: GoogleFonts.notoKufiArabic(
-                                            color: MyConstant().greenColor,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18),
-                                        children:[
-                                          TextSpan(
-                                            text: "  ${pillsDetailsDataList![index].balance}  ",
-                                            style: GoogleFonts.notoKufiArabic(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18),
-                                          )
-                                        ]
-                                    ))
-                                ),
-
-                              ],
-                            )
-                          ],
+                                  )
+                                ]
+                            ))
                         ),
 
-                      ),
-                    );
-                  }, separatorBuilder: (context, index) => SizedBox(height: 10,), itemCount: pillsDetailsDataList!.length,
-                  shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                  ),
+                      ],
+                    )
+                  ],
+                ),
 
-                ],
               ),
             );
+          },)
 
 
-      },
+        ],
+      ),
     );
   }
 

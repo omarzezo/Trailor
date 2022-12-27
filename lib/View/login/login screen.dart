@@ -136,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             'اسم المستخدم غير صحيح';
                           }
                         },
-                        obscureText: obscureText,
+                        // obscureText: obscureText,
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderSide: const BorderSide(color: Colors.transparent),
