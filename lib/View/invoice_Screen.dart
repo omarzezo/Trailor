@@ -993,7 +993,9 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                       style: getStyle(color: Colors.black, fontSize: textSize-1),
                                     ),
                                     Text(
-                                      invoiceModel!.invoiceData![0].items![0].productName!,
+                                      invoiceModel.invoiceData!=null&&invoiceModel.invoiceData!.isNotEmpty&&
+                                          invoiceModel.invoiceData![0].items!=null&&invoiceModel.invoiceData![0].items!.isNotEmpty?
+                                      invoiceModel.invoiceData![0].items![0].productName!:'',
                                       textAlign: TextAlign.left,
                                       style: getStyle(color: Colors.black, fontSize: textSize-1),
                                     ),
