@@ -42,7 +42,7 @@ class AllInvoicesScreenState extends State<AllInvoicesScreen> {
     // TODO: implement initState
     super.initState();
     var cubit=LoginCubit.get(context);
-    // pillsDetailsDataList = cubit.pillsDetails!=null?List.from(cubit.pillsDetails!.data!):[];
+    pillsDetailsDataList = cubit.pillsDetails!=null?List.from(cubit.pillsDetails!.data!):[];
     filteredList = cubit.pillsDetails!=null?List.from(cubit.pillsDetails!.data!):[];
 
     // log("dataisNew>>"+jsonEncode(cubit.pillsDetails!.data!));
