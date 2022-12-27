@@ -582,7 +582,7 @@ Future<returnsalesModel>getReturnId(int index)async{
 
   PillsDetails? pillsDetails;
   data.PillsDetailsData?   pillsDetailsItem;
-  Future<PillsDetails> getPillsDetails ()async{
+  Future<void> getPillsDetails ()async{
     // companiesEmployeeName=[];
     String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
     print("urlIs>>"+"https://cpe-soft.com/admin/api/v1/Getallsales?api-key=${APIKEY1}&warehouse_code=w_1");
@@ -593,12 +593,13 @@ Future<returnsalesModel>getReturnId(int index)async{
       print(response.data);
       pillsDetails=PillsDetails.fromJson(response.data);
       // await getAllData();
+      emit(GetDataSuccessState());
 
-      return pillsDetails!;
+      // return pillsDetails!;
     }else{
       print(response.statusMessage);
     }
-  return pillsDetails!;
+  // return pillsDetails!;
   }
   // PillsResponseModel? pillsResponseModel;
 
