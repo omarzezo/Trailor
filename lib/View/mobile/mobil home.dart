@@ -163,7 +163,28 @@ class MobileHome extends StatelessWidget {
 
                     InkWell(
                       onTap: () {
-                        LoginCubit.get(context).cashierOpened?SizedBox(): AwesomeDialog(context: context,
+                        LoginCubit.get(context).cashierOpened?AwesomeDialog(
+                            context: context,
+                            dialogType: DialogType.error,
+                            animType: AnimType.rightSlide,
+                            width: MediaQuery.of(context).size.width,
+                            // width:400,
+                            body: Container(
+                              height: 50,
+                              child: Text(AppStrings.cashierIsOpened.tr(),
+                                  style: GoogleFonts.notoKufiArabic(
+                                      color: MyConstant().purpleColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14)),
+                            ),
+                            btnOk: TextButton(
+                              child: Text(
+                                AppStrings.Cancel.tr(),
+                              ),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            )).show(): AwesomeDialog(context: context,
                           dialogType: DialogType.question,
                           animType: AnimType.rightSlide,
                           width:MediaQuery.of(context).size.width/1.2,
@@ -182,7 +203,28 @@ class MobileHome extends StatelessWidget {
 
                     InkWell(
                       onTap: () {
-                        LoginCubit.get(context).cashierClosed?SizedBox(): AwesomeDialog(context: context,
+                        LoginCubit.get(context).cashierClosed?AwesomeDialog(
+                            context: context,
+                            dialogType: DialogType.error,
+                            animType: AnimType.rightSlide,
+                            width: MediaQuery.of(context).size.width,
+                            // width:400,
+                            body: Container(
+                              height: 50,
+                              child: Text(AppStrings.pleaseOpenCashier.tr(),
+                                  style: GoogleFonts.notoKufiArabic(
+                                      color: MyConstant().purpleColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14)),
+                            ),
+                            btnOk: TextButton(
+                              child: Text(
+                                AppStrings.Cancel.tr(),
+                              ),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            )).show(): AwesomeDialog(context: context,
                           dialogType: DialogType.noHeader,
                           animType: AnimType.rightSlide,
                           width:MediaQuery.of(context).size.width,

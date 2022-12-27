@@ -478,7 +478,9 @@ class _ChangeSizeScreenState extends State<ChangeSizeScreen> {
                                 )),
                             height: 80,
                             width: 100,
-                            child: Text('+966 011 256 7846',
+                            child: Text(
+                                // '+966 011 256 7846',
+                                pillsDetails!.data![index].phone??"",
                                 style: GoogleFonts.notoKufiArabic(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w600,
@@ -978,7 +980,9 @@ class _ChangeSizeScreenState extends State<ChangeSizeScreen> {
                                   )),
                               height: 80,
                               width: 100,
-                              child: Text('+966 011 256 7846',
+                              child: Text(
+                                  // '+966 011 256 7846',
+                                  pillsDetails!.data![index].phone??"",
                                   style: GoogleFonts.notoKufiArabic(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w600,

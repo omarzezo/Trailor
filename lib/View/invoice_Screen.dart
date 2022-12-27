@@ -736,18 +736,18 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                 width: double.infinity,
                 child:Column(
                     children: [
-                      Container(height: 100,width: 100,
+                      Container(height:50,width: 100,
                         child: Image.asset("image/logo2.png"),
                         // child: Image(),
                       ),
 
                       Text("مركز الابداع للخياطة", style: getStyle(color: MyConstant().purpleColor, fontSize: textSize)
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Text("فاتورة ضريبة مبسطة ", style: getStyle(color: Colors.black, fontSize: textSize)
-                        )],
-                      ),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.center,
+                      //   children: [Text("فاتورة ضريبة مبسطة ", style: getStyle(color: Colors.black, fontSize: textSize)
+                      //   )],
+                      // ),
                       // const SizedBox(height: 10,),
 
                       Container(
@@ -757,7 +757,8 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                           color: Colors.grey.shade300,
                         ),
                         padding: const EdgeInsets.only(top: 3,bottom: 3),
-                        child:Text("مؤسسة وعد الوان", style: getStyle(color: Colors.black, fontSize: textSize)),),
+                        // child:Text("مؤسسة وعد الوان", style: getStyle(color: Colors.black, fontSize: textSize)),),
+                        child:Text("فاتورة ضريبة مبسطة", style: getStyle(color: Colors.black, fontSize: textSize)),),
 
                       // const SizedBox(height: 10,),
                     ])),
@@ -778,7 +779,8 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                               )),  Container(
                               alignment: Alignment.center,
                               child:Text(
-                                "961751515151",
+                                // "961751515151",
+                                invoiceModel!=null&&invoiceModel.invoiceData!=null&&invoiceModel.invoiceData!.isNotEmpty&&invoiceModel.invoiceData![0].phone!=null?invoiceModel.invoiceData![0].phone??"":"",
                                 style: getStyle(color: Colors.black, fontSize: textSize),
                               )),  Container(
                               alignment: Alignment.centerRight,
@@ -823,7 +825,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                           Container(
                               alignment: Alignment.center,
                               child:Text(
-                                invoiceModel!.invoiceData![0].referenceNo!,textAlign: TextAlign.center,
+                                invoiceModel!=null&&invoiceModel.invoiceData!=null&&invoiceModel.invoiceData!.isNotEmpty&&invoiceModel.invoiceData![0].referenceNo!=null?       invoiceModel!.invoiceData![0].referenceNo??"":"",textAlign: TextAlign.center,
                                 style:  getStyle(color: Colors.black, fontSize: textSize-1),
                               )),
                           Container(
@@ -857,7 +859,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                               )),  Container(
                               alignment: Alignment.center,
                               child:Text(
-                                invoiceModel!.invoiceData![0].date!,textAlign: TextAlign.center,
+                                invoiceModel!=null&&invoiceModel.invoiceData!=null&&invoiceModel.invoiceData!.isNotEmpty&&invoiceModel.invoiceData![0].date!=null?  invoiceModel!.invoiceData![0].date??"":"",textAlign: TextAlign.center,
                                 style: getStyle(color: Colors.black, fontSize: textSize-1),
                               )),  Container(
                               alignment: Alignment.centerRight,
@@ -882,7 +884,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                               )),  Container(
                               alignment: Alignment.center,
                               child:Text(
-                                invoiceModel!.invoiceData![0].referenceNo!,textAlign: TextAlign.center,
+                                invoiceModel!=null&&invoiceModel.invoiceData!=null&&invoiceModel.invoiceData!.isNotEmpty&&invoiceModel.invoiceData![0].referenceNo!=null? invoiceModel.invoiceData![0].referenceNo??"":"",textAlign: TextAlign.center,
                                 style: getStyle(color: Colors.black, fontSize: textSize-1),
                               )),  Container(
                               alignment: Alignment.centerRight,
@@ -907,7 +909,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                               )),  Container(
                               alignment: Alignment.center,
                               child:Text(
-                                invoiceModel.invoiceData?[0].payments?[0].note ?? "",textAlign: TextAlign.center,
+                                invoiceModel!=null&&invoiceModel.invoiceData!=null&&invoiceModel.invoiceData!.isNotEmpty&&invoiceModel.invoiceData![0].payments!=null&&invoiceModel.invoiceData![0].payments!.isNotEmpty&&invoiceModel.invoiceData![0].payments![0].note!=null? invoiceModel.invoiceData![0].payments![0].note??"":"",textAlign: TextAlign.center,
                                 style: getStyle(color: Colors.black, fontSize: textSize-1),
                               )),  Container(
                               alignment: Alignment.centerRight,
@@ -932,7 +934,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                               )),  Container(
                               alignment: Alignment.center,
                               child:Text(
-                                invoiceModel.invoiceData![0].customer!,textAlign: TextAlign.center,
+                                invoiceModel!=null&&  invoiceModel!.invoiceData!=null&& invoiceModel!.invoiceData!.isNotEmpty&&invoiceModel!.invoiceData![0].customer!=null?    invoiceModel!.invoiceData![0].customer??"":"",textAlign: TextAlign.center,
                                 style: getStyle(color: Colors.black, fontSize: textSize-1),
                               )),  Container(
                               alignment: Alignment.centerRight,
@@ -946,9 +948,10 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                       //   height: 5,
                       // ),
 
-                    ])),   const Divider(
-              color: Colors.black,
-            ),
+                    ])),
+            // const Divider(
+            //   color: Colors.black,
+            // ),
             Container(
               alignment: Alignment.center,
               width: width,
@@ -960,7 +963,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                   style: getStyle(color: Colors.black, fontSize: textSize-1),
                 ),
                   Text(
-                    invoiceModel!.invoiceData![0].id!,
+                    invoiceModel!=null&&  invoiceModel!.invoiceData!=null&& invoiceModel!.invoiceData!.isNotEmpty&&invoiceModel!.invoiceData![0].id!=null?invoiceModel.invoiceData![0].id??"":"",
                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                   ),  Text(
                     "رقم الفاتورة",
@@ -968,7 +971,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                   ),
                 ],),
             ),
-            const SizedBox(height:5,),
+            const SizedBox(height:0,),
             SizedBox(
               // height: 30,
                 width: width,
@@ -993,7 +996,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                                       style: getStyle(color: Colors.black, fontSize: textSize-1),
                                     ),
                                     Text(
-                                      invoiceModel.invoiceData!=null&&invoiceModel.invoiceData!.isNotEmpty&&
+                                      invoiceModel!=null&&invoiceModel.invoiceData!=null&&invoiceModel.invoiceData!.isNotEmpty&&
                                           invoiceModel.invoiceData![0].items!=null&&invoiceModel.invoiceData![0].items!.isNotEmpty?
                                       invoiceModel.invoiceData![0].items![0].productName!:'',
                                       textAlign: TextAlign.left,
@@ -1019,7 +1022,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
 
                                   Text(
 
-                                    "${double.parse(invoiceModel.invoiceData![0].items![0].quantity!).toStringAsFixed(0)}  ${double.parse(invoiceModel.invoiceData![0].items![0].unitPrice!).toStringAsFixed(2)}  ${double.parse(invoiceModel.invoiceData![0].items![0].subtotal!).toStringAsFixed(2)}",
+                                    "${double.parse(invoiceModel!=null&&  invoiceModel!.invoiceData!=null&& invoiceModel!.invoiceData!.isNotEmpty&&invoiceModel!.invoiceData![0].items!=null&&invoiceModel!.invoiceData![0].items!.isNotEmpty&&invoiceModel!.invoiceData![0].items![0].quantity!=null?invoiceModel.invoiceData![0].items![0].quantity??"0":"0").toStringAsFixed(0)}  ${double.parse(invoiceModel!=null&&  invoiceModel!.invoiceData!=null&& invoiceModel!.invoiceData!.isNotEmpty&&invoiceModel!.invoiceData![0].items!=null&&invoiceModel!.invoiceData![0].items!.isNotEmpty&&invoiceModel!.invoiceData![0].items![0].unitPrice!=null?invoiceModel.invoiceData![0].items![0].unitPrice??"0":"0").toStringAsFixed(2)}  ${double.parse(invoiceModel!=null&&  invoiceModel!.invoiceData!=null&& invoiceModel!.invoiceData!.isNotEmpty&&invoiceModel!.invoiceData![0].items!=null&&invoiceModel!.invoiceData![0].items!.isNotEmpty&&invoiceModel!.invoiceData![0].items![0].subtotal!=null?invoiceModel.invoiceData![0].items![0].subtotal??"0":"0").toStringAsFixed(2)}",
                                    textDirection: Locale!=Locale("ar","EG")?p.TextDirection.ltr:p.TextDirection.rtl,
                                     style: getStyle(color: Colors.black, fontSize: textSize-1),
                                   ),
@@ -1046,7 +1049,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                     Container(
                         alignment: Alignment.center,
                         child: Text(
-                          invoiceModel!.invoiceData![0].items![0].subtotal!,
+                          invoiceModel!=null&&  invoiceModel!.invoiceData!=null&& invoiceModel!.invoiceData!.isNotEmpty&&invoiceModel!.invoiceData![0].items!=null&&invoiceModel!.invoiceData![0].items!.isNotEmpty&&invoiceModel!.invoiceData![0].items![0].subtotal!=null?  invoiceModel!.invoiceData![0].items![0].subtotal??"0":"0",
                           textAlign: TextAlign.center,
                           style: getStyle(color: Colors.black, fontSize: textSize-1),
                         )),
@@ -1058,7 +1061,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                           style: getStyle(color: Colors.black, fontSize: textSize-1),
                         )),
                   ],)),
-            const SizedBox(height:3,),
+            const SizedBox(height:0,),
             SizedBox(
                 width: width,
                 child:  Row(
@@ -1075,7 +1078,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                     Container(
                         alignment: Alignment.center,
                         child: Text(
-                          "${double.parse(invoiceModel!.invoiceData![0].items![0].itemTax!).toStringAsFixed(2)} %",
+                          "${double.parse(invoiceModel!=null&&  invoiceModel!.invoiceData!=null&& invoiceModel!.invoiceData!.isNotEmpty&&invoiceModel!.invoiceData![0].items!=null&&invoiceModel!.invoiceData![0].items!.isNotEmpty&&invoiceModel!.invoiceData![0].items![0].itemTax!=null?invoiceModel!.invoiceData![0].items![0].itemTax??"0":"0").toStringAsFixed(2)} %",
                           textAlign: TextAlign.center,
                           style: getStyle(color: Colors.black, fontSize: textSize-1),
                         )),
@@ -1102,7 +1105,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                     Container(
                         alignment: Alignment.center,
                         child: Text(
-                            invoiceModel!.invoiceData![0].items![0].discount!=null?invoiceModel!.invoiceData![0].items![0].discount!:"15",
+                           invoiceModel!=null&&invoiceModel.invoiceData!=null&&invoiceModel!.invoiceData!.isNotEmpty&&invoiceModel!.invoiceData![0].items!=null&&invoiceModel.invoiceData![0].items!.isNotEmpty&& invoiceModel!.invoiceData![0].items![0].discount!=null?invoiceModel!.invoiceData![0].items![0].discount??"0":"15",
                             textAlign: TextAlign.center,
                             style:getStyle(color: Colors.black, fontSize: textSize-1)
                         )),
@@ -1114,7 +1117,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                             style: getStyle(color: Colors.black, fontSize: textSize-1)
                         )),
                   ],)),
-            const SizedBox(height:3,),
+            const SizedBox(height:0,),
             SizedBox(
                 width: width,
                 child:  Row(
@@ -1130,7 +1133,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                     Container(
                         alignment: Alignment.center,
                         child: Text(
-                            double.parse(invoiceModel.invoiceData![0].items![0].netUnitPrice!).toStringAsFixed(2),
+                            double.parse(invoiceModel!=null&&  invoiceModel!.invoiceData!=null&& invoiceModel!.invoiceData!.isNotEmpty&&invoiceModel!.invoiceData![0].items!=null&&invoiceModel!.invoiceData![0].items!.isNotEmpty&&invoiceModel!.invoiceData![0].items![0].netUnitPrice!=null?invoiceModel.invoiceData![0].items![0].netUnitPrice??"0":"0").toStringAsFixed(2),
                             textAlign: TextAlign.center,
                             style: getStyle(color: Colors.black, fontSize: textSize-1)
                         )),
@@ -1142,7 +1145,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                           style: getStyle(color: Colors.black, fontSize: textSize-1),
                         )),
                   ],)),
-            const SizedBox(height:3,),
+            const SizedBox(height:0,),
             SizedBox(
                 width: width,
                 child:  Row(
@@ -1158,7 +1161,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                     Container(
                         alignment: Alignment.center,
                         child: Text(
-                            double.parse(invoiceModel.invoiceData?[0].payments?[0].posPaid ?? '0').toStringAsFixed(2),
+                            double.parse(invoiceModel!=null&&  invoiceModel!.invoiceData!=null&& invoiceModel!.invoiceData!.isNotEmpty&&invoiceModel!.invoiceData![0].payments!=null&&invoiceModel!.invoiceData![0].payments!.isNotEmpty&&invoiceModel!.invoiceData![0].payments![0].posPaid!=null?invoiceModel.invoiceData![0].payments![0].posPaid ?? '0':"0").toStringAsFixed(2),
                             textAlign: TextAlign.center,
                             style: getStyle(color: Colors.black, fontSize: textSize-1)
                         )),
@@ -1170,7 +1173,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                             style: getStyle(color: Colors.black, fontSize: textSize-1)
                         )),
                   ],)),
-            const SizedBox(height:3,),
+            const SizedBox(height:0,),
             SizedBox(
                 width: width,
                 child:  Row(
@@ -1186,7 +1189,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                     Container(
                         alignment: Alignment.center,
                         child: Text(
-                            double.parse(invoiceModel!.invoiceData?[0].payments?[0].posBalance ?? '0').toStringAsFixed(2),
+                            double.parse(invoiceModel!=null&&  invoiceModel!.invoiceData!=null&& invoiceModel!.invoiceData!.isNotEmpty&&invoiceModel!.invoiceData![0].payments!=null&&invoiceModel!.invoiceData![0].payments!.isNotEmpty&&invoiceModel!.invoiceData![0].payments![0].posBalance!=null?invoiceModel!.invoiceData![0].payments![0].posBalance ?? '0':"0").toStringAsFixed(2),
                             textAlign: TextAlign.center,
                             style: getStyle(color: Colors.black, fontSize: textSize-1)
                         )),
@@ -1198,7 +1201,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                             style: getStyle(color: Colors.black, fontSize: textSize-1)
                         )),
                   ],)),
-            const SizedBox(height:3,),
+            const SizedBox(height:0,),
 
             SizedBox(
                 width: width,
@@ -1215,7 +1218,7 @@ class _PrintPillScreenState extends State<PrintPillScreen> {
                     Container(
                         alignment: Alignment.center,
                         child: Text(
-                            invoiceModel!.invoiceData![0].saleStatus!,
+                            invoiceModel!=null&&  invoiceModel!.invoiceData!=null&& invoiceModel!.invoiceData!.isNotEmpty&&invoiceModel!.invoiceData![0].saleStatus!=null? invoiceModel!.invoiceData![0].saleStatus??"":"",
                             textAlign: TextAlign.center,
                             style: getStyle(color: Colors.black, fontSize: textSize)
                         )),

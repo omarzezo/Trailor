@@ -9,6 +9,8 @@ abstract class AppStrings {
   static const zipCode = "zipCode";
   static const Email = "Email";
   static const add = "add";
+  static const pleaseOpenCashier = "pleaseOpenCashier";
+  static const cashierIsOpened = "cashierIsOpened";
   static const closeMg = "closeMg";
   static const statue = "statue";
   static const Yes = "Yes";

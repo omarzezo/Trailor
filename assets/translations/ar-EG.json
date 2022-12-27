@@ -22,6 +22,8 @@
   "addinvoice": "اضافة فاتورة",
   "invoices": "الفواتير",
   "completed": "مكتملة",
+  "cashierIsOpened": "الكاشير مفتوح بالفعل",
+  "pleaseOpenCashier": "من فضلك افتح الكاشير اولا",
   "pending": "تحت الاجراء",
   "returnitem": "مرتجع",
   "Login": "تسجيل الدخول",

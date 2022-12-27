@@ -460,7 +460,9 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                                       )),
                                   height: 80,
                                   width: 100,
-                                  child: Text('+966 011 256 7846',
+                                  child: Text(
+                                      // '+966 011 256 7846',
+                                      item.phone??"",
                                       style: GoogleFonts.notoKufiArabic(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w600,
@@ -965,7 +967,10 @@ class PresentAllTablesScreenState extends State<PresentAllTablesScreen> {
                                       )),
                                   height: 80,
                                   width: 100,
-                                  child: Text('+966 011 256 7846',
+                                  child: Text(
+
+                                      // '+966 011 256 7846',
+                                    item.phone??"",
                                       style: GoogleFonts.notoKufiArabic(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w600,
