@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
+import 'package:omar/SharedPreferencesHelper.dart';
 import 'package:omar/View/Data%20Table/model.dart';
 import 'package:omar/View/Data%20Table/widget%20table.dart';
 import 'package:omar/View/sewing%20invoice%20screen/pills_item_data.dart';
@@ -311,7 +312,7 @@ class _CustomTableState extends State<CustomTable> {
                   //   isAlwaysShown: true,
                   //   showTrackOnHover: true,
                   //   hoverThickness: 12,
-                  child: ListView.builder(
+                  child: pillsDetails.data!=null&&pillsDetails.data!.isNotEmpty?ListView.builder(
                     scrollDirection: Axis.vertical,
                     // controller: scrollControl,
                     // physics: const NeverScrollableScrollPhysics(),
@@ -577,7 +578,8 @@ class _CustomTableState extends State<CustomTable> {
                       ),
                     ),
                     itemCount: pillsDetails!.data!.length,
-                  ),
+                  ):Center(child: Text(
+                    AppStrings.NoInvoices.tr(),style: getStyle(color: Colors.black, fontSize: 18),)),
                   // ),
                 ),
               ],
@@ -844,7 +846,7 @@ class _CustomTableState extends State<CustomTable> {
                     //   isAlwaysShown: true,
                     //   showTrackOnHover: true,
                     //   hoverThickness: 12,
-                    child: ListView.builder(
+                    child:pillsDetails.data!=null&&pillsDetails.data!.isNotEmpty? ListView.builder(
                       scrollDirection: Axis.vertical,
                       // controller: scrollControl,
                       // physics: const NeverScrollableScrollPhysics(),
@@ -1067,7 +1069,8 @@ class _CustomTableState extends State<CustomTable> {
                         ),
                       ),
                       itemCount: pillsDetails!.data!.length,
-                    ),
+                    ):Center(child: Text(
+                      AppStrings.NoInvoices.tr(),style: getStyle(color: Colors.black, fontSize: 18),)),
                     // ),
                   ),
                 ],

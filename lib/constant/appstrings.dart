@@ -13,6 +13,9 @@ abstract class AppStrings {
   static const cashierIsOpened = "cashierIsOpened";
   static const closeMg = "closeMg";
   static const statue = "statue";
+  static const NoClients = "NoClients";
+  static const NoInvoices = "NoInvoices";
+  static const NoReturns = "NoReturns";
   static const Yes = "Yes";
   static const NO = "NO";
   static const clothes = "clothes";

@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
+import 'package:omar/SharedPreferencesHelper.dart';
 import 'package:omar/View/Data%20Table/model.dart';
 import 'package:omar/View/Data%20Table/widget%20table.dart';
 import 'package:omar/View/sewing%20invoice%20screen/pills_item_data.dart';
@@ -64,7 +65,7 @@ class ReturnItemsScreenState extends State<ReturnItemsScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           searchField(),
-          ListView.builder(
+          pillsDetailsDataList!=null&&pillsDetailsDataList!.isNotEmpty?  ListView.builder(
             itemCount:textSearch.isNotEmpty ? filteredList.length : pillsDetailsDataList!.length,
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
@@ -208,7 +209,8 @@ class ReturnItemsScreenState extends State<ReturnItemsScreen> {
 
               ),
             );
-          },)
+          },):Center(child: Text(
+            AppStrings.NoReturns.tr(),style: getStyle(color: Colors.black, fontSize: 18),))
 
 
         ],

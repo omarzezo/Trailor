@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
+import 'package:omar/SharedPreferencesHelper.dart';
 import 'package:omar/View/Data%20Table/model.dart';
 import 'package:omar/View/Data%20Table/widget%20table.dart';
 import 'package:omar/View/sewing%20invoice%20screen/pills_item_data.dart';
@@ -41,7 +42,7 @@ class AllInvoicesScreenState extends State<AllInvoicesScreen> {
     // TODO: implement initState
     super.initState();
     var cubit=LoginCubit.get(context);
-    pillsDetailsDataList = cubit.pillsDetails!=null?List.from(cubit.pillsDetails!.data!):[];
+    // pillsDetailsDataList = cubit.pillsDetails!=null?List.from(cubit.pillsDetails!.data!):[];
     filteredList = cubit.pillsDetails!=null?List.from(cubit.pillsDetails!.data!):[];
 
     // log("dataisNew>>"+jsonEncode(cubit.pillsDetails!.data!));
@@ -298,7 +299,7 @@ class AllInvoicesScreenState extends State<AllInvoicesScreen> {
                       //   isAlwaysShown: true,
                       //   showTrackOnHover: true,
                       //   hoverThickness: 12,
-                      child: ListView.builder(
+                      child:pillsDetailsDataList!=null&&pillsDetailsDataList!.isNotEmpty? ListView.builder(
                         // physics: NeverScrollableScrollPhysics(),
 
                         scrollDirection: Axis.vertical,
@@ -533,7 +534,8 @@ class AllInvoicesScreenState extends State<AllInvoicesScreen> {
 
                         // itemCount: cubit.pillsDetails!.data!.length,
                         itemCount: textSearch.isNotEmpty ? filteredList.length : pillsDetailsDataList!.length,
-                      ),
+                      ):Center(child: Text(
+                        AppStrings.NoInvoices.tr(),style: getStyle(color: Colors.black, fontSize: 18),)),
                       // ),
                     ),
                   ],
@@ -804,7 +806,7 @@ class AllInvoicesScreenState extends State<AllInvoicesScreen> {
                         //   isAlwaysShown: true,
                         //   showTrackOnHover: true,
                         //   hoverThickness: 12,
-                        child: ListView.builder(
+                        child:pillsDetailsDataList!=null&&pillsDetailsDataList!.isNotEmpty? ListView.builder(
                           scrollDirection: Axis.vertical,
                           itemBuilder: (context, index) {
 
@@ -1042,7 +1044,8 @@ class AllInvoicesScreenState extends State<AllInvoicesScreen> {
 
                           // itemCount: cubit.pillsDetails!.data!.length,
                           itemCount: textSearch.isNotEmpty ? filteredList.length : pillsDetailsDataList!.length,
-                        ),
+                        ):Center(child: Text(
+                      AppStrings.NoInvoices.tr(),style: getStyle(color: Colors.black, fontSize: 18),)),
                         // ),
                       ),
                     ],

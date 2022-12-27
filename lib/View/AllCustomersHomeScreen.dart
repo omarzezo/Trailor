@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
+import 'package:omar/SharedPreferencesHelper.dart';
 import 'package:omar/View/sewing%20invoice%20screen/edit_customer_info.dart';
 import 'package:omar/View/sewing%20invoice%20screen/pills_item_data.dart';
 import 'package:omar/constant/appstrings.dart';
@@ -202,6 +203,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                   ),
                 ),
                 //todo list view
+                
                 Expanded(
                   // child: Scrollbar(
                   //   thickness: 15,
@@ -212,7 +214,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                   //   isAlwaysShown: true,
                   //   showTrackOnHover: true,
                   //   hoverThickness: 12,
-                  child: ListView.builder(
+                  child:cubit.allCustomerResponse!=null&&cubit.allCustomerResponse!.data!=null&&cubit.allCustomerResponse!.data!.isNotEmpty? ListView.builder(
                     scrollDirection: Axis.vertical,
                     // controller: scrollControl,
                     // physics: const NeverScrollableScrollPhysics(),
@@ -372,7 +374,8 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                       ),
                     ),
                     itemCount: cubit.allCustomerResponse!.data!.length,
-                  ),
+                  ):Center(child: Text(
+                    AppStrings.NoClients.tr(),style: getStyle(color: Colors.black, fontSize: 18),)),
                   // ),
                 ),
               ],
@@ -542,7 +545,7 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                   ),
 
                   Expanded(
-                    child: ListView.builder(
+                    child:cubit.allCustomerResponse!=null&&cubit.allCustomerResponse!.data!=null&&cubit.allCustomerResponse!.data!.isNotEmpty? ListView.builder(
                       scrollDirection: Axis.vertical,
                       // controller: scrollControl,
                       // physics: const NeverScrollableScrollPhysics(),
@@ -702,7 +705,8 @@ class AllCustomersHomeScreenState extends State<AllCustomersHomeScreen> {
                         ),
                       ),
                       itemCount:cubit.allCustomerResponse!.data!.length,
-                    ),
+                    ):Center(child: Text(
+                     AppStrings.NoClients.tr(),style: getStyle(color: Colors.black, fontSize: 18),)),
                     // ),
                   ),
                 ],

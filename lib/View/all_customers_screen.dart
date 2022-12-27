@@ -11,6 +11,8 @@ import 'package:omar/constant/constant.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:flutter/services.dart' as p;
 
+import '../SharedPreferencesHelper.dart';
+
 class AllCustomerScreen extends StatefulWidget {
   static const routeName = "AllCustomerScreen";
 
@@ -37,7 +39,6 @@ class AllCustomerScreenState extends State<AllCustomerScreen> {
   @override
   Widget build(BuildContext context) {
     var cubit=LoginCubit.get(context);
-
     // print(LoginCubit.get(context).allCustomerResponse!.data!.length.toString());
     return  BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
@@ -47,7 +48,7 @@ class AllCustomerScreenState extends State<AllCustomerScreen> {
         return  Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.purple,
-            title: Text("AllCustomers", style: GoogleFonts.notoKufiArabic(
+            title: Text(AppStrings.customersList.tr(), style: GoogleFonts.notoKufiArabic(
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)), centerTitle: true,),
           body: ResponsiveVisibility(
             replacement: Container(
@@ -220,7 +221,7 @@ class AllCustomerScreenState extends State<AllCustomerScreen> {
                     //   isAlwaysShown: true,
                     //   showTrackOnHover: true,
                     //   hoverThickness: 12,
-                    child: ListView.builder(
+                    child:cubit.allCustomerResponse!=null&&cubit.allCustomerResponse!.data!=null&&cubit.allCustomerResponse!.data!.isNotEmpty? ListView.builder(
                       scrollDirection: Axis.vertical,
                       // controller: scrollControl,
                       // physics: const NeverScrollableScrollPhysics(),
@@ -380,7 +381,8 @@ class AllCustomerScreenState extends State<AllCustomerScreen> {
                         ),
                       ),
                       itemCount: cubit.allCustomerResponse!.data!.length,
-                    ),
+                    ):Center(child: Text(
+                      AppStrings.NoClients.tr(),style: getStyle(color: Colors.black, fontSize: 18),)),
                     // ),
                   ),
                 ],
@@ -551,7 +553,7 @@ class AllCustomerScreenState extends State<AllCustomerScreen> {
                     ),
 
                     Expanded(
-                      child: ListView.builder(
+                      child: cubit.allCustomerResponse!=null&&cubit.allCustomerResponse!.data!=null&&cubit.allCustomerResponse!.data!.isNotEmpty?ListView.builder(
                         scrollDirection: Axis.vertical,
                         // controller: scrollControl,
                         // physics: const NeverScrollableScrollPhysics(),
@@ -711,7 +713,8 @@ class AllCustomerScreenState extends State<AllCustomerScreen> {
                           ),
                         ),
                         itemCount:cubit.allCustomerResponse!.data!.length,
-                      ),
+                      ):Center(child: Text(
+                        AppStrings.NoClients.tr(),style: getStyle(color: Colors.black, fontSize: 18),)),
                       // ),
                     ),
                   ],
