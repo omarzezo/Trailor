@@ -252,7 +252,11 @@ class NewAddCustomerScreen extends StatelessWidget {
 
                                   }catch(error){
                                     print(error.toString());
+                                    LoadingPage(context).close();
+
                                   }
+                                  LoadingPage(context).close();
+
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 10,bottom: 10),

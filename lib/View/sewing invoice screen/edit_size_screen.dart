@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
+import 'package:omar/constant/LoadingPage.dart';
 import 'package:omar/constant/appstrings.dart';
 import 'package:omar/models/TypesModel.dart';
 import 'package:omar/models/tRCollar.dart';
@@ -425,91 +426,102 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                     //       zipperTypeID: cubit.ZipperTypeID,
                                     //       note: "",
                                     //     );
+try{
 
-                                    Sales sales = Sales(id:int.parse(cubit.salesIdSearch??""), measurement:[                                  Measurement(
-                                      itemName: cubit.typeOfClothes,
-                                      itemCode: cubit.itemCode,
-                                      frontLength: double.parse(
-                                          cubit.frontHeight.text.isEmpty?"0":cubit.frontHeight.text),
-                                      backLength:
-                                      double.parse(cubit.backHeight.text.isEmpty?"0":cubit.backHeight.text),
-                                      shoulderWidth: double.parse(
-                                          cubit.shoulderWidth.text.isEmpty?"0":cubit.shoulderWidth.text),
-                                      shoulderSlope: double.parse(
-                                          cubit.shoulderSlope.text.isEmpty?"0":cubit.shoulderSlope.text),
-                                      sleeve: double.parse(
-                                          cubit.sleeveLengthPlain.text.isEmpty?"0":cubit.sleeveLengthPlain.text),
-                                      sleeveTop: double.parse(
-                                          cubit.sleeveLengthIsHigher.text.isEmpty?"0":cubit.sleeveLengthIsHigher.text),
-                                      wrist:
-                                      double.parse(cubit.wideWrist.text.isEmpty?"0":cubit.wideWrist.text),
-                                      plainCuffLength:
-                                      double.parse(cubit.plainCuff.text.isEmpty?"0":cubit.plainCuff.text),
-                                      cuffLength:
-                                      double.parse(cubit.cuffLength.text.isEmpty?"0":cubit.cuffLength.text),
-                                      cuffWidth:
-                                      double.parse(cubit.cuffShow.text.isEmpty?"0":cubit.cuffShow.text),
-                                      middleWidth:
-                                      double.parse(cubit.wideMiddle.text.isEmpty?"0":cubit.wideMiddle.text),
-                                      chestFront: double.parse(
-                                          cubit.expandTheChestInFront.text.isEmpty?"0":cubit.expandTheChestInFront.text),
-                                      chestBack: double.parse(
-                                          cubit.expandTheChestBehind.text.isEmpty?"0":cubit.expandTheChestBehind.text),
-                                      bottomHeight: double.parse(
-                                          cubit.koftaBottom.text.isEmpty?"0":cubit.koftaBottom.text),
-                                      bottomWidth:
-                                      double.parse(cubit.expandDown.text.isEmpty?"0":cubit.expandDown.text),
-                                      collarWidth: double.parse(
-                                          cubit.wideNeckPillow.text.isEmpty?"0":cubit.wideNeckPillow.text),
-                                      collarHeight:
-                                      double.parse(cubit.neckHeight.text.isEmpty?"0":cubit.neckHeight.text),
-                                      zipperHeight: double.parse(
-                                          cubit.gypsumHeight.text.isEmpty?"0":cubit.gypsumHeight.text),
-                                      zipperWidth:
-                                      double.parse(cubit.viewGypsum.text.isEmpty?"0":cubit.viewGypsum.text),
-                                      chestPocketHeight: double.parse(
-                                          cubit.lengthChestPocket.text.isEmpty?"0":cubit.lengthChestPocket.text),
-                                      chestPocketWidth: double.parse(
-                                          cubit.wideChestPocket.text.isEmpty?"0":cubit.wideChestPocket.text),
-                                      mobilePocketHeight: double.parse(
-                                          cubit.wideMobilePocket.text.isEmpty?"0":cubit.wideMobilePocket.text),
-                                      walletPocketHeight: double.parse(
-                                          cubit.lengthPocketWallet.text.isEmpty?"0":cubit.lengthPocketWallet.text),
-                                      walletPocketWidth: double.parse(
-                                          cubit.widePocketWallet.text.isEmpty?"0":cubit.widePocketWallet.text),
-                                      haunchWidth:
-                                      double.parse(cubit.hipWidth.text.isEmpty?"0":cubit.hipWidth.text),
-                                      buttonNo:
-                                      int.parse(cubit.buttonNumber.text.isEmpty?"0":cubit.buttonNumber.text),
-                                      embroideryNo: int.parse(
-                                          cubit.embroideryNumber.text.isEmpty?"0":cubit.embroideryNumber.text),
-                                      estimatedLength: double.parse(
-                                          cubit.expectedFabricInMeter.text.isEmpty?"0":cubit.expectedFabricInMeter.text),
-                                      tailorId: 1,
-                                      sample: cubit.sample?1:0,
-                                      urgent: cubit.harryUp?1:0,
-                                      shoulderChestLength: double.parse(cubit
-                                          .betweenTheChestPocketAndTheShoulder
-                                          .text.isEmpty?"0":cubit.betweenTheChestPocketAndTheShoulder.text),
-                                      sleeveMiddle: double.parse(
-                                          cubit.quantumCapacityMedium.text.isEmpty?"0":cubit.quantumCapacityMedium.text),
-                                      sidePocketLength:
-                                      double.parse(cubit.sidePocket.text.isEmpty?"0":cubit.sidePocket.text),
-                                      takhalees: cubit.Takhalis.text,
-                                      collarTypeID: cubit.CollerTypeID,
-                                      cuffTypeID: cubit.CuffTypeID,
-                                      modelTypeID: cubit.ModelTypeID,
-                                      pocketTypeID: cubit.PocketTypeID,
-                                      fillingTypeID: cubit.FillingTypeID,
-                                      zipperTypeID: cubit.ZipperTypeID,
-                                      note: "",
-                                    ),
-                                    ]);
-                                    InvoiceNewSizesModel invoiceNewSizesModel = InvoiceNewSizesModel(
-                                        sales:[sales]);
-                                    cubit.updateSize(invoiceNewSizesModel);
-                                    Navigator.pop(context);
-                                  },
+  LoadingPage(context).show();
+
+  Sales sales = Sales(id:int.parse(cubit.salesIdSearch??""), measurement:[                                  Measurement(
+    itemName: cubit.typeOfClothes,
+    itemCode: cubit.itemCode,
+    frontLength: double.parse(
+        cubit.frontHeight.text.isEmpty?"0":cubit.frontHeight.text),
+    backLength:
+    double.parse(cubit.backHeight.text.isEmpty?"0":cubit.backHeight.text),
+    shoulderWidth: double.parse(
+        cubit.shoulderWidth.text.isEmpty?"0":cubit.shoulderWidth.text),
+    shoulderSlope: double.parse(
+        cubit.shoulderSlope.text.isEmpty?"0":cubit.shoulderSlope.text),
+    sleeve: double.parse(
+        cubit.sleeveLengthPlain.text.isEmpty?"0":cubit.sleeveLengthPlain.text),
+    sleeveTop: double.parse(
+        cubit.sleeveLengthIsHigher.text.isEmpty?"0":cubit.sleeveLengthIsHigher.text),
+    wrist:
+    double.parse(cubit.wideWrist.text.isEmpty?"0":cubit.wideWrist.text),
+    plainCuffLength:
+    double.parse(cubit.plainCuff.text.isEmpty?"0":cubit.plainCuff.text),
+    cuffLength:
+    double.parse(cubit.cuffLength.text.isEmpty?"0":cubit.cuffLength.text),
+    cuffWidth:
+    double.parse(cubit.cuffShow.text.isEmpty?"0":cubit.cuffShow.text),
+    middleWidth:
+    double.parse(cubit.wideMiddle.text.isEmpty?"0":cubit.wideMiddle.text),
+    chestFront: double.parse(
+        cubit.expandTheChestInFront.text.isEmpty?"0":cubit.expandTheChestInFront.text),
+    chestBack: double.parse(
+        cubit.expandTheChestBehind.text.isEmpty?"0":cubit.expandTheChestBehind.text),
+    bottomHeight: double.parse(
+        cubit.koftaBottom.text.isEmpty?"0":cubit.koftaBottom.text),
+    bottomWidth:
+    double.parse(cubit.expandDown.text.isEmpty?"0":cubit.expandDown.text),
+    collarWidth: double.parse(
+        cubit.wideNeckPillow.text.isEmpty?"0":cubit.wideNeckPillow.text),
+    collarHeight:
+    double.parse(cubit.neckHeight.text.isEmpty?"0":cubit.neckHeight.text),
+    zipperHeight: double.parse(
+        cubit.gypsumHeight.text.isEmpty?"0":cubit.gypsumHeight.text),
+    zipperWidth:
+    double.parse(cubit.viewGypsum.text.isEmpty?"0":cubit.viewGypsum.text),
+    chestPocketHeight: double.parse(
+        cubit.lengthChestPocket.text.isEmpty?"0":cubit.lengthChestPocket.text),
+    chestPocketWidth: double.parse(
+        cubit.wideChestPocket.text.isEmpty?"0":cubit.wideChestPocket.text),
+    mobilePocketHeight: double.parse(
+        cubit.wideMobilePocket.text.isEmpty?"0":cubit.wideMobilePocket.text),
+    walletPocketHeight: double.parse(
+        cubit.lengthPocketWallet.text.isEmpty?"0":cubit.lengthPocketWallet.text),
+    walletPocketWidth: double.parse(
+        cubit.widePocketWallet.text.isEmpty?"0":cubit.widePocketWallet.text),
+    haunchWidth:
+    double.parse(cubit.hipWidth.text.isEmpty?"0":cubit.hipWidth.text),
+    buttonNo:
+    int.parse(cubit.buttonNumber.text.isEmpty?"0":cubit.buttonNumber.text),
+    embroideryNo: int.parse(
+        cubit.embroideryNumber.text.isEmpty?"0":cubit.embroideryNumber.text),
+    estimatedLength: double.parse(
+        cubit.expectedFabricInMeter.text.isEmpty?"0":cubit.expectedFabricInMeter.text),
+    tailorId: 1,
+    sample: cubit.sample?1:0,
+    urgent: cubit.harryUp?1:0,
+    shoulderChestLength: double.parse(cubit
+        .betweenTheChestPocketAndTheShoulder
+        .text.isEmpty?"0":cubit.betweenTheChestPocketAndTheShoulder.text),
+    sleeveMiddle: double.parse(
+        cubit.quantumCapacityMedium.text.isEmpty?"0":cubit.quantumCapacityMedium.text),
+    sidePocketLength:
+    double.parse(cubit.sidePocket.text.isEmpty?"0":cubit.sidePocket.text),
+    takhalees: cubit.Takhalis.text,
+    collarTypeID: cubit.CollerTypeID,
+    cuffTypeID: cubit.CuffTypeID,
+    modelTypeID: cubit.ModelTypeID,
+    pocketTypeID: cubit.PocketTypeID,
+    fillingTypeID: cubit.FillingTypeID,
+    zipperTypeID: cubit.ZipperTypeID,
+    note: "",
+  ),
+  ]);
+  InvoiceNewSizesModel invoiceNewSizesModel = InvoiceNewSizesModel(
+      sales:[sales]);
+  cubit.updateSize(invoiceNewSizesModel);
+  LoadingPage(context).close();
+
+  Navigator.pop(context);
+}catch(e){
+  LoadingPage(context).close();
+
+}
+LoadingPage(context).close();
+
+                                      },
                                   child: Text(AppStrings.Save.tr(),
                                       style: GoogleFonts.notoKufiArabic(
                                           color: Colors.white,

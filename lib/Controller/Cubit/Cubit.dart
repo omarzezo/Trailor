@@ -967,6 +967,7 @@ String? quantities1;
       }
 
     }catch(error){
+
       print(error.toString());
     }
       LoadingPage(context).close();

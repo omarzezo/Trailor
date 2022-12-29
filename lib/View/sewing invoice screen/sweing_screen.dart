@@ -2723,6 +2723,8 @@ class _SewingScreenState extends State<SewingScreen> {
                             context, PrintScreen.routeName);
                       } catch (error) {
                         print(error.toString());
+                        LoadingPage(context).close();
+
                       }
                     } else {
                       AwesomeDialog(
@@ -2748,6 +2750,8 @@ class _SewingScreenState extends State<SewingScreen> {
                             },
                           )).show();
                     }
+                    LoadingPage(context).close();
+
                   },
                   child: Text(AppStrings.Save.tr(),
                       style: GoogleFonts.notoKufiArabic(

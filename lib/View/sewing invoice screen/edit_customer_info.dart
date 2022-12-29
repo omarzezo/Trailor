@@ -227,8 +227,12 @@ await cubit.getAllCustomers();
                                 // }
 
                               } catch (error) {
+                                LoadingPage(context).close();
+
                                 print(error.toString());
                               }
+                              LoadingPage(context).close();
+
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(

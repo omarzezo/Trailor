@@ -239,8 +239,12 @@ class ReturnItemScreen extends StatelessWidget {
 
         Navigator.pop(context);
         } catch (error) {
-        print(error.toString());
+          LoadingPage(context).close();
+
+          print(error.toString());
         }
+        LoadingPage(context).close();
+
 
 
                     }, child: Text(AppStrings.returnitem.tr(),
