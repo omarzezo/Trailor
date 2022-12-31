@@ -653,7 +653,6 @@ Future<returnsalesModel>getReturnId(int index)async{
   List<PaymentType> paymentCodeList = [];
 
   void clearControllers() {
-    try{
     pngBytes=null;
     userItemName=null;
     employeeItemName=null;
@@ -760,7 +759,7 @@ Future<returnsalesModel>getReturnId(int index)async{
     trFillingValue=null;
     tRZipperValue=null;
     tRTailorValue=null;
-    emit(ClearControllersState());}catch(e){print(e);}
+    emit(ClearControllersState());
 
   }
 String? itemPrice1;
