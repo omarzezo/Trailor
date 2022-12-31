@@ -106,7 +106,7 @@ class _SewingScreenState extends State<SewingScreen> {
             child: Column(
               children: [
                 Container(
-                    height: MediaQuery.of(context).size.height / 16,
+                    height: MediaQuery.of(context).size.height / 12,
                     // height: 40,
                     width: double.infinity,
                     color: MyConstant().purpleColor,
@@ -345,11 +345,11 @@ class _SewingScreenState extends State<SewingScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
                 Container(
                   width: double.infinity,
-                  height: MediaQuery.of(context).size.height / 9,
+                  height: MediaQuery.of(context).size.height / 7,
                   // color: Colors.amber,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.only(left: 30, right: 30),
@@ -682,10 +682,10 @@ class _SewingScreenState extends State<SewingScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
                 Container(
-                  height: 30,
+                  height: 40,
                   width: double.infinity,
                   alignment: Alignment.centerRight,
                   padding: const EdgeInsets.only(right: 20),
@@ -1462,7 +1462,7 @@ class _SewingScreenState extends State<SewingScreen> {
                   height: 20,
                 ),
                 Container(
-                  height: 25,
+                  height: 30,
                   width: double.infinity,
                   alignment: Alignment.centerRight,
                   padding: const EdgeInsets.only(right: 20),

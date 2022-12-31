@@ -215,7 +215,7 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
                     child: Column(
                       children: [
                         Container(
-                            height: MediaQuery.of(context).size.height / 16,
+                            height: MediaQuery.of(context).size.height / 12,
                             // height: 40,
                             width: double.infinity,
                             color: MyConstant().purpleColor,
@@ -444,7 +444,7 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
 
                         Container(
                           width: double.infinity,
-                          height: MediaQuery.of(context).size.height / 9,
+                          height: MediaQuery.of(context).size.height / 7,
                           // color: Colors.amber,
                           alignment: Alignment.center,
                           padding: const EdgeInsets.only(left: 30, right: 30),
@@ -1552,7 +1552,7 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
                           height: 20,
                         ),
                         Container(
-                          height: 25,
+                          height: 30,
                           width: double.infinity,
                           alignment: Alignment.centerRight,
                           padding: const EdgeInsets.only(right: 20),
