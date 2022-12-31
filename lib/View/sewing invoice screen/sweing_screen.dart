@@ -2294,16 +2294,16 @@ class _SewingScreenState extends State<SewingScreen> {
                         LoadingPage(context).show();
                         List<ProductModel> productList = [
                           ProductModel(
-                              id: int.parse(replaceArabicNumber(cubit.productItem!.id!)),
+                              id: int.parse(cubit.productItem!.id!),
                               code: replaceArabicNumber(cubit.productItem!.code),
                               name:replaceArabicNumber( cubit.productItem!.slug),
-                              category_id: int.parse(replaceArabicNumber(
-                                  cubit.productItem!.categoryId!)),
-                              unit: int.parse(replaceArabicNumber(cubit.productItem!.unit!)),
+                              category_id: int.parse(
+                                  cubit.productItem!.categoryId!),
+                              unit: int.parse(cubit.productItem!.unit!),
                               price:
-                              double.parse(replaceArabicNumber(cubit.productItem!.price!)),
+                              double.parse(cubit.productItem!.price!),
                               tax_rate:
-                              int.parse(replaceArabicNumber(cubit.productItem!.taxRate!)),
+                              int.parse(cubit.productItem!.taxRate!),
                               tax_method:
                               cubit.productItem!.taxMethod == "0"
                                   ? false
@@ -2357,7 +2357,7 @@ class _SewingScreenState extends State<SewingScreen> {
                             referenceNo: "SALE2022/10/0001",
                             // customerId: int.parse(cubit.users[0].id!),
                             // customerId: int.parse(cubit.companiesEmployeeName[0].id!),
-                            customerId: int.parse(replaceArabicNumber(customerId.toString())),
+                            customerId: int.parse(customerId.toString()),
                             dueDate:
                             p.DateFormat("yyyy-MM-dd HH:mm:ss", "en")
                                 .parse(DateTime.now().toString())
@@ -2368,20 +2368,20 @@ class _SewingScreenState extends State<SewingScreen> {
                             // customer: cubit.companiesEmployeeName[0].company,
                             customer: replaceArabicNumber(cubit.userItemName),
                             biller: replaceArabicNumber(cubit.userName),
-                            billerId: int.parse(replaceArabicNumber(
-                                cubit.companiesEmployeeName[0].id!)),
+                            billerId: int.parse(
+                                cubit.companiesEmployeeName[0].id!),
                             // total: double.parse(
                             //     cubit.whatYouPay.text.isEmpty
                             //         ? "0"
                             //         : cubit.whatYouPay.text),
-                            total: double.parse(replaceArabicNumber(
+                            total: double.parse(
                                 cubit.totalPrice.text.isEmpty
                                     ? "0"
-                                    : cubit.totalPrice.text)),
-                            discountAllowance: double.parse(replaceArabicNumber(
+                                    : cubit.totalPrice.text),
+                            discountAllowance: double.parse(
                                 cubit.discount.text.isEmpty
                                     ? "0"
-                                    : cubit.discount.text)),
+                                    : cubit.discount.text),
                             returnSaleRef: null,
                             returnId: null,
                             saleStatus: (cubit.stausName ==
@@ -2399,33 +2399,33 @@ class _SewingScreenState extends State<SewingScreen> {
                             //     cubit.whatYouPay.text.isEmpty
                             //         ? "0"
                             //         : cubit.whatYouPay.text),
-                            grandTotal: double.parse(replaceArabicNumber(
+                            grandTotal: double.parse(
                                 cubit.totalPriceDetails.text.isEmpty
                                     ? "0"
-                                    : cubit.totalPriceDetails.text)),
+                                    : cubit.totalPriceDetails.text),
                             pos: true,
                             surcharge: 0.0000,
                             returnSaleTotal: 0.0000,
-                            paid: double.parse(replaceArabicNumber(cubit.cash.text.isEmpty
+                            paid: double.parse(cubit.cash.text.isEmpty
                                 ? "0"
-                                : cubit.cash.text)),
-                            totalTax: double.parse(replaceArabicNumber(cubit.tax.text.isEmpty
+                                : cubit.cash.text),
+                            totalTax: double.parse(cubit.tax.text.isEmpty
                                 ? "0"
-                                : cubit.tax.text)),
+                                : cubit.tax.text),
                             note: null,
                             staffNote: null,
                             productDiscount: null,
                             orderDiscountId: null,
                             orderDiscount: 0.0000,
-                            totalDiscount: double.parse(replaceArabicNumber(
+                            totalDiscount: double.parse(
                                 cubit.discount.text.isEmpty
                                     ? "0"
-                                    : cubit.discount.text)),
+                                    : cubit.discount.text),
                             productTax: null,
                             orderTaxId: null,
-                            orderTax: double.parse(replaceArabicNumber(cubit.tax.text.isEmpty
+                            orderTax: double.parse(cubit.tax.text.isEmpty
                                 ? "0"
-                                : cubit.tax.text)),
+                                : cubit.tax.text),
                             shipping: 0.0000,
                             totalItems: 1,
                             paymentTerm: null,
@@ -2448,10 +2448,10 @@ class _SewingScreenState extends State<SewingScreen> {
                                     ? cubit.paymentId = 3
                                     : cubit.paymentId,
                                 date: "2022-08-16T00:59:44+03:00",
-                                amount: double.parse(replaceArabicNumber(
+                                amount: double.parse(
                                     cubit.quantities.text.isEmpty
                                         ? "0"
-                                        : cubit.quantities.text)),
+                                        : cubit.quantities.text),
                                 // paidBy: "cash",
                                 paidBy: cubit.fixedPaymentType ==
                                     AppStrings.monetary.tr()
@@ -2480,15 +2480,15 @@ class _SewingScreenState extends State<SewingScreen> {
                                 //     cubit.whatYouPay.text.isEmpty
                                 //         ? "0"
                                 //         : cubit.whatYouPay.text),
-                                posPaid: double.parse(replaceArabicNumber(
+                                posPaid: double.parse(
                                     cubit.cash.text.isEmpty
                                         ? "0"
-                                        : cubit.cash.text)),
+                                        : cubit.cash.text),
                                 // posBalance: 0.0000,
-                                posBalance: double.parse(replaceArabicNumber(
+                                posBalance: double.parse(
                                     cubit.delayMoney.text.isEmpty
                                         ? "0"
-                                        : cubit.delayMoney.text)),
+                                        : cubit.delayMoney.text),
                               ),
                             ],
                             items: [
@@ -2498,49 +2498,49 @@ class _SewingScreenState extends State<SewingScreen> {
                                 productCode: replaceArabicNumber(cubit.itemCode),
                                 productType: "standard",
                                 optionId: null,
-                                netUnitPrice: double.parse(replaceArabicNumber(
-                                    (double.parse(cubit.cash.text)-double.parse(cubit.delayMoney.text.isEmpty?"0":cubit.delayMoney.text)).toString())),
-                                unitPrice: double.parse(replaceArabicNumber(
+                                netUnitPrice: double.parse(
+                                    (double.parse(cubit.cash.text)-double.parse(cubit.delayMoney.text.isEmpty?"0":cubit.delayMoney.text)).toString()),
+                                unitPrice: double.parse(
                                     cubit.itemPrice.text.isEmpty
                                         ? "0"
-                                        : cubit.itemPrice.text)),
-                                unitQuantity: double.parse(replaceArabicNumber(
+                                        : cubit.itemPrice.text),
+                                unitQuantity: double.parse(
                                     cubit.quantities.text.isEmpty
                                         ? "0"
-                                        : cubit.quantities.text)),
-                                realUnitPrice: double.parse(replaceArabicNumber(
+                                        : cubit.quantities.text),
+                                realUnitPrice: double.parse(
                                     cubit.itemPrice.text.isEmpty
                                         ? "0"
-                                        : cubit.itemPrice.text)),
+                                        : cubit.itemPrice.text),
                                 productUnitId:
-                                int.parse(replaceArabicNumber(cubit.itemCode ?? "0")),
+                                int.parse(cubit.itemCode ?? "0"),
                                 productUnitCode:
                                 cubit.valueItemSizeName ?? "0",
-                                quantity: double.parse(replaceArabicNumber(
+                                quantity: double.parse(
                                     cubit.quantities.text.isEmpty
                                         ? "0"
-                                        : cubit.quantities.text)),
-                                subtotal: double.parse(replaceArabicNumber(
+                                        : cubit.quantities.text),
+                                subtotal: double.parse(
                                     cubit.totalPrice.text.isEmpty
                                         ? "0"
-                                        : cubit.totalPrice.text)),
+                                        : cubit.totalPrice.text),
                                 warehouseId: 1,
                                 warehouseCode: "w_1",
-                                itemTax: double.parse(replaceArabicNumber(
+                                itemTax: double.parse(
                                     cubit.tax.text.isEmpty
                                         ? "0"
-                                        : cubit.tax.text)),
+                                        : cubit.tax.text),
                                 taxRateId: 3,
                                 tax: "ضريبة النسبة الأساسية 15%",
-                                discount: double.parse(replaceArabicNumber(
+                                discount: double.parse(
                                     cubit.discount.text.isEmpty
                                         ? "0"
-                                        : cubit.discount.text)),
+                                        : cubit.discount.text),
                                 serialNo: null,
-                                itemDiscount: double.parse(replaceArabicNumber(
+                                itemDiscount: double.parse(
                                     cubit.discount.text.isEmpty
                                         ? "0"
-                                        : cubit.discount.text)),
+                                        : cubit.discount.text),
                                 promoFree: false,
                               ),
                             ],
@@ -2548,143 +2548,143 @@ class _SewingScreenState extends State<SewingScreen> {
                               Measurement(
                                 itemName: cubit.typeOfClothes,
                                 itemCode: cubit.itemCode,
-                                frontLength: double.parse(replaceArabicNumber(
+                                frontLength: double.parse(
                                     cubit.frontHeight.text.isEmpty
                                         ? "0"
-                                        : cubit.frontHeight.text)),
-                                backLength: double.parse(replaceArabicNumber(
+                                        : cubit.frontHeight.text),
+                                backLength: double.parse(
                                     cubit.backHeight.text.isEmpty
                                         ? "0"
-                                        : cubit.backHeight.text)),
-                                shoulderWidth: double.parse(replaceArabicNumber(
+                                        : cubit.backHeight.text),
+                                shoulderWidth: double.parse(
                                     cubit.shoulderWidth.text.isEmpty
                                         ? "0"
-                                        : cubit.shoulderWidth.text)),
-                                shoulderSlope: double.parse(replaceArabicNumber(
+                                        : cubit.shoulderWidth.text),
+                                shoulderSlope: double.parse(
                                     cubit.shoulderSlope.text.isEmpty
                                         ? "0"
-                                        : cubit.shoulderSlope.text)),
-                                sleeve: double.parse(replaceArabicNumber(
+                                        : cubit.shoulderSlope.text),
+                                sleeve: double.parse(
                                     cubit.sleeveLengthPlain.text.isEmpty
                                         ? "0"
-                                        : cubit.sleeveLengthPlain.text)),
-                                sleeveTop: double.parse(replaceArabicNumber(cubit
+                                        : cubit.sleeveLengthPlain.text),
+                                sleeveTop: double.parse(cubit
                                     .sleeveLengthIsHigher.text.isEmpty
                                     ? "0"
-                                    : cubit.sleeveLengthIsHigher.text)),
-                                wrist: double.parse(replaceArabicNumber(
+                                    : cubit.sleeveLengthIsHigher.text),
+                                wrist: double.parse(
                                     cubit.wideWrist.text.isEmpty
                                         ? "0"
-                                        : cubit.wideWrist.text)),
-                                plainCuffLength: double.parse(replaceArabicNumber(
+                                        : cubit.wideWrist.text),
+                                plainCuffLength: double.parse(
                                     cubit.plainCuff.text.isEmpty
                                         ? "0"
-                                        : cubit.plainCuff.text)),
-                                cuffLength: double.parse(replaceArabicNumber(
+                                        : cubit.plainCuff.text),
+                                cuffLength: double.parse(
                                     cubit.cuffLength.text.isEmpty
                                         ? "0"
-                                        : cubit.cuffLength.text)),
-                                cuffWidth: double.parse(replaceArabicNumber(
+                                        : cubit.cuffLength.text),
+                                cuffWidth: double.parse(
                                     cubit.cuffShow.text.isEmpty
                                         ? "0"
-                                        : cubit.cuffShow.text)),
-                                middleWidth: double.parse(replaceArabicNumber(
+                                        : cubit.cuffShow.text),
+                                middleWidth: double.parse(
                                     cubit.wideMiddle.text.isEmpty
                                         ? "0"
-                                        : cubit.wideMiddle.text)),
-                                chestFront: double.parse(replaceArabicNumber(cubit
+                                        : cubit.wideMiddle.text),
+                                chestFront: double.parse(cubit
                                     .expandTheChestInFront
                                     .text
                                     .isEmpty
                                     ? "0"
-                                    : cubit.expandTheChestInFront.text)),
-                                chestBack: double.parse(replaceArabicNumber(cubit
+                                    : cubit.expandTheChestInFront.text),
+                                chestBack: double.parse(cubit
                                     .expandTheChestBehind.text.isEmpty
                                     ? "0"
-                                    : cubit.expandTheChestBehind.text)),
-                                bottomHeight: double.parse(replaceArabicNumber(
+                                    : cubit.expandTheChestBehind.text),
+                                bottomHeight: double.parse(
                                     cubit.koftaBottom.text.isEmpty
                                         ? "0"
-                                        : cubit.koftaBottom.text)),
-                                bottomWidth: double.parse(replaceArabicNumber(
+                                        : cubit.koftaBottom.text),
+                                bottomWidth: double.parse(
                                     cubit.expandDown.text.isEmpty
                                         ? "0"
-                                        : cubit.expandDown.text)),
-                                collarWidth: double.parse(replaceArabicNumber(
+                                        : cubit.expandDown.text),
+                                collarWidth: double.parse(
                                     cubit.wideNeckPillow.text.isEmpty
                                         ? "0"
-                                        : cubit.wideNeckPillow.text)),
-                                collarHeight: double.parse(replaceArabicNumber(
+                                        : cubit.wideNeckPillow.text),
+                                collarHeight: double.parse(
                                     cubit.neckHeight.text.isEmpty
                                         ? "0"
-                                        : cubit.neckHeight.text)),
-                                zipperHeight: double.parse(replaceArabicNumber(
+                                        : cubit.neckHeight.text),
+                                zipperHeight: double.parse(
                                     cubit.gypsumHeight.text.isEmpty
                                         ? "0"
-                                        : cubit.gypsumHeight.text)),
-                                zipperWidth: double.parse(replaceArabicNumber(
+                                        : cubit.gypsumHeight.text),
+                                zipperWidth: double.parse(
                                     cubit.viewGypsum.text.isEmpty
                                         ? "0"
-                                        : cubit.viewGypsum.text)),
-                                chestPocketHeight: double.parse(replaceArabicNumber(
+                                        : cubit.viewGypsum.text),
+                                chestPocketHeight: double.parse(
                                     cubit.lengthChestPocket.text.isEmpty
                                         ? "0"
-                                        : cubit.lengthChestPocket.text)),
-                                chestPocketWidth: double.parse(replaceArabicNumber(
+                                        : cubit.lengthChestPocket.text),
+                                chestPocketWidth: double.parse(
                                     cubit.wideChestPocket.text.isEmpty
                                         ? "0"
-                                        : cubit.wideChestPocket.text)),
-                                mobilePocketHeight: double.parse(replaceArabicNumber(
+                                        : cubit.wideChestPocket.text),
+                                mobilePocketHeight: double.parse(
                                     cubit.wideMobilePocket.text.isEmpty
                                         ? "0"
-                                        : cubit.wideMobilePocket.text)),
-                                walletPocketHeight: double.parse(replaceArabicNumber(
+                                        : cubit.wideMobilePocket.text),
+                                walletPocketHeight: double.parse(
                                     cubit.lengthPocketWallet.text.isEmpty
                                         ? "0"
-                                        : cubit.lengthPocketWallet.text)),
-                                walletPocketWidth: double.parse(replaceArabicNumber(
+                                        : cubit.lengthPocketWallet.text),
+                                walletPocketWidth: double.parse(
                                     cubit.widePocketWallet.text.isEmpty
                                         ? "0"
-                                        : cubit.widePocketWallet.text)),
-                                haunchWidth: double.parse(replaceArabicNumber(
+                                        : cubit.widePocketWallet.text),
+                                haunchWidth: double.parse(
                                     cubit.hipWidth.text.isEmpty
                                         ? "0"
-                                        : cubit.hipWidth.text)),
-                                buttonNo: int.parse(replaceArabicNumber(
+                                        : cubit.hipWidth.text),
+                                buttonNo: int.parse(
                                     cubit.buttonNumber.text.isEmpty
                                         ? "0"
-                                        : cubit.buttonNumber.text)),
-                                embroideryNo: int.parse(replaceArabicNumber(
+                                        : cubit.buttonNumber.text),
+                                embroideryNo: int.parse(
                                     cubit.embroideryNumber.text.isEmpty
                                         ? "0"
-                                        : cubit.embroideryNumber.text)),
-                                estimatedLength: double.parse(replaceArabicNumber(cubit
+                                        : cubit.embroideryNumber.text),
+                                estimatedLength: double.parse(cubit
                                     .expectedFabricInMeter
                                     .text
                                     .isEmpty
                                     ? "0"
-                                    : cubit.expectedFabricInMeter.text)),
+                                    : cubit.expectedFabricInMeter.text),
                                 tailorId: 1,
                                 sample: cubit.sample ? 1 : 0,
                                 urgent: cubit.harryUp ? 1 : 0,
-                                shoulderChestLength: double.parse(replaceArabicNumber(cubit
+                                shoulderChestLength: double.parse(cubit
                                     .betweenTheChestPocketAndTheShoulder
                                     .text
                                     .isEmpty
                                     ? "0"
                                     : cubit
                                     .betweenTheChestPocketAndTheShoulder
-                                    .text)),
-                                sleeveMiddle: double.parse(replaceArabicNumber(cubit
+                                    .text),
+                                sleeveMiddle: double.parse(cubit
                                     .quantumCapacityMedium
                                     .text
                                     .isEmpty
                                     ? "0"
-                                    : cubit.quantumCapacityMedium.text)),
-                                sidePocketLength: double.parse(replaceArabicNumber(
+                                    : cubit.quantumCapacityMedium.text),
+                                sidePocketLength: double.parse(
                                     cubit.sidePocket.text.isEmpty
                                         ? "0"
-                                        : cubit.sidePocket.text)),
+                                        : cubit.sidePocket.text),
                                 takhalees: replaceArabicNumber(cubit.Takhalis.text),
                                 collarTypeID: cubit.CollerTypeID,
                                 cuffTypeID: cubit.CuffTypeID,
@@ -2708,7 +2708,8 @@ class _SewingScreenState extends State<SewingScreen> {
                             payment: paymentList,
                             expensesList: expensesList);
                         await cubit.pillResponse(
-                            pillRequestModel: pillRequestModel);
+                            pillRequestModel: pillRequestModel).then((value) => Navigator.pushNamed(
+                            context, PrintScreen.routeName));
                         // await cubit.getAllInvoiceInformation();
                         log("requestIs>>" + jsonEncode(pillRequestModel));
                         cubit.totalCash = (double.parse(cubit.totalCash) +
@@ -2717,20 +2718,19 @@ class _SewingScreenState extends State<SewingScreen> {
                         cubit.invoiceNumbers += 1;
                         print("the way of paying ${cubit.paymentType}");
                         print("the way of paying ${cubit.paymentId}");
-                        LoadingPage(context).close();
+                        // LoadingPage(context).close();
 
-                        Navigator.pushNamed(
-                            context, PrintScreen.routeName);
+
                       } catch (error) {
                         print(error.toString());
                         LoadingPage(context).close();
 
                       }
                     } else {
-                      AwesomeDialog(
+                 return     AwesomeDialog(
                           context: context,
                           dialogType: DialogType.error,
-                          animType: AnimType.rightSlide,
+                          // animType: AnimType.rightSlide,
                           width: MediaQuery.of(context).size.width,
                           // width:400,
                           body: Container(

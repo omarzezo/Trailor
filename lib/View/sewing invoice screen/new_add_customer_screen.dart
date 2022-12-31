@@ -198,6 +198,7 @@ class NewAddCustomerScreen extends StatelessWidget {
 
 
                           TextFormFieldWidget(
+                            textInputType: TextInputType.number,
                             text: AppStrings.companyCode.tr(),
                             textInputAction: TextInputAction.done,
                             validator: (value) {
@@ -207,6 +208,7 @@ class NewAddCustomerScreen extends StatelessWidget {
                               return null;
                             },
                             textEditingController: companyOfflineIdEditingController,
+
                           ),
                           Container(
                               width: MediaQuery.of(context).size.width/2,
@@ -223,7 +225,8 @@ class NewAddCustomerScreen extends StatelessWidget {
                                     LoadingPage(context).show();
 
                                     // Navigator.pop(context);
-                                    Customer customer = Customer(
+
+                                    Customer customer =  Customer(
                                       company: replaceArabicNumber(companyNameEditingController.text ?? ""),
                                       email: replaceArabicNumber(companyEmailAddressEditingController.text ?? ""),
                                       // customerGroupId: int.parse(companyGroupIdrEditingController.text),

@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
+import 'package:omar/Controller/local/shared_pref.dart';
 import 'package:omar/View/sewing%20invoice%20screen/Widgets.dart';
 import 'package:omar/View/sewing%20invoice%20screen/cashier_report.dart';
 import 'package:omar/constant/appstrings.dart';
@@ -362,6 +363,11 @@ class _OpenCashierState extends State<OpenCashier> {
             const SizedBox(
               height: 10,
             ),
+            // Text(CacheHelper.getData(key: "email")??"",  style: GoogleFonts.notoKufiArabic(
+            //     color: MyConstant().purpleColor,
+            //     fontWeight: FontWeight.bold,
+            //     fontSize: 16))
+
             Container(
               width: MediaQuery.of(context)
                   .size
@@ -468,6 +474,7 @@ class _OpenCashierState extends State<OpenCashier> {
                 fontWeight: FontWeight.bold,
                 fontSize: 18)),
         textField(
+          textInputType: TextInputType.number,
           controller: LoginCubit.get(context).cashInHandController,
             onChanged: (value) {
               LoginCubit.get(context).cashInHand=double.parse(value);

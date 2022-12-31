@@ -43,6 +43,7 @@ Widget textField({
    Function(String)? onFieldSubmitted,
   String? Function(String?)? validator,
    bool? readOnly=false,
+  TextInputType? textInputType,
 }) {
   return Container(
       // width: MediaQuery.of(context).size.width * 0.07,
@@ -70,6 +71,7 @@ Widget textField({
           Container(
             height: 40,
             child: TextFormField(
+              keyboardType: textInputType,
               controller: controller,
               onChanged: onChanged,
               onFieldSubmitted:onFieldSubmitted ,

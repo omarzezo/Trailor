@@ -172,6 +172,8 @@ class NewUserScreen extends StatelessWidget {
                         textEditingController: companyCrNoEditingController,
                       ),
                       TextFormFieldWidget(
+                        textInputType: TextInputType.number,
+
                         text: AppStrings.companyCode.tr(),
                         textInputAction: TextInputAction.done,
                         validator: (value) {
@@ -192,11 +194,12 @@ class NewUserScreen extends StatelessWidget {
                                   MyConstant().purpleColor),
                             ),
                             onPressed: () async {
-                              // try{
-                                // if (_formKey.currentState!.validate()) {
-                                // LoadingPage(context).show();
+                              try{
+                                if (_formKey.currentState!.validate()) {
+                                LoadingPage(context).show();
 
                                 // Navigator.pop(context);
+
                                 Customer customer = Customer(
                                   company: replaceArabicNumber(companyNameEditingController.text ?? ""),
                                   email:replaceArabicNumber( companyEmailAddressEditingController.text ?? ""),
@@ -216,21 +219,21 @@ class NewUserScreen extends StatelessWidget {
                                 print("hhhhhhhhhhhhhhhhhh${jsonEncode(customer.toJson())}");
                                 // CustomerModel(customer: [customer]);
                                 //  PillRequestModel customerList=PillRequestModel(productList: [], customerList: [customer], categoryList: [], posRegisterList: [], salesList: [], payment: [], expensesList: []);
-                                // await cubit.addCustomerResponse(
-                                //     customerModel:
-                                //     CustomerModel(customer: [customer]));
-                                // await cubit.getCustomers();
-                                // LoadingPage(context).close();
+                                await cubit.addCustomerResponse(
+                                    customerModel:
+                                    CustomerModel(customer: [customer]));
+                                await cubit.getCustomers();
+                                LoadingPage(context).close();
+                                //
+                                Navigator.pop(context);
+                                }
 
-                                // Navigator.pop(context);
-                                // }
-                              //
-                              // }catch(error){
-                              //   print(error.toString());
-                              //   LoadingPage(context).close();
-                              //
-                              // }
-                              // LoadingPage(context).close();
+                              }catch(error){
+                                print(error.toString());
+                                LoadingPage(context).close();
+
+                              }
+                              LoadingPage(context).close();
 
                             },
                             child: Padding(
@@ -262,6 +265,7 @@ class TextFormFieldWidget extends StatelessWidget {
     this.height = 40,
     this.width = double.infinity,
     this.icon,
+    this.textInputType,
     required this.validator,
     Key? key,
     required this.textEditingController,
@@ -274,6 +278,7 @@ class TextFormFieldWidget extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextInputAction? textInputAction;
   final Function(String)? onFieldSubmitted;
+  final TextInputType? textInputType;
 
   @override
   Widget build(BuildContext context) {
@@ -294,13 +299,17 @@ class TextFormFieldWidget extends StatelessWidget {
             height: height,
             width: width,
             child: TextFormField(
+              keyboardType: textInputType,
               textInputAction: textInputAction,
               onFieldSubmitted: onFieldSubmitted,
               controller: textEditingController,
               validator: validator,
+
+
               textAlign: TextAlign.start,
               textAlignVertical: TextAlignVertical.top,
               decoration: InputDecoration(
+
                 errorBorder: UnderlineInputBorder(
                     borderRadius: BorderRadius.circular(4),
                     borderSide: BorderSide(color: Colors.red)),
