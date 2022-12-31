@@ -26,10 +26,8 @@ import '../../models/trFilling.dart';
 import 'Widgets.dart';
 import 'package:flutter/services.dart' as p;
 
-
 class EditSizeScreen extends StatefulWidget {
-  const EditSizeScreen({
-    this.salesId});
+  const EditSizeScreen({this.salesId});
 
   static const routeName = "EditSizeScreen";
   final String? salesId;
@@ -39,7 +37,6 @@ class EditSizeScreen extends StatefulWidget {
 }
 
 class _EditSizeScreenState extends State<EditSizeScreen> {
-
   var text = "";
 
   List<String> gebType = [
@@ -80,8 +77,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
   int currentImage = 0;
   int currentImage1 = 0;
 
-  int? selectedType = 0,
-      relatedSelectedType;
+  int? selectedType = 0, relatedSelectedType;
   List<TypesModel> getRelatedList = [];
   List<TypesModel> selectedLists = [];
 
@@ -91,7 +87,6 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
   TypesModel selectedGabzor = TypesModel();
   String? frontImage, backImage;
   double Size = 12;
-
 
   @override
   void initState() {
@@ -112,7 +107,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
         return Scaffold(
             backgroundColor: Colors.white,
             body: ResponsiveVisibility(
-              replacement:Container(
+              replacement: Container(
                 // margin: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   border: Border.all(color: MyConstant().purpleColor, width: 3),
@@ -125,10 +120,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                         alignment: Alignment.center,
                         children: [
                           Container(
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .height / 10,
+                            height: MediaQuery.of(context).size.height / 10,
                             width: double.infinity,
                             padding: const EdgeInsets.only(left: 30, top: 10),
                             alignment: Alignment.center,
@@ -152,17 +144,13 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                               color: Colors.white,
                             ),
                             child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
                                     height: 40,
                                     width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 5,
+                                        MediaQuery.of(context).size.width / 5,
                                     child: Image.asset(
                                       'image/logo app.png',
                                       width: 40,
@@ -185,10 +173,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                       Container(
                         // height: MediaQuery.of(context).size.height/16,
                         height: 40,
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width / 1,
+                        width: MediaQuery.of(context).size.width / 1,
                         color: MyConstant().purpleColor,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -207,10 +192,7 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                     fontWeight: FontWeight.bold,
                                     fontSize: Size)),
                             Container(
-                                width: MediaQuery
-                                    .of(context)
-                                    .size
-                                    .width / 3,
+                                width: MediaQuery.of(context).size.width / 3,
                                 // height: MediaQuery.of(context).size.height/1,
                                 // color: Colors.amber,
                                 margin: const EdgeInsets.only(
@@ -224,67 +206,57 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                   padding: const EdgeInsets.only(right: 10),
                                   child: DropdownButtonHideUnderline(
                                     child: DropdownButton2(
-
-                                      iconEnabledColor:
-                                      Colors.white,
-                                      iconDisabledColor:
-                                      Colors.grey,
+                                      iconEnabledColor: Colors.white,
+                                      iconDisabledColor: Colors.grey,
                                       buttonHeight: 100,
                                       buttonWidth: 160,
                                       // buttonElevation: 2,
                                       itemHeight: 50,
-                                      itemPadding:
-                                      const EdgeInsets.only(
-                                          left: 14,
-                                          right: 14),
+                                      itemPadding: const EdgeInsets.only(
+                                          left: 14, right: 14),
                                       dropdownMaxHeight: 200,
                                       dropdownWidth: 200,
 
-
-                                      dropdownDecoration:
-                                      BoxDecoration(
-
-                                        borderRadius:
-                                        BorderRadius.circular(
-                                            5),
+                                      dropdownDecoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
                                         color: Colors.white,
                                       ),
 
                                       dropdownElevation: 8,
                                       scrollbarRadius:
-                                      const Radius.circular(
-                                          20),
+                                          const Radius.circular(20),
                                       scrollbarThickness: 6,
                                       scrollbarAlwaysShow: true,
-                                      hint: Text(cubit.tRTailorValue==null?"":cubit.tRTailorValue!.TailorName??""),
-                                      items: cubit.tRTailorList.map(
-                                          tRTailorItemBuild).toList(),
+                                      hint: Text(cubit.tRTailorValue == null
+                                          ? ""
+                                          : cubit.tRTailorValue!.TailorName ??
+                                              ""),
+                                      items: cubit.tRTailorList
+                                          .map(tRTailorItemBuild)
+                                          .toList(),
                                       value: tRTailorValue,
                                       isExpanded: true,
                                       onChanged: (value) {
                                         setState(() {
                                           tRTailorValue =
-                                          value as tRTailorModel;
-                                          cubit.tRTailorValue =value;
+                                              value as tRTailorModel;
+                                          cubit.tRTailorValue = value;
 
-                                          cubit.TaillorName = value.TailorName??"";
-                                          cubit.tailorId = value.TailorId??"";
+                                          cubit.TaillorName =
+                                              value.TailorName ?? "";
+                                          cubit.tailorId = value.TailorId ?? "";
                                         });
                                       },
                                       iconSize: 25,
                                       icon: Container(
                                         decoration: const BoxDecoration(
                                           color: Colors.green,
-                                          borderRadius:
-                                          BorderRadius.only(
-                                              bottomLeft: Radius
-                                                  .circular(
-                                                  5),
-                                              topLeft: Radius
-                                                  .circular(
-                                                  5)),
-                                        ), child: const Icon(
-                                          Icons.keyboard_arrow_down_sharp),
+                                          borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(5),
+                                              topLeft: Radius.circular(5)),
+                                        ),
+                                        child: const Icon(
+                                            Icons.keyboard_arrow_down_sharp),
                                       ),
                                     ),
                                   ),
@@ -295,13 +267,10 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                 // margin: const EdgeInsets.only(left: 40),
                                 child: OutlinedButton(
                                   style: ButtonStyle(
-                                    backgroundColor:
-                                    MaterialStateProperty.all(
+                                    backgroundColor: MaterialStateProperty.all(
                                         MyConstant().greenColor),
                                   ),
-                                  onPressed:
-
-                                      () async {
+                                  onPressed: () async {
                                     // await cubit.getWidgetImage();
                                     // Measurement measurement = Measurement(
                                     //   itemName: cubit.type.text,
@@ -426,102 +395,207 @@ class _EditSizeScreenState extends State<EditSizeScreen> {
                                     //       zipperTypeID: cubit.ZipperTypeID,
                                     //       note: "",
                                     //     );
-try{
+                                    try {
+                                      LoadingPage(context).show();
 
-  LoadingPage(context).show();
+                                      Sales sales = Sales(
+                                          id: int.parse(replaceArabicNumber(
+                                              cubit.salesIdSearch ?? "")),
+                                          measurement: [
+                                            Measurement(
+                                              itemName:replaceArabicNumber( cubit.typeOfClothes),
+                                              itemCode: replaceArabicNumber(cubit.itemCode),
+                                              frontLength: double.parse(replaceArabicNumber(
+                                                  cubit.frontHeight.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.frontHeight.text)),
+                                              backLength: double.parse(replaceArabicNumber(
+                                                  cubit.backHeight.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.backHeight.text)),
+                                              shoulderWidth: double.parse(replaceArabicNumber(cubit
+                                                      .shoulderWidth
+                                                      .text
+                                                      .isEmpty
+                                                  ? "0"
+                                                  : cubit.shoulderWidth.text)),
+                                              shoulderSlope: double.parse(replaceArabicNumber(cubit
+                                                      .shoulderSlope
+                                                      .text
+                                                      .isEmpty
+                                                  ? "0"
+                                                  : cubit.shoulderSlope.text)),
+                                              sleeve: double.parse(replaceArabicNumber(cubit
+                                                      .sleeveLengthPlain
+                                                      .text
+                                                      .isEmpty
+                                                  ? "0"
+                                                  : cubit
+                                                      .sleeveLengthPlain.text)),
+                                              sleeveTop: double.parse(replaceArabicNumber(cubit
+                                                      .sleeveLengthIsHigher
+                                                      .text
+                                                      .isEmpty
+                                                  ? "0"
+                                                  : cubit.sleeveLengthIsHigher
+                                                      .text)),
+                                              wrist: double.parse(replaceArabicNumber(
+                                                  cubit.wideWrist.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.wideWrist.text)),
+                                              plainCuffLength: double.parse(replaceArabicNumber(
+                                                  cubit.plainCuff.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.plainCuff.text)),
+                                              cuffLength: double.parse(replaceArabicNumber(
+                                                  cubit.cuffLength.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.cuffLength.text)),
+                                              cuffWidth: double.parse(replaceArabicNumber(
+                                                  cubit.cuffShow.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.cuffShow.text)),
+                                              middleWidth: double.parse(replaceArabicNumber(
+                                                  cubit.wideMiddle.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.wideMiddle.text)),
+                                              chestFront: double.parse(replaceArabicNumber(cubit
+                                                      .expandTheChestInFront
+                                                      .text
+                                                      .isEmpty
+                                                  ? "0"
+                                                  : cubit.expandTheChestInFront
+                                                      .text)),
+                                              chestBack: double.parse(replaceArabicNumber(cubit
+                                                      .expandTheChestBehind
+                                                      .text
+                                                      .isEmpty
+                                                  ? "0"
+                                                  : cubit.expandTheChestBehind
+                                                      .text)),
+                                              bottomHeight: double.parse(replaceArabicNumber(
+                                                  cubit.koftaBottom.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.koftaBottom.text)),
+                                              bottomWidth: double.parse(replaceArabicNumber(
+                                                  cubit.expandDown.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.expandDown.text)),
+                                              collarWidth: double.parse(replaceArabicNumber(cubit
+                                                      .wideNeckPillow
+                                                      .text
+                                                      .isEmpty
+                                                  ? "0"
+                                                  : cubit.wideNeckPillow.text)),
+                                              collarHeight: double.parse(replaceArabicNumber(
+                                                  cubit.neckHeight.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.neckHeight.text)),
+                                              zipperHeight: double.parse(replaceArabicNumber(cubit
+                                                      .gypsumHeight.text.isEmpty
+                                                  ? "0"
+                                                  : cubit.gypsumHeight.text)),
+                                              zipperWidth: double.parse(replaceArabicNumber(
+                                                  cubit.viewGypsum.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.viewGypsum.text)),
+                                              chestPocketHeight: double.parse(replaceArabicNumber(
+                                                  cubit.lengthChestPocket.text
+                                                          .isEmpty
+                                                      ? "0"
+                                                      : cubit.lengthChestPocket
+                                                          .text)),
+                                              chestPocketWidth: double.parse(replaceArabicNumber(
+                                                  cubit.wideChestPocket.text
+                                                          .isEmpty
+                                                      ? "0"
+                                                      : cubit.wideChestPocket
+                                                          .text)),
+                                              mobilePocketHeight: double.parse(replaceArabicNumber(
+                                                  cubit.wideMobilePocket.text
+                                                          .isEmpty
+                                                      ? "0"
+                                                      : cubit.wideMobilePocket
+                                                          .text)),
+                                              walletPocketHeight: double.parse(replaceArabicNumber(
+                                                  cubit.lengthPocketWallet.text
+                                                          .isEmpty
+                                                      ? "0"
+                                                      : cubit.lengthPocketWallet
+                                                          .text)),
+                                              walletPocketWidth: double.parse(replaceArabicNumber(
+                                                  cubit.widePocketWallet.text
+                                                          .isEmpty
+                                                      ? "0"
+                                                      : cubit.widePocketWallet
+                                                          .text)),
+                                              haunchWidth: double.parse(replaceArabicNumber(
+                                                  cubit.hipWidth.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.hipWidth.text)),
+                                              buttonNo: int.parse(replaceArabicNumber(cubit
+                                                      .buttonNumber.text.isEmpty
+                                                  ? "0"
+                                                  : cubit.buttonNumber.text)),
+                                              embroideryNo: int.parse(replaceArabicNumber(cubit
+                                                      .embroideryNumber
+                                                      .text
+                                                      .isEmpty
+                                                  ? "0"
+                                                  : cubit
+                                                      .embroideryNumber.text)),
+                                              estimatedLength: double.parse(replaceArabicNumber(
+                                                  cubit.expectedFabricInMeter
+                                                          .text.isEmpty
+                                                      ? "0"
+                                                      : cubit
+                                                          .expectedFabricInMeter
+                                                          .text)),
+                                              tailorId: 1,
+                                              sample: cubit.sample ? 1 : 0,
+                                              urgent: cubit.harryUp ? 1 : 0,
+                                              shoulderChestLength: double.parse(replaceArabicNumber(cubit
+                                                      .betweenTheChestPocketAndTheShoulder
+                                                      .text
+                                                      .isEmpty
+                                                  ? "0"
+                                                  : cubit
+                                                      .betweenTheChestPocketAndTheShoulder
+                                                      .text)),
+                                              sleeveMiddle: double.parse(replaceArabicNumber(cubit
+                                                      .quantumCapacityMedium
+                                                      .text
+                                                      .isEmpty
+                                                  ? "0"
+                                                  : cubit.quantumCapacityMedium
+                                                      .text)),
+                                              sidePocketLength: double.parse(replaceArabicNumber(
+                                                  cubit.sidePocket.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.sidePocket.text)),
+                                              takhalees: replaceArabicNumber(cubit.Takhalis.text),
+                                              collarTypeID: cubit.CollerTypeID,
+                                              cuffTypeID: cubit.CuffTypeID,
+                                              modelTypeID: cubit.ModelTypeID,
+                                              pocketTypeID: cubit.PocketTypeID,
+                                              fillingTypeID:
+                                                  cubit.FillingTypeID,
+                                              zipperTypeID: cubit.ZipperTypeID,
+                                              note: "",
+                                            ),
+                                          ]);
+                                      InvoiceNewSizesModel
+                                          invoiceNewSizesModel =
+                                          InvoiceNewSizesModel(sales: [sales]);
+                                      cubit.updateSize(invoiceNewSizesModel);
+                                      LoadingPage(context).close();
 
-  Sales sales = Sales(id:int.parse(cubit.salesIdSearch??""), measurement:[                                  Measurement(
-    itemName: cubit.typeOfClothes,
-    itemCode: cubit.itemCode,
-    frontLength: double.parse(
-        cubit.frontHeight.text.isEmpty?"0":cubit.frontHeight.text),
-    backLength:
-    double.parse(cubit.backHeight.text.isEmpty?"0":cubit.backHeight.text),
-    shoulderWidth: double.parse(
-        cubit.shoulderWidth.text.isEmpty?"0":cubit.shoulderWidth.text),
-    shoulderSlope: double.parse(
-        cubit.shoulderSlope.text.isEmpty?"0":cubit.shoulderSlope.text),
-    sleeve: double.parse(
-        cubit.sleeveLengthPlain.text.isEmpty?"0":cubit.sleeveLengthPlain.text),
-    sleeveTop: double.parse(
-        cubit.sleeveLengthIsHigher.text.isEmpty?"0":cubit.sleeveLengthIsHigher.text),
-    wrist:
-    double.parse(cubit.wideWrist.text.isEmpty?"0":cubit.wideWrist.text),
-    plainCuffLength:
-    double.parse(cubit.plainCuff.text.isEmpty?"0":cubit.plainCuff.text),
-    cuffLength:
-    double.parse(cubit.cuffLength.text.isEmpty?"0":cubit.cuffLength.text),
-    cuffWidth:
-    double.parse(cubit.cuffShow.text.isEmpty?"0":cubit.cuffShow.text),
-    middleWidth:
-    double.parse(cubit.wideMiddle.text.isEmpty?"0":cubit.wideMiddle.text),
-    chestFront: double.parse(
-        cubit.expandTheChestInFront.text.isEmpty?"0":cubit.expandTheChestInFront.text),
-    chestBack: double.parse(
-        cubit.expandTheChestBehind.text.isEmpty?"0":cubit.expandTheChestBehind.text),
-    bottomHeight: double.parse(
-        cubit.koftaBottom.text.isEmpty?"0":cubit.koftaBottom.text),
-    bottomWidth:
-    double.parse(cubit.expandDown.text.isEmpty?"0":cubit.expandDown.text),
-    collarWidth: double.parse(
-        cubit.wideNeckPillow.text.isEmpty?"0":cubit.wideNeckPillow.text),
-    collarHeight:
-    double.parse(cubit.neckHeight.text.isEmpty?"0":cubit.neckHeight.text),
-    zipperHeight: double.parse(
-        cubit.gypsumHeight.text.isEmpty?"0":cubit.gypsumHeight.text),
-    zipperWidth:
-    double.parse(cubit.viewGypsum.text.isEmpty?"0":cubit.viewGypsum.text),
-    chestPocketHeight: double.parse(
-        cubit.lengthChestPocket.text.isEmpty?"0":cubit.lengthChestPocket.text),
-    chestPocketWidth: double.parse(
-        cubit.wideChestPocket.text.isEmpty?"0":cubit.wideChestPocket.text),
-    mobilePocketHeight: double.parse(
-        cubit.wideMobilePocket.text.isEmpty?"0":cubit.wideMobilePocket.text),
-    walletPocketHeight: double.parse(
-        cubit.lengthPocketWallet.text.isEmpty?"0":cubit.lengthPocketWallet.text),
-    walletPocketWidth: double.parse(
-        cubit.widePocketWallet.text.isEmpty?"0":cubit.widePocketWallet.text),
-    haunchWidth:
-    double.parse(cubit.hipWidth.text.isEmpty?"0":cubit.hipWidth.text),
-    buttonNo:
-    int.parse(cubit.buttonNumber.text.isEmpty?"0":cubit.buttonNumber.text),
-    embroideryNo: int.parse(
-        cubit.embroideryNumber.text.isEmpty?"0":cubit.embroideryNumber.text),
-    estimatedLength: double.parse(
-        cubit.expectedFabricInMeter.text.isEmpty?"0":cubit.expectedFabricInMeter.text),
-    tailorId: 1,
-    sample: cubit.sample?1:0,
-    urgent: cubit.harryUp?1:0,
-    shoulderChestLength: double.parse(cubit
-        .betweenTheChestPocketAndTheShoulder
-        .text.isEmpty?"0":cubit.betweenTheChestPocketAndTheShoulder.text),
-    sleeveMiddle: double.parse(
-        cubit.quantumCapacityMedium.text.isEmpty?"0":cubit.quantumCapacityMedium.text),
-    sidePocketLength:
-    double.parse(cubit.sidePocket.text.isEmpty?"0":cubit.sidePocket.text),
-    takhalees: cubit.Takhalis.text,
-    collarTypeID: cubit.CollerTypeID,
-    cuffTypeID: cubit.CuffTypeID,
-    modelTypeID: cubit.ModelTypeID,
-    pocketTypeID: cubit.PocketTypeID,
-    fillingTypeID: cubit.FillingTypeID,
-    zipperTypeID: cubit.ZipperTypeID,
-    note: "",
-  ),
-  ]);
-  InvoiceNewSizesModel invoiceNewSizesModel = InvoiceNewSizesModel(
-      sales:[sales]);
-  cubit.updateSize(invoiceNewSizesModel);
-  LoadingPage(context).close();
-
-  Navigator.pop(context);
-}catch(e){
-  LoadingPage(context).close();
-
-}
-LoadingPage(context).close();
-
-                                      },
+                                      Navigator.pop(context);
+                                    } catch (e) {
+                                      LoadingPage(context).close();
+                                    }
+                                    LoadingPage(context).close();
+                                  },
                                   child: Text(AppStrings.Save.tr(),
                                       style: GoogleFonts.notoKufiArabic(
                                           color: Colors.white,
@@ -533,70 +607,66 @@ LoadingPage(context).close();
                       ),
                       Container(
                         // height: MediaQuery.of(context).size.height/1.56,
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width / 1,
+                        width: MediaQuery.of(context).size.width / 1,
                         // color: MyConstant().greenColor,
                         child: Column(
                           children: [
                             Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 14,bottom: 14),
+                                  padding: const EdgeInsets.only(
+                                      top: 14, bottom: 14),
                                   child: Container(
-                                      width: MediaQuery.of(context).size.width / 2.52,
+                                      width: MediaQuery.of(context).size.width /
+                                          2.52,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].itemName,
-
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].itemName,
                                           text: AppStrings.cloth.tr(),
                                           controller: cubit.type,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.text,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 14,bottom: 14),
+                                  padding: const EdgeInsets.only(
+                                      top: 14, bottom: 14),
                                   child: Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].frontLength,
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].frontLength,
                                           text: AppStrings.frontlength.tr(),
                                           controller: cubit.frontHeight,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 14,bottom: 14),
+                                  padding: const EdgeInsets.only(
+                                      top: 14, bottom: 14),
                                   child: Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].backLength,
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].backLength,
                                           text: AppStrings.lengthbehind.tr(),
                                           controller: cubit.backHeight,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
@@ -604,80 +674,72 @@ LoadingPage(context).close();
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              padding:
+                                  const EdgeInsets.only(top: 14, bottom: 14),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].shoulderWidth,
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].shoulderWidth,
                                           text: AppStrings.shoulderwidth.tr(),
                                           controller: cubit.shoulderWidth,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].shoulderSlope,
-
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].shoulderSlope,
                                           text: AppStrings.shouldertilt.tr(),
                                           controller: cubit.shoulderSlope,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text: AppStrings.sleevelengthplain.tr(),
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].sleeve,
-
+                                          text:
+                                              AppStrings.sleevelengthplain.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].sleeve,
                                           controller: cubit.sleeveLengthPlain,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text: AppStrings.Thesleevelengthhigher.tr(),
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].sleeveTop,
-
+                                          text: AppStrings.Thesleevelengthhigher
+                                              .tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].sleeveTop,
                                           controller:
-                                          cubit.sleeveLengthIsHigher,
+                                              cubit.sleeveLengthIsHigher,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
@@ -685,81 +747,70 @@ LoadingPage(context).close();
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              padding:
+                                  const EdgeInsets.only(top: 14, bottom: 14),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].wrist,
-
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].wrist,
                                           text: AppStrings.widthofthewrist.tr(),
                                           controller: cubit.wideWrist,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text: AppStrings.quantumcuffplain.tr(),
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
-                                              .plainCuffLength,
-
+                                          text:
+                                              AppStrings.quantumcuffplain.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].plainCuffLength,
                                           controller: cubit.plainCuff,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].cuffLength,
-
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].cuffLength,
                                           text: AppStrings.cufflength.tr(),
                                           controller: cubit.cuffLength,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text:  AppStrings.CupcakeShow.tr(),
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].cuffWidth,
-
+                                          text: AppStrings.CupcakeShow.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].cuffWidth,
                                           controller: cubit.cuffShow,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
@@ -767,82 +818,73 @@ LoadingPage(context).close();
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              padding:
+                                  const EdgeInsets.only(top: 14, bottom: 14),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text:  AppStrings.widenthemiddle.tr(),
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].middleWidth,
-
+                                          text: AppStrings.widenthemiddle.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].middleWidth,
                                           controller: cubit.wideMiddle,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text:  AppStrings.Expandthechestinfrontof.tr(),
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].chestFront,
-
+                                          text: AppStrings
+                                              .Expandthechestinfrontof.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].chestFront,
                                           controller:
-                                          cubit.expandTheChestInFront,
+                                              cubit.expandTheChestInFront,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text: AppStrings.Expandthechestbehind.tr(),
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].chestBack,
-
+                                          text: AppStrings.Expandthechestbehind
+                                              .tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].chestBack,
                                           controller:
-                                          cubit.expandTheChestBehind,
+                                              cubit.expandTheChestBehind,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].bottomHeight,
-
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].bottomHeight,
                                           text: AppStrings.cuffdown.tr(),
                                           controller: cubit.koftaBottom,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
@@ -850,80 +892,69 @@ LoadingPage(context).close();
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              padding:
+                                  const EdgeInsets.only(top: 14, bottom: 14),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].bottomWidth,
-
-                                          text:  AppStrings.expanddown.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].bottomWidth,
+                                          text: AppStrings.expanddown.tr(),
                                           controller: cubit.expandDown,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
                                           text: AppStrings.NeckPlain.tr(),
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].collarWidth,
-
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].collarWidth,
                                           controller: cubit.wideNeckPillow,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].collarHeight,
-
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].collarHeight,
                                           text: AppStrings.highneck.tr(),
                                           controller: cubit.neckHeight,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].zipperHeight,
-
-                                          text:  AppStrings.JabzourHeight.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].zipperHeight,
+                                          text: AppStrings.JabzourHeight.tr(),
                                           controller: cubit.gypsumHeight,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
@@ -931,81 +962,71 @@ LoadingPage(context).close();
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              padding:
+                                  const EdgeInsets.only(top: 14, bottom: 14),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].zipperWidth,
-
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].zipperWidth,
                                           text: AppStrings.JabzourShow.tr(),
                                           controller: cubit.viewGypsum,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
-                                              .chestPocketHeight,
-
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit
+                                                  .sizes[0].chestPocketHeight,
                                           text: AppStrings.ichestpocket.tr(),
                                           controller: cubit.lengthChestPocket,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
-                                              .chestPocketWidth,
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].chestPocketWidth,
                                           text: AppStrings.pchestpocket.tr(),
                                           controller: cubit.wideChestPocket,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
-                                              .mobilePocketHeight,
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit
+                                                  .sizes[0].mobilePocketHeight,
                                           text: AppStrings.Imobilepocket.tr(),
                                           controller: cubit.wideMobilePocket,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
@@ -1013,78 +1034,69 @@ LoadingPage(context).close();
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              padding:
+                                  const EdgeInsets.only(top: 14, bottom: 14),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text:AppStrings.pmobilepocket.tr(),
+                                          text: AppStrings.pmobilepocket.tr(),
                                           controller: cubit.wideMobilePocket2,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
-                                              .walletPocketHeight,
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit
+                                                  .sizes[0].walletPocketHeight,
                                           text: AppStrings.iwalletpocket.tr(),
                                           controller: cubit.lengthPocketWallet,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   //delete down container
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
-                                              .walletPocketWidth,
-                                          text:  AppStrings.pwalletpocket.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit
+                                                  .sizes[0].walletPocketWidth,
+                                          text: AppStrings.pwalletpocket.tr(),
                                           controller: cubit.widePocketWallet,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].haunchWidth,
-                                          text:  AppStrings.hipextension.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].haunchWidth,
+                                          text: AppStrings.hipextension.tr(),
                                           controller: cubit.hipWidth,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
@@ -1092,79 +1104,74 @@ LoadingPage(context).close();
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              padding:
+                                  const EdgeInsets.only(top: 14, bottom: 14),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].buttonNo,
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].buttonNo,
                                           text: AppStrings.buttonnumber.tr(),
                                           controller: cubit.buttonNumber,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].embroideryNo,
-                                          text:  AppStrings.embroiderynumber.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].embroideryNo,
+                                          text:
+                                              AppStrings.embroiderynumber.tr(),
                                           controller: cubit.embroideryNumber,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 5,
+                                          MediaQuery.of(context).size.width / 5,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
-                                              .shoulderChestLength,
-                                          text:  AppStrings.betweenchestpocketandshoulder.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit
+                                                  .sizes[0].shoulderChestLength,
+                                          text: AppStrings
+                                              .betweenchestpocketandshoulder
+                                              .tr(),
                                           controller: cubit
                                               .betweenTheChestPocketAndTheShoulder,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text:  AppStrings.sidepocket.tr(),
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
-                                              .sidePocketLength,
+                                          text: AppStrings.sidepocket.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].sidePocketLength,
                                           controller: cubit.sidePocket,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
@@ -1172,63 +1179,60 @@ LoadingPage(context).close();
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              padding:
+                                  const EdgeInsets.only(top: 14, bottom: 14),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 // crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   // const SizedBox(width: 0.7,),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          text:  AppStrings.sleevewidthmedium.tr(),
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].sleeveMiddle,
+                                          text:
+                                              AppStrings.sleevewidthmedium.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].sleeveMiddle,
                                           controller:
-                                          cubit.quantumCapacityMedium,
+                                              cubit.quantumCapacityMedium,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   // const SizedBox(width: 1,),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 6,
+                                          MediaQuery.of(context).size.width / 6,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].takhalees,
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].takhalees,
                                           text: AppStrings.clearance.tr(),
                                           controller: cubit.Takhalis,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.text,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   // const SizedBox(width: 1,),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 5,
+                                          MediaQuery.of(context).size.width / 5,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
-                                              .estimatedLength,
-                                          text:  AppStrings.Fabricexpectedbythemeter.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].estimatedLength,
+                                          text: AppStrings
+                                              .Fabricexpectedbythemeter.tr(),
                                           controller:
-                                          cubit.expectedFabricInMeter,
+                                              cubit.expectedFabricInMeter,
                                           textInputAction: TextInputAction.done,
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
@@ -1244,7 +1248,7 @@ LoadingPage(context).close();
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text( AppStrings.asample.tr(),
+                                  Text(AppStrings.asample.tr(),
                                       style: GoogleFonts.notoKufiArabic(
                                           color: MyConstant().purpleColor,
                                           fontWeight: FontWeight.bold,
@@ -1255,11 +1259,9 @@ LoadingPage(context).close();
                                   Container(
                                     width: 10,
                                     child: Checkbox(
-
                                       value: cubit.isSelect2,
                                       shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(3),
+                                        borderRadius: BorderRadius.circular(3),
                                         side: const BorderSide(
                                             color: Colors.grey),
                                       ),
@@ -1272,14 +1274,14 @@ LoadingPage(context).close();
                                       checkColor: Colors.green,
                                       activeColor: Colors.white,
                                       splashRadius: 0,
-                                      side: const BorderSide(
-                                          color: Colors.grey),
+                                      side:
+                                          const BorderSide(color: Colors.grey),
                                     ),
                                   ),
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  Text( AppStrings.urgent.tr(),
+                                  Text(AppStrings.urgent.tr(),
                                       style: GoogleFonts.notoKufiArabic(
                                           color: MyConstant().purpleColor,
                                           fontWeight: FontWeight.bold,
@@ -1292,8 +1294,7 @@ LoadingPage(context).close();
                                     child: Checkbox(
                                       value: cubit.isSelect1,
                                       shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(3),
+                                        borderRadius: BorderRadius.circular(3),
                                         side: const BorderSide(
                                             color: Colors.grey),
                                       ),
@@ -1306,27 +1307,26 @@ LoadingPage(context).close();
                                       checkColor: Colors.green,
                                       activeColor: Colors.white,
                                       splashRadius: 0,
-                                      side: const BorderSide(
-                                          color: Colors.grey),
+                                      side:
+                                          const BorderSide(color: Colors.grey),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
                             Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Container(
                                   width: MediaQuery.of(context).size.width / 4,
-                                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 5, vertical: 3),
                                   child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text( AppStrings.ModelType.tr(),
+                                      Text(AppStrings.ModelType.tr(),
                                           style: GoogleFonts.notoKufiArabic(
                                               color: MyConstant().purpleColor,
                                               fontWeight: FontWeight.bold,
@@ -1335,59 +1335,52 @@ LoadingPage(context).close();
                                         height: 10,
                                       ),
                                       Container(
-                                        width: MediaQuery
-                                            .of(context)
-                                            .size
-                                            .width /
-                                            4,
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                4,
                                         padding:
-                                        const EdgeInsets.only(right: 5),
+                                            const EdgeInsets.only(right: 5),
                                         height: 40,
                                         decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(5),
+                                              BorderRadius.circular(5),
                                         ),
                                         child: DropdownButtonHideUnderline(
-
                                           child: DropdownButton2(
-                                            hint: Text(cubit.trModelValue==null?"":cubit.trModelValue!.modelName??""),
-                                            iconEnabledColor:
-                                            Colors.white,
-                                            iconDisabledColor:
-                                            Colors.grey,
+                                            hint: Text(
+                                                cubit.trModelValue == null
+                                                    ? ""
+                                                    : cubit.trModelValue!
+                                                            .modelName ??
+                                                        ""),
+                                            iconEnabledColor: Colors.white,
+                                            iconDisabledColor: Colors.grey,
                                             buttonHeight: 100,
                                             buttonWidth: 160,
                                             // buttonElevation: 2,
                                             itemHeight: 50,
-                                            itemPadding:
-                                            const EdgeInsets.only(
-                                                left: 14,
-                                                right: 14),
+                                            itemPadding: const EdgeInsets.only(
+                                                left: 14, right: 14),
                                             dropdownMaxHeight: 200,
                                             dropdownWidth: 200,
 
-                                            buttonDecoration:
-                                            BoxDecoration(
+                                            buttonDecoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
+                                                  BorderRadius.circular(5),
                                               border: Border.all(
                                                 color: Colors.green,
                                               ),
                                               color: Colors.white,
                                             ),
-                                            dropdownDecoration:
-                                            BoxDecoration(
+                                            dropdownDecoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
+                                                  BorderRadius.circular(5),
                                               color: Colors.white,
                                             ),
 
                                             dropdownElevation: 8,
                                             scrollbarRadius:
-                                            const Radius.circular(
-                                                20),
+                                                const Radius.circular(20),
                                             scrollbarThickness: 6,
                                             scrollbarAlwaysShow: true,
 
@@ -1399,11 +1392,11 @@ LoadingPage(context).close();
                                             onChanged: (value) {
                                               setState(() {
                                                 trModelValue =
-                                                value as tRModelModel;
+                                                    value as tRModelModel;
 
-                                                cubit.trModelValue =value;
+                                                cubit.trModelValue = value;
                                                 cubit.ModelName =
-                                                value.modelName!;
+                                                    value.modelName!;
                                                 cubit.ModelTypeID = int.parse(
                                                     value.modelTypeID!);
                                               });
@@ -1412,16 +1405,14 @@ LoadingPage(context).close();
                                             icon: Container(
                                               decoration: const BoxDecoration(
                                                 color: Colors.green,
-                                                borderRadius:
-                                                BorderRadius.only(
-                                                    bottomLeft: Radius
-                                                        .circular(
-                                                        5),
-                                                    topLeft: Radius
-                                                        .circular(
-                                                        5)),
-                                              ), child: const Icon(Icons
-                                                .keyboard_arrow_down_sharp),
+                                                borderRadius: BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(5),
+                                                    topLeft:
+                                                        Radius.circular(5)),
+                                              ),
+                                              child: const Icon(Icons
+                                                  .keyboard_arrow_down_sharp),
                                             ),
                                           ),
                                         ),
@@ -1430,20 +1421,15 @@ LoadingPage(context).close();
                                   ),
                                 ),
                                 Container(
-                                  width:
-                                  MediaQuery
-                                      .of(context)
-                                      .size
-                                      .width / 4,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 5),
+                                  width: MediaQuery.of(context).size.width / 4,
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 5),
                                   child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text( AppStrings.collartype.tr(),
+                                      Text(AppStrings.collartype.tr(),
                                           style: GoogleFonts.notoKufiArabic(
                                               color: MyConstant().purpleColor,
                                               fontWeight: FontWeight.bold,
@@ -1452,54 +1438,52 @@ LoadingPage(context).close();
                                         height: 10,
                                       ),
                                       Container(
-                                        width: MediaQuery.of(context).size.width / 4,
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                4,
                                         padding:
-                                        const EdgeInsets.only(right: 5),
+                                            const EdgeInsets.only(right: 5),
                                         height: 40,
                                         decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(5),
+                                              BorderRadius.circular(5),
                                         ),
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton2(
-                                            hint: Text(cubit.tRCollarValue==null?"":cubit.tRCollarValue!.CollarName??""),
-                                            iconEnabledColor:
-                                            Colors.white,
-                                            iconDisabledColor:
-                                            Colors.grey,
+                                            hint: Text(
+                                                cubit.tRCollarValue == null
+                                                    ? ""
+                                                    : cubit.tRCollarValue!
+                                                            .CollarName ??
+                                                        ""),
+                                            iconEnabledColor: Colors.white,
+                                            iconDisabledColor: Colors.grey,
                                             buttonHeight: 100,
                                             buttonWidth: 160,
                                             // buttonElevation: 2,
                                             itemHeight: 50,
-                                            itemPadding:
-                                            const EdgeInsets.only(
-                                                left: 14,
-                                                right: 14),
+                                            itemPadding: const EdgeInsets.only(
+                                                left: 14, right: 14),
                                             dropdownMaxHeight: 200,
                                             dropdownWidth: 200,
 
-                                            buttonDecoration:
-                                            BoxDecoration(
+                                            buttonDecoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
+                                                  BorderRadius.circular(5),
                                               border: Border.all(
                                                 color: Colors.green,
                                               ),
                                               color: Colors.white,
                                             ),
-                                            dropdownDecoration:
-                                            BoxDecoration(
+                                            dropdownDecoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
+                                                  BorderRadius.circular(5),
                                               color: Colors.white,
                                             ),
 
                                             dropdownElevation: 8,
                                             scrollbarRadius:
-                                            const Radius.circular(
-                                                20),
+                                                const Radius.circular(20),
                                             scrollbarThickness: 6,
                                             scrollbarAlwaysShow: true,
                                             items: cubit.tRCollarList
@@ -1509,32 +1493,28 @@ LoadingPage(context).close();
                                             isExpanded: true,
                                             onChanged: (value) {
                                               setState(() {
-
                                                 tRCollarValue =
-                                                value as tRCollarModel;
-                                                cubit.tRCollarValue =value;
+                                                    value as tRCollarModel;
+                                                cubit.tRCollarValue = value;
 
                                                 cubit.CollerName =
-                                                value.CollarName!;
-                                                cubit.CollerTypeID =
-                                                    int.parse(
-                                                        value.CollarTypeId!);
+                                                    value.CollarName!;
+                                                cubit.CollerTypeID = int.parse(
+                                                    value.CollarTypeId!);
                                               });
                                             },
                                             iconSize: 40,
                                             icon: Container(
                                               decoration: const BoxDecoration(
                                                 color: Colors.green,
-                                                borderRadius:
-                                                BorderRadius.only(
-                                                    bottomLeft: Radius
-                                                        .circular(
-                                                        5),
-                                                    topLeft: Radius
-                                                        .circular(
-                                                        5)),
-                                              ), child: const Icon(Icons
-                                                .keyboard_arrow_down_sharp),
+                                                borderRadius: BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(5),
+                                                    topLeft:
+                                                        Radius.circular(5)),
+                                              ),
+                                              child: const Icon(Icons
+                                                  .keyboard_arrow_down_sharp),
                                             ),
                                           ),
                                         ),
@@ -1543,20 +1523,15 @@ LoadingPage(context).close();
                                   ),
                                 ),
                                 Container(
-                                  width:
-                                  MediaQuery
-                                      .of(context)
-                                      .size
-                                      .width / 4,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 5),
+                                  width: MediaQuery.of(context).size.width / 4,
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 5),
                                   child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text( AppStrings.cufftype.tr(),
+                                      Text(AppStrings.cufftype.tr(),
                                           style: GoogleFonts.notoKufiArabic(
                                               color: MyConstant().purpleColor,
                                               fontWeight: FontWeight.bold,
@@ -1565,58 +1540,50 @@ LoadingPage(context).close();
                                         height: 10,
                                       ),
                                       Container(
-                                        width: MediaQuery
-                                            .of(context)
-                                            .size
-                                            .width /
-                                            4,
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                4,
                                         padding:
-                                        const EdgeInsets.only(right: 5),
+                                            const EdgeInsets.only(right: 5),
                                         height: 40,
                                         decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(5),
+                                              BorderRadius.circular(5),
                                         ),
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton2(
-                                            hint: Text(cubit.tRCuffValue==null?"":cubit.tRCuffValue!.CuffName??""),
-                                            iconEnabledColor:
-                                            Colors.white,
-                                            iconDisabledColor:
-                                            Colors.grey,
+                                            hint: Text(cubit.tRCuffValue == null
+                                                ? ""
+                                                : cubit.tRCuffValue!.CuffName ??
+                                                    ""),
+                                            iconEnabledColor: Colors.white,
+                                            iconDisabledColor: Colors.grey,
                                             buttonHeight: 100,
                                             buttonWidth: 160,
                                             // buttonElevation: 2,
                                             itemHeight: 50,
-                                            itemPadding:
-                                            const EdgeInsets.only(
-                                                left: 14,
-                                                right: 14),
+                                            itemPadding: const EdgeInsets.only(
+                                                left: 14, right: 14),
                                             dropdownMaxHeight: 200,
                                             dropdownWidth: 200,
 
-                                            buttonDecoration:
-                                            BoxDecoration(
+                                            buttonDecoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
+                                                  BorderRadius.circular(5),
                                               border: Border.all(
                                                 color: Colors.green,
                                               ),
                                               color: Colors.white,
                                             ),
-                                            dropdownDecoration:
-                                            BoxDecoration(
+                                            dropdownDecoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
+                                                  BorderRadius.circular(5),
                                               color: Colors.white,
                                             ),
 
                                             dropdownElevation: 8,
                                             scrollbarRadius:
-                                            const Radius.circular(
-                                                20),
+                                                const Radius.circular(20),
                                             scrollbarThickness: 6,
                                             scrollbarAlwaysShow: true,
                                             items: cubit.tRCuffList
@@ -1627,11 +1594,11 @@ LoadingPage(context).close();
                                             onChanged: (value) {
                                               setState(() {
                                                 tRCuffValue =
-                                                value as tRCuffModel;
-                                                cubit.tRCuffValue =value;
+                                                    value as tRCuffModel;
+                                                cubit.tRCuffValue = value;
 
                                                 cubit.CuffName =
-                                                value.CuffName!;
+                                                    value.CuffName!;
                                                 cubit.CuffTypeID = int.parse(
                                                     value.CuffTypeId!);
                                               });
@@ -1641,16 +1608,14 @@ LoadingPage(context).close();
                                             icon: Container(
                                               decoration: const BoxDecoration(
                                                 color: Colors.green,
-                                                borderRadius:
-                                                BorderRadius.only(
-                                                    bottomLeft: Radius
-                                                        .circular(
-                                                        5),
-                                                    topLeft: Radius
-                                                        .circular(
-                                                        5)),
-                                              ), child: const Icon(Icons
-                                                .keyboard_arrow_down_sharp),
+                                                borderRadius: BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(5),
+                                                    topLeft:
+                                                        Radius.circular(5)),
+                                              ),
+                                              child: const Icon(Icons
+                                                  .keyboard_arrow_down_sharp),
                                             ),
                                           ),
                                         ),
@@ -1661,24 +1626,18 @@ LoadingPage(context).close();
                               ],
                             ),
                             Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Container(
-                                  width:
-                                  MediaQuery
-                                      .of(context)
-                                      .size
-                                      .width / 4,
+                                  width: MediaQuery.of(context).size.width / 4,
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 5, vertical: 3),
                                   child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text( AppStrings.pocketitchingtype.tr(),
+                                      Text(AppStrings.pocketitchingtype.tr(),
                                           style: GoogleFonts.notoKufiArabic(
                                               color: MyConstant().purpleColor,
                                               fontWeight: FontWeight.bold,
@@ -1687,58 +1646,52 @@ LoadingPage(context).close();
                                         height: 10,
                                       ),
                                       Container(
-                                        width: MediaQuery
-                                            .of(context)
-                                            .size
-                                            .width /
-                                            4,
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                4,
                                         padding:
-                                        const EdgeInsets.only(right: 5),
+                                            const EdgeInsets.only(right: 5),
                                         height: 40,
                                         decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(5),
+                                              BorderRadius.circular(5),
                                         ),
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton2(
-                                            hint: Text(cubit.tRPocketValue==null?"":cubit.tRPocketValue!.PocketName??""),
-                                            iconEnabledColor:
-                                            Colors.white,
-                                            iconDisabledColor:
-                                            Colors.grey,
+                                            hint: Text(
+                                                cubit.tRPocketValue == null
+                                                    ? ""
+                                                    : cubit.tRPocketValue!
+                                                            .PocketName ??
+                                                        ""),
+                                            iconEnabledColor: Colors.white,
+                                            iconDisabledColor: Colors.grey,
                                             buttonHeight: 100,
                                             buttonWidth: 160,
                                             // buttonElevation: 2,
                                             itemHeight: 50,
-                                            itemPadding:
-                                            const EdgeInsets.only(
-                                                left: 14,
-                                                right: 14),
+                                            itemPadding: const EdgeInsets.only(
+                                                left: 14, right: 14),
                                             dropdownMaxHeight: 200,
                                             dropdownWidth: 200,
 
-                                            buttonDecoration:
-                                            BoxDecoration(
+                                            buttonDecoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
+                                                  BorderRadius.circular(5),
                                               border: Border.all(
                                                 color: Colors.green,
                                               ),
                                               color: Colors.white,
                                             ),
-                                            dropdownDecoration:
-                                            BoxDecoration(
+                                            dropdownDecoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
+                                                  BorderRadius.circular(5),
                                               color: Colors.white,
                                             ),
 
                                             dropdownElevation: 8,
                                             scrollbarRadius:
-                                            const Radius.circular(
-                                                20),
+                                                const Radius.circular(20),
                                             scrollbarThickness: 6,
                                             scrollbarAlwaysShow: true,
                                             items: cubit.tRPocketList
@@ -1749,14 +1702,13 @@ LoadingPage(context).close();
                                             onChanged: (value) {
                                               setState(() {
                                                 tRPocketValue =
-                                                value as tRPocketModel?;
-                                                cubit.tRPocketValue =value;
+                                                    value as tRPocketModel?;
+                                                cubit.tRPocketValue = value;
 
                                                 cubit.PocketName =
-                                                value!.PocketName!;
-                                                cubit.PocketTypeID =
-                                                    int.parse(
-                                                        value.PocketTypeId!);
+                                                    value!.PocketName!;
+                                                cubit.PocketTypeID = int.parse(
+                                                    value.PocketTypeId!);
                                               });
                                             },
 
@@ -1764,16 +1716,14 @@ LoadingPage(context).close();
                                             icon: Container(
                                               decoration: const BoxDecoration(
                                                 color: Colors.green,
-                                                borderRadius:
-                                                BorderRadius.only(
-                                                    bottomLeft: Radius
-                                                        .circular(
-                                                        5),
-                                                    topLeft: Radius
-                                                        .circular(
-                                                        5)),
-                                              ), child: const Icon(Icons
-                                                .keyboard_arrow_down_sharp),
+                                                borderRadius: BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(5),
+                                                    topLeft:
+                                                        Radius.circular(5)),
+                                              ),
+                                              child: const Icon(Icons
+                                                  .keyboard_arrow_down_sharp),
                                             ),
                                           ),
                                         ),
@@ -1782,20 +1732,15 @@ LoadingPage(context).close();
                                   ),
                                 ),
                                 Container(
-                                  width:
-                                  MediaQuery
-                                      .of(context)
-                                      .size
-                                      .width / 4,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 5),
+                                  width: MediaQuery.of(context).size.width / 4,
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 5),
                                   child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text( AppStrings.FillingType.tr(),
+                                      Text(AppStrings.FillingType.tr(),
                                           style: GoogleFonts.notoKufiArabic(
                                               color: MyConstant().purpleColor,
                                               fontWeight: FontWeight.bold,
@@ -1804,77 +1749,70 @@ LoadingPage(context).close();
                                         height: 10,
                                       ),
                                       Container(
-                                        width: MediaQuery
-                                            .of(context)
-                                            .size
-                                            .width /
-                                            4,
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                4,
                                         padding:
-                                        const EdgeInsets.only(right: 5),
+                                            const EdgeInsets.only(right: 5),
                                         height: 40,
                                         decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(5),
+                                              BorderRadius.circular(5),
                                         ),
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton2(
                                             hint: Text(
-                                                cubit.trFillingValue==null?"":cubit.trFillingValue!.FillingName ?? ""),
-                                            iconEnabledColor:
-                                            Colors.white,
-                                            iconDisabledColor:
-                                            Colors.grey,
+                                                cubit.trFillingValue == null
+                                                    ? ""
+                                                    : cubit.trFillingValue!
+                                                            .FillingName ??
+                                                        ""),
+                                            iconEnabledColor: Colors.white,
+                                            iconDisabledColor: Colors.grey,
                                             buttonHeight: 100,
                                             buttonWidth: 160,
                                             // buttonElevation: 2,
                                             itemHeight: 50,
-                                            itemPadding:
-                                            const EdgeInsets.only(
-                                                left: 14,
-                                                right: 14),
+                                            itemPadding: const EdgeInsets.only(
+                                                left: 14, right: 14),
                                             dropdownMaxHeight: 200,
                                             dropdownWidth: 200,
 
-                                            buttonDecoration:
-                                            BoxDecoration(
+                                            buttonDecoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
+                                                  BorderRadius.circular(5),
                                               border: Border.all(
                                                 color: Colors.green,
                                               ),
                                               color: Colors.white,
                                             ),
-                                            dropdownDecoration:
-                                            BoxDecoration(
+                                            dropdownDecoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
+                                                  BorderRadius.circular(5),
                                               color: Colors.white,
                                             ),
 
                                             dropdownElevation: 8,
                                             scrollbarRadius:
-                                            const Radius.circular(
-                                                20),
+                                                const Radius.circular(20),
                                             scrollbarThickness: 6,
                                             scrollbarAlwaysShow: true,
                                             items: cubit.tRFillingList
                                                 .map(tRFillingItemBuild)
                                                 .toList(),
-                                            value: trFillingValue=cubit.trFillingValue,
+                                            value: trFillingValue =
+                                                cubit.trFillingValue,
                                             isExpanded: true,
                                             onChanged: (value) {
                                               setState(() {
                                                 trFillingValue =
-                                                value as tRFillingModel;
-                                                cubit.trFillingValue =value;
+                                                    value as tRFillingModel;
+                                                cubit.trFillingValue = value;
 
                                                 cubit.FillingName =
-                                                value.FillingName!;
-                                                cubit.FillingTypeID =
-                                                    int.parse(
-                                                        value.FillingTypeId!);
+                                                    value.FillingName!;
+                                                cubit.FillingTypeID = int.parse(
+                                                    value.FillingTypeId!);
                                               });
                                             },
 
@@ -1882,16 +1820,14 @@ LoadingPage(context).close();
                                             icon: Container(
                                               decoration: const BoxDecoration(
                                                 color: Colors.green,
-                                                borderRadius:
-                                                BorderRadius.only(
-                                                    bottomLeft: Radius
-                                                        .circular(
-                                                        5),
-                                                    topLeft: Radius
-                                                        .circular(
-                                                        5)),
-                                              ), child: const Icon(Icons
-                                                .keyboard_arrow_down_sharp),
+                                                borderRadius: BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(5),
+                                                    topLeft:
+                                                        Radius.circular(5)),
+                                              ),
+                                              child: const Icon(Icons
+                                                  .keyboard_arrow_down_sharp),
                                             ),
                                           ),
                                         ),
@@ -1900,20 +1836,15 @@ LoadingPage(context).close();
                                   ),
                                 ),
                                 Container(
-                                  width:
-                                  MediaQuery
-                                      .of(context)
-                                      .size
-                                      .width / 4,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 5),
+                                  width: MediaQuery.of(context).size.width / 4,
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 5),
                                   child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text( AppStrings.typeofgypsum.tr(),
+                                      Text(AppStrings.typeofgypsum.tr(),
                                           style: GoogleFonts.notoKufiArabic(
                                               color: MyConstant().purpleColor,
                                               fontWeight: FontWeight.bold,
@@ -1922,58 +1853,52 @@ LoadingPage(context).close();
                                         height: 10,
                                       ),
                                       Container(
-                                        width: MediaQuery
-                                            .of(context)
-                                            .size
-                                            .width /
-                                            4,
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                4,
                                         padding:
-                                        const EdgeInsets.only(right: 5),
+                                            const EdgeInsets.only(right: 5),
                                         height: 40,
                                         decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(5),
+                                              BorderRadius.circular(5),
                                         ),
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton2(
-                                            hint: Text(cubit.tRZipperValue==null?"":cubit.tRZipperValue!.ZipperName??""),
-                                            iconEnabledColor:
-                                            Colors.white,
-                                            iconDisabledColor:
-                                            Colors.grey,
+                                            hint: Text(
+                                                cubit.tRZipperValue == null
+                                                    ? ""
+                                                    : cubit.tRZipperValue!
+                                                            .ZipperName ??
+                                                        ""),
+                                            iconEnabledColor: Colors.white,
+                                            iconDisabledColor: Colors.grey,
                                             buttonHeight: 100,
                                             buttonWidth: 160,
                                             // buttonElevation: 2,
                                             itemHeight: 50,
-                                            itemPadding:
-                                            const EdgeInsets.only(
-                                                left: 14,
-                                                right: 14),
+                                            itemPadding: const EdgeInsets.only(
+                                                left: 14, right: 14),
                                             dropdownMaxHeight: 200,
                                             dropdownWidth: 200,
 
-                                            buttonDecoration:
-                                            BoxDecoration(
+                                            buttonDecoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
+                                                  BorderRadius.circular(5),
                                               border: Border.all(
                                                 color: Colors.green,
                                               ),
                                               color: Colors.white,
                                             ),
-                                            dropdownDecoration:
-                                            BoxDecoration(
+                                            dropdownDecoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
+                                                  BorderRadius.circular(5),
                                               color: Colors.white,
                                             ),
 
                                             dropdownElevation: 8,
                                             scrollbarRadius:
-                                            const Radius.circular(
-                                                20),
+                                                const Radius.circular(20),
                                             scrollbarThickness: 6,
                                             scrollbarAlwaysShow: true,
                                             items: cubit.tRZipperList
@@ -1984,14 +1909,13 @@ LoadingPage(context).close();
                                             onChanged: (value) {
                                               setState(() {
                                                 tRZipperValue =
-                                                value as tRZipperModel;
+                                                    value as tRZipperModel;
 
-                                                cubit.tRZipperValue =value;
+                                                cubit.tRZipperValue = value;
                                                 cubit.ZipperName =
-                                                value.ZipperName!;
-                                                cubit.ZipperTypeID =
-                                                    int.parse(
-                                                        value.ZipperTypeId!);
+                                                    value.ZipperName!;
+                                                cubit.ZipperTypeID = int.parse(
+                                                    value.ZipperTypeId!);
                                               });
                                             },
 
@@ -1999,16 +1923,14 @@ LoadingPage(context).close();
                                             icon: Container(
                                               decoration: const BoxDecoration(
                                                 color: Colors.green,
-                                                borderRadius:
-                                                BorderRadius.only(
-                                                    bottomLeft: Radius
-                                                        .circular(
-                                                        5),
-                                                    topLeft: Radius
-                                                        .circular(
-                                                        5)),
-                                              ), child: const Icon(Icons
-                                                .keyboard_arrow_down_sharp),
+                                                borderRadius: BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(5),
+                                                    topLeft:
+                                                        Radius.circular(5)),
+                                              ),
+                                              child: const Icon(Icons
+                                                  .keyboard_arrow_down_sharp),
                                             ),
                                           ),
                                         ),
@@ -2043,12 +1965,10 @@ LoadingPage(context).close();
                         alignment: Alignment.center,
                         children: [
                           Container(
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .height / 10,
+                            height: MediaQuery.of(context).size.height / 10,
                             width: double.infinity,
-                            padding: const EdgeInsets.only(left: 30,right: 30, top: 20),
+                            padding: const EdgeInsets.only(
+                                left: 30, right: 30, top: 20),
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                               border: Border(
@@ -2070,17 +1990,13 @@ LoadingPage(context).close();
                               color: Colors.white,
                             ),
                             child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
                                     height: 40,
                                     width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 5,
+                                        MediaQuery.of(context).size.width / 5,
                                     child: Image.asset(
                                       'image/logo app.png',
                                       width: 40,
@@ -2103,10 +2019,7 @@ LoadingPage(context).close();
                       Container(
                         // height: MediaQuery.of(context).size.height/16,
                         height: 40,
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width / 1,
+                        width: MediaQuery.of(context).size.width / 1,
                         color: MyConstant().purpleColor,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -2125,10 +2038,7 @@ LoadingPage(context).close();
                                     fontWeight: FontWeight.bold,
                                     fontSize: Size)),
                             Container(
-                                width: MediaQuery
-                                    .of(context)
-                                    .size
-                                    .width / 3,
+                                width: MediaQuery.of(context).size.width / 3,
                                 // height: MediaQuery.of(context).size.height/1,
                                 // color: Colors.amber,
                                 margin: const EdgeInsets.only(
@@ -2142,67 +2052,57 @@ LoadingPage(context).close();
                                   padding: const EdgeInsets.only(right: 10),
                                   child: DropdownButtonHideUnderline(
                                     child: DropdownButton2(
-
-                                      iconEnabledColor:
-                                      Colors.white,
-                                      iconDisabledColor:
-                                      Colors.grey,
+                                      iconEnabledColor: Colors.white,
+                                      iconDisabledColor: Colors.grey,
                                       buttonHeight: 100,
                                       buttonWidth: 160,
                                       // buttonElevation: 2,
                                       itemHeight: 50,
-                                      itemPadding:
-                                      const EdgeInsets.only(
-                                          left: 14,
-                                          right: 14),
+                                      itemPadding: const EdgeInsets.only(
+                                          left: 14, right: 14),
                                       dropdownMaxHeight: 200,
                                       dropdownWidth: 200,
 
-
-                                      dropdownDecoration:
-                                      BoxDecoration(
-
-                                        borderRadius:
-                                        BorderRadius.circular(
-                                            5),
+                                      dropdownDecoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
                                         color: Colors.white,
                                       ),
 
                                       dropdownElevation: 8,
                                       scrollbarRadius:
-                                      const Radius.circular(
-                                          20),
+                                          const Radius.circular(20),
                                       scrollbarThickness: 6,
                                       scrollbarAlwaysShow: true,
-                                      hint: Text(cubit.tRTailorValue==null?"":cubit.tRTailorValue!.TailorName??""),
-                                      items: cubit.tRTailorList.map(
-                                          tRTailorItemBuild).toList(),
+                                      hint: Text(cubit.tRTailorValue == null
+                                          ? ""
+                                          : cubit.tRTailorValue!.TailorName ??
+                                              ""),
+                                      items: cubit.tRTailorList
+                                          .map(tRTailorItemBuild)
+                                          .toList(),
                                       value: tRTailorValue,
                                       isExpanded: true,
                                       onChanged: (value) {
                                         setState(() {
                                           tRTailorValue =
-                                          value as tRTailorModel;
-                                          cubit.tRTailorValue =value;
+                                              value as tRTailorModel;
+                                          cubit.tRTailorValue = value;
 
-                                          cubit.TaillorName = value.TailorName??"";
-                                          cubit.tailorId = value.TailorId??"";
+                                          cubit.TaillorName =
+                                              value.TailorName ?? "";
+                                          cubit.tailorId = value.TailorId ?? "";
                                         });
                                       },
                                       iconSize: 25,
                                       icon: Container(
                                         decoration: const BoxDecoration(
                                           color: Colors.green,
-                                          borderRadius:
-                                          BorderRadius.only(
-                                              bottomLeft: Radius
-                                                  .circular(
-                                                  5),
-                                              topLeft: Radius
-                                                  .circular(
-                                                  5)),
-                                        ), child: const Icon(
-                                          Icons.keyboard_arrow_down_sharp),
+                                          borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(5),
+                                              topLeft: Radius.circular(5)),
+                                        ),
+                                        child: const Icon(
+                                            Icons.keyboard_arrow_down_sharp),
                                       ),
                                     ),
                                   ),
@@ -2213,13 +2113,509 @@ LoadingPage(context).close();
                                 // margin: const EdgeInsets.only(left: 40),
                                 child: OutlinedButton(
                                   style: ButtonStyle(
-                                    backgroundColor:
-                                    MaterialStateProperty.all(
+                                    backgroundColor: MaterialStateProperty.all(
                                         MyConstant().greenColor),
                                   ),
-                                  onPressed:
-
-                                      () async {
+                                  onPressed: ()
+                                  // async {
+                                  //   // await cubit.getWidgetImage();
+                                  //   // Measurement measurement = Measurement(
+                                  //   //   itemName: cubit.type.text,
+                                  //   //   itemCode: cubit.tailCode,
+                                  //   //   frontLength: double.parse(cubit.frontHeight.text),
+                                  //   //   backLength: double.parse(cubit.backHeight.text),
+                                  //   //   shoulderWidth: double.parse(cubit.shoulderWidth.text),
+                                  //   //   shoulderSlope: double.parse(cubit.shoulderSlope.text),
+                                  //   //   sleeve: double.parse(cubit.sleeveLengthPlain.text),
+                                  //   //   sleeveTop: double.parse(cubit.sleeveLengthIsHigher.text),
+                                  //   //   wrist: double.parse(cubit.wideWrist.text),
+                                  //   //   plainCuffLength: double.parse(cubit.plainCuff.text),
+                                  //   //   cuffLength: double.parse(cubit.cuffLength.text),
+                                  //   //   cuffWidth: double.parse(cubit.cuffShow.text),
+                                  //   //   middleWidth: double.parse(cubit.wideMiddle.text),
+                                  //   //   chestFront: double.parse(cubit.expandTheChestInFront.text),
+                                  //   //   chestBack:double.parse(cubit.expandTheChestBehind.text),
+                                  //   //   bottomHeight: double.parse(cubit.koftaBottom.text),
+                                  //   //   bottomWidth: double.parse(cubit.expandDown.text),
+                                  //   //   collarWidth: double.parse(cubit.wideNeckPillow.text),
+                                  //   //   collarHeight: double.parse(cubit.neckHeight.text),
+                                  //   //   zipperHeight: double.parse(cubit.gypsumHeight.text),
+                                  //   //   zipperWidth: double.parse(cubit.viewGypsum.text),
+                                  //   //   chestPocketHeight: double.parse(cubit.lengthChestPocket.text),
+                                  //   //   chestPocketWidth: double.parse(cubit.wideChestPocket.text),
+                                  //   //   mobilePocketHeight: double.parse(cubit.wideMobilePocket.text),
+                                  //   //   walletPocketHeight: double.parse(cubit.lengthPocketWallet.text),
+                                  //   //   walletPocketWidth: double.parse(cubit.widePocketWallet.text),
+                                  //   //   haunchWidth: double.parse(cubit.hipWidth.text),
+                                  //   //   buttonNo: int.parse(cubit.buttonNumber.text),
+                                  //   //   embroideryNo: int.parse(cubit.embroideryNumber.text),
+                                  //   //   estimatedLength: double.parse(cubit.cuffLength.text),
+                                  //   //   tailorId: int.parse(cubit.tRTailorValue!.TailorId??""),
+                                  //   //   sample: cubit.sample?1:0,
+                                  //   //   urgent: cubit.harryUp?1:0,
+                                  //   //   shoulderChestLength: double.parse(cubit.betweenTheChestPocketAndTheShoulder.text),
+                                  //   //   sleeveMiddle: double.parse(cubit.quantumCapacityMedium.text),
+                                  //   //   sidePocketLength: double.parse(cubit.sidePocket.text),
+                                  //   //   takhalees: cubit.Takhalis.text,
+                                  //   //   collarTypeID: int.parse(cubit.tRCollarValue!.CollarTypeId??""),
+                                  //   //   cuffTypeID:int.parse(cubit.tRCuffValue!.CuffTypeId??""),
+                                  //   //   modelTypeID: int.parse(cubit.trModelValue!.modelTypeID??""),
+                                  //   //   pocketTypeID: int.parse(cubit.tRPocketValue!.PocketTypeId??""),
+                                  //   //   fillingTypeID: int.parse(cubit.trFillingValue!.FillingTypeId??""),
+                                  //   //   zipperTypeID:int.parse(cubit.tRZipperValue!.ZipperTypeId??""),
+                                  //   //   note: "",);
+                                  //   //     Measurement(
+                                  //   //       itemName: cubit.typeOfClothes,
+                                  //   //       itemCode: cubit.itemCode,
+                                  //   //       frontLength: double.parse(
+                                  //   //           cubit.frontHeight.text.isEmpty?"0":cubit.frontHeight.text),
+                                  //   //       backLength:
+                                  //   //       double.parse(cubit.backHeight.text.isEmpty?"0":cubit.backHeight.text),
+                                  //   //       shoulderWidth: double.parse(
+                                  //   //           cubit.shoulderWidth.text.isEmpty?"0":cubit.shoulderWidth.text),
+                                  //   //       shoulderSlope: double.parse(
+                                  //   //           cubit.shoulderSlope.text.isEmpty?"0":cubit.shoulderSlope.text),
+                                  //   //       sleeve: double.parse(
+                                  //   //           cubit.sleeveLengthPlain.text.isEmpty?"0":cubit.sleeveLengthPlain.text),
+                                  //   //       sleeveTop: double.parse(
+                                  //   //           cubit.sleeveLengthIsHigher.text.isEmpty?"0":cubit.sleeveLengthIsHigher.text),
+                                  //   //       wrist:
+                                  //   //       double.parse(cubit.wideWrist.text.isEmpty?"0":cubit.wideWrist.text),
+                                  //   //       plainCuffLength:
+                                  //   //       double.parse(cubit.plainCuff.text.isEmpty?"0":cubit.plainCuff.text),
+                                  //   //       cuffLength:
+                                  //   //       double.parse(cubit.cuffLength.text.isEmpty?"0":cubit.cuffLength.text),
+                                  //   //       cuffWidth:
+                                  //   //       double.parse(cubit.cuffShow.text.isEmpty?"0":cubit.cuffShow.text),
+                                  //   //       middleWidth:
+                                  //   //       double.parse(cubit.wideMiddle.text.isEmpty?"0":cubit.wideMiddle.text),
+                                  //   //       chestFront: double.parse(
+                                  //   //           cubit.expandTheChestInFront.text.isEmpty?"0":cubit.expandTheChestInFront.text),
+                                  //   //       chestBack: double.parse(
+                                  //   //           cubit.expandTheChestBehind.text.isEmpty?"0":cubit.expandTheChestBehind.text),
+                                  //   //       bottomHeight: double.parse(
+                                  //   //           cubit.koftaBottom.text.isEmpty?"0":cubit.koftaBottom.text),
+                                  //   //       bottomWidth:
+                                  //   //       double.parse(cubit.expandDown.text.isEmpty?"0":cubit.expandDown.text),
+                                  //   //       collarWidth: double.parse(
+                                  //   //           cubit.wideNeckPillow.text.isEmpty?"0":cubit.wideNeckPillow.text),
+                                  //   //       collarHeight:
+                                  //   //       double.parse(cubit.neckHeight.text.isEmpty?"0":cubit.neckHeight.text),
+                                  //   //       zipperHeight: double.parse(
+                                  //   //           cubit.gypsumHeight.text.isEmpty?"0":cubit.gypsumHeight.text),
+                                  //   //       zipperWidth:
+                                  //   //       double.parse(cubit.viewGypsum.text.isEmpty?"0":cubit.viewGypsum.text),
+                                  //   //       chestPocketHeight: double.parse(
+                                  //   //           cubit.lengthChestPocket.text.isEmpty?"0":cubit.lengthChestPocket.text),
+                                  //   //       chestPocketWidth: double.parse(
+                                  //   //           cubit.wideChestPocket.text.isEmpty?"0":cubit.wideChestPocket.text),
+                                  //   //       mobilePocketHeight: double.parse(
+                                  //   //           cubit.wideMobilePocket.text.isEmpty?"0":cubit.wideMobilePocket.text),
+                                  //   //       walletPocketHeight: double.parse(
+                                  //   //           cubit.lengthPocketWallet.text.isEmpty?"0":cubit.lengthPocketWallet.text),
+                                  //   //       walletPocketWidth: double.parse(
+                                  //   //           cubit.widePocketWallet.text.isEmpty?"0":cubit.widePocketWallet.text),
+                                  //   //       haunchWidth:
+                                  //   //       double.parse(cubit.hipWidth.text.isEmpty?"0":cubit.hipWidth.text),
+                                  //   //       buttonNo:
+                                  //   //       int.parse(cubit.buttonNumber.text.isEmpty?"0":cubit.buttonNumber.text),
+                                  //   //       embroideryNo: int.parse(
+                                  //   //           cubit.embroideryNumber.text.isEmpty?"0":cubit.embroideryNumber.text),
+                                  //   //       estimatedLength: double.parse(
+                                  //   //           cubit.expectedFabricInMeter.text.isEmpty?"0":cubit.expectedFabricInMeter.text),
+                                  //   //       tailorId: 1,
+                                  //   //       sample: cubit.sample?1:0,
+                                  //   //       urgent: cubit.harryUp?1:0,
+                                  //   //       shoulderChestLength: double.parse(cubit
+                                  //   //           .betweenTheChestPocketAndTheShoulder
+                                  //   //           .text.isEmpty?"0":cubit.betweenTheChestPocketAndTheShoulder.text),
+                                  //   //       sleeveMiddle: double.parse(
+                                  //   //           cubit.quantumCapacityMedium.text.isEmpty?"0":cubit.quantumCapacityMedium.text),
+                                  //   //       sidePocketLength:
+                                  //   //       double.parse(cubit.sidePocket.text.isEmpty?"0":cubit.sidePocket.text),
+                                  //   //       takhalees: cubit.Takhalis.text,
+                                  //   //       collarTypeID: cubit.CollerTypeID,
+                                  //   //       cuffTypeID: cubit.CuffTypeID,
+                                  //   //       modelTypeID: cubit.ModelTypeID,
+                                  //   //       pocketTypeID: cubit.PocketTypeID,
+                                  //   //       fillingTypeID: cubit.FillingTypeID,
+                                  //   //       zipperTypeID: cubit.ZipperTypeID,
+                                  //   //       note: "",
+                                  //   //     );
+                                  //   LoadingPage(context).show();
+                                  //
+                                  //   // Sales sales = Sales(
+                                  //   //     id: int.parse(
+                                  //   //         cubit.salesIdSearch ?? ""),
+                                  //   //     measurement: [
+                                  //   //       Measurement(
+                                  //   //         itemName: cubit.typeOfClothes,
+                                  //   //         itemCode: cubit.itemCode,
+                                  //   //         frontLength: double.parse(
+                                  //   //             cubit.frontHeight.text.isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit.frontHeight.text),
+                                  //   //         backLength: double.parse(
+                                  //   //             cubit.backHeight.text.isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit.backHeight.text),
+                                  //   //         shoulderWidth: double.parse(
+                                  //   //             cubit.shoulderWidth.text.isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit.shoulderWidth.text),
+                                  //   //         shoulderSlope: double.parse(
+                                  //   //             cubit.shoulderSlope.text.isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit.shoulderSlope.text),
+                                  //   //         sleeve: double.parse(cubit
+                                  //   //                 .sleeveLengthPlain
+                                  //   //                 .text
+                                  //   //                 .isEmpty
+                                  //   //             ? "0"
+                                  //   //             : cubit.sleeveLengthPlain.text),
+                                  //   //         sleeveTop: double.parse(cubit
+                                  //   //                 .sleeveLengthIsHigher
+                                  //   //                 .text
+                                  //   //                 .isEmpty
+                                  //   //             ? "0"
+                                  //   //             : cubit
+                                  //   //                 .sleeveLengthIsHigher.text),
+                                  //   //         wrist: double.parse(
+                                  //   //             cubit.wideWrist.text.isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit.wideWrist.text),
+                                  //   //         plainCuffLength: double.parse(
+                                  //   //             cubit.plainCuff.text.isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit.plainCuff.text),
+                                  //   //         cuffLength: double.parse(
+                                  //   //             cubit.cuffLength.text.isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit.cuffLength.text),
+                                  //   //         cuffWidth: double.parse(
+                                  //   //             cubit.cuffShow.text.isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit.cuffShow.text),
+                                  //   //         middleWidth: double.parse(
+                                  //   //             cubit.wideMiddle.text.isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit.wideMiddle.text),
+                                  //   //         chestFront: double.parse(cubit
+                                  //   //                 .expandTheChestInFront
+                                  //   //                 .text
+                                  //   //                 .isEmpty
+                                  //   //             ? "0"
+                                  //   //             : cubit.expandTheChestInFront
+                                  //   //                 .text),
+                                  //   //         chestBack: double.parse(cubit
+                                  //   //                 .expandTheChestBehind
+                                  //   //                 .text
+                                  //   //                 .isEmpty
+                                  //   //             ? "0"
+                                  //   //             : cubit
+                                  //   //                 .expandTheChestBehind.text),
+                                  //   //         bottomHeight: double.parse(
+                                  //   //             cubit.koftaBottom.text.isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit.koftaBottom.text),
+                                  //   //         bottomWidth: double.parse(
+                                  //   //             cubit.expandDown.text.isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit.expandDown.text),
+                                  //   //         collarWidth: double.parse(cubit
+                                  //   //                 .wideNeckPillow.text.isEmpty
+                                  //   //             ? "0"
+                                  //   //             : cubit.wideNeckPillow.text),
+                                  //   //         collarHeight: double.parse(
+                                  //   //             cubit.neckHeight.text.isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit.neckHeight.text),
+                                  //   //         zipperHeight: double.parse(
+                                  //   //             cubit.gypsumHeight.text.isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit.gypsumHeight.text),
+                                  //   //         zipperWidth: double.parse(
+                                  //   //             cubit.viewGypsum.text.isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit.viewGypsum.text),
+                                  //   //         chestPocketHeight: double.parse(
+                                  //   //             cubit.lengthChestPocket.text
+                                  //   //                     .isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit.lengthChestPocket
+                                  //   //                     .text),
+                                  //   //         chestPocketWidth: double.parse(cubit
+                                  //   //                 .wideChestPocket
+                                  //   //                 .text
+                                  //   //                 .isEmpty
+                                  //   //             ? "0"
+                                  //   //             : cubit.wideChestPocket.text),
+                                  //   //         mobilePocketHeight: double.parse(
+                                  //   //             cubit.wideMobilePocket.text
+                                  //   //                     .isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit
+                                  //   //                     .wideMobilePocket.text),
+                                  //   //         walletPocketHeight: double.parse(
+                                  //   //             cubit.lengthPocketWallet.text
+                                  //   //                     .isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit.lengthPocketWallet
+                                  //   //                     .text),
+                                  //   //         walletPocketWidth: double.parse(
+                                  //   //             cubit.widePocketWallet.text
+                                  //   //                     .isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit
+                                  //   //                     .widePocketWallet.text),
+                                  //   //         haunchWidth: double.parse(
+                                  //   //             cubit.hipWidth.text.isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit.hipWidth.text),
+                                  //   //         buttonNo: int.parse(
+                                  //   //             cubit.buttonNumber.text.isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit.buttonNumber.text),
+                                  //   //         embroideryNo: int.parse(cubit
+                                  //   //                 .embroideryNumber
+                                  //   //                 .text
+                                  //   //                 .isEmpty
+                                  //   //             ? "0"
+                                  //   //             : cubit.embroideryNumber.text),
+                                  //   //         estimatedLength: double.parse(cubit
+                                  //   //                 .expectedFabricInMeter
+                                  //   //                 .text
+                                  //   //                 .isEmpty
+                                  //   //             ? "0"
+                                  //   //             : cubit.expectedFabricInMeter
+                                  //   //                 .text),
+                                  //   //         tailorId: 1,
+                                  //   //         sample: cubit.sample ? 1 : 0,
+                                  //   //         urgent: cubit.harryUp ? 1 : 0,
+                                  //   //         shoulderChestLength: double.parse(cubit
+                                  //   //                 .betweenTheChestPocketAndTheShoulder
+                                  //   //                 .text
+                                  //   //                 .isEmpty
+                                  //   //             ? "0"
+                                  //   //             : cubit
+                                  //   //                 .betweenTheChestPocketAndTheShoulder
+                                  //   //                 .text),
+                                  //   //         sleeveMiddle: double.parse(cubit
+                                  //   //                 .quantumCapacityMedium
+                                  //   //                 .text
+                                  //   //                 .isEmpty
+                                  //   //             ? "0"
+                                  //   //             : cubit.quantumCapacityMedium
+                                  //   //                 .text),
+                                  //   //         sidePocketLength: double.parse(
+                                  //   //             cubit.sidePocket.text.isEmpty
+                                  //   //                 ? "0"
+                                  //   //                 : cubit.sidePocket.text),
+                                  //   //         takhalees: cubit.Takhalis.text,
+                                  //   //         collarTypeID: cubit.CollerTypeID,
+                                  //   //         cuffTypeID: cubit.CuffTypeID,
+                                  //   //         modelTypeID: cubit.ModelTypeID,
+                                  //   //         pocketTypeID: cubit.PocketTypeID,
+                                  //   //         fillingTypeID: cubit.FillingTypeID,
+                                  //   //         zipperTypeID: cubit.ZipperTypeID,
+                                  //   //         note: "",
+                                  //   //       ),
+                                  //   //     ]);
+                                  //   Sales sales = Sales(
+                                  //       id: int.parse(replaceArabicNumber(
+                                  //           cubit.salesIdSearch ?? "")),
+                                  //       measurement: [
+                                  //         Measurement(
+                                  //           itemName:replaceArabicNumber( cubit.typeOfClothes),
+                                  //           itemCode: replaceArabicNumber(cubit.itemCode),
+                                  //           frontLength: double.parse(replaceArabicNumber(
+                                  //               cubit.frontHeight.text.isEmpty
+                                  //                   ? "0"
+                                  //                   : cubit.frontHeight.text)),
+                                  //           backLength: double.parse(replaceArabicNumber(
+                                  //               cubit.backHeight.text.isEmpty
+                                  //                   ? "0"
+                                  //                   : cubit.backHeight.text)),
+                                  //           shoulderWidth: double.parse(replaceArabicNumber(cubit
+                                  //               .shoulderWidth
+                                  //               .text
+                                  //               .isEmpty
+                                  //               ? "0"
+                                  //               : cubit.shoulderWidth.text)),
+                                  //           shoulderSlope: double.parse(replaceArabicNumber(cubit
+                                  //               .shoulderSlope
+                                  //               .text
+                                  //               .isEmpty
+                                  //               ? "0"
+                                  //               : cubit.shoulderSlope.text)),
+                                  //           sleeve: double.parse(replaceArabicNumber(cubit
+                                  //               .sleeveLengthPlain
+                                  //               .text
+                                  //               .isEmpty
+                                  //               ? "0"
+                                  //               : cubit
+                                  //               .sleeveLengthPlain.text)),
+                                  //           sleeveTop: double.parse(replaceArabicNumber(cubit
+                                  //               .sleeveLengthIsHigher
+                                  //               .text
+                                  //               .isEmpty
+                                  //               ? "0"
+                                  //               : cubit.sleeveLengthIsHigher
+                                  //               .text)),
+                                  //           wrist: double.parse(replaceArabicNumber(
+                                  //               cubit.wideWrist.text.isEmpty
+                                  //                   ? "0"
+                                  //                   : cubit.wideWrist.text)),
+                                  //           plainCuffLength: double.parse(replaceArabicNumber(
+                                  //               cubit.plainCuff.text.isEmpty
+                                  //                   ? "0"
+                                  //                   : cubit.plainCuff.text)),
+                                  //           cuffLength: double.parse(replaceArabicNumber(
+                                  //               cubit.cuffLength.text.isEmpty
+                                  //                   ? "0"
+                                  //                   : cubit.cuffLength.text)),
+                                  //           cuffWidth: double.parse(replaceArabicNumber(
+                                  //               cubit.cuffShow.text.isEmpty
+                                  //                   ? "0"
+                                  //                   : cubit.cuffShow.text)),
+                                  //           middleWidth: double.parse(replaceArabicNumber(
+                                  //               cubit.wideMiddle.text.isEmpty
+                                  //                   ? "0"
+                                  //                   : cubit.wideMiddle.text)),
+                                  //           chestFront: double.parse(replaceArabicNumber(cubit
+                                  //               .expandTheChestInFront
+                                  //               .text
+                                  //               .isEmpty
+                                  //               ? "0"
+                                  //               : cubit.expandTheChestInFront
+                                  //               .text)),
+                                  //           chestBack: double.parse(replaceArabicNumber(cubit
+                                  //               .expandTheChestBehind
+                                  //               .text
+                                  //               .isEmpty
+                                  //               ? "0"
+                                  //               : cubit.expandTheChestBehind
+                                  //               .text)),
+                                  //           bottomHeight: double.parse(replaceArabicNumber(
+                                  //               cubit.koftaBottom.text.isEmpty
+                                  //                   ? "0"
+                                  //                   : cubit.koftaBottom.text)),
+                                  //           bottomWidth: double.parse(replaceArabicNumber(
+                                  //               cubit.expandDown.text.isEmpty
+                                  //                   ? "0"
+                                  //                   : cubit.expandDown.text)),
+                                  //           collarWidth: double.parse(replaceArabicNumber(cubit
+                                  //               .wideNeckPillow
+                                  //               .text
+                                  //               .isEmpty
+                                  //               ? "0"
+                                  //               : cubit.wideNeckPillow.text)),
+                                  //           collarHeight: double.parse(replaceArabicNumber(
+                                  //               cubit.neckHeight.text.isEmpty
+                                  //                   ? "0"
+                                  //                   : cubit.neckHeight.text)),
+                                  //           zipperHeight: double.parse(replaceArabicNumber(cubit
+                                  //               .gypsumHeight.text.isEmpty
+                                  //               ? "0"
+                                  //               : cubit.gypsumHeight.text)),
+                                  //           zipperWidth: double.parse(replaceArabicNumber(
+                                  //               cubit.viewGypsum.text.isEmpty
+                                  //                   ? "0"
+                                  //                   : cubit.viewGypsum.text)),
+                                  //           chestPocketHeight: double.parse(replaceArabicNumber(
+                                  //               cubit.lengthChestPocket.text
+                                  //                   .isEmpty
+                                  //                   ? "0"
+                                  //                   : cubit.lengthChestPocket
+                                  //                   .text)),
+                                  //           chestPocketWidth: double.parse(replaceArabicNumber(
+                                  //               cubit.wideChestPocket.text
+                                  //                   .isEmpty
+                                  //                   ? "0"
+                                  //                   : cubit.wideChestPocket
+                                  //                   .text)),
+                                  //           mobilePocketHeight: double.parse(replaceArabicNumber(
+                                  //               cubit.wideMobilePocket.text
+                                  //                   .isEmpty
+                                  //                   ? "0"
+                                  //                   : cubit.wideMobilePocket
+                                  //                   .text)),
+                                  //           walletPocketHeight: double.parse(replaceArabicNumber(
+                                  //               cubit.lengthPocketWallet.text
+                                  //                   .isEmpty
+                                  //                   ? "0"
+                                  //                   : cubit.lengthPocketWallet
+                                  //                   .text)),
+                                  //           walletPocketWidth: double.parse(replaceArabicNumber(
+                                  //               cubit.widePocketWallet.text
+                                  //                   .isEmpty
+                                  //                   ? "0"
+                                  //                   : cubit.widePocketWallet
+                                  //                   .text)),
+                                  //           haunchWidth: double.parse(replaceArabicNumber(
+                                  //               cubit.hipWidth.text.isEmpty
+                                  //                   ? "0"
+                                  //                   : cubit.hipWidth.text)),
+                                  //           buttonNo: int.parse(replaceArabicNumber(cubit
+                                  //               .buttonNumber.text.isEmpty
+                                  //               ? "0"
+                                  //               : cubit.buttonNumber.text)),
+                                  //           embroideryNo: int.parse(replaceArabicNumber(cubit
+                                  //               .embroideryNumber
+                                  //               .text
+                                  //               .isEmpty
+                                  //               ? "0"
+                                  //               : cubit
+                                  //               .embroideryNumber.text)),
+                                  //           estimatedLength: double.parse(replaceArabicNumber(
+                                  //               cubit.expectedFabricInMeter
+                                  //                   .text.isEmpty
+                                  //                   ? "0"
+                                  //                   : cubit
+                                  //                   .expectedFabricInMeter
+                                  //                   .text)),
+                                  //           tailorId: 1,
+                                  //           sample: cubit.sample ? 1 : 0,
+                                  //           urgent: cubit.harryUp ? 1 : 0,
+                                  //           shoulderChestLength: double.parse(replaceArabicNumber(cubit
+                                  //               .betweenTheChestPocketAndTheShoulder
+                                  //               .text
+                                  //               .isEmpty
+                                  //               ? "0"
+                                  //               : cubit
+                                  //               .betweenTheChestPocketAndTheShoulder
+                                  //               .text)),
+                                  //           sleeveMiddle: double.parse(replaceArabicNumber(cubit
+                                  //               .quantumCapacityMedium
+                                  //               .text
+                                  //               .isEmpty
+                                  //               ? "0"
+                                  //               : cubit.quantumCapacityMedium
+                                  //               .text)),
+                                  //           sidePocketLength: double.parse(replaceArabicNumber(
+                                  //               cubit.sidePocket.text.isEmpty
+                                  //                   ? "0"
+                                  //                   : cubit.sidePocket.text)),
+                                  //           takhalees: replaceArabicNumber(cubit.Takhalis.text),
+                                  //           collarTypeID: cubit.CollerTypeID,
+                                  //           cuffTypeID: cubit.CuffTypeID,
+                                  //           modelTypeID: cubit.ModelTypeID,
+                                  //           pocketTypeID: cubit.PocketTypeID,
+                                  //           fillingTypeID:
+                                  //           cubit.FillingTypeID,
+                                  //           zipperTypeID: cubit.ZipperTypeID,
+                                  //           note: "",
+                                  //         ),
+                                  //       ]);
+                                  //
+                                  //   InvoiceNewSizesModel invoiceNewSizesModel =
+                                  //       InvoiceNewSizesModel(sales: [sales]);
+                                  //   cubit.updateSize(invoiceNewSizesModel);
+                                  //   LoadingPage(context).close();
+                                  //
+                                  //   Navigator.pop(context);
+                                  // },
+                                  async {
                                     // await cubit.getWidgetImage();
                                     // Measurement measurement = Measurement(
                                     //   itemName: cubit.type.text,
@@ -2344,90 +2740,206 @@ LoadingPage(context).close();
                                     //       zipperTypeID: cubit.ZipperTypeID,
                                     //       note: "",
                                     //     );
+                                    try {
+                                      LoadingPage(context).show();
 
-                                    Sales sales = Sales(id:int.parse(cubit.salesIdSearch??""), measurement:[                                  Measurement(
-                                      itemName: cubit.typeOfClothes,
-                                      itemCode: cubit.itemCode,
-                                      frontLength: double.parse(
-                                          cubit.frontHeight.text.isEmpty?"0":cubit.frontHeight.text),
-                                      backLength:
-                                      double.parse(cubit.backHeight.text.isEmpty?"0":cubit.backHeight.text),
-                                      shoulderWidth: double.parse(
-                                          cubit.shoulderWidth.text.isEmpty?"0":cubit.shoulderWidth.text),
-                                      shoulderSlope: double.parse(
-                                          cubit.shoulderSlope.text.isEmpty?"0":cubit.shoulderSlope.text),
-                                      sleeve: double.parse(
-                                          cubit.sleeveLengthPlain.text.isEmpty?"0":cubit.sleeveLengthPlain.text),
-                                      sleeveTop: double.parse(
-                                          cubit.sleeveLengthIsHigher.text.isEmpty?"0":cubit.sleeveLengthIsHigher.text),
-                                      wrist:
-                                      double.parse(cubit.wideWrist.text.isEmpty?"0":cubit.wideWrist.text),
-                                      plainCuffLength:
-                                      double.parse(cubit.plainCuff.text.isEmpty?"0":cubit.plainCuff.text),
-                                      cuffLength:
-                                      double.parse(cubit.cuffLength.text.isEmpty?"0":cubit.cuffLength.text),
-                                      cuffWidth:
-                                      double.parse(cubit.cuffShow.text.isEmpty?"0":cubit.cuffShow.text),
-                                      middleWidth:
-                                      double.parse(cubit.wideMiddle.text.isEmpty?"0":cubit.wideMiddle.text),
-                                      chestFront: double.parse(
-                                          cubit.expandTheChestInFront.text.isEmpty?"0":cubit.expandTheChestInFront.text),
-                                      chestBack: double.parse(
-                                          cubit.expandTheChestBehind.text.isEmpty?"0":cubit.expandTheChestBehind.text),
-                                      bottomHeight: double.parse(
-                                          cubit.koftaBottom.text.isEmpty?"0":cubit.koftaBottom.text),
-                                      bottomWidth:
-                                      double.parse(cubit.expandDown.text.isEmpty?"0":cubit.expandDown.text),
-                                      collarWidth: double.parse(
-                                          cubit.wideNeckPillow.text.isEmpty?"0":cubit.wideNeckPillow.text),
-                                      collarHeight:
-                                      double.parse(cubit.neckHeight.text.isEmpty?"0":cubit.neckHeight.text),
-                                      zipperHeight: double.parse(
-                                          cubit.gypsumHeight.text.isEmpty?"0":cubit.gypsumHeight.text),
-                                      zipperWidth:
-                                      double.parse(cubit.viewGypsum.text.isEmpty?"0":cubit.viewGypsum.text),
-                                      chestPocketHeight: double.parse(
-                                          cubit.lengthChestPocket.text.isEmpty?"0":cubit.lengthChestPocket.text),
-                                      chestPocketWidth: double.parse(
-                                          cubit.wideChestPocket.text.isEmpty?"0":cubit.wideChestPocket.text),
-                                      mobilePocketHeight: double.parse(
-                                          cubit.wideMobilePocket.text.isEmpty?"0":cubit.wideMobilePocket.text),
-                                      walletPocketHeight: double.parse(
-                                          cubit.lengthPocketWallet.text.isEmpty?"0":cubit.lengthPocketWallet.text),
-                                      walletPocketWidth: double.parse(
-                                          cubit.widePocketWallet.text.isEmpty?"0":cubit.widePocketWallet.text),
-                                      haunchWidth:
-                                      double.parse(cubit.hipWidth.text.isEmpty?"0":cubit.hipWidth.text),
-                                      buttonNo:
-                                      int.parse(cubit.buttonNumber.text.isEmpty?"0":cubit.buttonNumber.text),
-                                      embroideryNo: int.parse(
-                                          cubit.embroideryNumber.text.isEmpty?"0":cubit.embroideryNumber.text),
-                                      estimatedLength: double.parse(
-                                          cubit.expectedFabricInMeter.text.isEmpty?"0":cubit.expectedFabricInMeter.text),
-                                      tailorId: 1,
-                                      sample: cubit.sample?1:0,
-                                      urgent: cubit.harryUp?1:0,
-                                      shoulderChestLength: double.parse(cubit
-                                          .betweenTheChestPocketAndTheShoulder
-                                          .text.isEmpty?"0":cubit.betweenTheChestPocketAndTheShoulder.text),
-                                      sleeveMiddle: double.parse(
-                                          cubit.quantumCapacityMedium.text.isEmpty?"0":cubit.quantumCapacityMedium.text),
-                                      sidePocketLength:
-                                      double.parse(cubit.sidePocket.text.isEmpty?"0":cubit.sidePocket.text),
-                                      takhalees: cubit.Takhalis.text,
-                                      collarTypeID: cubit.CollerTypeID,
-                                      cuffTypeID: cubit.CuffTypeID,
-                                      modelTypeID: cubit.ModelTypeID,
-                                      pocketTypeID: cubit.PocketTypeID,
-                                      fillingTypeID: cubit.FillingTypeID,
-                                      zipperTypeID: cubit.ZipperTypeID,
-                                      note: "",
-                                    ),
-                                    ]);
-                                    InvoiceNewSizesModel invoiceNewSizesModel = InvoiceNewSizesModel(
-                                        sales:[sales]);
-                                    cubit.updateSize(invoiceNewSizesModel);
-                                    Navigator.pop(context);
+                                      Sales sales = Sales(
+                                          id: int.parse(replaceArabicNumber(
+                                              cubit.salesIdSearch ?? "")),
+                                          measurement: [
+                                            Measurement(
+                                              itemName:replaceArabicNumber( cubit.typeOfClothes),
+                                              itemCode: replaceArabicNumber(cubit.itemCode),
+                                              frontLength: double.parse(replaceArabicNumber(
+                                                  cubit.frontHeight.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.frontHeight.text)),
+                                              backLength: double.parse(replaceArabicNumber(
+                                                  cubit.backHeight.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.backHeight.text)),
+                                              shoulderWidth: double.parse(replaceArabicNumber(cubit
+                                                  .shoulderWidth
+                                                  .text
+                                                  .isEmpty
+                                                  ? "0"
+                                                  : cubit.shoulderWidth.text)),
+                                              shoulderSlope: double.parse(replaceArabicNumber(cubit
+                                                  .shoulderSlope
+                                                  .text
+                                                  .isEmpty
+                                                  ? "0"
+                                                  : cubit.shoulderSlope.text)),
+                                              sleeve: double.parse(replaceArabicNumber(cubit
+                                                  .sleeveLengthPlain
+                                                  .text
+                                                  .isEmpty
+                                                  ? "0"
+                                                  : cubit
+                                                  .sleeveLengthPlain.text)),
+                                              sleeveTop: double.parse(replaceArabicNumber(cubit
+                                                  .sleeveLengthIsHigher
+                                                  .text
+                                                  .isEmpty
+                                                  ? "0"
+                                                  : cubit.sleeveLengthIsHigher
+                                                  .text)),
+                                              wrist: double.parse(replaceArabicNumber(
+                                                  cubit.wideWrist.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.wideWrist.text)),
+                                              plainCuffLength: double.parse(replaceArabicNumber(
+                                                  cubit.plainCuff.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.plainCuff.text)),
+                                              cuffLength: double.parse(replaceArabicNumber(
+                                                  cubit.cuffLength.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.cuffLength.text)),
+                                              cuffWidth: double.parse(replaceArabicNumber(
+                                                  cubit.cuffShow.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.cuffShow.text)),
+                                              middleWidth: double.parse(replaceArabicNumber(
+                                                  cubit.wideMiddle.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.wideMiddle.text)),
+                                              chestFront: double.parse(replaceArabicNumber(cubit
+                                                  .expandTheChestInFront
+                                                  .text
+                                                  .isEmpty
+                                                  ? "0"
+                                                  : cubit.expandTheChestInFront
+                                                  .text)),
+                                              chestBack: double.parse(replaceArabicNumber(cubit
+                                                  .expandTheChestBehind
+                                                  .text
+                                                  .isEmpty
+                                                  ? "0"
+                                                  : cubit.expandTheChestBehind
+                                                  .text)),
+                                              bottomHeight: double.parse(replaceArabicNumber(
+                                                  cubit.koftaBottom.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.koftaBottom.text)),
+                                              bottomWidth: double.parse(replaceArabicNumber(
+                                                  cubit.expandDown.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.expandDown.text)),
+                                              collarWidth: double.parse(replaceArabicNumber(cubit
+                                                  .wideNeckPillow
+                                                  .text
+                                                  .isEmpty
+                                                  ? "0"
+                                                  : cubit.wideNeckPillow.text)),
+                                              collarHeight: double.parse(replaceArabicNumber(
+                                                  cubit.neckHeight.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.neckHeight.text)),
+                                              zipperHeight: double.parse(replaceArabicNumber(cubit
+                                                  .gypsumHeight.text.isEmpty
+                                                  ? "0"
+                                                  : cubit.gypsumHeight.text)),
+                                              zipperWidth: double.parse(replaceArabicNumber(
+                                                  cubit.viewGypsum.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.viewGypsum.text)),
+                                              chestPocketHeight: double.parse(replaceArabicNumber(
+                                                  cubit.lengthChestPocket.text
+                                                      .isEmpty
+                                                      ? "0"
+                                                      : cubit.lengthChestPocket
+                                                      .text)),
+                                              chestPocketWidth: double.parse(replaceArabicNumber(
+                                                  cubit.wideChestPocket.text
+                                                      .isEmpty
+                                                      ? "0"
+                                                      : cubit.wideChestPocket
+                                                      .text)),
+                                              mobilePocketHeight: double.parse(replaceArabicNumber(
+                                                  cubit.wideMobilePocket.text
+                                                      .isEmpty
+                                                      ? "0"
+                                                      : cubit.wideMobilePocket
+                                                      .text)),
+                                              walletPocketHeight: double.parse(replaceArabicNumber(
+                                                  cubit.lengthPocketWallet.text
+                                                      .isEmpty
+                                                      ? "0"
+                                                      : cubit.lengthPocketWallet
+                                                      .text)),
+                                              walletPocketWidth: double.parse(replaceArabicNumber(
+                                                  cubit.widePocketWallet.text
+                                                      .isEmpty
+                                                      ? "0"
+                                                      : cubit.widePocketWallet
+                                                      .text)),
+                                              haunchWidth: double.parse(replaceArabicNumber(
+                                                  cubit.hipWidth.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.hipWidth.text)),
+                                              buttonNo: int.parse(replaceArabicNumber(cubit
+                                                  .buttonNumber.text.isEmpty
+                                                  ? "0"
+                                                  : cubit.buttonNumber.text)),
+                                              embroideryNo: int.parse(replaceArabicNumber(cubit
+                                                  .embroideryNumber
+                                                  .text
+                                                  .isEmpty
+                                                  ? "0"
+                                                  : cubit
+                                                  .embroideryNumber.text)),
+                                              estimatedLength: double.parse(replaceArabicNumber(
+                                                  cubit.expectedFabricInMeter
+                                                      .text.isEmpty
+                                                      ? "0"
+                                                      : cubit
+                                                      .expectedFabricInMeter
+                                                      .text)),
+                                              tailorId: 1,
+                                              sample: cubit.sample ? 1 : 0,
+                                              urgent: cubit.harryUp ? 1 : 0,
+                                              shoulderChestLength: double.parse(replaceArabicNumber(cubit
+                                                  .betweenTheChestPocketAndTheShoulder
+                                                  .text
+                                                  .isEmpty
+                                                  ? "0"
+                                                  : cubit
+                                                  .betweenTheChestPocketAndTheShoulder
+                                                  .text)),
+                                              sleeveMiddle: double.parse(replaceArabicNumber(cubit
+                                                  .quantumCapacityMedium
+                                                  .text
+                                                  .isEmpty
+                                                  ? "0"
+                                                  : cubit.quantumCapacityMedium
+                                                  .text)),
+                                              sidePocketLength: double.parse(replaceArabicNumber(
+                                                  cubit.sidePocket.text.isEmpty
+                                                      ? "0"
+                                                      : cubit.sidePocket.text)),
+                                              takhalees: replaceArabicNumber(cubit.Takhalis.text),
+                                              collarTypeID: cubit.CollerTypeID,
+                                              cuffTypeID: cubit.CuffTypeID,
+                                              modelTypeID: cubit.ModelTypeID,
+                                              pocketTypeID: cubit.PocketTypeID,
+                                              fillingTypeID:
+                                              cubit.FillingTypeID,
+                                              zipperTypeID: cubit.ZipperTypeID,
+                                              note: "",
+                                            ),
+                                          ]);
+                                      InvoiceNewSizesModel
+                                      invoiceNewSizesModel =
+                                      InvoiceNewSizesModel(sales: [sales]);
+                                      cubit.updateSize(invoiceNewSizesModel);
+                                      LoadingPage(context).close();
+
+                                      Navigator.pop(context);
+                                    } catch (e) {
+                                      LoadingPage(context).close();
+                                    }
+                                    LoadingPage(context).close();
                                   },
                                   child: Text(AppStrings.Save.tr(),
                                       style: GoogleFonts.notoKufiArabic(
@@ -2440,74 +2952,69 @@ LoadingPage(context).close();
                       ),
                       Container(
                         // height: MediaQuery.of(context).size.height/1.56,
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width / 1,
+                        width: MediaQuery.of(context).size.width / 1,
                         // color: MyConstant().greenColor,
                         child: Column(
                           children: [
                             Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 14,bottom: 14),
+                                  padding: const EdgeInsets.only(
+                                      top: 14, bottom: 14),
                                   child: Container(
-                                      width: MediaQuery.of(context).size.width / 4,
+                                      width:
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].itemName,
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].itemName,
                                           fontSize: 12,
                                           text: AppStrings.cloth.tr(),
                                           controller: cubit.type,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.text,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 14,bottom: 14),
+                                  padding: const EdgeInsets.only(
+                                      top: 14, bottom: 14),
                                   child: Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].frontLength,
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].frontLength,
                                           text: AppStrings.frontlength.tr(),
                                           controller: cubit.frontHeight,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 14,bottom: 14),
+                                  padding: const EdgeInsets.only(
+                                      top: 14, bottom: 14),
                                   child: Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].backLength,
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].backLength,
                                           text: AppStrings.lengthbehind.tr(),
                                           controller: cubit.backHeight,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
@@ -2515,67 +3022,58 @@ LoadingPage(context).close();
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              padding:
+                                  const EdgeInsets.only(top: 14, bottom: 14),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].shoulderWidth,
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].shoulderWidth,
                                           text: AppStrings.shoulderwidth.tr(),
                                           controller: cubit.shoulderWidth,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].shoulderSlope,
-
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].shoulderSlope,
                                           text: AppStrings.shouldertilt.tr(),
                                           controller: cubit.shoulderSlope,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          text: AppStrings.sleevelengthplain.tr(),
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].sleeve,
-
+                                          text:
+                                              AppStrings.sleevelengthplain.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].sleeve,
                                           controller: cubit.sleeveLengthPlain,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
@@ -2583,213 +3081,180 @@ LoadingPage(context).close();
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              padding:
+                                  const EdgeInsets.only(top: 14, bottom: 14),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          text: AppStrings.Thesleevelengthhigher.tr(),
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].sleeveTop,
-
+                                          text: AppStrings.Thesleevelengthhigher
+                                              .tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].sleeveTop,
                                           controller:
-                                          cubit.sleeveLengthIsHigher,
+                                              cubit.sleeveLengthIsHigher,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
-
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].wrist,
-
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].wrist,
                                           text: AppStrings.widthofthewrist.tr(),
                                           controller: cubit.wideWrist,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          text: AppStrings.quantumcuffplain.tr(),
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
-                                              .plainCuffLength,
-
+                                          text:
+                                              AppStrings.quantumcuffplain.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].plainCuffLength,
                                           controller: cubit.plainCuff,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
-
                                 ],
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              padding:
+                                  const EdgeInsets.only(top: 14, bottom: 14),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].cuffLength,
-
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].cuffLength,
                                           text: AppStrings.cufflength.tr(),
                                           controller: cubit.cuffLength,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          text:  AppStrings.CupcakeShow.tr(),
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].cuffWidth,
-
+                                          text: AppStrings.CupcakeShow.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].cuffWidth,
                                           controller: cubit.cuffShow,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          text:  AppStrings.widenthemiddle.tr(),
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].middleWidth,
-
+                                          text: AppStrings.widenthemiddle.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].middleWidth,
                                           controller: cubit.wideMiddle,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
-
                                 ],
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              padding:
+                                  const EdgeInsets.only(top: 14, bottom: 14),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          text:  AppStrings.Expandthechestinfrontof.tr(),
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].chestFront,
-
+                                          text: AppStrings
+                                              .Expandthechestinfrontof.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].chestFront,
                                           controller:
-                                          cubit.expandTheChestInFront,
+                                              cubit.expandTheChestInFront,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          text: AppStrings.Expandthechestbehind.tr(),
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].chestBack,
-
+                                          text: AppStrings.Expandthechestbehind
+                                              .tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].chestBack,
                                           controller:
-                                          cubit.expandTheChestBehind,
+                                              cubit.expandTheChestBehind,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].bottomHeight,
-
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].bottomHeight,
                                           text: AppStrings.cuffdown.tr(),
                                           controller: cubit.koftaBottom,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
@@ -2797,68 +3262,57 @@ LoadingPage(context).close();
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              padding:
+                                  const EdgeInsets.only(top: 14, bottom: 14),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].bottomWidth,
-
-                                          text:  AppStrings.expanddown.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].bottomWidth,
+                                          text: AppStrings.expanddown.tr(),
                                           controller: cubit.expandDown,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
                                           text: AppStrings.NeckPlain.tr(),
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].collarWidth,
-
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].collarWidth,
                                           controller: cubit.wideNeckPillow,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].collarHeight,
-
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].collarHeight,
                                           text: AppStrings.highneck.tr(),
                                           controller: cubit.neckHeight,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
@@ -2866,208 +3320,175 @@ LoadingPage(context).close();
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              padding:
+                                  const EdgeInsets.only(top: 14, bottom: 14),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].zipperHeight,
-
-                                          text:  AppStrings.JabzourHeight.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].zipperHeight,
+                                          text: AppStrings.JabzourHeight.tr(),
                                           controller: cubit.gypsumHeight,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
-
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].zipperWidth,
-
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].zipperWidth,
                                           text: AppStrings.JabzourShow.tr(),
                                           controller: cubit.viewGypsum,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
-                                              .chestPocketHeight,
-
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit
+                                                  .sizes[0].chestPocketHeight,
                                           text: AppStrings.ichestpocket.tr(),
                                           controller: cubit.lengthChestPocket,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
-
                                 ],
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              padding:
+                                  const EdgeInsets.only(top: 14, bottom: 14),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
-                                              .chestPocketWidth,
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].chestPocketWidth,
                                           text: AppStrings.pchestpocket.tr(),
                                           controller: cubit.wideChestPocket,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
-                                              .mobilePocketHeight,
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit
+                                                  .sizes[0].mobilePocketHeight,
                                           text: AppStrings.Imobilepocket.tr(),
                                           controller: cubit.wideMobilePocket,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          text:AppStrings.pmobilepocket.tr(),
+                                          text: AppStrings.pmobilepocket.tr(),
                                           controller: cubit.wideMobilePocket2,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
-
                                 ],
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              padding:
+                                  const EdgeInsets.only(top: 14, bottom: 14),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
-                                              .walletPocketHeight,
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit
+                                                  .sizes[0].walletPocketHeight,
                                           text: AppStrings.iwalletpocket.tr(),
                                           controller: cubit.lengthPocketWallet,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   //delete down container
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
-                                              .walletPocketWidth,
-                                          text:  AppStrings.pwalletpocket.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit
+                                                  .sizes[0].walletPocketWidth,
+                                          text: AppStrings.pwalletpocket.tr(),
                                           controller: cubit.widePocketWallet,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].haunchWidth,
-                                          text:  AppStrings.hipextension.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].haunchWidth,
+                                          text: AppStrings.hipextension.tr(),
                                           controller: cubit.hipWidth,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
@@ -3075,139 +3496,125 @@ LoadingPage(context).close();
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              padding:
+                                  const EdgeInsets.only(top: 14, bottom: 14),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].buttonNo,
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].buttonNo,
                                           text: AppStrings.buttonnumber.tr(),
                                           controller: cubit.buttonNumber,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].embroideryNo,
-                                          text:  AppStrings.embroiderynumber.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].embroideryNo,
+                                          text:
+                                              AppStrings.embroiderynumber.tr(),
                                           controller: cubit.embroideryNumber,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
-                                              .shoulderChestLength,
-                                          text:  AppStrings.betweenchestpocketandshoulder.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit
+                                                  .sizes[0].shoulderChestLength,
+                                          text: AppStrings
+                                              .betweenchestpocketandshoulder
+                                              .tr(),
                                           controller: cubit
                                               .betweenTheChestPocketAndTheShoulder,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
-
                                 ],
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 14,bottom: 14),
+                              padding:
+                                  const EdgeInsets.only(top: 14, bottom: 14),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 // crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   // const SizedBox(width: 0.7,),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          text:  AppStrings.sidepocket.tr(),
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
-                                              .sidePocketLength,
+                                          text: AppStrings.sidepocket.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].sidePocketLength,
                                           controller: cubit.sidePocket,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          text:  AppStrings.sleevewidthmedium.tr(),
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].sleeveMiddle,
+                                          text:
+                                              AppStrings.sleevewidthmedium.tr(),
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].sleeveMiddle,
                                           controller:
-                                          cubit.quantumCapacityMedium,
+                                              cubit.quantumCapacityMedium,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.number,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
                                   // const SizedBox(width: 1,),
                                   Container(
                                       width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 4,
+                                          MediaQuery.of(context).size.width / 4,
                                       height: 40,
                                       child: customTextField(
                                           fontSize: 12,
-
-                                          hintText: cubit.sizes.isEmpty?"":cubit.sizes[0].takhalees,
+                                          hintText: cubit.sizes.isEmpty
+                                              ? ""
+                                              : cubit.sizes[0].takhalees,
                                           text: AppStrings.clearance.tr(),
                                           controller: cubit.Takhalis,
                                           textInputAction: TextInputAction.next,
                                           textInputType: TextInputType.text,
-
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context).nextFocus();
                                           })),
@@ -3217,25 +3624,20 @@ LoadingPage(context).close();
                               ),
                             ),
                             Container(
-                                width:
-                                MediaQuery
-                                    .of(context)
-                                    .size
-                                    .width / 3,
+                                width: MediaQuery.of(context).size.width / 3,
                                 height: 40,
                                 child: customTextField(
                                     fontSize: 12,
-
-                                    hintText: cubit.sizes.isEmpty?"":cubit.sizes[0]
-                                        .estimatedLength,
-                                    text:  AppStrings.Fabricexpectedbythemeter.tr(),
-                                    controller:
-                                    cubit.expectedFabricInMeter,
+                                    hintText: cubit.sizes.isEmpty
+                                        ? ""
+                                        : cubit.sizes[0].estimatedLength,
+                                    text: AppStrings.Fabricexpectedbythemeter
+                                        .tr(),
+                                    controller: cubit.expectedFabricInMeter,
                                     textInputAction: TextInputAction.done,
                                     onFieldSubmitted: (value) {
                                       FocusScope.of(context).nextFocus();
                                     })),
-
                             Container(
                               // width: MediaQuery.of(context).size.width/6,
                               // color: Colors.amber,
@@ -3243,7 +3645,7 @@ LoadingPage(context).close();
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text( AppStrings.asample.tr(),
+                                  Text(AppStrings.asample.tr(),
                                       style: GoogleFonts.notoKufiArabic(
                                           color: MyConstant().purpleColor,
                                           fontWeight: FontWeight.bold,
@@ -3254,11 +3656,9 @@ LoadingPage(context).close();
                                   Container(
                                     width: 10,
                                     child: Checkbox(
-
                                       value: cubit.isSelect2,
                                       shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(3),
+                                        borderRadius: BorderRadius.circular(3),
                                         side: const BorderSide(
                                             color: Colors.grey),
                                       ),
@@ -3271,14 +3671,14 @@ LoadingPage(context).close();
                                       checkColor: Colors.green,
                                       activeColor: Colors.white,
                                       splashRadius: 0,
-                                      side: const BorderSide(
-                                          color: Colors.grey),
+                                      side:
+                                          const BorderSide(color: Colors.grey),
                                     ),
                                   ),
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  Text( AppStrings.urgent.tr(),
+                                  Text(AppStrings.urgent.tr(),
                                       style: GoogleFonts.notoKufiArabic(
                                           color: MyConstant().purpleColor,
                                           fontWeight: FontWeight.bold,
@@ -3291,8 +3691,7 @@ LoadingPage(context).close();
                                     child: Checkbox(
                                       value: cubit.isSelect1,
                                       shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(3),
+                                        borderRadius: BorderRadius.circular(3),
                                         side: const BorderSide(
                                             color: Colors.grey),
                                       ),
@@ -3305,8 +3704,8 @@ LoadingPage(context).close();
                                       checkColor: Colors.green,
                                       activeColor: Colors.white,
                                       splashRadius: 0,
-                                      side: const BorderSide(
-                                          color: Colors.grey),
+                                      side:
+                                          const BorderSide(color: Colors.grey),
                                     ),
                                   ),
                                 ],
@@ -3316,15 +3715,16 @@ LoadingPage(context).close();
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Container(
-                                  width: MediaQuery.of(context).size.width *0.40,
-                                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.40,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 5, vertical: 3),
                                   child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text( AppStrings.ModelType.tr(),
+                                      Text(AppStrings.ModelType.tr(),
                                           style: GoogleFonts.notoKufiArabic(
                                               color: MyConstant().purpleColor,
                                               fontWeight: FontWeight.bold,
@@ -3333,58 +3733,52 @@ LoadingPage(context).close();
                                         height: 10,
                                       ),
                                       Container(
-                                        width: MediaQuery
-                                            .of(context)
-                                            .size
-                                            .width *0.40,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.40,
                                         padding:
-                                        const EdgeInsets.only(right: 5),
+                                            const EdgeInsets.only(right: 5),
                                         height: 40,
                                         decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(5),
+                                              BorderRadius.circular(5),
                                         ),
                                         child: DropdownButtonHideUnderline(
-
                                           child: DropdownButton2(
-                                            hint: Text(cubit.trModelValue==null?"":cubit.trModelValue!.modelName??""),
-                                            iconEnabledColor:
-                                            Colors.white,
-                                            iconDisabledColor:
-                                            Colors.grey,
+                                            hint: Text(
+                                                cubit.trModelValue == null
+                                                    ? ""
+                                                    : cubit.trModelValue!
+                                                            .modelName ??
+                                                        ""),
+                                            iconEnabledColor: Colors.white,
+                                            iconDisabledColor: Colors.grey,
                                             buttonHeight: 100,
                                             buttonWidth: 160,
                                             // buttonElevation: 2,
                                             itemHeight: 50,
-                                            itemPadding:
-                                            const EdgeInsets.only(
-                                                left: 14,
-                                                right: 14),
+                                            itemPadding: const EdgeInsets.only(
+                                                left: 14, right: 14),
                                             dropdownMaxHeight: 200,
                                             dropdownWidth: 200,
 
-                                            buttonDecoration:
-                                            BoxDecoration(
+                                            buttonDecoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
+                                                  BorderRadius.circular(5),
                                               border: Border.all(
                                                 color: Colors.green,
                                               ),
                                               color: Colors.white,
                                             ),
-                                            dropdownDecoration:
-                                            BoxDecoration(
+                                            dropdownDecoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
+                                                  BorderRadius.circular(5),
                                               color: Colors.white,
                                             ),
 
                                             dropdownElevation: 8,
                                             scrollbarRadius:
-                                            const Radius.circular(
-                                                20),
+                                                const Radius.circular(20),
                                             scrollbarThickness: 6,
                                             scrollbarAlwaysShow: true,
 
@@ -3396,11 +3790,11 @@ LoadingPage(context).close();
                                             onChanged: (value) {
                                               setState(() {
                                                 trModelValue =
-                                                value as tRModelModel;
+                                                    value as tRModelModel;
 
-                                                cubit.trModelValue =value;
+                                                cubit.trModelValue = value;
                                                 cubit.ModelName =
-                                                value.modelName!;
+                                                    value.modelName!;
                                                 cubit.ModelTypeID = int.parse(
                                                     value.modelTypeID!);
                                               });
@@ -3409,16 +3803,14 @@ LoadingPage(context).close();
                                             icon: Container(
                                               decoration: const BoxDecoration(
                                                 color: Colors.green,
-                                                borderRadius:
-                                                BorderRadius.only(
-                                                    bottomLeft: Radius
-                                                        .circular(
-                                                        5),
-                                                    topLeft: Radius
-                                                        .circular(
-                                                        5)),
-                                              ), child: const Icon(Icons
-                                                .keyboard_arrow_down_sharp),
+                                                borderRadius: BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(5),
+                                                    topLeft:
+                                                        Radius.circular(5)),
+                                              ),
+                                              child: const Icon(Icons
+                                                  .keyboard_arrow_down_sharp),
                                             ),
                                           ),
                                         ),
@@ -3428,16 +3820,15 @@ LoadingPage(context).close();
                                 ),
                                 Container(
                                   width:
-                                  MediaQuery.of(context).size.width *0.40,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 5),
+                                      MediaQuery.of(context).size.width * 0.40,
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 5),
                                   child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text( AppStrings.collartype.tr(),
+                                      Text(AppStrings.collartype.tr(),
                                           style: GoogleFonts.notoKufiArabic(
                                               color: MyConstant().purpleColor,
                                               fontWeight: FontWeight.bold,
@@ -3446,15 +3837,22 @@ LoadingPage(context).close();
                                         height: 10,
                                       ),
                                       Container(
-                                        width: MediaQuery.of(context).size.width *0.40,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.40,
                                         height: 40,
                                         decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(5),
+                                              BorderRadius.circular(5),
                                         ),
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton2(
-                                            hint: Text(cubit.tRCollarValue==null?"":cubit.tRCollarValue!.CollarName??""),
+                                            hint: Text(
+                                                cubit.tRCollarValue == null
+                                                    ? ""
+                                                    : cubit.tRCollarValue!
+                                                            .CollarName ??
+                                                        ""),
                                             iconEnabledColor: Colors.white,
                                             iconDisabledColor: Colors.grey,
                                             buttonHeight: 100,
@@ -3463,28 +3861,23 @@ LoadingPage(context).close();
                                             // itemPadding: const EdgeInsets.only(left: 14, right: 14),
                                             dropdownMaxHeight: 200,
                                             dropdownWidth: 200,
-                                            buttonDecoration:
-                                            BoxDecoration(
+                                            buttonDecoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
+                                                  BorderRadius.circular(5),
                                               border: Border.all(
                                                 color: Colors.green,
                                               ),
                                               color: Colors.white,
                                             ),
-                                            dropdownDecoration:
-                                            BoxDecoration(
+                                            dropdownDecoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
+                                                  BorderRadius.circular(5),
                                               color: Colors.white,
                                             ),
 
                                             dropdownElevation: 8,
                                             scrollbarRadius:
-                                            const Radius.circular(
-                                                20),
+                                                const Radius.circular(20),
                                             scrollbarThickness: 6,
                                             scrollbarAlwaysShow: true,
                                             items: cubit.tRCollarList
@@ -3494,32 +3887,28 @@ LoadingPage(context).close();
                                             isExpanded: true,
                                             onChanged: (value) {
                                               setState(() {
-
                                                 tRCollarValue =
-                                                value as tRCollarModel;
-                                                cubit.tRCollarValue =value;
+                                                    value as tRCollarModel;
+                                                cubit.tRCollarValue = value;
 
                                                 cubit.CollerName =
-                                                value.CollarName!;
-                                                cubit.CollerTypeID =
-                                                    int.parse(
-                                                        value.CollarTypeId!);
+                                                    value.CollarName!;
+                                                cubit.CollerTypeID = int.parse(
+                                                    value.CollarTypeId!);
                                               });
                                             },
                                             iconSize: 40,
                                             icon: Container(
                                               decoration: const BoxDecoration(
                                                 color: Colors.green,
-                                                borderRadius:
-                                                BorderRadius.only(
-                                                    bottomLeft: Radius
-                                                        .circular(
-                                                        5),
-                                                    topLeft: Radius
-                                                        .circular(
-                                                        5)),
-                                              ), child: const Icon(Icons
-                                                .keyboard_arrow_down_sharp),
+                                                borderRadius: BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(5),
+                                                    topLeft:
+                                                        Radius.circular(5)),
+                                              ),
+                                              child: const Icon(Icons
+                                                  .keyboard_arrow_down_sharp),
                                             ),
                                           ),
                                         ),
@@ -3527,29 +3916,27 @@ LoadingPage(context).close();
                                     ],
                                   ),
                                 ),
-
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 20,bottom: 20),
+                              padding:
+                                  const EdgeInsets.only(top: 20, bottom: 20),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
-                                    width:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width *0.40,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.40,
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 5),
                                     child: Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Text( AppStrings.cufftype.tr(),
+                                        Text(AppStrings.cufftype.tr(),
                                             style: GoogleFonts.notoKufiArabic(
                                                 color: MyConstant().purpleColor,
                                                 fontWeight: FontWeight.bold,
@@ -3558,57 +3945,54 @@ LoadingPage(context).close();
                                           height: 10,
                                         ),
                                         Container(
-                                          width: MediaQuery
-                                              .of(context)
-                                              .size
-                                              .width *0.40,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.40,
                                           padding:
-                                          const EdgeInsets.only(right: 5),
+                                              const EdgeInsets.only(right: 5),
                                           height: 40,
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                            BorderRadius.circular(5),
+                                                BorderRadius.circular(5),
                                           ),
                                           child: DropdownButtonHideUnderline(
                                             child: DropdownButton2(
-                                              hint: Text(cubit.tRCuffValue==null?"":cubit.tRCuffValue!.CuffName??""),
-                                              iconEnabledColor:
-                                              Colors.white,
-                                              iconDisabledColor:
-                                              Colors.grey,
+                                              hint: Text(
+                                                  cubit.tRCuffValue == null
+                                                      ? ""
+                                                      : cubit.tRCuffValue!
+                                                              .CuffName ??
+                                                          ""),
+                                              iconEnabledColor: Colors.white,
+                                              iconDisabledColor: Colors.grey,
                                               buttonHeight: 100,
                                               buttonWidth: 160,
                                               // buttonElevation: 2,
                                               itemHeight: 50,
                                               itemPadding:
-                                              const EdgeInsets.only(
-                                                  left: 14,
-                                                  right: 14),
+                                                  const EdgeInsets.only(
+                                                      left: 14, right: 14),
                                               dropdownMaxHeight: 200,
                                               dropdownWidth: 200,
 
-                                              buttonDecoration:
-                                              BoxDecoration(
+                                              buttonDecoration: BoxDecoration(
                                                 borderRadius:
-                                                BorderRadius.circular(
-                                                    5),
+                                                    BorderRadius.circular(5),
                                                 border: Border.all(
                                                   color: Colors.green,
                                                 ),
                                                 color: Colors.white,
                                               ),
-                                              dropdownDecoration:
-                                              BoxDecoration(
+                                              dropdownDecoration: BoxDecoration(
                                                 borderRadius:
-                                                BorderRadius.circular(
-                                                    5),
+                                                    BorderRadius.circular(5),
                                                 color: Colors.white,
                                               ),
 
                                               dropdownElevation: 8,
                                               scrollbarRadius:
-                                              const Radius.circular(
-                                                  20),
+                                                  const Radius.circular(20),
                                               scrollbarThickness: 6,
                                               scrollbarAlwaysShow: true,
                                               items: cubit.tRCuffList
@@ -3619,11 +4003,11 @@ LoadingPage(context).close();
                                               onChanged: (value) {
                                                 setState(() {
                                                   tRCuffValue =
-                                                  value as tRCuffModel;
-                                                  cubit.tRCuffValue =value;
+                                                      value as tRCuffModel;
+                                                  cubit.tRCuffValue = value;
 
                                                   cubit.CuffName =
-                                                  value.CuffName!;
+                                                      value.CuffName!;
                                                   cubit.CuffTypeID = int.parse(
                                                       value.CuffTypeId!);
                                                 });
@@ -3634,15 +4018,15 @@ LoadingPage(context).close();
                                                 decoration: const BoxDecoration(
                                                   color: Colors.green,
                                                   borderRadius:
-                                                  BorderRadius.only(
-                                                      bottomLeft: Radius
-                                                          .circular(
-                                                          5),
-                                                      topLeft: Radius
-                                                          .circular(
-                                                          5)),
-                                                ), child: const Icon(Icons
-                                                  .keyboard_arrow_down_sharp),
+                                                      BorderRadius.only(
+                                                          bottomLeft: Radius
+                                                              .circular(5),
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  5)),
+                                                ),
+                                                child: const Icon(Icons
+                                                    .keyboard_arrow_down_sharp),
                                               ),
                                             ),
                                           ),
@@ -3651,16 +4035,17 @@ LoadingPage(context).close();
                                     ),
                                   ),
                                   Container(
-                                    width: MediaQuery.of(context).size.width *0.40,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.40,
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 5, vertical: 3),
                                     child: Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Text( AppStrings.pocketitchingtype.tr(),
+                                        Text(AppStrings.pocketitchingtype.tr(),
                                             style: GoogleFonts.notoKufiArabic(
                                                 color: MyConstant().purpleColor,
                                                 fontWeight: FontWeight.bold,
@@ -3669,57 +4054,54 @@ LoadingPage(context).close();
                                           height: 10,
                                         ),
                                         Container(
-                                          width: MediaQuery
-                                              .of(context)
-                                              .size
-                                              .width *0.40,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.40,
                                           padding:
-                                          const EdgeInsets.only(right: 5),
+                                              const EdgeInsets.only(right: 5),
                                           height: 40,
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                            BorderRadius.circular(5),
+                                                BorderRadius.circular(5),
                                           ),
                                           child: DropdownButtonHideUnderline(
                                             child: DropdownButton2(
-                                              hint: Text(cubit.tRPocketValue==null?"":cubit.tRPocketValue!.PocketName??""),
-                                              iconEnabledColor:
-                                              Colors.white,
-                                              iconDisabledColor:
-                                              Colors.grey,
+                                              hint: Text(
+                                                  cubit.tRPocketValue == null
+                                                      ? ""
+                                                      : cubit.tRPocketValue!
+                                                              .PocketName ??
+                                                          ""),
+                                              iconEnabledColor: Colors.white,
+                                              iconDisabledColor: Colors.grey,
                                               buttonHeight: 100,
                                               buttonWidth: 160,
                                               // buttonElevation: 2,
                                               itemHeight: 50,
                                               itemPadding:
-                                              const EdgeInsets.only(
-                                                  left: 14,
-                                                  right: 14),
+                                                  const EdgeInsets.only(
+                                                      left: 14, right: 14),
                                               dropdownMaxHeight: 200,
                                               dropdownWidth: 200,
 
-                                              buttonDecoration:
-                                              BoxDecoration(
+                                              buttonDecoration: BoxDecoration(
                                                 borderRadius:
-                                                BorderRadius.circular(
-                                                    5),
+                                                    BorderRadius.circular(5),
                                                 border: Border.all(
                                                   color: Colors.green,
                                                 ),
                                                 color: Colors.white,
                                               ),
-                                              dropdownDecoration:
-                                              BoxDecoration(
+                                              dropdownDecoration: BoxDecoration(
                                                 borderRadius:
-                                                BorderRadius.circular(
-                                                    5),
+                                                    BorderRadius.circular(5),
                                                 color: Colors.white,
                                               ),
 
                                               dropdownElevation: 8,
                                               scrollbarRadius:
-                                              const Radius.circular(
-                                                  20),
+                                                  const Radius.circular(20),
                                               scrollbarThickness: 6,
                                               scrollbarAlwaysShow: true,
                                               items: cubit.tRPocketList
@@ -3730,11 +4112,11 @@ LoadingPage(context).close();
                                               onChanged: (value) {
                                                 setState(() {
                                                   tRPocketValue =
-                                                  value as tRPocketModel?;
-                                                  cubit.tRPocketValue =value;
+                                                      value as tRPocketModel?;
+                                                  cubit.tRPocketValue = value;
 
                                                   cubit.PocketName =
-                                                  value!.PocketName!;
+                                                      value!.PocketName!;
                                                   cubit.PocketTypeID =
                                                       int.parse(
                                                           value.PocketTypeId!);
@@ -3746,15 +4128,15 @@ LoadingPage(context).close();
                                                 decoration: const BoxDecoration(
                                                   color: Colors.green,
                                                   borderRadius:
-                                                  BorderRadius.only(
-                                                      bottomLeft: Radius
-                                                          .circular(
-                                                          5),
-                                                      topLeft: Radius
-                                                          .circular(
-                                                          5)),
-                                                ), child: const Icon(Icons
-                                                  .keyboard_arrow_down_sharp),
+                                                      BorderRadius.only(
+                                                          bottomLeft: Radius
+                                                              .circular(5),
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  5)),
+                                                ),
+                                                child: const Icon(Icons
+                                                    .keyboard_arrow_down_sharp),
                                               ),
                                             ),
                                           ),
@@ -3766,21 +4148,19 @@ LoadingPage(context).close();
                               ),
                             ),
                             Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-
                                 Container(
-                                  width: MediaQuery.of(context).size.width *0.40,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 5),
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.40,
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 5),
                                   child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text( AppStrings.FillingType.tr(),
+                                      Text(AppStrings.FillingType.tr(),
                                           style: GoogleFonts.notoKufiArabic(
                                               color: MyConstant().purpleColor,
                                               fontWeight: FontWeight.bold,
@@ -3789,73 +4169,70 @@ LoadingPage(context).close();
                                         height: 10,
                                       ),
                                       Container(
-                                        width: MediaQuery.of(context).size.width *0.40,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.40,
                                         padding:
-                                        const EdgeInsets.only(right: 5),
+                                            const EdgeInsets.only(right: 5),
                                         height: 40,
                                         decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(5),
+                                              BorderRadius.circular(5),
                                         ),
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton2(
                                             hint: Text(
-                                                cubit.trFillingValue==null?"":cubit.trFillingValue!.FillingName ?? ""),
-                                            iconEnabledColor:
-                                            Colors.white,
-                                            iconDisabledColor:
-                                            Colors.grey,
+                                                cubit.trFillingValue == null
+                                                    ? ""
+                                                    : cubit.trFillingValue!
+                                                            .FillingName ??
+                                                        ""),
+                                            iconEnabledColor: Colors.white,
+                                            iconDisabledColor: Colors.grey,
                                             buttonHeight: 100,
                                             buttonWidth: 160,
                                             // buttonElevation: 2,
                                             itemHeight: 50,
-                                            itemPadding:
-                                            const EdgeInsets.only(
-                                                left: 14,
-                                                right: 14),
+                                            itemPadding: const EdgeInsets.only(
+                                                left: 14, right: 14),
                                             dropdownMaxHeight: 200,
                                             dropdownWidth: 200,
 
-                                            buttonDecoration:
-                                            BoxDecoration(
+                                            buttonDecoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
+                                                  BorderRadius.circular(5),
                                               border: Border.all(
                                                 color: Colors.green,
                                               ),
                                               color: Colors.white,
                                             ),
-                                            dropdownDecoration:
-                                            BoxDecoration(
+                                            dropdownDecoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
+                                                  BorderRadius.circular(5),
                                               color: Colors.white,
                                             ),
 
                                             dropdownElevation: 8,
                                             scrollbarRadius:
-                                            const Radius.circular(
-                                                20),
+                                                const Radius.circular(20),
                                             scrollbarThickness: 6,
                                             scrollbarAlwaysShow: true,
                                             items: cubit.tRFillingList
                                                 .map(tRFillingItemBuild)
                                                 .toList(),
-                                            value: trFillingValue=cubit.trFillingValue,
+                                            value: trFillingValue =
+                                                cubit.trFillingValue,
                                             isExpanded: true,
                                             onChanged: (value) {
                                               setState(() {
                                                 trFillingValue =
-                                                value as tRFillingModel;
-                                                cubit.trFillingValue =value;
+                                                    value as tRFillingModel;
+                                                cubit.trFillingValue = value;
 
                                                 cubit.FillingName =
-                                                value.FillingName!;
-                                                cubit.FillingTypeID =
-                                                    int.parse(
-                                                        value.FillingTypeId!);
+                                                    value.FillingName!;
+                                                cubit.FillingTypeID = int.parse(
+                                                    value.FillingTypeId!);
                                               });
                                             },
 
@@ -3863,16 +4240,14 @@ LoadingPage(context).close();
                                             icon: Container(
                                               decoration: const BoxDecoration(
                                                 color: Colors.green,
-                                                borderRadius:
-                                                BorderRadius.only(
-                                                    bottomLeft: Radius
-                                                        .circular(
-                                                        5),
-                                                    topLeft: Radius
-                                                        .circular(
-                                                        5)),
-                                              ), child: const Icon(Icons
-                                                .keyboard_arrow_down_sharp),
+                                                borderRadius: BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(5),
+                                                    topLeft:
+                                                        Radius.circular(5)),
+                                              ),
+                                              child: const Icon(Icons
+                                                  .keyboard_arrow_down_sharp),
                                             ),
                                           ),
                                         ),
@@ -3882,16 +4257,15 @@ LoadingPage(context).close();
                                 ),
                                 Container(
                                   width:
-                                  MediaQuery.of(context).size.width *0.40,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 5),
+                                      MediaQuery.of(context).size.width * 0.40,
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 5),
                                   child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text( AppStrings.typeofgypsum.tr(),
+                                      Text(AppStrings.typeofgypsum.tr(),
                                           style: GoogleFonts.notoKufiArabic(
                                               color: MyConstant().purpleColor,
                                               fontWeight: FontWeight.bold,
@@ -3900,54 +4274,52 @@ LoadingPage(context).close();
                                         height: 10,
                                       ),
                                       Container(
-                                        width: MediaQuery.of(context).size.width *0.40,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.40,
                                         padding:
-                                        const EdgeInsets.only(right: 5),
+                                            const EdgeInsets.only(right: 5),
                                         height: 40,
                                         decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(5),
+                                              BorderRadius.circular(5),
                                         ),
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton2(
-                                            hint: Text(cubit.tRZipperValue==null?"":cubit.tRZipperValue!.ZipperName??""),
-                                            iconEnabledColor:
-                                            Colors.white,
-                                            iconDisabledColor:
-                                            Colors.grey,
+                                            hint: Text(
+                                                cubit.tRZipperValue == null
+                                                    ? ""
+                                                    : cubit.tRZipperValue!
+                                                            .ZipperName ??
+                                                        ""),
+                                            iconEnabledColor: Colors.white,
+                                            iconDisabledColor: Colors.grey,
                                             buttonHeight: 100,
                                             buttonWidth: 160,
                                             // buttonElevation: 2,
                                             itemHeight: 50,
-                                            itemPadding:
-                                            const EdgeInsets.only(
-                                                left: 14,
-                                                right: 14),
+                                            itemPadding: const EdgeInsets.only(
+                                                left: 14, right: 14),
                                             dropdownMaxHeight: 200,
                                             dropdownWidth: 200,
 
-                                            buttonDecoration:
-                                            BoxDecoration(
+                                            buttonDecoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
+                                                  BorderRadius.circular(5),
                                               border: Border.all(
                                                 color: Colors.green,
                                               ),
                                               color: Colors.white,
                                             ),
-                                            dropdownDecoration:
-                                            BoxDecoration(
+                                            dropdownDecoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
+                                                  BorderRadius.circular(5),
                                               color: Colors.white,
                                             ),
 
                                             dropdownElevation: 8,
                                             scrollbarRadius:
-                                            const Radius.circular(
-                                                20),
+                                                const Radius.circular(20),
                                             scrollbarThickness: 6,
                                             scrollbarAlwaysShow: true,
                                             items: cubit.tRZipperList
@@ -3958,14 +4330,13 @@ LoadingPage(context).close();
                                             onChanged: (value) {
                                               setState(() {
                                                 tRZipperValue =
-                                                value as tRZipperModel;
+                                                    value as tRZipperModel;
 
-                                                cubit.tRZipperValue =value;
+                                                cubit.tRZipperValue = value;
                                                 cubit.ZipperName =
-                                                value.ZipperName!;
-                                                cubit.ZipperTypeID =
-                                                    int.parse(
-                                                        value.ZipperTypeId!);
+                                                    value.ZipperName!;
+                                                cubit.ZipperTypeID = int.parse(
+                                                    value.ZipperTypeId!);
                                               });
                                             },
 
@@ -3973,16 +4344,14 @@ LoadingPage(context).close();
                                             icon: Container(
                                               decoration: const BoxDecoration(
                                                 color: Colors.green,
-                                                borderRadius:
-                                                BorderRadius.only(
-                                                    bottomLeft: Radius
-                                                        .circular(
-                                                        5),
-                                                    topLeft: Radius
-                                                        .circular(
-                                                        5)),
-                                              ), child: const Icon(Icons
-                                                .keyboard_arrow_down_sharp),
+                                                borderRadius: BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(5),
+                                                    topLeft:
+                                                        Radius.circular(5)),
+                                              ),
+                                              child: const Icon(Icons
+                                                  .keyboard_arrow_down_sharp),
                                             ),
                                           ),
                                         ),
@@ -4008,8 +4377,7 @@ LoadingPage(context).close();
     );
   }
 
-  DropdownMenuItem<String> itemBuild(String item) =>
-      DropdownMenuItem(
+  DropdownMenuItem<String> itemBuild(String item) => DropdownMenuItem(
         value: item,
         child: Center(
           child: Text(item,
@@ -4103,5 +4471,4 @@ LoadingPage(context).close();
                   fontSize: Size)),
         ),
       );
-
 }

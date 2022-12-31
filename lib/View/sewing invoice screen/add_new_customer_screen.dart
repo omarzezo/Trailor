@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -190,44 +192,45 @@ class NewUserScreen extends StatelessWidget {
                                   MyConstant().purpleColor),
                             ),
                             onPressed: () async {
-                              try{
+                              // try{
                                 // if (_formKey.currentState!.validate()) {
-                                LoadingPage(context).show();
+                                // LoadingPage(context).show();
 
                                 // Navigator.pop(context);
                                 Customer customer = Customer(
-                                  company: companyNameEditingController.text ?? "",
-                                  email: companyEmailAddressEditingController.text ?? "",
+                                  company: replaceArabicNumber(companyNameEditingController.text ?? ""),
+                                  email:replaceArabicNumber( companyEmailAddressEditingController.text ?? ""),
                                   // customerGroupId: int.parse(companyGroupIdrEditingController.text),
-                                  customerGroupId: 2 ,
-                                  customerGroupName: companyGroupNameEditingController.text ?? "",
-                                  vatNo: companyVatNoEditingController.text ?? "",
-                                  address: companyAddressEditingController.text ?? "",
-                                  state: companyStateEditingController.text ?? "",
-                                  postalCode: companyPostalCodeEditingController.text ?? "",
-                                  country: companyCountryEditingController.text ?? "",
-                                  phone: companyPhoneNumberEditingController.text ?? "",
-                                  crNo: companyCrNoEditingController.text ?? "",
-                                  offlineId:companyOfflineIdEditingController.text!=null&&companyOfflineIdEditingController.text.isNotEmpty?
-                                  int.parse(companyOfflineIdEditingController.text):0,
+                                  customerGroupId: 2,
+                                  customerGroupName: replaceArabicNumber(companyGroupNameEditingController.text ?? ""),
+                                  vatNo:replaceArabicNumber( companyVatNoEditingController.text ?? ""),
+                                  address:replaceArabicNumber( companyAddressEditingController.text ?? ""),
+                                  state:replaceArabicNumber( companyStateEditingController.text ?? ""),
+                                  postalCode:replaceArabicNumber( companyPostalCodeEditingController.text ?? ""),
+                                  country:replaceArabicNumber( companyCountryEditingController.text ?? ""),
+                                  phone:replaceArabicNumber( companyPhoneNumberEditingController.text ?? ""),
+                                  crNo:replaceArabicNumber( companyCrNoEditingController.text ?? ""),
+                                  offlineId:0,
                                 );
+
+                                print("hhhhhhhhhhhhhhhhhh${jsonEncode(customer.toJson())}");
                                 // CustomerModel(customer: [customer]);
                                 //  PillRequestModel customerList=PillRequestModel(productList: [], customerList: [customer], categoryList: [], posRegisterList: [], salesList: [], payment: [], expensesList: []);
-                                await cubit.addCustomerResponse(
-                                    customerModel:
-                                    CustomerModel(customer: [customer]));
-                                await cubit.getCustomers();
-                                LoadingPage(context).close();
+                                // await cubit.addCustomerResponse(
+                                //     customerModel:
+                                //     CustomerModel(customer: [customer]));
+                                // await cubit.getCustomers();
+                                // LoadingPage(context).close();
 
-                                Navigator.pop(context);
+                                // Navigator.pop(context);
                                 // }
-
-                              }catch(error){
-                                print(error.toString());
-                                LoadingPage(context).close();
-
-                              }
-                              LoadingPage(context).close();
+                              //
+                              // }catch(error){
+                              //   print(error.toString());
+                              //   LoadingPage(context).close();
+                              //
+                              // }
+                              // LoadingPage(context).close();
 
                             },
                             child: Padding(

@@ -422,6 +422,8 @@ int invoiceNumbers=0;
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Accept-Version': 'V1',
+      'Accept-Language':'en',
+
       'api-key': APIKEY1
     };
     log(jsonEncode(pillRequestModel));
@@ -497,14 +499,23 @@ return companiesCustomerName;
     Dio dio = Dio();
 
     PillResponseModel? pillResponseModel;
-
+    dio.interceptors.add(LogInterceptor(
+        requestBody: true,
+        error: true,
+        requestHeader: true,
+        responseHeader: true,
+        responseBody: true
+    ));
     dio.options.headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Accept-Version': 'V1',
+      'Accept-Language':'en',
       'api-key': '${APIKEY1}'
     };
-    final response = await dio.post('https://cpe-soft.com/admin/api/v1/SalesSet3', data: jsonEncode(customerModel));
+    final response = await dio.post(
+
+        'https://cpe-soft.com/admin/api/v1/SalesSet3', data: jsonEncode(customerModel));
     if (response.statusCode == 200) {
       debugPrint(jsonEncode(customerModel));
       // log(jsonEncode(pillRequestModel));
@@ -1092,6 +1103,8 @@ String? quantities1;
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Accept-Version': 'V1',
+        'Accept-Language':'en',
+
         'api-key': '$APIKEY1'
       };
       final response = await dio.post(

@@ -23,14 +23,10 @@ class EditCustomerScreen extends StatefulWidget {
 class _EditCustomerScreenState extends State<EditCustomerScreen> {
   final _formKey = GlobalKey<FormState>();
 
-
-
   @override
   void initState() {
- 
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -41,25 +37,22 @@ class _EditCustomerScreenState extends State<EditCustomerScreen> {
         return Scaffold(
           appBar: AppBar(
             systemOverlayStyle:
-            SystemUiOverlayStyle(statusBarColor: Colors.grey),
+                SystemUiOverlayStyle(statusBarColor: Colors.grey),
             backgroundColor: MyConstant().purpleColor,
             elevation: 0,
             centerTitle: true,
             title: Text(
-              AppStrings.editCustomerInfo.tr(),style: GoogleFonts.notoKufiArabic(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 18),
+              AppStrings.editCustomerInfo.tr(),
+              style: GoogleFonts.notoKufiArabic(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18),
             ),
           ),
           body: Padding(
-            padding: EdgeInsets.only(left: (MediaQuery
-                .of(context)
-                .size
-                .width > 500) ? 60 : 10, right: (MediaQuery
-                .of(context)
-                .size
-                .width > 500) ? 60 : 10),
+            padding: EdgeInsets.only(
+                left: (MediaQuery.of(context).size.width > 500) ? 60 : 10,
+                right: (MediaQuery.of(context).size.width > 500) ? 60 : 10),
             child: Form(
               key: _formKey,
               child: SingleChildScrollView(
@@ -77,7 +70,8 @@ class _EditCustomerScreenState extends State<EditCustomerScreen> {
                           }
                           return null;
                         },
-                        textEditingController:LoginCubit.get(context).companyNameEditingController,
+                        textEditingController: LoginCubit.get(context)
+                            .companyNameEditingController,
                       ),
                       TextFormFieldWidget(
                         text: AppStrings.Email.tr(),
@@ -88,7 +82,8 @@ class _EditCustomerScreenState extends State<EditCustomerScreen> {
                           }
                           return null;
                         },
-                        textEditingController:LoginCubit.get(context).companyEmailAddressEditingController,
+                        textEditingController: LoginCubit.get(context)
+                            .companyEmailAddressEditingController,
                       ),
                       // TextFormFieldWidget(
                       //   text: "رقم جروب العميل",
@@ -110,7 +105,8 @@ class _EditCustomerScreenState extends State<EditCustomerScreen> {
                           }
                           return null;
                         },
-                        textEditingController:LoginCubit.get(context).companyVatNoEditingController,
+                        textEditingController: LoginCubit.get(context)
+                            .companyVatNoEditingController,
                       ),
                       TextFormFieldWidget(
                         text: "العنوان",
@@ -121,7 +117,8 @@ class _EditCustomerScreenState extends State<EditCustomerScreen> {
                           }
                           return null;
                         },
-                        textEditingController:LoginCubit.get(context).companyAddressEditingController,
+                        textEditingController: LoginCubit.get(context)
+                            .companyAddressEditingController,
                       ),
                       TextFormFieldWidget(
                         text: AppStrings.zipCode.tr(),
@@ -132,7 +129,8 @@ class _EditCustomerScreenState extends State<EditCustomerScreen> {
                           }
                           return null;
                         },
-                        textEditingController:LoginCubit.get(context).companyPostalCodeEditingController,
+                        textEditingController: LoginCubit.get(context)
+                            .companyPostalCodeEditingController,
                       ),
                       TextFormFieldWidget(
                         text: AppStrings.country.tr(),
@@ -143,7 +141,8 @@ class _EditCustomerScreenState extends State<EditCustomerScreen> {
                           }
                           return null;
                         },
-                        textEditingController:LoginCubit.get(context).companyCountryEditingController,
+                        textEditingController: LoginCubit.get(context)
+                            .companyCountryEditingController,
                       ),
                       TextFormFieldWidget(
                         text: AppStrings.phoneNumber.tr(),
@@ -154,10 +153,10 @@ class _EditCustomerScreenState extends State<EditCustomerScreen> {
                           }
                           return null;
                         },
-                        textEditingController:LoginCubit.get(context).companyPhoneNumberEditingController,
+                        textEditingController: LoginCubit.get(context)
+                            .companyPhoneNumberEditingController,
                       ),
                       TextFormFieldWidget(
-
                         text: AppStrings.companyregistrationnumber.tr(),
                         textInputAction: TextInputAction.next,
                         validator: (value) {
@@ -166,7 +165,8 @@ class _EditCustomerScreenState extends State<EditCustomerScreen> {
                           }
                           return null;
                         },
-                        textEditingController:LoginCubit.get(context).companyCrNoEditingController,
+                        textEditingController: LoginCubit.get(context)
+                            .companyCrNoEditingController,
                       ),
                       TextFormFieldWidget(
                         text: AppStrings.companyCode.tr(),
@@ -177,13 +177,11 @@ class _EditCustomerScreenState extends State<EditCustomerScreen> {
                           }
                           return null;
                         },
-                        textEditingController:LoginCubit.get(context).companyOfflineIdEditingController,
+                        textEditingController: LoginCubit.get(context)
+                            .companyOfflineIdEditingController,
                       ),
                       Container(
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width / 2,
+                          width: MediaQuery.of(context).size.width / 2,
                           margin: const EdgeInsets.symmetric(
                               horizontal: 20, vertical: 10),
                           child: OutlinedButton(
@@ -195,32 +193,43 @@ class _EditCustomerScreenState extends State<EditCustomerScreen> {
                               try {
                                 // if (_formKey.currentState!.validate()) {
                                 LoadingPage(context).show();
-                                CustomerRequest customerRequest = CustomerRequest(
-                                  name
-                                      :LoginCubit.get(context).companyNameEditingController.text,
-                                  id
-                                      :LoginCubit.get(context).customerid,
-                                  email
-                                      :LoginCubit.get(context).companyEmailAddressEditingController.text ,
-                                  company
-                                      :LoginCubit.get(context).companyNameEditingController.text,
-                                  country
-                                      :LoginCubit.get(context).companyCountryEditingController.text,
-                                  phone
-                                      :LoginCubit.get(context).companyPhoneNumberEditingController.text,
-                                  address
-                                      :LoginCubit.get(context).companyAddressEditingController.text,
-                                  crNo
-                                      :LoginCubit.get(context).companyCrNoEditingController.text,
-                                  postalCode
-                                      :LoginCubit.get(context).companyPostalCodeEditingController.text,
-                                  state
-                                      :LoginCubit.get(context).companyStateEditingController.text,
-                                  vatNo
-                                      :LoginCubit.get(context).companyVatNoEditingController.text,);
-                                await
-                                cubit.updateCustomerDetails(customerRequest);
-await cubit.getAllCustomers();
+                                CustomerRequest customerRequest =
+                                    CustomerRequest(
+                                  name: replaceArabicNumber(LoginCubit.get(context)
+                                      .companyNameEditingController
+                                      .text),
+                                  id: replaceArabicNumber(LoginCubit.get(context).customerid),
+                                  email:replaceArabicNumber( LoginCubit.get(context)
+                                      .companyEmailAddressEditingController
+                                      .text),
+                                  company: replaceArabicNumber(LoginCubit.get(context)
+                                      .companyNameEditingController
+                                      .text),
+                                  country:replaceArabicNumber( LoginCubit.get(context)
+                                      .companyCountryEditingController
+                                      .text),
+                                  phone:replaceArabicNumber( LoginCubit.get(context)
+                                      .companyPhoneNumberEditingController
+                                      .text),
+                                  address:replaceArabicNumber( LoginCubit.get(context)
+                                      .companyAddressEditingController
+                                      .text),
+                                  crNo: replaceArabicNumber(LoginCubit.get(context)
+                                      .companyCrNoEditingController
+                                      .text),
+                                  postalCode:replaceArabicNumber( LoginCubit.get(context)
+                                      .companyPostalCodeEditingController
+                                      .text),
+                                  state:replaceArabicNumber( LoginCubit.get(context)
+                                      .companyStateEditingController
+                                      .text),
+                                  vatNo:replaceArabicNumber( LoginCubit.get(context)
+                                      .companyVatNoEditingController
+                                      .text),
+                                );
+                                await cubit
+                                    .updateCustomerDetails(customerRequest);
+                                await cubit.getAllCustomers();
                                 LoadingPage(context).close();
 
                                 Navigator.pop(context);
@@ -232,11 +241,10 @@ await cubit.getAllCustomers();
                                 print(error.toString());
                               }
                               LoadingPage(context).close();
-
                             },
                             child: Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 10, bottom: 10),
+                              padding:
+                                  const EdgeInsets.only(top: 10, bottom: 10),
                               child: Text(AppStrings.edit.tr(),
                                   style: GoogleFonts.notoKufiArabic(
                                       color: Colors.white,
@@ -259,7 +267,7 @@ await cubit.getAllCustomers();
 class TextFormFieldWidget extends StatelessWidget {
   const TextFormFieldWidget({
     this.onFieldSubmitted,
-    this.hintText="",
+    this.hintText = "",
     this.textInputAction,
     required this.text,
     this.height = 40,
@@ -298,7 +306,6 @@ class TextFormFieldWidget extends StatelessWidget {
             height: height,
             width: width,
             child: TextFormField(
-
               textInputAction: textInputAction,
               onFieldSubmitted: onFieldSubmitted,
               controller: textEditingController,

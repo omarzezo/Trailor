@@ -224,20 +224,20 @@ class NewAddCustomerScreen extends StatelessWidget {
 
                                     // Navigator.pop(context);
                                     Customer customer = Customer(
-                                      company: companyNameEditingController.text ?? "",
-                                      email: companyEmailAddressEditingController.text ?? "",
+                                      company: replaceArabicNumber(companyNameEditingController.text ?? ""),
+                                      email: replaceArabicNumber(companyEmailAddressEditingController.text ?? ""),
                                       // customerGroupId: int.parse(companyGroupIdrEditingController.text),
                                       customerGroupId: 2 ,
-                                      customerGroupName: companyGroupNameEditingController.text ?? "",
-                                      vatNo: companyVatNoEditingController.text ?? "",
-                                      address: companyAddressEditingController.text ?? "",
-                                      state: companyStateEditingController.text ?? "",
-                                      postalCode: companyPostalCodeEditingController.text ?? "",
-                                      country: companyCountryEditingController.text ?? "",
-                                      phone: companyPhoneNumberEditingController.text ?? "",
-                                      crNo: companyCrNoEditingController.text ?? "",
+                                      customerGroupName:replaceArabicNumber( companyGroupNameEditingController.text ?? ""),
+                                      vatNo:replaceArabicNumber( companyVatNoEditingController.text ?? ""),
+                                      address: replaceArabicNumber(companyAddressEditingController.text ?? ""),
+                                      state:replaceArabicNumber( companyStateEditingController.text ?? ""),
+                                      postalCode:replaceArabicNumber( companyPostalCodeEditingController.text ?? ""),
+                                      country:replaceArabicNumber( companyCountryEditingController.text ?? ""),
+                                      phone:replaceArabicNumber( companyPhoneNumberEditingController.text ?? ""),
+                                      crNo:replaceArabicNumber( companyCrNoEditingController.text ?? ""),
                                       offlineId:companyOfflineIdEditingController.text!=null&&companyOfflineIdEditingController.text.isNotEmpty?
-                                      int.parse(companyOfflineIdEditingController.text):0,
+                                      int.parse(replaceArabicNumber(companyOfflineIdEditingController.text)):0,
                                     );
                                     // CustomerModel(customer: [customer]);
                                     //  PillRequestModel customerList=PillRequestModel(productList: [], customerList: [customer], categoryList: [], posRegisterList: [], salesList: [], payment: [], expensesList: []);
