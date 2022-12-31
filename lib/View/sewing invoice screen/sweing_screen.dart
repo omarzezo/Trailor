@@ -2711,13 +2711,13 @@ class _SewingScreenState extends State<SewingScreen> {
                             pillRequestModel: pillRequestModel).then((value) => Navigator.pushNamed(
                             context, PrintScreen.routeName));
                         // await cubit.getAllInvoiceInformation();
-                        log("requestIs>>" + jsonEncode(pillRequestModel));
-                        cubit.totalCash = (double.parse(cubit.totalCash) +
-                            double.parse(cubit.whatYouPay.text))
+                        // log("requestIs>>" + jsonEncode(pillRequestModel));
+                        cubit.totalCash = (double.tryParse(cubit.totalCash.isNotEmpty?cubit.totalCash:"0.0")! +
+                            double.tryParse(cubit.whatYouPay.text.isNotEmpty?cubit.whatYouPay.text:"0.0")!)
                             .toString();
                         cubit.invoiceNumbers += 1;
-                        print("the way of paying ${cubit.paymentType}");
-                        print("the way of paying ${cubit.paymentId}");
+                        // print("the way of paying ${cubit.paymentType}");
+                        // print("the way of paying ${cubit.paymentId}");
                         // LoadingPage(context).close();
 
 
