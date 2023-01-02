@@ -65,13 +65,13 @@ class _SewingScreenState extends State<SewingScreen> {
   @override
   void initState() {
     super.initState();
-    SharedPreferences.getInstance().then((value) {
-      final products = json.decode(value.getString("json")!);
-      TrailorListsResponse trailorListsResponse =
-          TrailorListsResponse.fromJson(products);
-      print("Trillll>>" + trailorListsResponse.companies!.length.toString());
-      // Companies item= trailorListsResponse.companies![0];
-    });
+    // SharedPreferences.getInstance().then((value) {
+    //   final products = json.decode(value.getString("json")!);
+    //   TrailorListsResponse trailorListsResponse =
+    //       TrailorListsResponse.fromJson(products);
+    //   print("Trillll>>" + trailorListsResponse.companies!.length.toString());
+    //   // Companies item= trailorListsResponse.companies![0];
+    // });
   }
 
   @override

@@ -47,6 +47,7 @@ import '../../models/TrailorListsResponse.dart';
 import '../../models/allcustomer_response.dart';
 import '../../models/modelreturn.dart';
 import '../../models/test.dart';
+import '../local/shared_pref.dart';
 import 'State.dart';
 import 'dart:ui' as ui;
 
@@ -1234,7 +1235,7 @@ Future<CashierResponse> closeCashier(CashierCloseRequest cashierCloseRequest)asy
   CloseCashierResponse? closeCashierDetailsResponse;
 Future<CloseCashierResponse> closeCashierDetails()async{
   // String? APIKEY1 = await SharedPreferencesHelper.getApiKey() ?? APIKEYLogin;
-  CloseCashierRequest closeCashierRequest=CloseCashierRequest(userId: userId,closedAt: endDate);
+  CloseCashierRequest closeCashierRequest=CloseCashierRequest(userId: userId.isNotEmpty?userId:await CacheHelper.getData(key: "userId"),closedAt: endDate);
   Dio dio = Dio();
   dio.interceptors.add(LogInterceptor(
       requestBody: true,

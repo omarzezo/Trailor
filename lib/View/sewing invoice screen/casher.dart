@@ -246,7 +246,7 @@ height: 30,
                 ),
               ),
               Expanded(child: Center(
-                child: Text(userId.isNotEmpty?userId:CacheHelper.getData(key: "userId"),
+                child: Text(userId.isNotEmpty?userId: CacheHelper.getData(key: "userId"),
                     style: GoogleFonts.notoKufiArabic(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -295,7 +295,7 @@ height: 30,
                     if(LoginCubit.get(context).cashierIsOpened==true){
                       LoginCubit.get(context).endDate=DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString();
 
-                      CashierCloseRequest cashierCloseRequest=CashierCloseRequest(userId:userId.isNotEmpty?userId:CacheHelper.getData(key: "userId") ,closedAt: DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString(),closedBy:userId.isNotEmpty?userId:CacheHelper.getData(key: "userId") ,invoiceCount:LoginCubit.get(context).invoiceNumbers.toString() ,note:" " ,totalCash:LoginCubit.get(context).totalCash??"0" ,totalCc:"0" ,totalCheques: "0");
+                      CashierCloseRequest cashierCloseRequest=CashierCloseRequest(userId:userId.isNotEmpty?userId:await CacheHelper.getData(key: "userId") ,closedAt: DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString(),closedBy:userId.isNotEmpty?userId:await CacheHelper.getData(key: "userId") ,invoiceCount:LoginCubit.get(context).invoiceNumbers.toString() ,note:" " ,totalCash:LoginCubit.get(context).totalCash??"0" ,totalCc:"0" ,totalCheques: "0");
                       await LoginCubit.get(context).closeCashier(cashierCloseRequest).then((value) async{
                         if(value.status==true){
                           LoginCubit.get(context).changeCashierState();
@@ -487,7 +487,7 @@ class _OpenCashierState extends State<OpenCashier> {
           Expanded(child: TextButton(child: Text(AppStrings.add .tr(),),onPressed: ()async {
             LoginCubit.get(context).startDate=DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString();
             // LoginCubit.get(context).cashInHand=LoginCubit.get(context).cashInHandController.text.isEmpty?"0":LoginCubit.get(context).cashInHandController.text;
-            CashierStartRequest cashierStartRequest=CashierStartRequest(userId:userId.isNotEmpty?userId:CacheHelper.getData(key: "userId") ,cashInHand:LoginCubit.get(context).cashInHand.toStringAsFixed(2) ,date: DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString());
+            CashierStartRequest cashierStartRequest=CashierStartRequest(userId:userId.isNotEmpty?userId:await CacheHelper.getData(key: "userId") ,cashInHand:LoginCubit.get(context).cashInHand.toStringAsFixed(2) ,date: DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString());
 await LoginCubit.get(context).openCashier(cashierStartRequest).then((value) {
   if(value.status==true){
     LoginCubit.get(context).totalCash=(LoginCubit.get(context).cashInHand+double.parse(LoginCubit.get(context).totalCash)).toString();

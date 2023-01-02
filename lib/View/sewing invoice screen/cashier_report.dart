@@ -16,6 +16,8 @@ import 'package:maxx_sunmi_printer/maxx_sunmi_printer.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/Controller/Cubit/State.dart';
 import 'package:omar/SharedPreferencesHelper.dart';
+import 'package:omar/View/home/home.dart';
+import 'package:omar/View/sewing%20invoice%20screen/start_screen.dart';
 import 'package:omar/View/sonomiPrinter.dart';
 import 'package:omar/constant/LoadingPage.dart';
 import 'package:omar/constant/appstrings.dart';
@@ -37,6 +39,8 @@ class CashierPillScreen extends StatefulWidget {
 
 class _CashierPillScreenState extends State<CashierPillScreen> {
   ScreenshotController screenshotController = ScreenshotController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   String dir = Directory.current.path;
   // BluePrinter bluePrinter=BluePrinter();
   SonomiPrinter sonomiPrinter=SonomiPrinter();
@@ -81,8 +85,14 @@ try{
       },
       builder: (context, state) {
         return Scaffold(
+          key: _scaffoldKey,
           backgroundColor: Colors.white,
+          
           appBar: AppBar(
+            leading: IconButton(onPressed: () {
+              // Navigator.pushNamed(context, StartScreen.routeName);
+              Navigator.pushReplacementNamed(context, StartScreen.routeName);
+            },icon: Icon(Icons.arrow_back_ios),),
             backgroundColor: Colors.purple,
             title: Text("معاينة الفاتورة", style: GoogleFonts.notoKufiArabic(
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)), centerTitle: true,),
