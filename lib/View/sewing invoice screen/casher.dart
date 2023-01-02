@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
+import 'package:omar/Controller/End%20Point.dart';
 import 'package:omar/Controller/local/shared_pref.dart';
 import 'package:omar/View/sewing%20invoice%20screen/Widgets.dart';
 import 'package:omar/View/sewing%20invoice%20screen/cashier_report.dart';
@@ -49,7 +50,7 @@ class CashierScreen extends StatelessWidget {
                 ),
               ),
               Expanded(child: Center(
-                child: Text(LoginCubit.get(context).userId??"",
+                child: Text(userId.isNotEmpty?userId:CacheHelper.getData(key: "userId"),
                     style: GoogleFonts.notoKufiArabic(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -245,7 +246,7 @@ height: 30,
                 ),
               ),
               Expanded(child: Center(
-                child: Text(LoginCubit.get(context).userId??"",
+                child: Text(userId.isNotEmpty?userId:CacheHelper.getData(key: "userId"),
                     style: GoogleFonts.notoKufiArabic(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -294,7 +295,7 @@ height: 30,
                     if(LoginCubit.get(context).cashierIsOpened==true){
                       LoginCubit.get(context).endDate=DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString();
 
-                      CashierCloseRequest cashierCloseRequest=CashierCloseRequest(userId:LoginCubit.get(context).userId ,closedAt: DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString(),closedBy:LoginCubit.get(context).userId??"0" ,invoiceCount:LoginCubit.get(context).invoiceNumbers.toString() ,note:" " ,totalCash:LoginCubit.get(context).totalCash??"0" ,totalCc:"0" ,totalCheques: "0");
+                      CashierCloseRequest cashierCloseRequest=CashierCloseRequest(userId:userId.isNotEmpty?userId:CacheHelper.getData(key: "userId") ,closedAt: DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString(),closedBy:userId.isNotEmpty?userId:CacheHelper.getData(key: "userId") ,invoiceCount:LoginCubit.get(context).invoiceNumbers.toString() ,note:" " ,totalCash:LoginCubit.get(context).totalCash??"0" ,totalCc:"0" ,totalCheques: "0");
                       await LoginCubit.get(context).closeCashier(cashierCloseRequest).then((value) async{
                         if(value.status==true){
                           LoginCubit.get(context).changeCashierState();
@@ -363,109 +364,109 @@ class _OpenCashierState extends State<OpenCashier> {
             const SizedBox(
               height: 10,
             ),
-            // Text(CacheHelper.getData(key: "email")??"",  style: GoogleFonts.notoKufiArabic(
-            //     color: MyConstant().purpleColor,
-            //     fontWeight: FontWeight.bold,
-            //     fontSize: 16))
+            Text(CacheHelper.getData(key: "email")??"",  style: GoogleFonts.notoKufiArabic(
+                color: MyConstant().purpleColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 16))
 
-            Container(
-              width: MediaQuery.of(context)
-                  .size
-                  .width /
-                  3,
-              padding:
-              const EdgeInsets.only(right: 0),
-              height: 40,
-              decoration: BoxDecoration(
-                borderRadius:
-                BorderRadius.circular(5),
-              ),
-
-              child: (LoginCubit.get(context).usersList !=null)?DropdownButtonHideUnderline(
-                child: DropdownButton2(
-                  iconEnabledColor: Colors.white,
-                  iconDisabledColor: Colors.grey,
-                  buttonHeight: 100,
-                  buttonWidth: 160,
-
-                  // buttonElevation: 2,
-                  itemHeight: 50,
-                  itemPadding:
-                  const EdgeInsets.only(
-                      left: 14, right: 14),
-                  dropdownMaxHeight: 250,
-                  dropdownWidth: 250,
-                  dropdownPadding: null,
-                  buttonDecoration: BoxDecoration(
-                    borderRadius:
-                    BorderRadius.circular(5),
-                    border: Border.all(
-                      color: Colors.green,
-                    ),
-                    color: Colors.white,
-                  ),
-                  dropdownDecoration: BoxDecoration(
-                    borderRadius:
-                    BorderRadius.circular(5),
-                    color: Colors.white,
-                  ),
-
-                  dropdownElevation: 8,
-                  scrollbarRadius:
-                  const Radius.circular(20),
-                  scrollbarThickness: 6,
-                  scrollbarAlwaysShow: true,
-                  items:LoginCubit.get(context).usersList!.map((item) => DropdownMenuItem(
-                    value: item.username,
-                    child: Center(child: Text(
-                        item.username!,
-                        style: GoogleFonts.notoKufiArabic(
-                            color: Colors
-                                .black,
-                            fontWeight:
-                            FontWeight
-                                .bold, fontSize: 12)
-                    ),),
-                  )).toList(),
-                  // items: cubit.companiesEmployeeName
-                  //     .map(EmployeeBuild)
-                  //     .toList(),
-                  value: LoginCubit.get(context).userName,
-                  isExpanded: true,
-
-                  onChanged: (val) {
-
-                    setState(() {
-                      LoginCubit.get(context).userName=val as String;
-                      LoginCubit.get(context).userNamevar=val;
-
-                      // LoginCubit.get(context).userName=val;
-                      LoginCubit.get(context).usersList!.forEach((user) {
-                        if(val ==user.username){
-                          LoginCubit.get(context).userId=user.id;
-                        }
-
-                      });
-                    });
-                  },
-                  iconSize: 40,
-                  icon: Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.green,
-                      borderRadius:
-                      BorderRadius.only(
-                          bottomLeft: Radius
-                              .circular(5),
-                          topLeft:
-                          Radius.circular(
-                              5)),
-                    ),
-                    child: const Icon(Icons
-                        .keyboard_arrow_down_sharp),
-                  ),
-                ),
-              ):Container(),
-            )
+            // Container(
+            //   width: MediaQuery.of(context)
+            //       .size
+            //       .width /
+            //       3,
+            //   padding:
+            //   const EdgeInsets.only(right: 0),
+            //   height: 40,
+            //   decoration: BoxDecoration(
+            //     borderRadius:
+            //     BorderRadius.circular(5),
+            //   ),
+            //
+            //   child: (LoginCubit.get(context).usersList !=null)?DropdownButtonHideUnderline(
+            //     child: DropdownButton2(
+            //       iconEnabledColor: Colors.white,
+            //       iconDisabledColor: Colors.grey,
+            //       buttonHeight: 100,
+            //       buttonWidth: 160,
+            //
+            //       // buttonElevation: 2,
+            //       itemHeight: 50,
+            //       itemPadding:
+            //       const EdgeInsets.only(
+            //           left: 14, right: 14),
+            //       dropdownMaxHeight: 250,
+            //       dropdownWidth: 250,
+            //       dropdownPadding: null,
+            //       buttonDecoration: BoxDecoration(
+            //         borderRadius:
+            //         BorderRadius.circular(5),
+            //         border: Border.all(
+            //           color: Colors.green,
+            //         ),
+            //         color: Colors.white,
+            //       ),
+            //       dropdownDecoration: BoxDecoration(
+            //         borderRadius:
+            //         BorderRadius.circular(5),
+            //         color: Colors.white,
+            //       ),
+            //
+            //       dropdownElevation: 8,
+            //       scrollbarRadius:
+            //       const Radius.circular(20),
+            //       scrollbarThickness: 6,
+            //       scrollbarAlwaysShow: true,
+            //       items:LoginCubit.get(context).usersList!.map((item) => DropdownMenuItem(
+            //         value: item.username,
+            //         child: Center(child: Text(
+            //             item.username!,
+            //             style: GoogleFonts.notoKufiArabic(
+            //                 color: Colors
+            //                     .black,
+            //                 fontWeight:
+            //                 FontWeight
+            //                     .bold, fontSize: 12)
+            //         ),),
+            //       )).toList(),
+            //       // items: cubit.companiesEmployeeName
+            //       //     .map(EmployeeBuild)
+            //       //     .toList(),
+            //       value: LoginCubit.get(context).userName,
+            //       isExpanded: true,
+            //
+            //       onChanged: (val) {
+            //
+            //         setState(() {
+            //           LoginCubit.get(context).userName=val as String;
+            //           LoginCubit.get(context).userNamevar=val;
+            //
+            //           // LoginCubit.get(context).userName=val;
+            //           LoginCubit.get(context).usersList!.forEach((user) {
+            //             if(val ==user.username){
+            //               LoginCubit.get(context).userId=user.id;
+            //             }
+            //
+            //           });
+            //         });
+            //       },
+            //       iconSize: 40,
+            //       icon: Container(
+            //         decoration: const BoxDecoration(
+            //           color: Colors.green,
+            //           borderRadius:
+            //           BorderRadius.only(
+            //               bottomLeft: Radius
+            //                   .circular(5),
+            //               topLeft:
+            //               Radius.circular(
+            //                   5)),
+            //         ),
+            //         child: const Icon(Icons
+            //             .keyboard_arrow_down_sharp),
+            //       ),
+            //     ),
+            //   ):Container(),
+            // )
           ],
         ),
         Text(AppStrings.Amountavailableforopening.tr(),
@@ -486,7 +487,7 @@ class _OpenCashierState extends State<OpenCashier> {
           Expanded(child: TextButton(child: Text(AppStrings.add .tr(),),onPressed: ()async {
             LoginCubit.get(context).startDate=DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString();
             // LoginCubit.get(context).cashInHand=LoginCubit.get(context).cashInHandController.text.isEmpty?"0":LoginCubit.get(context).cashInHandController.text;
-            CashierStartRequest cashierStartRequest=CashierStartRequest(userId:LoginCubit.get(context).userId ,cashInHand:LoginCubit.get(context).cashInHand.toStringAsFixed(2) ,date: DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString());
+            CashierStartRequest cashierStartRequest=CashierStartRequest(userId:userId.isNotEmpty?userId:CacheHelper.getData(key: "userId") ,cashInHand:LoginCubit.get(context).cashInHand.toStringAsFixed(2) ,date: DateFormat("yyyy-MM-dd HH:mm:ss","en").format(DateTime.now()).toString());
 await LoginCubit.get(context).openCashier(cashierStartRequest).then((value) {
   if(value.status==true){
     LoginCubit.get(context).totalCash=(LoginCubit.get(context).cashInHand+double.parse(LoginCubit.get(context).totalCash)).toString();

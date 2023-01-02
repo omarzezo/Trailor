@@ -3,6 +3,8 @@ import 'package:easy_localization/easy_localization.dart' as localize;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
+import 'package:omar/Controller/local/shared_pref.dart';
+import 'package:omar/View/login/login%20screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/TabBar%20Screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/casher.dart';
 import 'package:omar/View/sewing%20invoice%20screen/customers_details_screen.dart';
@@ -109,6 +111,14 @@ class _TabletHomeState extends State<TabletHome> {
                             Navigator.of(context).push(createRoute(SettingScreen()));
                           },
                           child: RowNameDetail(title: AppStrings.settings.tr() , iconData: Icons.settings,)),
+                      InkWell(
+                          onTap: () async{
+                            CacheHelper.saveData(key: "userIsLoggedIn", value: false);
+
+                            Navigator.of(context).push(createRoute(LoginScreen()));
+                          },
+                          child: RowNameDetail(title:  AppStrings.logOut.tr()  , iconData: Icons.logout_outlined,)),
+
 
                     ],
                   ),

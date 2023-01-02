@@ -7,6 +7,7 @@ import 'package:omar/Controller/End%20Point.dart';
 import 'package:omar/Controller/local/shared_pref.dart';
 import 'package:omar/View/home/home.dart';
 import 'package:omar/View/login/login%20screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/auth_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/start_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -26,18 +27,41 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
     goNext()async{
+    bool isAuthed=await CacheHelper.isUserAuthIn();
+    if(isAuthed){
+      var apiKey=CacheHelper.getData(key: 'apiKey');
+      var wareHouse= CacheHelper.getData(key: 'wareHouse');
+      APIKEYLogin=CacheHelper.getData(key: 'apiKey');
+      await LoginCubit.get(context).login(email: wareHouse, password: apiKey);
       bool isLogged=   await CacheHelper.isUserLoggedIn();
+
       if(isLogged){
-        var email=CacheHelper.getData(key: 'email');
-        var password= CacheHelper.getData(key: 'password');
-        APIKEYLogin=CacheHelper.getData(key: 'password');
-        await LoginCubit.get(context).login(email: email, password: password);
         Navigator.pushReplacementNamed(context, StartScreen.routeName);
+
+
       }else{
         Navigator.pushReplacementNamed(context, LoginScreen.routeName);
 
-        // Navigator.push( LoginScreen()));
       }
+
+    }else{
+      Navigator.pushReplacementNamed(context, AuthScreen.routeName);
+
+    }
+
+
+      // bool isLogged=   await CacheHelper.isUserLoggedIn();
+      // if(isLogged){
+      //   var email=CacheHelper.getData(key: 'email');
+      //   var password= CacheHelper.getData(key: 'password');
+      //   APIKEYLogin=CacheHelper.getData(key: 'password');
+      //   await LoginCubit.get(context).login(email: email, password: password);
+      //   Navigator.pushReplacementNamed(context, StartScreen.routeName);
+      // }else{
+      //   Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+      //
+      //   // Navigator.push( LoginScreen()));
+      // }
 
     }
 

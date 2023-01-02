@@ -20,6 +20,7 @@ import 'package:omar/View/mobile/mobil%20home.dart';
 import 'package:omar/View/present_all_tables_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/TabBar%20Screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/add_new_customer_screen.dart';
+import 'package:omar/View/sewing%20invoice%20screen/auth_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/cashier_report.dart';
 import 'package:omar/View/sewing%20invoice%20screen/customers_details_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/daily_report_screen.dart';
@@ -68,7 +69,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => LoginCubit()..getPillsDetails()),
+          BlocProvider(create: (context) => LoginCubit()),
         ],
         child: RestartWidget(
           child: MaterialApp(
@@ -129,6 +130,7 @@ class MyApp extends StatelessWidget {
               LoginScreen.routeName:(context) => const LoginScreen(),
               AllCustomerScreen.routeName:(context) => const AllCustomerScreen(),
               AllInvoicesScreen.routeName:(context) => const AllInvoicesScreen(),
+              AuthScreen.routeName:(context) =>  AuthScreen(),
               AddInvoiceScreen.routeName:(context) => const AddInvoiceScreen(),
               NewUserScreen.routeName:(context) =>  NewUserScreen(),
               CustomerDetailsScreen.routeName:(context) =>  CustomerDetailsScreen(),

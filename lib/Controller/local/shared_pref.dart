@@ -39,7 +39,15 @@ static init() async
     sharedPreferences.setBool('userIsLoggedIn', true);
   }
 
+
   static Future<bool> isUserLoggedIn() async {
     return sharedPreferences.getBool('userIsLoggedIn') ?? false;
+  }
+  static Future<void> setIsUserAuthIn() async {
+    sharedPreferences.setBool('userIsAuthed', true);
+  }
+
+  static Future<bool> isUserAuthIn() async {
+    return sharedPreferences.getBool('userIsAuthed') ?? false;
   }
 }

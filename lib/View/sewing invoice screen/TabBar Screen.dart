@@ -9,6 +9,7 @@ import 'package:omar/View/sewing%20invoice%20screen/change_size_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/new_add_customer_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/return_items_screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/sweing_screen.dart';
+import 'package:omar/constant/LoadingPage.dart';
 import 'package:omar/constant/appstrings.dart';
 import '../../constant/constant.dart';
 import '../AllCustomersHomeScreen.dart';
@@ -110,7 +111,11 @@ class _TabBarScreenState extends State<TabBarScreen> {
                 Expanded(
                   flex: 1,
                   child: InkWell(
-                    onTap: () {
+                    onTap: ()async {
+                      LoadingPage(context).show();
+
+                      await  LoginCubit.get(context).getPillsDetails();
+                      LoadingPage(context).close();
                       setScreen(2);
                     },
                     child: Column(
@@ -128,7 +133,12 @@ class _TabBarScreenState extends State<TabBarScreen> {
                 Expanded(
                   flex: 1,
                   child: InkWell(
-                    onTap: () {
+                    onTap: ()async {
+                      LoadingPage(context).show();
+
+                      await  LoginCubit.get(context).getPillsDetails();
+                      LoadingPage(context).close();
+
                       setScreen(3);
                     },
                     child: Column(
@@ -147,8 +157,12 @@ class _TabBarScreenState extends State<TabBarScreen> {
                   flex: 1,
                   child: InkWell(
                     onTap: ()async {
-                      setScreen(4);
+                      LoadingPage(context).show();
+
                       await  LoginCubit.get(context).getPillsDetails();
+                      LoadingPage(context).close();
+                      setScreen(4);
+
                     },
                     child: Column(
                       children:  [

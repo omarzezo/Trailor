@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -236,35 +237,74 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     child: TextButton(
                       onPressed: () async {
-                        LoadingPage(context).show();
-                        TrailorListsResponse model = await LoginCubit.get(context).login(email: userNameController.text, password: passwordController.text);
-                        bool isLogged=   await CacheHelper.isUserLoggedIn();
+                        LoginCubit.get(context).users.forEach((element) {
+                          if(userNameController.text==element.username&&passwordController.text==element.keyP){
+                            userId=element.id!;
+                            CacheHelper.setIsUserLoggedIn();
+                            CacheHelper.saveData(key: "userId", value: element.id!);
 
-                        if(!isLogged){
-                          CacheHelper.saveData(
-                              key: 'email',
-                              value: userNameController.text);
-                          CacheHelper.saveData(
-                              key: 'password',
-                              value: passwordController.text);
-                        }
 
-                        CacheHelper.setIsUserLoggedIn();
-                        // print("model>>"+model.toString());
-                        String jsonUser = jsonEncode(model);
-                        final prefs = await SharedPreferences.getInstance();
-                        await prefs.setString('json', jsonUser).then((value) {
-                          if(value){
-                            SharedPreferencesHelper.setApiKey(passwordController.text).then((value) {
-                              LoginCubit()..getPillsDetails().then((value){
-                                LoadingPage(context).close();
-                                // Navigator.push(context,MaterialPageRoute(builder: (context) => const HomeScreen()));
-                                Navigator.push(context,MaterialPageRoute(builder: (context) => const StartScreen()));
-                              });
+                            CacheHelper.saveData(key: "email", value: userNameController.text);
+                            CacheHelper.saveData(key: "password", value: passwordController.text);
 
-                            });
+Navigator.pushReplacementNamed(context, StartScreen.routeName);
+                          }else{
+
+                             AwesomeDialog(
+                                context: context,
+                                dialogType: DialogType.error,
+                                // animType: AnimType.rightSlide,
+                                width: MediaQuery.of(context).size.width,
+                                // width:400,
+                                body: Container(
+                                  height: 50,
+                                  child: Text("المستخدم غير موجود",
+                                      style: GoogleFonts.notoKufiArabic(
+                                          color: MyConstant().purpleColor,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14)),
+                                ),
+                                btnOk: TextButton(
+                                  child: Text(
+                                    AppStrings.Cancel.tr(),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                )).show();
+
                           }
                         });
+                        //
+                        // LoadingPage(context).show();
+                        // TrailorListsResponse model = await LoginCubit.get(context).login(email: userNameController.text, password: passwordController.text);
+                        // bool isLogged=   await CacheHelper.isUserLoggedIn();
+                        //
+                        // if(!isLogged){
+                        //   CacheHelper.saveData(
+                        //       key: 'email',
+                        //       value: userNameController.text);
+                        //   CacheHelper.saveData(
+                        //       key: 'password',
+                        //       value: passwordController.text);
+                        // }
+                        //
+                        // CacheHelper.setIsUserLoggedIn();
+                        // // print("model>>"+model.toString());
+                        // String jsonUser = jsonEncode(model);
+                        // final prefs = await SharedPreferences.getInstance();
+                        // await prefs.setString('json', jsonUser).then((value) {
+                        //   if(value){
+                        //     SharedPreferencesHelper.setApiKey(passwordController.text).then((value) {
+                        //       LoginCubit()..getPillsDetails().then((value){
+                        //         LoadingPage(context).close();
+                        //         // Navigator.push(context,MaterialPageRoute(builder: (context) => const HomeScreen()));
+                        //         Navigator.push(context,MaterialPageRoute(builder: (context) => const StartScreen()));
+                        //       });
+                        //
+                        //     });
+                        //   }
+                        // });
                       },
                       child: Text(AppStrings.Login.tr(),
                           style: GoogleFonts.notoKufiArabic(

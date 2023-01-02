@@ -8,6 +8,8 @@
   "NoClients": "No Clients Yet ",
   "NoInvoices": "No Invoices Yet ",
   "NoReturns": "No Returns Yet ",
+  "auth": "synchronization",
+  "logOut": "logOut",
   "cashierIsOpened": "cashier Is Already Opened ",
   "pleaseOpenCashier": "please Open Cashier First ",
   "sewingbill": "sewing bill",

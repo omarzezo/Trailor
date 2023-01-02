@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:omar/Controller/Cubit/Cubit.dart';
 import 'package:omar/View/Data%20Table/custom%20table.dart';
+import 'package:omar/View/login/login%20screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/Size%20Screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/TabBar%20Screen.dart';
 import 'package:omar/View/sewing%20invoice%20screen/casher.dart';
@@ -17,6 +18,7 @@ import 'package:omar/constant/appstrings.dart';
 import 'package:omar/constant/constant.dart';
 import 'package:flutter/services.dart' as p;
 
+import '../../Controller/local/shared_pref.dart';
 import '../../constant/widgets.dart';
 
 class MobileHome extends StatelessWidget {
@@ -80,6 +82,13 @@ class MobileHome extends StatelessWidget {
                           Navigator.of(context).push(createRoute(SettingScreen()));
                         },
                         child: RowNameDetail(title:  AppStrings.settings.tr()  , iconData: Icons.settings,)),
+                    InkWell(
+                        onTap: () async{
+                          CacheHelper.saveData(key: "userIsLoggedIn", value: false);
+
+                          Navigator.of(context).push(createRoute(LoginScreen()));
+                        },
+                        child: RowNameDetail(title:  AppStrings.logOut.tr()  , iconData: Icons.logout_outlined,)),
 
 
                   ],

@@ -2,6 +2,7 @@ abstract class AppStrings {
 
   static const theCompany= "theCompany";
   static const username= "username";
+  static const auth= "auth";
   static const thePassword= "Thepassword";
   static const Iforgotthepassword= "Iforgotthepassword";
   static const  Tailoringinnovationcenter= "Tailoringinnovationcenter";
@@ -80,6 +81,7 @@ abstract class AppStrings {
   static const customers = "customers";
   static const reports = "reports";
   static const settings = "settings";
+  static const logOut = "logOut";
   static const printInvoice = "printInvoice";
   static const editSizes = "editSizes";
   static const show = "show";
